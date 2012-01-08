@@ -5,12 +5,22 @@
 //info: construct WP_PATH from current file´s path (/wp-content/plugins/leaflet-maps-marker)
 $wp_plugin_path_modified = explode('/',dirname(__FILE__),-3);
 $wp_path = implode('/', $wp_plugin_path_modified);
+
+include_once($wp_path.'/wp-config.php');
+include_once($wp_path.'/wp-includes/wp-db.php');
+
+//info: is plugin active?
+include_once( $wp_path.'/wp-admin/includes/plugin.php' );
+function hide_email($email) { $character_set = '+-.0123456789@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz'; $key = str_shuffle($character_set); $cipher_text = ''; $id = 'e'.rand(1,999999999); for ($i=0;$i<strlen($email);$i+=1) $cipher_text.= $key[strpos($character_set,$email[$i])]; $script = 'var a="'.$key.'";var b=a.split("").sort().join("");var c="'.$cipher_text.'";var d="";'; $script.= 'for(var e=0;e<c.length;e++)d+=b.charAt(a.indexOf(c.charAt(e)));'; $script.= 'document.getElementById("'.$id.'").innerHTML="<a href=\\"mailto:"+d+"\\">"+d+"</a>"'; $script = "eval(\"".str_replace(array("\\",'"'),array("\\\\",'\"'), $script)."\")"; $script = '<script type="text/javascript">/*<![CDATA[*/'.$script.'/*]]>*/</script>'; return '<span id="'.$id.'">[javascript protected email address]</span>'.$script; }
+if (!is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php')) {
+echo 'The WordPress plugin <a href="http://www.mapsmarker.com" target="_blank">Leaflet Maps Marker</a> is inactive on this site and therefore this API link is not working.<br/><br/>Please contact the site owner (' . hide_email(get_bloginfo('admin_email')) . ') who can activate this plugin again.';
+} else {
+
+global $wpdb;
+$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
+$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
+
 if (isset($_GET['layer'])) {
-  include_once($wp_path.'/wp-config.php');
-  include_once($wp_path.'/wp-includes/wp-db.php');
-  global $wpdb;
-  $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
-  $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
   $layer = mysql_real_escape_string($_GET['layer']);
   
   $q = 'LIMIT 0';
@@ -106,11 +116,6 @@ if (isset($_GET['layer'])) {
   } //info: check if layer exists end
   }
 elseif (isset($_GET['marker'])) {
-  include_once($wp_path.'/wp-config.php');
-  include_once($wp_path.'/wp-includes/wp-db.php');
-  global $wpdb;
-  $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
-  $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
   $markerid = mysql_real_escape_string($_GET['marker']);
   $markers = explode(',', $markerid);
   $checkedmarkers = array();
@@ -190,4 +195,5 @@ elseif (isset($_GET['marker'])) {
   echo '</kml>';
   } //info: check if marker exists end
 }
+} //info: end plugin active check
 ?>

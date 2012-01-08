@@ -5,20 +5,39 @@
 //info: construct WP_PATH from current file´s path (/wp-content/plugins/leaflet-maps-marker)
 $wp_plugin_path_modified = explode('/',dirname(__FILE__),-3);
 $wp_path = implode('/', $wp_plugin_path_modified);
-//info: get callback parameters for JSONP 
-$callback = (isset($_GET['callback']) == TRUE ) ? $_GET['callback'] : '';
+
+include_once($wp_path.'/wp-config.php');
+include_once($wp_path.'/wp-includes/wp-db.php');
+
+//info: is plugin active?
+include_once( $wp_path.'/wp-admin/includes/plugin.php' );
+function hide_email($email) { $character_set = '+-.0123456789@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz'; $key = str_shuffle($character_set); $cipher_text = ''; $id = 'e'.rand(1,999999999); for ($i=0;$i<strlen($email);$i+=1) $cipher_text.= $key[strpos($character_set,$email[$i])]; $script = 'var a="'.$key.'";var b=a.split("").sort().join("");var c="'.$cipher_text.'";var d="";'; $script.= 'for(var e=0;e<c.length;e++)d+=b.charAt(a.indexOf(c.charAt(e)));'; $script.= 'document.getElementById("'.$id.'").innerHTML="<a href=\\"mailto:"+d+"\\">"+d+"</a>"'; $script = "eval(\"".str_replace(array("\\",'"'),array("\\\\",'\"'), $script)."\")"; $script = '<script type="text/javascript">/*<![CDATA[*/'.$script.'/*]]>*/</script>'; return '<span id="'.$id.'">[javascript protected email address]</span>'.$script; }
+if (!is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php')) {
+echo 'The WordPress plugin <a href="http://www.mapsmarker.com" target="_blank">Leaflet Maps Marker</a> is inactive on this site and therefore this API link is not working.<br/><br/>Please contact the site owner (' . hide_email(get_bloginfo('admin_email')) . ') who can activate this plugin again.';
+} else {
+
+global $wpdb;
+$lmm_options = get_option( 'leafletmapsmarker_options' );
+$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
+$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
+
 if (isset($_GET['layer'])) {
-  include_once($wp_path.'/wp-config.php');
-  include_once($wp_path.'/wp-includes/wp-db.php');
-  global $wpdb;
-  $lmm_options = get_option( 'leafletmapsmarker_options' );
-  $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
-  $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
   $layer = mysql_real_escape_string($_GET['layer']); 
   
   $maxNumberOfPois = isset($_GET['maxNumberOfPois']) ? intval($_GET['maxNumberOfPois']) : $lmm_options[ 'ar_wikitude_maxnumberpois' ];
-  $latUser = isset($_GET['latitude']) ? floatval($_GET['latitude']) : $lmm_options[ 'ar_wikitude_debug_lat' ];
-  $lonUser = isset($_GET['longitude']) ? floatval($_GET['longitude']) : $lmm_options[ 'ar_wikitude_debug_lon' ];
+  
+  if ($layer == '*' or $layer == 'all') {
+	//info: no exact results, but better than getting no results on calling Wikitude ARML links which might confuse users
+	$first_marker_lat = $wpdb->get_var('SELECT lat FROM '.$table_name_markers.' WHERE id = 1');
+	$first_marker_lon = $wpdb->get_var('SELECT lon FROM '.$table_name_markers.' WHERE id = 1');
+ 	$latUser = isset($_GET['latitude']) ? floatval($_GET['latitude']) : $first_marker_lat;
+	$lonUser = isset($_GET['longitude']) ? floatval($_GET['longitude']) : $first_marker_lon;
+  } else {
+	$layerviewlat = $wpdb->get_var('SELECT layerviewlat FROM '.$table_name_layers.' WHERE id='.$layer);
+	$layerviewlon = $wpdb->get_var('SELECT layerviewlon FROM '.$table_name_layers.' WHERE id='.$layer);
+ 	$latUser = isset($_GET['latitude']) ? floatval($_GET['latitude']) : $layerviewlat;
+	$lonUser = isset($_GET['longitude']) ? floatval($_GET['longitude']) : $layerviewlon;
+  }
  
   $radius = $lmm_options[ 'ar_wikitude_radius' ];
   $distanceLLA = 0.01 * $radius / 1112;
@@ -167,18 +186,16 @@ if (isset($_GET['layer'])) {
   }
 }
 elseif (isset($_GET['marker'])) {
-  include_once($wp_path.'/wp-config.php');
-  include_once($wp_path.'/wp-includes/wp-db.php');
-  global $wpdb;
-  $lmm_options = get_option( 'leafletmapsmarker_options' );
-  $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
-  $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
   $markerid = mysql_real_escape_string($_GET['marker']);
   $markers = explode(',', $markerid);
 
   $maxNumberOfPois = isset($_GET['maxNumberOfPois']) ? intval($_GET['maxNumberOfPois']) : $lmm_options[ 'ar_wikitude_maxnumberpois' ];
-  $latUser = isset($_GET['latitude']) ? floatval($_GET['latitude']) : $lmm_options[ 'ar_wikitude_debug_lat' ];
-  $lonUser = isset($_GET['longitude']) ? floatval($_GET['longitude']) : $lmm_options[ 'ar_wikitude_debug_lon' ];
+
+  $markerlat = $wpdb->get_var('SELECT lat FROM '.$table_name_markers.' WHERE id='.$markerid);
+  $markerlon = $wpdb->get_var('SELECT lon FROM '.$table_name_markers.' WHERE id='.$markerid);
+ 
+  $latUser = isset($_GET['latitude']) ? floatval($_GET['latitude']) : $markerlat;
+  $lonUser = isset($_GET['longitude']) ? floatval($_GET['longitude']) : $markerlon;
  
   $radius = $lmm_options[ 'ar_wikitude_radius' ];
   $distanceLLA = 0.01 * $radius / 1112;
@@ -333,4 +350,5 @@ elseif (isset($_GET['marker'])) {
 		  echo  '</a>';		  
   }
 }
+} //info: end plugin active check
 ?>

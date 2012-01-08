@@ -2,7 +2,12 @@
 /*
     Export all markers as CVS file - Leaflet Maps Marker Plugin
 */
-require_once("../../../wp-config.php");
+//info: construct WP_PATH from current file´s path (/wp-content/plugins/leaflet-maps-marker)
+$wp_plugin_path_modified = explode('/',dirname(__FILE__),-3);
+$wp_path = implode('/', $wp_plugin_path_modified);
+
+include_once($wp_path.'/wp-config.php');
+include_once($wp_path.'/wp-includes/wp-db.php');
    global $wpdb;
    $noncelink = isset($_GET['_wpnonce']) ? $_GET['_wpnonce'] : ''; 
    if (! wp_verify_nonce($noncelink, 'exportcsv-nonce') ) die("".__('Security check failed - please call this function from the according Leaflet Maps Marker admin page!','lmm')."");
