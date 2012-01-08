@@ -165,21 +165,21 @@ Initial release
 == Changelog ==
 
 = 1.1 - 08.01.2012 =
-NEW: show standalone maps in fullscreen mode
-NEW: create QR code images for standalone maps in fullscreen mode
-NEW: API links (KML, GeoJSON, Fullscreen, QR Code, Wikitude) now only work if plugin is active
-NEW: German translation
-NEW: Japanese translation thanks to Shu Higashi (@higa4)
-NEW: option to show/hide WMS layer legend link
-NEW: option to disable global statistics
-CHANGED: added more default marker icons, based on the top 100 icons from the Map Icons Collections
-CHANGED: added attribution text field in settings for custom overlays
-CHANGED: removed settings for Wikitude debug lon/lat -> now marker lat/lon respectively layer center lat/lon are used when Wikitude API links are called without explicit parameters &latitude= and &longitude=
-CHANGED: default setting fields can now be changed by focusing with mouse click
-CHANGED: added icons to API links on backend for better usability
-BUGFIX: dynamic preview of marker/layer panel in backend not working as designed
-BUGFIX: language pot-file didn´t include all text strings for translations
-BUGFIX: active translations made setting tabs unaccessible
+* NEW: show standalone maps in fullscreen mode
+* NEW: create QR code images for standalone maps in fullscreen mode
+* NEW: API links (KML, GeoJSON, Fullscreen, QR Code, Wikitude) now only work if plugin is active
+* NEW: German translation
+* NEW: Japanese translation thanks to Shu Higashi (@higa4)
+* NEW: option to show/hide WMS layer legend link
+* NEW: option to disable global statistics
+* CHANGED: added more default marker icons, based on the top 100 icons from the Map Icons Collections
+* * CHANGED: added attribution text field in settings for custom overlays
+* CHANGED: removed settings for Wikitude debug lon/lat -> now marker lat/lon respectively layer center lat/lon are used when Wikitude API links are called without explicit parameters &latitude= and &longitude=
+* CHANGED: default setting fields can now be changed by focusing with mouse click
+* CHANGED: added icons to API links on backend for better usability
+* BUGFIX: dynamic preview of marker/layer panel in backend not working as designed
+* BUGFIX: language pot-file didn´t include all text strings for translations
+* BUGFIX: active translations made setting tabs unaccessible
 
 = 1.0 - 01.01.2012 = 
 * NEW: Initial release
