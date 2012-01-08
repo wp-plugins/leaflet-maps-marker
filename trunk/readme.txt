@@ -2,14 +2,15 @@
 Contributors:      harmr
 Plugin Name:       Leaflet Maps Marker
 Plugin URI:        http://www.mapsmarker.com
-Tags:              map, maps, Leaflet, OpenStreetMap, geoJSON, OSM, travelblog, opendata, opengov, ogdwien, google maps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, google earth, gmaps,ar,augmented-reality,wikitude, wms, web map service
+Tags:              map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, google maps, googlemaps, gmaps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, layer, 
 Author URI:        http://www.harm.co.at
 Author:            Robert Harm (with special support from Sindre Wimberger)
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
-Tested up to:      3.4-alpha-19620
-Stable tag:        1.0
-Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google/KML, GeoJSON or Augmented-Reality browsers
+Tested up to:      3.4-alpha-19704
+Stable tag:        1.1
+
+Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON or Augmented-Reality browsers
 
 == Description ==
 
@@ -21,7 +22,7 @@ http://mapsmarker.com
 
 = Leaflet Maps Marker Needs Your Support =
 
-It is hard to continue development and support for this plugin without contributions from users like you. If you enjoy using Leaflet Maps Marker - particularly within a commercial context - please consider [__making a donation__](http://www.mapsmarker.com/donations). Your donation help keeping the plugin free for everyone and allow me to spend more time on developing, maintaining and support. I´d be happy to accept your donation! Thanks! [Robert Harm](http://www.harm.co.at)
+It is hard to continue development and support for this plugin without contributions from users like you. If you enjoy using Leaflet Maps Marker - particularly within a commercial context - please consider [__making a donation__](http://www.mapsmarker.com/donations). Your donation will help keeping the plugin free for everyone and allow me to spend more time on developing, maintaining and support. I´d be happy to accept your donation! Thanks! [Robert Harm](http://www.harm.co.at)
 
 = Main features = 
 
@@ -47,6 +48,8 @@ to the visitors of your website.
 * export your markers as GeoJSON file for embedding them in external websites or apps
 * export your markers as ARML for displaying them in the augmented-reality browser from Wikitude
 * export your markers as csv-file
+* show standalone maps in fullscreen mode
+* create QR code images for standalone maps in fullscreen mode
 * option to set Wordpress roles (administrator, editor, author, contributor) which are allowed to add/edit/delete markers and layers
 * option to add marker directly to posts or pages without saving them to your database
 * audit log for changes on markers & layers (saving first created by/on and last updated by/on info)
@@ -63,7 +66,7 @@ to the visitors of your website.
 * Wordpress Multisite compatibility
 * full UTF8-support for cyrillic, chinese or other alphabets on marker/layername and marker popup text
 * support for other languages through .po/.mo-files (please see http://mapsmarker.com/languages for details if you want to contribute a new translation)
-* GeoJSON feeds for every marker and layer with [JSONP support](http://www.mapsmarker.com/jsonp)
+* GeoJSON feeds for every marker and layer with [JSONP support](http://www.mapsmarker.com/geojson)
 * use of Wordpress settings API for storing options
 * TinyMCE editor on backend for editing popuptext
 * version check for minimum Wordpress (3.0) and PHP (5.2) requirements
@@ -75,9 +78,17 @@ to the visitors of your website.
 
 Please let me know which feature you think is missing by adding your ideas at [http://www.mapsmarker.com/ideas](http://www.mapsmarker.com/ideas)
 
+= Available translations =
+
+* English (en_US)
+* German (de_DE)
+* Japanes (ja) [Shu Higashi](http://twitter.com/higa4)
+
+For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
+
 == Installation ==
 
-Note: plugins requires at least PHP 5.2 and Wordpress 3.0!
+Note: plugin requires at least PHP 5.2 and Wordpress 3.0!
 
 1. Upload leaflet-maps-marker folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
@@ -145,10 +156,30 @@ For more information on translations of the plugin and how to contribute a new t
 
 == Upgrade Notice ==
 
+= 1.1 =
+Added new features and bugfixes - see http://www.mapsmarker.com/changelog for details
+
 = 1.0 =
 Initial release
 
 == Changelog ==
+
+= 1.1 - 08.01.2012 =
+NEW: show standalone maps in fullscreen mode
+NEW: create QR code images for standalone maps in fullscreen mode
+NEW: API links (KML, GeoJSON, Fullscreen, QR Code, Wikitude) now only work if plugin is active
+NEW: German translation
+NEW: Japanese translation thanks to Shu Higashi (@higa4)
+NEW: option to show/hide WMS layer legend link
+NEW: option to disable global statistics
+CHANGED: added more default marker icons, based on the top 100 icons from the Map Icons Collections
+CHANGED: added attribution text field in settings for custom overlays
+CHANGED: removed settings for Wikitude debug lon/lat -> now marker lat/lon respectively layer center lat/lon are used when Wikitude API links are called without explicit parameters &latitude= and &longitude=
+CHANGED: default setting fields can now be changed by focusing with mouse click
+CHANGED: added icons to API links on backend for better usability
+BUGFIX: dynamic preview of marker/layer panel in backend not working as designed
+BUGFIX: language pot-file didn´t include all text strings for translations
+BUGFIX: active translations made setting tabs unaccessible
 
 = 1.0 - 01.01.2012 = 
 * NEW: Initial release

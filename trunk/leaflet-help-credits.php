@@ -61,8 +61,8 @@
 		<?php _e('Credits & special thanks','lmm') ?>
 	</h3>
 	<ul>
-		<li>- Sindre Wimberger (<a href="http://www.sindre.at" target="_blank">http://www.sindre.at</a>) for help with bugfixing &amp; geo-consulting</li>
-		<li>- Susanne Mandl (<a href="http://www.greenflamingomedia.com" target="_blank">http://www.greenflamingomedia.com</a>) for plugin logo</li>
+		<li>- Sindre Wimberger (<a href="http://www.sindre.at" target="_blank">http://www.sindre.at</a>) - bugfixing &amp; geo-consulting</li>
+		<li>- Susanne Mandl (<a href="http://www.greenflamingomedia.com" target="_blank">http://www.greenflamingomedia.com</a>) - plugin logo</li>
 		<li>- <a href="http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/" target="_blank">WordPress-Settings-API-Class</a> by Aliso the geek</li>
 	</ul>
 	</p>
