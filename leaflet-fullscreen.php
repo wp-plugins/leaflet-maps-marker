@@ -64,7 +64,7 @@ if (isset($_GET['layer'])) {
 	} else {	
 	
 	//info: starting output on frontend
-	$lmm_out = '<html>'.PHP_EOL;
+	$lmm_out = '<!DOCTYPE html>'.PHP_EOL;
 	$lmm_out .= '<!--[if IE 6]>'.PHP_EOL;
 	$lmm_out .= '<html id="ie6" dir="ltr" lang="de-DE">'.PHP_EOL;
 	$lmm_out .= '<![endif]-->'.PHP_EOL;
@@ -79,7 +79,9 @@ if (isset($_GET['layer'])) {
 	$lmm_out .= '<!--<![endif]-->'.PHP_EOL;
 	$lmm_out .= '<head>'.PHP_EOL;
 	$lmm_out .= '<link rel="stylesheet" id="leafletmapsmarker-css" href="' . LEAFLET_PLUGIN_URL.'/leaflet-dist/leaflet.css" type="text/css" media="all">'.PHP_EOL;
-	$lmm_out .= '<!--[if lt IE 9] ><link rel="stylesheet" id="leafletmapsmarker-ie-only-css" href=' . LEAFLET_PLUGIN_URL.'/leaflet-dist/leaflet.ie.css" type="text/css" media="all" / >< ![endif]-->'.PHP_EOL;
+	$lmm_out .= '<!--[if lt IE 9]>'.PHP_EOL;
+	$lmm_out .= '<link rel="stylesheet" id="leafletmapsmarker-ie-only-css" href="' . LEAFLET_PLUGIN_URL.'/leaflet-dist/leaflet.ie.css" type="text/css" media="all" / >'.PHP_EOL;
+	$lmm_out .= '<![endif]-->'.PHP_EOL;
 	$lmm_out .= '<script type="text/javascript" src="' . get_bloginfo('url') . '/wp-includes/js/jquery/jquery.js"></script>'.PHP_EOL;
 	$lmm_out .= '<script type="text/javascript">'.PHP_EOL;
 	$lmm_out .= '/* <![CDATA[ */'.PHP_EOL;
@@ -88,6 +90,9 @@ if (isset($_GET['layer'])) {
 	$lmm_out .= '</script>'.PHP_EOL;
 	$lmm_out .= '<style>form { margin: 0 ; } </style>'.PHP_EOL; //info: for layer controlbox
 	$lmm_out .= '<script type="text/javascript" src="' . LEAFLET_PLUGIN_URL . '/leaflet-dist/leaflet.js" type="text/css" media="all"></script>'.PHP_EOL;
+	$lmm_out .= '<meta name="geo.position" content="' . $lat . ';' . $lon . '" />'.PHP_EOL;
+	$lmm_out .= '<meta name="ICBM" content="' . $lat . ', ' . $lon . '" />'.PHP_EOL;
+	$lmm_out .= '<meta name="page-type" content="' . __('map','lmm') . '" />'.PHP_EOL;
 	$lmm_out .= '</head>'.PHP_EOL;
 	$lmm_out .= '<body style="margin:0;padding:0;height:100%;background: ' . addslashes($lmm_options[ 'defaults_layer_panel_background_color' ]) . ';overflow:hidden;">'.PHP_EOL;
 
@@ -113,11 +118,11 @@ if (isset($_GET['layer'])) {
 		$lmm_out .= '</span></div>'.PHP_EOL;
 	}
 	
-	//info: if panel enabled, only 97% height as otherwise attribution won´t be visible
+	//info: if panel enabled, only 93% height as otherwise attribution won´t be visible
 	if ($panel == 1) {
-	$lmm_out .= PHP_EOL.'<div id="'.$mapname.'"  data-marker="'.$layer.'" style="width:100%; height:97%; height:auto !important; min-height: 97%; overflow: hidden !important; background:#ccc; overflow:hidden;padding:0;border:none;"></div>'. PHP_EOL;	
+	$lmm_out .= PHP_EOL.'<div id="'.$mapname.'"  data-marker="'.$layer.'" style="width:100%; height:93%; height:auto !important; min-height: 93%; overflow: hidden !important; background:#ccc; padding:0; border:none; position:absolute;"></div>'. PHP_EOL;	
 	} else {
-	$lmm_out .= PHP_EOL.'<div id="'.$mapname.'"  data-marker="'.$layer.'" style="width:100%; height:100%; height:auto !important; min-height: 100%; overflow: hidden !important; background:#ccc; overflow:hidden;padding:0;border:none;"></div>'. PHP_EOL;	
+	$lmm_out .= PHP_EOL.'<div id="'.$mapname.'"  data-marker="'.$layer.'" style="width:100%; height:100%; height:auto !important; min-height: 100%; overflow: hidden !important; background:#ccc; padding:0; border:none; position:absolute;"></div>'. PHP_EOL;	
 	}
 
 	$plugin_version = get_option('leafletmapsmarker_version');
@@ -381,7 +386,7 @@ elseif (isset($_GET['marker'])) {
 	} else {	
 	
 	//info: starting output on frontend
-	$lmm_out = '<html>'.PHP_EOL;
+	$lmm_out = '<!DOCTYPE html>'.PHP_EOL;
 	$lmm_out .= '<!--[if IE 6]>'.PHP_EOL;
 	$lmm_out .= '<html id="ie6" dir="ltr" lang="de-DE">'.PHP_EOL;
 	$lmm_out .= '<![endif]-->'.PHP_EOL;
@@ -396,7 +401,9 @@ elseif (isset($_GET['marker'])) {
 	$lmm_out .= '<!--<![endif]-->'.PHP_EOL;
 	$lmm_out .= '<head>'.PHP_EOL;
 	$lmm_out .= '<link rel="stylesheet" id="leafletmapsmarker-css" href="' . LEAFLET_PLUGIN_URL.'/leaflet-dist/leaflet.css" type="text/css" media="all">'.PHP_EOL;
-	$lmm_out .= '<!--[if lt IE 9] ><link rel="stylesheet" id="leafletmapsmarker-ie-only-css" href=' . LEAFLET_PLUGIN_URL.'/leaflet-dist/leaflet.ie.css" type="text/css" media="all" / >< ![endif]-->'.PHP_EOL;
+	$lmm_out .= '<!--[if lt IE 9]>'.PHP_EOL;
+	$lmm_out .= '<link rel="stylesheet" id="leafletmapsmarker-ie-only-css" href="' . LEAFLET_PLUGIN_URL.'/leaflet-dist/leaflet.ie.css" type="text/css" media="all" / >'.PHP_EOL;
+	$lmm_out .= '<![endif]-->'.PHP_EOL;
 	$lmm_out .= '<script type="text/javascript" src="' . get_bloginfo('url') . '/wp-includes/js/jquery/jquery.js"></script>'.PHP_EOL;
 	$lmm_out .= '<script type="text/javascript">'.PHP_EOL;
 	$lmm_out .= '/* <![CDATA[ */'.PHP_EOL;
@@ -405,6 +412,9 @@ elseif (isset($_GET['marker'])) {
 	$lmm_out .= '</script>'.PHP_EOL;
 	$lmm_out .= '<style>form { margin: 0 ; } </style>'.PHP_EOL; //info: for layer controlbox
 	$lmm_out .= '<script type="text/javascript" src="' . LEAFLET_PLUGIN_URL . '/leaflet-dist/leaflet.js" type="text/css" media="all"></script>'.PHP_EOL;
+	$lmm_out .= '<meta name="geo.position" content="' . $lat . ';' . $lon . '" />'.PHP_EOL;
+	$lmm_out .= '<meta name="ICBM" content="' . $lat . ', ' . $lon . '" />'.PHP_EOL;
+	$lmm_out .= '<meta name="page-type" content="' . __('map','lmm') . '" />'.PHP_EOL;
 	$lmm_out .= '</head>'.PHP_EOL;
 	$lmm_out .= '<body style="margin:0;padding:0;height:100%;background: ' . addslashes($lmm_options[ 'defaults_marker_panel_background_color' ]) . ';overflow:hidden;">'.PHP_EOL;
 
@@ -430,11 +440,11 @@ elseif (isset($_GET['marker'])) {
 		$lmm_out .= '</span></div>'.PHP_EOL;
 	}
 	
-	//info: if panel enabled, only 97% height as otherwise attribution won´t be visible
+	//info: if panel enabled, only 93% height as otherwise attribution won´t be visible
 	if ($panel == 1) {
-	$lmm_out .= PHP_EOL.'<div id="'.$mapname.'"  data-marker="'.$markerid.'" style="width:100%; height:97%; height:auto !important; min-height: 97%; overflow: hidden !important; background:#ccc; overflow:hidden;padding:0;border:none;"></div>'. PHP_EOL;	
+	$lmm_out .= PHP_EOL.'<div id="'.$mapname.'"  data-marker="'.$layer.'" style="width:100%; height:93%; height:auto !important; min-height: 93%; overflow: hidden !important; background:#ccc; padding:0; border:none; position:absolute;"></div>'. PHP_EOL;	
 	} else {
-	$lmm_out .= PHP_EOL.'<div id="'.$mapname.'"  data-marker="'.$markerid.'" style="width:100%; height:100%; height:auto !important; min-height: 100%; overflow: hidden !important; background:#ccc; overflow:hidden;padding:0;border:none;"></div>'. PHP_EOL;	
+	$lmm_out .= PHP_EOL.'<div id="'.$mapname.'"  data-marker="'.$layer.'" style="width:100%; height:100%; height:auto !important; min-height: 100%; overflow: hidden !important; background:#ccc; padding:0; border:none; position:absolute;"></div>'. PHP_EOL;	
 	}
 
 	$plugin_version = get_option('leafletmapsmarker_version');
