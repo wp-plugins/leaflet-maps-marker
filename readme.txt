@@ -2,13 +2,13 @@
 Contributors:      harmr
 Plugin Name:       Leaflet Maps Marker
 Plugin URI:        http://www.mapsmarker.com
-Tags:              map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, google maps, googlemaps, gmaps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, layer, 
+Tags:              map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, google maps, googlemaps, gmaps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, layer 
 Author URI:        http://www.harm.co.at
 Author:            Robert Harm (with special support from Sindre Wimberger)
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
 Tested up to:      3.4-alpha-19704
-Stable tag:        1.1
+Stable tag:        1.2
 
 Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 
@@ -173,18 +173,20 @@ Initial release
 
 = 1.2 - 11.01.2012 =
 
-* NEW: added GeoRSS-Feeds for marker- and layer maps (RSS 2.0 & ATOM 1.0)
+* NEW: added GeoRSS-feeds for marker- and layer maps (RSS 2.0 & ATOM 1.0)
 * NEW: added microformat geo-markup to maps, to make your maps machine-readable
 * CHANGE: Default custom overlay (OGD Vienna Addresses) is not active anymore by default on new markers/layers (but still gets active when an address through search by Google Places is selected)
 * CHANGE: added attribution text for default custom overlay (OGD Vienna Addresses) to see if overlay has accidently been activated
-* BUGFIX: plugin did not work on several hosts as path to wp-config.php for API links could not be constructed
+* CHANGE: added sanitization for wikitude provide name 
+* BUGFIX: plugin conflict with Google Analytics for WordPress resulting in maps not showing up
+* BUGFIX: plugin did not work on several hosts as path to wp-load.php for API links could not be constructed
 * BUGFIX: reset settings to default values did only reset values from v1.0
 * BUGFIX: when default custom overlay for new markers/layers got unchecked, the map in backend did not show up anymore
 * BUGFIX: fullscreen standalone maps didnt work in Internet Explorer
+* BUGFIX: maps did not show up in Internet Explorer 7 at all
 * BUGFIX: attribution box on standalone maps did not show up if windows size is too small
 * BUGFIX: slashes were not stripped from marker/layer name on frontend maps
 * BUGFIX: quotes were not shown on marker/layer names (note: double quotes are replaced with single quotes automatically due to compatibility reasons)
-* BUGFIX: maps did not show up in Internet Explorer 7
 
 = 1.1 - 08.01.2012 =
 * NEW: show standalone maps in fullscreen mode
@@ -202,5 +204,6 @@ Initial release
 * BUGFIX: dynamic preview of marker/layer panel in backend not working as designed
 * BUGFIX: language pot-file didn´t include all text strings for translations
 * BUGFIX: active translations made setting tabs unaccessible
+
 = 1.0 - 01.01.2012 = 
 * NEW: Initial release

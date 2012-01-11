@@ -992,7 +992,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.1',
 			'title'   => __( 'Attribution', 'lmm' ),
 			'desc'    => '',
-			'std'     => '',
+			'std'     => 'Addresses: City of Vienna (<a href=&quot;http://data.wien.gv.at&quot; target=&quot;_blank&quot;>data.wien.gv.at</a>)',
 			'type'    => 'text',
 			'section' => 'overlays'
 		);	
@@ -1070,7 +1070,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.1',
 			'title'   => __( 'Attribution', 'lmm' ),
 			'desc'    => '',
-			'std'     => '',
+			'std'     => 'Addresses: City of Vienna (<a href=&quot;http://data.wien.gv.at&quot; target=&quot;_blank&quot;>data.wien.gv.at</a>)',
 			'type'    => 'text',
 			'section' => 'overlays'
 		);	
@@ -1149,7 +1149,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.1',
 			'title'   => __( 'Attribution', 'lmm' ),
 			'desc'    => '',
-			'std'     => '',
+			'std'     => 'Addresses: City of Vienna (<a href=&quot;http://data.wien.gv.at&quot; target=&quot;_blank&quot;>data.wien.gv.at</a>)',
 			'type'    => 'text',
 			'section' => 'overlays'
 		);		
@@ -3502,8 +3502,8 @@ class Leafletmapsmarker_options {
 		$this->settings['ar_wikitude_provider_name'] = array(
 			'version' => '1.0',
 			'title'   => __( 'Provider name', 'lmm' ),
-			'desc'    => __( 'Identifies the content provider or content channel, no spaces/special characters', 'lmm' ),
-			'std'     => 'www-mapsmarker-com',
+			'desc'    => '<strong>' . __( 'Identifies the content provider or content channel, no spaces/special characters', 'lmm' ) . '</strong>',
+			'std'     => 'www_mapsmarker_com',
 			'type'    => 'text',
 			'section' => 'ar'
 		);
