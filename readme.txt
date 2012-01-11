@@ -19,9 +19,6 @@ http://mapsmarker.com
 
 * [Demo](http://www.mapsmarker.com/demo/) - [FAQ](http://www.mapsmarker.com/faq/) - [Docs](http://www.mapsmarker.com/docs/) - [Support](http://mapsmarker.com/support/) - [Donations](http://mapsmarker.com/donations) - [Twitter](http://twitter.com/mapsmarker) - [Facebook](http://facebook.com/mapsmarker)
 
-= Leaflet Maps Marker Needs Your Support =
-It is hard to continue development and support for this plugin without contributions from users like you. If you enjoy using Leaflet Maps Marker - particularly within a commercial context - please consider [__making a donation__](http://www.mapsmarker.com/donations). Your donation will help keeping the plugin free for everyone and allow me to spend more time on developing, maintaining and support. I´d be happy to accept your donation! Thanks! [Robert Harm](http://www.harm.co.at)
-
 = Main features = 
 
 Leaflet Maps Marker allows you to
@@ -87,6 +84,9 @@ Please let me know which feature you think is missing by adding your ideas at [h
 * Japanes (ja) [Shu Higashi](http://twitter.com/higa4)
 
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
+
+= Leaflet Maps Marker Needs Your Support =
+It is hard to continue development and support for this plugin without contributions from users like you. If you enjoy using Leaflet Maps Marker - particularly within a commercial context - please consider [__making a donation__](http://www.mapsmarker.com/donations). Your donation will help keeping the plugin free for everyone and allow me to spend more time on developing, maintaining and support. I´d be happy to accept your donation! Thanks! [Robert Harm](http://www.harm.co.at)
 
 == Installation ==
 
@@ -171,7 +171,7 @@ Initial release
 
 == Changelog ==
 
-= 1.2 - 11.01.2012 =
+= v1.2 - 11.01.2012 =
 
 * NEW: added GeoRSS-feeds for marker- and layer maps (RSS 2.0 & ATOM 1.0)
 * NEW: added microformat geo-markup to maps, to make your maps machine-readable
@@ -188,7 +188,7 @@ Initial release
 * BUGFIX: slashes were not stripped from marker/layer name on frontend maps
 * BUGFIX: quotes were not shown on marker/layer names (note: double quotes are replaced with single quotes automatically due to compatibility reasons)
 
-= 1.1 - 08.01.2012 =
+= v1.1 - 08.01.2012 =
 * NEW: show standalone maps in fullscreen mode
 * NEW: create QR code images for standalone maps in fullscreen mode
 * NEW: API links (KML, GeoJSON, Fullscreen, QR Code, Wikitude) now only work if plugin is active
@@ -205,5 +205,5 @@ Initial release
 * BUGFIX: language pot-file didn´t include all text strings for translations
 * BUGFIX: active translations made setting tabs unaccessible
 
-= 1.0 - 01.01.2012 = 
+= v1.0 - 01.01.2012 = 
 * NEW: Initial release
