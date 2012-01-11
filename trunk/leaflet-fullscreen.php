@@ -2,23 +2,17 @@
 /*
     Fullscreen standalone maps - Leaflet Maps Marker Plugin
 */
-//info: construct path to wp-config.php with fallback for subdirectory installations
-$wp_path = $_SERVER["DOCUMENT_ROOT"]; 
-if ( file_exists($wp_path . '/wp-config.php') ) {
-	include_once($wp_path.'/wp-config.php');
-	include_once($wp_path.'/wp-includes/wp-db.php');
-} else { 
-	$wp_plugin_path_modified = explode(DIRECTORY_SEPARATOR, dirname(__FILE__),-3);
-	$wp_path = implode(DIRECTORY_SEPARATOR, $wp_plugin_path_modified);
-	include_once($wp_path.'/wp-config.php');
-	include_once($wp_path.'/wp-includes/wp-db.php');
-} 
-if ( !file_exists($wp_path . '/wp-config.php') ) {
-	echo __('Error: Could not construct path to wp-config.php - please check <a href="http://mapsmarker.com/path-error">http://mapsmarker.com/path-error</a> for more details.','lmm') . '<br/>Path on your webhost: ' . $wp_path;
-} else {
+//info: construct path to wp-load.php and get $wp_path
+while(!is_file('wp-load.php')){
+  if(is_dir('../')) chdir('../');
+  else die('Error: Could not construct path to wp-load.php - please check <a href="http://mapsmarker.com/path-error">http://mapsmarker.com/path-error</a> for more details');
+}
+include( 'wp-load.php' );
+$wp_path_file = split('wp-content', __FILE__);
+$wp_path = $wp_path_file[0];
 
 //info: is plugin active?
-include_once( $wp_path.'/wp-admin/includes/plugin.php' );
+include_once( $wp_path.'wp-admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'plugin.php' );
 function hide_email($email) { $character_set = '+-.0123456789@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz'; $key = str_shuffle($character_set); $cipher_text = ''; $id = 'e'.rand(1,999999999); for ($i=0;$i<strlen($email);$i+=1) $cipher_text.= $key[strpos($character_set,$email[$i])]; $script = 'var a="'.$key.'";var b=a.split("").sort().join("");var c="'.$cipher_text.'";var d="";'; $script.= 'for(var e=0;e<c.length;e++)d+=b.charAt(a.indexOf(c.charAt(e)));'; $script.= 'document.getElementById("'.$id.'").innerHTML="<a href=\\"mailto:"+d+"\\">"+d+"</a>"'; $script = "eval(\"".str_replace(array("\\",'"'),array("\\\\",'\"'), $script)."\")"; $script = '<script type="text/javascript">/*<![CDATA[*/'.$script.'/*]]>*/</script>'; return '<span id="'.$id.'">[javascript protected email address]</span>'.$script; }
 if (!is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php')) {
 echo 'The WordPress plugin <a href="http://www.mapsmarker.com" target="_blank">Leaflet Maps Marker</a> is inactive on this site and therefore this API link is not working.<br/><br/>Please contact the site owner (' . hide_email(get_bloginfo('admin_email')) . ') who can activate this plugin again.';
@@ -198,16 +192,16 @@ if (isset($_GET['layer'])) {
 	$wms9_subdomains = ((isset($lmm_options[ 'wms_wms9_subdomains_enabled' ]) == TRUE ) && ($lmm_options[ 'wms_wms9_subdomains_enabled' ] == 'yes' )) ? ", subdomains: [" . htmlspecialchars_decode($lmm_options[ 'wms_wms9_subdomains_names' ], ENT_QUOTES) . "]" :  "";
 	$wms10_subdomains = ((isset($lmm_options[ 'wms_wms10_subdomains_enabled' ]) == TRUE ) && ($lmm_options[ 'wms_wms10_subdomains_enabled' ] == 'yes' )) ? ", subdomains: [" . htmlspecialchars_decode($lmm_options[ 'wms_wms10_subdomains_names' ], ENT_QUOTES) . "]" :  "";
 	//info: define wms legends
-	$wms_attribution = addslashes($lmm_options[ 'wms_wms_attribution' ]) . ( ($lmm_options[ 'wms_wms_legend_enabled' ] == 'yes' ) ? " (<a href='" . $lmm_options[ 'wms_wms_legend' ] . "' target='_blank'>" . __('Legend','lmm') . "</a>)" : '') .'';
-	$wms2_attribution = addslashes($lmm_options[ 'wms_wms2_attribution' ]) . ( ($lmm_options[ 'wms_wms2_legend_enabled' ] == 'yes' ) ? " (<a href='" . $lmm_options[ 'wms_wms2_legend' ] . "' target='_blank'>" . __('Legend','lmm') . "</a>)" : '') .'';
-	$wms3_attribution = addslashes($lmm_options[ 'wms_wms3_attribution' ]) . ( ($lmm_options[ 'wms_wms3_legend_enabled' ] == 'yes' ) ? " (<a href='" . $lmm_options[ 'wms_wms3_legend' ] . "' target='_blank'>" . __('Legend','lmm') . "</a>)" : '') .'';
-	$wms4_attribution = addslashes($lmm_options[ 'wms_wms4_attribution' ]) . ( ($lmm_options[ 'wms_wms4_legend_enabled' ] == 'yes' ) ? " (<a href='" . $lmm_options[ 'wms_wms4_legend' ] . "' target='_blank'>" . __('Legend','lmm') . "</a>)" : '') .'';
-	$wms5_attribution = addslashes($lmm_options[ 'wms_wms5_attribution' ]) . ( ($lmm_options[ 'wms_wms5_legend_enabled' ] == 'yes' ) ? " (<a href='" . $lmm_options[ 'wms_wms5_legend' ] . "' target='_blank'>" . __('Legend','lmm') . "</a>)" : '') .'';
-	$wms6_attribution = addslashes($lmm_options[ 'wms_wms6_attribution' ]) . ( ($lmm_options[ 'wms_wms6_legend_enabled' ] == 'yes' ) ? " (<a href='" . $lmm_options[ 'wms_wms6_legend' ] . "' target='_blank'>" . __('Legend','lmm') . "</a>)" : '') .'';
-	$wms7_attribution = addslashes($lmm_options[ 'wms_wms7_attribution' ]) . ( ($lmm_options[ 'wms_wms7_legend_enabled' ] == 'yes' ) ? " (<a href='" . $lmm_options[ 'wms_wms7_legend' ] . "' target='_blank'>" . __('Legend','lmm') . "</a>)" : '') .'';
-	$wms8_attribution = addslashes($lmm_options[ 'wms_wms8_attribution' ]) . ( ($lmm_options[ 'wms_wms8_legend_enabled' ] == 'yes' ) ? " (<a href='" . $lmm_options[ 'wms_wms8_legend' ] . "' target='_blank'>" . __('Legend','lmm') . "</a>)" : '') .'';
-	$wms9_attribution = addslashes($lmm_options[ 'wms_wms9_attribution' ]) . ( ($lmm_options[ 'wms_wms9_legend_enabled' ] == 'yes' ) ? " (<a href='" . $lmm_options[ 'wms_wms9_legend' ] . "' target='_blank'>" . __('Legend','lmm') . "</a>)" : '') .'';
-	$wms10_attribution = addslashes($lmm_options[ 'wms_wms10_attribution' ]) . ( ($lmm_options[ 'wms_wms10_legend_enabled' ] == 'yes' ) ? " (<a href='" . $lmm_options[ 'wms_wms10_legend' ] . "' target='_blank'>" . __('Legend','lmm') . "</a>)" : '') .'';
+	$wms_attribution = addslashes($lmm_options[ 'wms_wms_attribution' ]) . ( ($lmm_options[ 'wms_wms_legend_enabled' ] == 'yes' ) ? " (<a href=&quot;" . $lmm_options[ 'wms_wms_legend' ] . "&quot; target=&quot;_blank&quot;>" . __('Legend','lmm') . "</a>)" : '') .'';
+	$wms2_attribution = addslashes($lmm_options[ 'wms_wms2_attribution' ]) . ( ($lmm_options[ 'wms_wms2_legend_enabled' ] == 'yes' ) ? " (<a href=&quot;" . $lmm_options[ 'wms_wms2_legend' ] . "&quot; target=&quot;_blank&quot;>" . __('Legend','lmm') . "</a>)" : '') .'';
+	$wms3_attribution = addslashes($lmm_options[ 'wms_wms3_attribution' ]) . ( ($lmm_options[ 'wms_wms3_legend_enabled' ] == 'yes' ) ? " (<a href=&quot;" . $lmm_options[ 'wms_wms3_legend' ] . "&quot; target=&quot;_blank&quot;>" . __('Legend','lmm') . "</a>)" : '') .'';
+	$wms4_attribution = addslashes($lmm_options[ 'wms_wms4_attribution' ]) . ( ($lmm_options[ 'wms_wms4_legend_enabled' ] == 'yes' ) ? " (<a href=&quot;" . $lmm_options[ 'wms_wms4_legend' ] . "&quot; target=&quot;_blank&quot;>" . __('Legend','lmm') . "</a>)" : '') .'';
+	$wms5_attribution = addslashes($lmm_options[ 'wms_wms5_attribution' ]) . ( ($lmm_options[ 'wms_wms5_legend_enabled' ] == 'yes' ) ? " (<a href=&quot;" . $lmm_options[ 'wms_wms5_legend' ] . "&quot; target=&quot;_blank&quot;>" . __('Legend','lmm') . "</a>)" : '') .'';
+	$wms6_attribution = addslashes($lmm_options[ 'wms_wms6_attribution' ]) . ( ($lmm_options[ 'wms_wms6_legend_enabled' ] == 'yes' ) ? " (<a href=&quot;" . $lmm_options[ 'wms_wms6_legend' ] . "&quot; target=&quot;_blank&quot;>" . __('Legend','lmm') . "</a>)" : '') .'';
+	$wms7_attribution = addslashes($lmm_options[ 'wms_wms7_attribution' ]) . ( ($lmm_options[ 'wms_wms7_legend_enabled' ] == 'yes' ) ? " (<a href=&quot;" . $lmm_options[ 'wms_wms7_legend' ] . "&quot; target=&quot;_blank&quot;>" . __('Legend','lmm') . "</a>)" : '') .'';
+	$wms8_attribution = addslashes($lmm_options[ 'wms_wms8_attribution' ]) . ( ($lmm_options[ 'wms_wms8_legend_enabled' ] == 'yes' ) ? " (<a href=&quot;" . $lmm_options[ 'wms_wms8_legend' ] . "&quot; target=&quot;_blank&quot;>" . __('Legend','lmm') . "</a>)" : '') .'';
+	$wms9_attribution = addslashes($lmm_options[ 'wms_wms9_attribution' ]) . ( ($lmm_options[ 'wms_wms9_legend_enabled' ] == 'yes' ) ? " (<a href=&quot;" . $lmm_options[ 'wms_wms9_legend' ] . "&quot; target=&quot;_blank&quot;>" . __('Legend','lmm') . "</a>)" : '') .'';
+	$wms10_attribution = addslashes($lmm_options[ 'wms_wms10_attribution' ]) . ( ($lmm_options[ 'wms_wms10_legend_enabled' ] == 'yes' ) ? " (<a href=&quot;" . $lmm_options[ 'wms_wms10_legend' ] . "&quot; target=&quot;_blank&quot;>" . __('Legend','lmm') . "</a>)" : '') .'';
 	//info: define wms layers
 	$lmm_out .= 'wms = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms_baseurl' ] . '", {wmsid: "wms", layers: "' . addslashes($lmm_options[ 'wms_wms_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms_format' ]) . '", attribution: "' . $wms_attribution . '", transparent: "' . $lmm_options[ 'wms_wms_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . '/img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms_version' ]) . '"' . $wms_subdomains  . '});'.PHP_EOL;
 	$lmm_out .= 'wms2 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms2_baseurl' ] . '", {wmsid: "wms2", layers: "' . addslashes($lmm_options[ 'wms_wms2_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms2_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms2_format' ]) . '", attribution: "' . $wms2_attribution . '", transparent: "' . $lmm_options[ 'wms_wms2_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . '/img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms2_version' ]) . '"' . $wms2_subdomains  . '});'.PHP_EOL;
@@ -657,5 +651,4 @@ elseif (isset($_GET['marker'])) {
   	} //info: end check if marker/layer exists
 } //info: end isset($_GET['marker'])
 } //info: end plugin active check
-} //info: end !file_exists($wp_path . '/wp-config.php')
 ?>
