@@ -2,12 +2,20 @@
 /*
     Wikitude generator - Leaflet Maps Marker Plugin
 */
-//info: construct WP_PATH from current file´s path (/wp-content/plugins/leaflet-maps-marker)
-$wp_plugin_path_modified = explode('/',dirname(__FILE__),-3);
-$wp_path = implode('/', $wp_plugin_path_modified);
-
-include_once($wp_path.'/wp-config.php');
-include_once($wp_path.'/wp-includes/wp-db.php');
+//info: construct path to wp-config.php with fallback for subdirectory installations
+$wp_path = $_SERVER["DOCUMENT_ROOT"]; 
+if ( file_exists($wp_path . '/wp-config.php') ) {
+	include_once($wp_path.'/wp-config.php');
+	include_once($wp_path.'/wp-includes/wp-db.php');
+} else { 
+	$wp_plugin_path_modified = explode(DIRECTORY_SEPARATOR, dirname(__FILE__),-3);
+	$wp_path = implode(DIRECTORY_SEPARATOR, $wp_plugin_path_modified);
+	include_once($wp_path.'/wp-config.php');
+	include_once($wp_path.'/wp-includes/wp-db.php');
+} 
+if ( !file_exists($wp_path . '/wp-config.php') ) {
+	echo __('Error: Could not construct path to wp-config.php - please check <a href="http://mapsmarker.com/path-error">http://mapsmarker.com/path-error</a> for more details.','lmm') . '<br/>Path on your webhost: ' . $wp_path;
+} else {
 
 //info: is plugin active?
 include_once( $wp_path.'/wp-admin/includes/plugin.php' );
@@ -15,12 +23,10 @@ function hide_email($email) { $character_set = '+-.0123456789@ABCDEFGHIJKLMNOPQR
 if (!is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php')) {
 echo 'The WordPress plugin <a href="http://www.mapsmarker.com" target="_blank">Leaflet Maps Marker</a> is inactive on this site and therefore this API link is not working.<br/><br/>Please contact the site owner (' . hide_email(get_bloginfo('admin_email')) . ') who can activate this plugin again.';
 } else {
-
 global $wpdb;
 $lmm_options = get_option( 'leafletmapsmarker_options' );
 $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-
 if (isset($_GET['layer'])) {
   $layer = mysql_real_escape_string($_GET['layer']); 
   
@@ -47,7 +53,6 @@ if (isset($_GET['layer'])) {
   $boundingBoxLongitude2 = $lonUser + $distanceLLA;  
   
   isset($_GET['searchterm']) ? $searchterm = mysql_real_escape_string($_GET['searchterm']) : $searchterm = NULL;
-
   if ($searchterm != NULL)
   {
 		  $q = 'LIMIT 0';
@@ -65,7 +70,6 @@ if (isset($_GET['layer'])) {
 		  }
 		  $sql = 'SELECT m.id as mid, m.layer as mlayer, m.markername as mmarkername, m.icon as micon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
 		  $markers = $wpdb->get_results($sql, ARRAY_A);
-
 		  header('Cache-Control: no-cache, must-revalidate');
 		  header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		  header('Content-type: text/xml; charset=utf-8');
@@ -115,7 +119,6 @@ if (isset($_GET['layer'])) {
 		  echo '</Document>';
 		  echo '</kml>';
 		  echo  '</a>';
-
   //info: if no searchterm
   }  else  {
 		  $q = 'LIMIT 0';
@@ -133,7 +136,6 @@ if (isset($_GET['layer'])) {
 		  }
 		  $sql = 'SELECT m.id as mid, m.layer as mlayer, m.markername as mmarkername, m.icon as micon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
 		  $markers = $wpdb->get_results($sql, ARRAY_A);
-
 		  header('Cache-Control: no-cache, must-revalidate');
 		  header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		  header('Content-type: text/xml; charset=utf-8');
@@ -188,9 +190,7 @@ if (isset($_GET['layer'])) {
 elseif (isset($_GET['marker'])) {
   $markerid = mysql_real_escape_string($_GET['marker']);
   $markers = explode(',', $markerid);
-
   $maxNumberOfPois = isset($_GET['maxNumberOfPois']) ? intval($_GET['maxNumberOfPois']) : $lmm_options[ 'ar_wikitude_maxnumberpois' ];
-
   $markerlat = $wpdb->get_var('SELECT lat FROM '.$table_name_markers.' WHERE id='.$markerid);
   $markerlon = $wpdb->get_var('SELECT lon FROM '.$table_name_markers.' WHERE id='.$markerid);
  
@@ -203,9 +203,7 @@ elseif (isset($_GET['marker'])) {
   $boundingBoxLatitude2 = $latUser + $distanceLLA;
   $boundingBoxLongitude1 = $lonUser - $distanceLLA;
   $boundingBoxLongitude2 = $lonUser + $distanceLLA;  
-
   isset($_GET['searchterm']) ? $searchterm = mysql_real_escape_string($_GET['searchterm']) : $searchterm = NULL;
-
   if ($searchterm != NULL)
   {
 		  $checkedmarkers = array();
@@ -220,7 +218,6 @@ elseif (isset($_GET['marker'])) {
 		  //info: added left outer join to also show markers without a layer
 		  $sql = 'SELECT m.icon as micon, m.popuptext as mpopuptext, m.id as mid, m.markername as mmarkername, m.lat as mlat, m.lon as mlon FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
 		  $markers = $wpdb->get_results($sql, ARRAY_A);
-
 		  header('Cache-Control: no-cache, must-revalidate');
 		  header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		  header('Content-type: text/xml; charset=utf-8');
@@ -288,11 +285,9 @@ elseif (isset($_GET['marker'])) {
 			$q = "WHERE m.id IN (" . implode(",", $checkedmarkers) . ")";
 		  else
 			die();
-
 		  //info: added left outer join to also show markers without a layer
 		  $sql = 'SELECT m.icon as micon, m.popuptext as mpopuptext, m.id as mid, m.markername as mmarkername, m.lat as mlat, m.lon as mlon FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
 		  $markers = $wpdb->get_results($sql, ARRAY_A);
-
 		  header('Cache-Control: no-cache, must-revalidate');
 		  header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		  header('Content-type: text/xml; charset=utf-8');
@@ -351,4 +346,5 @@ elseif (isset($_GET['marker'])) {
   }
 }
 } //info: end plugin active check
+} //info: end !file_exists($wp_path . '/wp-config.php')
 ?>

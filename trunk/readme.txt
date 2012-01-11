@@ -10,18 +10,16 @@ Requires at least: 3.0
 Tested up to:      3.4-alpha-19704
 Stable tag:        1.1
 
-Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON or Augmented-Reality browsers
+Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 
 == Description ==
 
 = Plugin's Official Site =
-
 http://mapsmarker.com
 
-* [Demo](http://www.mapsmarker.com/demo/) - [FAQ](http://www.mapsmarker.com/faq/) - [Docs](http://www.mapsmarker.com/docs/) - [Support](http://mapsmarker.com/support/) - [Donations](http://mapsmarker.com/donations)
+* [Demo](http://www.mapsmarker.com/demo/) - [FAQ](http://www.mapsmarker.com/faq/) - [Docs](http://www.mapsmarker.com/docs/) - [Support](http://mapsmarker.com/support/) - [Donations](http://mapsmarker.com/donations) - [Twitter](http://twitter.com/mapsmarker) - [Facebook](http://facebook.com/mapsmarker)
 
 = Leaflet Maps Marker Needs Your Support =
-
 It is hard to continue development and support for this plugin without contributions from users like you. If you enjoy using Leaflet Maps Marker - particularly within a commercial context - please consider [__making a donation__](http://www.mapsmarker.com/donations). Your donation will help keeping the plugin free for everyone and allow me to spend more time on developing, maintaining and support. I´d be happy to accept your donation! Thanks! [Robert Harm](http://www.harm.co.at)
 
 = Main features = 
@@ -44,12 +42,16 @@ to the visitors of your website.
 = Additional features =
 
 * configure up to 10 WMS servers to display additional information from external geodata providers (like the European Environment Agency) on your maps
-* export your markers as KML file for displaying them in Google Earth or Google Maps
-* export your markers as GeoJSON file for embedding them in external websites or apps
-* export your markers as ARML for displaying them in the augmented-reality browser from Wikitude
+* export your markers as KML file for displaying in Google Earth or Google Maps
+* export your markers as GeoJSON file for embedding in external websites or apps
+* export your markers as GeoRSS for embedding in external websites or apps
+* export your markers as ARML for displaying in the augmented-reality browser from Wikitude
 * export your markers as csv-file
 * show standalone maps in fullscreen mode
+* support for microformat geo-markup to make your maps machine-readable
 * create QR code images for standalone maps in fullscreen mode
+* automatically add meta-tags with location information to maps
+* automatically add microformat geo-markup to maps
 * option to set Wordpress roles (administrator, editor, author, contributor) which are allowed to add/edit/delete markers and layers
 * option to add marker directly to posts or pages without saving them to your database
 * audit log for changes on markers & layers (saving first created by/on and last updated by/on info)
@@ -144,7 +146,9 @@ This program is free software; you can redistribute it and/or modify it under th
 * Map center icon [Joseph Wain](http://glyphish.com/) - Creative Commons Attribution (by)
 * Plus, json & csv-export icon by [Yusuke Kamiyamane](http://www.pinvoke.com/) - Creative Commons Attribution (by)
 * Question Mark Icon by [RandomJabber](http://www.randomjabber.com/)
+
 = Credits & special thanks to =
+
 * Sindre Wimberger ([http://www.sindre.at](http://www.sindre.at)) for help with bugfixing & geo-consulting
 * Susanne Mandl ([http://www.greenflamingomedia.com](http://www.greenflamingomedia.com)) for plugin logo
 * Wordpress-Settings-API-Class by Aliso the geek ([http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/](http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/))
@@ -156,6 +160,9 @@ For more information on translations of the plugin and how to contribute a new t
 
 == Upgrade Notice ==
 
+= 1.2 =
+Important bugfixes and new feature: GeoRSS-Support - see http://www.mapsmarker.com/changelog for details
+
 = 1.1 =
 Added new features and bugfixes - see http://www.mapsmarker.com/changelog for details
 
@@ -163,6 +170,21 @@ Added new features and bugfixes - see http://www.mapsmarker.com/changelog for de
 Initial release
 
 == Changelog ==
+
+= 1.2 - 11.01.2012 =
+
+* NEW: added GeoRSS-Feeds for marker- and layer maps (RSS 2.0 & ATOM 1.0)
+* NEW: added microformat geo-markup to maps, to make your maps machine-readable
+* CHANGE: Default custom overlay (OGD Vienna Addresses) is not active anymore by default on new markers/layers (but still gets active when an address through search by Google Places is selected)
+* CHANGE: added attribution text for default custom overlay (OGD Vienna Addresses) to see if overlay has accidently been activated
+* BUGFIX: plugin did not work on several hosts as path to wp-config.php for API links could not be constructed
+* BUGFIX: reset settings to default values did only reset values from v1.0
+* BUGFIX: when default custom overlay for new markers/layers got unchecked, the map in backend did not show up anymore
+* BUGFIX: fullscreen standalone maps didnt work in Internet Explorer
+* BUGFIX: attribution box on standalone maps did not show up if windows size is too small
+* BUGFIX: slashes were not stripped from marker/layer name on frontend maps
+* BUGFIX: quotes were not shown on marker/layer names (note: double quotes are replaced with single quotes automatically due to compatibility reasons)
+* BUGFIX: maps did not show up in Internet Explorer 7
 
 = 1.1 - 08.01.2012 =
 * NEW: show standalone maps in fullscreen mode
@@ -172,7 +194,7 @@ Initial release
 * NEW: Japanese translation thanks to Shu Higashi (@higa4)
 * NEW: option to show/hide WMS layer legend link
 * NEW: option to disable global statistics
-* CHANGED: added more default marker icons, based on the top 100 icons from the Map Icons Collections
+* CHANGED: added more default marker icons, based on the top 100 icons from the Map Icons Collection
 * CHANGED: added attribution text field in settings for custom overlays
 * CHANGED: removed settings for Wikitude debug lon/lat -> now marker lat/lon respectively layer center lat/lon are used when Wikitude API links are called without explicit parameters &latitude= and &longitude=
 * CHANGED: default setting fields can now be changed by focusing with mouse click
@@ -180,6 +202,5 @@ Initial release
 * BUGFIX: dynamic preview of marker/layer panel in backend not working as designed
 * BUGFIX: language pot-file didn´t include all text strings for translations
 * BUGFIX: active translations made setting tabs unaccessible
-
 = 1.0 - 01.01.2012 = 
 * NEW: Initial release

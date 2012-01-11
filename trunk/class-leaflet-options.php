@@ -3,7 +3,6 @@
  * Leaflet Maps Marker Plugin - settings class
  * based on class by Alison Barrett, http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/
  */
-
 class Leafletmapsmarker_options {
 	private $sections;
 	private $checkboxes;
@@ -19,7 +18,6 @@ class Leafletmapsmarker_options {
 		$this->checkboxes = array();
 		$this->settings = array();
 		$this->get_settings();
-
 		$this->sections['basemaps']      = 'Basemaps';
 		$this->sections['overlays']      = 'Overlays';
 		$this->sections['wms']      = 'WMS';
@@ -29,7 +27,6 @@ class Leafletmapsmarker_options {
 		$this->sections['ar']   = 'Augmented-Reality';
 		$this->sections['misc']   = 'Misc';
 		$this->sections['reset']        = 'Reset to Defaults';
-
 	/* info: localized tab texts break jQuery (jQuery UI Tabs: Mismatching fragment identifier) - no fix yet, help appreciated :-/
 		$this->sections['basemaps']      = __( 'Basemaps', 'lmm' );
 		$this->sections['overlays']      = __( 'Overlays', 'lmm' );
@@ -41,7 +38,6 @@ class Leafletmapsmarker_options {
 		$this->sections['misc']   = __( 'Misc', 'lmm' );
 		$this->sections['reset']        = __( 'Reset to Defaults', 'lmm' );
 	*/
-
 		add_action( 'admin_init', array( &$this, 'register_settings' ) );
 		if ( ! get_option( 'leafletmapsmarker_options' ) )
 			$this->initialize_settings();
@@ -900,7 +896,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'title'   => __( 'Name', 'lmm' ),
 			'desc'   => __( 'Will be displayed in controlbox if selected', 'lmm' ),
-			'std'     => 'OGD Vienna addresses',
+			'std'     => __('OGD Vienna addresses','lmm'),
 			'type'    => 'text',
 			'section' => 'overlays'
 		);		
@@ -917,7 +913,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.1',
 			'title'   => __( 'Attribution', 'lmm' ),
 			'desc'    => '',
-			'std'     => '',
+			'std'     => 'Addresses: City of Vienna (<a href=&quot;http://data.wien.gv.at&quot; target=&quot;_blank&quot;>data.wien.gv.at</a>)',
 			'type'    => 'text',
 			'section' => 'overlays'
 		);
@@ -2673,7 +2669,7 @@ class Leafletmapsmarker_options {
 			'title'    => __('Checked overlays in control box','lmm'),
 			'desc'    => __('Custom overlay','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 0 
 		);
 		$this->settings['defaults_marker_overlays_custom2_active'] = array(
 			'version' => '1.0',
@@ -2742,6 +2738,14 @@ class Leafletmapsmarker_options {
 			'section' => 'defaults_marker',
 			'title'   => '',
 			'desc'    => 'GeoJSON',
+			'type'    => 'checkbox',
+			'std'     => 1 
+		);
+		$this->settings['defaults_marker_panel_georss'] = array(
+			'version' => '1.2',
+			'section' => 'defaults_marker',
+			'title'   => '',
+			'desc'    => 'GeoRSS',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -2944,7 +2948,7 @@ class Leafletmapsmarker_options {
 			'title'    => __('Checked overlays in control box','lmm'),
 			'desc'    => __('Custom overlay','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 0 
 		);
 		$this->settings['defaults_marker_shortcode_overlays_custom2_active'] = array(
 			'version' => '1.0',
@@ -3151,7 +3155,7 @@ class Leafletmapsmarker_options {
 			'title'    => __('Checked overlays in control box','lmm'),
 			'desc'    => __('Custom overlay','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 0 
 		);
 		$this->settings['defaults_layer_overlays_custom2_active'] = array(
 			'version' => '1.0',
@@ -3219,6 +3223,14 @@ class Leafletmapsmarker_options {
 			'section' => 'defaults_layer',
 			'title'   => '',
 			'desc'    => 'GeoJSON',
+			'type'    => 'checkbox',
+			'std'     => 1 
+		);
+		$this->settings['defaults_layer_panel_georss'] = array(
+			'version' => '1.2',
+			'section' => 'defaults_layer',
+			'title'   => '',
+			'desc'    => 'GeoRSS',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -3869,6 +3881,14 @@ class Leafletmapsmarker_options {
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);	
+		$this->settings['misc_marker_listing_columns_georss'] = array(
+			'version' => '1.2',
+			'section' => 'misc',
+			'title'    => '',
+			'desc'    => 'GeoRSS',
+			'type'    => 'checkbox',
+			'std'     => 1 
+		);	
 		$this->settings['misc_marker_listing_columns_wikitude'] = array(
 			'version' => '1.0',
 			'section' => 'misc',
@@ -4031,6 +4051,14 @@ class Leafletmapsmarker_options {
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);	
+		$this->settings['misc_layer_listing_columns_georss'] = array(
+			'version' => '1.2',
+			'section' => 'misc',
+			'title'    => '',
+			'desc'    => 'GeoRSS',
+			'type'    => 'checkbox',
+			'std'     => 1 
+		);	
 		$this->settings['misc_layer_listing_columns_wikitude'] = array(
 			'version' => '1.0',
 			'section' => 'misc',
@@ -4060,11 +4088,11 @@ class Leafletmapsmarker_options {
 	
 	/**
 	 * Initialize settings to their default values
-	 */
+	 */ 
 	public function initialize_settings() {
 		$default_settings = array();
 		foreach ( $this->settings as $id => $setting ) {
-			if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '1.0' ) {
+			if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' ) {
 				$default_settings[$id] = $setting['std'];
 				}
 		}
@@ -4117,10 +4145,9 @@ class Leafletmapsmarker_options {
 				}
 			}
 		$options_current = get_option( 'leafletmapsmarker_options' );
-		$options_new = $options_current + $new_options_defaults;
+		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
-		/* template for plugin updates 
 		//info:  set defaults for options introduced in v1.2
 		if (get_option('leafletmapsmarker_version') == '1.1' )
 		{
@@ -4133,7 +4160,23 @@ class Leafletmapsmarker_options {
 				}
 			}
 		$options_current = get_option( 'leafletmapsmarker_options' );
-		$options_new = $options_current + $new_options_defaults;
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}
+		/* template for plugin updates 
+		//info:  set defaults for options introduced in v1.3
+		if (get_option('leafletmapsmarker_version') == '1.2' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting ) 
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '1.3')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
 		*/

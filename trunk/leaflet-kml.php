@@ -2,12 +2,20 @@
 /*
     GeoJSON generator - Leaflet Maps Marker Plugin
 */
-//info: construct WP_PATH from current file´s path (/wp-content/plugins/leaflet-maps-marker)
-$wp_plugin_path_modified = explode('/',dirname(__FILE__),-3);
-$wp_path = implode('/', $wp_plugin_path_modified);
-
-include_once($wp_path.'/wp-config.php');
-include_once($wp_path.'/wp-includes/wp-db.php');
+//info: construct path to wp-config.php with fallback for subdirectory installations
+$wp_path = $_SERVER["DOCUMENT_ROOT"]; 
+if ( file_exists($wp_path . '/wp-config.php') ) {
+	include_once($wp_path.'/wp-config.php');
+	include_once($wp_path.'/wp-includes/wp-db.php');
+} else { 
+	$wp_plugin_path_modified = explode(DIRECTORY_SEPARATOR, dirname(__FILE__),-3);
+	$wp_path = implode(DIRECTORY_SEPARATOR, $wp_plugin_path_modified);
+	include_once($wp_path.'/wp-config.php');
+	include_once($wp_path.'/wp-includes/wp-db.php');
+} 
+if ( !file_exists($wp_path . '/wp-config.php') ) {
+	echo __('Error: Could not construct path to wp-config.php - please check <a href="http://mapsmarker.com/path-error">http://mapsmarker.com/path-error</a> for more details.','lmm') . '<br/>Path on your webhost: ' . $wp_path;
+} else {
 
 //info: is plugin active?
 include_once( $wp_path.'/wp-admin/includes/plugin.php' );
@@ -15,11 +23,9 @@ function hide_email($email) { $character_set = '+-.0123456789@ABCDEFGHIJKLMNOPQR
 if (!is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php')) {
 echo 'The WordPress plugin <a href="http://www.mapsmarker.com" target="_blank">Leaflet Maps Marker</a> is inactive on this site and therefore this API link is not working.<br/><br/>Please contact the site owner (' . hide_email(get_bloginfo('admin_email')) . ') who can activate this plugin again.';
 } else {
-
 global $wpdb;
 $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-
 if (isset($_GET['layer'])) {
   $layer = mysql_real_escape_string($_GET['layer']);
   
@@ -38,7 +44,6 @@ if (isset($_GET['layer'])) {
   }
   $sql = 'SELECT m.id as mid, m.markername as mmarkername, m.layer as mlayer, m.icon as micon, m.createdby as mcreatedby, m.createdon as mcreatedon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext, l.createdby as lcreatedby, l.createdon as lcreatedon, l.name AS lname FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
   $markers = $wpdb->get_results($sql, ARRAY_A);
-
   //info: check if layer result is not null
   if (empty($markers)) {
   $error_layers_not_exists = sprintf( esc_attr__('Warning: no markers are assigned to the layer with the ID %1$s or the layer does not exist!','lmm'), $layer); 
@@ -130,7 +135,6 @@ elseif (isset($_GET['marker'])) {
   //info: added left outer join to also show markers without a layer
   $sql = 'SELECT m.layer as mlayer,m.icon as micon,m.popuptext as mpopuptext,m.id as mid,m.markername as mmarkername,m.createdby as mcreatedby, m.createdon as mcreatedon, m.lat as mlat, m.lon as mlon FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
   $markers = $wpdb->get_results($sql, ARRAY_A);
-
   //info: check if marker result is not null
   if ($markers == NULL) {
   $error_marker_not_exists = sprintf( esc_attr__('Error: a marker with the ID %1$s does not exist!','lmm'), $markerid); 
@@ -196,4 +200,5 @@ elseif (isset($_GET['marker'])) {
   } //info: check if marker exists end
 }
 } //info: end plugin active check
+} //info: end !file_exists($wp_path . '/wp-config.php')
 ?>

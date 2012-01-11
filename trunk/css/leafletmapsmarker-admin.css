@@ -13,6 +13,7 @@
 .fixed .column-openpopup { width: 60px; }
 .fixed .column-code { width: 150px; }
 .fixed .column-geojson { width: 80px;text-align:center; }
+.fixed .column-georss { width: 68px;text-align:center; }
 .fixed .column-kml { width: 50px;text-align:center; }
 .fixed .column-fullscreen { width: 82px;text-align:center; }
 .fixed .column-qr-code { width: 72px;text-align:center; }
