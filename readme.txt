@@ -9,13 +9,20 @@ Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
 Tested up to:      3.4-alpha-19704
 Stable tag:        1.2.1
+
 Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
+
 == Description ==
+
 = Plugin's Official Site =
 http://mapsmarker.com
+
 * [Demo](http://www.mapsmarker.com/demo/) - [FAQ](http://www.mapsmarker.com/faq/) - [Docs](http://www.mapsmarker.com/docs/) - [Support](http://mapsmarker.com/support/) - [Donations](http://mapsmarker.com/donations) - [Twitter](http://twitter.com/mapsmarker) - [Facebook](http://facebook.com/mapsmarker)
+
 = Main features = 
+
 Leaflet Maps Marker allows you to
+
 * pin your favorites places with markers,
 * use integrated address search (Google Places API) for quickly finding your places,
 * choose from up to 700 custom free map icons from [Maps Icons Collection](http://mapicons.nicolasmollet.com),
@@ -26,8 +33,11 @@ Leaflet Maps Marker allows you to
 * by adding a shortcode (e.g. mapsmarker marker="1")] to posts or pages
 * through OSM/OpenStreetMap, MapQuest, [OGD Vienna Maps](http://data.wien.gv.at)
 * or any custom WMTS-map
+
 to the visitors of your website.
+
 = Additional features =
+
 * configure up to 10 WMS servers to display additional information from external geodata providers (like the European Environment Agency) on your maps
 * export your markers as KML file for displaying in Google Earth or Google Maps
 * export your markers as GeoJSON file for embedding in external websites or apps
@@ -49,7 +59,9 @@ to the visitors of your website.
 * WordPress Admin Bar integration to quickly access plugins features (can be disabled)
 * "OGD Vienna selector": if a place within boundaries of Vienna/Austria is chosen, OGD Vienna basemaps are automatically selected
 * integrated [donation links](http://www.mapsmarker.com/donations) to show your support for this plugin :-)
+
 = Technical details =
+
 * Wordpress Multisite compatibility
 * full UTF8-support for cyrillic, chinese or other alphabets on marker/layername and marker popup text
 * support for other languages through .po/.mo-files (please see http://mapsmarker.com/languages for details if you want to contribute a new translation)
@@ -62,32 +74,49 @@ to the visitors of your website.
 * use of custom function names and enque plugin scripts/css only on plugin pages to prevent conflicts with other plugins
 * update functions implemented for smooth updates of the plugin
 * uninstall function to completely remove the plugin and its data (also on WordPress Multisite installations)
+
 Please let me know which feature you think is missing by adding your ideas at [http://www.mapsmarker.com/ideas](http://www.mapsmarker.com/ideas)
+
 = Available translations =
+
 * English (en_US)
 * German (de_DE)
 * Japanes (ja) [Shu Higashi](http://twitter.com/higa4)
+
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
+
 = Leaflet Maps Marker Needs Your Support =
+
 It is hard to continue development and support for this plugin without contributions from users like you. If you enjoy using Leaflet Maps Marker - particularly within a commercial context - please consider [__making a donation__](http://www.mapsmarker.com/donations). Your donation will help keeping the plugin free for everyone and allow me to spend more time on developing, maintaining and support. I´d be happy to accept your donation! Thanks! [Robert Harm](http://www.harm.co.at)
+
 == Installation ==
+
 Note: plugin requires at least PHP 5.2 and Wordpress 3.0!
+
 1. Upload leaflet-maps-marker folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Optional: change default settings (you are getting redirected to plugin settings page automatically on first activation)
+
 After installation you will find a 'Leaflet Maps Marker' menu in your WordPress admin panel and in WordPress Admin Bar.
 For basic usage and tutorials, you can also have a look at [http://www.mapsmarker.com/docs](http://www.mapsmarker.com/docs "Docs").
+
 == Frequently Asked Questions ==
+
 Do you have questions or issues with Leaflet Maps Marker? Please use these support channels appropriately:
+
 1. [FAQ](www.mapsmarker.com/faq/)
 2. [Docs](http://www.mapsmarker.com/docs/)
 3. [Ideas (for feature requests)](www.mapsmarker.com/ideas/)
 4. [Wordpress Support Forum](http://wordpress.org/tags/leaflet-maps-marker?forum_id=10) (free community support)
 5. [WP Questions](http://wpquestions.com/affiliates/register/name/robertharm) (paid community support)
 6. [WordPress HelpCenter](http://wphelpcenter.com/) (paid professional support)
+
 [More info on support](http://mapsmarker.com/support/)
+
 == Screenshots ==
+
 For demo maps please visit [http://www.mapsmarker.com/demo](http://www.mapsmarker.com/demo).
+
 1. Frontend: marker map (with open popup and image, basemap: OGD Vienna satellite, overlay: OGD Vienna addresses, controlbox: expanded)
 2. Frontend: layer map (5 marker, different icons, basemap: OpenStreetMap, controlbox: collapsed)
 3. Frontend: map with WMS layer enabled and additional marker
@@ -100,11 +129,16 @@ For demo maps please visit [http://www.mapsmarker.com/demo](http://www.mapsmarke
 10. Backend: layerlist - for easy administration of all your layers
 11. Backend: plugin settings page allows you to easily set all necessary settings & restore the defaults if you messed something up
 12. Backend: csv-export of all markers - just copy and paste into your favorite spreadsheet application for use in other applications
+
 == Other Notes ==
+
 = Licence =
+
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a small donation for the time I've spent writing and supporting this plugin. Please see [http://www.mapsmarker.com/donations](http://www.mapsmarker.com/donations) for details.
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License included with this plugin for more details. 
+
 = Licenses for used libraries, services and images =
+
 * Leaflet - Copyright (c) 2010-2011, CloudMade, Vladimir Agafonkin [http://leaflet.cloudmade.com](http://leaflet.cloudmade.com)
 * OpenStreetMap - The Free Wiki World Map: [OpenStreetMap License](http://wiki.openstreetmap.org/wiki/OpenStreetMap_License) 
 * Map Icons Collection by Nicolas Mollet - [http://mapicons.nicolasmollet.com](http://mapicons.nicolasmollet.com)
@@ -118,24 +152,35 @@ This program is free software; you can redistribute it and/or modify it under th
 * Susanne Mandl ([http://www.greenflamingomedia.com](http://www.greenflamingomedia.com)) for plugin logo
 * Wordpress-Settings-API-Class by Aliso the geek ([http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/](http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/))
 * [Hind](http://www.nanodesu.ru) who originally release a basic [Leaflet plugin](https://wordpress.org/extend/plugins/leaflet/) which I used partly as a basis for Leaflet Maps Marker plugin
+
 = Translations =
+
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
+
 == Upgrade Notice ==
+
 = 1.2.1 =
 Important bugfixes
+
 = 1.2 =
 Important bugfixes and new feature: GeoRSS-Support - see http://www.mapsmarker.com/changelog for details
+
 = 1.1 =
 Added new features and bugfixes - see http://www.mapsmarker.com/changelog for details
+
 = 1.0 =
 Initial release
+
 == Changelog ==
+
 = v1.2.1 - 13.01.2012 =
+
 * BUGFIX: plugin installation failed on certain hosting providers due to path/directory issues
 * BUGFIX: (interactive) maps do not get display in RSS feeds (which is not possible), so now a static image with a link to the fullscreen standalone map is displayed
 * BUGFIX: removed redundant slashes from paths
 * BUGFIX: fullscreen maps did not get loaded if WordPress is installed in subdirectory
 * BUGFIX: API images in panel did show a border on some templates
+
 = v1.2 - 11.01.2012 =
 * NEW: added [GeoRSS-feeds for marker- and layer maps](http://www.mapsmarker.com/georss) (RSS 2.0 & ATOM 1.0)
 * NEW: added microformat geo-markup to maps, to make your maps machine-readable
@@ -151,6 +196,7 @@ Initial release
 * BUGFIX: attribution box on standalone maps did not show up if windows size is too small
 * BUGFIX: slashes were not stripped from marker/layer name on frontend maps
 * BUGFIX: quotes were not shown on marker/layer names (note: double quotes are replaced with single quotes automatically due to compatibility reasons)
+
 = v1.1 - 08.01.2012 =
 * NEW: [show standalone maps in fullscreen mode](http://www.mapsmarker.com/wp-content/plugins/leaflet-maps-marker/leaflet-fullscreen.php?marker=1)
 * NEW: [create QR code images for standalone maps in fullscreen mode](https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=http://www.mapsmarker.com/wp-content/plugins/leaflet-maps-marker/leaflet-fullscreen.php?marker=1)
@@ -167,5 +213,6 @@ Initial release
 * BUGFIX: dynamic preview of marker/layer panel in backend not working as designed
 * BUGFIX: language pot-file didn´t include all text strings for translations
 * BUGFIX: active translations made setting tabs unaccessible
+
 = v1.0 - 01.01.2012 = 
 * NEW: Initial release
