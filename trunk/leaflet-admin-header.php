@@ -5,7 +5,7 @@
 ?>
 <?php 
 require_once(ABSPATH . "/wp-includes/pluggable.php");
-$admin_quicklink_settings_buttons = ( current_user_can( "activate_plugins" ) ) ? "<a class='button-secondary' href='".WP_ADMIN_URL."admin.php?page=leafletmapsmarker_settings'>".__('Settings','lmm')."</a>" : "";
+$admin_quicklink_settings_buttons = ( current_user_can( "activate_plugins" ) ) ? "<a class='button-secondary' href='" . WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_settings'>".__('Settings','lmm')."</a>" : "";
 ?>
 <div style="float:right;">
   <div style="text-align:center;"><small><a href="http://www.mapsmarker.com" target="_blank" style="text-decoration:none;">MapsMarker.com</a> supports</small></div>

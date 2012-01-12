@@ -1,6 +1,6 @@
 <?php
 /*
-    GeoJSON generator - Leaflet Maps Marker Plugin
+    KML generator - Leaflet Maps Marker Plugin
 */
 //info: construct path to wp-load.php and get $wp_path
 while(!is_file('wp-load.php')){
@@ -10,7 +10,6 @@ while(!is_file('wp-load.php')){
 include( 'wp-load.php' );
 $wp_path_file = split('wp-content', __FILE__);
 $wp_path = $wp_path_file[0];
-
 //info: is plugin active?
 include_once( $wp_path.'wp-admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'plugin.php' );
 function hide_email($email) { $character_set = '+-.0123456789@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz'; $key = str_shuffle($character_set); $cipher_text = ''; $id = 'e'.rand(1,999999999); for ($i=0;$i<strlen($email);$i+=1) $cipher_text.= $key[strpos($character_set,$email[$i])]; $script = 'var a="'.$key.'";var b=a.split("").sort().join("");var c="'.$cipher_text.'";var d="";'; $script.= 'for(var e=0;e<c.length;e++)d+=b.charAt(a.indexOf(c.charAt(e)));'; $script.= 'document.getElementById("'.$id.'").innerHTML="<a href=\\"mailto:"+d+"\\">"+d+"</a>"'; $script = "eval(\"".str_replace(array("\\",'"'),array("\\\\",'\"'), $script)."\")"; $script = '<script type="text/javascript">/*<![CDATA[*/'.$script.'/*]]>*/</script>'; return '<span id="'.$id.'">[javascript protected email address]</span>'.$script; }
@@ -55,7 +54,7 @@ if (isset($_GET['layer'])) {
   echo '<open>1</open>'.PHP_EOL;  
   foreach ($markers as $marker_icon) {
     if ($marker_icon['micon'] == null) {
-        $micon_url = LEAFLET_PLUGIN_URL . '/leaflet-dist/images/marker.png';  
+        $micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 		$micon_name = 'default';
     } else {
         $micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker_icon['micon']; 
@@ -103,7 +102,7 @@ if (isset($_GET['layer'])) {
   echo '<ScreenOverlay>'.PHP_EOL;
   echo '<name><![CDATA[powered by WordPress & MapsMarker.com]]></name>'.PHP_EOL;
   echo '<Icon>'.PHP_EOL;
-  echo '<href>' . LEAFLET_PLUGIN_URL . '/img/kml-overlay-powered-by.png</href>'.PHP_EOL;
+  echo '<href>' . LEAFLET_PLUGIN_URL . 'img/kml-overlay-powered-by.png</href>'.PHP_EOL;
   echo '</Icon>'.PHP_EOL;
   echo '<overlayXY x="0" y="1" xunits="fraction" yunits="fraction"/>'.PHP_EOL;
   echo '<screenXY x="0" y="1" xunits="fraction" yunits="fraction"/>'.PHP_EOL;
@@ -145,7 +144,7 @@ elseif (isset($_GET['marker'])) {
   echo '<open>0</open>'.PHP_EOL;  
   foreach ($markers as $marker_icon) {
     if ($marker_icon['micon'] == null) {
-        $micon_url = LEAFLET_PLUGIN_URL . '/leaflet-dist/images/marker.png';  
+        $micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 		$micon_name = 'default';
     } else {
         $micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker_icon['micon']; 
@@ -182,7 +181,7 @@ elseif (isset($_GET['marker'])) {
   echo '<ScreenOverlay>'.PHP_EOL;
   echo '<name><![CDATA[powered by WordPress & MapsMarker.com]]></name>'.PHP_EOL;
   echo '<Icon>'.PHP_EOL;
-  echo '<href>' . LEAFLET_PLUGIN_URL . '/img/kml-overlay-powered-by.png</href>'.PHP_EOL;
+  echo '<href>' . LEAFLET_PLUGIN_URL . 'img/kml-overlay-powered-by.png</href>'.PHP_EOL;
   echo '</Icon>'.PHP_EOL;
   echo '<overlayXY x="0" y="1" xunits="fraction" yunits="fraction"/>'.PHP_EOL;
   echo '<screenXY x="0" y="1" xunits="fraction" yunits="fraction"/>'.PHP_EOL;

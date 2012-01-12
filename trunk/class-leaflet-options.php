@@ -93,7 +93,7 @@ class Leafletmapsmarker_options {
 			$install_success_message = sprintf( __('You just successfully installed the "Leaflet Maps Marker" plugin. You can now optionally change the default settings below or <a href="%1$sadmin.php?page=leafletmapsmarker_marker">add your first marker</a>.<br/>For tutorials and help, please check the <a href="%1$sadmin.php?page=leafletmapsmarker_help">Help &amp; Credits page</a>!','lmm'), WP_ADMIN_URL); 
 			echo '<div class="updated" style="padding:10px;"><p>' . $install_success_message . '<iframe src="http://www.mapsmarker.com/counter/go.php?id=plugin_installs" frameborder="0" height="0" width="0" name="counter" scrolling="no"></iframe></p></div>';
 		//info: check if custom icons could be unzipped
-		if ( ! file_exists(LEAFLET_PLUGIN_ICONS_DIR . '/information.png') ) {
+		if ( ! file_exists(LEAFLET_PLUGIN_ICONS_DIR . DIRECTORY_SEPARATOR . 'information.png') ) {
 				echo '<div class="error" style="padding:10px;">'.__('Warning: the custom map icon directory at <code>/wp-contents/uploads/leaflet-maps-marker-icons</code> could not be created due to file permission settings on your webserver. Leaflet Maps Marker will work as designed, but only with one map icon available.<br/>You can add the included map icons manually by following the steps at <a href="http://www.mapsmarker.com/incomplete-installation" target="_blank">http://www.mapsmarker.com/incomplete-installation</a>', 'lmm').'</div>';
 			}
 		}
@@ -3519,7 +3519,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'title'   => __( 'Logo', 'lmm' ),
 			'desc'    => __( 'The logo is displayed on the left bottom corner on Wikitude when an icon is selected - 96x96 pixel, transparent PNG', 'lmm' ),
-			'std'     => LEAFLET_PLUGIN_URL . '/img/wikitude-logo-96x96.png',
+			'std'     => LEAFLET_PLUGIN_URL . 'img/wikitude-logo-96x96.png',
 			'type'    => 'text',
 			'section' => 'ar'
 		);
@@ -3527,7 +3527,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'title'   => __( 'Icon', 'lmm' ),
 			'desc'    => __( 'The icon is displayed in the cam view of Wikitude to indicate a marker - 32x32 pixel, transparent PNG', 'lmm' ),
-			'std'     => LEAFLET_PLUGIN_URL . '/img/wikitude-icon-32x32.png',
+			'std'     => LEAFLET_PLUGIN_URL . 'img/wikitude-icon-32x32.png',
 			'type'    => 'text',
 			'section' => 'ar'
 		);		
@@ -3656,7 +3656,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.1',
 			'section' => 'misc',
 			'title'   => __('Global statistics','lmm'),
-			'desc'    => __('Anonymous marker/layer hit counter','lmm') . ' <a href="http://www.mapsmarker.com/legal#global-stats" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . '/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __('Anonymous marker/layer hit counter','lmm') . ' <a href="http://www.mapsmarker.com/legal#global-stats" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'radio',
 			'std'     => 'enabled',
 			'choices' => array(
@@ -4165,7 +4165,7 @@ class Leafletmapsmarker_options {
 		}
 		/* template for plugin updates 
 		//info:  set defaults for options introduced in v1.3
-		if (get_option('leafletmapsmarker_version') == '1.2' )
+		if (get_option('leafletmapsmarker_version') == '1.2.1' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting ) 
