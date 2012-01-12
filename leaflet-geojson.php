@@ -10,7 +10,6 @@ while(!is_file('wp-load.php')){
 include( 'wp-load.php' );
 $wp_path_file = split('wp-content', __FILE__);
 $wp_path = $wp_path_file[0];
-
 //info: is plugin active?
 include_once( $wp_path.'wp-admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'plugin.php' );
 //info: get callback parameters for JSONP 
@@ -53,7 +52,7 @@ if (isset($_GET['layer'])) {
   foreach ($markers as $marker) {
     //info: get icon urls for each marker	
     if ($marker['micon'] == null) {
-        $micon_url = LEAFLET_PLUGIN_URL . '/leaflet-dist/images/marker.png';  
+        $micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
     } else {
         $micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
     }
@@ -129,7 +128,7 @@ elseif (isset($_GET['marker'])) {
   foreach ($markers as $marker) {
     //info: get icon urls for each marker	
     if ($marker['micon'] == null) {
-        $micon_url = LEAFLET_PLUGIN_URL . '/leaflet-dist/images/marker.png';  
+        $micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
     } else {
         $micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
     }

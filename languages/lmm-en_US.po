@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MapsMarker.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-11 00:56+0100\n"
-"PO-Revision-Date: 2012-01-11 00:57+0100\n"
+"POT-Creation-Date: 2012-01-12 23:48+0100\n"
+"PO-Revision-Date: 2012-01-12 23:48+0100\n"
 "Last-Translator: Robert Harm <info@mapsmarker.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,9 +24,9 @@ msgstr ""
 
 #: ../class-leaflet-options.php:89
 #: ../leaflet-admin-header.php:8
-#: ../leaflet-maps-marker.php:547
-#: ../leaflet-maps-marker.php:635
-#: ../leaflet-maps-marker.php:840
+#: ../leaflet-maps-marker.php:562
+#: ../leaflet-maps-marker.php:650
+#: ../leaflet-maps-marker.php:864
 msgid "Settings"
 msgstr ""
 
@@ -635,7 +635,7 @@ msgstr ""
 #: ../class-leaflet-options.php:2221
 #: ../class-leaflet-options.php:2347
 #: ../class-leaflet-options.php:2473
-#: ../leaflet-maps-marker.php:839
+#: ../leaflet-maps-marker.php:863
 msgid "Layers"
 msgstr ""
 
@@ -779,26 +779,26 @@ msgstr ""
 #: ../class-leaflet-options.php:2285
 #: ../class-leaflet-options.php:2411
 #: ../class-leaflet-options.php:2537
+#: ../leaflet-fullscreen.php:194
+#: ../leaflet-fullscreen.php:195
+#: ../leaflet-fullscreen.php:196
+#: ../leaflet-fullscreen.php:197
+#: ../leaflet-fullscreen.php:198
+#: ../leaflet-fullscreen.php:199
+#: ../leaflet-fullscreen.php:200
 #: ../leaflet-fullscreen.php:201
 #: ../leaflet-fullscreen.php:202
 #: ../leaflet-fullscreen.php:203
-#: ../leaflet-fullscreen.php:204
-#: ../leaflet-fullscreen.php:205
-#: ../leaflet-fullscreen.php:206
-#: ../leaflet-fullscreen.php:207
-#: ../leaflet-fullscreen.php:208
-#: ../leaflet-fullscreen.php:209
-#: ../leaflet-fullscreen.php:210
+#: ../leaflet-fullscreen.php:511
+#: ../leaflet-fullscreen.php:512
+#: ../leaflet-fullscreen.php:513
+#: ../leaflet-fullscreen.php:514
+#: ../leaflet-fullscreen.php:515
+#: ../leaflet-fullscreen.php:516
+#: ../leaflet-fullscreen.php:517
 #: ../leaflet-fullscreen.php:518
 #: ../leaflet-fullscreen.php:519
 #: ../leaflet-fullscreen.php:520
-#: ../leaflet-fullscreen.php:521
-#: ../leaflet-fullscreen.php:522
-#: ../leaflet-fullscreen.php:523
-#: ../leaflet-fullscreen.php:524
-#: ../leaflet-fullscreen.php:525
-#: ../leaflet-fullscreen.php:526
-#: ../leaflet-fullscreen.php:527
 #: ../leaflet-layer.php:613
 #: ../leaflet-layer.php:614
 #: ../leaflet-layer.php:615
@@ -809,16 +809,16 @@ msgstr ""
 #: ../leaflet-layer.php:620
 #: ../leaflet-layer.php:621
 #: ../leaflet-layer.php:622
-#: ../leaflet-maps-marker.php:394
-#: ../leaflet-maps-marker.php:395
-#: ../leaflet-maps-marker.php:396
-#: ../leaflet-maps-marker.php:397
-#: ../leaflet-maps-marker.php:398
-#: ../leaflet-maps-marker.php:399
-#: ../leaflet-maps-marker.php:400
-#: ../leaflet-maps-marker.php:401
-#: ../leaflet-maps-marker.php:402
-#: ../leaflet-maps-marker.php:403
+#: ../leaflet-maps-marker.php:408
+#: ../leaflet-maps-marker.php:409
+#: ../leaflet-maps-marker.php:410
+#: ../leaflet-maps-marker.php:411
+#: ../leaflet-maps-marker.php:412
+#: ../leaflet-maps-marker.php:413
+#: ../leaflet-maps-marker.php:414
+#: ../leaflet-maps-marker.php:415
+#: ../leaflet-maps-marker.php:416
+#: ../leaflet-maps-marker.php:417
 #: ../leaflet-marker.php:547
 #: ../leaflet-marker.php:548
 #: ../leaflet-marker.php:549
@@ -1518,35 +1518,35 @@ msgstr ""
 
 #: ../leaflet-admin-header.php:15
 #: ../leaflet-list-markers.php:44
-#: ../leaflet-maps-marker.php:542
-#: ../leaflet-maps-marker.php:595
+#: ../leaflet-maps-marker.php:557
+#: ../leaflet-maps-marker.php:610
 msgid "List all markers"
 msgstr ""
 
 #: ../leaflet-admin-header.php:16
-#: ../leaflet-maps-marker.php:543
-#: ../leaflet-maps-marker.php:601
+#: ../leaflet-maps-marker.php:558
+#: ../leaflet-maps-marker.php:616
 #: ../leaflet-marker.php:198
 msgid "Add new marker"
 msgstr ""
 
 #: ../leaflet-admin-header.php:17
 #: ../leaflet-list-layers.php:8
-#: ../leaflet-maps-marker.php:544
-#: ../leaflet-maps-marker.php:607
+#: ../leaflet-maps-marker.php:559
+#: ../leaflet-maps-marker.php:622
 msgid "List all layers"
 msgstr ""
 
 #: ../leaflet-admin-header.php:18
 #: ../leaflet-layer.php:193
-#: ../leaflet-maps-marker.php:545
-#: ../leaflet-maps-marker.php:613
+#: ../leaflet-maps-marker.php:560
+#: ../leaflet-maps-marker.php:628
 msgid "Add new layer"
 msgstr ""
 
 #: ../leaflet-admin-header.php:19
-#: ../leaflet-maps-marker.php:546
-#: ../leaflet-maps-marker.php:619
+#: ../leaflet-maps-marker.php:561
+#: ../leaflet-maps-marker.php:634
 msgid "Help & Credits"
 msgstr ""
 
@@ -1610,69 +1610,60 @@ msgstr ""
 msgid "Rate plugin"
 msgstr ""
 
-#: ../leaflet-exportcsv.php:17
-#: ../leaflet-fullscreen.php:17
-#: ../leaflet-geojson.php:17
-#: ../leaflet-georss.php:17
-#: ../leaflet-kml.php:17
-#: ../leaflet-wikitude.php:17
-msgid "Error: Could not construct path to wp-config.php - please check <a href=\"http://mapsmarker.com/path-error\">http://mapsmarker.com/path-error</a> for more details."
-msgstr ""
-
-#: ../leaflet-exportcsv.php:29
+#: ../leaflet-exportcsv.php:21
 #: ../leaflet-layer.php:15
-#: ../leaflet-maps-marker.php:97
+#: ../leaflet-maps-marker.php:99
 #: ../leaflet-marker.php:19
 msgid "Security check failed - please call this function from the according Leaflet Maps Marker admin page!"
 msgstr ""
 
-#: ../leaflet-exportcsv.php:73
+#: ../leaflet-exportcsv.php:65
 msgid "Error - CSV export of all markers not allowed."
 msgstr ""
 
-#: ../leaflet-fullscreen.php:64
+#: ../leaflet-fullscreen.php:57
 #: ../leaflet-layer.php:179
-#: ../leaflet-maps-marker.php:245
+#: ../leaflet-maps-marker.php:260
 #, php-format
 msgid "Error: a layer with the ID %1$s does not exist!"
 msgstr ""
 
-#: ../leaflet-fullscreen.php:66
-#: ../leaflet-fullscreen.php:390
-#: ../leaflet-maps-marker.php:253
+#: ../leaflet-fullscreen.php:59
+#: ../leaflet-fullscreen.php:383
+#: ../leaflet-maps-marker.php:268
 msgid "Go to plugin website"
 msgstr ""
 
-#: ../leaflet-fullscreen.php:91
-#: ../leaflet-fullscreen.php:415
-#: ../leaflet-maps-marker.php:676
-#: ../leaflet-maps-marker.php:687
+#: ../leaflet-fullscreen.php:84
+#: ../leaflet-fullscreen.php:408
+#: ../leaflet-maps-marker.php:691
+#: ../leaflet-maps-marker.php:702
 msgid "Zoom in"
 msgstr ""
 
-#: ../leaflet-fullscreen.php:91
-#: ../leaflet-fullscreen.php:415
-#: ../leaflet-maps-marker.php:677
-#: ../leaflet-maps-marker.php:688
+#: ../leaflet-fullscreen.php:84
+#: ../leaflet-fullscreen.php:408
+#: ../leaflet-maps-marker.php:692
+#: ../leaflet-maps-marker.php:703
 msgid "Zoom out"
 msgstr ""
 
-#: ../leaflet-fullscreen.php:98
-#: ../leaflet-fullscreen.php:422
+#: ../leaflet-fullscreen.php:91
+#: ../leaflet-fullscreen.php:415
 msgid "map"
 msgstr ""
 
-#: ../leaflet-fullscreen.php:106
-#: ../leaflet-fullscreen.php:430
+#: ../leaflet-fullscreen.php:99
+#: ../leaflet-fullscreen.php:423
 #: ../leaflet-layer.php:264
-#: ../leaflet-maps-marker.php:270
-#: ../leaflet-maps-marker.php:293
+#: ../leaflet-maps-marker.php:284
+#: ../leaflet-maps-marker.php:307
 #: ../leaflet-marker.php:292
 msgid "Export as KML for Google Earth/Google Maps"
 msgstr ""
 
-#: ../leaflet-fullscreen.php:109
-#: ../leaflet-fullscreen.php:433
+#: ../leaflet-fullscreen.php:102
+#: ../leaflet-fullscreen.php:426
 #: ../leaflet-layer.php:36
 #: ../leaflet-layer.php:66
 #: ../leaflet-layer.php:203
@@ -1683,8 +1674,8 @@ msgstr ""
 #: ../leaflet-list-layers.php:92
 #: ../leaflet-list-markers.php:101
 #: ../leaflet-list-markers.php:147
-#: ../leaflet-maps-marker.php:273
-#: ../leaflet-maps-marker.php:296
+#: ../leaflet-maps-marker.php:287
+#: ../leaflet-maps-marker.php:310
 #: ../leaflet-marker.php:40
 #: ../leaflet-marker.php:69
 #: ../leaflet-marker.php:209
@@ -1692,8 +1683,8 @@ msgstr ""
 msgid "Open standalone map in fullscreen mode"
 msgstr ""
 
-#: ../leaflet-fullscreen.php:112
-#: ../leaflet-fullscreen.php:436
+#: ../leaflet-fullscreen.php:105
+#: ../leaflet-fullscreen.php:429
 #: ../leaflet-layer.php:36
 #: ../leaflet-layer.php:66
 #: ../leaflet-layer.php:203
@@ -1705,8 +1696,8 @@ msgstr ""
 #: ../leaflet-list-layers.php:94
 #: ../leaflet-list-markers.php:103
 #: ../leaflet-list-markers.php:149
-#: ../leaflet-maps-marker.php:276
-#: ../leaflet-maps-marker.php:299
+#: ../leaflet-maps-marker.php:290
+#: ../leaflet-maps-marker.php:313
 #: ../leaflet-marker.php:40
 #: ../leaflet-marker.php:69
 #: ../leaflet-marker.php:209
@@ -1714,59 +1705,59 @@ msgstr ""
 msgid "Create QR code image for standalone map in fullscreen mode"
 msgstr ""
 
-#: ../leaflet-fullscreen.php:115
-#: ../leaflet-fullscreen.php:439
+#: ../leaflet-fullscreen.php:108
+#: ../leaflet-fullscreen.php:432
 #: ../leaflet-layer.php:273
-#: ../leaflet-maps-marker.php:279
-#: ../leaflet-maps-marker.php:302
+#: ../leaflet-maps-marker.php:293
+#: ../leaflet-maps-marker.php:316
 #: ../leaflet-marker.php:301
 msgid "Export as GeoJSON"
 msgstr ""
 
-#: ../leaflet-fullscreen.php:118
-#: ../leaflet-fullscreen.php:442
+#: ../leaflet-fullscreen.php:111
+#: ../leaflet-fullscreen.php:435
 #: ../leaflet-layer.php:276
-#: ../leaflet-maps-marker.php:282
-#: ../leaflet-maps-marker.php:305
+#: ../leaflet-maps-marker.php:296
+#: ../leaflet-maps-marker.php:319
 #: ../leaflet-marker.php:304
 msgid "Export as GeoRSS"
 msgstr ""
 
-#: ../leaflet-fullscreen.php:121
-#: ../leaflet-fullscreen.php:445
+#: ../leaflet-fullscreen.php:114
+#: ../leaflet-fullscreen.php:438
 #: ../leaflet-layer.php:279
-#: ../leaflet-maps-marker.php:285
-#: ../leaflet-maps-marker.php:308
+#: ../leaflet-maps-marker.php:299
+#: ../leaflet-maps-marker.php:322
 #: ../leaflet-marker.php:307
 msgid "Export as ARML for Wikitude Augmented-Reality browser"
 msgstr ""
 
-#: ../leaflet-fullscreen.php:149
-#: ../leaflet-fullscreen.php:466
+#: ../leaflet-fullscreen.php:142
+#: ../leaflet-fullscreen.php:459
 #: ../leaflet-layer.php:559
-#: ../leaflet-maps-marker.php:342
+#: ../leaflet-maps-marker.php:356
 #: ../leaflet-marker.php:492
 msgid "Plugin"
 msgstr ""
 
+#: ../leaflet-fullscreen.php:144
+#: ../leaflet-fullscreen.php:145
+#: ../leaflet-fullscreen.php:146
+#: ../leaflet-fullscreen.php:147
+#: ../leaflet-fullscreen.php:148
+#: ../leaflet-fullscreen.php:149
+#: ../leaflet-fullscreen.php:150
 #: ../leaflet-fullscreen.php:151
 #: ../leaflet-fullscreen.php:152
-#: ../leaflet-fullscreen.php:153
-#: ../leaflet-fullscreen.php:154
-#: ../leaflet-fullscreen.php:155
-#: ../leaflet-fullscreen.php:156
-#: ../leaflet-fullscreen.php:157
-#: ../leaflet-fullscreen.php:158
-#: ../leaflet-fullscreen.php:159
+#: ../leaflet-fullscreen.php:461
+#: ../leaflet-fullscreen.php:462
+#: ../leaflet-fullscreen.php:463
+#: ../leaflet-fullscreen.php:464
+#: ../leaflet-fullscreen.php:465
+#: ../leaflet-fullscreen.php:466
+#: ../leaflet-fullscreen.php:467
 #: ../leaflet-fullscreen.php:468
 #: ../leaflet-fullscreen.php:469
-#: ../leaflet-fullscreen.php:470
-#: ../leaflet-fullscreen.php:471
-#: ../leaflet-fullscreen.php:472
-#: ../leaflet-fullscreen.php:473
-#: ../leaflet-fullscreen.php:474
-#: ../leaflet-fullscreen.php:475
-#: ../leaflet-fullscreen.php:476
 #: ../leaflet-layer.php:561
 #: ../leaflet-layer.php:562
 #: ../leaflet-layer.php:563
@@ -1776,15 +1767,15 @@ msgstr ""
 #: ../leaflet-layer.php:567
 #: ../leaflet-layer.php:568
 #: ../leaflet-layer.php:569
-#: ../leaflet-maps-marker.php:344
-#: ../leaflet-maps-marker.php:345
-#: ../leaflet-maps-marker.php:346
-#: ../leaflet-maps-marker.php:347
-#: ../leaflet-maps-marker.php:348
-#: ../leaflet-maps-marker.php:349
-#: ../leaflet-maps-marker.php:350
-#: ../leaflet-maps-marker.php:351
-#: ../leaflet-maps-marker.php:352
+#: ../leaflet-maps-marker.php:358
+#: ../leaflet-maps-marker.php:359
+#: ../leaflet-maps-marker.php:360
+#: ../leaflet-maps-marker.php:361
+#: ../leaflet-maps-marker.php:362
+#: ../leaflet-maps-marker.php:363
+#: ../leaflet-maps-marker.php:364
+#: ../leaflet-maps-marker.php:365
+#: ../leaflet-maps-marker.php:366
 #: ../leaflet-marker.php:494
 #: ../leaflet-marker.php:495
 #: ../leaflet-marker.php:496
@@ -1797,29 +1788,29 @@ msgstr ""
 msgid "Map"
 msgstr ""
 
-#: ../leaflet-fullscreen.php:155
-#: ../leaflet-fullscreen.php:156
-#: ../leaflet-fullscreen.php:472
-#: ../leaflet-fullscreen.php:473
+#: ../leaflet-fullscreen.php:148
+#: ../leaflet-fullscreen.php:149
+#: ../leaflet-fullscreen.php:465
+#: ../leaflet-fullscreen.php:466
 #: ../leaflet-layer.php:565
 #: ../leaflet-layer.php:566
-#: ../leaflet-maps-marker.php:348
-#: ../leaflet-maps-marker.php:349
+#: ../leaflet-maps-marker.php:362
+#: ../leaflet-maps-marker.php:363
 #: ../leaflet-marker.php:498
 #: ../leaflet-marker.php:499
 msgid "City of Vienna"
 msgstr ""
 
-#: ../leaflet-fullscreen.php:388
-#: ../leaflet-kml.php:140
-#: ../leaflet-maps-marker.php:246
+#: ../leaflet-fullscreen.php:381
+#: ../leaflet-kml.php:133
+#: ../leaflet-maps-marker.php:261
 #: ../leaflet-marker.php:184
 #, php-format
 msgid "Error: a marker with the ID %1$s does not exist!"
 msgstr ""
 
-#: ../leaflet-georss.php:69
-#: ../leaflet-georss.php:134
+#: ../leaflet-georss.php:62
+#: ../leaflet-georss.php:127
 msgid "maps"
 msgstr ""
 
@@ -1828,12 +1819,12 @@ msgid "Help"
 msgstr ""
 
 #: ../leaflet-help-credits.php:14
-#: ../leaflet-maps-marker.php:648
+#: ../leaflet-maps-marker.php:663
 msgid "Do you have questions or issues with Leaflet Maps Marker? Please use the following support channels appropriately."
 msgstr ""
 
 #: ../leaflet-help-credits.php:18
-#: ../leaflet-maps-marker.php:650
+#: ../leaflet-maps-marker.php:665
 msgid "FAQ"
 msgstr ""
 
@@ -1842,12 +1833,12 @@ msgid "(frequently asked questions)"
 msgstr ""
 
 #: ../leaflet-help-credits.php:23
-#: ../leaflet-maps-marker.php:651
+#: ../leaflet-maps-marker.php:666
 msgid "Documentation"
 msgstr ""
 
 #: ../leaflet-help-credits.php:26
-#: ../leaflet-maps-marker.php:652
+#: ../leaflet-maps-marker.php:667
 msgid "Ideas"
 msgstr ""
 
@@ -1868,7 +1859,7 @@ msgid "(paid professional support)"
 msgstr ""
 
 #: ../leaflet-help-credits.php:39
-#: ../leaflet-maps-marker.php:657
+#: ../leaflet-maps-marker.php:672
 msgid "More information on support"
 msgstr ""
 
@@ -1888,7 +1879,7 @@ msgstr ""
 msgid "Credits & special thanks"
 msgstr ""
 
-#: ../leaflet-kml.php:49
+#: ../leaflet-kml.php:42
 #, php-format
 msgid "Warning: no markers are assigned to the layer with the ID %1$s or the layer does not exist!"
 msgstr ""
@@ -2293,7 +2284,7 @@ msgstr ""
 
 #: ../leaflet-list-layers.php:28
 #: ../leaflet-list-layers.php:68
-#: ../leaflet-maps-marker.php:838
+#: ../leaflet-maps-marker.php:862
 msgid "Markers"
 msgstr ""
 
@@ -2366,43 +2357,48 @@ msgstr ""
 msgid "Marker"
 msgstr ""
 
-#: ../leaflet-maps-marker.php:543
+#: ../leaflet-maps-marker.php:249
+#: ../leaflet-maps-marker.php:252
+msgid "Show embedded map in full-screen mode"
+msgstr ""
+
+#: ../leaflet-maps-marker.php:558
 msgid "add/edit marker"
 msgstr ""
 
-#: ../leaflet-maps-marker.php:545
+#: ../leaflet-maps-marker.php:560
 msgid "add/edit layer"
 msgstr ""
 
-#: ../leaflet-maps-marker.php:590
+#: ../leaflet-maps-marker.php:605
 msgid "by"
 msgstr ""
 
-#: ../leaflet-maps-marker.php:627
+#: ../leaflet-maps-marker.php:642
 msgid "Open plugin website"
 msgstr ""
 
-#: ../leaflet-maps-marker.php:650
+#: ../leaflet-maps-marker.php:665
 msgid "frequently asked questions"
 msgstr ""
 
-#: ../leaflet-maps-marker.php:652
+#: ../leaflet-maps-marker.php:667
 msgid "feature requests"
 msgstr ""
 
-#: ../leaflet-maps-marker.php:653
+#: ../leaflet-maps-marker.php:668
 msgid "free community support"
 msgstr ""
 
-#: ../leaflet-maps-marker.php:654
+#: ../leaflet-maps-marker.php:669
 msgid "paid community support"
 msgstr ""
 
-#: ../leaflet-maps-marker.php:655
+#: ../leaflet-maps-marker.php:670
 msgid "paid professional support"
 msgstr ""
 
-#: ../leaflet-maps-marker.php:666
+#: ../leaflet-maps-marker.php:681
 msgid "Help & Support"
 msgstr ""
 
@@ -2499,10 +2495,10 @@ msgstr ""
 msgid "delete marker"
 msgstr ""
 
-#: ../leaflet-wikitude.php:87
-#: ../leaflet-wikitude.php:153
-#: ../leaflet-wikitude.php:231
-#: ../leaflet-wikitude.php:301
+#: ../leaflet-wikitude.php:81
+#: ../leaflet-wikitude.php:147
+#: ../leaflet-wikitude.php:224
+#: ../leaflet-wikitude.php:293
 msgid "Wikitude API powered by www.mapsmarker.com"
 msgstr ""
 
