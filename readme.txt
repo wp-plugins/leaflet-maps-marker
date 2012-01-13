@@ -163,10 +163,10 @@ For more information on translations of the plugin and how to contribute a new t
 Important bugfixes
 
 = 1.2 =
-Important bugfixes and new feature: GeoRSS-Support - see http://www.mapsmarker.com/changelog for details
+Important bugfixes & new feature: GeoRSS-Support - see http://www.mapsmarker.com/changelog for details
 
 = 1.1 =
-Added new features and bugfixes - see http://www.mapsmarker.com/changelog for details
+Added new features & bugfixes - see http://www.mapsmarker.com/changelog for details
 
 = 1.0 =
 Initial release
