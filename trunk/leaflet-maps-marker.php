@@ -4,7 +4,7 @@ Plugin Name: Leaflet Maps Marker
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, OSM, travelblog, opendata, opengov, ogdwien, google maps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, wms
-Version: 1.2.1
+Version: 1.2.2
 Author: Robert Harm (with special support from Sindre Wimberger)
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
@@ -37,12 +37,11 @@ if ( ! defined( 'WP_ADMIN_URL' ) )
 	define( 'WP_ADMIN_URL', get_admin_url() );
 if ( ! defined( 'LEAFLET_PLUGIN_URL' ) )
 define ("LEAFLET_PLUGIN_URL", plugin_dir_url(__FILE__));
-if ( ! defined( 'LEAFLET_PLUGIN_ICONS_URL' ) )
-	define ("LEAFLET_PLUGIN_ICONS_URL", content_url() . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . "leaflet-maps-marker-icons");
 $lmm_upload_dir = wp_upload_dir();
+if ( ! defined( 'LEAFLET_PLUGIN_ICONS_URL' ) )
+	define ("LEAFLET_PLUGIN_ICONS_URL", $lmm_upload_dir['baseurl'] . DIRECTORY_SEPARATOR . "leaflet-maps-marker-icons");
 if ( ! defined( 'LEAFLET_PLUGIN_ICONS_DIR' ) )
 	define ("LEAFLET_PLUGIN_ICONS_DIR", $lmm_upload_dir['basedir'] . DIRECTORY_SEPARATOR . "leaflet-maps-marker-icons");
-
 //info: not in class Leafletmapsmarker as otherwise warnings on resetting defaults options
 require_once( plugin_dir_path( __FILE__ ).'class-leaflet-options.php' );
 class Leafletmapsmarker
@@ -832,6 +831,9 @@ function leafletmapsmarker() {
 	}
 	if (get_option('leafletmapsmarker_version') == '1.2' ) {
 		update_option('leafletmapsmarker_version', '1.2.1');
+	}
+	if (get_option('leafletmapsmarker_version') == '1.2.1' ) {
+		update_option('leafletmapsmarker_version', '1.2.2');
 		//info: redirect to settings page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 		if (get_option('leafletmapsmarker_redirect') == 'true') 
 		{
@@ -840,7 +842,7 @@ function leafletmapsmarker() {
 		}
 	}
 	/* template for plugin updates 
-	if (get_option('leafletmapsmarker_version') == '1.2.1' ) {
+	if (get_option('leafletmapsmarker_version') == '1.2.2' ) {
 		//mandatory if new options in class-leaflet-options.php were added
 		$save_defaults_for_new_options = new Leafletmapsmarker_options();
 		$save_defaults_for_new_options->save_defaults_for_new_options();

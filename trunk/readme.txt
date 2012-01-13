@@ -8,7 +8,7 @@ Author:            Robert Harm (with special support from Sindre Wimberger)
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
 Tested up to:      3.4-alpha-19704
-Stable tag:        1.2.1
+Stable tag:        1.2.2
 
 Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 
@@ -159,22 +159,27 @@ For more information on translations of the plugin and how to contribute a new t
 
 == Upgrade Notice ==
 
+= 1.2.2 =
+Fix for custom marker icons not showing on certain hosting providers
+
 = 1.2.1 =
 Important bugfixes
 
 = 1.2 =
-Important bugfixes & new feature: GeoRSS-Support - see http://www.mapsmarker.com/changelog for details
+Important bugfixes and new feature: GeoRSS-Support - see http://www.mapsmarker.com/changelog for details
 
 = 1.1 =
-Added new features & bugfixes - see http://www.mapsmarker.com/changelog for details
+Added new features and bugfixes - see http://www.mapsmarker.com/changelog for details
 
 = 1.0 =
 Initial release
 
 == Changelog ==
 
-= v1.2.1 - 13.01.2012 =
+= v1.2.2 - 14.01.2012 =
+* BUGFIX: custom marker icons were not shown on certain hosts due to different wp-upload-directories
 
+= v1.2.1 - 13.01.2012 =
 * BUGFIX: plugin installation failed on certain hosting providers due to path/directory issues
 * BUGFIX: (interactive) maps do not get display in RSS feeds (which is not possible), so now a static image with a link to the fullscreen standalone map is displayed
 * BUGFIX: removed redundant slashes from paths

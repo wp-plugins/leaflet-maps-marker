@@ -4165,7 +4165,7 @@ class Leafletmapsmarker_options {
 		}
 		/* template for plugin updates 
 		//info:  set defaults for options introduced in v1.3
-		if (get_option('leafletmapsmarker_version') == '1.2.1' )
+		if (get_option('leafletmapsmarker_version') == '1.2.2' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting ) 
