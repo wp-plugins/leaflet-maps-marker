@@ -8,7 +8,7 @@ Author:            Robert Harm (with special support from Sindre Wimberger)
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
 Tested up to:      3.4-alpha-19704
-Stable tag:        1.2.2
+Stable tag:        1.3
 
 Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 
@@ -17,7 +17,7 @@ Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Map
 = Plugin's Official Site =
 http://mapsmarker.com
 
-* [Demo](http://www.mapsmarker.com/demo/) - [FAQ](http://www.mapsmarker.com/faq/) - [Docs](http://www.mapsmarker.com/docs/) - [Support](http://mapsmarker.com/support/) - [Donations](http://mapsmarker.com/donations) - [Twitter](http://twitter.com/mapsmarker) - [Facebook](http://facebook.com/mapsmarker)
+* [Demo](http://www.mapsmarker.com/demo/) - [FAQ](http://www.mapsmarker.com/faq/) - [Docs](http://www.mapsmarker.com/docs/) - [Support](http://mapsmarker.com/support/) - [Github](https://github.com/robertharm/Leaflet-Maps-Marker) - [Donations](http://mapsmarker.com/donations) - [Twitter](http://twitter.com/mapsmarker) - [Facebook](http://facebook.com/mapsmarker)
 
 = Main features = 
 
@@ -53,10 +53,12 @@ to the visitors of your website.
 * option to add marker directly to posts or pages without saving them to your database
 * audit log for changes on markers & layers (saving first created by/on and last updated by/on info)
 * search within your marker list
+* mass actions for markers (assignment to layers, deletions)
 * option to reset plugin settings to defaults
 * option to change the default shortcode '[mapsmarker...]'
 * dynamic preview of maps in backend (no need to reload)
 * WordPress Admin Bar integration to quickly access plugins features (can be disabled)
+* global stats for marker/layer count on mapsmarker.com (can be disabled)
 * "OGD Vienna selector": if a place within boundaries of Vienna/Austria is chosen, OGD Vienna basemaps are automatically selected
 * integrated [donation links](http://www.mapsmarker.com/donations) to show your support for this plugin :-)
 
@@ -129,6 +131,7 @@ For demo maps please visit [http://www.mapsmarker.com/demo](http://www.mapsmarke
 10. Backend: layerlist - for easy administration of all your layers
 11. Backend: plugin settings page allows you to easily set all necessary settings & restore the defaults if you messed something up
 12. Backend: csv-export of all markers - just copy and paste into your favorite spreadsheet application for use in other applications
+13. Backend: tools section - allows mass-actions more markers (assignements, deletions)
 
 == Other Notes ==
 
@@ -158,6 +161,8 @@ This program is free software; you can redistribute it and/or modify it under th
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
 == Upgrade Notice ==
+= v1.3 =
+added marker mass actions and browser/template compatibility bugfixes
 
 = 1.2.2 =
 Fix for custom marker icons not showing on certain hosting providers
@@ -175,6 +180,21 @@ Added new features and bugfixes - see http://www.mapsmarker.com/changelog for de
 Initial release
 
 == Changelog ==
+
+= v1.3 - 17.01.2012 =
+* NEW: add mass actions for makers (assign markers to layer, delete markers)
+* CHANGED: flattr now embedded as static image as long loadtimes decrease usability because Google Places scripts starts only afterwards
+* CHANGED: marker-/layername for panel in backend now gets refreshed dynamically after entering in form field
+* CHANGED: geo microformat tags are now also added to maps added directly via shortcode
+* OPTIMIZED: div structure and order for maps on frontend
+* BUGFIX: map/panel width were not the same due to css inheritance
+* BUGFIX: map css partially broken in IE < 9 when viewing backend maps
+* BUGFIX: links in maps were underlined on some templates
+* BUGFIX: panel API link images had borders on some templates
+* BUGFIX: text in layer controlbox was centered on some templates
+* REMOVED: global stats for plugin installs, marker/layer edits and deletions
+* REMOVED: featured sponsor in admin header
+* REMOVED: developers comments from css- and js-files
 
 = v1.2.2 - 14.01.2012 =
 * BUGFIX: custom marker icons were not shown on certain hosts due to different wp-upload-directories
