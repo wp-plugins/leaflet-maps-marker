@@ -4,7 +4,7 @@ Plugin Name: Leaflet Maps Marker
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, OSM, travelblog, opendata, opengov, ogdwien, google maps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, wms
-Version: 1.2.2
+Version: 1.3
 Author: Robert Harm (with special support from Sindre Wimberger)
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
@@ -124,6 +124,14 @@ function leafletmapsmarker() {
     $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
     include('leaflet-marker.php');
   }
+  function lmm_tools()
+  {
+    global $wpdb;
+    $lmm_options = get_option( 'leafletmapsmarker_options' );
+    $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
+    $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
+    include('leaflet-tools.php');
+  }
   function lmm_showmap($atts) {
     global $wpdb;
     $lmm_options = get_option( 'leafletmapsmarker_options' );
@@ -145,7 +153,7 @@ function leafletmapsmarker() {
     'mapwidth' => intval($lmm_options[ 'defaults_marker_shortcode_mapwidth' ]),
     'mapwidthunit' => $lmm_options[ 'defaults_marker_shortcode_mapwidthunit' ],
     'mapheight' => intval($lmm_options[ 'defaults_marker_shortcode_mapheight' ]),
-    'mapname' => 'mapsmarker_'.$uid
+    'mapname' => 'lmm_map_'.$uid
     ), $atts));
     $pname = 'pa'.$uid;
 	//info: prepare layers
@@ -258,72 +266,71 @@ function leafletmapsmarker() {
 	if ($lat == NULL) {
 	$error_layer_not_exists = sprintf( esc_attr__('Error: a layer with the ID %1$s does not exist!','lmm'), $layer); 
 	$error_marker_not_exists = sprintf( esc_attr__('Error: a marker with the ID %1$s does not exist!','lmm'), $marker); 
+	$lmm_out = '<div id="lmm_error" style="margin:10px 0;">'.PHP_EOL;
 		if (empty($layer)) {
-			echo $error_marker_not_exists . '<br/>';
+			$lmm_out .= $error_marker_not_exists . '<br/>';
 		}
 		if (empty($marker)) {
-			echo $error_layer_not_exists . '<br/>';
+			$lmm_out .= $error_layer_not_exists . '<br/>';
 		}
-	echo '<a href="http://www.mapsmarker.com" target="_blank" title="' . __('Go to plugin website','lmm') . '"><img style="border:1px solid #ccc;" src="' . LEAFLET_PLUGIN_URL . 'img/map-deleted-image.png"></a><br/>';
+	$lmm_out .= '<a href="http://www.mapsmarker.com" target="_blank" title="' . __('Go to plugin website','lmm') . '"><img style="border:1px solid #ccc;" src="' . LEAFLET_PLUGIN_URL . 'img/map-deleted-image.png"></a></div>';
 	} else {	
 	//info: starting output on frontend
 	$lmm_out = ''; 
+	$lmm_out .= '<div id="lmm_'.$uid.'" style="width:' . $mapwidth.$mapwidthunit . ';">'.PHP_EOL;
 	//info: panel for layer/marker name and API URLs
 	if ($panel == 1) {
-		if ($mapwidthunit == 'px') {
-			$lmm_out .= '<div id="panel_top_' . $uid . '" style="background: ' . ((!empty($marker)) ? addslashes($lmm_options[ 'defaults_marker_panel_background_color' ]) : (!empty($layer)) ? addslashes($lmm_options[ 'defaults_layer_panel_background_color' ]) : '') . '; width:' . ($mapwidth - 10).$mapwidthunit . '; padding:5px; border:1px solid #ccc;">'.PHP_EOL;
-		}
-		if ($mapwidthunit == '%') {
-			$lmm_out .= '<div id="panel_top_' . $uid . '" style="background: ' . ((!empty($marker)) ? addslashes($lmm_options[ 'defaults_marker_panel_background_color' ]) : (!empty($layer)) ? addslashes($lmm_options[ 'defaults_layer_panel_background_color' ]) : '') . '; width:' . ($mapwidth - 2).$mapwidthunit . '; padding:5px; border:1px solid #ccc;">'.PHP_EOL;
-		}
+		$lmm_out .= '<div id="lmm_panel_'.$uid.'" class="lmm-panel" style="background: ' . ((!empty($marker)) ? addslashes($lmm_options[ 'defaults_marker_panel_background_color' ]) : (!empty($layer)) ? addslashes($lmm_options[ 'defaults_layer_panel_background_color' ]) : '') . ';">'.PHP_EOL;
 		if (!empty($marker)) 
 		{
-			$lmm_out .= '<span style="' . addslashes($lmm_options[ 'defaults_marker_panel_paneltext_css' ]) . '">' . stripslashes($paneltext) . '</span><span style="float:right;width:120px;text-align:right;">';
+			$lmm_out .= '<div id="lmm_panel_api_'.$uid.'" class="lmm-panel-api">';
 			if ( (isset($lmm_options[ 'defaults_marker_panel_kml' ] ) == TRUE ) && ( $lmm_options[ 'defaults_marker_panel_kml' ] == 1 ) ) {
-				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-kml.php?marker=' . $id . '" style="text-decoration:none;" title="' . __('Export as KML for Google Earth/Google Maps','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-kml.png" width="14" height="14" alt="KML-Logo" style="background:no-repeat;margin:0px;padding:0px;border:none;" /></a>&nbsp;';
+				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-kml.php?marker=' . $id . '" style="text-decoration:none;" title="' . __('Export as KML for Google Earth/Google Maps','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-kml.png" width="14" height="14" alt="KML-Logo" class="lmm-panel-api-images" /></a>';
 			}
 			if ( (isset($lmm_options[ 'defaults_marker_panel_fullscreen' ] ) == TRUE ) && ( $lmm_options[ 'defaults_marker_panel_fullscreen' ] == 1 ) ) {
-				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?marker=' . $id . '" style="text-decoration:none;" title="' . __('Open standalone map in fullscreen mode','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-fullscreen.png" width="14" height="14" alt="Fullscreen-Logo" style="background:no-repeat;margin:0px;padding:0px;border:none;" /></a>&nbsp;';
+				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?marker=' . $id . '" style="text-decoration:none;" title="' . __('Open standalone map in fullscreen mode','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-fullscreen.png" width="14" height="14" alt="Fullscreen-Logo" class="lmm-panel-api-images" /></a>';
 			}
 			if ( (isset($lmm_options[ 'defaults_marker_panel_qr_code' ] ) == TRUE ) && ( $lmm_options[ 'defaults_marker_panel_qr_code' ] == 1 ) ) {
-				$lmm_out .= '<a href="https://chart.googleapis.com/chart?chs=' . $lmm_options[ 'misc_qrcode_size' ] . 'x' . $lmm_options[ 'misc_qrcode_size' ] . '&cht=qr&chl=' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?marker=' . $id . '" target="_blank" title="' . esc_attr__('Create QR code image for standalone map in fullscreen mode','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-qr-code.png" width="14" height="14" alt="QR-code-logo" style="background:no-repeat;margin:0px;padding:0px;border:none;" /></a>&nbsp;';
+				$lmm_out .= '<a href="https://chart.googleapis.com/chart?chs=' . $lmm_options[ 'misc_qrcode_size' ] . 'x' . $lmm_options[ 'misc_qrcode_size' ] . '&cht=qr&chl=' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?marker=' . $id . '" target="_blank" title="' . esc_attr__('Create QR code image for standalone map in fullscreen mode','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-qr-code.png" width="14" height="14" alt="QR-code-logo" class="lmm-panel-api-images" /></a>';
 			}
 			if ( (isset($lmm_options[ 'defaults_marker_panel_geojson' ] ) == TRUE ) && ( $lmm_options[ 'defaults_marker_panel_geojson' ] == 1 ) ) {
-				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?marker=' . $id . '&callback=jsonp" style="text-decoration:none;" title="' . __('Export as GeoJSON','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-json.png" width="14" height="14" alt="GeoJSON-Logo" style="background:no-repeat;margin:0px;padding:0px;border:none;" /></a>&nbsp;';
+				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?marker=' . $id . '&callback=jsonp" style="text-decoration:none;" title="' . __('Export as GeoJSON','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-json.png" width="14" height="14" alt="GeoJSON-Logo" class="lmm-panel-api-images" /></a>';
 			}
 			if ( (isset($lmm_options[ 'defaults_marker_panel_georss' ] ) == TRUE ) && ( $lmm_options[ 'defaults_marker_panel_georss' ] == 1 ) ) {
-				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-georss.php?marker=' . $id . '" style="text-decoration:none;" title="' . __('Export as GeoRSS','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-georss.png" width="14" height="14" alt="GeoRSS-Logo" style="background:no-repeat;margin:0px;padding:0px;border:none;" /></a>&nbsp;';
+				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-georss.php?marker=' . $id . '" style="text-decoration:none;" title="' . __('Export as GeoRSS','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-georss.png" width="14" height="14" alt="GeoRSS-Logo" class="lmm-panel-api-images" /></a>';
 			}
 			if ( (isset($lmm_options[ 'defaults_marker_panel_wikitude' ] ) == TRUE ) && ( $lmm_options[ 'defaults_marker_panel_wikitude' ] == 1 ) ) {
-				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-wikitude.php?marker=' . $id . '" style="text-decoration:none;" title="' . __('Export as ARML for Wikitude Augmented-Reality browser','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-wikitude.png" width="14" height="14" alt="Wikitude-Logo" style="background:no-repeat;margin:0px;padding:0px;border:none;" /></a>';
+				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-wikitude.php?marker=' . $id . '" style="text-decoration:none;" title="' . __('Export as ARML for Wikitude Augmented-Reality browser','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-wikitude.png" width="14" height="14" alt="Wikitude-Logo" class="lmm-panel-api-images" /></a>';
 			}
+		$lmm_out .= '</div><div id="lmm_panel_text_'.$uid.'" class="lmm-panel-text" style="padding-left:5px;' . addslashes($lmm_options[ 'defaults_marker_panel_paneltext_css' ]) . '">' . stripslashes($paneltext) . '</div>';
 		}
 		
 		if (!empty($layer) && empty($marker)) //info: check if problems get reported - fix for marker name shown twice when layer+marker map on 1 page
 		{
-			$lmm_out .= '<span style="' . addslashes($lmm_options[ 'defaults_layer_panel_paneltext_css' ]) . '">' . stripslashes($paneltext) . '</span><span style="float:right;width:120px;text-align:right;">';
+			$lmm_out .= '<div id="lmm_panel_api_'.$uid.'" class="lmm-panel-api">';
 			if ( (isset($lmm_options[ 'defaults_layer_panel_kml' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_panel_kml' ] == 1 ) ) {
-				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-kml.php?layer=' . $id . '" style="text-decoration:none;" title="' . __('Export as KML for Google Earth/Google Maps','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-kml.png" width="14" height="14" alt="KML-Logo" style="background:no-repeat;margin:0px;padding:0px;border:none;" /></a>&nbsp;';
+				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-kml.php?layer=' . $id . '" style="text-decoration:none;" title="' . __('Export as KML for Google Earth/Google Maps','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-kml.png" width="14" height="14" alt="KML-Logo" class="lmm-panel-api-images" /></a>';
 			}
 			if ( (isset($lmm_options[ 'defaults_layer_panel_fullscreen' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_panel_fullscreen' ] == 1 ) ) {
-				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?layer=' . $id . '" style="text-decoration:none;" title="' . __('Open standalone map in fullscreen mode','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-fullscreen.png" width="14" height="14" alt="Fullscreen-Logo" style="background:no-repeat;margin:0px;padding:0px;border:none;" /></a>&nbsp;';
+				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?layer=' . $id . '" style="text-decoration:none;" title="' . __('Open standalone map in fullscreen mode','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-fullscreen.png" width="14" height="14" alt="Fullscreen-Logo" class="lmm-panel-api-images" /></a>';
 			}
 			if ( (isset($lmm_options[ 'defaults_layer_panel_qr_code' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_panel_qr_code' ] == 1 ) ) {
-				$lmm_out .= '<a href="https://chart.googleapis.com/chart?chs=' . $lmm_options[ 'misc_qrcode_size' ] . 'x' . $lmm_options[ 'misc_qrcode_size' ] . '&cht=qr&chl=' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?layer=' . $id . '" target="_blank" title="' . esc_attr__('Create QR code image for standalone map in fullscreen mode','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-qr-code.png" width="14" height="14" alt="QR-code-logo" style="background:no-repeat;margin:0px;padding:0px;border:none;" /></a>&nbsp;';
+				$lmm_out .= '<a href="https://chart.googleapis.com/chart?chs=' . $lmm_options[ 'misc_qrcode_size' ] . 'x' . $lmm_options[ 'misc_qrcode_size' ] . '&cht=qr&chl=' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?layer=' . $id . '" target="_blank" title="' . esc_attr__('Create QR code image for standalone map in fullscreen mode','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-qr-code.png" width="14" height="14" alt="QR-code-logo" class="lmm-panel-api-images" /></a>';
 			}
 			if ( (isset($lmm_options[ 'defaults_layer_panel_geojson' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_panel_geojson' ] == 1 ) ) {
-				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?layer=' . $id . '&callback=jsonp" style="text-decoration:none;" title="' . __('Export as GeoJSON','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-json.png" width="14" height="14" alt="GeoJSON-Logo" style="background:no-repeat;margin:0px;padding:0px;border:none;" /></a>&nbsp;';
+				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?layer=' . $id . '&callback=jsonp" style="text-decoration:none;" title="' . __('Export as GeoJSON','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-json.png" width="14" height="14" alt="GeoJSON-Logo" class="lmm-panel-api-images" /></a>';
 			}
 			if ( (isset($lmm_options[ 'defaults_layer_panel_georss' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_panel_georss' ] == 1 ) ) {
-				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-georss.php?layer=' . $id . '" style="text-decoration:none;" title="' . __('Export as GeoRSS','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-georss.png" width="14" height="14" alt="GeoRSS-Logo" style="background:no-repeat;margin:0px;padding:0px;border:none;" /></a>&nbsp;';
+				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-georss.php?layer=' . $id . '" style="text-decoration:none;" title="' . __('Export as GeoRSS','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-georss.png" width="14" height="14" alt="GeoRSS-Logo" class="lmm-panel-api-images" /></a>';
 			}
 			if ( (isset($lmm_options[ 'defaults_layer_panel_wikitude' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_panel_wikitude' ] == 1 ) ) {
-				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-wikitude.php?layer=' . $id . '" style="text-decoration:none;" title="' . __('Export as ARML for Wikitude Augmented-Reality browser','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-wikitude.png" width="14" height="14" alt="Wikitude-Logo" style="background:no-repeat;margin:0px;padding:0px;border:none;" /></a>';
+				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-wikitude.php?layer=' . $id . '" style="text-decoration:none;" title="' . __('Export as ARML for Wikitude Augmented-Reality browser','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-wikitude.png" width="14" height="14" alt="Wikitude-Logo" class="lmm-panel-api-images" /></a>';
 			}
+		$lmm_out .= '</div><div id="lmm_panel_text_'.$uid.'" class="lmm-panel-text" style="padding-left:5px;' . addslashes($lmm_options[ 'defaults_layer_panel_paneltext_css' ]) . '">' . stripslashes($paneltext) . '</div>'.PHP_EOL;			
 		}
-		$lmm_out .= '</span></div>'.PHP_EOL;
+	$lmm_out .= '</div>'.PHP_EOL; //info: <!--end lmm-panel-->
 	}
-	$lmm_out .= PHP_EOL.'<div id="'.$mapname.'"  data-marker="'.$marker.'" style="width:'.$mapwidth.''.$mapwidthunit.'; height:'.$mapheight.'px; overflow:hidden;padding:0;"></div>'. PHP_EOL;	
+	$lmm_out .= PHP_EOL.'<div id="'.$mapname.'"  data-marker="'.$marker.'" style="height:'.$mapheight.'px; overflow:hidden;padding:0;"></div>'. PHP_EOL;	
 	//info: add geo microformats for layer maps
 	if (!empty($layer) && empty($marker))
 	{
@@ -331,10 +338,10 @@ function leafletmapsmarker() {
 	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 	$layermarklist = $wpdb->get_results('SELECT l.id as lid,l.name as lname, m.lon as mlon, m.lat as mlat, m.markername as markername,m.id as markerid FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$layer, ARRAY_A);
 		if (count($layermarklist) < 1) {
-			$lmm_out .= '<div class="lmm-geo-tags geo">' . $paneltext . ': <span class="latitude">' . $lat . '</span>, <span class="longitude">' . $lon . '</span></div>'.PHP_EOL;
+			$lmm_out .= '<div id="lmm_geo_tags_'.$uid.'" class="lmm-geo-tags geo">' . $paneltext . ': <span class="latitude">' . $lat . '</span>, <span class="longitude">' . $lon . '</span></div>'.PHP_EOL;
 		} else {
 			foreach ($layermarklist as $row){
-				$lmm_out .= '<div class="lmm-geo-tags geo">' . $row['markername'] . ': <span class="latitude">' . $row['mlat'] . '</span>, <span class="longitude">' . $row['mlon'] . '</span></div>'.PHP_EOL;
+				$lmm_out .= '<div id="lmm_geo_tags_'.$uid.'" class="lmm-geo-tags geo">' . $row['markername'] . ': <span class="latitude">' . $row['mlat'] . '</span>, <span class="longitude">' . $row['mlon'] . '</span></div>'.PHP_EOL;
 			}
 		}
 	}
@@ -342,7 +349,19 @@ function leafletmapsmarker() {
 	if (!empty($marker)) 
 	{
 	//info: add geo microformats
-	$lmm_out .= '<div class="lmm-geo-tags geo">' . $paneltext . ': <span class="latitude">' . $lat . '</span>, <span class="longitude">' . $lon . '</span></div>'.PHP_EOL;
+	$lmm_out .= '<div id="lmm_geo_tags_'.$uid.'" class="lmm-geo-tags geo">'.PHP_EOL;
+	$lmm_out .= '<span class="paneltext">' . $paneltext . '</span>'.PHP_EOL;
+	$lmm_out .= '<span class="latitude">' . $lat . '</span>, <span class="longitude">' . $lon . '</span>'.PHP_EOL;
+	$lmm_out .= '<span class="popuptext">' . $popuptext .'</span>'.PHP_EOL;
+	$lmm_out .= '</div>'.PHP_EOL;
+	}
+	//info: add geo microformats for marker maps added directly via shortcode
+	if (empty($layer) && empty($marker)) 
+	{
+	//info: add geo microformats
+	$lmm_out .= '<div id="lmm_geo_tags_'.$uid.'" class="lmm-geo-tags geo">'.PHP_EOL;
+	$lmm_out .= '<span class="latitude">' . $mlat . '</span>, <span class="longitude">' . $mlon . '</span>'.PHP_EOL;
+	$lmm_out .= '</div>'.PHP_EOL;
 	}
 	$plugin_version = get_option('leafletmapsmarker_version');
 	$lmm_out .= '<script type="text/javascript">'.PHP_EOL;
@@ -350,7 +369,7 @@ function leafletmapsmarker() {
 	$lmm_out .= '/* Maps created with MapsMarker.com (WordPress Plugin powered by Leaflet from Cloudmade) - version '.$plugin_version.' */'.PHP_EOL;
 	$lmm_out .= 'var layers = {};'.PHP_EOL;
 	$lmm_out .= 'var markers = {};'.PHP_EOL;
-	$lmm_out .= 'var mapsmarker_'.$uid.' = {};'.PHP_EOL;
+	$lmm_out .= 'var lmm_map_'.$uid.' = {};'.PHP_EOL;
 	//info: define attribution links as variables to allow dynamic change through layer control box
 	$attrib_prefix = __("Plugin","lmm").': <a href=\"http://mapsmarker.com/go\" target=\"_blank\" title=\"powered by \'Leaflet Maps Marker\'-Plugin for WordPress\">MapsMarker.com</a> (<a href=\"http://leaflet.cloudmade.com\" target=\"_blank\" title=\"\'Leaflet Maps Marker\' uses the JavaScript library \'Leaflet\' for interactive maps by CloudMade\">Leaflet</a>, <a href=\"http://mapicons.nicolasmollet.com\" target=\"_blank\" title=\"\'Leaflet Maps Marker\' uses icons from the \'Maps Icons Collection\'\">Icons</a>)'; 
 	//difference osm mapnik/osmarender + ogdwien basemap/satellite: style=\"\" -> if exactly the same, attribution link doesnt work
@@ -545,7 +564,8 @@ function leafletmapsmarker() {
     }
   $lmm_out .= '})(jQuery);'.PHP_EOL;
   $lmm_out .= '/* ]] > */'.PHP_EOL;
-  $lmm_out .= '</script>';
+  $lmm_out .= '</script>'.PHP_EOL;
+  $lmm_out .= '</div>'; //info: end leaflet_maps_marker_$uid
   } //info: end (!is_feed())
   return $lmm_out;
   	} //info: end check if marker/layer exists
@@ -557,20 +577,13 @@ function leafletmapsmarker() {
 	$page3 = add_submenu_page('leafletmapsmarker_markers', 'Leaflet Maps Marker - ' . __('add/edit marker', 'lmm'), __('Add new marker', 'lmm'), $lmm_options[ 'capabilities_edit' ], 'leafletmapsmarker_marker', array(&$this, 'lmm_marker') );
 	$page4 = add_submenu_page('leafletmapsmarker_markers', 'Leaflet Maps Marker - ' . __('List all layers', 'lmm'), __('List all layers', 'lmm'), $lmm_options[ 'capabilities_edit' ], 'leafletmapsmarker_layers', array(&$this, 'lmm_list_layers') );
 	$page5 = add_submenu_page('leafletmapsmarker_markers', 'Leaflet Maps Marker - ' . __('add/edit layer', 'lmm'), __('Add new layer', 'lmm'), $lmm_options[ 'capabilities_edit' ], 'leafletmapsmarker_layer', array(&$this, 'lmm_layer') );
-	$page6 = add_submenu_page('leafletmapsmarker_markers', 'Leaflet Maps Marker - ' . __('Help & Credits', 'lmm'), __('Help & Credits', 'lmm'), $lmm_options[ 'capabilities_edit' ], 'leafletmapsmarker_help', array(&$this, 'lmm_help') );
+	$page6 = add_submenu_page('leafletmapsmarker_markers', 'Leaflet Maps Marker - ' . __('Tools', 'lmm'), __('Tools', 'lmm'), 'activate_plugins','leafletmapsmarker_tools', array(&$this, 'lmm_tools') );
 	$page7 = add_submenu_page('leafletmapsmarker_markers', 'Leaflet Maps Marker - ' . __('Settings', 'lmm'), __('Settings', 'lmm'), 'activate_plugins','leafletmapsmarker_settings', array(&$this, 'lmm_settings') );
+	$page8 = add_submenu_page('leafletmapsmarker_markers', 'Leaflet Maps Marker - ' . __('Help & Credits', 'lmm'), __('Help & Credits', 'lmm'), $lmm_options[ 'capabilities_edit' ], 'leafletmapsmarker_help', array(&$this, 'lmm_help') );
 	//info: add javascript - leaflet.js - for admin area
 	add_action('admin_print_scripts-'.$page3, array(&$this, 'lmm_admin_enqueue_scripts'),7);
 	add_action('admin_print_scripts-'.$page5, array(&$this, 'lmm_admin_enqueue_scripts'),8);
 	add_action('admin_print_scripts-'.$page7, array(&$this, 'lmm_admin_jquery_ui'),9); 
-	//info: add flattr-script on all pages
-	add_action('admin_print_scripts-'.$page, array(&$this, 'lmm_admin_enqueue_scripts_flattr'),10);
-	add_action('admin_print_scripts-'.$page2, array(&$this, 'lmm_admin_enqueue_scripts_flattr'),11);
-	add_action('admin_print_scripts-'.$page3, array(&$this, 'lmm_admin_enqueue_scripts_flattr'),12);
-	add_action('admin_print_scripts-'.$page4, array(&$this, 'lmm_admin_enqueue_scripts_flattr'),13);
-	add_action('admin_print_scripts-'.$page5, array(&$this, 'lmm_admin_enqueue_scripts_flattr'),14);
-	add_action('admin_print_scripts-'.$page6, array(&$this, 'lmm_admin_enqueue_scripts_flattr'),15);
-	add_action('admin_print_scripts-'.$page7, array(&$this, 'lmm_admin_enqueue_scripts_flattr'),16);
 	//info: add css styles for admin area
 	add_action('admin_print_styles-'.$page, array(&$this, 'lmm_admin_enqueue_stylesheets'),17);
 	add_action('admin_print_styles-'.$page2, array(&$this, 'lmm_admin_enqueue_stylesheets'),18);
@@ -579,6 +592,7 @@ function leafletmapsmarker() {
 	add_action('admin_print_styles-'.$page5, array(&$this, 'lmm_admin_enqueue_stylesheets'),21);
 	add_action('admin_print_styles-'.$page6, array(&$this, 'lmm_admin_enqueue_stylesheets'),22);
 	add_action('admin_print_styles-'.$page7, array(&$this, 'lmm_admin_enqueue_stylesheets'),23);
+	add_action('admin_print_styles-'.$page8, array(&$this, 'lmm_admin_enqueue_stylesheets'),23);	
 	//info: add contextual help on all pages
 	add_action('admin_print_scripts-'.$page, array(&$this, 'lmm_add_contextual_help'));
 	add_action('admin_print_scripts-'.$page2, array(&$this, 'lmm_add_contextual_help'));
@@ -587,6 +601,7 @@ function leafletmapsmarker() {
 	add_action('admin_print_scripts-'.$page5, array(&$this, 'lmm_add_contextual_help'));
 	add_action('admin_print_scripts-'.$page6, array(&$this, 'lmm_add_contextual_help'));
 	add_action('admin_print_scripts-'.$page7, array(&$this, 'lmm_add_contextual_help'));
+	add_action('admin_print_scripts-'.$page8, array(&$this, 'lmm_add_contextual_help'));	
   }
   function lmm_add_admin_bar_menu() {
 	global $wp_version;
@@ -626,23 +641,16 @@ function leafletmapsmarker() {
 					'parent' => 'lmm',
 					'title' => __('Add new layer','lmm'),
 					'href' => admin_url('admin.php?page=leafletmapsmarker_layer')
-				),
-				array(
-					'id' => 'lmm-help-credits',
-					'parent' => 'lmm',
-					'title' => __('Help & Credits','lmm'),
-					'href' => admin_url('admin.php?page=leafletmapsmarker_help')
-				),
-				array(
-					'id' => 'lmm-plugin-website',
-					'parent' => 'lmm',
-					'title' => 'mapsmarker.com',
-					'href' => 'http://www.mapsmarker.com',
-					'meta' => array( 'target' => '_blank', 'title' => __('Open plugin website','lmm') )
-				)				
+				)			
 			);
 			if ( current_user_can( 'activate_plugins' ) ) {
 				$menu_items = array_merge($menu_items, array(
+					array(
+						'id' => 'lmm-tools',
+						'parent' => 'lmm',
+						'title' => __('Tools','lmm'),
+						'href' => admin_url('admin.php?page=leafletmapsmarker_tools')
+					),
 					array(
 						'id' => 'lmm-settings',
 						'parent' => 'lmm',
@@ -651,6 +659,22 @@ function leafletmapsmarker() {
 					)
 				));
 			}
+			$menu_items = array_merge($menu_items, array(
+					array(
+						'id' => 'lmm-help-credits',
+						'parent' => 'lmm',
+						'title' => __('Help & Credits','lmm'),
+						'href' => admin_url('admin.php?page=leafletmapsmarker_help')
+					),
+					array(
+						'id' => 'lmm-plugin-website',
+						'parent' => 'lmm',
+						'title' => 'mapsmarker.com',
+						'href' => 'http://www.mapsmarker.com',
+						'meta' => array( 'target' => '_blank', 'title' => __('Open plugin website','lmm') )
+					)	
+				));
+			
 			foreach ($menu_items as $menu_item) {
 				$wp_admin_bar->add_menu($menu_item);
 			}
@@ -691,9 +715,6 @@ function leafletmapsmarker() {
 		'lmm_zoom_out' => __( 'Zoom out', 'lmm' )
 		) );
   }
-  function lmm_admin_enqueue_scripts_flattr() {
-    wp_enqueue_script( 'leafletmapsmarker-flattr', LEAFLET_PLUGIN_URL . 'js/flattr.js', array(), NULL); 
-  }
   function lmm_admin_enqueue_scripts() {
 	wp_enqueue_script( array ( 'jquery' ) );
 	wp_enqueue_script( 'leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.js', array(), NULL); 
@@ -718,7 +739,7 @@ function leafletmapsmarker() {
 	wp_enqueue_style('leafletmapsmarker-admin' );
 	wp_register_style('leafletmapsmarker-ie-only', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.ie.css', array(), NULL);
 	wp_enqueue_style('leafletmapsmarker-ie-only');
-	$wp_styles->add_data('leafletmapsmarker-ie-only', 'conditional', 'lt IE 8');
+	$wp_styles->add_data('leafletmapsmarker-ie-only', 'conditional', 'lt IE 9');
    }
    function lmm_install_and_updates() {
 	global $wpdb;
@@ -834,6 +855,9 @@ function leafletmapsmarker() {
 	}
 	if (get_option('leafletmapsmarker_version') == '1.2.1' ) {
 		update_option('leafletmapsmarker_version', '1.2.2');
+	}
+	if (get_option('leafletmapsmarker_version') == '1.2.2' ) {
+		update_option('leafletmapsmarker_version', '1.3');
 		//info: redirect to settings page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 		if (get_option('leafletmapsmarker_redirect') == 'true') 
 		{
@@ -842,13 +866,13 @@ function leafletmapsmarker() {
 		}
 	}
 	/* template for plugin updates 
-	if (get_option('leafletmapsmarker_version') == '1.2.2' ) {
+	if (get_option('leafletmapsmarker_version') == '1.3' ) {
 		//mandatory if new options in class-leaflet-options.php were added
 		$save_defaults_for_new_options = new Leafletmapsmarker_options();
 		$save_defaults_for_new_options->save_defaults_for_new_options();
 		//optional: add code for sql ddl updates
 		//mandatory
-		update_option('leafletmapsmarker_version', '1.3');
+		update_option('leafletmapsmarker_version', '1.4');
 		//mandatory: move code for redirect-on-first-activation-check to here
 	}
 	*/
