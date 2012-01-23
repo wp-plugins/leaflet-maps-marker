@@ -24,6 +24,7 @@ class Leafletmapsmarker_options {
 		$this->sections['defaults_marker']   = 'Marker defaults';
 		$this->sections['defaults_layer']   = 'Layer defaults';
 		$this->sections['google_places']   = 'Google Places';
+		$this->sections['directions']   = 'Directions';
 		$this->sections['ar']   = 'Augmented-Reality';
 		$this->sections['misc']   = 'Misc';
 		$this->sections['reset']        = 'Reset to Defaults';
@@ -34,6 +35,7 @@ class Leafletmapsmarker_options {
 		$this->sections['defaults_marker']   = __( 'Marker defaults', 'lmm' );
 		$this->sections['defaults_layer']   = __( 'Layer defaults', 'lmm' );
 		$this->sections['google_places']   = __( 'Google Places', 'lmm' );
+		$this->sections['directions']   = __( 'Directions', 'lmm' );
 		$this->sections['ar']   = __( 'Augmented-Reality', 'lmm' );
 		$this->sections['misc']   = __( 'Misc', 'lmm' );
 		$this->sections['reset']        = __( 'Reset to Defaults', 'lmm' );
@@ -237,6 +239,16 @@ class Leafletmapsmarker_options {
 			<li>' . __('Google Places bounds','lmm') . '</li>
 			<li>' . __('Google Places search prefix','lmm') . '</li></ul></span>';
 	}	
+	/**
+	 * Listing for directions section
+	 */
+	public function display_directions_section() {
+		echo '<span class="leafletmapsmarker-listings"><p><strong>Index</strong></p><ul style="list-style-type:disc;margin-left:24px;">
+			<li>' . __('General settings','lmm') . '</li>
+			<li>Google Maps</li>
+			<li>yournavigation.org</li>
+			<li>openrouteservice.org</li></ul></span>';
+	}		
 	/**
 	 * Listing for misc section
 	 */
@@ -2709,11 +2721,19 @@ class Leafletmapsmarker_options {
 			)
 		);	
 		// defaults_marker - active API links in panel
+		$this->settings['defaults_marker_panel_directions'] = array(
+			'version' => '1.4',
+			'section' => 'defaults_marker',
+			'title'    => __('Visible API links in panel','lmm'),
+			'desc'    => __('Directions','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . '/img/icon-car.png">',
+			'type'    => 'checkbox',
+			'std'     => 1 
+		);
 		$this->settings['defaults_marker_panel_kml'] = array(
 			'version' => '1.0',
 			'section' => 'defaults_marker',
-			'title'    => __('Visible API links in panel','lmm'),
-			'desc'    => 'KML',
+			'title'    => '',
+			'desc'    => 'KML <img src="' . LEAFLET_PLUGIN_URL . '/img/icon-kml.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -2721,7 +2741,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.1',
 			'section' => 'defaults_marker',
 			'title'    => '',
-			'desc'    => __('Fullscreen','lmm'),
+			'desc'    => __('Fullscreen','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . '/img/icon-fullscreen.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);		
@@ -2729,7 +2749,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.1',
 			'section' => 'defaults_marker',
 			'title'    => '',
-			'desc'    => __('QR code','lmm'),
+			'desc'    => __('QR code','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . '/img/icon-qr-code.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);		
@@ -2737,7 +2757,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'defaults_marker',
 			'title'   => '',
-			'desc'    => 'GeoJSON',
+			'desc'    => 'GeoJSON <img src="' . LEAFLET_PLUGIN_URL . '/img/icon-json.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -2745,7 +2765,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.2',
 			'section' => 'defaults_marker',
 			'title'   => '',
-			'desc'    => 'GeoRSS',
+			'desc'    => 'GeoRSS <img src="' . LEAFLET_PLUGIN_URL . '/img/icon-georss.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -2753,7 +2773,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'defaults_marker',
 			'title'   => '',
-			'desc'    => 'Wikitude',
+			'desc'    => 'Wikitude <img src="' . LEAFLET_PLUGIN_URL . '/img/icon-wikitude.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);		
@@ -3198,7 +3218,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'defaults_layer',
 			'title'    => __('Visible API links in panel','lmm'),
-			'desc'    => 'KML',
+			'desc'    => 'KML <img src="' . LEAFLET_PLUGIN_URL . '/img/icon-kml.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -3206,7 +3226,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.1',
 			'section' => 'defaults_layer',
 			'title'    => '',
-			'desc'    => __('Fullscreen','lmm'),
+			'desc'    => __('Fullscreen','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . '/img/icon-fullscreen.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);		
@@ -3214,7 +3234,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.1',
 			'section' => 'defaults_layer',
 			'title'    => '',
-			'desc'    => __('QR code','lmm'),
+			'desc'    => __('QR code','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . '/img/icon-qr-code.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);		
@@ -3222,7 +3242,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'defaults_layer',
 			'title'   => '',
-			'desc'    => 'GeoJSON',
+			'desc'    => 'GeoJSON <img src="' . LEAFLET_PLUGIN_URL . '/img/icon-json.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -3230,7 +3250,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.2',
 			'section' => 'defaults_layer',
 			'title'   => '',
-			'desc'    => 'GeoRSS',
+			'desc'    => 'GeoRSS <img src="' . LEAFLET_PLUGIN_URL . '/img/icon-georss.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -3238,7 +3258,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'defaults_layer',
 			'title'   => '',
-			'desc'    => 'Wikitude',
+			'desc'    => 'Wikitude <img src="' . LEAFLET_PLUGIN_URL . '/img/icon-wikitude.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);		
@@ -3462,6 +3482,312 @@ class Leafletmapsmarker_options {
 			'std'     => 'Wien, ',
 			'type'    => 'text',
 			'section' => 'google_places'
+		);	
+		/*===========================================
+		*
+		*
+		* section Directions
+		*
+		*
+		===========================================*/	
+		/*
+		* Directions General
+		*/
+		$this->settings['directions_general_heading'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => '', 
+			'desc'    => __( 'General settings', 'lmm'),
+			'type'    => 'heading'
+		);		
+		$this->settings['directions_general_helptext1'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => __( 'Please select your prefered directions provider. This setting will be used for the directions link in the panel on top of marker maps and for the action panel which gets attached to the popup text on each marker if enabled.', 'lmm'),
+			'type'    => 'helptext'
+		);
+		$this->settings['directions_provider'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => __('Use the following directions provider','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'googlemaps',
+			'choices' => array(
+				'googlemaps' => __('Google Maps (worldwide)','lmm') . ' - <a href="http://maps.google.com/maps?saddr=Vienna&daddr=Linz&hl=de&sll=37.0625,-95.677068&sspn=59.986788,135.263672&geocode=FS6Z3wIdO9j5ACmfyjZRngdtRzFGW6JRiuXC_Q%3BFfwa4QIdBvzZAClNhZn6lZVzRzHEdXlXLClTfA&vpsrc=0&mra=ls&t=m&z=9&layer=t" style="text-decoration:none;" target="_blank">Demo</a>',
+				'yours' => __('yournavigation.org (based on OpenStreetMap, worldwide)','lmm') . ' - <a href="http://www.yournavigation.org/?flat=52.215636&flon=6.963946&tlat=52.2573&tlon=6.1799&v=motorcar&fast=1&layer=mapnik" style="text-decoration:none;" target="_blank">Demo</a>',
+				'ors' => __('openrouteservice.org (based on OpenStreetMap, Europe only)','lmm') . ' - <a href="http://openrouteservice.org/index.php?start=7.0892567,50.7265543&end=7.0986258,50.7323634&lat=50.72905&lon=7.09574&zoom=15&pref=Fastest&lang=de" style="text-decoration:none;" target="_blank">Demo</a>'
+			)
+		);	
+		$this->settings['directions_popuptext_panel'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => __('Attach directions panel to popup text on each marker','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'yes',
+			'choices' => array(
+				'yes' => __('yes','lmm'),
+				'no' => __('no','lmm')			)
+		);			
+		$this->settings['directions_general_helptext2'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'std'     => '', 
+			'title'   => '',	
+			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'/img/help-directions-popuptext-panel.jpg" />',
+			'type'    => 'helptext'
+		);
+		/*
+		* Google Maps
+		*/
+		$this->settings['directions_googlemaps_heading'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => '', 
+			'desc'    => __( 'Google Maps directions settings', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['directions_googlemaps_helptext1'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => '',
+			'type'    => 'helptext'
+		);			
+		$this->settings['directions_googlemaps_map_type'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => __('Map type','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'm',
+			'choices' => array(
+				'm' => __('Map','lmm'),
+				'k' => __('Satellite','lmm'),
+				'h' => __('Hybrid','lmm'),
+				'p' => __('Terrain','lmm')							
+			)
+		);	
+		$this->settings['directions_googlemaps_traffic'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => __('Show traffic layer?','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => '1',
+			'choices' => array(
+				'1' => __('yes','lmm'),
+				'0' => __('no','lmm')
+			)
+		);	
+		$this->settings['directions_googlemaps_distance_units'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => __('Distance units','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'ptk',
+			'choices' => array(
+				'ptk' => __('metric (km)','lmm'),
+				'ptm' => __('imperial (miles)','lmm')							
+			)
+		);		
+		$this->settings['directions_googlemaps_route_type_highways'] = array(
+			'version' => '1.0',
+			'section' => 'directions',
+			'title'    => __('Route type','lmm'),
+			'desc'    => __('Avoid highways','lmm'),
+			'type'    => 'checkbox',
+			'std'     => 0 
+		);				
+		$this->settings['directions_googlemaps_route_type_tolls'] = array(
+			'version' => '1.0',
+			'section' => 'directions',
+			'title'    => '',
+			'desc'    => __('Avoid tolls','lmm'),
+			'type'    => 'checkbox',
+			'std'     => 0 
+		);	
+		$this->settings['directions_googlemaps_route_type_public_transport'] = array(
+			'version' => '1.0',
+			'section' => 'directions',
+			'title'    => '',
+			'desc'    => __('Public transport (works only in some areas)','lmm'),
+			'type'    => 'checkbox',
+			'std'     => 0 
+		);	
+		$this->settings['directions_googlemaps_route_type_walking'] = array(
+			'version' => '1.0',
+			'section' => 'directions',
+			'title'    => '',
+			'desc'    => __('Walking directions','lmm'),
+			'type'    => 'checkbox',
+			'std'     => 0 
+		);					
+		$this->settings['directions_googlemaps_host_language'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => __('Language','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'en',
+			'choices' => array(
+				'en' => __('English','lmm'),
+				'de' => __('German','lmm'),
+				'it' => __('Italian','lmm'),
+				'fr' => __('French','lmm'),
+				'es' => __('Spanish','lmm'),
+				'cn' => __('Chinese (simplified)','lmm'),
+				'nl' => __('Dutch','lmm'),
+				'ja' => __('Japanese','lmm'),
+				'ca' => __('Catalan','lmm'),
+				'gl' => __('Galego','lmm'),
+				'eu' => __('Euskara','lmm')
+			)
+		);
+		$this->settings['directions_googlemaps_overview_map'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => __('Overview map','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => '0',
+			'choices' => array(
+				'0' => __('hidden','lmm'),
+				'1' => __('visible','lmm')
+			)
+		);			
+		
+		/*
+		* yournavigation.org
+		*/
+		$this->settings['directions_yours_heading'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => '', 
+			'desc'    => __( 'yournavigation.org settings', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['directions_yours_helptext1'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => '',
+			'type'    => 'helptext'
+		);		
+		$this->settings['directions_yours_type_of_transport'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => __('Type of transport','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'motorcar',
+			'choices' => array(
+				'motorcar' => __('Motorcar','lmm'),
+				'bicycle' => __('Bicycle','lmm'),
+				'foot' => __('Foot','lmm')
+			)
+		);		
+		$this->settings['directions_yours_route_type'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => __('Route type','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => '1',
+			'choices' => array(
+				'0' => __('fastest route','lmm'),
+				'1' => __('shortest route','lmm')
+			)
+		);		
+		$this->settings['directions_yours_layer'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => __('Gosmore instance to calculate the route','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'mapnik',
+			'choices' => array(
+				'mapnik' => __('mapnik (for normal routing using car, bicycle or foot)','lmm'),
+				'cn' => __('cn (for using bicycle routing using cycle route networks only)','lmm')
+			)
+		);		
+		
+		/*
+		* openrouteservice.org
+		*/
+		$this->settings['directions_ors_heading'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => '', 
+			'desc'    => __( 'openrouteservice.org settings', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['directions_ors_helptext1'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => '',
+			'type'    => 'helptext'
+		);			
+		$this->settings['directions_ors_route_preferences'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => __('Route preferences','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'Shortest',
+			'choices' => array(
+				'Fastest' => __('fastest route','lmm'),
+				'Shortest' => __('shortest route','lmm'),
+				'Pedestrian' => __('route for pedestrians','lmm'),
+				'Bicycle' => __('route for bicycles','lmm')								
+			)
+		);	
+		$this->settings['directions_ors_language'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => __('Language of route instructions','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'en',
+			'choices' => array(
+				'en' => __('English','lmm'),
+				'de' => __('German','lmm'),
+				'it' => __('Italian','lmm'),
+				'fr' => __('French','lmm'),
+				'es' => __('Spanish','lmm')
+			)
+		);	
+		$this->settings['directions_ors_no_motorways'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => __('No motorways?','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);	
+		$this->settings['directions_ors_no_tollways'] = array(
+			'version' => '1.4',
+			'section' => 'directions',
+			'title'   => __('No tollways?','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')							
+			)
 		);	
 		/*===========================================
 		*
@@ -3793,6 +4119,14 @@ class Leafletmapsmarker_options {
 			'type'    => 'checkbox',
 			'std'     => 0 
 		);	
+		$this->settings['misc_marker_listing_columns_panelstatus'] = array(
+			'version' => '1.4',
+			'section' => 'misc',
+			'title'    => '',
+			'desc'    => __('Panel status','lmm'),
+			'type'    => 'checkbox',
+			'std'     => 0 
+		);	
 		$this->settings['misc_marker_listing_columns_mapsize'] = array(
 			'version' => '1.0',
 			'section' => 'misc',
@@ -3971,6 +4305,14 @@ class Leafletmapsmarker_options {
 			'type'    => 'checkbox',
 			'std'     => 0 
 		);	
+		$this->settings['misc_layer_listing_columns_panelstatus'] = array(
+			'version' => '1.4',
+			'section' => 'misc',
+			'title'    => '',
+			'desc'    => __('Panel status','lmm'),
+			'type'    => 'checkbox',
+			'std'     => 0 
+		);	
 		$this->settings['misc_layer_listing_columns_createdby'] = array(
 			'version' => '1.0',
 			'section' => 'misc',
@@ -4116,6 +4458,8 @@ class Leafletmapsmarker_options {
 				add_settings_section( $slug, $title, array( &$this, 'display_defaults_marker_section' ), 'leafletmapsmarker_settings' );
 			else if ( $slug == 'google_places' )
 				add_settings_section( $slug, $title, array( &$this, 'display_google_places_section' ), 'leafletmapsmarker_settings' );
+			else if ( $slug == 'directions' )
+				add_settings_section( $slug, $title, array( &$this, 'display_directions_section' ), 'leafletmapsmarker_settings' );
 			else if ( $slug == 'misc' )
 				add_settings_section( $slug, $title, array( &$this, 'display_misc_section' ), 'leafletmapsmarker_settings' );
 			else
@@ -4163,7 +4507,6 @@ class Leafletmapsmarker_options {
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
-		/* template for plugin updates 
 		//info:  set defaults for options introduced in v1.4
 		if (get_option('leafletmapsmarker_version') == '1.3' )
 		{
@@ -4171,6 +4514,23 @@ class Leafletmapsmarker_options {
 			foreach ( $this->settings as $id => $setting ) 
 			{
 				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '1.4')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}
+
+		/* template for plugin updates 
+		//info:  set defaults for options introduced in v1.5
+		if (get_option('leafletmapsmarker_version') == '1.4' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting ) 
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '1.5')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}

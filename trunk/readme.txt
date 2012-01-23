@@ -2,13 +2,13 @@
 Contributors:      harmr
 Plugin Name:       Leaflet Maps Marker
 Plugin URI:        http://www.mapsmarker.com
-Tags:              map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, google maps, googlemaps, gmaps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, layer, karte, blogmap, geocms, geographic, routes, tracks
+Tags:              map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, google maps, googlemaps, gmaps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, layer, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice
 Author URI:        http://www.harm.co.at
 Author:            Robert Harm (with special support from Sindre Wimberger)
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
 Tested up to:      3.4-alpha-19704
-Stable tag:        1.3
+Stable tag:        1.4
 
 Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 
@@ -38,6 +38,7 @@ to the visitors of your website.
 
 = Additional features =
 
+* show directions for your locations using Google Maps, yournavigation.org or openrouteservice.org
 * configure up to 10 WMS servers to display additional information from external geodata providers (like the European Environment Agency) on your maps
 * export your markers as KML file for displaying in Google Earth or Google Maps
 * export your markers as GeoJSON file for embedding in external websites or apps
@@ -161,27 +162,46 @@ This program is free software; you can redistribute it and/or modify it under th
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
 == Upgrade Notice ==
+= v1.4 =
+added support for routing providers and more mass-actions for markers - see http://www.mapsmarker.com/v1.4 for more details
+
 = v1.3 =
-added marker mass actions and browser/template compatibility bugfixes
+added marker mass actions and browser/template compatibility bugfixes - see http://www.mapsmarker.com/v1.3 for more details
 
 = 1.2.2 =
-Fix for custom marker icons not showing on certain hosting providers
+Fix for custom marker icons not showing on certain hosting providers - see http://www.mapsmarker.com/v1.2.2 for more details
 
 = 1.2.1 =
-Important bugfixes
+Important bugfixes - see http://www.mapsmarker.com/v1.2.1 for more details
 
 = 1.2 =
-Important bugfixes and new feature: GeoRSS-Support - see http://www.mapsmarker.com/changelog for details
+Important bugfixes and new feature: GeoRSS-Support - see http://www.mapsmarker.com/v1.2 for more details
 
 = 1.1 =
-Added new features and bugfixes - see http://www.mapsmarker.com/changelog for details
+Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more details
 
 = 1.0 =
-Initial release
+Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
 
+= v1.4 - 23.01.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v1.4)
+* NEW: added support for routing service from Google Maps
+* NEW: added support for routing service from yournavigation.org
+* NEW: added support for routing service from openrouteservice.org
+* NEW: mass-actions for changing default values for existing markers (map size, icon, panel status, zoom, basemap...)
+* CHANGED: panel status can now also be selected as column for marker/layer listing page
+* CHANGED: controlbox status column for markers/layers list view now displays text instead of 0/1/2
+* BUGFIX: method for adding markers/layers as some users reported that new markers/layers were not saved to database
+* BUGFIX: method for plugin active-check as some users reported that API links did not work
+* BUGFIX: marker/layer name in fullscreen panel did not support UTF8-characters
+* BUGFIX: text width in tinymce editor was not the same as in popup text
+* BUGFIX: several German translation text strings
+* BUGFIX: markers added directly with shortcode caused error on frontend
+
 = v1.3 - 17.01.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v1.3)
 * NEW: add mass actions for makers (assign markers to layer, delete markers)
 * CHANGED: flattr now embedded as static image as long loadtimes decrease usability because Google Places scripts starts only afterwards
 * CHANGED: marker-/layername for panel in backend now gets refreshed dynamically after entering in form field
@@ -197,9 +217,11 @@ Initial release
 * REMOVED: developers comments from css- and js-files
 
 = v1.2.2 - 14.01.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v1.2.2)
 * BUGFIX: custom marker icons were not shown on certain hosts due to different wp-upload-directories
 
 = v1.2.1 - 13.01.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v1.2.1)
 * BUGFIX: plugin installation failed on certain hosting providers due to path/directory issues
 * BUGFIX: (interactive) maps do not get display in RSS feeds (which is not possible), so now a static image with a link to the fullscreen standalone map is displayed
 * BUGFIX: removed redundant slashes from paths
@@ -207,6 +229,7 @@ Initial release
 * BUGFIX: API images in panel did show a border on some templates
 
 = v1.2 - 11.01.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v1.2)
 * NEW: added [GeoRSS-feeds for marker- and layer maps](http://www.mapsmarker.com/georss) (RSS 2.0 & ATOM 1.0)
 * NEW: added microformat geo-markup to maps, to make your maps machine-readable
 * CHANGE: Default custom overlay (OGD Vienna Addresses) is not active anymore by default on new markers/layers (but still gets active when an address through search by Google Places is selected)
@@ -223,6 +246,7 @@ Initial release
 * BUGFIX: quotes were not shown on marker/layer names (note: double quotes are replaced with single quotes automatically due to compatibility reasons)
 
 = v1.1 - 08.01.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v1.1)
 * NEW: [show standalone maps in fullscreen mode](http://www.mapsmarker.com/wp-content/plugins/leaflet-maps-marker/leaflet-fullscreen.php?marker=1)
 * NEW: [create QR code images for standalone maps in fullscreen mode](https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=http://www.mapsmarker.com/wp-content/plugins/leaflet-maps-marker/leaflet-fullscreen.php?marker=1)
 * NEW: API links (KML, GeoJSON, Fullscreen, QR Code, Wikitude) now only work if plugin is active
@@ -240,4 +264,5 @@ Initial release
 * BUGFIX: active translations made setting tabs unaccessible
 
 = v1.0 - 01.01.2012 = 
+* [Blog post with more details about this release](http://www.mapsmarker.com/v1.0)
 * NEW: Initial release
