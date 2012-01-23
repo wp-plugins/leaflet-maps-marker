@@ -260,7 +260,7 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 * CHANGED: default setting fields can now be changed by focusing with mouse click
 * CHANGED: added icons to API links on backend for better usability
 * BUGFIX: dynamic preview of marker/layer panel in backend not working as designed
-* BUGFIX: language pot-file didn´t include all text strings for translations
+* BUGFIX: language pot-file did not include all text strings for translations
 * BUGFIX: active translations made setting tabs unaccessible
 
 = v1.0 - 01.01.2012 = 
