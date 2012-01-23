@@ -2,6 +2,30 @@
 /*
     List all markers - Leaflet Maps Marker Plugin
 */
+global $wpdb;
+$lmm_options = get_option( 'leafletmapsmarker_options' );
+$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
+$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
+$radius = 1;
+$pagenum = isset($_POST['paged']) ? intval($_POST['paged']) : (isset($_GET['paged']) ? intval($_GET['paged']) : 1);
+$columnsort = isset($_GET['orderby']) ? mysql_real_escape_string($_GET['orderby']) : 'id'; 
+$columnsortorder = isset($_GET['order']) ? mysql_real_escape_string($_GET['order']) : 'asc'; 
+$start = ($pagenum - 1) * intval($lmm_options[ 'markers_per_page' ]);
+$action = isset($_POST['action']) ? $_POST['action'] : (isset($_GET['action']) ? $_GET['action'] : '');
+$searchtext = isset($_POST['searchtext']) ? $_POST['searchtext'] : (isset($_GET['searchtext']) ? mysql_real_escape_string($_GET['searchtext']) : '');
+if ($action == 'search') {
+	$markersearchnonce = isset($_POST['_wpnonce']) ? $_POST['_wpnonce'] : '';
+		if (! wp_verify_nonce($markersearchnonce, 'markersearch-nonce') ) die('<br/>'.__('Security check failed - please call this function from the according Leaflet Maps Marker admin page!','lmm').'');
+        $mcount = intval($wpdb->get_var('SELECT COUNT(*) FROM '.$table_name_markers.' WHERE markername like \'%'.$searchtext.'%'.'\' OR popuptext like \'%'.$searchtext.'%'.'\''));
+		$marklist = $wpdb->get_results('SELECT m.id,CONCAT(m.lat,\',\',m.lon) AS coords,m.basemap,m.icon,m.popuptext,m.layer,m.zoom,m.openpopup as openpopup,m.lat,m.lon,m.mapwidth,m.mapheight,m.mapwidthunit,m.markername,m.panel,m.createdby,m.createdon,m.updatedby,m.updatedon,m.controlbox,m.overlays_custom,m.overlays_custom2,m.overlays_custom3,m.overlays_custom4,m.wms,m.wms2,m.wms3,m.wms4,m.wms5,m.wms6,m.wms7,m.wms8,m.wms9,m.wms10,l.name AS layername,l.id as layerid FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id WHERE m.markername like \'%'.$searchtext.'%'.'\' OR m.popuptext like \'%'.$searchtext.'%'.'\' order by '.$columnsort.' '.$columnsortorder.' LIMIT '.intval($lmm_options[ 'markers_per_page' ]).' OFFSET '.$start, ARRAY_A);
+	}
+	  else
+        {
+        $mcount = intval($wpdb->get_var('SELECT COUNT(*) FROM '.$table_name_markers));
+ 	$marklist = $wpdb->get_results('SELECT m.id,CONCAT(m.lat,\',\',m.lon) AS coords,m.basemap,m.icon,m.popuptext,m.layer,m.zoom,m.openpopup as openpopup,m.lat,m.lon,m.mapwidth,m.mapheight,m.mapwidthunit,m.markername,m.panel,m.createdby,m.createdon,m.updatedby,m.updatedon,m.controlbox,m.overlays_custom,m.overlays_custom2,m.overlays_custom3,m.overlays_custom4,m.wms,m.wms2,m.wms3,m.wms4,m.wms5,m.wms6,m.wms7,m.wms8,m.wms9,m.wms10,l.name AS layername,l.id as layerid FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id order by '.$columnsort.' '.$columnsortorder.' LIMIT '.intval($lmm_options[ 'markers_per_page' ]).' OFFSET '.$start, ARRAY_A);
+		}
+if ($start > $mcount or $start < 0)
+$start = 0;
 //info:  get pagination
 $getorder = isset($_GET['order']) ? htmlspecialchars($_GET['order']) : ''; 
 if ($getorder == 'asc') { $sortorder = 'desc'; } else { $sortorder= 'asc'; };
@@ -75,6 +99,8 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 					<th class="manage-column column-layername sortable <?php echo $sortordericon; ?>" scope="col"><a href="<?php echo WP_ADMIN_URL; ?>admin.php?page=leafletmapsmarker_markers&orderby=l.name&order=<?php echo $sortorder; ?>"><span><?php _e('Layer', 'lmm') ?></span><span class="sorting-indicator"></span></a></th><?php } ?>
 					<?php if ((isset($lmm_options[ 'misc_marker_listing_columns_openpopup' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_openpopup' ] == 1 )) { ?>
 					<th class="manage-column column-openpopup"><a href="<?php echo WP_ADMIN_URL; ?>admin.php?page=leafletmapsmarker_markers&orderby=m.openpopup&order=<?php echo $sortorder; ?>"><span><?php _e('Popup status', 'lmm') ?></span><span class="sorting-indicator"></span></a></th><?php } ?>
+					<?php if ((isset($lmm_options[ 'misc_marker_listing_columns_panelstatus' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_panelstatus' ] == 1 )) { ?>
+					<th class="manage-column column-openpopup"><a href="<?php echo WP_ADMIN_URL; ?>admin.php?page=leafletmapsmarker_markers&orderby=m.panel&order=<?php echo $sortorder; ?>"><span><?php _e('Panel status', 'lmm') ?></span><span class="sorting-indicator"></span></a></th><?php } ?>
 					<?php if ((isset($lmm_options[ 'misc_marker_listing_columns_coordinates' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_coordinates' ] == 1 )) { ?>
 					<th class="manage-column column-coords" scope="col"><?php _e('Coordinates', 'lmm') ?></th><?php } ?>
 					<?php if ((isset($lmm_options[ 'misc_marker_listing_columns_mapsize' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_mapsize' ] == 1 )) { ?>
@@ -121,6 +147,8 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 					<th class="manage-column column-layername sortable <?php echo $sortordericon; ?>" scope="col"><a href="<?php echo WP_ADMIN_URL; ?>admin.php?page=leafletmapsmarker_markers&orderby=l.name&order=<?php echo $sortorder; ?>"><span><?php _e('Layer', 'lmm') ?></span><span class="sorting-indicator"></span></a></th><?php } ?>
 					<?php if ((isset($lmm_options[ 'misc_marker_listing_columns_openpopup' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_openpopup' ] == 1 )) { ?>
 					<th class="manage-column column-openpopup"><a href="<?php echo WP_ADMIN_URL; ?>admin.php?page=leafletmapsmarker_markers&orderby=m.openpopup&order=<?php echo $sortorder; ?>"><span><?php _e('Popup status', 'lmm') ?></span><span class="sorting-indicator"></span></a></th><?php } ?>
+					<?php if ((isset($lmm_options[ 'misc_marker_listing_columns_panelstatus' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_panelstatus' ] == 1 )) { ?>
+					<th class="manage-column column-openpopup"><a href="<?php echo WP_ADMIN_URL; ?>admin.php?page=leafletmapsmarker_markers&orderby=m.panel&order=<?php echo $sortorder; ?>"><span><?php _e('Panel status', 'lmm') ?></span><span class="sorting-indicator"></span></a></th><?php } ?>
 					<?php if ((isset($lmm_options[ 'misc_marker_listing_columns_coordinates' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_coordinates' ] == 1 )) { ?>
 					<th class="manage-column column-coords" scope="col"><?php _e('Coordinates', 'lmm') ?></th><?php } ?>
 					<?php if ((isset($lmm_options[ 'misc_marker_listing_columns_mapsize' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_mapsize' ] == 1 )) { ?>
@@ -170,6 +198,9 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 		}
      $rowlayername = ($row['layerid'] == 0) ? "" . __('unassigned','lmm') . "<br>" : "<a title='" . __('Edit layer ','lmm') . $row['layer'] . "' href='" . WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_layer&id=" . $row['layer'] . "'>" . $row['layername'] . "</a>";
      $openpopupstatus = ($row['openpopup'] == 1) ? __('open','lmm') : __('closed','lmm');
+     $openpanelstatus = ($row['panel'] == 1) ? __('visible','lmm') : __('hidden','lmm');
+	 if ($row['controlbox'] == 0) { $controlboxstatus = __('hidden','lmm'); } else if ($row['controlbox'] == 1) { $controlboxstatus = __('collapsed (except on mobiles)','lmm'); } else if ($row['controlbox'] == 2) { $controlboxstatus = __('expanded','lmm'); };
+	 
      $popuptextabstract = (strlen($row['popuptext']) >= 90) ? "...": "";
      //info: set column display variables - need for for-each
      $column_popuptext = ((isset($lmm_options[ 'misc_marker_listing_columns_popuptext' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_popuptext' ] == 1 )) ?
@@ -178,10 +209,12 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 '<td>' . stripslashes($rowlayername) . '</td>' : '';
      $column_openpopup = ((isset($lmm_options[ 'misc_marker_listing_columns_openpopup' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_openpopup' ] == 1 )) ?
 '<td>' . $openpopupstatus . '</td>' : '';
+     $column_panelstatus = ((isset($lmm_options[ 'misc_marker_listing_columns_panelstatus' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_panelstatus' ] == 1 )) ?
+'<td>' . $openpanelstatus . '</td>' : '';
      $column_coordinates = ((isset($lmm_options[ 'misc_marker_listing_columns_coordinates' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_coordinates' ] == 1 )) ? '<td>Lat: ' . $row['lat'] . '<br/>Lon: ' . $row['lon'] . '</td>' : '';
      $column_mapsize = ((isset($lmm_options[ 'misc_marker_listing_columns_mapsize' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_mapsize' ] == 1 )) ? '<td>' . __('Width','lmm') . ': '.$row['mapwidth'].$row['mapwidthunit'].'<br/>' . __('Height','lmm') . ': '.$row['mapheight'].'px</td>' : '';
      $column_zoom = ((isset($lmm_options[ 'misc_marker_listing_columns_zoom' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_zoom' ] == 1 )) ? '<td style="text-align:center;">' . $row['zoom'] . '</td>' : '';
-     $column_controlbox = ((isset($lmm_options[ 'misc_marker_listing_columns_controlbox' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_controlbox' ] == 1 )) ? '<td style="text-align:center;">'.$row['controlbox'].'</td>' : '';
+     $column_controlbox = ((isset($lmm_options[ 'misc_marker_listing_columns_controlbox' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_controlbox' ] == 1 )) ? '<td style="text-align:center;">' . $controlboxstatus . '</td>' : '';
      $column_shortcode = ((isset($lmm_options[ 'misc_marker_listing_columns_shortcode' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_shortcode' ] == 1 )) ? '<td><input style="width:200px;background:#f3efef;" type="text" value="[' . $lmm_options[ 'shortcode' ] . ' marker=&quot;' . $row['id'] . '&quot;]" readonly></td>' : '';
      $column_kml = ((isset($lmm_options[ 'misc_marker_listing_columns_kml' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_kml' ] == 1 )) ? '<td style="text-align:center;"><a href="' . LEAFLET_PLUGIN_URL . 'leaflet-kml.php?marker=' . $row['id'] . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-kml.png" width="14" height="14" alt="KML-Logo" /><br/>KML</a></td>' : '';
      $column_fullscreen = ((isset($lmm_options[ 'misc_marker_listing_columns_fullscreen' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_fullscreen' ] == 1 )) ? '<td style="text-align:center;"><a href="' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?marker=' . $row['id'] . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-fullscreen.png" width="14" height="14" alt="Fullscreen-Logo"><br/>' . __('Fullscreen','lmm') . '</a></td>' : '';
@@ -208,6 +241,7 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 		  ' . $column_popuptext . '
 		  ' . $column_layer . '
 		  ' . $column_openpopup . '
+		  ' . $column_panelstatus . '
 		  ' . $column_coordinates . '
 		  ' . $column_mapsize . '
 		  ' . $column_zoom . '
