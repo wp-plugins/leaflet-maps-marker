@@ -1433,6 +1433,77 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'wms'
 		);	
+		$this->settings['wms_wms_kml_helptext'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'std'     => '', 
+			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
+			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
+			'type'    => 'helptext'
+		);
+		$this->settings['wms_wms_kml_support'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => __('Does the WMS server support KML output?','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'yes',
+			'choices' => array(
+				'yes' => __('yes','lmm'),
+				'no' => __('no','lmm')
+			)
+		);	
+		$this->settings['wms_wms_kml_href'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
+			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
+			'type'    => 'text',
+			'std'     => 'http://data.wien.gv.at/daten/geoserver/ows?version=1.3.0&service=WMS&request=GetMap&crs=EPSG:4326&bbox=48.10,16.16,48.34,16.59&width=1&height=1&layers=ogdwien:OEFFWCOGD&styles=&format=application/vnd.google-earth.kml+xml' 
+		);	
+		$this->settings['wms_wms_kml_refreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshmode" target="_blank">refreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'onChange',
+			'choices' => array(
+				'onChange' => __('onChange (refresh when the file is loaded and whenever the Link parameters change)','lmm'),
+				'onInterval' => __('onInterval (refresh every n seconds (specified in refreshInterval)','lmm'),
+				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
+				'onStop' => __('onStop (after camera movement stops)','lmm')
+			)
+		);	
+		$this->settings['wms_wms_kml_refreshInterval'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
+			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
+			'type'    => 'text',
+			'std'     => '30' 
+		);		
+		$this->settings['wms_wms_kml_viewRefreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshmode" target="_blank">viewrefreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'never',
+			'choices' => array(
+				'never' => __('never (ignore changes in the view)','lmm'),
+				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
+				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
+			)
+		);			
+		$this->settings['wms_wms_kml_viewRefreshTime'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
+			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
+			'type'    => 'text',
+			'std'     => '1' 
+		);
 		
 		/*
 		* WMS layer 2 settings
@@ -1560,6 +1631,77 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'wms'
 		);	
+		$this->settings['wms_wms2_kml_helptext'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'std'     => '', 
+			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
+			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
+			'type'    => 'helptext'
+		);
+		$this->settings['wms_wms2_kml_support'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => __('Does the WMS server support KML output?','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'yes',
+			'choices' => array(
+				'yes' => __('yes','lmm'),
+				'no' => __('no','lmm')
+			)
+		);	
+		$this->settings['wms_wms2_kml_href'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
+			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
+			'type'    => 'text',
+			'std'     => 'http://data.wien.gv.at/daten/geoserver/ows?version=1.3.0&service=WMS&request=GetMap&crs=EPSG:4326&bbox=48.10,16.16,48.34,16.59&width=1&height=1&layers=ogdwien:AUFZUGOGD&styles=&format=application/vnd.google-earth.kml+xml' 
+		);	
+		$this->settings['wms_wms2_kml_refreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshmode" target="_blank">refreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'onChange',
+			'choices' => array(
+				'onChange' => __('onChange (refresh when the file is loaded and whenever the Link parameters change)','lmm'),
+				'onInterval' => __('onInterval (refresh every n seconds (specified in refreshInterval)','lmm'),
+				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
+				'onStop' => __('onStop (after camera movement stops)','lmm')
+			)
+		);	
+		$this->settings['wms_wms2_kml_refreshInterval'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
+			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
+			'type'    => 'text',
+			'std'     => '30' 
+		);		
+		$this->settings['wms_wms2_kml_viewRefreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshmode" target="_blank">viewrefreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'never',
+			'choices' => array(
+				'never' => __('never (ignore changes in the view)','lmm'),
+				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
+				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
+			)
+		);			
+		$this->settings['wms_wms2_kml_viewRefreshTime'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
+			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
+			'type'    => 'text',
+			'std'     => '1' 
+		);		
 		/*
 		* WMS layer 3 settings
 		*/
@@ -1686,7 +1828,77 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'wms'
 		);	
-	
+		$this->settings['wms_wms3_kml_helptext'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'std'     => '', 
+			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
+			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
+			'type'    => 'helptext'
+		);
+		$this->settings['wms_wms3_kml_support'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => __('Does the WMS server support KML output?','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'yes',
+			'choices' => array(
+				'yes' => __('yes','lmm'),
+				'no' => __('no','lmm')
+			)
+		);	
+		$this->settings['wms_wms3_kml_href'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
+			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
+			'type'    => 'text',
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Air/EPRTRDiffuseAir_Dyna_WGS84/MapServer/generatekml?docName=&l%3A7=on&layers=7&layerOptions=nonComposite' 
+		);	
+		$this->settings['wms_wms3_kml_refreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshmode" target="_blank">refreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'onChange',
+			'choices' => array(
+				'onChange' => __('onChange (refresh when the file is loaded and whenever the Link parameters change)','lmm'),
+				'onInterval' => __('onInterval (refresh every n seconds (specified in refreshInterval)','lmm'),
+				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
+				'onStop' => __('onStop (after camera movement stops)','lmm')
+			)
+		);	
+		$this->settings['wms_wms3_kml_refreshInterval'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
+			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
+			'type'    => 'text',
+			'std'     => '30' 
+		);		
+		$this->settings['wms_wms3_kml_viewRefreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshmode" target="_blank">viewrefreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'never',
+			'choices' => array(
+				'never' => __('never (ignore changes in the view)','lmm'),
+				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
+				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
+			)
+		);			
+		$this->settings['wms_wms3_kml_viewRefreshTime'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
+			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
+			'type'    => 'text',
+			'std'     => '1' 
+		);	
 		/*
 		* WMS layer 4 settings
 		*/
@@ -1813,7 +2025,77 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'wms'
 		);	
-	
+		$this->settings['wms_wms4_kml_helptext'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'std'     => '', 
+			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
+			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
+			'type'    => 'helptext'
+		);
+		$this->settings['wms_wms4_kml_support'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => __('Does the WMS server support KML output?','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'yes',
+			'choices' => array(
+				'yes' => __('yes','lmm'),
+				'no' => __('no','lmm')
+			)
+		);	
+		$this->settings['wms_wms4_kml_href'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
+			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
+			'type'    => 'text',
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Land/CLC2006_Dyna_WM/MapServer/generatekml?docName=&l%3A5=on&layers=5&layerOptions=nonComposite' 
+		);	
+		$this->settings['wms_wms4_kml_refreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshmode" target="_blank">refreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'onChange',
+			'choices' => array(
+				'onChange' => __('onChange (refresh when the file is loaded and whenever the Link parameters change)','lmm'),
+				'onInterval' => __('onInterval (refresh every n seconds (specified in refreshInterval)','lmm'),
+				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
+				'onStop' => __('onStop (after camera movement stops)','lmm')
+			)
+		);	
+		$this->settings['wms_wms4_kml_refreshInterval'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
+			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
+			'type'    => 'text',
+			'std'     => '30' 
+		);		
+		$this->settings['wms_wms4_kml_viewRefreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshmode" target="_blank">viewrefreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'never',
+			'choices' => array(
+				'never' => __('never (ignore changes in the view)','lmm'),
+				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
+				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
+			)
+		);			
+		$this->settings['wms_wms4_kml_viewRefreshTime'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
+			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
+			'type'    => 'text',
+			'std'     => '1' 
+		);	
 		/*
 		* WMS layer 5 settings
 		*/
@@ -1940,7 +2222,77 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'wms'
 		);	
-				
+		$this->settings['wms_wms5_kml_helptext'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'std'     => '', 
+			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
+			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
+			'type'    => 'helptext'
+		);
+		$this->settings['wms_wms5_kml_support'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => __('Does the WMS server support KML output?','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'yes',
+			'choices' => array(
+				'yes' => __('yes','lmm'),
+				'no' => __('no','lmm')
+			)
+		);	
+		$this->settings['wms_wms5_kml_href'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
+			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
+			'type'    => 'text',
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Noise/Noise_Dyna_LAEA/MapServer/generatekml?docName=&l%3A460=on&layers=460&layerOptions=nonComposite' 
+		);	
+		$this->settings['wms_wms5_kml_refreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshmode" target="_blank">refreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'onChange',
+			'choices' => array(
+				'onChange' => __('onChange (refresh when the file is loaded and whenever the Link parameters change)','lmm'),
+				'onInterval' => __('onInterval (refresh every n seconds (specified in refreshInterval)','lmm'),
+				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
+				'onStop' => __('onStop (after camera movement stops)','lmm')
+			)
+		);	
+		$this->settings['wms_wms5_kml_refreshInterval'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
+			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
+			'type'    => 'text',
+			'std'     => '30' 
+		);		
+		$this->settings['wms_wms5_kml_viewRefreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshmode" target="_blank">viewrefreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'never',
+			'choices' => array(
+				'never' => __('never (ignore changes in the view)','lmm'),
+				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
+				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
+			)
+		);			
+		$this->settings['wms_wms5_kml_viewRefreshTime'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
+			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
+			'type'    => 'text',
+			'std'     => '1' 
+		);				
 		/*
 		* WMS layer 6 settings
 		*/
@@ -2067,6 +2419,77 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'wms'
 		);	
+		$this->settings['wms_wms6_kml_helptext'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'std'     => '', 
+			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
+			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
+			'type'    => 'helptext'
+		);
+		$this->settings['wms_wms6_kml_support'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => __('Does the WMS server support KML output?','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'yes',
+			'choices' => array(
+				'yes' => __('yes','lmm'),
+				'no' => __('no','lmm')
+			)
+		);	
+		$this->settings['wms_wms6_kml_href'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
+			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
+			'type'    => 'text',
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Land/CLC2006_Dyna_WM/MapServer/generatekml?docName=&l%3A14=on&layers=14&layerOptions=nonComposite' 
+		);	
+		$this->settings['wms_wms6_kml_refreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshmode" target="_blank">refreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'onChange',
+			'choices' => array(
+				'onChange' => __('onChange (refresh when the file is loaded and whenever the Link parameters change)','lmm'),
+				'onInterval' => __('onInterval (refresh every n seconds (specified in refreshInterval)','lmm'),
+				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
+				'onStop' => __('onStop (after camera movement stops)','lmm')
+			)
+		);	
+		$this->settings['wms_wms6_kml_refreshInterval'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
+			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
+			'type'    => 'text',
+			'std'     => '30' 
+		);		
+		$this->settings['wms_wms6_kml_viewRefreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshmode" target="_blank">viewrefreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'never',
+			'choices' => array(
+				'never' => __('never (ignore changes in the view)','lmm'),
+				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
+				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
+			)
+		);			
+		$this->settings['wms_wms6_kml_viewRefreshTime'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
+			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
+			'type'    => 'text',
+			'std'     => '1' 
+		);		
 		/*
 		* WMS layer 7 settings
 		*/
@@ -2193,6 +2616,77 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'wms'
 		);	
+		$this->settings['wms_wms7_kml_helptext'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'std'     => '', 
+			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
+			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
+			'type'    => 'helptext'
+		);
+		$this->settings['wms_wms7_kml_support'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => __('Does the WMS server support KML output?','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'yes',
+			'choices' => array(
+				'yes' => __('yes','lmm'),
+				'no' => __('no','lmm')
+			)
+		);	
+		$this->settings['wms_wms7_kml_href'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
+			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
+			'type'    => 'text',
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Water/RiverAndLakes_Dyna_WM/MapServer/generatekml?docName=&l%3A9=on&layers=9&layerOptions=nonComposite' 
+		);	
+		$this->settings['wms_wms7_kml_refreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshmode" target="_blank">refreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'onChange',
+			'choices' => array(
+				'onChange' => __('onChange (refresh when the file is loaded and whenever the Link parameters change)','lmm'),
+				'onInterval' => __('onInterval (refresh every n seconds (specified in refreshInterval)','lmm'),
+				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
+				'onStop' => __('onStop (after camera movement stops)','lmm')
+			)
+		);	
+		$this->settings['wms_wms7_kml_refreshInterval'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
+			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
+			'type'    => 'text',
+			'std'     => '30' 
+		);		
+		$this->settings['wms_wms7_kml_viewRefreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshmode" target="_blank">viewrefreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'never',
+			'choices' => array(
+				'never' => __('never (ignore changes in the view)','lmm'),
+				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
+				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
+			)
+		);			
+		$this->settings['wms_wms7_kml_viewRefreshTime'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
+			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
+			'type'    => 'text',
+			'std'     => '1' 
+		);
 		/*
 		* WMS layer 8 settings
 		*/
@@ -2319,6 +2813,77 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'wms'
 		);	
+		$this->settings['wms_wms8_kml_helptext'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'std'     => '', 
+			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
+			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
+			'type'    => 'helptext'
+		);
+		$this->settings['wms_wms8_kml_support'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => __('Does the WMS server support KML output?','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'yes',
+			'choices' => array(
+				'yes' => __('yes','lmm'),
+				'no' => __('no','lmm')
+			)
+		);	
+		$this->settings['wms_wms8_kml_href'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
+			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
+			'type'    => 'text',
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Reports2010/Reports2008_Dyna_WGS84/MapServer/generatekml?docName=&l%3A26=on&layers=26&layerOptions=nonComposite' 
+		);	
+		$this->settings['wms_wms8_kml_refreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshmode" target="_blank">refreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'onChange',
+			'choices' => array(
+				'onChange' => __('onChange (refresh when the file is loaded and whenever the Link parameters change)','lmm'),
+				'onInterval' => __('onInterval (refresh every n seconds (specified in refreshInterval)','lmm'),
+				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
+				'onStop' => __('onStop (after camera movement stops)','lmm')
+			)
+		);	
+		$this->settings['wms_wms8_kml_refreshInterval'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
+			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
+			'type'    => 'text',
+			'std'     => '30' 
+		);		
+		$this->settings['wms_wms8_kml_viewRefreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshmode" target="_blank">viewrefreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'never',
+			'choices' => array(
+				'never' => __('never (ignore changes in the view)','lmm'),
+				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
+				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
+			)
+		);			
+		$this->settings['wms_wms8_kml_viewRefreshTime'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
+			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
+			'type'    => 'text',
+			'std'     => '1' 
+		);
 		/*
 		* WMS layer 9 settings
 		*/
@@ -2445,6 +3010,77 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'wms'
 		);	
+		$this->settings['wms_wms9_kml_helptext'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'std'     => '', 
+			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
+			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
+			'type'    => 'helptext'
+		);
+		$this->settings['wms_wms9_kml_support'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => __('Does the WMS server support KML output?','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'yes',
+			'choices' => array(
+				'yes' => __('yes','lmm'),
+				'no' => __('no','lmm')
+			)
+		);	
+		$this->settings['wms_wms9_kml_href'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
+			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
+			'type'    => 'text',
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Bio/CDDA_Dyna_WGS84/MapServer/generatekml?docName=&l%3A2=on&layers=2&layerOptions=nonComposite' 
+		);	
+		$this->settings['wms_wms9_kml_refreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshmode" target="_blank">refreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'onChange',
+			'choices' => array(
+				'onChange' => __('onChange (refresh when the file is loaded and whenever the Link parameters change)','lmm'),
+				'onInterval' => __('onInterval (refresh every n seconds (specified in refreshInterval)','lmm'),
+				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
+				'onStop' => __('onStop (after camera movement stops)','lmm')
+			)
+		);	
+		$this->settings['wms_wms9_kml_refreshInterval'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
+			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
+			'type'    => 'text',
+			'std'     => '30' 
+		);		
+		$this->settings['wms_wms9_kml_viewRefreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshmode" target="_blank">viewrefreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'never',
+			'choices' => array(
+				'never' => __('never (ignore changes in the view)','lmm'),
+				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
+				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
+			)
+		);			
+		$this->settings['wms_wms9_kml_viewRefreshTime'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
+			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
+			'type'    => 'text',
+			'std'     => '1' 
+		);
 		/*
 		* WMS layer 10 settings
 		*/
@@ -2571,7 +3207,78 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'wms'
 		);											
-				
+		$this->settings['wms_wms10_kml_helptext'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'std'     => '', 
+			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
+			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
+			'type'    => 'helptext'
+		);
+		$this->settings['wms_wms10_kml_support'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => __('Does the WMS server support KML output?','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'yes',
+			'choices' => array(
+				'yes' => __('yes','lmm'),
+				'no' => __('no','lmm')
+			)
+		);	
+		$this->settings['wms_wms10_kml_href'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
+			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
+			'type'    => 'text',
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Noise/Noise_Dyna_LAEA/MapServer/generatekml?docName=&l%3A222=on&layers=222&layerOptions=nonComposite' 
+		);	
+		$this->settings['wms_wms10_kml_refreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshmode" target="_blank">refreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'onChange',
+			'choices' => array(
+				'onChange' => __('onChange (refresh when the file is loaded and whenever the Link parameters change)','lmm'),
+				'onInterval' => __('onInterval (refresh every n seconds (specified in refreshInterval)','lmm'),
+				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
+				'onStop' => __('onStop (after camera movement stops)','lmm')
+			)
+		);	
+		$this->settings['wms_wms10_kml_refreshInterval'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
+			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
+			'type'    => 'text',
+			'std'     => '30' 
+		);		
+		$this->settings['wms_wms10_kml_viewRefreshMode'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshmode" target="_blank">viewrefreshMode</a>',
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'never',
+			'choices' => array(
+				'never' => __('never (ignore changes in the view)','lmm'),
+				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
+				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
+			)
+		);			
+		$this->settings['wms_wms10_kml_viewRefreshTime'] = array(
+			'version' => '1.4.3',
+			'section' => 'wms',
+			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
+			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
+			'type'    => 'text',
+			'std'     => '1' 
+		);
+						
 		/*===========================================
 		*
 		*
@@ -4522,10 +5229,24 @@ class Leafletmapsmarker_options {
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
-
+		//info:  set defaults for options introduced in v1.4.3		
+		if (get_option('leafletmapsmarker_version') == '1.4.2' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting ) 
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '1.4.3')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}
 		/* template for plugin updates 
 		//info:  set defaults for options introduced in v1.5
-		if (get_option('leafletmapsmarker_version') == '1.4.2' )
+		if (get_option('leafletmapsmarker_version') == '1.4.3' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting ) 

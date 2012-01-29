@@ -4,7 +4,7 @@ Plugin Name: Leaflet Maps Marker
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, OSM, travelblog, opendata, opengov, ogdwien, google maps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, wms
-Version: 1.4.2
+Version: 1.4.3
 Author: Robert Harm (with special support from Sindre Wimberger)
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
@@ -510,13 +510,13 @@ function leafletmapsmarker() {
 	$publictransport = (isset($lmm_options[ 'directions_googlemaps_route_type_public_transport' ] ) == TRUE ) && ( $lmm_options[ 'directions_googlemaps_route_type_public_transport' ] == 1 ) ? '&dirflg=r' : '';
 	$walking = (isset($lmm_options[ 'directions_googlemaps_route_type_walking' ] ) == TRUE ) && ( $lmm_options[ 'directions_googlemaps_route_type_walking' ] == 1 ) ? '&dirflg=w' : '';
 	$mpopuptext_css = ($mpopuptext != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;" : "";
-	$mpopuptext = $mpopuptext . "<div style='" . $mpopuptext_css . "'><a href=&quot;http://maps.google.com/maps?daddr=" . $lat . "," . $lon . "&t=" . $lmm_options[ 'directions_googlemaps_map_type' ] . "&layer=" . $lmm_options[ 'directions_googlemaps_traffic' ] . "&doflg=" . $lmm_options[ 'directions_googlemaps_distance_units' ] . $avoidhighways . $avoidtolls . $publictransport . $walking . "&hl=" . $lmm_options[ 'directions_googlemaps_host_language' ] . "&om=" . $lmm_options[ 'directions_googlemaps_overview_map' ] . "&quot; target='_blank' title='" . esc_attr__('Get directions','lmm') . "'>" . __('Directions','lmm') . "</a></div>"; 
+	$mpopuptext = $mpopuptext . "<div style='" . $mpopuptext_css . "'><a href=http://maps.google.com/maps?daddr=" . $lat . "," . $lon . "&t=" . $lmm_options[ 'directions_googlemaps_map_type' ] . "&layer=" . $lmm_options[ 'directions_googlemaps_traffic' ] . "&doflg=" . $lmm_options[ 'directions_googlemaps_distance_units' ] . $avoidhighways . $avoidtolls . $publictransport . $walking . "&hl=" . $lmm_options[ 'directions_googlemaps_host_language' ] . "&om=" . $lmm_options[ 'directions_googlemaps_overview_map' ] . " target='_blank' title='" . esc_attr__('Get directions','lmm') . "'>" . __('Directions','lmm') . "</a></div>";
 	} else if ( ($lmm_options['directions_popuptext_panel'] == 'yes') && ($lmm_options['directions_provider'] == 'yours') ) {
 	$mpopuptext_css = ($mpopuptext != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;" : "";
-	$mpopuptext = $mpopuptext . "<div style='" . $mpopuptext_css . "'><a href=&quot;http://www.yournavigation.org/?tlat=" . $lat . "&tlon=" . $lon . "&v=" . $lmm_options[ 'directions_yours_type_of_transport' ] . "&fast=" . $lmm_options[ 'directions_yours_route_type' ] . "&layer=" . $lmm_options[ 'directions_yours_layer' ] . "&quot; target='_blank' title='" . esc_attr__('Get directions','lmm') . "'>" . __('Directions','lmm') . "</a></div>"; 
+	$mpopuptext = $mpopuptext . "<div style='" . $mpopuptext_css . "'><a href=http://www.yournavigation.org/?tlat=" . $lat . "&tlon=" . $lon . "&v=" . $lmm_options[ 'directions_yours_type_of_transport' ] . "&fast=" . $lmm_options[ 'directions_yours_route_type' ] . "&layer=" . $lmm_options[ 'directions_yours_layer' ] . " target='_blank' title='" . esc_attr__('Get directions','lmm') . "'>" . __('Directions','lmm') . "</a></div>"; 
 	} else if ( ($lmm_options['directions_popuptext_panel'] == 'yes') && ($lmm_options['directions_provider'] == 'ors') ) {
 	$mpopuptext_css = ($mpopuptext != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;" : "";
-	$mpopuptext = $mpopuptext . "<div style='" . $mpopuptext_css . "'><a href=&quot;http://openrouteservice.org/index.php?end=" . $lon . "," . $lat . "&pref=" . $lmm_options[ 'directions_ors_route_preferences' ] . "&lang=" . $lmm_options[ 'directions_ors_language' ] . "&noMotorways=" . $lmm_options[ 'directions_ors_no_motorways' ] . "&noTollways=" . $lmm_options[ 'directions_ors_no_tollways' ] . "&quot; target='_blank' title='" . esc_attr__('Get directions','lmm') . "'>" . __('Directions','lmm') . "</a></div>"; 
+	$mpopuptext = $mpopuptext . "<div style='" . $mpopuptext_css . "'><a href=http://openrouteservice.org/index.php?end=" . $lon . "," . $lat . "&pref=" . $lmm_options[ 'directions_ors_route_preferences' ] . "&lang=" . $lmm_options[ 'directions_ors_language' ] . "&noMotorways=" . $lmm_options[ 'directions_ors_no_motorways' ] . "&noTollways=" . $lmm_options[ 'directions_ors_no_tollways' ] . " target='_blank' title='" . esc_attr__('Get directions','lmm') . "'>" . __('Directions','lmm') . "</a></div>"; 
 	}
 		
 	if (!empty($mpopuptext)) $lmm_out .= 'marker.bindPopup("' . preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$mpopuptext) . '")'.$mopenpopup.';'.PHP_EOL;
@@ -868,6 +868,11 @@ function leafletmapsmarker() {
 	}
 	if (get_option('leafletmapsmarker_version') == '1.4.1' ) {
 		update_option('leafletmapsmarker_version', '1.4.2');
+	}
+	if (get_option('leafletmapsmarker_version') == '1.4.2' ) {
+		$save_defaults_for_new_options = new Leafletmapsmarker_options();
+		$save_defaults_for_new_options->save_defaults_for_new_options();
+		update_option('leafletmapsmarker_version', '1.4.3');
 		//info: redirect to settings page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 		if (get_option('leafletmapsmarker_redirect') == 'true') 
 		{
@@ -876,7 +881,7 @@ function leafletmapsmarker() {
 		}
 	}
 	/* template for plugin updates 
-	if (get_option('leafletmapsmarker_version') == '1.4.2' ) {
+	if (get_option('leafletmapsmarker_version') == '1.4.3' ) {
 		//mandatory if new options in class-leaflet-options.php were added
 		$save_defaults_for_new_options = new Leafletmapsmarker_options();
 		$save_defaults_for_new_options->save_defaults_for_new_options();
