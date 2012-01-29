@@ -8,7 +8,7 @@ Author:            Robert Harm (with special support from Sindre Wimberger)
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
 Tested up to:      3.4-alpha-19719
-Stable tag:        1.4.2
+Stable tag:        1.4.3
 
 Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 
@@ -162,6 +162,9 @@ This program is free software; you can redistribute it and/or modify it under th
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
 == Upgrade Notice ==
+= v1.4.3 =
+added WMS support for KML files, bugfix for defect routing link attached to popup-text
+
 = v1.4.2 =
 fix for bug causing custom marker icons not to show up on certain hosts
 
@@ -190,6 +193,11 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v1.4.3 - 29.01.2012 =
+* NEW: added WMS support for KML-files via <networklink>
+* BUGFIX: routing link attached to popup text did not work
+* BUGFIX: missing KML schema declaration causing KML file not to work with scribblemaps.com
+
 = v1.4.2 - 25.01.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v1.4.2)
 * BUGFIX: custom marker icons not showing up on maps on certain hosts (using directory separators different to / ) 

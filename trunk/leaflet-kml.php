@@ -17,6 +17,18 @@ echo 'The WordPress plugin <a href="http://www.mapsmarker.com" target="_blank">L
 global $wpdb;
 $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
+$lmm_options = get_option( 'leafletmapsmarker_options' );
+if ($lmm_options[ 'wms_wms_kml_support' ] == 'yes') { $wms_kml_output = '<NetworkLink id="mapsmarker_wms1"><name><![CDATA[' . $lmm_options[ 'wms_wms_name' ] . ']]></name><visibility>1</visibility><open>0</open><atom:author><![CDATA[' . $lmm_options[ 'wms_wms_attribution' ] . ']]></atom:author><Snippet maxLines="2"><![CDATA[' . $lmm_options[ 'wms_wms_attribution' ] . ']]></Snippet><Link><href><![CDATA[' . $lmm_options[ 'wms_wms_kml_href' ] . ']]></href><refreshMode>' . $lmm_options[ 'wms_wms_kml_refreshMode' ] . '</refreshMode><refreshInterval>' . $lmm_options[ 'wms_wms_kml_refreshInterval' ] . '</refreshInterval><viewRefreshMode>' . $lmm_options[ 'wms_wms_kml_viewRefreshMode' ] . '</viewRefreshMode><viewRefreshTime>' . $lmm_options[ 'wms_wms_kml_viewRefreshTime' ] . '</viewRefreshTime></Link></NetworkLink>'; };
+if ($lmm_options[ 'wms_wms2_kml_support' ] == 'yes') { $wms2_kml_output = '<NetworkLink id="mapsmarker_wms2"><name><![CDATA[' . $lmm_options[ 'wms_wms2_name' ] . ']]></name><visibility>1</visibility><open>0</open><atom:author><![CDATA[' . $lmm_options[ 'wms_wms2_attribution' ] . ']]></atom:author><Snippet maxLines="2"><![CDATA[' . $lmm_options[ 'wms_wms2_attribution' ] . ']]></Snippet><Link><href><![CDATA[' . $lmm_options[ 'wms_wms2_kml_href' ] . ']]></href><refreshMode>' . $lmm_options[ 'wms_wms2_kml_refreshMode' ] . '</refreshMode><refreshInterval>' . $lmm_options[ 'wms_wms2_kml_refreshInterval' ] . '</refreshInterval><viewRefreshMode>' . $lmm_options[ 'wms_wms2_kml_viewRefreshMode' ] . '</viewRefreshMode><viewRefreshTime>' . $lmm_options[ 'wms_wms2_kml_viewRefreshTime' ] . '</viewRefreshTime></Link></NetworkLink>'; };
+if ($lmm_options[ 'wms_wms3_kml_support' ] == 'yes') { $wms3_kml_output = '<NetworkLink id="mapsmarker_wms3"><name><![CDATA[' . $lmm_options[ 'wms_wms3_name' ] . ']]></name><visibility>1</visibility><open>0</open><atom:author><![CDATA[' . $lmm_options[ 'wms_wms3_attribution' ] . ']]></atom:author><Snippet maxLines="2"><![CDATA[' . $lmm_options[ 'wms_wms3_attribution' ] . ']]></Snippet><Link><href><![CDATA[' . $lmm_options[ 'wms_wms3_kml_href' ] . ']]></href><refreshMode>' . $lmm_options[ 'wms_wms3_kml_refreshMode' ] . '</refreshMode><refreshInterval>' . $lmm_options[ 'wms_wms3_kml_refreshInterval' ] . '</refreshInterval><viewRefreshMode>' . $lmm_options[ 'wms_wms3_kml_viewRefreshMode' ] . '</viewRefreshMode><viewRefreshTime>' . $lmm_options[ 'wms_wms3_kml_viewRefreshTime' ] . '</viewRefreshTime></Link></NetworkLink>'; };
+if ($lmm_options[ 'wms_wms4_kml_support' ] == 'yes') { $wms4_kml_output = '<NetworkLink id="mapsmarker_wms4"><name><![CDATA[' . $lmm_options[ 'wms_wms4_name' ] . ']]></name><visibility>1</visibility><open>0</open><atom:author><![CDATA[' . $lmm_options[ 'wms_wms4_attribution' ] . ']]></atom:author><Snippet maxLines="2"><![CDATA[' . $lmm_options[ 'wms_wms4_attribution' ] . ']]></Snippet><Link><href><![CDATA[' . $lmm_options[ 'wms_wms4_kml_href' ] . ']]></href><refreshMode>' . $lmm_options[ 'wms_wms4_kml_refreshMode' ] . '</refreshMode><refreshInterval>' . $lmm_options[ 'wms_wms4_kml_refreshInterval' ] . '</refreshInterval><viewRefreshMode>' . $lmm_options[ 'wms_wms4_kml_viewRefreshMode' ] . '</viewRefreshMode><viewRefreshTime>' . $lmm_options[ 'wms_wms4_kml_viewRefreshTime' ] . '</viewRefreshTime></Link></NetworkLink>'; };
+if ($lmm_options[ 'wms_wms5_kml_support' ] == 'yes') { $wms5_kml_output = '<NetworkLink id="mapsmarker_wms5"><name><![CDATA[' . $lmm_options[ 'wms_wms5_name' ] . ']]></name><visibility>1</visibility><open>0</open><atom:author><![CDATA[' . $lmm_options[ 'wms_wms5_attribution' ] . ']]></atom:author><Snippet maxLines="2"><![CDATA[' . $lmm_options[ 'wms_wms5_attribution' ] . ']]></Snippet><Link><href><![CDATA[' . $lmm_options[ 'wms_wms5_kml_href' ] . ']]></href><refreshMode>' . $lmm_options[ 'wms_wms5_kml_refreshMode' ] . '</refreshMode><refreshInterval>' . $lmm_options[ 'wms_wms5_kml_refreshInterval' ] . '</refreshInterval><viewRefreshMode>' . $lmm_options[ 'wms_wms5_kml_viewRefreshMode' ] . '</viewRefreshMode><viewRefreshTime>' . $lmm_options[ 'wms_wms5_kml_viewRefreshTime' ] . '</viewRefreshTime></Link></NetworkLink>'; };
+if ($lmm_options[ 'wms_wms6_kml_support' ] == 'yes') { $wms6_kml_output = '<NetworkLink id="mapsmarker_wms6"><name><![CDATA[' . $lmm_options[ 'wms_wms6_name' ] . ']]></name><visibility>1</visibility><open>0</open><atom:author><![CDATA[' . $lmm_options[ 'wms_wms6_attribution' ] . ']]></atom:author><Snippet maxLines="2"><![CDATA[' . $lmm_options[ 'wms_wms6_attribution' ] . ']]></Snippet><Link><href><![CDATA[' . $lmm_options[ 'wms_wms6_kml_href' ] . ']]></href><refreshMode>' . $lmm_options[ 'wms_wms6_kml_refreshMode' ] . '</refreshMode><refreshInterval>' . $lmm_options[ 'wms_wms6_kml_refreshInterval' ] . '</refreshInterval><viewRefreshMode>' . $lmm_options[ 'wms_wms6_kml_viewRefreshMode' ] . '</viewRefreshMode><viewRefreshTime>' . $lmm_options[ 'wms_wms6_kml_viewRefreshTime' ] . '</viewRefreshTime></Link></NetworkLink>'; };
+if ($lmm_options[ 'wms_wms7_kml_support' ] == 'yes') { $wms7_kml_output = '<NetworkLink id="mapsmarker_wms7"><name><![CDATA[' . $lmm_options[ 'wms_wms7_name' ] . ']]></name><visibility>1</visibility><open>0</open><atom:author><![CDATA[' . $lmm_options[ 'wms_wms7_attribution' ] . ']]></atom:author><Snippet maxLines="2"><![CDATA[' . $lmm_options[ 'wms_wms7_attribution' ] . ']]></Snippet><Link><href><![CDATA[' . $lmm_options[ 'wms_wms7_kml_href' ] . ']]></href><refreshMode>' . $lmm_options[ 'wms_wms7_kml_refreshMode' ] . '</refreshMode><refreshInterval>' . $lmm_options[ 'wms_wms7_kml_refreshInterval' ] . '</refreshInterval><viewRefreshMode>' . $lmm_options[ 'wms_wms7_kml_viewRefreshMode' ] . '</viewRefreshMode><viewRefreshTime>' . $lmm_options[ 'wms_wms7_kml_viewRefreshTime' ] . '</viewRefreshTime></Link></NetworkLink>'; };
+if ($lmm_options[ 'wms_wms8_kml_support' ] == 'yes') { $wms8_kml_output = '<NetworkLink id="mapsmarker_wms8"><name><![CDATA[' . $lmm_options[ 'wms_wms8_name' ] . ']]></name><visibility>1</visibility><open>0</open><atom:author><![CDATA[' . $lmm_options[ 'wms_wms8_attribution' ] . ']]></atom:author><Snippet maxLines="2"><![CDATA[' . $lmm_options[ 'wms_wms8_attribution' ] . ']]></Snippet><Link><href><![CDATA[' . $lmm_options[ 'wms_wms8_kml_href' ] . ']]></href><refreshMode>' . $lmm_options[ 'wms_wms8_kml_refreshMode' ] . '</refreshMode><refreshInterval>' . $lmm_options[ 'wms_wms8_kml_refreshInterval' ] . '</refreshInterval><viewRefreshMode>' . $lmm_options[ 'wms_wms8_kml_viewRefreshMode' ] . '</viewRefreshMode><viewRefreshTime>' . $lmm_options[ 'wms_wms8_kml_viewRefreshTime' ] . '</viewRefreshTime></Link></NetworkLink>'; };
+if ($lmm_options[ 'wms_wms9_kml_support' ] == 'yes') { $wms9_kml_output = '<NetworkLink id="mapsmarker_wms9"><name><![CDATA[' . $lmm_options[ 'wms_wms9_name' ] . ']]></name><visibility>1</visibility><open>0</open><atom:author><![CDATA[' . $lmm_options[ 'wms_wms9_attribution' ] . ']]></atom:author><Snippet maxLines="2"><![CDATA[' . $lmm_options[ 'wms_wms9_attribution' ] . ']]></Snippet><Link><href><![CDATA[' . $lmm_options[ 'wms_wms9_kml_href' ] . ']]></href><refreshMode>' . $lmm_options[ 'wms_wms9_kml_refreshMode' ] . '</refreshMode><refreshInterval>' . $lmm_options[ 'wms_wms9_kml_refreshInterval' ] . '</refreshInterval><viewRefreshMode>' . $lmm_options[ 'wms_wms9_kml_viewRefreshMode' ] . '</viewRefreshMode><viewRefreshTime>' . $lmm_options[ 'wms_wms9_kml_viewRefreshTime' ] . '</viewRefreshTime></Link></NetworkLink>'; };
+if ($lmm_options[ 'wms_wms10_kml_support' ] == 'yes') { $wms10_kml_output = '<NetworkLink id="mapsmarker_wms10"><name><![CDATA[' . $lmm_options[ 'wms_wms10_name' ] . ']]></name><visibility>1</visibility><open>0</open><atom:author><![CDATA[' . $lmm_options[ 'wms_wms10_attribution' ] . ']]></atom:author><Snippet maxLines="2"><![CDATA[' . $lmm_options[ 'wms_wms10_attribution' ] . ']]></Snippet><Link><href><![CDATA[' . $lmm_options[ 'wms_wms10_kml_href' ] . ']]></href><refreshMode>' . $lmm_options[ 'wms_wms10_kml_refreshMode' ] . '</refreshMode><refreshInterval>' . $lmm_options[ 'wms_wms10_kml_refreshInterval' ] . '</refreshInterval><viewRefreshMode>' . $lmm_options[ 'wms_wms10_kml_viewRefreshMode' ] . '</viewRefreshMode><viewRefreshTime>' . $lmm_options[ 'wms_wms10_kml_viewRefreshTime' ] . '</viewRefreshTime></Link></NetworkLink>'; };
+  
 if (isset($_GET['layer'])) {
   $layer = mysql_real_escape_string($_GET['layer']);
   
@@ -33,8 +45,12 @@ if (isset($_GET['layer'])) {
     if (count($checkedlayers) > 0)
       $q = 'WHERE layer IN ('.implode(',', $checkedlayers).')';
   }
-  $sql = 'SELECT m.id as mid, m.markername as mmarkername, m.layer as mlayer, m.icon as micon, m.createdby as mcreatedby, m.createdon as mcreatedon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext, l.createdby as lcreatedby, l.createdon as lcreatedon, l.name AS lname FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
+  $sql = 'SELECT m.id as mid, m.markername as mmarkername, m.layer as mlayer, m.icon as micon, m.createdby as mcreatedby, m.createdon as mcreatedon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext, l.createdby as lcreatedby, l.createdon as lcreatedon, l.name as lname, l.wms as lwms, l.wms2 as lwms2, l.wms3 as lwms3, l.wms4 as lwms4, l.wms5 as lwms5, l.wms6 as lwms6, l.wms7 as lwms7, l.wms8 as lwms8, l.wms9 as lwms9, l.wms10 as lwms10 FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
   $markers = $wpdb->get_results($sql, ARRAY_A);
+  	if ($_GET['layer'] != 'all') {
+	  $sql_wms_layer_for_kml = 'SELECT l.id as lid, l.wms as lwms, l.wms2 as lwms2, l.wms3 as lwms3, l.wms4 as lwms4, l.wms5 as lwms5, l.wms6 as lwms6, l.wms7 as lwms7, l.wms8 as lwms8, l.wms9 as lwms9, l.wms10 as lwms10 FROM '.$table_name_layers.' AS l WHERE l.id='.$layer;
+	  $wmslayer_kml = $wpdb->get_results($sql_wms_layer_for_kml, ARRAY_A);
+	}
   //info: check if layer result is not null
   if (empty($markers)) {
   $error_layers_not_exists = sprintf( esc_attr__('Warning: no markers are assigned to the layer with the ID %1$s or the layer does not exist!','lmm'), $layer); 
@@ -45,7 +61,7 @@ if (isset($_GET['layer'])) {
   header('Content-type: application/vnd.google-earth.kml+xml; charset=utf-8'); 
   header('Content-Disposition: attachment; filename="' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-layer-' . intval($_GET['layer']) . '.kml"');
   echo '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
-  echo '<kml xmlns="http://www.opengis.net/kml/2.2">'.PHP_EOL;
+  echo '<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2">'.PHP_EOL;
   
   echo '<Document>'.PHP_EOL;
   echo '<description><![CDATA[powered by <a href="http://www.wordpress.org">WordPress</a> &amp; <a href="http://www.mapsmarker.com">MapsMarker.com</a>]]></description>'.PHP_EOL;    
@@ -82,7 +98,6 @@ if (isset($_GET['layer'])) {
 	if (!isset($_GET['default_icons'])) {
 	echo '<styleUrl>#' . $micon_name . '</styleUrl>'.PHP_EOL;
 	}
-	
 	echo '<name>' . stripslashes($marker['mmarkername']) . '</name>'.PHP_EOL;
 	echo '<TimeStamp><when>' . date("Y-m-d", $date_kml) . 'T' . date("h:m:s", $time_kml) . $plus_minus . $offset_kml . '</when></TimeStamp>'.PHP_EOL;
 	echo '<atom:author>' . $marker['mcreatedby'] . '</atom:author>'.PHP_EOL;
@@ -96,8 +111,22 @@ if (isset($_GET['layer'])) {
   	if ($_GET['layer'] != 'all') {
 	  echo '</Folder>'.PHP_EOL;
 	}
-	   
-  echo '<ScreenOverlay>'.PHP_EOL;
+	//info: output wms layer for kml-file
+  	if ($_GET['layer'] != 'all') {
+		foreach ($wmslayer_kml as $layer) {
+			if ( ($lmm_options[ 'wms_wms_kml_support' ] == 'yes') && ($layer['lwms'] == '1') ) { echo $wms_kml_output; }
+			if ( ($lmm_options[ 'wms_wms2_kml_support' ] == 'yes') && ($layer['lwms2'] == '1') ) { echo $wms2_kml_output; }
+			if ( ($lmm_options[ 'wms_wms3_kml_support' ] == 'yes') && ($layer['lwms3'] == '1') ) { echo $wms3_kml_output; }
+			if ( ($lmm_options[ 'wms_wms4_kml_support' ] == 'yes') && ($layer['lwms4'] == '1') ) { echo $wms4_kml_output; }
+			if ( ($lmm_options[ 'wms_wms5_kml_support' ] == 'yes') && ($layer['lwms5'] == '1') ) { echo $wms5_kml_output; }
+			if ( ($lmm_options[ 'wms_wms6_kml_support' ] == 'yes') && ($layer['lwms6'] == '1') ) { echo $wms6_kml_output; }
+			if ( ($lmm_options[ 'wms_wms7_kml_support' ] == 'yes') && ($layer['lwms7'] == '1') ) { echo $wms7_kml_output; }
+			if ( ($lmm_options[ 'wms_wms8_kml_support' ] == 'yes') && ($layer['lwms8'] == '1') ) { echo $wms8_kml_output; }
+			if ( ($lmm_options[ 'wms_wms9_kml_support' ] == 'yes') && ($layer['lwms9'] == '1') ) { echo $wms9_kml_output; }
+			if ( ($lmm_options[ 'wms_wms10_kml_support' ] == 'yes') && ($layer['lwms10'] == '1') ) { echo $wms10_kml_output; }
+		}	
+	}
+  echo PHP_EOL . '<ScreenOverlay>'.PHP_EOL;
   echo '<name><![CDATA[powered by WordPress & MapsMarker.com]]></name>'.PHP_EOL;
   echo '<Icon>'.PHP_EOL;
   echo '<href>' . LEAFLET_PLUGIN_URL . 'img/kml-overlay-powered-by.png</href>'.PHP_EOL;
@@ -124,8 +153,10 @@ elseif (isset($_GET['marker'])) {
   else
     die();
   //info: added left outer join to also show markers without a layer
-  $sql = 'SELECT m.layer as mlayer,m.icon as micon,m.popuptext as mpopuptext,m.id as mid,m.markername as mmarkername,m.createdby as mcreatedby, m.createdon as mcreatedon, m.lat as mlat, m.lon as mlon FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
+  $sql = 'SELECT m.layer as mlayer,m.icon as micon,m.popuptext as mpopuptext,m.id as mid,m.markername as mmarkername,m.createdby as mcreatedby, m.createdon as mcreatedon, m.wms as mwms, m.wms2 as mwms2, m.wms3 as mwms3, m.wms4 as mwms4, m.wms5 as mwms5, m.wms6 as mwms6, m.wms7 as mwms7, m.wms8 as mwms8, m.wms9 as mwms9, m.wms10 as mwms10, m.lat as mlat, m.lon as mlon FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
   $markers = $wpdb->get_results($sql, ARRAY_A);
+  $sql_wms_layer_for_kml = 'SELECT m.id as mid, m.wms as mwms, m.wms2 as mwms2, m.wms3 as mwms3, m.wms4 as mwms4, m.wms5 as mwms5, m.wms6 as mwms6, m.wms7 as mwms7, m.wms8 as mwms8, m.wms9 as mwms9, m.wms10 as mwms10 FROM '.$table_name_markers.' AS m WHERE m.id='.$markerid;
+  $wmslayer_kml = $wpdb->get_results($sql_wms_layer_for_kml, ARRAY_A);
   //info: check if marker result is not null
   if ($markers == NULL) {
   $error_marker_not_exists = sprintf( esc_attr__('Error: a marker with the ID %1$s does not exist!','lmm'), $markerid); 
@@ -136,7 +167,7 @@ elseif (isset($_GET['marker'])) {
   header('Content-type: application/vnd.google-earth.kml+xml; charset=utf-8'); 
   header('Content-Disposition: attachment; filename="' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-marker-' . intval($_GET['marker']) . '.kml"');
   echo '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
-  echo '<kml xmlns="http://www.opengis.net/kml/2.2">'.PHP_EOL;
+  echo '<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2">'.PHP_EOL;
   echo '<Document>'.PHP_EOL;
   echo '<description><![CDATA[powered by <a href="http://www.wordpress.org">WordPress</a> &amp; <a href="http://www.mapsmarker.com">MapsMarker.com</a>]]></description>'.PHP_EOL;    
   echo '<open>0</open>'.PHP_EOL;  
@@ -176,7 +207,20 @@ elseif (isset($_GET['marker'])) {
 	echo '</Point>'.PHP_EOL;
 	echo '</Placemark>'.PHP_EOL;
   }
-  echo '<ScreenOverlay>'.PHP_EOL;
+  	//info: output wms layer for kml-file
+	foreach ($wmslayer_kml as $layer) {
+			if ( ($lmm_options[ 'wms_wms_kml_support' ] == 'yes') && ($layer['mwms'] == '1') ) { echo $wms_kml_output; }
+			if ( ($lmm_options[ 'wms_wms2_kml_support' ] == 'yes') && ($layer['mwms2'] == '1') ) { echo $wms2_kml_output; }
+			if ( ($lmm_options[ 'wms_wms3_kml_support' ] == 'yes') && ($layer['mwms3'] == '1') ) { echo $wms3_kml_output; }
+			if ( ($lmm_options[ 'wms_wms4_kml_support' ] == 'yes') && ($layer['mwms4'] == '1') ) { echo $wms4_kml_output; }
+			if ( ($lmm_options[ 'wms_wms5_kml_support' ] == 'yes') && ($layer['mwms5'] == '1') ) { echo $wms5_kml_output; }
+			if ( ($lmm_options[ 'wms_wms6_kml_support' ] == 'yes') && ($layer['mwms6'] == '1') ) { echo $wms6_kml_output; }
+			if ( ($lmm_options[ 'wms_wms7_kml_support' ] == 'yes') && ($layer['mwms7'] == '1') ) { echo $wms7_kml_output; }
+			if ( ($lmm_options[ 'wms_wms8_kml_support' ] == 'yes') && ($layer['mwms8'] == '1') ) { echo $wms8_kml_output; }
+			if ( ($lmm_options[ 'wms_wms9_kml_support' ] == 'yes') && ($layer['mwms9'] == '1') ) { echo $wms9_kml_output; }
+			if ( ($lmm_options[ 'wms_wms10_kml_support' ] == 'yes') && ($layer['mwms10'] == '1') ) { echo $wms10_kml_output; }
+	}  
+  echo PHP_EOL.'<ScreenOverlay>'.PHP_EOL;
   echo '<name><![CDATA[powered by WordPress & MapsMarker.com]]></name>'.PHP_EOL;
   echo '<Icon>'.PHP_EOL;
   echo '<href>' . LEAFLET_PLUGIN_URL . 'img/kml-overlay-powered-by.png</href>'.PHP_EOL;
