@@ -1,4 +1,30 @@
 /* additional/changed styles - added by RH */
+.lmm-listmarkers-panel-icons {
+	float:right;
+	margin-right:5px !important;	
+}
+.lmm-listmarkers img {
+	max-width:440px !important;
+	height:auto;
+	margin: 0px !important;
+	padding: 0px !important;
+}
+.lmm-listmarkers table {
+	margin: 0px !important;
+	border: none !important;
+	padding-top:5px !important;
+	border-left:1px solid #ccc !important;
+	border-right:1px solid #ccc !important;
+}
+.lmm-listmarkers td {
+	vertical-align:middle;
+	margin: 0px !important;
+	padding: 2px !important;
+	border-bottom: 1px solid #DDDDDD !important;
+	border-top:none !important;
+	border-left:none !important;
+	border-right:none !important;
+}
 .lmm-panel {
 	border:1px solid #ccc;
 }

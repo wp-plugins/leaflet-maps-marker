@@ -7,8 +7,8 @@ Author URI:        http://www.harm.co.at
 Author:            Robert Harm (with special support from Sindre Wimberger)
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
-Tested up to:      3.4-alpha-19719
-Stable tag:        1.4.3
+Tested up to:      3.4-alpha-19720
+Stable tag:        1.5
 
 Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 
@@ -45,6 +45,7 @@ to the visitors of your website.
 * export your markers as GeoRSS for embedding in external websites or apps
 * export your markers as ARML for displaying in the augmented-reality browser from Wikitude
 * export your markers as csv-file
+* display a list of markers below layer maps
 * show standalone maps in fullscreen mode
 * support for microformat geo-markup to make your maps machine-readable
 * create QR code images for standalone maps in fullscreen mode
@@ -162,6 +163,9 @@ This program is free software; you can redistribute it and/or modify it under th
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
 == Upgrade Notice ==
+= v1.5 =
+added option to display a list of markers below layer maps, add GeoRSS feed to head, bugfixes
+
 = v1.4.3 =
 added WMS support for KML files, bugfix for defect routing link attached to popup-text
 
@@ -193,6 +197,14 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v1.5 - 09.02.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v1.5)
+* NEW: added option to display a list of markers below layer maps (enabled for new layer maps, disabled for existing layer maps)
+* NEW: included option to add GeoRSS feed for all markers to &lt;head&gt; to allow users subscribing to your markers easily
+* NEW: add mass actions for layer maps
+* CHANGED: database structure for boolean values from tinyint(4) to tinyint(1)
+* BUGFIX: overlay status for layer maps wasnt displayed in backend preview
+
 = v1.4.3 - 29.01.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v1.4.3)
 * NEW: added WMS support for KML-files via networklink

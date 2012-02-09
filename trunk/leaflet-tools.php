@@ -112,6 +112,67 @@ if (!empty($action)) {
 		$wpdb->query( "OPTIMIZE TABLE $table_name_markers" );
 		echo '<p><div class="updated" style="padding:10px;">' . __('The popup text for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
+  elseif ($action == 'basemap-layer') {
+		$result = $wpdb->prepare( "UPDATE $table_name_layers SET basemap = %s", $_POST['basemap-layer'] );
+		$wpdb->query( $result );
+		$wpdb->query( "OPTIMIZE TABLE $table_name_layers" );
+		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('The basemap for all layers has been successfully set to %1$s','lmm'), $_POST['basemap-layer']) . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+  }  
+  elseif ($action == 'overlays-layer') {
+		$overlays_checkbox = isset($_POST['overlays_custom-layer']) ? '1' : '0';
+		$overlays2_checkbox = isset($_POST['overlays_custom2-layer']) ? '1' : '0';
+		$overlays3_checkbox = isset($_POST['overlays_custom3-layer']) ? '1' : '0';
+		$overlays4_checkbox = isset($_POST['overlays_custom4-layer']) ? '1' : '0';
+		$result = $wpdb->prepare( "UPDATE $table_name_layers SET overlays_custom = %s, overlays_custom2 = %s, overlays_custom3 = %s, overlays_custom4 = %s", $overlays_checkbox, $overlays2_checkbox, $overlays3_checkbox, $overlays4_checkbox );
+		$wpdb->query( $result );
+		$wpdb->query( "OPTIMIZE TABLE $table_name_layers" );
+		echo '<p><div class="updated" style="padding:10px;">' . __('The overlays status for all layers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+  }
+  elseif ($action == 'wms-layer') {
+		$wms_checkbox = isset($_POST['wms-layer']) ? '1' : '0';
+		$wms2_checkbox = isset($_POST['wms2-layer']) ? '1' : '0';
+		$wms3_checkbox = isset($_POST['wms3-layer']) ? '1' : '0';
+		$wms4_checkbox = isset($_POST['wms4-layer']) ? '1' : '0';
+		$wms5_checkbox = isset($_POST['wms5-layer']) ? '1' : '0';
+		$wms6_checkbox = isset($_POST['wms6-layer']) ? '1' : '0';
+		$wms7_checkbox = isset($_POST['wms7-layer']) ? '1' : '0';
+		$wms8_checkbox = isset($_POST['wms8-layer']) ? '1' : '0';
+		$wms9_checkbox = isset($_POST['wms9-layer']) ? '1' : '0';
+		$wms10_checkbox = isset($_POST['wms10-layer']) ? '1' : '0';
+		$result = $wpdb->prepare( "UPDATE $table_name_layers SET wms = %d, wms2 = %d, wms3 = %d, wms4 = %d, wms5 = %d, wms6 = %d, wms7 = %d, wms8 = %d, wms9 = %d, wms10 = %d", $wms_checkbox, $wms2_checkbox, $wms3_checkbox, $wms4_checkbox, $wms5_checkbox, $wms6_checkbox, $wms7_checkbox, $wms8_checkbox, $wms9_checkbox, $wms10_checkbox );
+		$wpdb->query( $result );
+		echo '<p><div class="updated" style="padding:10px;">' . __('The WMS status for all layers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+  }  
+  elseif ($action == 'mapsize-layer') {
+		$result = $wpdb->prepare( "UPDATE $table_name_layers SET mapwidth = %d, mapwidthunit = %s, mapheight = %d", $_POST['mapwidth-layer'], $_POST['mapwidthunit-layer'], $_POST['mapheight-layer'] );
+		$wpdb->query( $result );
+		$wpdb->query( "OPTIMIZE TABLE $table_name_layers" );
+		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('The map size for all layers has been successfully set to width =  %1$s %2$s and height = %3$s px','lmm'), $_POST['mapwidth-layer'], $_POST['mapwidthunit-layer'], $_POST['mapheight-layer']) . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+  }
+  elseif ($action == 'zoom-layer') {
+		$result = $wpdb->prepare( "UPDATE $table_name_layers SET layerzoom = %s", $_POST['zoom-layer'] );
+		$wpdb->query( $result );
+		$wpdb->query( "OPTIMIZE TABLE $table_name_layers" );
+		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('Zoom level for all layers has been successfully set to %1$s','lmm'), $_POST['zoom-layer']) . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+  }
+  elseif ($action == 'controlbox-layer') {
+		$result = $wpdb->prepare( "UPDATE $table_name_layers SET controlbox = %d", $_POST['controlbox-layer'] );
+		$wpdb->query( $result );
+		$wpdb->query( "OPTIMIZE TABLE $table_name_layers" );
+		echo '<p><div class="updated" style="padding:10px;">' . __('Controlbox status for all layers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+  }
+  elseif ($action == 'panel-layer') {
+		$result = $wpdb->prepare( "UPDATE $table_name_layers SET panel = %d", $_POST['panel-layer'] );
+		$wpdb->query( $result );
+		$wpdb->query( "OPTIMIZE TABLE $table_name_layers" );
+		echo '<p><div class="updated" style="padding:10px;">' . __('Panel status for all layers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+  }
+  elseif ($action == 'listmarkers-layer') {
+		$result = $wpdb->prepare( "UPDATE $table_name_layers SET listmarkers = %d", $_POST['listmarkers-layer'] );
+		$wpdb->query( $result );
+		$wpdb->query( "OPTIMIZE TABLE $table_name_layers" );
+		echo '<p><div class="updated" style="padding:10px;">' . __('The list marker-status for all layers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+  }
 } else {
 $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE id>0', ARRAY_A);
 ?>
@@ -187,7 +248,7 @@ $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE 
 <table class="widefat fixed" style="width:auto;">
 	<tr style="background-color:#efefef;">
 		<?php 
-		$settings_all_markers = sprintf( esc_attr__('Change settings for all %1$s existing markers','lmm'), $markercount_all);
+		$settings_all_markers = sprintf( esc_attr__('Change settings for all %1$s existing marker maps','lmm'), $markercount_all);
 		?>
 		<td colspan="3"><strong><?php echo $settings_all_markers ?></strong></td>
 	</tr>
@@ -431,6 +492,168 @@ $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE 
 		<td style="vertical-align:middle;">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="popuptext-submit" value="<?php _e('change popup text for all markers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the popup text for all markers? (cannot be undone)','lmm') ?>')" />
 		</form>		
+		</td>
+	</tr>	
+</table>
+<br/><br/>
+<?php $nonce= wp_create_nonce('tool-nonce'); ?>
+<table class="widefat fixed" style="width:auto;">
+	<tr style="background-color:#efefef;">
+		<?php 
+		$settings_all_layers = sprintf( esc_attr__('Change settings for all %1$s existing layer maps','lmm'), $layercount_all);
+		?>
+		<td colspan="3"><strong><?php echo $settings_all_layers ?></strong></td>
+	</tr>
+	<tr>
+		<td>
+		<form method="post">
+		<input type="hidden" name="action" value="basemap-layer" />
+		<?php wp_nonce_field('tool-nonce'); ?>
+		<strong><?php _e('Basemap','lmm') ?></strong>
+		</td>
+		<td>
+		<input type="radio" name="basemap-layer" value="osm_mapnik" checked /> <?php echo $lmm_options['default_basemap_name_osm_mapnik']; ?><br />
+		<input type="radio" name="basemap-layer" value="osm_osmarender" /> <?php echo $lmm_options['default_basemap_name_osm_osmarender']; ?><br />
+		<input type="radio" name="basemap-layer" value="mapquest_osm" /> <?php echo $lmm_options['default_basemap_name_mapquest_osm']; ?><br />
+		<input type="radio" name="basemap-layer" value="mapquest_aerial" /> <?php echo $lmm_options['default_basemap_name_mapquest_aerial']; ?><br />
+		<input type="radio" name="basemap-layer" value="ogdwien_basemap" /> <?php echo $lmm_options['default_basemap_name_ogdwien_basemap']; ?><br />
+		<input type="radio" name="basemap-layer" value="ogdwien_satellite" /> <?php echo $lmm_options['default_basemap_name_ogdwien_satellite']; ?><br />
+		<input type="radio" name="basemap-layer" value="custom_basemap" /> <?php echo $lmm_options['custom_basemap_name']; ?><br />
+		<input type="radio" name="basemap-layer" value="custom_basemap2" /> <?php echo $lmm_options['custom_basemap2_name']; ?><br />
+		<input type="radio" name="basemap-layer" value="custom_basemap3" /> <?php echo $lmm_options['custom_basemap3_name']; ?>
+		</td>
+		<td style="vertical-align:middle;">
+		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="basemap-layer-submit" value="<?php _e('change basemap for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the basemap for all layers? (cannot be undone)','lmm') ?>')" />
+		</form>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<form method="post">
+		<input type="hidden" name="action" value="overlays-layer" />
+		<?php wp_nonce_field('tool-nonce'); ?>
+		<strong><?php _e('Checked overlays in control box','lmm') ?></strong>
+		</td>
+		<td>
+		<input type="checkbox" name="overlays_custom-layer" /> <?php echo $lmm_options['overlays_custom_name']; ?><br />
+		<input type="checkbox" name="overlays_custom2-layer" /> <?php echo $lmm_options['overlays_custom2_name']; ?><br />
+		<input type="checkbox" name="overlays_custom3-layer" /> <?php echo $lmm_options['overlays_custom3_name']; ?><br />
+		<input type="checkbox" name="overlays_custom4-layer" /> <?php echo $lmm_options['overlays_custom4_name']; ?>
+		</td>
+		<td style="vertical-align:middle;">
+		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="overlays-layer-submit" value="<?php _e('change overlay status for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the overlay status for all layers? (cannot be undone)','lmm') ?>')" />
+		</form>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<form method="post">
+		<input type="hidden" name="action" value="wms-layer" />
+		<?php wp_nonce_field('tool-nonce'); ?>
+		<strong><?php _e('Active WMS layers','lmm') ?></strong>
+		</td>
+		<td>
+		<input type="checkbox" name="wms-layer" /> <?php echo $lmm_options['wms_wms_name']; ?><br />
+		<input type="checkbox" name="wms2-layer" /> <?php echo $lmm_options['wms_wms2_name']; ?><br />
+		<input type="checkbox" name="wms3-layer" /> <?php echo $lmm_options['wms_wms3_name']; ?><br />
+		<input type="checkbox" name="wms4-layer" /> <?php echo $lmm_options['wms_wms4_name']; ?><br />
+		<input type="checkbox" name="wms5-layer" /> <?php echo $lmm_options['wms_wms5_name']; ?><br />
+		<input type="checkbox" name="wms6-layer" /> <?php echo $lmm_options['wms_wms6_name']; ?><br />
+		<input type="checkbox" name="wms7-layer" /> <?php echo $lmm_options['wms_wms7_name']; ?><br />
+		<input type="checkbox" name="wms8-layer" /> <?php echo $lmm_options['wms_wms8_name']; ?><br />
+		<input type="checkbox" name="wms9-layer" /> <?php echo $lmm_options['wms_wms9_name']; ?><br />
+		<input type="checkbox" name="wms10-layer" /> <?php echo $lmm_options['wms_wms10_name']; ?><br />
+		</td>
+		<td style="vertical-align:middle;">
+		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="wms-layer-submit" value="<?php _e('change active WMS layers for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change active WMS layers for all layers? (cannot be undone)','lmm') ?>')" />
+		</form>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<form method="post">
+		<input type="hidden" name="action" value="mapsize-layer" />
+		<?php wp_nonce_field('tool-nonce'); ?>
+		<strong><?php _e('Map size','lmm') ?></strong>
+		</td>
+		<td style="vertical-align:middle;">
+		<?php _e('Width','lmm') ?>:
+		<input size="2" maxlength="4" type="text" id="mapwidth-layer" name="mapwidth-layer" value="<?php echo intval($lmm_options[ 'defaults_layer_mapwidth' ]) ?>" />
+		<input type="radio" name="mapwidthunit-layer" value="px" checked />
+		px&nbsp;&nbsp;&nbsp;
+		<input type="radio" name="mapwidthunit-layer" value="%" />%<br/>
+		<?php _e('Height','lmm') ?>:
+		<input size="2" maxlength="4" type="text" id="mapheight-layer" name="mapheight-layer" value="<?php echo intval($lmm_options[ 'defaults_layer_mapheight' ]) ?>" />px
+		</td>
+		<td style="vertical-align:middle;">
+		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="mapsize-layer-submit" value="<?php _e('change mapsize for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the map size for all layers? (cannot be undone)','lmm') ?>')" />
+		</form>
+		</td>
+	</tr>
+	<tr>
+		<td style="vertical-align:middle;">
+		<form method="post">
+		<input type="hidden" name="action" value="zoom-layer" />
+		<?php wp_nonce_field('tool-nonce'); ?>
+		<strong><?php _e('Zoom','lmm') ?></strong>
+		</td>
+		<td style="vertical-align:middle;">
+		<input style="width: 30px;" type="text" id="zoom-layer" name="zoom-layer" value="<?php echo intval($lmm_options[ 'defaults_layer_zoom' ]) ?>" />
+		</td>
+		<td style="vertical-align:middle;">
+		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="zoom-layer-submit" value="<?php _e('change zoom for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the zoom level for all layers? (cannot be undone)','lmm') ?>')" />
+		</form>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<form method="post">
+		<input type="hidden" name="action" value="controlbox-layer" />
+		<?php wp_nonce_field('tool-nonce'); ?>
+		<strong><?php _e('Basemap/overlay controlbox on frontend','lmm') ?></strong>
+		</td>
+		<td style="vertical-align:middle;">
+		<input type="radio" name="controlbox-layer" value="0" /><?php _e('hidden','lmm') ?><br/>
+		<input type="radio" name="controlbox-layer" value="1" checked /><?php _e('collapsed (except on mobiles)','lmm') ?><br/>
+		<input type="radio" name="controlbox-layer" value="2" /><?php _e('expanded','lmm') ?><br/>
+		</td>
+		<td style="vertical-align:middle;">
+		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="controlbox-layer-submit" value="<?php _e('change controlbox status for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the controlbox status for all layers? (cannot be undone)','lmm') ?>')" />
+		</form>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<form method="post">
+		<input type="hidden" name="action" value="panel-layer" />
+		<?php wp_nonce_field('tool-nonce'); ?>
+		<strong><?php _e('Panel for displaying layer name and API URLs on top of map','lmm') ?></strong>
+		</td>
+		<td style="vertical-align:middle;">
+		<input type="radio" name="panel-layer" value="1" checked />
+		<?php _e('show','lmm') ?><br/>
+		<input type="radio" name="panel-layer" value="0" />
+		<?php _e('hide','lmm') ?></p></td>
+		<td style="vertical-align:middle;">
+		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="panel-layer-submit" value="<?php _e('change panel status for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the panel status for all layers? (cannot be undone)','lmm') ?>')" />
+		</form>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<form method="post">
+		<input type="hidden" name="action" value="listmarkers-layer" />
+		<?php wp_nonce_field('tool-nonce'); ?>
+		<strong><?php _e('Display a list of markers under the map','lmm') ?></strong>
+		</td>
+		<td style="vertical-align:middle;">
+		<input type="radio" name="listmarkers-layer" value="1" checked />
+		<?php _e('yes','lmm') ?><br/>
+		<input type="radio" name="listmarkers-layer" value="0" />
+		<?php _e('no','lmm') ?></p></td>
+		<td style="vertical-align:middle;">
+		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="listmarkers-layer-submit" value="<?php _e('change list marker-status for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the list marker-status for all layers? (cannot be undone)','lmm') ?>')" />
+		</form>
 		</td>
 	</tr>	
 </table>
