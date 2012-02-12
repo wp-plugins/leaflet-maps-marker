@@ -7,8 +7,8 @@ Author URI:        http://www.harm.co.at
 Author:            Robert Harm (with special support from Sindre Wimberger)
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
-Tested up to:      3.4-alpha-19720
-Stable tag:        1.5
+Tested up to:      3.4-alpha-19719
+Stable tag:        1.5.1
 
 Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 
@@ -163,6 +163,9 @@ This program is free software; you can redistribute it and/or modify it under th
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
 == Upgrade Notice ==
+= v1.5.1 =
+important bugfixes for multisite installations fixing layer map and API bugs
+
 = v1.5 =
 added option to display a list of markers below layer maps, add GeoRSS feed to head, bugfixes
 
@@ -197,6 +200,16 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v1.5.1 - 12.02.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v1.5.1)
+* BUGFIX: layer maps and API links did not work on multisite installations
+* BUGFIX: legend link for WMS layer did not work
+* BUGFIX: links in panel had a border with some templates
+* BUGFIX: removed double slashes from LEAFLET_PLUGIN_URL-links
+* BUGFIX: uninstall didnt remove marker-icon-directory on some installations
+* BUGFIX: admin pages for map/layer edit screens broken on WordPress 3.0 installations
+* OPTIMIZED: javascript variable definitions for wms layers and custom overlays get added to sourcecode only when they are active on the current map
+
 = v1.5 - 09.02.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v1.5)
 * NEW: added option to display a list of markers below layer maps (enabled for new layer maps, disabled for existing layer maps)
