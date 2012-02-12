@@ -23,7 +23,7 @@ if (is_multisite())
 		restore_current_blog();
 		/*remove map icons directory*/
 		$lmm_upload_dir = wp_upload_dir();
-		$icons_directory = $lmm_upload_dir['basedir'] . DIRECTORY_SEPARATOR . "leaflet-maps-marker-icons/";
+		$icons_directory = $lmm_upload_dir['basedir'] . DIRECTORY_SEPARATOR . "leaflet-maps-marker-icons" . DIRECTORY_SEPARATOR;
 		if (is_dir($icons_directory)) 
 		{
 		foreach(glob($icons_directory.'*.*') as $v){
@@ -44,7 +44,7 @@ else
 	$GLOBALS['wpdb']->query("OPTIMIZE TABLE `" .$GLOBALS['wpdb']->prefix."options`");
 	/*remove map icons directory*/
 	$lmm_upload_dir = wp_upload_dir();
-	$icons_directory = $lmm_upload_dir['basedir'] . DIRECTORY_SEPARATOR . "leaflet-maps-marker-icons/";
+	$icons_directory = $lmm_upload_dir['basedir'] . DIRECTORY_SEPARATOR . "leaflet-maps-marker-icons" . DIRECTORY_SEPARATOR;
 	if (is_dir($icons_directory)) 
 	{
 	foreach(glob($icons_directory.'*.*') as $v){
