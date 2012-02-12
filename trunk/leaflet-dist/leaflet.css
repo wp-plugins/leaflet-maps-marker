@@ -3,6 +3,10 @@
 	float:right;
 	margin-right:5px !important;	
 }
+.lmm-listmarkers-panel-icons a {
+	border:none;	
+}
+
 .lmm-listmarkers img {
 	max-width:440px !important;
 	height:auto;
@@ -27,6 +31,9 @@
 }
 .lmm-panel {
 	border:1px solid #ccc;
+}
+.lmm-panel a {
+	border:none;
 }
 .lmm-panel-text {
 	position:relative;
