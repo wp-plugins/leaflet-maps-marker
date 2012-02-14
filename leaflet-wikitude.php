@@ -71,13 +71,13 @@ if (isset($_GET['layer'])) {
 		  }
 		  $sql = 'SELECT m.id as mid, m.layer as mlayer, m.markername as mmarkername, m.icon as micon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
 		  $markers = $wpdb->get_results($sql, ARRAY_A);
+		  $ar_wikitude_provider_name_sanitized = strtolower(preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $lmm_options[ 'ar_wikitude_provider_name' ]));
 		  header('Cache-Control: no-cache, must-revalidate');
 		  header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		  header('Content-type: text/xml; charset=utf-8');
 		  echo '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
 		  echo '<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:ar="http://www.openarml.org/arml/1.0" xmlns:wikitude="http://www.openarml.org/wikitude/1.0">'.PHP_EOL;
 		  echo '<Document>'.PHP_EOL;
-		  $ar_wikitude_provider_name_sanitized = strtolower(preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $lmm_options[ 'ar_wikitude_provider_name' ]));
 		  echo '<ar:provider id="' . $ar_wikitude_provider_name_sanitized . '">'.PHP_EOL;
 		  if (($layer == '*' or $layer == 'all')  or (intval($clayer) > 0) )
 		  { 
@@ -102,7 +102,7 @@ if (isset($_GET['layer'])) {
 				}
 			
 			  echo '<Placemark id=\'' . $marker['mid'] . '\'>'.PHP_EOL;
-			  echo '<ar:provider><![CDATA[' . $lmm_options[ 'ar_wikitude_provider_name' ] . ']]></ar:provider>'.PHP_EOL;
+			  echo '<ar:provider><![CDATA[' . $ar_wikitude_provider_name_sanitized . ']]></ar:provider>'.PHP_EOL;
 			  echo '<name><![CDATA[' . stripslashes($marker['mmarkername']) . ']]></name>'.PHP_EOL;
 			  echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
 			  echo '<wikitude:info>'.PHP_EOL;
@@ -137,13 +137,13 @@ if (isset($_GET['layer'])) {
 		  }
 		  $sql = 'SELECT m.id as mid, m.layer as mlayer, m.markername as mmarkername, m.icon as micon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
 		  $markers = $wpdb->get_results($sql, ARRAY_A);
+		  $ar_wikitude_provider_name_sanitized = strtolower(preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $lmm_options[ 'ar_wikitude_provider_name' ]));
 		  header('Cache-Control: no-cache, must-revalidate');
 		  header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		  header('Content-type: text/xml; charset=utf-8');
 		  echo '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
 		  echo '<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:ar="http://www.openarml.org/arml/1.0" xmlns:wikitude="http://www.openarml.org/wikitude/1.0">'.PHP_EOL;
 		  echo '<Document>'.PHP_EOL;
-		  $ar_wikitude_provider_name_sanitized = strtolower(preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $lmm_options[ 'ar_wikitude_provider_name' ]));
 		  echo '<ar:provider id="' . $ar_wikitude_provider_name_sanitized . '">'.PHP_EOL;
 		  if (($layer == '*' or $layer == 'all')  or (intval($clayer) > 0) )
 		  { 
@@ -168,7 +168,7 @@ if (isset($_GET['layer'])) {
 				}
 			
 			  echo '<Placemark id=\'' . $marker['mid'] . '\'>'.PHP_EOL;
-			  echo '<ar:provider><![CDATA[' . $lmm_options[ 'ar_wikitude_provider_name' ] . ']]></ar:provider>'.PHP_EOL;
+			  echo '<ar:provider><![CDATA[' . $ar_wikitude_provider_name_sanitized . ']]></ar:provider>'.PHP_EOL;
 			  echo '<name><![CDATA[' . stripslashes($marker['mmarkername']) . ']]></name>'.PHP_EOL;
 			  echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
 			  echo '<wikitude:info>'.PHP_EOL;
@@ -219,13 +219,14 @@ elseif (isset($_GET['marker'])) {
 		  //info: added left outer join to also show markers without a layer
 		  $sql = 'SELECT m.icon as micon, m.popuptext as mpopuptext, m.id as mid, m.markername as mmarkername, m.lat as mlat, m.lon as mlon FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
 		  $markers = $wpdb->get_results($sql, ARRAY_A);
+		  $ar_wikitude_provider_name_sanitized = strtolower(preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $lmm_options[ 'ar_wikitude_provider_name' ]));
 		  header('Cache-Control: no-cache, must-revalidate');
 		  header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		  header('Content-type: text/xml; charset=utf-8');
 		  echo '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
 		  echo '<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:ar="http://www.openarml.org/arml/1.0" xmlns:wikitude="http://www.openarml.org/wikitude/1.0" xmlns:wikitudeInternal="http://www.openarml.org/wikitudeInternal/1.0">'.PHP_EOL;
 		  echo '<Document>'.PHP_EOL;
-		  echo '<ar:provider id="' . $lmm_options[ 'ar_wikitude_provider_name' ] . '">'.PHP_EOL;
+		  echo '<ar:provider id="' . $ar_wikitude_provider_name_sanitized . '">'.PHP_EOL;
 		  foreach ($markers as $marker) {
 		  echo '<ar:name><![CDATA[' . $marker[ 'mmarkername' ] . ']]></ar:name>'.PHP_EOL;
 		  }
@@ -245,7 +246,7 @@ elseif (isset($_GET['marker'])) {
 				}
 			
 			  echo '<Placemark id=\'' . $marker['mid'] . '\'>'.PHP_EOL;
-			  echo '<ar:provider><![CDATA[' . $lmm_options[ 'ar_wikitude_provider_name' ] . ']]></ar:provider>'.PHP_EOL;
+			  echo '<ar:provider><![CDATA[' . $ar_wikitude_provider_name_sanitized . ']]></ar:provider>'.PHP_EOL;
 			  echo '<name><![CDATA[' . stripslashes($marker['mmarkername']) . ']]></name>'.PHP_EOL;
 			  echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
 			  echo '<wikitude:info>'.PHP_EOL;
@@ -288,13 +289,14 @@ elseif (isset($_GET['marker'])) {
 		  //info: added left outer join to also show markers without a layer
 		  $sql = 'SELECT m.icon as micon, m.popuptext as mpopuptext, m.id as mid, m.markername as mmarkername, m.lat as mlat, m.lon as mlon FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
 		  $markers = $wpdb->get_results($sql, ARRAY_A);
+		  $ar_wikitude_provider_name_sanitized = strtolower(preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $lmm_options[ 'ar_wikitude_provider_name' ]));
 		  header('Cache-Control: no-cache, must-revalidate');
 		  header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		  header('Content-type: text/xml; charset=utf-8');
 		  echo '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
 		  echo '<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:ar="http://www.openarml.org/arml/1.0" xmlns:wikitude="http://www.openarml.org/wikitude/1.0" xmlns:wikitudeInternal="http://www.openarml.org/wikitudeInternal/1.0">'.PHP_EOL;
 		  echo '<Document>'.PHP_EOL;
-		  echo '<ar:provider id="' . $lmm_options[ 'ar_wikitude_provider_name' ] . '">'.PHP_EOL;
+		  echo '<ar:provider id="' . $ar_wikitude_provider_name_sanitized . '">'.PHP_EOL;
 		  foreach ($markers as $marker) {
 		  echo '<ar:name><![CDATA[' . $marker[ 'mmarkername' ] . ']]></ar:name>'.PHP_EOL;
 		  }
@@ -314,7 +316,7 @@ elseif (isset($_GET['marker'])) {
 				}
 			
 			  echo '<Placemark id=\'' . $marker['mid'] . '\'>'.PHP_EOL;
-			  echo '<ar:provider><![CDATA[' . $lmm_options[ 'ar_wikitude_provider_name' ] . ']]></ar:provider>'.PHP_EOL;
+			  echo '<ar:provider><![CDATA[' . $ar_wikitude_provider_name_sanitized . ']]></ar:provider>'.PHP_EOL;
 			  echo '<name><![CDATA[' . stripslashes($marker['mmarkername']) . ']]></name>'.PHP_EOL;
 			  echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
 			  echo '<wikitude:info>'.PHP_EOL;
