@@ -192,9 +192,13 @@ class Leafletmapsmarker_options {
 			<li>' . __('Names for default basemaps','lmm') . '</li>
 			<li>' . __('Available basemaps in control box','lmm') . '</li>
 			<li>' . __('OGD Vienna Selector','lmm') . '</li>
+			<li>' . __('Cloudmade 1 settings','lmm') . '</li>
+			<li>' . __('Cloudmade 2 settings','lmm') . '</li>
+			<li>' . __('Cloudmade 3 settings','lmm') . '</li>
 			<li>' . __('Custom basemap 1 settings','lmm') . '</li>
 			<li>' . __('Custom basemap 2 settings','lmm') . '</li>
 			<li>' . __('Custom basemap 3 settings','lmm') . '</li></ul></span>';
+
 	}
 	/**
 	 * Listing for overlays section
@@ -400,6 +404,9 @@ class Leafletmapsmarker_options {
 				'mapquest_aerial' => __('MapQuest (Aerial, max zoom 12 globally, 12+ in the United States)','lmm'),
 				'ogdwien_basemap' => __('OGD Vienna basemap (max zoom 19)','lmm'),
 				'ogdwien_satellite' => __('OGD Vienna satellite (max zoom 19)','lmm'),
+				'cloudmade' => 'Cloudmade',
+				'cloudmade2' => 'Cloudmade 2',
+				'cloudmade3' => 'Cloudmade 3',
 				'custom_basemap' => __('Custom basemap','lmm'),
 				'custom_basemap2' => __('Custom basemap 2','lmm'),
 				'custom_basemap3' => __('Custom basemap 3','lmm')
@@ -471,6 +478,55 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'basemaps'
 		);
+		$this->settings['cloudmade_name'] = array(
+			'version' => '1.6',
+			'title'   => 'Cloudmade',
+			'desc'    => '',
+			'std'     => 'Cloudmade',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);		
+		$this->settings['cloudmade2_name'] = array(
+			'version' => '1.6',
+			'title'   => 'Cloudmade 2',
+			'desc'    => '',
+			'std'     => 'Cloudmade 2',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);		
+		$this->settings['cloudmade3_name'] = array(
+			'version' => '1.6',
+			'title'   => 'Cloudmade 3',
+			'desc'    => '',
+			'std'     => 'Cloudmade 3',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);		
+		$this->settings['custom_basemap_name'] = array(
+			'version' => '1.0',
+			'title'   => __( 'Custom Basemap', 'lmm' ),
+			'desc'    => '',
+			'std'     => 'Custom1',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);		
+		$this->settings['custom_basemap2_name'] = array(
+			'version' => '1.0',
+			'title'   => __( 'Custom Basemap 2', 'lmm' ),
+			'desc'    => '',
+			'std'     => 'Custom2',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);		
+		$this->settings['custom_basemap3_name'] = array(
+			'version' => '1.0',
+			'title'   => __( 'Custom Basemap 3', 'lmm' ),
+			'desc'    => '',
+			'std'     => 'Custom3',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);		
+		
 		/*
 		* Available basemaps in control box
 		*/
@@ -538,6 +594,30 @@ class Leafletmapsmarker_options {
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
+		$this->settings['controlbox_cloudmade'] = array(
+			'version' => '1.6',
+			'section' => 'basemaps',
+			'title'   => '',
+			'desc'    => 'Cloudmade',
+			'type'    => 'checkbox',
+			'std'     => 0 
+		);	
+		$this->settings['controlbox_cloudmade2'] = array(
+			'version' => '1.6',
+			'section' => 'basemaps',
+			'title'   => '',
+			'desc'    => 'Cloudmade 2',
+			'type'    => 'checkbox',
+			'std'     => 0 
+		);	
+		$this->settings['controlbox_cloudmade3'] = array(
+			'version' => '1.6',
+			'section' => 'basemaps',
+			'title'   => '',
+			'desc'    => 'Cloudmade 3',
+			'type'    => 'checkbox',
+			'std'     => 0 
+		);	
 		$this->settings['controlbox_custom_basemap'] = array(
 			'version' => '1.0',
 			'section' => 'basemaps',
@@ -602,6 +682,144 @@ class Leafletmapsmarker_options {
 			'std'     => 1 
 		);
 		/*
+		* Cloudmade settings
+		*/
+		$this->settings['cloudmade_heading'] = array(
+			'version' => '1.6',
+			'section' => 'basemaps',
+			'title'   => '', 
+			'desc'    => __( 'Cloudmade settings', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['cloudmade_helptext'] = array(
+			'version' => '1.6',
+			'section' => 'basemaps',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src='. LEAFLET_PLUGIN_URL .'/img/help-default-basemap-cloudmade.jpg />',
+			'type'    => 'helptext'
+		);
+		$this->settings['cloudmade_api_key'] = array(
+			'version' => '1.6',
+			'title'   => __( 'API key', 'lmm' ),
+			'desc'    => '',
+			'std'     => '',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);
+		$this->settings['cloudmade_styleid'] = array(
+			'version' => '1.6',
+			'title'   => 'styleID',
+			'desc'    => '',
+			'std'     => '',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);
+		$this->settings['cloudmade_double_resolution'] = array(
+			'version' => '1.6',
+			'section' => 'basemaps',
+			'title'   => __('Double resolution','lmm'),
+			'desc'    => __('This will improve map look for iPhone 4, Motorola Milestone, etc.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'enabled',
+			'choices' => array(
+				'enabled' => __('enabled','lmm'),
+				'disabled' => __('disabled','lmm')
+			)
+		);		
+		/*
+		* Cloudmade 2 settings
+		*/
+		$this->settings['cloudmade2_heading'] = array(
+			'version' => '1.6',
+			'section' => 'basemaps',
+			'title'   => '', 
+			'desc'    => __( 'Cloudmade 2 settings', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['cloudmade2_helptext'] = array(
+			'version' => '1.6',
+			'section' => 'basemaps',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src='. LEAFLET_PLUGIN_URL .'/img/help-default-basemap-cloudmade.jpg />',
+			'type'    => 'helptext'
+		);
+		$this->settings['cloudmade2_api_key'] = array(
+			'version' => '1.6',
+			'title'   => __( 'API key', 'lmm' ),
+			'desc'    => '',
+			'std'     => '',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);
+		$this->settings['cloudmade2_styleid'] = array(
+			'version' => '1.6',
+			'title'   => 'styleID',
+			'desc'    => '',
+			'std'     => '',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);		
+		$this->settings['cloudmade2_double_resolution'] = array(
+			'version' => '1.6',
+			'section' => 'basemaps',
+			'title'   => __('Double resolution','lmm'),
+			'desc'    => __('This will improve map look for iPhone 4, Motorola Milestone, etc.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'enabled',
+			'choices' => array(
+				'enabled' => __('enabled','lmm'),
+				'disabled' => __('disabled','lmm')
+			)
+		);				
+		/*
+		* Cloudmade 3 settings
+		*/
+		$this->settings['cloudmade3_heading'] = array(
+			'version' => '1.6',
+			'section' => 'basemaps',
+			'title'   => '', 
+			'desc'    => __( 'Cloudmade 3 settings', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['cloudmade3_helptext'] = array(
+			'version' => '1.6',
+			'section' => 'basemaps',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src='. LEAFLET_PLUGIN_URL .'/img/help-default-basemap-cloudmade.jpg />',
+			'type'    => 'helptext'
+		);
+		$this->settings['cloudmade3_api_key'] = array(
+			'version' => '1.6',
+			'title'   => __( 'API key', 'lmm' ),
+			'desc'    => '',
+			'std'     => '',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);
+		$this->settings['cloudmade3_styleid'] = array(
+			'version' => '1.6',
+			'title'   => 'styleID',
+			'desc'    => '',
+			'std'     => '',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);		
+		$this->settings['cloudmade3_double_resolution'] = array(
+			'version' => '1.6',
+			'section' => 'basemaps',
+			'title'   => __('Double resolution','lmm'),
+			'desc'    => __('This will improve map look for iPhone 4, Motorola Milestone, etc.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'enabled',
+			'choices' => array(
+				'enabled' => __('enabled','lmm'),
+				'disabled' => __('disabled','lmm')
+			)
+		);				
+		/*
 		* Custom basemap 1 settings
 		*/
 		$this->settings['custom_basemap_heading'] = array(
@@ -616,18 +834,9 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 1):<br/><br/><img src='. LEAFLET_PLUGIN_URL .'/img/help-default-basemap-custom-basemap1.jpg />',
+			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 1):<br/><br/><img src='. LEAFLET_PLUGIN_URL .'/img/help-default-basemap-custom-basemaps.jpg />',
 			'type'    => 'helptext'
 		);
-		$this->settings['custom_basemap_name'] = array(
-			'version' => '1.0',
-			'title'   => __( 'Name', 'lmm' ),
-			'desc'   => __( 'Will be displayed in controlbox if selected', 'lmm' ),
-			'std'     => 'Custom1',
-			'type'    => 'text',
-			'section' => 'basemaps'
-		);		
-		
 		$this->settings['custom_basemap_tileurl'] = array(
 			'version' => '1.0',
 			'title'   => __( 'Tiles URL', 'lmm' ),
@@ -695,18 +904,9 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 2):<br/><br/><img src='. LEAFLET_PLUGIN_URL .'/img/help-default-basemap-custom-basemap2.jpg />',
+			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 2):<br/><br/><img src='. LEAFLET_PLUGIN_URL .'/img/help-default-basemap-custom-basemaps.jpg />',
 			'type'    => 'helptext'
 		);
-		$this->settings['custom_basemap2_name'] = array(
-			'version' => '1.0',
-			'title'   => __( 'Name', 'lmm' ),
-			'desc'   => __( 'Will be displayed in controlbox if selected', 'lmm' ),
-			'std'     => 'Custom2',
-			'type'    => 'text',
-			'section' => 'basemaps'
-		);		
-		
 		$this->settings['custom_basemap2_tileurl'] = array(
 			'version' => '1.0',
 			'title'   => __( 'Tiles URL', 'lmm' ),
@@ -774,18 +974,9 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 3):<br/><br/><img src='. LEAFLET_PLUGIN_URL .'/img/help-default-basemap-custom-basemap3.jpg />',
+			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 3):<br/><br/><img src='. LEAFLET_PLUGIN_URL .'/img/help-default-basemap-custom-basemaps.jpg />',
 			'type'    => 'helptext'
 		);
-		$this->settings['custom_basemap3_name'] = array(
-			'version' => '1.0',
-			'title'   => __( 'Name', 'lmm' ),
-			'desc'   => __( 'Will be displayed in controlbox if selected', 'lmm' ),
-			'std'     => 'Custom3',
-			'type'    => 'text',
-			'section' => 'basemaps'
-		);		
-		
 		$this->settings['custom_basemap3_tileurl'] = array(
 			'version' => '1.0',
 			'title'   => __( 'Tiles URL', 'lmm' ),
@@ -3302,14 +3493,14 @@ class Leafletmapsmarker_options {
 		* ArcGIS Server settings
 		*/
 		/*$this->settings['vl_ags_heading'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'section' => 'vl',
 			'title'   => '', 
 			'desc'    => __( 'ArcGIS Server settings', 'lmm'),
 			'type'    => 'heading'
 		);
 		$this->settings['vl_ags_helptext'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'section' => 'vl',
 			'std'     => '', 
 			'title'   => '',
@@ -3317,7 +3508,7 @@ class Leafletmapsmarker_options {
 			'type'    => 'helptext'
 		);
 		$this->settings['vl_ags_name'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'title'   => __('Name','lmm'),
 			'desc'    => '',
 			'std'     => 'Denver Light Rail Lines',
@@ -3325,7 +3516,7 @@ class Leafletmapsmarker_options {
 			'section' => 'vl'
 		);		
 		$this->settings['vl_ags_url'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'title'   => 'url',
 			'desc'    => __( 'Required - A url for a specific layer in an ArcGIS Server service.', 'lmm' ),
 			'std'     => 'http://maps.rtd-denver.com/ArcGIS/rest/services/SystemMapLiteGoogleVectors/MapServer/1',
@@ -3333,7 +3524,7 @@ class Leafletmapsmarker_options {
 			'section' => 'vl'
 		);			
 		$this->settings['vl_ags_scalerange'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'title'   => 'scaleRange',
 			'desc'    => __( 'An array with two number values that represent the minimum and maximum scales the layer is visible. For example: [13, 20]', 'lmm' ),
 			'std'     => '[13, 20]',
@@ -3341,7 +3532,7 @@ class Leafletmapsmarker_options {
 			'section' => 'vl'
 		);				
 		$this->settings['vl_ags_dynamic'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'section' => 'vl',
 			'title'   => 'dynamic',
 			'desc'    => __('Whether or not the layer contains dynamic data. If true, feature geometry and attributes will be checked for changes after extent change and/or after a defined interval. For details check the <a href="http://geojason.info/leaflet-vector-layers/documentation/#docs-dynamic" target="_blank">dynamic data documentation</a>.','lmm'),
@@ -3353,7 +3544,7 @@ class Leafletmapsmarker_options {
 			)
 		);	
 		$this->settings['vl_ags_autoupdate'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'section' => 'vl',
 			'title'   => 'autoUpdate',
 			'desc'    => __('Whether or not to auto-update a dynamic layer. If true, feature geometry and attributes will be updated at an interval set by the autoUpdateInterval option. For details check the <a href="http://geojason.info/leaflet-vector-layers/documentation/#docs-dynamic" target="_blank">dynamic data documentation</a>.','lmm'),
@@ -3365,7 +3556,7 @@ class Leafletmapsmarker_options {
 			)
 		);	
 		$this->settings['vl_ags_autoupdateinterval'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'title'   => 'autoUpdateInterval',
 			'desc'    => __( 'The interval (in milliseconds) between checks for updated feature geometry and attributes when the autoUpdate option is set to true. For details check the <a href="http://geojason.info/leaflet-vector-layers/documentation/#docs-dynamic" target="_blank">dynamic data documentation</a>.', 'lmm' ),
 			'std'     => '',
@@ -3373,7 +3564,7 @@ class Leafletmapsmarker_options {
 			'section' => 'vl'
 		);			
 		$this->settings['vl_ags_popuptemplate'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'title'   => 'popupTemplate',
 			'desc'    => __( 'A template for creating the content of a <a href="http://leaflet.cloudmade.com/reference.html#popup" target="_blank">Leaflet Popup</a> when a feature is clicked. For details check the <a href="http://geojason.info/leaflet-vector-layers/documentation/#docs-popup" target="_blank">Popup Template documentation</a>.', 'lmm' ),
 			'std'     => '<div class=&quot;iw-content&quot;><h3>Light Rail Line</h3><table class=&quot;condensed-table&quot;><tr><th>Route</th><td>{ROUTE}</td></tr></table></div>',
@@ -3381,7 +3572,7 @@ class Leafletmapsmarker_options {
 			'section' => 'vl'
 		);		
 		$this->settings['vl_ags_singlepopup'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'section' => 'vl',
 			'title'   => 'singlePopup',
 			'desc'    => __('Whether or not to show a single Popup for a layer when features are clicked. This keeps the map from getting cluttered when multiple features are clicked.','lmm'),
@@ -3393,7 +3584,7 @@ class Leafletmapsmarker_options {
 			)
 		);			
 		$this->settings['vl_ags_popupoptions'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'title'   => 'popupOptions',
 			'desc'    => __( 'Controls the width of and the presence of a close button for the Popup and whether the map should be panned when the Popup is opened.', 'lmm' ),
 			'std'     => '',
@@ -3401,7 +3592,7 @@ class Leafletmapsmarker_options {
 			'section' => 'vl'
 		);
 		$this->settings['vl_ags_symbology'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'title'   => 'symbology',
 			'desc'    => __( 'The symbology options for the layer. Features can be rendered with a single symbology or can also be symbolized based on an attribute using unique values or a value range. For details check the <a href="http://geojason.info/leaflet-vector-layers/documentation/#docs-symbology" target="_blank">symbology options documentation</a>.', 'lmm' ),
 			'std'     => '{ type: "single", vectorOptions: { weight: 4, opacity: 0.8, color: "#004a00" } }',
@@ -3409,7 +3600,7 @@ class Leafletmapsmarker_options {
 			'section' => 'vl'
 		);	
 		$this->settings['vl_ags_showall'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'section' => 'vl',
 			'title'   => 'showAll',
 			'desc'    => __('If true, all features will be fetched and shown once, not after a map extent change. This is helpful for layers with only a handful of features.','lmm'),
@@ -3421,7 +3612,7 @@ class Leafletmapsmarker_options {
 			)
 		);	
 		$this->settings['vl_ags_fields'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'title'   => 'fields',
 			'desc'    => __( 'A list of comma separated fields to be returned with the features. For example "OBJECTID,OWNER_NAME" returns two fields and "*" returns all fields.', 'lmm' ),
 			'std'     => '*',
@@ -3429,7 +3620,7 @@ class Leafletmapsmarker_options {
 			'section' => 'vl'
 		);	
 		$this->settings['vl_ags_uniqueFields'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'title'   => 'uniqueFields',
 			'desc'    => __( 'A field in the returned data that can be considered unique. This is not required but is very helpful in determining which features are already on the map when the map extent changes.', 'lmm' ),
 			'std'     => '',
@@ -3441,14 +3632,14 @@ class Leafletmapsmarker_options {
 		* Arc2Earth Sync instance settings
 		*/
 		/*$this->settings['vl_a2e_heading'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'section' => 'vl',
 			'title'   => '', 
 			'desc'    => __( 'Arc2Earth Sync instance settings', 'lmm'),
 			'type'    => 'heading'
 		);
 		$this->settings['vl_a2e_helptext'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'section' => 'vl',
 			'std'     => '', 
 			'title'   => '',
@@ -3460,14 +3651,14 @@ class Leafletmapsmarker_options {
 		* GeoIQ dataset settings
 		*/
 		/*$this->settings['vl_geoiq_heading'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'section' => 'vl',
 			'title'   => '', 
 			'desc'    => __( 'GeoIQ dataset settings', 'lmm'),
 			'type'    => 'heading'
 		);
 		$this->settings['vl_geoiq_helptext'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'section' => 'vl',
 			'std'     => '', 
 			'title'   => '',
@@ -3479,14 +3670,14 @@ class Leafletmapsmarker_options {
 		* CartoDB table settings
 		*/
 		/*$this->settings['vl_cartodb_heading'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'section' => 'vl',
 			'title'   => '', 
 			'desc'    => __( 'CartoDB table settings', 'lmm'),
 			'type'    => 'heading'
 		);
 		$this->settings['vl_cartodb_helptext'] = array(
-			'version' => '1.6',
+			'version' => '1.7',
 			'section' => 'vl',
 			'std'     => '', 
 			'title'   => '',
@@ -3829,6 +4020,9 @@ class Leafletmapsmarker_options {
 				'mapquest_aerial' => __('MapQuest (Aerial, max zoom 12 globally, 12+ in the United States)','lmm'),
 				'ogdwien_basemap' => __('OGD Vienna basemap (max zoom 19)','lmm'),
 				'ogdwien_satellite' => __('OGD Vienna satellite (max zoom 19)','lmm'),
+				'cloudmade' => 'Cloudmade',
+				'cloudmade2' => 'Cloudmade 2',
+				'cloudmade3' => 'Cloudmade 3',
 				'custom_basemap' => __('Custom basemap','lmm'),
 				'custom_basemap2' => __('Custom basemap 2','lmm'),
 				'custom_basemap3' => __('Custom basemap 3','lmm')
