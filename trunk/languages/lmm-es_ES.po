@@ -5,24 +5,22 @@ msgstr ""
 "POT-Creation-Date: 2012-02-22 21:47+0100\n"
 "PO-Revision-Date: 2012-02-22 21:48+0100\n"
 "Last-Translator: Robert Harm <info@mapsmarker.com>\n"
-"Language-Team:  <info@mapsmarker.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: _e;__;esc_attrib_e\n"
+"X-Poedit-KeywordsList: _e;__;esc_attr_e;esc_attr__\n"
 "X-Poedit-Basepath: .\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-Country: AUSTRIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../class-leaflet-options.php:47
 msgid "Default Field"
-msgstr "既定の項目"
+msgstr "Campo por defecto"
 
 #: ../class-leaflet-options.php:48
 msgid "This is a default description."
-msgstr "これは既定の説明です。"
+msgstr "Ésta es una descripción por defecto"
 
 #: ../class-leaflet-options.php:80
 #: ../leaflet-admin-header.php:8
@@ -33,289 +31,289 @@ msgstr "これは既定の説明です。"
 #: ../leaflet-marker.php:696
 #: ../leaflet-marker.php:700
 msgid "Settings"
-msgstr "設定"
+msgstr "Configuración"
 
 #: ../class-leaflet-options.php:84
 #, php-format
 msgid "You just successfully installed the \"Leaflet Maps Marker\" plugin. You can now optionally change the default settings below or <a href=\"%1$sadmin.php?page=leafletmapsmarker_marker\">add your first marker</a>.<br/>For tutorials and help, please check the <a href=\"%1$sadmin.php?page=leafletmapsmarker_help\">Help &amp; Credits page</a>!"
-msgstr "\"Leaflet Maps Marker\"プラグインのインストールが完了しました。これで以下の既定の設定を変更したり<a href=\"%1$sadmin.php?page=leafletmapsmarker_marker\">最初のマーカーを追加</a>したりすることができます。<br/>チュートリアルとヘルプは、<a href=\"%1$sadmin.php?page=leafletmapsmarker_help\">ヘルプHelp &amp; クレジット ページ</a>をチェックしてください！"
+msgstr "Instalaste correctamente el plugin \"Leaflet Maps Marker\". Ahora puedes cambiar la configuración por defecto a continuación si lo deseas o <a href=\"%1$sadmin.php?page=leafletmapsmarker_marker\">agregar tu primer marcador</a>.<br/>Para tutoriales y ayudas, por favor visita el sitio de <a href=\"%1$sadmin.php?page=leafletmapsmarker_help\">Ayuda y créditos</a>!"
 
 #: ../class-leaflet-options.php:88
 msgid "Warning: the custom map icon directory at <code>/wp-contents/uploads/leaflet-maps-marker-icons</code> could not be created due to file permission settings on your webserver. Leaflet Maps Marker will work as designed, but only with one map icon available.<br/>You can add the included map icons manually by following the steps at <a href=\"http://www.mapsmarker.com/incomplete-installation\" target=\"_blank\">http://www.mapsmarker.com/incomplete-installation</a>"
-msgstr "警告: <code>/wp-contents/uploads/leaflet-maps-marker-icons</code>のカスタムマップアイコンはあなたのウェブサーバのファイルパーミッション設定により作成できませんでした。Leaflet Maps Marker は仕様通りに動作しますが、マップ上ではひとつのアイコンだけしか利用できません。<br/>次の手順に従えば同梱するマップアイコンを追加することができます。<a href=\"http://www.mapsmarker.com/incomplete-installation\" target=\"_blank\">http://www.mapsmarker.com/incomplete-installation</a>"
+msgstr "Atención: El directorio personalizado de íconos  de <code>/wp-contents/uploads/leaflet-maps-marker-icons</code> no puede ser creado debido a la configuración de permisos de archivo de tu servidor web. Leaflet Maps Marker funcionará como se diseñó, pero sólo con los íconos predefinidos.<br/> Puedes incluir íconos manualmente siguiendo los pasos descritos en <a href=\"http://www.mapsmarker.com/incomplete-installation\" target=\"_blank\">http://www.mapsmarker.com/incomplete-installation</a>"
 
 #: ../class-leaflet-options.php:93
 msgid "Plugin options updated."
-msgstr "プラグインのオプションが更新されました。"
+msgstr "Las opciones del plugin se han actualizado."
 
 #: ../class-leaflet-options.php:107
 msgid "Save Changes"
-msgstr "変更を保存"
+msgstr "Guardar cambios"
 
 #: ../class-leaflet-options.php:178
 #: ../class-leaflet-options.php:369
 msgid "Default basemap for new markers/layers"
-msgstr "新しいマーカー/レイヤー用の既定のベースマップ"
+msgstr "Mapa por defecto para los nuevos marcadores/capas"
 
 #: ../class-leaflet-options.php:179
 #: ../class-leaflet-options.php:408
 msgid "Names for default basemaps"
-msgstr "既定ベースマップ用の名前"
+msgstr "Nombres para el mapa de base por defecto"
 
 #: ../class-leaflet-options.php:180
 #: ../class-leaflet-options.php:523
 msgid "Available basemaps in control box"
-msgstr "制御ボックスで使えるベースマップ"
+msgstr "Mapas de base disponibles en la caja de control"
 
 #: ../class-leaflet-options.php:181
 #: ../class-leaflet-options.php:638
 #: ../class-leaflet-options.php:652
 msgid "OGD Vienna Selector"
-msgstr "OGD Vienna セレクタ"
+msgstr "Selector OGD Viena"
 
 #: ../class-leaflet-options.php:182
 #, fuzzy
 msgid "Cloudmade 1 settings"
-msgstr "カスタムベースマップ1の設定"
+msgstr "Configuración del mapa de base 1"
 
 #: ../class-leaflet-options.php:183
 #: ../class-leaflet-options.php:723
 #, fuzzy
 msgid "Cloudmade 2 settings"
-msgstr "カスタムベースマップ2の設定"
+msgstr "Configuración del mapa de base 2"
 
 #: ../class-leaflet-options.php:184
 #: ../class-leaflet-options.php:769
 #, fuzzy
 msgid "Cloudmade 3 settings"
-msgstr "カスタムベースマップ3の設定"
+msgstr "Configuración del mapa de base 3"
 
 #: ../class-leaflet-options.php:185
 #: ../class-leaflet-options.php:815
 msgid "Custom basemap 1 settings"
-msgstr "カスタムベースマップ1の設定"
+msgstr "Configuración del mapa de base 1"
 
 #: ../class-leaflet-options.php:186
 #: ../class-leaflet-options.php:885
 msgid "Custom basemap 2 settings"
-msgstr "カスタムベースマップ2の設定"
+msgstr "Configuración del mapa de base 2"
 
 #: ../class-leaflet-options.php:187
 #: ../class-leaflet-options.php:955
 msgid "Custom basemap 3 settings"
-msgstr "カスタムベースマップ3の設定"
+msgstr "Configuración del mapa de base 3"
 
 #: ../class-leaflet-options.php:194
 #: ../class-leaflet-options.php:1033
 msgid "Available overlays for new markers/layers"
-msgstr "新しいマーカー/レイヤーで使えるオーバーレイ"
+msgstr "Superposiciones disponibles para nuevos marcadores/capas"
 
 #: ../class-leaflet-options.php:195
 #: ../class-leaflet-options.php:1086
 msgid "Custom overlay settings"
-msgstr "カスタムオーバーレイの設定"
+msgstr "Opciones para superposiciones personalizadas"
 
 #: ../class-leaflet-options.php:196
 #: ../class-leaflet-options.php:1165
 msgid "Custom overlay 2 settings"
-msgstr "カスタムオーバーレイ2の設定"
+msgstr "Opciones para superposiciones personalizadas 2"
 
 #: ../class-leaflet-options.php:197
 #: ../class-leaflet-options.php:1244
 msgid "Custom overlay 3 settings"
-msgstr "カスタムオーバーレイ3の設定"
+msgstr "Opciones para superposiciones personalizadas 3"
 
 #: ../class-leaflet-options.php:198
 #: ../class-leaflet-options.php:1322
 msgid "Custom overlay 4 settings"
-msgstr "カスタムオーバーレイ4の設定"
+msgstr "Opciones para superposiciones personalizadas 4"
 
 #: ../class-leaflet-options.php:205
 msgid "WMS stands for <a href=\"http://www.opengeospatial.org/standards/wms\" target=\"_blank\">Web Map Service</a> and is a standard protocol for serving georeferenced map images over the Internet that are generated by a map server using data from a GIS database.<br/>With Leaflet Maps Marker you can configure up to 10 WMS layers which can be enabled for each map. As default, 10 WMS layers from <a href=\"http://data.wien.gv.at\" target=\"_blank\">OGD Vienna</a> and from the <a href=\"http://www.eea.europa.eu/code/gis\" target=\"_blank\">European Environment Agency</a> have been predefined for you.<br/>A selection of further possible WMS layers can be found at <a href=\"http://www.mapsmarker.com/wms\" target=\"_blank\">http://www.mapsmarker.com/wms</a>"
-msgstr "WMS とは<a href=\"http://www.opengeospatial.org/standards/wms\" target=\"_blank\">Web Map Service</a>を表わし、GISデータベースからのデータを使うマップサーバにより生成されたインターネット上の地理参照マップ画像を提供する標準的なプロトコルです。<br/>Leaflet Maps Marker を使えば、各マップで有効化できる10までのWMSレイヤーを構成することができます。既定では、<a href=\"http://data.wien.gv.at\" target=\"_blank\">OGD Vienna</a> 及び<a href=\"http://www.eea.europa.eu/code/gis\" target=\"_blank\">European Environment Agency</a>からから10のWMSが予め定義されています。<br/>さらに選択できるWMSレイヤーは<a href=\"http://www.mapsmarker.com/wms\" target=\"_blank\">http://www.mapsmarker.com/wms</a>で見つけることができます。"
+msgstr "WMS stands para <a href=\"http://www.opengeospatial.org/standards/wms\" target=\"_blank\">Web Map Service</a>  y es un protocolo estándar para servir imágenes de mapas georeferenciados en internet que son generados por un servidor de mapas usando datos de una base de datos GIS.<br/>Con Leaflet Maps Marker puedes configurar hasta 10 WMS capas que pueden habilitarse para cada mapa. Por defecto, 10 WMS capas desde <a href=\"http://data.wien.gv.at\" target=\"_blank\">OGD Viena</a> y desde la <a href=\"http://www.eea.europa.eu/code/gis\" target=\"_blank\">European Environment Agency</a> Han sido predefinidas para tí.<br/>Una selección de posibles capas WMS puede ser encontrada en <a href=\"http://www.mapsmarker.com/wms\" target=\"_blank\">http://www.mapsmarker.com/wms</a>"
 
 #: ../class-leaflet-options.php:206
 #: ../class-leaflet-options.php:1409
 msgid "Available WMS layers for new markers/layers"
-msgstr "新しいマーカー/レイヤーで使えるWMSレイヤー"
+msgstr "Capas WMS disponibles para nuevos marcadores/capas"
 
 #: ../class-leaflet-options.php:207
 #: ../class-leaflet-options.php:1507
 msgid "WMS layer 1 settings"
-msgstr "WMSレイヤー1の設定"
+msgstr "Configuración de la capa WMS 1"
 
 #: ../class-leaflet-options.php:208
 #: ../class-leaflet-options.php:1705
 msgid "WMS layer 2 settings"
-msgstr "WMSレイヤー2の設定"
+msgstr "Configuración de la capa WMS 2"
 
 #: ../class-leaflet-options.php:209
 #: ../class-leaflet-options.php:1902
 msgid "WMS layer 3 settings"
-msgstr "WMSレイヤー3の設定"
+msgstr "Configuración de la capa WMS 3"
 
 #: ../class-leaflet-options.php:210
 #: ../class-leaflet-options.php:2099
 msgid "WMS layer 4 settings"
-msgstr "WMSレイヤー4の設定"
+msgstr "Configuración de la capa WMS 4"
 
 #: ../class-leaflet-options.php:211
 #: ../class-leaflet-options.php:2296
 msgid "WMS layer 5 settings"
-msgstr "WMSレイヤー5の設定"
+msgstr "Configuración de la capa WMS 5"
 
 #: ../class-leaflet-options.php:212
 #: ../class-leaflet-options.php:2493
 msgid "WMS layer 6 settings"
-msgstr "WMSレイヤー6の設定"
+msgstr "Configuración de la capa WMS 6"
 
 #: ../class-leaflet-options.php:213
 #: ../class-leaflet-options.php:2690
 msgid "WMS layer 7 settings"
-msgstr "WMSレイヤー7の設定"
+msgstr "Configuración de la capa WMS 7"
 
 #: ../class-leaflet-options.php:214
 #: ../class-leaflet-options.php:2887
 msgid "WMS layer 8 settings"
-msgstr "WMSレイヤー8の設定"
+msgstr "Configuración de la capa WMS 8"
 
 #: ../class-leaflet-options.php:215
 #: ../class-leaflet-options.php:3084
 msgid "WMS layer 9 settings"
-msgstr "WMSレイヤー9の設定"
+msgstr "Configuración de la capa WMS 9"
 
 #: ../class-leaflet-options.php:216
 #: ../class-leaflet-options.php:3281
 msgid "WMS layer 10 settings"
-msgstr "WMSレイヤー10の設定"
+msgstr "Configuración de la capa WMS 10"
 
 #: ../class-leaflet-options.php:234
 #: ../class-leaflet-options.php:3688
 msgid "Default values for new markers"
-msgstr "新しいマーカーの既定値"
+msgstr "Valores por defecto para nuevos marcadores"
 
 #: ../class-leaflet-options.php:235
 #: ../class-leaflet-options.php:3984
 msgid "Default values for markers added directly"
-msgstr "直接追加されたマーカーの既定値"
+msgstr "Valores por defecto para los marcadores agregados directamente"
 
 #: ../class-leaflet-options.php:242
 #: ../class-leaflet-options.php:4540
 #: ../class-leaflet-options.php:4554
 msgid "Google Places bounds"
-msgstr "Google Places 境界"
+msgstr "Límites de Google Places"
 
 #: ../class-leaflet-options.php:243
 #: ../class-leaflet-options.php:4607
 #: ../class-leaflet-options.php:4621
 msgid "Google Places search prefix"
-msgstr "Google Places 検索プレフィックス"
+msgstr "Prefijo de búsqueda de Google Places"
 
 #: ../class-leaflet-options.php:250
 #: ../class-leaflet-options.php:260
 #: ../class-leaflet-options.php:4655
 #: ../class-leaflet-options.php:5067
 msgid "General settings"
-msgstr "一般設定"
+msgstr "Opciones generales"
 
 #: ../class-leaflet-options.php:261
 #: ../class-leaflet-options.php:5175
 msgid "CRS (Coordinate Reference System)"
-msgstr "CRS (座標参照系)"
+msgstr "CRS (Sistema de Referencias de Coordenadas)"
 
 #: ../class-leaflet-options.php:262
 #: ../class-leaflet-options.php:5206
 msgid "Available columns for marker listing page"
-msgstr "マーカー一覧ページで使えるカラム"
+msgstr "Columnas disponibles para la página de marcadores"
 
 #: ../class-leaflet-options.php:263
 #: ../class-leaflet-options.php:5408
 msgid "Available columns for layer listing page"
-msgstr "レイヤー一覧ページで使えるカラム数"
+msgstr "Columnas disponibles para la página de capas"
 
 #: ../class-leaflet-options.php:376
 msgid "Please select the basemap which should be pre-selected as default for new markers and layers. Can be changed afterwards on each marker/layer."
-msgstr "新しいマーカーとレイヤー用に既定値として予め選んでおかなければならないベースマップを選択してください。各マーカー/レイヤー上で後から変更できます。"
+msgstr "Por favor seleccione el mapa de base que será preseleccionado como mapa por defecto para nuevos marcadores y capas. Podrá modificarlo luego en cada marcador/capa"
 
 #: ../class-leaflet-options.php:382
 #: ../class-leaflet-options.php:3998
 msgid "Default basemap"
-msgstr "既定のベースマップ"
+msgstr "Mapa de base por defecto"
 
 #: ../class-leaflet-options.php:387
 #: ../class-leaflet-options.php:4003
 msgid "OpenStreetMap (Mapnik, max zoom 18)"
-msgstr "OpenStreetMap (Mapnik, 最大ズーム 18)"
+msgstr "OpenStreetMap (Mapnik, max zoom 18)"
 
 #: ../class-leaflet-options.php:388
 #: ../class-leaflet-options.php:4004
 msgid "OpenStreetMap (Osmarender, max zoom 17)"
-msgstr "OpenStreetMap (Osmarender, 最大ズーム 17)"
+msgstr "OpenStreetMap (Osmarender, max zoom 17)"
 
 #: ../class-leaflet-options.php:389
 #: ../class-leaflet-options.php:4005
 msgid "MapQuest (OSM, max zoom 18)"
-msgstr "MapQuest (OSM, 最大ズーム 18)"
+msgstr "MapQuest (OSM, max zoom 18)"
 
 #: ../class-leaflet-options.php:390
 #: ../class-leaflet-options.php:4006
 msgid "MapQuest (Aerial, max zoom 12 globally, 12+ in the United States)"
-msgstr "MapQuest (衛星画像, 最大ズーム 12 全世界, 12+ 米国のみ)"
+msgstr "MapQuest (aérea, máximo zoom de 12 a nivel mundial, 12 + en los Estados Unidos)"
 
 #: ../class-leaflet-options.php:391
 #: ../class-leaflet-options.php:4007
 msgid "OGD Vienna basemap (max zoom 19)"
-msgstr "OGD Vienna ベースマップ (最大ズーム 19)"
+msgstr "OGD Mapa de base de Viena (max zoom 19)"
 
 #: ../class-leaflet-options.php:392
 #: ../class-leaflet-options.php:4008
 msgid "OGD Vienna satellite (max zoom 19)"
-msgstr "OGD Vienna 衛星画像 (最大ズーム 19)"
+msgstr "OGD Satélite de Viena (max zoom 19)"
 
 #: ../class-leaflet-options.php:396
 #: ../class-leaflet-options.php:611
 #: ../class-leaflet-options.php:4012
 msgid "Custom basemap"
-msgstr "カスタムベースマップ"
+msgstr "Mapa de base personalizado"
 
 #: ../class-leaflet-options.php:397
 #: ../class-leaflet-options.php:619
 #: ../class-leaflet-options.php:4013
 msgid "Custom basemap 2"
-msgstr "カスタムベースマップ2"
+msgstr "Mapa de base personalizado 2"
 
 #: ../class-leaflet-options.php:398
 #: ../class-leaflet-options.php:627
 #: ../class-leaflet-options.php:4014
 msgid "Custom basemap 3"
-msgstr "カスタムベースマップ3"
+msgstr "Mapa de base personalizado3"
 
 #: ../class-leaflet-options.php:416
 msgid "Optionally you can also change the name of the predefined basemaps in the controlbox."
-msgstr "オプションで制御ボックス内の予め定義されたベースマップの名前を変えることもできます。"
+msgstr "Opcionalmente puedes cambiar el nombre de los mapas de base de la caja de control."
 
 #: ../class-leaflet-options.php:493
 #, fuzzy
 msgid "Custom Basemap"
-msgstr "カスタムベースマップ"
+msgstr "Mapa de base personalizado"
 
 #: ../class-leaflet-options.php:501
 #, fuzzy
 msgid "Custom Basemap 2"
-msgstr "カスタムベースマップ2"
+msgstr "Mapa de base personalizado 2"
 
 #: ../class-leaflet-options.php:509
 #, fuzzy
 msgid "Custom Basemap 3"
-msgstr "カスタムベースマップ3"
+msgstr "Mapa de base personalizado3"
 
 #: ../class-leaflet-options.php:531
 msgid "Please select the basemaps which should be available in the control box."
-msgstr "制御ボックス内で使いたいベースマップを選んでください。"
+msgstr "Por favor selecciona el mapa de base que debe estar disponible en la caja de control"
 
 #: ../class-leaflet-options.php:537
 msgid "Basemaps available in control box"
-msgstr "制御ボックス内で使えるベースマップ"
+msgstr "Mapa de base disponible en la caja de control"
 
 #: ../class-leaflet-options.php:538
 msgid "OpenStreetMap (Mapnik)"
@@ -331,40 +329,40 @@ msgstr "MapQuest (OSM)"
 
 #: ../class-leaflet-options.php:562
 msgid "MapQuest (Aerial)"
-msgstr "MapQuest (衛星画像)"
+msgstr "MapQuest (Aéreo)"
 
 #: ../class-leaflet-options.php:571
 msgid "OGD Vienna basemap"
-msgstr "OGD Vienna ベースマップ"
+msgstr "OGD mapa de base de Viena"
 
 #: ../class-leaflet-options.php:579
 msgid "OGD Vienna satellite"
-msgstr "OGD Vienna 衛星画像"
+msgstr "OGD Satétile te Viena"
 
 #: ../class-leaflet-options.php:646
 msgid "If coordinates within boundaries of Vienna/Austria are selected for a marker or layer, the basemap automatically switches to OGD Vienna basemap and the overlay OGD Vienna addresses gets checked."
-msgstr "マーカーまたはレイヤーでVienna/Austria境界内の座標が選ばれると、ベースマップは自動的にOGD Viennaベースマップに切り替わり、オーバーレイのOGD Viennaアドレスはチェックされます。"
+msgstr "Si las coordenadas dentro de las fronteras de Viena / Austria son seleccionados por un marcador o una capa, el mapa de base cambia automáticamente a \"OGD mapa base de Viena\" y la \"superposición de  OGD de Viena\" comprueba las direcciones."
 
 #: ../class-leaflet-options.php:657
 msgid "enabled (use OGD Vienna basemap)"
-msgstr "有効 (OGD Vienna ベースマップを使用)"
+msgstr "habilitado (use el mapa de base OGD Vienna)"
 
 #: ../class-leaflet-options.php:658
 msgid "enabled (use OGD Vienna satellite)"
-msgstr "有効 (OGD Vienna 衛星画像を使用)"
+msgstr "habilitado (use satelite  OGD Vienna)"
 
 #: ../class-leaflet-options.php:659
 msgid "disabled (use default basemap)"
-msgstr "無効 (既定のベースマップを使用)"
+msgstr "deshabilitado (use el mapa de base por defecto)"
 
 #: ../class-leaflet-options.php:666
 msgid "enable OGD Vienna addresses overlay"
-msgstr "OGD Vienna アドレスオーバーレイを有効化"
+msgstr "permitir que la OGD de Viena se ocupe de la superposición"
 
 #: ../class-leaflet-options.php:677
 #, fuzzy
 msgid "Cloudmade settings"
-msgstr "Wikitude 設定"
+msgstr "configuración de Wikitude"
 
 #: ../class-leaflet-options.php:685
 #: ../class-leaflet-options.php:731
@@ -399,7 +397,7 @@ msgstr ""
 #: ../class-leaflet-options.php:5144
 #: ../class-leaflet-options.php:5156
 msgid "enabled"
-msgstr "有効"
+msgstr "habilitar"
 
 #: ../class-leaflet-options.php:713
 #: ../class-leaflet-options.php:759
@@ -410,13 +408,13 @@ msgstr "有効"
 #: ../class-leaflet-options.php:5145
 #: ../class-leaflet-options.php:5157
 msgid "disabled"
-msgstr "無効"
+msgstr "deshabilitar"
 
 #: ../class-leaflet-options.php:823
 #: ../class-leaflet-options.php:893
 #: ../class-leaflet-options.php:963
 msgid "Please enter settings for custom basemap"
-msgstr "カスタムベースマップの設定を入力してください"
+msgstr "Por favor, introduzca los ajustes del mapa de base personalizado"
 
 #: ../class-leaflet-options.php:828
 #: ../class-leaflet-options.php:898
@@ -426,7 +424,7 @@ msgstr "カスタムベースマップの設定を入力してください"
 #: ../class-leaflet-options.php:1265
 #: ../class-leaflet-options.php:1344
 msgid "Tiles URL"
-msgstr "タイルURL"
+msgstr "Azulejos URL"
 
 #: ../class-leaflet-options.php:829
 #: ../class-leaflet-options.php:837
@@ -456,7 +454,7 @@ msgstr "タイルURL"
 #: ../class-leaflet-options.php:3198
 #: ../class-leaflet-options.php:3395
 msgid "For example"
-msgstr "例"
+msgstr "Por ejemplo"
 
 #: ../class-leaflet-options.php:836
 #: ../class-leaflet-options.php:906
@@ -476,7 +474,7 @@ msgstr "例"
 #: ../class-leaflet-options.php:3158
 #: ../class-leaflet-options.php:3355
 msgid "Attribution"
-msgstr "作者表記"
+msgstr "Atribución"
 
 #: ../class-leaflet-options.php:844
 #: ../class-leaflet-options.php:914
@@ -486,7 +484,7 @@ msgstr "作者表記"
 #: ../class-leaflet-options.php:1281
 #: ../class-leaflet-options.php:1360
 msgid "Minimum zoom level"
-msgstr "最小ズームレベル"
+msgstr "Mínimo nivel de zoom"
 
 #: ../class-leaflet-options.php:845
 #: ../class-leaflet-options.php:853
@@ -503,7 +501,7 @@ msgstr "最小ズームレベル"
 #: ../class-leaflet-options.php:1361
 #: ../class-leaflet-options.php:1369
 msgid "Note: maximum zoom level may vary on your basemap"
-msgstr "注意：最大ズームレベルはあなたのマップ上で変わります"
+msgstr "Nota: el nivel de zoom máximo puede variar en el mapa de base"
 
 #: ../class-leaflet-options.php:852
 #: ../class-leaflet-options.php:922
@@ -513,7 +511,7 @@ msgstr "注意：最大ズームレベルはあなたのマップ上で変わり
 #: ../class-leaflet-options.php:1289
 #: ../class-leaflet-options.php:1368
 msgid "Maximum zoom level"
-msgstr "最大ズームレベル"
+msgstr "Máximo nivel de zoom"
 
 #: ../class-leaflet-options.php:861
 #: ../class-leaflet-options.php:931
@@ -533,7 +531,7 @@ msgstr "最大ズームレベル"
 #: ../class-leaflet-options.php:3186
 #: ../class-leaflet-options.php:3383
 msgid "Support for subdomains?"
-msgstr "サブドメインのサポートは？"
+msgstr "¿Soporte para subdominios?"
 
 #: ../class-leaflet-options.php:862
 #: ../class-leaflet-options.php:932
@@ -543,7 +541,7 @@ msgstr "サブドメインのサポートは？"
 #: ../class-leaflet-options.php:1299
 #: ../class-leaflet-options.php:1378
 msgid "Will replace {s} from tiles url if available"
-msgstr "{s}をタイルURLが使える場合には置き換えます"
+msgstr "Reemplazará {s} del url de azulejos si está disponible"
 
 #: ../class-leaflet-options.php:866
 #: ../class-leaflet-options.php:936
@@ -563,7 +561,7 @@ msgstr "{s}をタイルURLが使える場合には置き換えます"
 #: ../class-leaflet-options.php:3192
 #: ../class-leaflet-options.php:3389
 msgid "Yes (please enter subdomains in next form field)"
-msgstr "はい(次の項目でサブドメインを入力してください)"
+msgstr "Si (por favor ingrese los subdominios en el siguiente campo)"
 
 #: ../class-leaflet-options.php:867
 #: ../class-leaflet-options.php:937
@@ -593,7 +591,7 @@ msgstr "はい(次の項目でサブドメインを入力してください)"
 #: ../class-leaflet-options.php:3369
 #: ../class-leaflet-options.php:3388
 msgid "No"
-msgstr "いいえ"
+msgstr "No"
 
 #: ../class-leaflet-options.php:872
 #: ../class-leaflet-options.php:942
@@ -613,50 +611,50 @@ msgstr "いいえ"
 #: ../class-leaflet-options.php:3197
 #: ../class-leaflet-options.php:3394
 msgid "Subdomain names"
-msgstr "サブドメイン名"
+msgstr "Nombres de subdominio"
 
 #: ../class-leaflet-options.php:1041
 msgid "Please select the overlays which should be available in the control box."
-msgstr "制御ボックスで使うオーバーレイを選んでください。"
+msgstr "Por favor, seleccione las plantillas que deben estar disponibles en la caja de control."
 
 #: ../class-leaflet-options.php:1047
 msgid "Available overlays in control box"
-msgstr "制御ボックス内で使えるオーバーレイ"
+msgstr "Superposiciones disponibles en la caja de control"
 
 #: ../class-leaflet-options.php:1048
 #: ../class-leaflet-options.php:3781
 #: ../class-leaflet-options.php:4071
 #: ../class-leaflet-options.php:4278
 msgid "Custom overlay"
-msgstr "カスタムオーバーレイ"
+msgstr "Superposición personalizada"
 
 #: ../class-leaflet-options.php:1056
 #: ../class-leaflet-options.php:3789
 #: ../class-leaflet-options.php:4079
 #: ../class-leaflet-options.php:4286
 msgid "Custom overlay 2"
-msgstr "カスタムオーバーレイ2"
+msgstr "Superposición personalizada 2"
 
 #: ../class-leaflet-options.php:1065
 #: ../class-leaflet-options.php:3798
 #: ../class-leaflet-options.php:4088
 #: ../class-leaflet-options.php:4294
 msgid "Custom overlay 3"
-msgstr "カスタムオーバーレイ3"
+msgstr "Superposición personalizada 3"
 
 #: ../class-leaflet-options.php:1074
 #: ../class-leaflet-options.php:3806
 #: ../class-leaflet-options.php:4097
 #: ../class-leaflet-options.php:4302
 msgid "Custom overlay 4"
-msgstr "カスタムオーバーレイ4"
+msgstr "Superposición personalizada 4"
 
 #: ../class-leaflet-options.php:1094
 #: ../class-leaflet-options.php:1173
 #: ../class-leaflet-options.php:1252
 #: ../class-leaflet-options.php:1330
 msgid "Please enter settings for custom overlay"
-msgstr "カスタムオーバーレイの設定を入力してください"
+msgstr "Por favor, introduzca los ajustes de la plantilla personalizada"
 
 #: ../class-leaflet-options.php:1099
 #: ../class-leaflet-options.php:1178
@@ -675,26 +673,26 @@ msgstr "カスタムオーバーレイの設定を入力してください"
 #: ../leaflet-list-layers.php:36
 #: ../leaflet-list-layers.php:78
 msgid "Name"
-msgstr "名前"
+msgstr "Nombre"
 
 #: ../class-leaflet-options.php:1100
 #: ../class-leaflet-options.php:1179
 #: ../class-leaflet-options.php:1258
 #: ../class-leaflet-options.php:1336
 msgid "Will be displayed in controlbox if selected"
-msgstr "選択時には制御ボックス内に表示されます"
+msgstr "Se mostrará en la caja de control si se selecciona"
 
 #: ../class-leaflet-options.php:1101
 msgid "OGD Vienna addresses"
-msgstr "OGD Vienna アドレス"
+msgstr "OGD de direcciones de Viena"
 
 #: ../class-leaflet-options.php:1417
 msgid "Please select the WMS layers which should be available when creating new markers/layers"
-msgstr "新しいマーカー/レイヤーの新規作成時に利用可能にしておくWMSレイヤーを選んでください"
+msgstr "Por favor, seleccione las capas WMS que deben estar disponibles cuando se crean nuevos marcadores o capas"
 
 #: ../class-leaflet-options.php:1423
 msgid "Available WMS layers"
-msgstr "使えるWMSレイヤー"
+msgstr "Capas disponibles WMS"
 
 #: ../class-leaflet-options.php:1529
 #: ../class-leaflet-options.php:1727
@@ -707,7 +705,7 @@ msgstr "使えるWMSレイヤー"
 #: ../class-leaflet-options.php:3106
 #: ../class-leaflet-options.php:3303
 msgid "baseURL"
-msgstr "ベースURL"
+msgstr "URL de base"
 
 #: ../class-leaflet-options.php:1537
 #: ../class-leaflet-options.php:1735
@@ -721,7 +719,7 @@ msgstr "ベースURL"
 #: ../class-leaflet-options.php:3311
 #: ../leaflet-maps-marker.php:1024
 msgid "Layers"
-msgstr "レイヤー"
+msgstr "Capas"
 
 #: ../class-leaflet-options.php:1538
 #: ../class-leaflet-options.php:1736
@@ -734,7 +732,7 @@ msgstr "レイヤー"
 #: ../class-leaflet-options.php:3115
 #: ../class-leaflet-options.php:3312
 msgid "(required) Comma-separated list of WMS layers to show"
-msgstr "(必須) 表示するWMSレイヤーのカンマ区切り一覧"
+msgstr "(requerido) Lista separada por comas de las capas WMS para mostrar"
 
 #: ../class-leaflet-options.php:1545
 #: ../class-leaflet-options.php:1743
@@ -747,7 +745,7 @@ msgstr "(必須) 表示するWMSレイヤーのカンマ区切り一覧"
 #: ../class-leaflet-options.php:3122
 #: ../class-leaflet-options.php:3319
 msgid "Styles"
-msgstr "スタイル"
+msgstr "Estilos"
 
 #: ../class-leaflet-options.php:1546
 #: ../class-leaflet-options.php:1744
@@ -760,7 +758,7 @@ msgstr "スタイル"
 #: ../class-leaflet-options.php:3123
 #: ../class-leaflet-options.php:3320
 msgid "Comma-separated list of WMS styles"
-msgstr "WMSスタイルのカンマ区切り一覧"
+msgstr "Lista separada por comas de los estilos WMS"
 
 #: ../class-leaflet-options.php:1553
 #: ../class-leaflet-options.php:1751
@@ -773,7 +771,7 @@ msgstr "WMSスタイルのカンマ区切り一覧"
 #: ../class-leaflet-options.php:3130
 #: ../class-leaflet-options.php:3327
 msgid "Format"
-msgstr "形式"
+msgstr "Formato"
 
 #: ../class-leaflet-options.php:1561
 #: ../class-leaflet-options.php:1759
@@ -786,7 +784,7 @@ msgstr "形式"
 #: ../class-leaflet-options.php:3138
 #: ../class-leaflet-options.php:3335
 msgid "Transparent"
-msgstr "透過"
+msgstr "Transparente"
 
 #: ../class-leaflet-options.php:1562
 #: ../class-leaflet-options.php:1760
@@ -799,7 +797,7 @@ msgstr "透過"
 #: ../class-leaflet-options.php:3139
 #: ../class-leaflet-options.php:3336
 msgid "If yes, the WMS service will return images with transparency"
-msgstr "イエスなら、WMSサービスは透過画像を返します"
+msgstr "En caso afirmativo, el servicio WMS serán imágenes con transparencia"
 
 #: ../class-leaflet-options.php:1573
 #: ../class-leaflet-options.php:1771
@@ -812,7 +810,7 @@ msgstr "イエスなら、WMSサービスは透過画像を返します"
 #: ../class-leaflet-options.php:3150
 #: ../class-leaflet-options.php:3347
 msgid "Version"
-msgstr "バージョン"
+msgstr "Versión"
 
 #: ../class-leaflet-options.php:1574
 #: ../class-leaflet-options.php:1772
@@ -825,7 +823,7 @@ msgstr "バージョン"
 #: ../class-leaflet-options.php:3151
 #: ../class-leaflet-options.php:3348
 msgid "Version of the WMS service to use"
-msgstr "使用するWMSサービスのバージョン"
+msgstr "Versión del servicio WMS a usar"
 
 #: ../class-leaflet-options.php:1589
 #: ../class-leaflet-options.php:1787
@@ -838,7 +836,7 @@ msgstr "使用するWMSサービスのバージョン"
 #: ../class-leaflet-options.php:3166
 #: ../class-leaflet-options.php:3363
 msgid "Display legend?"
-msgstr "凡例を表示しますか？"
+msgstr "¿Mostrar leyenda?"
 
 #: ../class-leaflet-options.php:1594
 #: ../class-leaflet-options.php:1792
@@ -852,7 +850,7 @@ msgstr "凡例を表示しますか？"
 #: ../class-leaflet-options.php:3368
 #: ../leaflet-tools.php:674
 msgid "Yes"
-msgstr "はい"
+msgstr "Si"
 
 #: ../class-leaflet-options.php:1601
 #: ../class-leaflet-options.php:1799
@@ -915,7 +913,7 @@ msgstr "はい"
 #: ../leaflet-marker.php:578
 #: ../leaflet-marker.php:579
 msgid "Legend"
-msgstr "凡例"
+msgstr "Leyenda"
 
 #: ../class-leaflet-options.php:1602
 #: ../class-leaflet-options.php:1800
@@ -928,7 +926,7 @@ msgstr "凡例"
 #: ../class-leaflet-options.php:3179
 #: ../class-leaflet-options.php:3376
 msgid "URL of image which gets show when hovering the text \"(Legend)\" next to WMS attribution text"
-msgstr "取得する画像のURLは \"(凡例)\" のテキスト上をマウスカーソルが通過する時にWMS属性テキストの隣に表示されます"
+msgstr "URL de la imagen que se muestra cuando se pasa el texto \"(Leyenda)\" al lado del texto de atribución WMS "
 
 #: ../class-leaflet-options.php:1610
 #: ../class-leaflet-options.php:1808
@@ -941,7 +939,7 @@ msgstr "取得する画像のURLは \"(凡例)\" のテキスト上をマウス�
 #: ../class-leaflet-options.php:3187
 #: ../class-leaflet-options.php:3384
 msgid "Will replace {s} from base url if available"
-msgstr "{s} をベースURLが使える場合は置き換えます"
+msgstr "Reemplazará {s} de la URL de base si está disponible"
 
 #: ../class-leaflet-options.php:1630
 #: ../class-leaflet-options.php:1828
@@ -953,8 +951,9 @@ msgstr "{s} をベースURLが使える場合は置き換えます"
 #: ../class-leaflet-options.php:3010
 #: ../class-leaflet-options.php:3207
 #: ../class-leaflet-options.php:3404
+#, fuzzy
 msgid "KML settings"
-msgstr "KML設定"
+msgstr "Configuración"
 
 #: ../class-leaflet-options.php:1631
 #: ../class-leaflet-options.php:1829
@@ -967,7 +966,7 @@ msgstr "KML設定"
 #: ../class-leaflet-options.php:3208
 #: ../class-leaflet-options.php:3405
 msgid "If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML."
-msgstr "WMSサーバがWMSレイヤーのKML出力をサポートしている場合、下記設定はこのアクティブなWMSレイヤーを持つマーカーかレイヤーがKMLとしてエクスポートされた時に使われます。"
+msgstr ""
 
 #: ../class-leaflet-options.php:1637
 #: ../class-leaflet-options.php:1835
@@ -980,7 +979,7 @@ msgstr "WMSサーバがWMSレイヤーのKML出力をサポートしている場
 #: ../class-leaflet-options.php:3214
 #: ../class-leaflet-options.php:3411
 msgid "Does the WMS server support KML output?"
-msgstr "このWMSサーバはKML出力をサポートしていますか？"
+msgstr ""
 
 #: ../class-leaflet-options.php:1642
 #: ../class-leaflet-options.php:1840
@@ -1000,7 +999,7 @@ msgstr "このWMSサーバはKML出力をサポートしていますか？"
 #: ../leaflet-marker.php:408
 #: ../leaflet-tools.php:651
 msgid "yes"
-msgstr "はい"
+msgstr "si"
 
 #: ../class-leaflet-options.php:1643
 #: ../class-leaflet-options.php:1841
@@ -1020,7 +1019,7 @@ msgstr "はい"
 #: ../leaflet-marker.php:406
 #: ../leaflet-tools.php:653
 msgid "no"
-msgstr "いいえ"
+msgstr "no"
 
 #: ../class-leaflet-options.php:1650
 #: ../class-leaflet-options.php:1848
@@ -1033,7 +1032,7 @@ msgstr "いいえ"
 #: ../class-leaflet-options.php:3227
 #: ../class-leaflet-options.php:3424
 msgid "http-address of the KML-webservice of the WMS layer"
-msgstr "WMSレイヤーのKMLウェブサービスのhttpアドレス"
+msgstr ""
 
 #: ../class-leaflet-options.php:1662
 #: ../class-leaflet-options.php:1860
@@ -1046,7 +1045,7 @@ msgstr "WMSレイヤーのKMLウェブサービスのhttpアドレス"
 #: ../class-leaflet-options.php:3239
 #: ../class-leaflet-options.php:3436
 msgid "onChange (refresh when the file is loaded and whenever the Link parameters change)"
-msgstr "onChange(ファイルロード時とリンクパラメータ変更時にリフレッシュ)"
+msgstr ""
 
 #: ../class-leaflet-options.php:1663
 #: ../class-leaflet-options.php:1861
@@ -1059,7 +1058,7 @@ msgstr "onChange(ファイルロード時とリンクパラメータ変更時に
 #: ../class-leaflet-options.php:3240
 #: ../class-leaflet-options.php:3437
 msgid "onInterval (refresh every n seconds (specified in refreshInterval)"
-msgstr "onInterval(毎n秒ごとにリフレッシュ(refreshIntervalで指定))"
+msgstr ""
 
 #: ../class-leaflet-options.php:1664
 #: ../class-leaflet-options.php:1862
@@ -1072,7 +1071,7 @@ msgstr "onInterval(毎n秒ごとにリフレッシュ(refreshIntervalで指定))
 #: ../class-leaflet-options.php:3241
 #: ../class-leaflet-options.php:3438
 msgid "onExpire (refresh the file when the expiration time is reached)"
-msgstr "onExpire(有効期限切れ時にファイルをリフレッシュ)"
+msgstr ""
 
 #: ../class-leaflet-options.php:1665
 #: ../class-leaflet-options.php:1863
@@ -1085,7 +1084,7 @@ msgstr "onExpire(有効期限切れ時にファイルをリフレッシュ)"
 #: ../class-leaflet-options.php:3242
 #: ../class-leaflet-options.php:3439
 msgid "onStop (after camera movement stops)"
-msgstr "onStop(カメラ移動停止後)"
+msgstr ""
 
 #: ../class-leaflet-options.php:1672
 #: ../class-leaflet-options.php:1870
@@ -1098,7 +1097,7 @@ msgstr "onStop(カメラ移動停止後)"
 #: ../class-leaflet-options.php:3249
 #: ../class-leaflet-options.php:3446
 msgid "Indicates to refresh the file every n seconds"
-msgstr "毎n秒ごとにファイルをリフレッシュするように示す"
+msgstr ""
 
 #: ../class-leaflet-options.php:1684
 #: ../class-leaflet-options.php:1882
@@ -1111,7 +1110,7 @@ msgstr "毎n秒ごとにファイルをリフレッシュするように示す"
 #: ../class-leaflet-options.php:3261
 #: ../class-leaflet-options.php:3458
 msgid "never (ignore changes in the view)"
-msgstr "never（ビュー内の変更を無視）"
+msgstr ""
 
 #: ../class-leaflet-options.php:1685
 #: ../class-leaflet-options.php:1883
@@ -1124,7 +1123,7 @@ msgstr "never（ビュー内の変更を無視）"
 #: ../class-leaflet-options.php:3262
 #: ../class-leaflet-options.php:3459
 msgid "onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)"
-msgstr "onStop(移動停止のn秒後にファイルをリフレッシュ、nはviewRefreshTimeで指定)"
+msgstr ""
 
 #: ../class-leaflet-options.php:1686
 #: ../class-leaflet-options.php:1884
@@ -1137,7 +1136,7 @@ msgstr "onStop(移動停止のn秒後にファイルをリフレッシュ、nは
 #: ../class-leaflet-options.php:3263
 #: ../class-leaflet-options.php:3460
 msgid "onRequest (refresh the file only when the user explicitly requests it)"
-msgstr "onRequest(ユーザが明示的に要求したときだけファイルをリフレッシュ)"
+msgstr ""
 
 #: ../class-leaflet-options.php:1693
 #: ../class-leaflet-options.php:1891
@@ -1150,18 +1149,18 @@ msgstr "onRequest(ユーザが明示的に要求したときだけファイル�
 #: ../class-leaflet-options.php:3270
 #: ../class-leaflet-options.php:3467
 msgid "After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)"
-msgstr "カメラ移動停止後、ビューをリフレッシュするまでの秒数を指定(viewRefreshModeがonStopに設定された場合に使われます)"
+msgstr ""
 
 #: ../class-leaflet-options.php:3696
 msgid "Will be used when creating a new marker. All values can be changed afterwards on each marker."
-msgstr "新しいマーカーを作成する際に使われます。全ての値は後からそれぞれのマーカー上で変更できます。"
+msgstr "Se utilizará cuando se crea un nuevo marcador. Todos los valores pueden ser cambiados después en cada marcador."
 
 #: ../class-leaflet-options.php:3701
 #: ../class-leaflet-options.php:4210
 #: ../class-leaflet-options.php:4573
 #: ../class-leaflet-options.php:4589
 msgid "Latitude"
-msgstr "緯度"
+msgstr "Latitud"
 
 #: ../class-leaflet-options.php:3702
 #: ../class-leaflet-options.php:3710
@@ -1172,14 +1171,14 @@ msgstr "緯度"
 #: ../class-leaflet-options.php:4590
 #: ../class-leaflet-options.php:4598
 msgid "Please use a dot instead of a coma as decimal delimiter!"
-msgstr "10進数の区切りにはカンマの代わりにドットを使ってください！"
+msgstr "Por favor, ¡use un punto en lugar de una coma como delimitador decimal!"
 
 #: ../class-leaflet-options.php:3709
 #: ../class-leaflet-options.php:4218
 #: ../class-leaflet-options.php:4581
 #: ../class-leaflet-options.php:4597
 msgid "Longitude"
-msgstr "経度"
+msgstr "Longitud"
 
 #: ../class-leaflet-options.php:3717
 #: ../class-leaflet-options.php:4019
@@ -1197,35 +1196,35 @@ msgstr "経度"
 #: ../leaflet-tools.php:346
 #: ../leaflet-tools.php:598
 msgid "Zoom"
-msgstr "ズーム"
+msgstr "Zoom"
 
 #: ../class-leaflet-options.php:3725
 #: ../class-leaflet-options.php:4027
 #: ../class-leaflet-options.php:4234
 msgid "Map width"
-msgstr "マップ幅"
+msgstr "Ancho de mapa"
 
 #: ../class-leaflet-options.php:3734
 #: ../class-leaflet-options.php:4036
 #: ../class-leaflet-options.php:4243
 msgid "Map width unit"
-msgstr "マップ幅の単位"
+msgstr "Unidad del ancho de mapa"
 
 #: ../class-leaflet-options.php:3745
 #: ../class-leaflet-options.php:4047
 #: ../class-leaflet-options.php:4254
 msgid "Map height"
-msgstr "マップ高"
+msgstr "Alto del mapa"
 
 #: ../class-leaflet-options.php:3754
 msgid "Open popup by default"
-msgstr "既定でポップアップを開く"
+msgstr "Abrir ventana emergente por defecto"
 
 #: ../class-leaflet-options.php:3766
 #: ../class-leaflet-options.php:4056
 #: ../class-leaflet-options.php:4263
 msgid "Basemap/layer controlbox on frontend"
-msgstr "表画面上のベースマップ/レイヤー制御ボックス"
+msgstr "Mapa de base / capa de interfaz de la caja de control"
 
 #: ../class-leaflet-options.php:3771
 #: ../class-leaflet-options.php:4061
@@ -1240,7 +1239,7 @@ msgstr "表画面上のベースマップ/レイヤー制御ボックス"
 #: ../leaflet-tools.php:364
 #: ../leaflet-tools.php:616
 msgid "hidden"
-msgstr "非表示"
+msgstr "escondido"
 
 #: ../class-leaflet-options.php:3772
 #: ../class-leaflet-options.php:4062
@@ -1252,7 +1251,7 @@ msgstr "非表示"
 #: ../leaflet-tools.php:365
 #: ../leaflet-tools.php:617
 msgid "collapsed (except on mobiles)"
-msgstr "ウィンドウ消去 (モバイル上を除く)"
+msgstr "colapsado (excepto en los teléfonos móviles)"
 
 #: ../class-leaflet-options.php:3773
 #: ../class-leaflet-options.php:4063
@@ -1264,7 +1263,7 @@ msgstr "ウィンドウ消去 (モバイル上を除く)"
 #: ../leaflet-tools.php:366
 #: ../leaflet-tools.php:618
 msgid "expanded"
-msgstr "ウィンドウ展開"
+msgstr "expandido"
 
 #: ../class-leaflet-options.php:3780
 #: ../class-leaflet-options.php:4070
@@ -1272,13 +1271,13 @@ msgstr "ウィンドウ展開"
 #: ../leaflet-tools.php:283
 #: ../leaflet-tools.php:535
 msgid "Checked overlays in control box"
-msgstr "制御ボックス内のチェック済オーバーレイ"
+msgstr "Superposiciones marcadas en la caja de control"
 
 #: ../class-leaflet-options.php:3813
 #: ../leaflet-marker.php:269
 #: ../leaflet-tools.php:378
 msgid "Panel for displaying marker name and API URLs on top of map"
-msgstr "マップのトップでマーカー名とAPIのURLを表示するパネル"
+msgstr "Panel para mostrar el nombre del marcador y la URL de la API en la parte superior del mapa"
 
 #: ../class-leaflet-options.php:3818
 #: ../class-leaflet-options.php:4314
@@ -1287,7 +1286,7 @@ msgstr "マップのトップでマーカー名とAPIのURLを表示するパネ
 #: ../leaflet-tools.php:382
 #: ../leaflet-tools.php:634
 msgid "show"
-msgstr "表示"
+msgstr "mostrar"
 
 #: ../class-leaflet-options.php:3819
 #: ../class-leaflet-options.php:4315
@@ -1296,12 +1295,12 @@ msgstr "表示"
 #: ../leaflet-tools.php:384
 #: ../leaflet-tools.php:636
 msgid "hide"
-msgstr "非表示"
+msgstr "esconder"
 
 #: ../class-leaflet-options.php:3826
 #: ../class-leaflet-options.php:4322
 msgid "Visible API links in panel"
-msgstr "パネル内の表示APIリンク"
+msgstr "Enlaces visibles en el panel de la API"
 
 #: ../class-leaflet-options.php:3827
 #: ../leaflet-fullscreen.php:747
@@ -1317,7 +1316,7 @@ msgstr "パネル内の表示APIリンク"
 #: ../leaflet-marker.php:698
 #: ../leaflet-marker.php:702
 msgid "Directions"
-msgstr "案内地図"
+msgstr ""
 
 #: ../class-leaflet-options.php:3843
 #: ../class-leaflet-options.php:4331
@@ -1339,7 +1338,7 @@ msgstr "案内地図"
 #: ../leaflet-marker.php:73
 #: ../leaflet-marker.php:205
 msgid "Fullscreen"
-msgstr "フルスクリーン"
+msgstr "Pantalla completa"
 
 #: ../class-leaflet-options.php:3851
 #: ../class-leaflet-options.php:4339
@@ -1361,23 +1360,23 @@ msgstr "フルスクリーン"
 #: ../leaflet-marker.php:73
 #: ../leaflet-marker.php:205
 msgid "QR code"
-msgstr "QRコード"
+msgstr "código QR"
 
 #: ../class-leaflet-options.php:3881
 #: ../class-leaflet-options.php:4369
 msgid "Panel background color"
-msgstr "パネル背景色"
+msgstr "Color de fondo del panel"
 
 #: ../class-leaflet-options.php:3889
 #: ../class-leaflet-options.php:4377
 msgid "Panel text css"
-msgstr "パネルテキストCSS"
+msgstr "Panel de texto CSS"
 
 #: ../class-leaflet-options.php:3899
 #: ../class-leaflet-options.php:4105
 #: ../class-leaflet-options.php:4387
 msgid "Checked WMS layers"
-msgstr "チェックされたWMSレイヤー"
+msgstr "Capas WMS verificadas"
 
 #: ../class-leaflet-options.php:3900
 #: ../class-leaflet-options.php:4106
@@ -1441,75 +1440,78 @@ msgstr "WMS 10"
 
 #: ../class-leaflet-options.php:3992
 msgid "You can also add markers directly to posts or pages without having to save them to your database previously. You just have to use the shortcode with the attributes mlat and mlon (e.g. <strong>[mapsmarker mlat=\"48.216038\" mlon=\"16.378984\"]</strong>)."
-msgstr "あなたは自分のページに前もって保存したりすることなしに、投稿やページにマーカーを直接追加することもできます。mlat 及び mlon属性付きのショートコードを使うだけです (例. <strong>[mapsmarker mlat=\"48.216038\" mlon=\"16.378984\"]</strong>)。"
+msgstr "También puede agregar los marcadores directamente a las entradas o páginas sin tener que guardarlos en su base de datos previamente. Sólo tienes que utilizar el código corto con los atributos mlat y mlon (por ejemplo, <strong> [mapsmarker mlat = \"48,216038\" mlon = \"16,378984\"] </ strong>)."
 
 #: ../class-leaflet-options.php:3992
 msgid "Defaults values for markers added directly:"
-msgstr "直接追加されたマーカー用の既定値:"
+msgstr "Valores predeterminados para los marcadores añadidos directamente:"
 
 #: ../class-leaflet-options.php:4197
 msgid "Default values for new layers"
-msgstr "新しいレイヤー用の既定値"
+msgstr "Valores por defecto para las nuevas capas"
 
 #: ../class-leaflet-options.php:4205
 msgid "Will be used when creating a new layer. All values can be changed afterwards on each layer."
-msgstr "新しいレイヤー作成時に使われます。全ての値はそれぞれのレイヤー上で後から変更できます。"
+msgstr "Se utilizarácuando se cree una nueva capa. Todos los valores se pueden cambiar después en cada capa."
 
 #: ../class-leaflet-options.php:4309
 #: ../leaflet-layer.php:283
 #: ../leaflet-tools.php:630
 msgid "Panel for displaying layer name and API URLs on top of map"
-msgstr "マップのトップでレイヤー名とAPIのURLを表示するパネル"
+msgstr "Panel para mostrar el nombre de la capa y la URL de la API en la parte superior del mapa"
 
 #: ../class-leaflet-options.php:4347
 #, fuzzy
 msgid "not available on multi layer maps"
-msgstr "使えるWMSレイヤー"
+msgstr "Capas disponibles WMS"
 
 #: ../class-leaflet-options.php:4468
+#, fuzzy
 msgid "List marker settings"
-msgstr "マーカーを一覧"
+msgstr "Lista de todos los marcadores"
 
 #: ../class-leaflet-options.php:4475
 #: ../leaflet-layer.php:288
 #: ../leaflet-tools.php:647
 msgid "Display a list of markers under the map"
-msgstr "マップの下にマーカーの一覧を表示"
+msgstr ""
 
 #: ../class-leaflet-options.php:4476
 msgid "(not available on multi layer maps)"
 msgstr ""
 
 #: ../class-leaflet-options.php:4487
+#, fuzzy
 msgid "Order list of markers by"
-msgstr "マーカーのリストを次の順で並び替え"
+msgstr "Número de marcadores"
 
 #: ../class-leaflet-options.php:4493
 #, fuzzy
 msgid "marker name"
-msgstr "マーカー名"
+msgstr "Nombre del marcador"
 
 #: ../class-leaflet-options.php:4494
 #, fuzzy
 msgid "created on"
-msgstr "作成日"
+msgstr "Creado el"
 
 #: ../class-leaflet-options.php:4495
 #, fuzzy
 msgid "updated on"
-msgstr "更新日"
+msgstr "Actualizado el "
 
 #: ../class-leaflet-options.php:4501
+#, fuzzy
 msgid "Sort order"
-msgstr "ソート順"
+msgstr "Código corto"
 
 #: ../class-leaflet-options.php:4506
 msgid "ascending"
-msgstr "昇順"
+msgstr ""
 
 #: ../class-leaflet-options.php:4507
 msgid "descending"
-msgstr "降順"
+msgstr ""
 
 #: ../class-leaflet-options.php:4512
 msgid "Limit"
@@ -1521,55 +1523,56 @@ msgstr ""
 
 #: ../class-leaflet-options.php:4533
 msgid "Leaflet Maps Marker uses the <a href=\"http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html\" target=\"_blank\">Google Places Autocomplete API</a> to easily find coordinates for places or addresses. This feature is enabled by default. Preview:"
-msgstr "Leaflet Maps Marker は場所や住所の座標を簡単に探すのに<a href=\"http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html\" target=\"_blank\">Google Places Autocomplete API</a> を使用しています。この機能は既定で有効化されています。プレビュー:"
+msgstr "Leaflet Maps Marker utiliza la <a href=\"http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html\" target=\"_blank\"> API de autocompletar de Google Places</ a> para encontrar fácilmente las coordenadas de los lugares o direcciones. Esta función está habilitada por defecto. Vista previa:"
 
 #: ../class-leaflet-options.php:4548
 msgid "You can get better search results if you enable the bounds feature. This allows you to specify the area in which to primarily search for places or addresses. Please note: the results are biased towards, but not restricted to places or addresses contained within these bounds."
-msgstr "境界機能を有効にするとより良い検索結果が得られます。これにより、場所や住所を最初にどこを探すのかエリアを指定できます。注意してください： 結果はバイアスが掛かっていますが、これらの境界に含まれる場所や住所に制限されていません。"
+msgstr "Puedes obtener mejores resultados de búsqueda si habilitas la función de los límites. Esto permite especificar el área en la que buscar sobre todo para los lugares o direcciones. Tenga en cuenta: los resultados están sesgados, pero no se limita a lugares o direcciones que figuran dentro de estos límites."
 
 #: ../class-leaflet-options.php:4568
 msgid "If enabled, please enter longitude and latitude values below for the corner points of the prefered search area. Below you find an example for Vienna/Austria:"
-msgstr "有効化した場合は、指定した検索エリアのコーナー値の経緯度値を以下に入力してください。以下にVienna/Austriaの例があります:"
+msgstr "Si está activado, por favor, introduzca los valores de latitud y longitud por debajo de las esquinas de la zona de búsqueda preferido. A continuación encontrará un ejemplo de Viena / Austria:"
 
 #: ../class-leaflet-options.php:4615
 msgid "You can also select a search prefix, which automatically gets added to search form when creating a new marker or layer."
-msgstr "検索プレフィックスを選ぶこともでき、その場合新しいマーカーやレイヤーを作成した後、検索時に自動的に付加されます。"
+msgstr "También puede seleccionar un prefijo de búsqueda, que automáticamente se agrega al formulario de búsqueda al crear un nuevo marcador o la capa."
 
 #: ../class-leaflet-options.php:4635
 msgid "Prefix to use"
-msgstr "使用するプレフィックス"
+msgstr "Prefijo a usar"
 
 #: ../class-leaflet-options.php:4663
 msgid "Please select your prefered directions provider. This setting will be used for the directions link in the panel on top of marker maps and for the action panel which gets attached to the popup text on each marker if enabled."
-msgstr "お好みの案内地図プロバイダを選んでください。この設定はマーカー地図のトップ上のパネル内の案内リンクと、有効化されていれば各マーカー上のポップアップテキストに付加される操作パネルに使われます。"
+msgstr ""
 
 #: ../class-leaflet-options.php:4669
 msgid "Use the following directions provider"
-msgstr "次の案内地図プロバイダを使用"
+msgstr ""
 
 #: ../class-leaflet-options.php:4674
 msgid "Google Maps (worldwide)"
-msgstr "Google Maps (全世界)"
+msgstr ""
 
 #: ../class-leaflet-options.php:4675
 msgid "yournavigation.org (based on OpenStreetMap, worldwide)"
-msgstr "yournavigation.org (OpenStreetMapベース, 全世界)"
+msgstr ""
 
 #: ../class-leaflet-options.php:4676
 msgid "openrouteservice.org (based on OpenStreetMap, Europe only)"
-msgstr "openrouteservice.org (OpenStreetMapベース, ヨーロッパのみ)"
+msgstr ""
 
 #: ../class-leaflet-options.php:4682
 msgid "Attach directions panel to popup text on each marker"
-msgstr "各マーカー上のポップアップテキストに案内を付加"
+msgstr ""
 
 #: ../class-leaflet-options.php:4705
 msgid "Google Maps directions settings"
-msgstr "Google Maps案内地図の設定"
+msgstr ""
 
 #: ../class-leaflet-options.php:4719
+#, fuzzy
 msgid "Map type"
-msgstr "マップ種別"
+msgstr "Tamaño del mapa"
 
 #: ../class-leaflet-options.php:4724
 #: ../leaflet-fullscreen.php:155
@@ -1623,235 +1626,239 @@ msgstr "マップ種別"
 #: ../leaflet-marker.php:512
 #: ../leaflet-marker.php:513
 msgid "Map"
-msgstr "マップ"
+msgstr "Mapa"
 
 #: ../class-leaflet-options.php:4725
 msgid "Satellite"
-msgstr "衛星画像"
+msgstr ""
 
 #: ../class-leaflet-options.php:4726
 msgid "Hybrid"
-msgstr "ハイブリッド"
+msgstr ""
 
 #: ../class-leaflet-options.php:4727
 msgid "Terrain"
-msgstr "地形"
+msgstr ""
 
 #: ../class-leaflet-options.php:4733
+#, fuzzy
 msgid "Show traffic layer?"
-msgstr "トラフィックレイヤーを表示？"
+msgstr "mostrar todas las capas"
 
 #: ../class-leaflet-options.php:4745
 msgid "Distance units"
-msgstr "距離単位"
+msgstr ""
 
 #: ../class-leaflet-options.php:4750
 msgid "metric (km)"
-msgstr "距離 (km)"
+msgstr ""
 
 #: ../class-leaflet-options.php:4751
 msgid "imperial (miles)"
-msgstr "インペリアル (miles)"
+msgstr ""
 
 #: ../class-leaflet-options.php:4757
 #: ../class-leaflet-options.php:4854
 msgid "Route type"
-msgstr "ルート種別"
+msgstr ""
 
 #: ../class-leaflet-options.php:4758
 msgid "Avoid highways"
-msgstr "高速道路を避ける"
+msgstr ""
 
 #: ../class-leaflet-options.php:4766
 msgid "Avoid tolls"
-msgstr "有料道路を避ける"
+msgstr ""
 
 #: ../class-leaflet-options.php:4774
 msgid "Public transport (works only in some areas)"
-msgstr "公共交通(一部の地域のみ)"
+msgstr ""
 
 #: ../class-leaflet-options.php:4782
 msgid "Walking directions"
-msgstr "歩行者案内"
+msgstr ""
 
 #: ../class-leaflet-options.php:4789
 msgid "Language"
-msgstr "言語"
+msgstr ""
 
 #: ../class-leaflet-options.php:4794
 #: ../class-leaflet-options.php:4916
 msgid "English"
-msgstr "英語"
+msgstr ""
 
 #: ../class-leaflet-options.php:4795
 #: ../class-leaflet-options.php:4917
 msgid "German"
-msgstr "ドイツ語"
+msgstr ""
 
 #: ../class-leaflet-options.php:4796
 #: ../class-leaflet-options.php:4918
 msgid "Italian"
-msgstr "イタリア語"
+msgstr ""
 
 #: ../class-leaflet-options.php:4797
 #: ../class-leaflet-options.php:4919
 msgid "French"
-msgstr "フランス語"
+msgstr ""
 
 #: ../class-leaflet-options.php:4798
 #: ../class-leaflet-options.php:4920
 msgid "Spanish"
-msgstr "スペイン語"
+msgstr ""
 
 #: ../class-leaflet-options.php:4799
 msgid "Chinese (simplified)"
-msgstr "中国語 (簡体)"
+msgstr ""
 
 #: ../class-leaflet-options.php:4800
 msgid "Dutch"
-msgstr "オランダ語"
+msgstr ""
 
 #: ../class-leaflet-options.php:4801
 msgid "Japanese"
-msgstr "日本語"
+msgstr ""
 
 #: ../class-leaflet-options.php:4802
 msgid "Catalan"
-msgstr "Catalan"
+msgstr ""
 
 #: ../class-leaflet-options.php:4803
 msgid "Galego"
-msgstr "Galego"
+msgstr ""
 
 #: ../class-leaflet-options.php:4804
 msgid "Euskara"
-msgstr "Euskara"
+msgstr ""
 
 #: ../class-leaflet-options.php:4810
 msgid "Overview map"
-msgstr "マップを概観"
+msgstr ""
 
 #: ../class-leaflet-options.php:4816
 #: ../leaflet-list-layers.php:143
 #: ../leaflet-list-markers.php:201
+#, fuzzy
 msgid "visible"
-msgstr "表示"
+msgstr "deshabilitar"
 
 #: ../class-leaflet-options.php:4827
 msgid "yournavigation.org settings"
-msgstr "yournavigation.org 設定"
+msgstr ""
 
 #: ../class-leaflet-options.php:4841
 msgid "Type of transport"
-msgstr "輸送機関の種別"
+msgstr ""
 
 #: ../class-leaflet-options.php:4846
 msgid "Motorcar"
-msgstr "自動車"
+msgstr ""
 
 #: ../class-leaflet-options.php:4847
 msgid "Bicycle"
-msgstr "自転車"
+msgstr ""
 
 #: ../class-leaflet-options.php:4848
+#, fuzzy
 msgid "Foot"
-msgstr "Foot"
+msgstr "Formato"
 
 #: ../class-leaflet-options.php:4859
 #: ../class-leaflet-options.php:4902
 msgid "fastest route"
-msgstr "最速ルート"
+msgstr ""
 
 #: ../class-leaflet-options.php:4860
 #: ../class-leaflet-options.php:4903
 msgid "shortest route"
-msgstr "最短ルート"
+msgstr ""
 
 #: ../class-leaflet-options.php:4866
 msgid "Gosmore instance to calculate the route"
-msgstr "ルート計算用のGosmore インスタンス"
+msgstr ""
 
 #: ../class-leaflet-options.php:4871
 msgid "mapnik (for normal routing using car, bicycle or foot)"
-msgstr "mapnik (自動車、自転車、歩行者用の普通の経路探索用)"
+msgstr ""
 
 #: ../class-leaflet-options.php:4872
 msgid "cn (for using bicycle routing using cycle route networks only)"
-msgstr "cn (自転車ルートネットワークだけを使った自転車経路探索用)"
+msgstr ""
 
 #: ../class-leaflet-options.php:4883
 msgid "openrouteservice.org settings"
-msgstr "openrouteservice.org 設定"
+msgstr ""
 
 #: ../class-leaflet-options.php:4897
 msgid "Route preferences"
-msgstr "ルート設定"
+msgstr ""
 
 #: ../class-leaflet-options.php:4904
 msgid "route for pedestrians"
-msgstr "歩行者向けルート"
+msgstr ""
 
 #: ../class-leaflet-options.php:4905
 msgid "route for bicycles"
-msgstr "自転車向けルート"
+msgstr ""
 
 #: ../class-leaflet-options.php:4911
 msgid "Language of route instructions"
-msgstr "ルート命令の言語"
+msgstr ""
 
 #: ../class-leaflet-options.php:4926
 msgid "No motorways?"
-msgstr "自動車専用道なし？"
+msgstr ""
 
 #: ../class-leaflet-options.php:4931
 #: ../class-leaflet-options.php:4943
+#, fuzzy
 msgid "false"
-msgstr "false"
+msgstr "Valor"
 
 #: ../class-leaflet-options.php:4932
 #: ../class-leaflet-options.php:4944
 msgid "true"
-msgstr "true"
+msgstr ""
 
 #: ../class-leaflet-options.php:4938
 msgid "No tollways?"
-msgstr "有料道路なし？"
+msgstr ""
 
 #: ../class-leaflet-options.php:4962
 msgid "Markers created with Leaflet Maps Marker can also be displayed via <a href=\"http://en.wikipedia.org/wiki/Augmented_reality\" target=\"_blank\">Augmented-Reality technology</a> on mobile devices. As a first steps, an API to <a href=\"http://www.wikitude.com\" target=\"_blank\">Wikitude</a> has been implemented. APIs to other Augmented-Reality-Providers (like <a href=\"http://www.layar.com\" target=\"_blank\">Layar</a> or <a href=\"http://www.junaio.de\" target=\"_blank\">Junaio</a>) will probably follow in one of the next versions. Sample screenshots:"
-msgstr "Leaflet Maps Marker が作成したマーカーは<a href=\"http://en.wikipedia.org/wiki/Augmented_reality\" target=\"_blank\">拡張現実テクノロジー</a> を通してモバイルデバイス上に表示することもできます。最初のステップとして、<a href=\"http://www.wikitude.com\" target=\"_blank\">Wikitude</a> へのAPIが実装されています。 他の拡張現実プロバイダ (<a href=\"http://www.layar.com\" target=\"_blank\">Layar</a> や <a href=\"http://www.junaio.de\" target=\"_blank\">Junaio</a>のような)へのAPIはおそらく次のバージョンのどれかでフォローする予定です。サンプルスクリーンショット:"
+msgstr "Los marcadores creados con Leaflet Maps Marker también se pueden visualizar a través de <a href=\"http://en.wikipedia.org/wiki/Augmented_reality\" target=\"_blank\"> la tecnología de realidad aumentada </ a> en dispositivos móviles. Como primeros pasos, una API para <a href=\"http://www.wikitude.com\" target=\"_blank\"> Wikitude </ a> se ha implementado. La API para otros proveedores de realidad aumentada (como <a href=\"http://www.layar.com\" target=\"_blank\"> Layar </ a> o <a href = \"http://www.junaio.de\"target =\"_blank\"> junaio </ a>) probablemente aparezca en una de las próximas versiones. Capturas de pantalla de ejemplo:"
 
 #: ../class-leaflet-options.php:4972
 msgid "Wikitude settings"
-msgstr "Wikitude 設定"
+msgstr "configuración de Wikitude"
 
 #: ../class-leaflet-options.php:4980
 msgid "Please visit <a href=\"http://www.mapsmarker.com/wikitude\" target=\"_blank\">http://www.mapsmarker.com/wikitude</a> for instructions how to submit your marker or layer maps to Wikitude."
-msgstr "Wikitudeにあなたのマーカーやレイヤーを登録する手順は<a href=\"http://www.mapsmarker.com/wikitude\" target=\"_blank\">http://www.mapsmarker.com/wikitude</a> を参照してください。"
+msgstr "Por favor, visite <a href=\"http://www.mapsmarker.com/wikitude\" target=\"_blank\"> http://www.mapsmarker.com/wikitude </ a> para obtener instrucciones de cómo enviar su marcador o capa de mapas a Wikitude."
 
 #: ../class-leaflet-options.php:4985
 msgid "Provider name"
-msgstr "プロバイダ名"
+msgstr "Nombre del proveedor"
 
 #: ../class-leaflet-options.php:4986
 msgid "Identifies the content provider or content channel, no spaces/special characters"
-msgstr "コンテンツプロバイダやコンテンツチャネルを識別します、空白や特殊文字は使わないでください"
+msgstr "Identifica el proveedor de contenido o el canal de contenido, sin espacios / caracteres especiales"
 
 #: ../class-leaflet-options.php:4993
 msgid "Provider URL"
-msgstr "プロバイダURL"
+msgstr "Proveedor de URL"
 
 #: ../class-leaflet-options.php:4994
 msgid "Link to content provider"
-msgstr "コンテンツプロバイダへのリンク"
+msgstr "Enlace al proveedor de contenidos"
 
 #: ../class-leaflet-options.php:5001
 msgid "Logo"
-msgstr "ロゴ"
+msgstr "Logo"
 
 #: ../class-leaflet-options.php:5002
 msgid "The logo is displayed on the left bottom corner on Wikitude when an icon is selected - 96x96 pixel, transparent PNG"
-msgstr "ロゴはアイコンが選択された時にWikitude上の左下隅に表示されます。- 96x96ピクセル、透過PNG"
+msgstr "El logotipo se muestra en la esquina inferior izquierda de Wikitude, cuando se selecciona un icono de - 96x96 píxeles, con una PNG transparente"
 
 #: ../class-leaflet-options.php:5009
 #: ../class-leaflet-options.php:5229
@@ -1862,99 +1869,99 @@ msgstr "ロゴはアイコンが選択された時にWikitude上の左下隅に�
 #: ../leaflet-marker.php:381
 #: ../leaflet-tools.php:395
 msgid "Icon"
-msgstr "アイコン"
+msgstr "Ícono"
 
 #: ../class-leaflet-options.php:5010
 msgid "The icon is displayed in the cam view of Wikitude to indicate a marker - 32x32 pixel, transparent PNG"
-msgstr "アイコンはWikitudeのcamビューに表示され、マーカーを表わします - 32x32 ピクセル, 透過PNG"
+msgstr "El icono aparece en la vista de la leva de Wikitude para indicar un marcador de 32x32 píxeles, con un PNG transparente"
 
 #: ../class-leaflet-options.php:5017
 msgid "E-Mail"
-msgstr "E-Mail"
+msgstr "Correo electrónico"
 
 #: ../class-leaflet-options.php:5018
 msgid "Optional: displayed on each marker; used for sending an email directly from Wikitude"
-msgstr "オプション: 各マーカー上に表示; Wikitudeから直接eメールを送るのに使われます"
+msgstr "Opcional: se muestra en cada marcador, que se utiliza para el envío de un correo electrónico directamente desde Wikitude"
 
 #: ../class-leaflet-options.php:5025
 msgid "Phone"
-msgstr "電話番号"
+msgstr "Teléfono"
 
 #: ../class-leaflet-options.php:5026
 msgid "Optional: example: +4312345 - when a phone number is given, Wikitude displays a \"call me\" button in the bubble; used for every marker."
-msgstr "オプション: 例: +4312345 - 電話番号があれば、Wikitudeはバブルの中に \"call me\" ボタンを表示します; 全てのマーカーに使用されます。"
+msgstr "Opcional: ejemplo: +4312345 - cuando un número de teléfono se da, Wikitude muestra un \"me llaman\" en el botón de la burbuja, que se utiliza para cada marcador."
 
 #: ../class-leaflet-options.php:5033
 msgid "Attachment"
-msgstr "添付"
+msgstr "Archivo adjunto"
 
 #: ../class-leaflet-options.php:5034
 msgid "Optional: displayed on each marker; can be a link to a resource (image, PDF file...). You could use this to issue coupons or vouchers for potential clients that found you via Wikitude."
-msgstr "オプション: 各マーカー上に表示; リソース(画像, PDFファイル...)にリンク可能。これを使ってあなたをWikitude経由で見つけた潜在顧客に対してクーポンやバウチャーを発行することができます。"
+msgstr "Opcional: se muestra en cada marcador, puede ser un vínculo a un recurso (imagen, un archivo PDF ...). Usted puede usar esto para emitir cupones o vales para los clientes potenciales que se encuentran a través de Wikitude."
 
 #: ../class-leaflet-options.php:5041
 msgid "Search radius (in meter)"
-msgstr "検索半径 (メートル)"
+msgstr "Radio de búsqueda (en metros)"
 
 #: ../class-leaflet-options.php:5042
 msgid "Retrieve POIs (Points of Interests) from database within this search radius in meters from the current location of the Wikitude user"
-msgstr "Wikitudeユーザの現在位置からメートル単位でのこの検索半径内でデータベースからPOI(Points of Interests)を参照"
+msgstr "Recuperar POIs (Puntos de Interés) de la base de datos dentro de este radio de búsqueda en metros desde la ubicación actual del usuario Wikitude"
 
 #: ../class-leaflet-options.php:5049
 msgid "Maximum number of POIs"
-msgstr "POIの最大数"
+msgstr "Número máximo de puntos de interés"
 
 #: ../class-leaflet-options.php:5050
 msgid "Used if Wikitude does not pass the variable maxNumberofPois - 50 is the maximum recommended"
-msgstr "WikitudeがmaxNumberofPois変数を受け取らない場合に使用 - 50が最大値の推奨です"
+msgstr "Se utiliza si Wikitude no pasa las variables máximo número de puntos de interés (maxNumberofPois) - 50 es el máximo recomendado"
 
 #: ../class-leaflet-options.php:5081
 msgid "User role needed for adding and editing markers/layers"
-msgstr "ユーザロールにマーカー/レイヤーの追加と編集が必要です"
+msgstr "Rol de usuario necesarios para añadir y editar marcadores o capas"
 
 #: ../class-leaflet-options.php:5082
 #: ../class-leaflet-options.php:5097
 msgid "Note: the settings page is always visible to admins only."
-msgstr "注意： 設定ページは常に管理者だけが見ることができます。"
+msgstr "Nota: la página de configuración es siempre visible sólo la administradores."
 
 #: ../class-leaflet-options.php:5086
 #: ../class-leaflet-options.php:5101
 msgid "Administrator (Capability activate_plugins)"
-msgstr "管理者 (権限 プラグイン有効化)"
+msgstr "Administrador (Capacidad para activar plugins)"
 
 #: ../class-leaflet-options.php:5087
 #: ../class-leaflet-options.php:5102
 msgid "Editor (Capability moderate_comments)"
-msgstr "エディタ (権限 コメントのモデレート)"
+msgstr "Editor (puede moderar comentarios)"
 
 #: ../class-leaflet-options.php:5088
 #: ../class-leaflet-options.php:5103
 msgid "Author (Capability edit_published_posts)"
-msgstr "作者 (権限 公開済み投稿の編集)"
+msgstr "Autor (Capacidad de editar entradas publicadas)"
 
 #: ../class-leaflet-options.php:5089
 #: ../class-leaflet-options.php:5104
 msgid "Contributor (Capability edit_posts)"
-msgstr "投稿者 (権限 投稿の編集)"
+msgstr "Contribuidor (Capacidad de editar entradas)"
 
 #: ../class-leaflet-options.php:5090
 #: ../class-leaflet-options.php:5105
 msgid "Subscriber (Capability read)"
-msgstr "購読者 (権限 閲覧)"
+msgstr "Suscriptor (puede leer)"
 
 #: ../class-leaflet-options.php:5096
 msgid "User role needed for deleting markers/layers"
-msgstr "マーカー/レイヤーの削除にはユーザロールが必要です"
+msgstr "Rol de usuario necesaria para borrar los marcadores o capas"
 
 #: ../class-leaflet-options.php:5110
 #: ../leaflet-list-markers.php:76
 #: ../leaflet-list-markers.php:269
 msgid "Markers per page"
-msgstr "ページあたりマーカー数"
+msgstr "Marcadores por página"
 
 #: ../class-leaflet-options.php:5111
 msgid "How many markers should be listed on one page at the page \"list all markers\"?"
-msgstr "\"全てのマーカー一覧\" のページに1ページあたり何件のマーカーを一覧表示しますか？"
+msgstr "¿Cuántos marcadores deben aparecer en una página de \"lista de todos los marcadores\"?"
 
 #: ../class-leaflet-options.php:5118
 #: ../class-leaflet-options.php:5349
@@ -1966,72 +1973,72 @@ msgstr "\"全てのマーカー一覧\" のページに1ページあたり何件
 #: ../leaflet-list-markers.php:123
 #: ../leaflet-list-markers.php:171
 msgid "Shortcode"
-msgstr "ショートコード"
+msgstr "Código corto"
 
 #: ../class-leaflet-options.php:5119
 msgid "Shortcode to add markers or layers into articles or pages  - Example: [mapsmarker marker=\"1\"].<br/> Attention: if you change the shortcode after having embedded shortcodes into posts/Pages, the shortcode on these specific articles/pages has to be changed also manually - otherwise these markers/layers will not be show on frontend!"
-msgstr "記事やページにマーカーやレイヤーを追加するショートコード  - 例: [mapsmarker marker=\"1\"].<br/> 注意: 投稿/ページにショートコードをエンベッドした後にショートコードを変えた場合、特定の記事/ページ上のショートコードも手動で変更しなければなりません - さもないとこれらのマーカー/レイヤーは表画面に表示されません！"
+msgstr "Código corto para añadir marcadores o capas en forma de artículos o páginas - Ejemplo:. [mapsmarker marcador = \"1\"] <br/> Atención: si se cambia el código corto después de haber códigos cortos incrustados en los mensajes o páginas, el código abreviado de estos artículos específicos o páginas tiene que ser cambiado también de forma manual - de lo contrario estos marcadores o capas, no se mostrará en la interfaz!"
 
 #: ../class-leaflet-options.php:5127
 msgid "Add GeoRSS feed to &lt;head&gt;"
-msgstr "&lt;head&gt; にGeoRSSを追加"
+msgstr ""
 
 #: ../class-leaflet-options.php:5128
 msgid "if enabled, a GeoRSS feed for all markers will be added to the &lt;head&gt;-section of the website, allowing users to subscribe to your markers"
-msgstr "有効化されると、全てのマーカーに対するGeoRSSフィードはウェブサイトの &lt;head&gt;-セクションに追加され、ユーザはあなたのマーカーを購読することができます"
+msgstr ""
 
 #: ../class-leaflet-options.php:5139
 msgid "Wordpress Admin Bar integration"
-msgstr "Wordpress管理者バー統合"
+msgstr "Integración en la carra de administración de Wordpress"
 
 #: ../class-leaflet-options.php:5140
 msgid "show or hide drop down menu for Leaflet Maps Marker in Wordpress Admin Bar"
-msgstr "Wordpress管理バーでLeaflet Maps Marker 用のメニューにドロップダウンメニューを表示または非表示"
+msgstr "mostrar u ocultar el menú desplegable para Leaflet Maps Marker en la barra de administración de Wordpress"
 
 #: ../class-leaflet-options.php:5151
 msgid "Global statistics"
-msgstr "全体の統計"
+msgstr "Estadísticas globales"
 
 #: ../class-leaflet-options.php:5152
 msgid "Anonymous marker/layer hit counter"
-msgstr "匿名のマーカー/レイヤーカウンタ"
+msgstr "Contador de marcadores/capas anónimos"
 
 #: ../class-leaflet-options.php:5162
 msgid "QR code image size"
-msgstr "QRコード画像サイズ"
+msgstr "Tamaño de la imagen del código QR"
 
 #: ../class-leaflet-options.php:5163
 msgid "Width and height in pixel of QR code image for marker/layer standalone fullscreen map links"
-msgstr "マーカー/レイヤースタンドアロンフルスクリーンマップリンク用のQRコード画像の幅と高さをピクセルで"
+msgstr "Ancho y alto en píxeles de la imagen del código QR independientes ​​para los enlaces de marcadores / capa del mapa en pantalla completa"
 
 #: ../class-leaflet-options.php:5183
 msgid "Used for created maps - do not change this if you are not sure what it means!"
-msgstr "作成されたマップ用に使われます - その意味が分からない場合には変更しないでください！"
+msgstr "Se usa para los mapas creados, no cambie esta opción si no está seguro de lo que significa!"
 
 #: ../class-leaflet-options.php:5189
 msgid "Coordinate Reference System"
-msgstr "座標参照系"
+msgstr "Sistema de coordenadas de referencia"
 
 #: ../class-leaflet-options.php:5194
 msgid "EPSG:3857 (Spherical Mercator), used by most of commercial map providers (CloudMade, Google, Yahoo, Bing, etc.)"
-msgstr "EPSG:3857 (Spherical Mercator), ほとんどのマッププロバイダ (CloudMade, Google, Yahoo, Bing, 等)で使われています"
+msgstr "EPSG: 3857 (Spherical Mercator), utilizado por la mayoría de los proveedores de mapas comerciales (CloudMade, Google, Yahoo, Bing, etc)"
 
 #: ../class-leaflet-options.php:5195
 msgid "EPSG:4326 (Plate Carree), very popular among GIS enthusiasts"
-msgstr "EPSG:4326 (Plate Carree), GIS関係者内では非常にポピュラー"
+msgstr "EPSG: 4326 (Plate Carrée), muy popular entre los entusiastas de los SIG"
 
 #: ../class-leaflet-options.php:5196
 msgid "EPSG:4326 (Mercator), used by some map providers."
-msgstr "EPSG:4326 (Mercator), 使用しているマッププロバイダがいくつかあります。"
+msgstr "EPSG: 4326 (Mercator), utilizados por algunos proveedores de mapas."
 
 #: ../class-leaflet-options.php:5214
 msgid "Please select the columns which should be available on the page \"List all markers\""
-msgstr "\"全てのマーカー一覧\" のページで使えるカラムを選んでください"
+msgstr "Por favor, selecciona las columnas que deben estar disponibles en la página \"listar todos los marcadores\""
 
 #: ../class-leaflet-options.php:5220
 #: ../class-leaflet-options.php:5422
 msgid "Columns to show"
-msgstr "表示するカラム"
+msgstr "Columnas a mostrar"
 
 #: ../class-leaflet-options.php:5237
 #: ../leaflet-layer.php:518
@@ -2040,7 +2047,7 @@ msgstr "表示するカラム"
 #: ../leaflet-list-markers.php:143
 #: ../leaflet-marker.php:210
 msgid "Marker name"
-msgstr "マーカー名"
+msgstr "Nombre del marcador"
 
 #: ../class-leaflet-options.php:5245
 #: ../leaflet-layer.php:520
@@ -2050,7 +2057,7 @@ msgstr "マーカー名"
 #: ../leaflet-marker.php:402
 #: ../leaflet-tools.php:442
 msgid "Popup text"
-msgstr "ポップアップのテキスト"
+msgstr "Texto emergente"
 
 #: ../class-leaflet-options.php:5253
 #: ../class-leaflet-options.php:5455
@@ -2063,7 +2070,7 @@ msgstr "ポップアップのテキスト"
 #: ../leaflet-tools.php:260
 #: ../leaflet-tools.php:512
 msgid "Basemap"
-msgstr "ベースマップ"
+msgstr "Mapa de base"
 
 #: ../class-leaflet-options.php:5261
 #: ../leaflet-list-markers.php:99
@@ -2071,7 +2078,7 @@ msgstr "ベースマップ"
 #: ../leaflet-marker.php:214
 #: ../leaflet-tools.php:229
 msgid "Layer"
-msgstr "レイヤー"
+msgstr "Capa"
 
 #: ../class-leaflet-options.php:5269
 #: ../leaflet-layer.php:524
@@ -2080,7 +2087,7 @@ msgstr "レイヤー"
 #: ../leaflet-list-markers.php:153
 #: ../leaflet-marker.php:235
 msgid "Coordinates"
-msgstr "座標"
+msgstr "Coordenadas"
 
 #: ../class-leaflet-options.php:5285
 #: ../leaflet-layer.php:522
@@ -2089,7 +2096,7 @@ msgstr "座標"
 #: ../leaflet-list-markers.php:149
 #: ../leaflet-tools.php:426
 msgid "Popup status"
-msgstr "ポップアップ状態"
+msgstr "Estatus de la ventana emergente"
 
 #: ../class-leaflet-options.php:5293
 #: ../class-leaflet-options.php:5487
@@ -2097,8 +2104,9 @@ msgstr "ポップアップ状態"
 #: ../leaflet-list-layers.php:85
 #: ../leaflet-list-markers.php:103
 #: ../leaflet-list-markers.php:151
+#, fuzzy
 msgid "Panel status"
-msgstr "パネルステータス"
+msgstr "Panel de texto CSS"
 
 #: ../class-leaflet-options.php:5301
 #: ../class-leaflet-options.php:5479
@@ -2113,7 +2121,7 @@ msgstr "パネルステータス"
 #: ../leaflet-tools.php:325
 #: ../leaflet-tools.php:577
 msgid "Map size"
-msgstr "マップサイズ"
+msgstr "Tamaño del mapa"
 
 #: ../class-leaflet-options.php:5309
 #: ../class-leaflet-options.php:5495
@@ -2124,7 +2132,7 @@ msgstr "マップサイズ"
 #: ../leaflet-list-markers.php:113
 #: ../leaflet-list-markers.php:161
 msgid "Created by"
-msgstr "作成者"
+msgstr "Creado por"
 
 #: ../class-leaflet-options.php:5317
 #: ../class-leaflet-options.php:5503
@@ -2135,7 +2143,7 @@ msgstr "作成者"
 #: ../leaflet-list-markers.php:115
 #: ../leaflet-list-markers.php:163
 msgid "Created on"
-msgstr "作成日"
+msgstr "Creado el"
 
 #: ../class-leaflet-options.php:5325
 #: ../class-leaflet-options.php:5511
@@ -2146,7 +2154,7 @@ msgstr "作成日"
 #: ../leaflet-list-markers.php:117
 #: ../leaflet-list-markers.php:165
 msgid "Updated by"
-msgstr "更新者"
+msgstr "Actualizado por"
 
 #: ../class-leaflet-options.php:5333
 #: ../class-leaflet-options.php:5519
@@ -2157,7 +2165,7 @@ msgstr "更新者"
 #: ../leaflet-list-markers.php:119
 #: ../leaflet-list-markers.php:167
 msgid "Updated on"
-msgstr "更新日"
+msgstr "Actualizado el "
 
 #: ../class-leaflet-options.php:5341
 #: ../class-leaflet-options.php:5527
@@ -2168,11 +2176,11 @@ msgstr "更新日"
 #: ../leaflet-list-markers.php:121
 #: ../leaflet-list-markers.php:169
 msgid "Controlbox status"
-msgstr "制御ボックス状態"
+msgstr "Estatus de la caja de control"
 
 #: ../class-leaflet-options.php:5416
 msgid "Please select the columns which should be available on the page \"List all layers\""
-msgstr "\"全てのレイヤー一覧\" のページで使えるカラムを選んでください"
+msgstr "Por favor, seleccione las columnas que deben estar disponibles en la página \"listar todas las capas\""
 
 #: ../class-leaflet-options.php:5431
 #: ../leaflet-list-layers.php:35
@@ -2183,98 +2191,119 @@ msgstr ""
 #: ../class-leaflet-options.php:5439
 #: ../leaflet-layer.php:246
 msgid "Layer name"
-msgstr "レイヤー名"
+msgstr "Nombre de capa"
 
 #: ../class-leaflet-options.php:5447
 msgid "Number of markers"
-msgstr "マーカー数"
+msgstr "Número de marcadores"
 
 #: ../class-leaflet-options.php:5463
 #: ../leaflet-layer.php:250
 #: ../leaflet-list-layers.php:39
 #: ../leaflet-list-layers.php:81
 msgid "Layer center"
-msgstr "レイヤー中央"
+msgstr "Capa centro"
 
 #: ../class-leaflet-options.php:5598
 msgid "Reset Settings"
-msgstr "設定をリセット"
+msgstr "Restablecer la configuración"
 
 #: ../class-leaflet-options.php:5602
 msgid "Check this box and click \"Save Changes\" below to reset plugin options to their defaults."
-msgstr "プラグインオプションをリセットして既定値にするにはこのボックスをチェックして下記の \"変更を保存\" をクリック。"
+msgstr "Marque esta casilla y haga clic en \"Guardar cambios\" para restablecer las opciones de plugin a sus valores predeterminados."
 
 #: ../leaflet-admin-header.php:15
 #: ../leaflet-list-markers.php:68
 #: ../leaflet-maps-marker.php:657
 #: ../leaflet-maps-marker.php:705
 msgid "List all markers"
-msgstr "全てのマーカーを一覧"
+msgstr "Lista de todos los marcadores"
 
 #: ../leaflet-admin-header.php:16
 #: ../leaflet-maps-marker.php:658
 #: ../leaflet-maps-marker.php:711
 #: ../leaflet-marker.php:194
 msgid "Add new marker"
-msgstr "新しいマーカーを追加"
+msgstr "Agregar un nuevo marcador"
 
 #: ../leaflet-admin-header.php:17
 #: ../leaflet-list-layers.php:8
 #: ../leaflet-maps-marker.php:659
 #: ../leaflet-maps-marker.php:717
 msgid "List all layers"
-msgstr "全てのレイヤーを一覧"
+msgstr "Lista de todas las capas"
 
 #: ../leaflet-admin-header.php:18
 #: ../leaflet-layer.php:230
 #: ../leaflet-maps-marker.php:660
 #: ../leaflet-maps-marker.php:723
 msgid "Add new layer"
-msgstr "新しいレイヤーを追加"
+msgstr "Añadir nueva capa"
 
 #: ../leaflet-admin-header.php:19
 #: ../leaflet-maps-marker.php:661
 #: ../leaflet-maps-marker.php:732
+#, fuzzy
 msgid "Tools"
-msgstr "ツール"
+msgstr "Total"
 
 #: ../leaflet-admin-header.php:22
 #: ../leaflet-maps-marker.php:663
 #: ../leaflet-maps-marker.php:747
 msgid "Help & Credits"
-msgstr "ヘルプ＆クレジット"
+msgstr "Ayuda y Créditos"
 
 #: ../leaflet-admin-header.php:50
 msgid "Message"
-msgstr "メッセージ"
+msgstr "Mensaje"
+
+#: ../leaflet-admin-header.php:53
+msgid "If you like to donate a certain amount of money to show your support, you can also use Paypal. If you don´t have a Paypal account, you can use your credit card or bank account (where available). Please click on the paypal image to proceed to the donation form."
+msgstr "Si desea donar una cierta cantidad de dinero para mostrar su apoyo, también puedes usar Paypal. Si no tienes una cuenta de Paypal, puede utilizar su tarjeta de crédito o cuenta bancaria (donde esté disponible). Por favor, haga clic en la imagen de PayPal para continuar con el formulario de donación."
+
+#: ../leaflet-admin-header.php:56
+msgid "The easiest way to support this plugin is to buy something from Amazon by using this referrer link. Note: this doesn´t cost you anything as your purchase volume won´t be increased, but I will receive 6 per cent of your purchase volume as a referral fee."
+msgstr "La forma más fácil de apoyar este plugin es para comprar algo de Amazon a través de este enlace de referencia. Nota: esto no te cuesta nada, ni su volumen de compra aumentará, pero recibirán un 6 por ciento de su volumen de compras como una tasa de remisión."
+
+#: ../leaflet-admin-header.php:57
+msgid "Another way to show your support for this plugin is to buy something from my Amazon wishlist, respectively sending me a greeting card worth from 15 to 500 $ with a personal note, which I would very much appreciate."
+msgstr "Otra manera de mostrar su apoyo a este plugin es para comprar algo de mi lista de deseos de Amazon, respectivamente, me envía una tarjeta de saludo de la pena 15 a 500 $ con una nota personal, que yo apreciaría."
 
 #: ../leaflet-admin-header.php:63
 msgid "A message from the plugin´s author"
-msgstr "プラグイン作者からのメッセージ"
+msgstr "Un mensaje del autor del plugin"
+
+#: ../leaflet-admin-header.php:63
+msgid "Show website of plugin author"
+msgstr "Mostrar sitio web del autor del plugin"
 
 #: ../leaflet-admin-header.php:64
 msgid "It is hard to continue development and support for Leaflet Maps Marker-plugin without contributions from users like you."
-msgstr "あなたのようなユーザからの貢献無しに 開発やLeaflet Maps Marker-plugin のサポートを続く得ることは難しいです。"
+msgstr "Es difícil continuar con el desarrollo y soporte para Leaflet Maps Marker sin las contribuciones de los usuarios como tú."
 
 #: ../leaflet-admin-header.php:64
 msgid "If you enjoy using the plugin - <strong>particularly within a commercial context</strong> - please consider making a donation."
-msgstr "このプラグインが気に入ったら - <strong>特に商用利用の場合</strong> - 寄付をご検討ください。"
+msgstr "Si te gusta usar el plugin - <strong> en particular en un contexto comercial </ strong> - por favor considere hacer una donación."
 
 #: ../leaflet-admin-header.php:64
 msgid "Your donation help keeping the plugin free for everyone and allow me to spend more time on developing, maintaining and support."
-msgstr "寄付によってプラグインはみなさんにとってフリーであり続け、私にとって開発、維持・サポートに時間を割くことができます。"
+msgstr "Su donación ayudará a mantener el plug-in gratuito para todo el mundo y me permite pasar más tiempo en el desarrollo, mantenimiento y apoyo."
 
 #: ../leaflet-admin-header.php:64
 msgid "I´d be happy to accept your donation! Thanks!"
-msgstr "寄付があると嬉しいです。ありがとう！"
+msgstr "Estaría encantado de aceptar tu donación! Gracias!"
 
 #: ../leaflet-admin-header.php:64
 msgid "For more information on how to donate, please visit"
-msgstr "寄付の方法についての詳細はこちら"
+msgstr "Para más información sobre cómo donar, por favor visite"
+
+#: ../leaflet-admin-header.php:64
+msgid "please rate this plugin on wordpress.org"
+msgstr "Por favor puntúe este plugin en wordpress.org"
 
 #: ../leaflet-admin-header.php:64
 msgid "Rate plugin"
-msgstr "プラグインを評価"
+msgstr "Puntuar el plugin"
 
 #: ../leaflet-exportcsv.php:29
 #: ../leaflet-layer.php:20
@@ -2282,36 +2311,43 @@ msgstr "プラグインを評価"
 #: ../leaflet-marker.php:23
 #: ../leaflet-tools.php:18
 msgid "Security check failed - please call this function from the according Leaflet Maps Marker admin page!"
-msgstr "セキュリティチェックに失敗 - この機能は所定のLeaflet Maps Marker管理者ページから呼び出してください！"
+msgstr "El control de seguridad no - por favor llame a esta función desde el prospecto según la página de administración Mapas marcador!"
 
 #: ../leaflet-exportcsv.php:73
 msgid "Error - CSV export of all markers not allowed."
-msgstr "エラー - 全マーカーのCSVエクスポートは許可されていません。"
+msgstr "Error - Exportación CSV de todos los marcadores no permitido"
+
+#: ../leaflet-fullscreen.php:67
+#: ../leaflet-layer.php:216
+#: ../leaflet-maps-marker.php:234
+#, php-format
+msgid "Error: a layer with the ID %1$s does not exist!"
+msgstr "Error: La capa con el ID %1$s no existe!"
 
 #: ../leaflet-fullscreen.php:69
 #: ../leaflet-fullscreen.php:442
 #: ../leaflet-maps-marker.php:243
 msgid "Go to plugin website"
-msgstr "プラグインのウェブサイトへ移動"
+msgstr "Ir al sitio web del plug-in"
 
 #: ../leaflet-fullscreen.php:94
 #: ../leaflet-fullscreen.php:467
 #: ../leaflet-maps-marker.php:795
 #: ../leaflet-maps-marker.php:803
 msgid "Zoom in"
-msgstr "ズームイン"
+msgstr "Zoom in"
 
 #: ../leaflet-fullscreen.php:94
 #: ../leaflet-fullscreen.php:467
 #: ../leaflet-maps-marker.php:796
 #: ../leaflet-maps-marker.php:804
 msgid "Zoom out"
-msgstr "ズームアウト"
+msgstr "Zoom out"
 
 #: ../leaflet-fullscreen.php:102
 #: ../leaflet-fullscreen.php:475
 msgid "map"
-msgstr "マップ"
+msgstr "mapa"
 
 #: ../leaflet-fullscreen.php:110
 #: ../leaflet-fullscreen.php:499
@@ -2322,18 +2358,52 @@ msgstr "マップ"
 #: ../leaflet-maps-marker.php:378
 #: ../leaflet-marker.php:299
 msgid "Export as KML for Google Earth/Google Maps"
-msgstr "Google Earth/Google Maps用のKML形式でエクスポート"
+msgstr "Exportar como KML para Google Earth/Google Maps"
 
 #: ../leaflet-fullscreen.php:113
 #: ../leaflet-fullscreen.php:502
+#: ../leaflet-layer.php:51
+#: ../leaflet-layer.php:91
+#: ../leaflet-layer.php:240
 #: ../leaflet-layer.php:306
 #: ../leaflet-layer.php:360
+#: ../leaflet-layer.php:546
+#: ../leaflet-layer.php:590
+#: ../leaflet-list-layers.php:63
+#: ../leaflet-list-layers.php:105
+#: ../leaflet-list-markers.php:127
+#: ../leaflet-list-markers.php:175
 #: ../leaflet-maps-marker.php:274
 #: ../leaflet-maps-marker.php:298
 #: ../leaflet-maps-marker.php:377
+#: ../leaflet-marker.php:44
+#: ../leaflet-marker.php:73
+#: ../leaflet-marker.php:205
 #: ../leaflet-marker.php:302
 msgid "Open standalone map in fullscreen mode"
-msgstr "スタンドアロンマップをフルスクリーンモードで開く"
+msgstr "Abrir mapa independiente en modo pantalla completa"
+
+#: ../leaflet-fullscreen.php:116
+#: ../leaflet-fullscreen.php:505
+#: ../leaflet-layer.php:51
+#: ../leaflet-layer.php:91
+#: ../leaflet-layer.php:240
+#: ../leaflet-layer.php:306
+#: ../leaflet-layer.php:309
+#: ../leaflet-layer.php:548
+#: ../leaflet-layer.php:592
+#: ../leaflet-list-layers.php:65
+#: ../leaflet-list-layers.php:107
+#: ../leaflet-list-markers.php:129
+#: ../leaflet-list-markers.php:177
+#: ../leaflet-maps-marker.php:277
+#: ../leaflet-maps-marker.php:301
+#: ../leaflet-marker.php:44
+#: ../leaflet-marker.php:73
+#: ../leaflet-marker.php:205
+#: ../leaflet-marker.php:305
+msgid "Create QR code image for standalone map in fullscreen mode"
+msgstr "Crear imagen de código QR ​​para ver el mapa independiente en modo pantalla completa"
 
 #: ../leaflet-fullscreen.php:119
 #: ../leaflet-fullscreen.php:508
@@ -2342,7 +2412,7 @@ msgstr "スタンドアロンマップをフルスクリーンモードで開く
 #: ../leaflet-maps-marker.php:304
 #: ../leaflet-marker.php:308
 msgid "Export as GeoJSON"
-msgstr "GeoJSON形式でエクスポート"
+msgstr "Exportar como GeoJSON"
 
 #: ../leaflet-fullscreen.php:122
 #: ../leaflet-fullscreen.php:511
@@ -2351,7 +2421,7 @@ msgstr "GeoJSON形式でエクスポート"
 #: ../leaflet-maps-marker.php:307
 #: ../leaflet-marker.php:311
 msgid "Export as GeoRSS"
-msgstr "GeoRSS形式でエクスポート"
+msgstr "Exportar como GeoRSS"
 
 #: ../leaflet-fullscreen.php:125
 #: ../leaflet-fullscreen.php:514
@@ -2360,7 +2430,7 @@ msgstr "GeoRSS形式でエクスポート"
 #: ../leaflet-maps-marker.php:310
 #: ../leaflet-marker.php:314
 msgid "Export as ARML for Wikitude Augmented-Reality browser"
-msgstr "Wikitude 拡張現実ブラウザ用のARML形式でエクスポート"
+msgstr "Exportar como ARML para el navegador de realidad aumentada de Wikitude "
 
 #: ../leaflet-fullscreen.php:153
 #: ../leaflet-fullscreen.php:535
@@ -2368,7 +2438,7 @@ msgstr "Wikitude 拡張現実ブラウザ用のARML形式でエクスポート"
 #: ../leaflet-maps-marker.php:391
 #: ../leaflet-marker.php:502
 msgid "Plugin"
-msgstr "プラグイン"
+msgstr "Plugin"
 
 #: ../leaflet-fullscreen.php:159
 #: ../leaflet-fullscreen.php:160
@@ -2381,82 +2451,125 @@ msgstr "プラグイン"
 #: ../leaflet-marker.php:508
 #: ../leaflet-marker.php:509
 msgid "City of Vienna"
-msgstr "Viennaの都市"
+msgstr "Ciudad de Viena"
+
+#: ../leaflet-fullscreen.php:440
+#: ../leaflet-kml.php:182
+#: ../leaflet-maps-marker.php:235
+#: ../leaflet-marker.php:180
+#, php-format
+msgid "Error: a marker with the ID %1$s does not exist!"
+msgstr "Error: El marcador con el ID %1$ s no existe!"
+
+#: ../leaflet-fullscreen.php:489
+#: ../leaflet-fullscreen.php:492
+#: ../leaflet-fullscreen.php:495
+#: ../leaflet-fullscreen.php:747
+#: ../leaflet-fullscreen.php:750
+#: ../leaflet-fullscreen.php:753
+#: ../leaflet-geojson.php:91
+#: ../leaflet-geojson.php:93
+#: ../leaflet-geojson.php:95
+#: ../leaflet-layer.php:352
+#: ../leaflet-layer.php:355
+#: ../leaflet-layer.php:358
+#: ../leaflet-maps-marker.php:261
+#: ../leaflet-maps-marker.php:264
+#: ../leaflet-maps-marker.php:267
+#: ../leaflet-maps-marker.php:369
+#: ../leaflet-maps-marker.php:372
+#: ../leaflet-maps-marker.php:375
+#: ../leaflet-maps-marker.php:602
+#: ../leaflet-maps-marker.php:605
+#: ../leaflet-maps-marker.php:608
+#: ../leaflet-marker.php:289
+#: ../leaflet-marker.php:292
+#: ../leaflet-marker.php:295
+#: ../leaflet-marker.php:694
+#: ../leaflet-marker.php:698
+#: ../leaflet-marker.php:702
+msgid "Get directions"
+msgstr ""
 
 #: ../leaflet-georss.php:80
 #: ../leaflet-georss.php:145
 msgid "maps"
-msgstr "マップ"
+msgstr "mapas"
 
 #: ../leaflet-help-credits.php:10
 msgid "Help"
-msgstr "ヘルプ"
+msgstr "Ayuda"
 
 #: ../leaflet-help-credits.php:12
 #: ../leaflet-maps-marker.php:767
 msgid "Do you have questions or issues with Leaflet Maps Marker? Please use the following support channels appropriately."
-msgstr "Leaflet Maps Markerについての質問や問題がありますか？次のサポートチャネルを正しく利用してください。"
+msgstr "¿Tiene preguntas o problemas con Leaflet Maps Marker? Por favor, use los siguientes canales de soporte de forma adecuada."
 
 #: ../leaflet-help-credits.php:15
 #: ../leaflet-maps-marker.php:769
 msgid "FAQ"
-msgstr "FAQ"
+msgstr "Preguntas frecuentes"
 
 #: ../leaflet-help-credits.php:15
 msgid "(frequently asked questions)"
-msgstr "(よくある質問)"
+msgstr "(preguntas frecuentes)"
 
 #: ../leaflet-help-credits.php:16
 #: ../leaflet-maps-marker.php:770
 msgid "Documentation"
-msgstr "文書"
+msgstr "Documentación"
 
 #: ../leaflet-help-credits.php:17
 #: ../leaflet-maps-marker.php:771
 msgid "Ideas"
-msgstr "アイディア"
+msgstr "Ideas"
 
 #: ../leaflet-help-credits.php:17
 msgid "(feature requests)"
-msgstr "(機能リクエスト)"
+msgstr "(peticiones de nuevas funcionalidades)"
 
 #: ../leaflet-help-credits.php:18
 msgid "(free community support)"
-msgstr "(無料のコミュニティサポート)"
+msgstr "(apoyo gratuito de la comunidad)"
 
 #: ../leaflet-help-credits.php:19
 msgid "(paid community support)"
-msgstr "(有料のコミュニティサポート)"
+msgstr "(soporte pagado a la comunidad)"
 
 #: ../leaflet-help-credits.php:20
 msgid "(paid professional support)"
-msgstr "(有料のプロフェッショナルサポート)"
+msgstr "(apoyo pagado de un profesional)"
 
 #: ../leaflet-help-credits.php:23
 #: ../leaflet-maps-marker.php:776
 msgid "More information on support"
-msgstr "サポートに関する詳細"
+msgstr "Más información de soporte"
 
 #: ../leaflet-help-credits.php:24
 msgid "Licence"
-msgstr "ライセンス"
+msgstr "Licencia"
 
 #: ../leaflet-help-credits.php:26
 msgid "Good news, this plugin is free for everyone! Since it is released under the GPL2, you can use it free of charge on your personal or commercial blog.<br/>But if you enjoy this plugin, you can thank me and leave a small donation for the time I have spent writing and supporting this plugin.<br/>Please see <a href=\"http://www.mapsmarker.com/donations\" target=\"_blank\">http://www.mapsmarker.com/donations</a> for details."
-msgstr "良い知らせです、このプラグインは誰でも自由に使えます！GPL2の下にリリースされているので、あなたは自分のブログや商用ブログで無料で使うことができます。<br/>しかしプラグインが気に入ったら、私がプラグインを書いたりサポートしたりした時間に対して少しの寄付で感謝することができます。<br/>詳細は<a href=\"http://www.mapsmarker.com/donations\" target=\"_blank\">http://www.mapsmarker.com/donations</a>をご参照ください。"
+msgstr "Buenas noticias, este plugin es gratuito para todo el mundo! Desde que se distribuye bajo la GPL2, se puede utilizar de forma gratuita en su blog personal o comercial. <br/> Pero si te gusta este plugin, puede darme las gracias y dejar una pequeña donación por el tiempo que he pasado escribiendo y el apoyo a este plugin. <br/> Por favor, consulte <a href=\"http://www.mapsmarker.com/donations\" http://www.mapsmarker.com/donations target=\"_blank\"> </ a> para más detalles."
 
 #: ../leaflet-help-credits.php:28
 msgid "Licenses for used libraries, services and images"
-msgstr "使用しているライブラリ、サービス及び画像のライセンス"
+msgstr "Licencias para utilizar las bibliotecas, los servicios y las imágenes"
 
 #: ../leaflet-help-credits.php:39
 #, fuzzy
 msgid "Translations"
-msgstr "透過"
+msgstr "Transparente"
 
 #: ../leaflet-help-credits.php:45
 msgid "Credits & special thanks"
-msgstr "クレジット＆謝辞"
+msgstr "Créditos y agradecimientos especiales"
+
+#: ../leaflet-kml.php:76
+#, php-format
+msgid "Warning: no markers are assigned to the layer with the ID %1$s or the layer does not exist!"
+msgstr "Advertencia: no se asignaron a los marcadores a la capa con el ID %1$s, o la capa no existe!"
 
 #: ../leaflet-layer.php:37
 #: ../leaflet-layer.php:77
@@ -2464,11 +2577,11 @@ msgstr "クレジット＆謝辞"
 #: ../leaflet-layer.php:670
 #: ../leaflet-list-layers.php:169
 msgid "add new marker to this layer"
-msgstr "このレイヤーに新しいマーカーを追加"
+msgstr "agregar un nuevo marcador a esta capa"
 
 #: ../leaflet-layer.php:51
 msgid "Layer has been successfully added"
-msgstr "レイヤーは追加されました"
+msgstr "La capa ha sido agregado con éxito"
 
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
@@ -2477,20 +2590,80 @@ msgstr "レイヤーは追加されました"
 #: ../leaflet-marker.php:73
 #: ../leaflet-marker.php:204
 msgid "Shortcode and API URLs"
-msgstr "ショートコードとAPI URL"
+msgstr "Código corto y URL de la API"
+
+#: ../leaflet-layer.php:51
+#: ../leaflet-layer.php:91
+#: ../leaflet-layer.php:240
+#: ../leaflet-layer.php:544
+#: ../leaflet-layer.php:588
+#: ../leaflet-list-layers.php:61
+#: ../leaflet-list-layers.php:103
+#: ../leaflet-list-markers.php:125
+#: ../leaflet-list-markers.php:173
+#: ../leaflet-marker.php:44
+#: ../leaflet-marker.php:73
+#: ../leaflet-marker.php:205
+msgid "Click here for more information on how to use as KML in Google Earth or Google Maps"
+msgstr "Haga clic aquí para obtener más información sobre cómo utilizar como archivo KML de Google Earth o Google Maps"
+
+#: ../leaflet-layer.php:51
+#: ../leaflet-layer.php:91
+#: ../leaflet-layer.php:241
+#: ../leaflet-layer.php:550
+#: ../leaflet-layer.php:594
+#: ../leaflet-list-layers.php:67
+#: ../leaflet-list-layers.php:109
+#: ../leaflet-list-markers.php:131
+#: ../leaflet-list-markers.php:179
+#: ../leaflet-marker.php:44
+#: ../leaflet-marker.php:73
+#: ../leaflet-marker.php:205
+msgid "Click here for more information on how to integrate GeoJSON into external websites or apps"
+msgstr "Haz clic aquí para obtener más información acerca de cómo integrar GeoJSON en sitios web externos o aplicaciones"
+
+#: ../leaflet-layer.php:51
+#: ../leaflet-layer.php:91
+#: ../leaflet-layer.php:241
+#: ../leaflet-layer.php:552
+#: ../leaflet-layer.php:596
+#: ../leaflet-list-layers.php:69
+#: ../leaflet-list-layers.php:111
+#: ../leaflet-list-markers.php:133
+#: ../leaflet-list-markers.php:181
+#: ../leaflet-marker.php:44
+#: ../leaflet-marker.php:73
+#: ../leaflet-marker.php:205
+msgid "Click here for more information on how to subscribe to new markers via GeoRSS"
+msgstr "Haga clic aquí para obtener más información sobre cómo suscribirse a los nuevos marcadores a través de GeoRSS"
+
+#: ../leaflet-layer.php:51
+#: ../leaflet-layer.php:91
+#: ../leaflet-layer.php:241
+#: ../leaflet-layer.php:554
+#: ../leaflet-layer.php:598
+#: ../leaflet-list-layers.php:71
+#: ../leaflet-list-layers.php:113
+#: ../leaflet-list-markers.php:135
+#: ../leaflet-list-markers.php:183
+#: ../leaflet-marker.php:44
+#: ../leaflet-marker.php:73
+#: ../leaflet-marker.php:205
+msgid "Click here for more information on how to display in Wikitude Augmented-Reality browser"
+msgstr "Haga clic aquí para obtener más información sobre cómo mostrar en la realidad aumentadaen el navegador de  Wikitude"
 
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
 #: ../leaflet-marker.php:44
 #: ../leaflet-marker.php:73
 msgid "Please copy the shortcode above and paste it into the post or page where you want the map to appear or use one of the API URLs for embedding in external websites or apps"
-msgstr "マップを表示したい投稿やページに上記のショートコードをコピーして貼りつけたり、あるいは外部のウェブサイトやアプリにエンベッドする際にはAPI URLのいずれかを使ってください"
+msgstr "Por favor, copie el código corto anterior y péguelo en la entrada o la página donde desea que aparezca el mapa o user una de las direcciones URL de la API para incrustar en sitios web externos u otras aplicaciones"
 
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
 #: ../leaflet-marker.php:226
 msgid "edit layer"
-msgstr "レイヤーを編集"
+msgstr "editar capa"
 
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
@@ -2498,7 +2671,7 @@ msgstr "レイヤーを編集"
 #: ../leaflet-layer.php:112
 #: ../leaflet-layer.php:218
 msgid "show all layers"
-msgstr "全てのレイヤーを表示"
+msgstr "mostrar todas las capas"
 
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
@@ -2507,57 +2680,57 @@ msgstr "全てのレイヤーを表示"
 #: ../leaflet-layer.php:218
 #: ../leaflet-marker.php:227
 msgid "add new layer"
-msgstr "新しいレイヤーを追加"
+msgstr "agregar una nueva capa"
 
 #: ../leaflet-layer.php:58
 #: ../leaflet-layer.php:95
 #: ../leaflet-marker.php:51
 #: ../leaflet-marker.php:77
 msgid "Error: coordinates cannot be empty!"
-msgstr "エラー: 座標は空ではいけません！"
+msgstr "Error: Las coordenadas no pueden estar vacías!"
 
 #: ../leaflet-layer.php:58
 #: ../leaflet-layer.php:95
 #: ../leaflet-marker.php:51
 #: ../leaflet-marker.php:77
 msgid "Go back to form"
-msgstr "フォームに戻る"
+msgstr "Volver al formulario"
 
 #: ../leaflet-layer.php:91
 msgid "Layer has been successfully updated"
-msgstr "レイヤーは更新されました"
+msgstr "La capa ha sido actualizada exitosamente"
 
 #: ../leaflet-layer.php:104
 msgid "Layer and assigned markers have been successfully deleted"
-msgstr "レイヤーと割り当てられたマーカーは削除されました"
+msgstr "Las capas y marcadores asignados se han eliminado correctamente"
 
 #: ../leaflet-layer.php:112
 msgid "Layer has been successfully deleted (assigned markers have not been deleted)"
-msgstr "レイヤーは削除されました(割り当てられたマーカーは削除されていません)"
+msgstr "La capa ha sido borrado exitosamente (los marcadores asignados no se han eliminado)"
 
 #: ../leaflet-layer.php:230
 msgid "Edit layer"
-msgstr "レイヤーを編集"
+msgstr "Editar capa"
 
 #: ../leaflet-layer.php:234
 #: ../leaflet-marker.php:199
 msgid "Parameter"
-msgstr "パラメータ"
+msgstr "Parámetro"
 
 #: ../leaflet-layer.php:235
 #: ../leaflet-marker.php:200
 msgid "Value"
-msgstr "値"
+msgstr "Valor"
 
 #: ../leaflet-layer.php:241
 #: ../leaflet-marker.php:205
 msgid "Use this shortcode in posts or pages on your website or one of the API URLs for embedding in external websites or apps"
-msgstr "あなたのウェブサイト上のページや投稿でこのショートコードを、あるいは外部のウェブサイトやアプリにエンベッドする際にはこAPI URLのいずれかを使ってください"
+msgstr "Utilice este código corto en las entradas o las páginas de su sitio web o la URL de la API para incrustar en sitios web externos o aplicaciones"
 
 #: ../leaflet-layer.php:251
 #: ../leaflet-marker.php:236
 msgid "Please select a place or an address"
-msgstr "場所または住所を選んでください"
+msgstr "Por favor, seleccione un lugar o una dirección"
 
 #: ../leaflet-layer.php:251
 #: ../leaflet-layer.php:291
@@ -2565,26 +2738,26 @@ msgstr "場所または住所を選んでください"
 #: ../leaflet-marker.php:236
 #: ../leaflet-marker.php:322
 msgid "(Settings)"
-msgstr "(設定)"
+msgstr "(Ajustes)"
 
 #: ../leaflet-layer.php:255
 #: ../leaflet-marker.php:240
 msgid "or paste coordinates here"
-msgstr "または座標をここに貼りつけてください"
+msgstr "o pegue las coordenadas aquí"
 
 #: ../leaflet-layer.php:256
 #: ../leaflet-marker.php:241
 msgid "latitude"
-msgstr "緯度"
+msgstr "latitud"
 
 #: ../leaflet-layer.php:257
 #: ../leaflet-marker.php:242
 msgid "longitude"
-msgstr "経度"
+msgstr "longitud"
 
 #: ../leaflet-layer.php:259
 msgid "or set layer center by clicking on the preview map"
-msgstr "またはプレビューマップをクリックしてレイヤーを中央にセットしてください"
+msgstr "o establecer el centro de capa haciendo clic en el mapa de vista previa"
 
 #: ../leaflet-layer.php:264
 #: ../leaflet-layer.php:619
@@ -2594,7 +2767,7 @@ msgstr "またはプレビューマップをクリックしてレイヤーを中
 #: ../leaflet-tools.php:328
 #: ../leaflet-tools.php:580
 msgid "Width"
-msgstr "幅"
+msgstr "Ancho"
 
 #: ../leaflet-layer.php:268
 #: ../leaflet-layer.php:619
@@ -2604,50 +2777,58 @@ msgstr "幅"
 #: ../leaflet-tools.php:333
 #: ../leaflet-tools.php:585
 msgid "Height"
-msgstr "高さ"
+msgstr "Alto"
 
 #: ../leaflet-layer.php:274
 #: ../leaflet-marker.php:260
 msgid "Please change zoom level by clicking on + or - symbols or using your mouse wheel on preview map"
-msgstr "+または-記号をクリックするか、プレビューマップ上でマウスホイールを使ってズームレベルを変えてください"
+msgstr "Por favor, cambie el nivel de zoom haciendo clic en + o - los símbolos o el uso de la rueda del ratón en el mapa de vista previa"
 
 #: ../leaflet-layer.php:277
 #: ../leaflet-marker.php:263
 #: ../leaflet-tools.php:361
 #: ../leaflet-tools.php:613
 msgid "Basemap/overlay controlbox on frontend"
-msgstr "表画面上のベースマップ/オーバーレイ制御ボックス"
+msgstr "Mapa de base / capa de interfaz de caja de control"
 
 #: ../leaflet-layer.php:281
 #: ../leaflet-marker.php:267
 msgid "Controlbox on backend is always expanded"
-msgstr "バックエンドの制御ボックスは常に開いています"
+msgstr "Caja de control del backend siempre expandida"
 
 #: ../leaflet-layer.php:291
 #, fuzzy
 msgid "Max. number of markers to display:"
-msgstr "このレイヤーに新しいマーカーを追加"
+msgstr "agregar un nuevo marcador a esta capa"
 
 #: ../leaflet-layer.php:321
 msgid "if set, layername will be inserted here"
-msgstr "セットされると、レイヤー名はここに挿入されます"
+msgstr "Si se establece, el nombre de la capa se inserta aquí"
 
 #: ../leaflet-layer.php:332
 #: ../leaflet-layer.php:336
+#, fuzzy
 msgid "Markers assigned to this layer will be listed here"
-msgstr "このレイヤーに割り当てられたマーカーはここにリストされます"
+msgstr "Marcador asignado a esta capa"
+
+#: ../leaflet-layer.php:362
+#: ../leaflet-layer.php:646
+#: ../leaflet-list-markers.php:239
+#: ../leaflet-marker.php:194
+msgid "Edit marker"
+msgstr "Editar marcador"
 
 #: ../leaflet-layer.php:362
 #: ../leaflet-layer.php:646
 #: ../leaflet-list-layers.php:173
 #: ../leaflet-list-markers.php:239
 msgid "edit"
-msgstr "編集"
+msgstr "editar"
 
 #: ../leaflet-layer.php:370
 #: ../leaflet-marker.php:322
 msgid "WMS layers"
-msgstr "WMS レイヤー"
+msgstr "Capas WMS"
 
 #: ../leaflet-layer.php:428
 msgid "Multi Layer Map"
@@ -2664,12 +2845,11 @@ msgstr ""
 #: ../leaflet-layer.php:439
 #, fuzzy
 msgid "display all markers"
-msgstr "全てのマーカーを一覧"
+msgstr "Lista de todos los marcadores"
 
 #: ../leaflet-layer.php:439
-#, fuzzy
 msgid "Display markers from selected layers only"
-msgstr "選択したレイヤーから全てのマーカーを削除します"
+msgstr ""
 
 #: ../leaflet-layer.php:447
 #: ../leaflet-layer.php:506
@@ -2681,46 +2861,56 @@ msgstr "選択したレイヤーから全てのマーカーを削除します"
 #: ../leaflet-tools.php:231
 #: ../leaflet-tools.php:235
 msgid "marker"
-msgstr "マーカー"
+msgstr "marcador"
 
 #: ../leaflet-layer.php:455
 #: ../leaflet-marker.php:468
 msgid "Audit"
-msgstr "監査"
+msgstr "Auditoría"
 
 #: ../leaflet-layer.php:457
 msgid "Layer added by"
-msgstr "レイヤー作成者"
+msgstr "Capa agregada por"
 
 #: ../leaflet-layer.php:460
 #: ../leaflet-marker.php:473
 msgid "last update by"
-msgstr "レイヤー更新者"
+msgstr "última actualización por"
 
 #: ../leaflet-layer.php:467
 msgid "update layer"
-msgstr "レイヤーを更新"
+msgstr "capa actualizada"
 
 #: ../leaflet-layer.php:467
 msgid "add layer"
-msgstr "レイヤーを追加"
+msgstr "agregar capa"
+
+#: ../leaflet-layer.php:477
+#, php-format
+msgid "Do you really want to delete layer %1$s (ID %2$s)?"
+msgstr "¿Realmente desea eliminar la capa %1$s (ID %2$s)?"
 
 #: ../leaflet-layer.php:478
 msgid "delete layer"
-msgstr "レイヤーを削除"
+msgstr "borrar capa"
+
+#: ../leaflet-layer.php:487
+#, php-format
+msgid "Do you really want to delete layer %1$s (ID %2$s) and all %3$s assigned markers?"
+msgstr "¿Realmente desea eliminar la capa %1$s (ID %2$s) y %3$s todos los marcadores asignados?"
 
 #: ../leaflet-layer.php:489
 msgid "delete layer AND assigned markers"
-msgstr "レイヤーを削除かつマーカーを割り当て"
+msgstr "eliminar la capa Y marcadores asignados"
 
 #: ../leaflet-layer.php:499
 msgid "Marker assigned to this layer"
-msgstr "このレイヤーに割り当てられたマーカー"
+msgstr "Marcador asignado a esta capa"
 
 #: ../leaflet-layer.php:501
 #, fuzzy
 msgid "Marker assigned to this multi layer map"
-msgstr "このレイヤーに割り当てられたマーカー"
+msgstr "Marcador asignado a esta capa"
 
 #: ../leaflet-layer.php:506
 #: ../leaflet-list-layers.php:23
@@ -2728,130 +2918,170 @@ msgstr "このレイヤーに割り当てられたマーカー"
 #: ../leaflet-list-markers.php:74
 #: ../leaflet-list-markers.php:267
 msgid "Total"
-msgstr "合計"
+msgstr "Total"
 
 #: ../leaflet-layer.php:509
 msgid "For details on assigned markers to this multi-layer map, please open the individual layer maps."
 msgstr ""
 
+#: ../leaflet-layer.php:606
+#: ../leaflet-marker.php:488
+#, php-format
+msgid "Do you really want to delete marker %1$s (ID %2$s)?"
+msgstr "¿Estás seguro que quieres eliminar marcador de %1$s (ID %2$s)?"
+
 #: ../leaflet-layer.php:607
 #: ../leaflet-list-layers.php:125
 #: ../leaflet-list-markers.php:195
 msgid "delete"
-msgstr "削除"
+msgstr "borrar"
 
 #: ../leaflet-layer.php:612
 msgid "No marker assigned to this layer"
-msgstr "このレイヤーにはマーカーが割り当てられていません"
+msgstr "Sin marcadores asignados a esta capa"
 
 #: ../leaflet-layer.php:634
 #: ../leaflet-list-markers.php:200
 #: ../leaflet-tools.php:431
 msgid "open"
-msgstr "開く"
+msgstr "abierto"
 
 #: ../leaflet-layer.php:634
 #: ../leaflet-list-markers.php:200
 #: ../leaflet-tools.php:429
 msgid "closed"
-msgstr "閉じる"
+msgstr "cerrado"
 
 #: ../leaflet-layer.php:637
 #: ../leaflet-list-markers.php:207
 msgid "Edit marker "
-msgstr "マーカーを編集"
+msgstr "Editar marcador"
+
+#: ../leaflet-layer.php:644
+#: ../leaflet-list-markers.php:237
+msgid "standard icon"
+msgstr "icono estándar"
 
 #: ../leaflet-layer.php:1011
 #: ../leaflet-layer.php:1017
 #: ../leaflet-marker.php:818
 #: ../leaflet-marker.php:824
 msgid "Invalid format! Please only use numbers and a . instead of a , as decimal separator!"
-msgstr "不正な形式！数字と10進数の区切り文字としてはカンマではなく小数点だけを使ってください！"
+msgstr "Formato inválido! Por favor, utilice solamente números y puntos (.) en lugar de comas (,) como separador decimal!"
 
 #: ../leaflet-list-layers.php:21
 #: ../leaflet-list-layers.php:204
 msgid "Add layer"
-msgstr "レイヤーを追加"
+msgstr "Agregar capa"
 
 #: ../leaflet-list-layers.php:21
 #: ../leaflet-list-layers.php:204
 #: ../leaflet-list-markers.php:73
 #: ../leaflet-list-markers.php:279
 msgid "Export all markers as csv-file"
-msgstr "全てのマーカーをCSVファイル形式でエクスポート"
+msgstr "Exportar de todos los marcadores como archivo CSV"
 
 #: ../leaflet-list-layers.php:21
 #: ../leaflet-list-layers.php:204
 #: ../leaflet-list-markers.php:73
 #: ../leaflet-list-markers.php:279
 msgid "Export all markers as KML"
-msgstr "全てのマーカーをKML形式でエクスポート"
+msgstr "Exportar todos los marcadores como KML"
 
 #: ../leaflet-list-layers.php:21
 #: ../leaflet-list-layers.php:204
 #: ../leaflet-list-markers.php:73
 #: ../leaflet-list-markers.php:279
 msgid "Export all markers as GeoJSON"
-msgstr "全てのマーカーをGeoJSON形式でエクスポート"
+msgstr "Exportar todos los marcadores como GeoJSON"
 
 #: ../leaflet-list-layers.php:21
 #: ../leaflet-list-layers.php:204
 #: ../leaflet-list-markers.php:73
 #: ../leaflet-list-markers.php:279
 msgid "Subscribe to markers via GeoRSS"
-msgstr "GeoRSS経由でマーカーを購読"
+msgstr "Suscribirse a los marcadores a través de GeoRSS"
 
 #: ../leaflet-list-layers.php:21
 #: ../leaflet-list-layers.php:204
 #: ../leaflet-list-markers.php:73
 #: ../leaflet-list-markers.php:279
 msgid "Export all markers as ARML for Wikitude"
-msgstr "全てのマーカーをWikitude用のARML形式でエクスポート"
+msgstr "Exportar todos los marcadores como ARML para Wikitude"
 
 #: ../leaflet-list-layers.php:23
 #: ../leaflet-list-layers.php:198
 msgid "layer"
-msgstr "レイヤー"
+msgstr "capa"
+
+#: ../leaflet-list-layers.php:24
+#: ../leaflet-list-layers.php:199
+#: ../leaflet-list-markers.php:77
+#: ../leaflet-list-markers.php:270
+msgid "select columns to display"
+msgstr "selecciona columnas a mostrar"
 
 #: ../leaflet-list-layers.php:24
 #: ../leaflet-list-layers.php:199
 #: ../leaflet-list-markers.php:77
 #: ../leaflet-list-markers.php:270
 msgid "columns"
-msgstr "カラム"
+msgstr "columnas"
 
 #: ../leaflet-list-layers.php:37
 #: ../leaflet-list-layers.php:79
 #: ../leaflet-maps-marker.php:1023
 msgid "Markers"
-msgstr "マーカー"
+msgstr "Marcadores"
 
 #: ../leaflet-list-layers.php:120
 msgid "No layer created yet"
-msgstr "まだレイヤーが作成されていません"
+msgstr "Ninguna capa creado todavía"
+
+#: ../leaflet-list-layers.php:125
+msgid "Do you really want to delete this layer?"
+msgstr "¿Estás seguro que quieres eliminar esta capa?"
+
+#: ../leaflet-list-layers.php:142
+msgid "single layer map"
+msgstr ""
+
+#: ../leaflet-list-layers.php:142
+#, fuzzy
+msgid "multi layer map"
+msgstr "Editar capa"
 
 #: ../leaflet-list-layers.php:173
 msgid "Edit"
-msgstr "編集"
+msgstr "Editar"
+
+#: ../leaflet-list-layers.php:174
+msgid "show markers assigned to this layer"
+msgstr "mostrar marcadores asignados a esta capa"
 
 #: ../leaflet-list-markers.php:37
 msgid "page"
-msgstr "ページ"
+msgstr "página"
 
 #: ../leaflet-list-markers.php:73
 #: ../leaflet-list-markers.php:279
 msgid "Add marker"
-msgstr "マーカーを追加"
+msgstr "Agregar marcador"
 
 #: ../leaflet-list-markers.php:74
 #: ../leaflet-list-markers.php:267
 msgid "Search result"
-msgstr "検索結果"
+msgstr "Resultado de la búsqueda"
+
+#: ../leaflet-list-markers.php:77
+#: ../leaflet-list-markers.php:270
+msgid "Change number in settings"
+msgstr "Cambiar el número en ajustes"
 
 #: ../leaflet-list-markers.php:84
 #: ../leaflet-list-markers.php:276
 msgid "search"
-msgstr "検索"
+msgstr "buscar"
 
 #: ../leaflet-list-markers.php:86
 #: ../leaflet-list-markers.php:278
@@ -2860,164 +3090,165 @@ msgstr "検索"
 #: ../leaflet-marker.php:85
 #: ../leaflet-marker.php:182
 msgid "show all markers"
-msgstr "全てのマーカーを表示"
+msgstr "mostrar todos los marcadores"
 
 #: ../leaflet-list-markers.php:190
 msgid "No marker created yet"
-msgstr "まだマーカーが作成されていません"
+msgstr "No hay un marcador creado todavía"
 
 #: ../leaflet-list-markers.php:195
 msgid "Do you really want to delete this marker?"
-msgstr "このマーカーを本当に削除しますか？"
+msgstr "¿Estás seguro que quieres eliminar este marcador?"
 
 #: ../leaflet-list-markers.php:199
 #: ../leaflet-tools.php:193
 #: ../leaflet-tools.php:203
 #: ../leaflet-tools.php:231
 msgid "unassigned"
-msgstr "未割当"
+msgstr "sin asignar"
 
 #: ../leaflet-list-markers.php:199
 msgid "Edit layer "
-msgstr "レイヤーを編集"
+msgstr "Editar capa"
 
 #: ../leaflet-list-markers.php:268
 msgid "Marker"
-msgstr "マーカー"
+msgstr "Marcador"
 
 #: ../leaflet-maps-marker.php:223
 #: ../leaflet-maps-marker.php:226
 msgid "Show embedded map in full-screen mode"
-msgstr "エンベッドされたマップをフルスクリーンモードで開く"
+msgstr "Mostrar mapa incrustado en modo de pantalla completa"
 
 #: ../leaflet-maps-marker.php:658
 msgid "add/edit marker"
-msgstr "マーカーを追加/編集"
+msgstr "añadir / editar marcador"
 
 #: ../leaflet-maps-marker.php:660
 msgid "add/edit layer"
-msgstr "レイヤーを追加/編集"
+msgstr "añadir / editar capa"
 
 #: ../leaflet-maps-marker.php:700
 msgid "by"
-msgstr "by"
+msgstr "por"
 
 #: ../leaflet-maps-marker.php:755
 msgid "Open plugin website"
-msgstr "プラグインのウェブサイトを開く"
+msgstr "Abrir sitio web del plug-in"
 
 #: ../leaflet-maps-marker.php:769
 msgid "frequently asked questions"
-msgstr "よくある質問"
+msgstr "preguntas frecuentes"
 
 #: ../leaflet-maps-marker.php:771
 msgid "feature requests"
-msgstr "機能リクエスト"
+msgstr "peticiones de nuevas funcionalidades"
 
 #: ../leaflet-maps-marker.php:772
 msgid "free community support"
-msgstr "無料のコミュニティサポート"
+msgstr "apoyo gratuito de la comunidad"
 
 #: ../leaflet-maps-marker.php:773
 msgid "paid community support"
-msgstr "有料のコミュニティサポート"
+msgstr "apoyo pago de la comunidad"
 
 #: ../leaflet-maps-marker.php:774
 msgid "paid professional support"
-msgstr "有料プロフェッショナルサポート"
+msgstr "soporte de un profesional pago"
 
 #: ../leaflet-maps-marker.php:785
 msgid "Help & Support"
-msgstr "ヘルプ＆サポート"
+msgstr "Ayuda y Soporte"
 
 #: ../leaflet-marker.php:16
 msgid "edit assigned layer"
-msgstr "割り当てられたレイヤーを編集"
+msgstr "modificar la capa asignada"
 
 #: ../leaflet-marker.php:44
 msgid "Marker has been successfully added"
-msgstr "マーカーは追加されました"
+msgstr "Marcador agregado con éxito"
 
 #: ../leaflet-marker.php:44
 #: ../leaflet-marker.php:73
 msgid "edit marker"
-msgstr "マーカーを編集"
+msgstr "editar marcador"
 
 #: ../leaflet-marker.php:44
 msgid "add new maker"
-msgstr "新しいマーカーを追加"
+msgstr "agregar un nuevo marcador"
 
 #: ../leaflet-marker.php:73
 msgid "Marker has been successfully updated"
-msgstr "マーカーは更新されました"
+msgstr "Marcador actualizado correctamente"
 
 #: ../leaflet-marker.php:73
 #: ../leaflet-marker.php:85
 #: ../leaflet-marker.php:182
 msgid "add new marker"
-msgstr "新しいマーカーを追加"
+msgstr "agregar un nuevo marcador"
 
 #: ../leaflet-marker.php:85
 msgid "Marker has been successfully deleted"
-msgstr "マーカーは削除されました"
-
-#: ../leaflet-marker.php:194
-msgid "Edit marker"
-msgstr "マーカーを編集"
+msgstr "Marcador borrado"
 
 #: ../leaflet-marker.php:218
 msgid "Do not assign marker to a layer"
-msgstr "マーカーをレイヤーに割り当てない"
+msgstr "No asigne el marcador a una capa"
 
 #: ../leaflet-marker.php:226
 msgid "or"
-msgstr "または"
+msgstr "o"
 
 #: ../leaflet-marker.php:244
 msgid "or set marker coordinates by clicking on the preview map"
-msgstr "あるいはプレビューマップ上でクリックしてマーカーの座標をセット"
+msgstr "o configure las coordenadas de un marcador haciendo clic en la vista previa del mapa"
 
 #: ../leaflet-marker.php:317
 msgid "if set, markername will be inserted here"
-msgstr "セットされると、マーカー名はここに挿入されます"
+msgstr "Si se establece, el nombre del marcador se inserta aquí"
 
 #: ../leaflet-marker.php:387
 #, php-format
 msgid "If you want to use different icons, please visit the %1$s (offering more than 700 compatible icons) and upload the new icons to the directory %2$s/"
-msgstr "別のアイコンを使いたい場合は、 %1$s (700件以上の互換性のあるアイコンが提供されています) にアクセスして、新しいアイコンをディレクトリ %2$s/ にアップロードしてください"
+msgstr "Si desea utilizar iconos diferentes, por favor visite el %1$s (que ofrece más de 700 iconos compatibles) y cargue los nuevos iconos para el directorio %2$s/"
 
 #: ../leaflet-marker.php:388
 #, php-format
 msgid "If you want to use different icons, please visit the %1$s (offering more than 700 compatible icons) and ask your WordPress admin to upload the new icons to the directory %2$s/"
-msgstr "別のアイコンを使いたい場合は、 %1$s (700件以上の互換性のあるアイコンが提供されています) にアクセスして、新しいアイコンをディレクトリ %2$s/ にアップロードするようにWordPress管理者に依頼してください"
+msgstr "Si desea utilizar iconos diferentes, por favor visite el %1$s (que ofrece más de 700 iconos compatibles) y pregúntele a su administración de WordPress para subir los nuevos iconos para el directorio %2$s/"
 
 #: ../leaflet-marker.php:404
 msgid "open by default?"
-msgstr "既定で開きますか？"
+msgstr "¿abrir por defecto?"
 
 #: ../leaflet-marker.php:410
 msgid "If no is selected, the popup will only be visible after clicking on the marker on marker- or layer-maps. If yes is selected, the popup is shown by default on marker-maps but not on layer-maps, where this feature is not supported"
-msgstr "いいえが選択されると、ポップアップは「マーカー-」あるいは「レイヤー-マップ」上のマーカーをクリックした後に表示されます.。はいが選択されると、ポップアップは既定でマーカー-マップに表示されますが、この機能がサポートされていないレイヤー-マップには表示されません"
+msgstr "Si no se selecciona, la ventana emergente sólo será visible después de hacer clic en el marcador o en los marcadores de la capa. Si se selecciona Sí, la ventana emergente se muestra por defecto en el marcador de mapas, pero no en la capa de mapas, donde ésta característica no es compatible"
 
 #: ../leaflet-marker.php:462
 msgid "Note: image width gets resized to 260px automatically to fit in popup"
-msgstr "注意： ポップアップに合うように画像の幅は自動的に260pxにリサイズされます"
+msgstr "Nota: El ancho de la imagen se cambia automáticamente a 260px para ajustarse en una ventana emergente"
 
 #: ../leaflet-marker.php:470
 msgid "Marker added by"
-msgstr "マーカーの作成者"
+msgstr "Marcador agregado por"
 
 #: ../leaflet-marker.php:480
 msgid "update marker"
-msgstr "マーカーを更新"
+msgstr "actualizar marcador"
 
 #: ../leaflet-marker.php:480
 msgid "add marker"
-msgstr "マーカーを追加"
+msgstr "agregar marcador"
 
 #: ../leaflet-marker.php:490
 msgid "delete marker"
-msgstr "マーカーを削除"
+msgstr "borrar marcador"
+
+#: ../leaflet-tools.php:23
+#, php-format
+msgid "All markers from layer ID %1$s have been successfully assigned to layer ID %2$s"
+msgstr ""
 
 #: ../leaflet-tools.php:23
 #: ../leaflet-tools.php:30
@@ -3042,499 +3273,349 @@ msgstr "マーカーを削除"
 #: ../leaflet-tools.php:168
 #: ../leaflet-tools.php:174
 msgid "Back to Tools"
-msgstr "ツールに戻る"
+msgstr ""
+
+#: ../leaflet-tools.php:30
+#, fuzzy, php-format
+msgid "All markers from layer ID %1$s have been successfully deleted"
+msgstr "Marcador borrado"
 
 #: ../leaflet-tools.php:37
+#, fuzzy
 msgid "All markers from all layers have been successfully deleted"
-msgstr "全てのレイヤーの全てのマーカーは削除されました"
+msgstr "Las capas y marcadores asignados se han eliminado correctamente"
 
 #: ../leaflet-tools.php:39
 msgid "Please confirm that you want to delete all markers by checking the checkbox"
-msgstr "チェックボックスをチェックして本当に全てのマーカーを削除するかどうか確認してください"
+msgstr ""
+
+#: ../leaflet-tools.php:46
+#, fuzzy, php-format
+msgid "The basemap for all markers has been successfully set to %1$s"
+msgstr "Las capas y marcadores asignados se han eliminado correctamente"
 
 #: ../leaflet-tools.php:56
+#, fuzzy
 msgid "The overlays status for all markers has been successfully updated"
-msgstr "全マーカーへのオーバーレイステータスは更新されました"
+msgstr "Marcador actualizado correctamente"
 
 #: ../leaflet-tools.php:71
+#, fuzzy
 msgid "The WMS status for all markers has been successfully updated"
-msgstr "全マーカーへのWMSステータスは更新されました"
+msgstr "Marcador actualizado correctamente"
+
+#: ../leaflet-tools.php:77
+#, php-format
+msgid "The map size for all markers has been successfully set to width =  %1$s %2$s and height = %3$s px"
+msgstr ""
+
+#: ../leaflet-tools.php:83
+#, fuzzy, php-format
+msgid "Zoom level for all markers has been successfully set to %1$s"
+msgstr "Marcador borrado"
 
 #: ../leaflet-tools.php:89
+#, fuzzy
 msgid "Controlbox status for all markers has been successfully updated"
-msgstr "全マーカーの制御ボックスステータスは更新されました"
+msgstr "Marcador actualizado correctamente"
 
 #: ../leaflet-tools.php:95
+#, fuzzy
 msgid "Panel status for all markers has been successfully updated"
-msgstr "全マーカーのパネルステータスは更新されました"
+msgstr "Marcador actualizado correctamente"
 
 #: ../leaflet-tools.php:101
+#, fuzzy
 msgid "The icon for all markers has been successfully updated"
-msgstr "全マーカーのアイコンは更新されました"
+msgstr "Marcador actualizado correctamente"
 
 #: ../leaflet-tools.php:107
+#, fuzzy
 msgid "The popup status for all markers has been successfully updated"
-msgstr "全マーカーのポップアップステータスは更新されました"
+msgstr "Marcador actualizado correctamente"
 
 #: ../leaflet-tools.php:113
+#, fuzzy
 msgid "The popup text for all markers has been successfully updated"
-msgstr "全マーカーのポップアップテキストは更新されました"
+msgstr "Marcador actualizado correctamente"
+
+#: ../leaflet-tools.php:119
+#, fuzzy, php-format
+msgid "The basemap for all layers has been successfully set to %1$s"
+msgstr "Marcador borrado"
 
 #: ../leaflet-tools.php:129
+#, fuzzy
 msgid "The overlays status for all layers has been successfully updated"
-msgstr "全レイヤーのオーバーレイステータスは更新されました"
+msgstr "La capa ha sido actualizada exitosamente"
 
 #: ../leaflet-tools.php:144
+#, fuzzy
 msgid "The WMS status for all layers has been successfully updated"
-msgstr "全レイヤーのWMSステータスは更新されました"
+msgstr "Marcador actualizado correctamente"
+
+#: ../leaflet-tools.php:150
+#, php-format
+msgid "The map size for all layers has been successfully set to width =  %1$s %2$s and height = %3$s px"
+msgstr ""
+
+#: ../leaflet-tools.php:156
+#, fuzzy, php-format
+msgid "Zoom level for all layers has been successfully set to %1$s"
+msgstr "La capa ha sido agregado con éxito"
 
 #: ../leaflet-tools.php:162
+#, fuzzy
 msgid "Controlbox status for all layers has been successfully updated"
-msgstr "全レイヤーの制御ボックスステータスは更新されました"
+msgstr "La capa ha sido actualizada exitosamente"
 
 #: ../leaflet-tools.php:168
+#, fuzzy
 msgid "Panel status for all layers has been successfully updated"
-msgstr "全レイヤーのパネルステータスは更新されました"
+msgstr "La capa ha sido actualizada exitosamente"
 
 #: ../leaflet-tools.php:174
+#, fuzzy
 msgid "The list marker-status for all layers has been successfully updated"
-msgstr "全レイヤーのマーカーステータスのリストは更新されました"
+msgstr "Marcador actualizado correctamente"
 
 #: ../leaflet-tools.php:186
+#, fuzzy
 msgid "Move markers to a layer"
-msgstr "レイヤーに新しいマーカーを移動"
+msgstr "agregar un nuevo marcador a esta capa"
 
 #: ../leaflet-tools.php:190
+#, fuzzy
 msgid "Source"
-msgstr "移動元"
+msgstr "Código corto"
 
 #: ../leaflet-tools.php:201
+#, fuzzy
 msgid "Target"
-msgstr "移動先"
+msgstr "página"
 
 #: ../leaflet-tools.php:213
+#, fuzzy
 msgid "move markers"
-msgstr "マーカーを移動"
+msgstr "editar marcador"
 
 #: ../leaflet-tools.php:213
+#, fuzzy
 msgid "Do you really want to move the selected markers?"
-msgstr "選択したマーカーを本当に移動しますか？"
+msgstr "¿Estás seguro que quieres eliminar este marcador?"
 
 #: ../leaflet-tools.php:225
+#, fuzzy
 msgid "Delete all markers from a layer"
-msgstr "マーカーを全てレイヤーから削除"
+msgstr "No asigne el marcador a una capa"
 
 #: ../leaflet-tools.php:241
 msgid "delete all markers from selected layer"
-msgstr "選択したレイヤーから全てのマーカーを削除します"
+msgstr ""
 
 #: ../leaflet-tools.php:241
+#, fuzzy
 msgid "Do you really want to delete all markers from the selected layer? (cannot be undone)"
-msgstr "選択したレイヤーから全てのマーカーを本当に削除しますか？(元には戻せません)"
+msgstr "¿Estás seguro que quieres eliminar esta capa?"
+
+#: ../leaflet-tools.php:251
+#, php-format
+msgid "Change settings for all %1$s existing marker maps"
+msgstr ""
 
 #: ../leaflet-tools.php:274
+#, fuzzy
 msgid "change basemap for all markers"
-msgstr "全マーカーのベースマップを変更"
+msgstr "Mapa por defecto para los nuevos marcadores/capas"
 
 #: ../leaflet-tools.php:274
 msgid "Do you really want to change the basemap for all markers? (cannot be undone)"
-msgstr "全てのマーカーのベースマップを本当に変更しますか？（元には戻せません）"
+msgstr ""
 
 #: ../leaflet-tools.php:292
+#, fuzzy
 msgid "change overlay status for all markers"
-msgstr "全マーカーのオーバーレイステータスを変更"
+msgstr "Superposiciones disponibles para nuevos marcadores/capas"
 
 #: ../leaflet-tools.php:292
 msgid "Do you really want to change the overlay status for all markers? (cannot be undone)"
-msgstr "全マーカーのオーバーレイステータスを本当に変更しますか？（元には戻せません）"
+msgstr ""
 
 #: ../leaflet-tools.php:301
 #: ../leaflet-tools.php:553
+#, fuzzy
 msgid "Active WMS layers"
-msgstr "有効なWMSレイヤー"
+msgstr "Capas disponibles WMS"
 
 #: ../leaflet-tools.php:316
+#, fuzzy
 msgid "change active WMS layers for all markers"
-msgstr "全マーカーの有効なWMSレイヤーを変更"
+msgstr "Capas WMS disponibles para nuevos marcadores/capas"
 
 #: ../leaflet-tools.php:316
 msgid "Do you really want to change active WMS layers for all markers? (cannot be undone)"
-msgstr "全マーカーの有効なWMSレイヤーを本当に変更しますか？（元には戻せません）"
+msgstr ""
 
 #: ../leaflet-tools.php:337
+#, fuzzy
 msgid "change mapsize for all markers"
-msgstr "全マーカーのマップサイズを変更"
+msgstr "mostrar todos los marcadores"
 
 #: ../leaflet-tools.php:337
 msgid "Do you really want to change the map size for all markers? (cannot be undone)"
-msgstr "全マーカーのマップサイズを本当に変更しますか？（元には戻せません）"
+msgstr ""
 
 #: ../leaflet-tools.php:352
+#, fuzzy
 msgid "change zoom for all markers"
-msgstr "全マーカーのズームを変更"
+msgstr "mostrar todos los marcadores"
 
 #: ../leaflet-tools.php:352
 msgid "Do you really want to change the zoom level for all markers? (cannot be undone)"
-msgstr "全マーカーのズームレベルを本当に変更しますか？（元には戻せません）"
+msgstr ""
 
 #: ../leaflet-tools.php:369
 msgid "change controlbox status for all markers"
-msgstr "全マーカーの制御ボックスステータスを変更"
+msgstr ""
 
 #: ../leaflet-tools.php:369
 msgid "Do you really want to change the controlbox status for all markers? (cannot be undone)"
-msgstr "全マーカーの制御ボックスステータスを本当に変更しますか？（元には戻せません）"
+msgstr ""
 
 #: ../leaflet-tools.php:386
+#, fuzzy
 msgid "change panel status for all markers"
-msgstr "全マーカーのパネルステータスを変更"
+msgstr "Valores por defecto para nuevos marcadores"
 
 #: ../leaflet-tools.php:386
 msgid "Do you really want to change the panel status for all markers? (cannot be undone)"
-msgstr "全マーカーのパネルステータスを本当に変更しますか？（元には戻せません）"
+msgstr ""
 
 #: ../leaflet-tools.php:417
+#, fuzzy
 msgid "update icon for all markers"
-msgstr "全マーカーのアイコンを更新"
+msgstr "actualizar marcador"
 
 #: ../leaflet-tools.php:417
+#, fuzzy
 msgid "Do you really want to change the icon for all markers? (cannot be undone)"
-msgstr "全マーカーのアイコンを本当に変更しますか？（元には戻せません）"
+msgstr "¿Estás seguro que quieres eliminar este marcador?"
 
 #: ../leaflet-tools.php:433
 msgid "change popup status for all markers"
-msgstr "全マーカー用のポップアップステータスを変更"
+msgstr ""
 
 #: ../leaflet-tools.php:433
 msgid "Do you really want to change the popup status for all markers? (cannot be undone)"
-msgstr "全マーカーのポップアップステータスを本当に変更しますか？（元には戻せません）"
+msgstr ""
 
 #: ../leaflet-tools.php:493
 msgid "change popup text for all markers"
-msgstr "全マーカー用のポップアップテキストを変更"
+msgstr ""
 
 #: ../leaflet-tools.php:493
 msgid "Do you really want to change the popup text for all markers? (cannot be undone)"
-msgstr "全マーカーのポップアップテキストを本当に変更しますか？（元には戻せません）"
+msgstr ""
+
+#: ../leaflet-tools.php:503
+#, php-format
+msgid "Change settings for all %1$s existing layer maps"
+msgstr ""
 
 #: ../leaflet-tools.php:526
+#, fuzzy
 msgid "change basemap for all layers"
-msgstr "全レイヤーのベースマップを変更"
+msgstr "Mapa por defecto para los nuevos marcadores/capas"
 
 #: ../leaflet-tools.php:526
 msgid "Do you really want to change the basemap for all layers? (cannot be undone)"
-msgstr "全レイヤーのベースマップを本当に変更しますか？（元には戻せません）"
+msgstr ""
 
 #: ../leaflet-tools.php:544
 msgid "change overlay status for all layers"
-msgstr "全レイヤーのオーバーレイステータスを変更"
+msgstr ""
 
 #: ../leaflet-tools.php:544
 msgid "Do you really want to change the overlay status for all layers? (cannot be undone)"
-msgstr "全レイヤーのオーバーレイステータスを本当に変更しますか？（元には戻せません）"
+msgstr ""
 
 #: ../leaflet-tools.php:568
+#, fuzzy
 msgid "change active WMS layers for all layers"
-msgstr "全レイヤーの有効なWMSレイヤーを変更"
+msgstr "Capas WMS disponibles para nuevos marcadores/capas"
 
 #: ../leaflet-tools.php:568
 msgid "Do you really want to change active WMS layers for all layers? (cannot be undone)"
-msgstr "全レイヤーの有効なWMSレイヤーを本当に変更しますか？（元には戻せません）"
+msgstr ""
 
 #: ../leaflet-tools.php:589
 msgid "change mapsize for all layers"
-msgstr "全レイヤーのマップサイズを変更"
+msgstr ""
 
 #: ../leaflet-tools.php:589
 msgid "Do you really want to change the map size for all layers? (cannot be undone)"
-msgstr "全レイヤーのマップサイズを本当に変更しますか？（元には戻せません）"
+msgstr ""
 
 #: ../leaflet-tools.php:604
+#, fuzzy
 msgid "change zoom for all layers"
-msgstr "全レーヤーのズームを変更"
+msgstr "mostrar todas las capas"
 
 #: ../leaflet-tools.php:604
 msgid "Do you really want to change the zoom level for all layers? (cannot be undone)"
-msgstr "全レイヤーのズームレベルを本当に変更しますか？（元には戻せません）"
+msgstr ""
 
 #: ../leaflet-tools.php:621
 msgid "change controlbox status for all layers"
-msgstr "全レイヤーの制御ボックスステータスを変更"
+msgstr ""
 
 #: ../leaflet-tools.php:621
 msgid "Do you really want to change the controlbox status for all layers? (cannot be undone)"
-msgstr "全レイヤーの制御ボックスステータスを本当に変更しますか？（元には戻せません）"
+msgstr ""
 
 #: ../leaflet-tools.php:638
+#, fuzzy
 msgid "change panel status for all layers"
-msgstr "全レイヤーのパネルステータスを変更"
+msgstr "Valores por defecto para las nuevas capas"
 
 #: ../leaflet-tools.php:638
 msgid "Do you really want to change the panel status for all layers? (cannot be undone)"
-msgstr "全レイヤーのパネルステータスを本当に変更しますか？（元には戻せません）"
+msgstr ""
 
 #: ../leaflet-tools.php:655
 msgid "change list marker-status for all layers"
-msgstr "全レイヤーのリストマーカーステータスを変更"
+msgstr ""
 
 #: ../leaflet-tools.php:655
 msgid "Do you really want to change the list marker-status for all layers? (cannot be undone)"
-msgstr "全レイヤーのリストマーカーステータスを本当に変更しますか？（元には戻せません）"
+msgstr ""
+
+#: ../leaflet-tools.php:668
+#, php-format
+msgid "Delete all %1$s markers from all %2$s layers"
+msgstr ""
 
 #: ../leaflet-tools.php:677
+#, fuzzy
 msgid "delete all markers from all layers"
-msgstr "全てのマーカーをレイヤーから削除"
+msgstr "No asigne el marcador a una capa"
 
 #: ../leaflet-tools.php:677
+#, fuzzy
 msgid "Do you really want to delete all markers from all layers? (cannot be undone)"
-msgstr "全てのマーカーを全てのレイヤーから本当に削除しますか？（元には戻せません）"
+msgstr "¿Estás seguro que quieres eliminar marcador de %1$s (ID %2$s)?"
 
 #: ../leaflet-wikitude.php:102
 #: ../leaflet-wikitude.php:181
 #: ../leaflet-wikitude.php:260
 #: ../leaflet-wikitude.php:330
 msgid "Wikitude API powered by www.mapsmarker.com"
-msgstr "Wikitude API powered by www.mapsmarker.com"
-
-#~ msgid ""
-#~ "If you like to donate a certain amount of money to show your support, you "
-#~ "can also use Paypal. If you don´t have a Paypal account, you can use your "
-#~ "credit card or bank account (where available). Please click on the paypal "
-#~ "image to proceed to the donation form."
-#~ msgstr ""
-#~ "何らかの金額を寄付してあなたのサポートを表明したい場合は、Paypalも使えま"
-#~ "す。Paypalアカウントが無い場合は、クレジットカードや銀行口座(使える場所で"
-#~ "は)を使うことができます。Paypal画像をクリックして寄付フォームに進んでくだ"
-#~ "さい。"
-
-#~ msgid ""
-#~ "The easiest way to support this plugin is to buy something from Amazon by "
-#~ "using this referrer link. Note: this doesn´t cost you anything as your "
-#~ "purchase volume won´t be increased, but I will receive 6 per cent of your "
-#~ "purchase volume as a referral fee."
-#~ msgstr ""
-#~ "このプラグインをサポートするいちばん簡単な方法はこのリファラリンクを使って"
-#~ "アマゾンから何かを買うことです。注意： これにはあなたの購買量が増えるわけ"
-#~ "では無いのであなたには余分なコストは掛かりませんが、私はあなたの購買額の6"
-#~ "パーセントを紹介料としてもらえます。"
-
-#~ msgid ""
-#~ "Another way to show your support for this plugin is to buy something from "
-#~ "my Amazon wishlist, respectively sending me a greeting card worth from 15 "
-#~ "to 500 $ with a personal note, which I would very much appreciate."
-#~ msgstr ""
-#~ "あなたのサポートを表明するもうひとつのやり方は私のアマゾンのウィッシュリス"
-#~ "トから何かを買うことです、個人的なメモ付きで個々に私に送られるグリーティン"
-#~ "グカードは15～500ドル相当で、頂けると大変嬉しいです。"
-
-#~ msgid "Show website of plugin author"
-#~ msgstr "プラグイン作者のウェブサイトを表示"
-
-#~ msgid "please rate this plugin on wordpress.org"
-#~ msgstr "このプラグインをwordpress.org で評価してください"
-
-#~ msgid "Error: a layer with the ID %1$s does not exist!"
-#~ msgstr "エラー： ID %1$s のレイヤーはありません！ "
-
-#~ msgid "Create QR code image for standalone map in fullscreen mode"
-#~ msgstr ""
-#~ "フルスクリーンモードでスタンドアロンマップ用のQRコード画像を作成する"
-
-#~ msgid "Error: a marker with the ID %1$s does not exist!"
-#~ msgstr "エラー： ID %1$s のマーカーはありません！"
-
-#~ msgid "Get directions"
-#~ msgstr "案内開始"
-
-#~ msgid ""
-#~ "Warning: no markers are assigned to the layer with the ID %1$s or the "
-#~ "layer does not exist!"
-#~ msgstr ""
-#~ "警告： ID %1$s のレイヤーにはマーカーが割り当てられていないか、そのレイ"
-#~ "ヤーがありません！"
-
-#~ msgid ""
-#~ "Click here for more information on how to use as KML in Google Earth or "
-#~ "Google Maps"
-#~ msgstr ""
-#~ "KML形式をGoogle EarthやGoogle Mapsで使う方法についての詳細情報はこちらをク"
-#~ "リック"
-
-#~ msgid ""
-#~ "Click here for more information on how to integrate GeoJSON into external "
-#~ "websites or apps"
-#~ msgstr ""
-#~ "GeoJSON形式を外部のウェブサイトやアプリと統合する方法についての詳細情報は"
-#~ "こちらをクリック"
-
-#~ msgid ""
-#~ "Click here for more information on how to subscribe to new markers via "
-#~ "GeoRSS"
-#~ msgstr ""
-#~ "GeoRSS経由で新しいマーカーを鉱毒する方法についての詳細はこちらをクリック"
-
-#~ msgid ""
-#~ "Click here for more information on how to display in Wikitude Augmented-"
-#~ "Reality browser"
-#~ msgstr ""
-#~ "Wikitude 拡張現実ブラウザで表示する方法についての詳細はこちらをクリック"
-
-#~ msgid "Do you really want to delete layer %1$s (ID %2$s)?"
-#~ msgstr "レイヤー %1$s (ID %2$s) を本当に削除しますか？"
-
-#~ msgid ""
-#~ "Do you really want to delete layer %1$s (ID %2$s) and all %3$s assigned "
-#~ "markers?"
-#~ msgstr ""
-#~ "レイヤー %1$s (ID %2$s) と全ての %3$s に割り当てられたマーカーを本当に削除"
-#~ "しますか？"
-
-#~ msgid "Do you really want to delete marker %1$s (ID %2$s)?"
-#~ msgstr "マーカー %1$s (ID %2$s) を本当に削除しますか？"
-
-#~ msgid "standard icon"
-#~ msgstr "標準のアイコン"
-
-#~ msgid "select columns to display"
-#~ msgstr "表示するカラムを選ぶ"
-
-#~ msgid "Do you really want to delete this layer?"
-#~ msgstr "このレイヤーを本当に削除しますか？"
-
-#~ msgid "show markers assigned to this layer"
-#~ msgstr "このレイヤーに割り当てられたマーカーを表示"
-
-#~ msgid "Change number in settings"
-#~ msgstr "設定にある数字を変更"
-
-#~ msgid ""
-#~ "All markers from layer ID %1$s have been successfully assigned to layer "
-#~ "ID %2$s"
-#~ msgstr ""
-#~ "レイヤーID %1$s からの全てのマーカーはレイヤーID %2$s に割り当てられました"
-
-#~ msgid "All markers from layer ID %1$s have been successfully deleted"
-#~ msgstr "レイヤー %1$s のマーカーは全て削除されました"
-
-#~ msgid "The basemap for all markers has been successfully set to %1$s"
-#~ msgstr "全てのレイヤーのベースマップは %1$s にセットされました"
-
-#~ msgid ""
-#~ "The map size for all markers has been successfully set to width =  %1$s %2"
-#~ "$s and height = %3$s px"
-#~ msgstr ""
-#~ "全てのマーカー向けのマップサイズは次のようにセットされました。幅 =  %1$s %"
-#~ "2$s 高さ = %3$s px"
-
-#~ msgid "Zoom level for all markers has been successfully set to %1$s"
-#~ msgstr "全レイヤーのズームレベルは %1$s にセットされました"
-
-#~ msgid "The basemap for all layers has been successfully set to %1$s"
-#~ msgstr "全レイヤーのベースマップーは %1$s にセットされました"
-
-#~ msgid ""
-#~ "The map size for all layers has been successfully set to width =  %1$s %2"
-#~ "$s and height = %3$s px"
-#~ msgstr ""
-#~ "全レイヤーのマップサイズは次のようにセットされました。幅 =  %1$s %2$s 高"
-#~ "さ = %3$s px"
-
-#~ msgid "Zoom level for all layers has been successfully set to %1$s"
-#~ msgstr "全レイヤーのズームレベルは %1$s にセットされました"
-
-#~ msgid "Change settings for all %1$s existing marker maps"
-#~ msgstr "全ての %1$s 既存マーカーマップの設定を変更"
-
-#~ msgid "Change settings for all %1$s existing layer maps"
-#~ msgstr "全ての %1$s 既存レイヤーマップの設定を変更"
-
-#~ msgid "Delete all %1$s markers from all %2$s layers"
-#~ msgstr "全ての %1$s マーカーを全ての %2$s レイヤーから削除します"
+msgstr "API de Wikitude patrocinada por www.mapsmarker.com"
 
 #~ msgid "Featured sponsors"
-#~ msgstr "特別スポンサー"
+#~ msgstr "Patrocinadores destacados"
 
 #~ msgid "Click here for more information on how to become a featured sponsor"
-#~ msgstr "特別スポンサーになる方法についての詳細はこちらをクリック"
-
-#~ msgid ""
-#~ "Error: Could not construct path to wp-config.php - please check <a href="
-#~ "\"http://mapsmarker.com/path-error\">http://mapsmarker.com/path-error</a> "
-#~ "for more details."
 #~ msgstr ""
-#~ "エラー：  wp-config.php へのパスを作成できませんでした。詳細は<a href="
-#~ "\"http://mapsmarker.com/path-error\">http://mapsmarker.com/path-error</a>"
-#~ "をチェックしてください。"
-
-#~ msgid "Overlays"
-#~ msgstr "オーバーレイ"
-
-#~ msgid "WMS"
-#~ msgstr "WMS"
-
-#~ msgid "Marker defaults"
-#~ msgstr "マーカーの既定値"
-
-#~ msgid "Layer defaults"
-#~ msgstr "レイヤーの既定値"
-
-#~ msgid "Google Places"
-#~ msgstr "Google Places"
-
-#~ msgid "Augmented-Reality"
-#~ msgstr "拡張現実"
-
-#~ msgid "Misc"
-#~ msgstr "その他"
-
-#~ msgid "Reset to Defaults"
-#~ msgstr "既定値にリセット"
-
-#~ msgid "KML"
-#~ msgstr "KML"
-
-#~ msgid "GeoJSON"
-#~ msgstr "GeoJSON"
-
-#~ msgid "Wikitude"
-#~ msgstr "Wikitude"
-
-#~ msgid ""
-#~ "You just successfully installed the \"Leaflet Maps Marker\" plugin. You "
-#~ "can now optionally change the default settings below or <a href=\""
-#~ msgstr ""
-#~ "\"Leaflet Maps Marker\" プラグインのインストールが完了しました。以後下記に"
-#~ "ある既定の設定をオプションとして変えることができます。あるいは <a href=\""
-
-#~ msgid "Debug latitude"
-#~ msgstr "緯度をデバッグ"
-
-#~ msgid ""
-#~ "For testing/debug: standard-latitude for calling Wikitude API links "
-#~ "without parameter &latitude=xx.xxxxx. It is recommended to set this value "
-#~ "within the search radius from above of the POIs you would like to display "
-#~ "in Wikitude."
-#~ msgstr ""
-#~ "テスト/デバッグ用： パラメータ &latitude=xx.xxxxx 無しのWikitude APIリンク"
-#~ "呼出し用の標準緯度。Wikitudeで表示させたいPOI上からの検索半径内でこの値を"
-#~ "セットすることが推奨されます。"
-
-#~ msgid "Debug longitude"
-#~ msgstr "経度をデバッグ"
-
-#~ msgid ""
-#~ "For testing/debug: standard-longitude for calling Wikitude API links "
-#~ "without parameter &longitude=xx.xxxxx. It is recommended to set this "
-#~ "value within the search radius from above of the POIs you would like to "
-#~ "display in Wikitude."
-#~ msgstr ""
-#~ "テスト/デバッグ用： パラメータ &longitude=xx.xxxxx 無しのWikitude APIリン"
-#~ "ク呼出し用の標準緯度。Wikitudeで表示させたいPOI上からの検索半径内でこの値"
-#~ "をセットすることが推奨されます。"
-
-#~ msgid ""
-#~ "Please copy the shortcode above and paste it into the post or page where "
-#~ "you want the map to appear"
-#~ msgstr ""
-#~ "上記ショートコードをコピーしてあなたの投稿またはページ上のマップの表示した"
-#~ "い場所へ貼り付けてください"
+#~ "Haga clic aquí para obtener más información sobre cómo convertirse en un "
+#~ "patrocinador destacado"

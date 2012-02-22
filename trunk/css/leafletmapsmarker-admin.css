@@ -2,6 +2,7 @@
 .fixed .column-value { width: 85%; }
 /*Marker-Tabelle*/
 .fixed .column-id { width: 45px; }
+.fixed .column-type { width: 65px; }
 .fixed .column-markername { width: 180px; }
 .fixed .column-layername { width: 240px; }
 .fixed .column-coords { width: 105px; }
