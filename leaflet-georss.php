@@ -36,14 +36,24 @@ if (isset($_GET['layer'])) {
   if ($layer == '*' or $layer == 'all')
     $q = 'LIMIT 1000';
   else {
-    $layers = explode(',', $layer);
-    $checkedlayers = array();
-    foreach ($layers as $clayer) {
-      if (intval($clayer) > 0)
-        $checkedlayers[] = intval($clayer);
+    $sql_mlm_check = 'SELECT multi_layer_map FROM '.$table_name_layers.' WHERE id='.$layer;
+    $sql_mlm_check_list = 'SELECT multi_layer_map_list FROM '.$table_name_layers.' WHERE id='.$layer;
+    $mlm_check = $wpdb->get_var($sql_mlm_check);
+    $mlm_check_list = $wpdb->get_row($sql_mlm_check_list, ARRAY_A);
+    if ($mlm_check == 0) {
+	    $layers = explode(',', $layer);
+	    $checkedlayers = array();
+	    foreach ($layers as $clayer) {
+	      if (intval($clayer) > 0)
+	        $checkedlayers[] = intval($clayer);
+	    }
+	    if (count($checkedlayers) > 0)
+	      $q = 'WHERE layer IN ('.implode(',', $checkedlayers).')';
+    } else if ( ($mlm_check == 1) && (!in_array('all',$mlm_check_list) ) ){
+	      $q = 'WHERE layer IN ('.implode(',', $mlm_check_list).')';
+    } else if ( ($mlm_check == 1) && (in_array('all',$mlm_check_list) ) ){
+	      $q = 'LIMIT 1000';
     }
-    if (count($checkedlayers) > 0)
-      $q = 'WHERE layer IN ('.implode(',', $checkedlayers).')';
   }
   $sql = 'SELECT m.id as mid, m.markername as mmarkername, m.layer as mlayer, CONCAT(m.lon,\',\',m.lat) AS mcoords, m.icon as micon, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext, l.id as lid, l.createdby as lcreatedby, l.createdon as lcreatedon, l.updatedby as lupdatedby, l.updatedon as lupdatedon, l.name AS lname FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
   $markers = $wpdb->get_results($sql, ARRAY_A);

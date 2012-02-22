@@ -4,12 +4,12 @@ Plugin Name: Leaflet Maps Marker
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, OSM, travelblog, opendata, opengov, ogdwien, google maps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, wms
-Version: 1.6
+Version: 1.7
 Author: Robert Harm (with special support from Sindre Wimberger)
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
 Requires at least: 3.0
-Tested up to: 3.4-alpha-19704
+Tested up to: 3.4-alpha-19972
 Requires at least PHP 5.2
 Copyright 2011-2012 - @RobertHarm - All rights reserved
 Parts of this plugin were originally based on the Leaflet Plugin by Hind (Copyright 2011)
@@ -122,7 +122,7 @@ function leafletmapsmarker() {
 	//info: prepare layers
 	if (!empty($layer)) {
 	  $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-	  $row = $wpdb->get_row('SELECT id,name,basemap,mapwidth,mapheight,mapwidthunit,panel,layerzoom,layerviewlat,layerviewlon,controlbox,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10,listmarkers FROM '.$table_name_layers.' WHERE id='.$layer, ARRAY_A);
+	  $row = $wpdb->get_row('SELECT id,name,basemap,mapwidth,mapheight,mapwidthunit,panel,layerzoom,layerviewlat,layerviewlon,controlbox,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10,listmarkers,multi_layer_map,multi_layer_map_list FROM '.$table_name_layers.' WHERE id='.$layer, ARRAY_A);
 	  $id = $row['id'];
 	  $basemap = $row['basemap'];
 	  $lat = $row['layerviewlat'];
@@ -149,6 +149,8 @@ function leafletmapsmarker() {
 	  $wms9 = $row['wms9'];
 	  $wms10 = $row['wms10'];
 	  $listmarkers = $row['listmarkers'];
+	  $multi_layer_map = $row['multi_layer_map'];
+	  $multi_layer_map_list = $row['multi_layer_map_list'];
 	}
 	//info: prepare markers
     if (!empty($marker))  {
@@ -298,7 +300,7 @@ function leafletmapsmarker() {
 			if ( (isset($lmm_options[ 'defaults_layer_panel_qr_code' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_panel_qr_code' ] == 1 ) ) {
 				$lmm_out .= '<a href="https://chart.googleapis.com/chart?chs=' . $lmm_options[ 'misc_qrcode_size' ] . 'x' . $lmm_options[ 'misc_qrcode_size' ] . '&cht=qr&chl=' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?layer=' . $id . '" target="_blank" title="' . esc_attr__('Create QR code image for standalone map in fullscreen mode','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-qr-code.png" width="14" height="14" alt="QR-code-logo" class="lmm-panel-api-images" /></a>';
 			}
-			if ( (isset($lmm_options[ 'defaults_layer_panel_geojson' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_panel_geojson' ] == 1 ) ) {
+			if ( (isset($lmm_options[ 'defaults_layer_panel_geojson' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_panel_geojson' ] == 1 ) && ($multi_layer_map == 0 ) ) {
 				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?layer=' . $id . '&callback=jsonp" style="text-decoration:none;" title="' . __('Export as GeoJSON','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-json.png" width="14" height="14" alt="GeoJSON-Logo" class="lmm-panel-api-images" /></a>';
 			}
 			if ( (isset($lmm_options[ 'defaults_layer_panel_georss' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_panel_georss' ] == 1 ) ) {
@@ -317,11 +319,11 @@ function leafletmapsmarker() {
 	{
 	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-	$layermarklist = $wpdb->get_results('SELECT l.id as lid,l.name as lname, m.lon as mlon, m.lat as mlat, m.markername as markername,m.id as markerid FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$layer, ARRAY_A);
-		if (count($layermarklist) < 1) {
+	$layer_mark_list_microformats = $wpdb->get_results('SELECT l.id as lid,l.name as lname, m.lon as mlon, m.lat as mlat, m.markername as markername,m.id as markerid FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$layer, ARRAY_A);
+		if (count($layer_mark_list_microformats) < 1) {
 			$lmm_out .= '<div id="lmm_geo_tags_'.$uid.'" class="lmm-geo-tags geo">' . $paneltext . ': <span class="latitude">' . $lat . '</span>, <span class="longitude">' . $lon . '</span></div>'.PHP_EOL;
 		} else {
-			foreach ($layermarklist as $row){
+			foreach ($layer_mark_list_microformats as $row){
 				$lmm_out .= '<div id="lmm_geo_tags_'.$uid.'" class="lmm-geo-tags geo">' . $row['markername'] . ': <span class="latitude">' . $row['mlat'] . '</span>, <span class="longitude">' . $row['mlon'] . '</span></div>'.PHP_EOL;
 			}
 		}
@@ -347,10 +349,10 @@ function leafletmapsmarker() {
 	//info: display a list of markers under the map
 	if (!empty($layer) && empty($marker) && ($listmarkers == 1))
 	{
-	$layermarklist = $wpdb->get_results('SELECT l.id as lid, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid, m.createdon as mcreatedon, m.updatedon as mupdatedon FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$id.' ORDER BY ' . $lmm_options[ 'defaults_layer_listmarkers_order_by' ] . ' ' . $lmm_options[ 'defaults_layer_listmarkers_sort_order' ] , ARRAY_A);
+	$layer_mark_list = $wpdb->get_results('SELECT l.id as lid, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid, m.createdon as mcreatedon, m.updatedon as mupdatedon FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$id.' ORDER BY ' . $lmm_options[ 'defaults_layer_listmarkers_order_by' ] . ' ' . $lmm_options[ 'defaults_layer_listmarkers_sort_order' ] . ' LIMIT ' . intval($lmm_options[ 'defaults_layer_listmarkers_limit' ]), ARRAY_A);
 	$lmm_out .= '<div id="lmm-listmarkers-'.$uid.'" class="lmm-listmarkers" style="width:' . $mapwidth.$mapwidthunit . ';">'.PHP_EOL;
 	$lmm_out .= '<table>';
-	foreach ($layermarklist as $row){
+	foreach ($layer_mark_list as $row){
 		$lmm_out .= '<tr><td style="width:35px;vertical-align:top;text-align:center;">';
 		if ($row['micon'] != null) { 
 			$lmm_out .= '<img src="' . LEAFLET_PLUGIN_ICONS_URL . '/'.$row['micon'].'" title="' . stripslashes($row['markername']) . '" />'; 
@@ -625,16 +627,19 @@ function leafletmapsmarker() {
 	$lmm_out .= 'geojsonObj = eval("(" + jQuery.ajax({url: "'.$geojsonurl.'", async: false}).responseText + ")");'.PHP_EOL;
 	$lmm_out .= 'geojson.addGeoJSON(geojsonObj);'.PHP_EOL;
 	}
-	if (!empty($layer)) {
+	if (!empty($layer) && ($multi_layer_map == 0) ) {
 	$lmm_out .= 'geojsonObj = eval("(" + jQuery.ajax({url: "' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?layer='.$layer.'", async: false}).responseText + ")");'.PHP_EOL;
+	$lmm_out .= 'geojson.addGeoJSON(geojsonObj);'.PHP_EOL;
+	} else if (!empty($layer) && ($multi_layer_map == 1) ) {
+	$lmm_out .= 'geojsonObj = eval("(" + jQuery.ajax({url: "' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?layer='.$multi_layer_map_list.'", async: false}).responseText + ")");'.PHP_EOL;
 	$lmm_out .= 'geojson.addGeoJSON(geojsonObj);'.PHP_EOL;
 	}
 	//2do: check or delete 
 	/*
-	if (!empty($marker)) {
+	if ( !empty($marker) ) {
 	$lmm_out .= 'geojsonObj = eval("(" + jQuery.ajax({url: "' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?marker='.$marker.'", async: false}).responseText + ")");'.PHP_EOL;
 	$lmm_out .= 'geojson.addGeoJSON(geojsonObj);'.PHP_EOL;
-	}
+	} 
 	*/
 	$lmm_out .= $mapname.'.addLayer(geojson);'.PHP_EOL;
     }
@@ -981,6 +986,14 @@ function leafletmapsmarker() {
 		$save_defaults_for_new_options = new Leafletmapsmarker_options();
 		$save_defaults_for_new_options->save_defaults_for_new_options();
 		update_option('leafletmapsmarker_version', '1.6');
+	}
+	if (get_option('leafletmapsmarker_version') == '1.6' ) {
+		$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
+		$update17_1 = "ALTER TABLE `" . $table_name_layers . "` ADD `multi_layer_map` TINYINT(1) NOT NULL AFTER `listmarkers`, ADD `multi_layer_map_list` VARCHAR(255) CHARACTER SET utf8 NULL AFTER `multi_layer_map`;";
+		$wpdb->query($update17_1);
+		$save_defaults_for_new_options = new Leafletmapsmarker_options();
+		$save_defaults_for_new_options->save_defaults_for_new_options();
+		update_option('leafletmapsmarker_version', '1.7');
 		//info: redirect to settings page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 		if (get_option('leafletmapsmarker_redirect') == 'true') 
 		{
@@ -989,13 +1002,12 @@ function leafletmapsmarker() {
 		}
 	}
 	/* template for plugin updates 
-	if (get_option('leafletmapsmarker_version') == '1.6' ) {
+	if (get_option('leafletmapsmarker_version') == '1.7' ) {
 		//optional: add code for sql ddl updates
 		//mandatory if new options in class-leaflet-options.php were added
 		$save_defaults_for_new_options = new Leafletmapsmarker_options();
 		$save_defaults_for_new_options->save_defaults_for_new_options();
-		//mandatory
-		update_option('leafletmapsmarker_version', '1.7');
+		update_option('leafletmapsmarker_version', '1.8');
 		//mandatory: move code for redirect-on-first-activation-check to here
 	}
 	*/

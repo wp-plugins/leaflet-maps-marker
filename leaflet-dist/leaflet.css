@@ -378,6 +378,7 @@ a.leaflet-active {
 	}
 .leaflet-popup-content {
 	font: 12px/1.4 "Helvetica Neue", Arial, Helvetica, sans-serif;
+	color:#000000 !important;
 	}
 .leaflet-popup-close-button {
 	background: white url(images/popup-close.png);

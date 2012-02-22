@@ -32,19 +32,18 @@ $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 $lmm_options = get_option( 'leafletmapsmarker_options' );
 if (isset($_GET['layer'])) {
   $layer = mysql_real_escape_string($_GET['layer']); //info: not intval() cause otherwise $layer=0 when creating new layer and showing all markers with layer id = 0
-  
   $q = 'LIMIT 0';
   if ($layer == '*' or $layer == 'all')
-    $q = 'LIMIT 1000';
+    $q = 'LIMIT 5000';
   else {
-    $layers = explode(',', $layer);
-    $checkedlayers = array();
-    foreach ($layers as $clayer) {
-      if (intval($clayer) > 0)
-        $checkedlayers[] = intval($clayer);
-    }
-    if (count($checkedlayers) > 0)
-      $q = 'WHERE layer IN ('.implode(',', $checkedlayers).')';
+   	    $layers = explode(',', $layer);
+	    $checkedlayers = array();
+	    foreach ($layers as $clayer) {
+	      if (intval($clayer) > 0)
+	        $checkedlayers[] = intval($clayer);
+	    }
+	    if (count($checkedlayers) > 0)
+	      $q = 'WHERE layer IN ('.implode(',', $checkedlayers).')';
   }
   $sql = 'SELECT m.id as mid, m.markername as mmarkername, m.layer as mlayer, CONCAT(m.lon,\',\',m.lat) AS mcoords, m.icon as micon, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon,m.zoom as mzoom, m.basemap as mbasemap, m.lat as mlat, m.lon as mlon, m.openpopup as mopenpopup, m.popuptext as mpopuptext, m.mapwidth as mmapwidth, m.mapwidthunit as mmapwidthunit, m.mapheight as mmapheight, m.controlbox as mcontrolbox, m.overlays_custom as moverlays_custom, m.overlays_custom2 as moverlays_custom2, m.overlays_custom3 as moverlays_custom3, m.overlays_custom4 as moverlays_custom4, l.createdby as lcreatedby, l.createdon as lcreatedon, l.updatedby as lupdatedby, l.updatedon as lupdatedon, l.name AS lname FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
   $markers = $wpdb->get_results($sql, ARRAY_A);

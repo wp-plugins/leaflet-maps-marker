@@ -410,7 +410,7 @@ $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE 
 		  closedir($dir);
 		  sort($iconlist);
 		foreach ($iconlist as $row)
-		  echo '<div style="text-align:center;float:left;"><img id="iconpreview" src="' . LEAFLET_PLUGIN_ICONS_URL . '/' . $row . '" title="' . $row . '" alt="' . $row . '"/><br/><input type="radio" name="icon" value="'.$row.'" /></div>';
+		  echo '<div style="text-align:center;float:left;"><img id="iconpreview" src="' . LEAFLET_PLUGIN_ICONS_URL . '/' . $row . '" title="' . $row . '" alt="' . $row . '" width="32" height="37" /><br/><input type="radio" name="icon" value="'.$row.'" /></div>';
 		?>
 		</td>
 		<td style="vertical-align:middle;">

@@ -8,7 +8,7 @@ Author:            Robert Harm (with special support from Sindre Wimberger)
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
 Tested up to:      3.4-alpha-19904
-Stable tag:        1.6
+Stable tag:        1.7
 
 Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 
@@ -40,6 +40,7 @@ to the visitors of your website.
 
 * show directions for your locations using Google Maps, yournavigation.org or openrouteservice.org
 * configure up to 10 WMS servers to display additional information from external geodata providers (like the European Environment Agency) on your maps
+* organize markers from different layers in multi-layer-maps
 * export your markers as KML file for displaying in Google Earth or Google Maps
 * export your markers as GeoJSON file for embedding in external websites or apps
 * export your markers as GeoRSS for embedding in external websites or apps
@@ -87,6 +88,7 @@ Please let me know which feature you think is missing by adding your ideas at [h
 * English (en_US)
 * German (de_DE)
 * Japanese (ja) [Shu Higashi](http://twitter.com/higa4)
+* Spanish (es_ES) David Ramirez, [http://www.hiperterminal.com](http://www.hiperterminal.com)
 
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
@@ -159,11 +161,12 @@ This program is free software; you can redistribute it and/or modify it under th
 * Wordpress-Settings-API-Class by Aliso the geek ([http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/](http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/))
 * [Hind](http://www.nanodesu.ru) who originally release a basic [Leaflet plugin](https://wordpress.org/extend/plugins/leaflet/) which I used partly as a basis for Leaflet Maps Marker plugin
 
-= Translations =
-
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
 == Upgrade Notice ==
+= v1.7 =
+added multi-layer-maps, Wikitude enhancements, added Spanish translation
+
 = v1.6 =
 update leaflet to 0.3.1 stable, support for Cloudmade maps with styles, bugfix for Wikitude API
 
@@ -204,6 +207,15 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v1.7 - 22.02.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v1.7)
+* NEW: added multi-layer support allowing you to combine markers from different layer maps
+* NEW: Wikitude World Browser now displays custom marker icons instead of standard icon from settings
+* NEW: option to set the maximum number of markers you want to display in the list below layer maps
+* NEW: Spanish translation thanks to David Ramírez, [http://www.hiperterminal.com](http://www.hiperterminal.com)
+* OPTIMIZED: added with & height attributes to custom marker-image-tags on marker edit page to speed up page load time
+* CHANGED: default font color in popups to black due to incompabilities with several themes
+
 = v1.6 - 14.02.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v1.6)
 * NEW: added support for Cloudmade maps with styles as basemaps
