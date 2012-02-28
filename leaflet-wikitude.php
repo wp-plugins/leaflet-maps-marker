@@ -41,13 +41,20 @@ if (isset($_GET['layer'])) {
  	$latUser = isset($_GET['latitude']) ? floatval($_GET['latitude']) : $first_marker_lat;
 	$lonUser = isset($_GET['longitude']) ? floatval($_GET['longitude']) : $first_marker_lon;
   } else {
-	$layerviewlat = $wpdb->get_var('SELECT layerviewlat FROM '.$table_name_layers.' WHERE id='.$layer);
-	$layerviewlon = $wpdb->get_var('SELECT layerviewlon FROM '.$table_name_layers.' WHERE id='.$layer);
+	$mlm_layers = explode(',', $layer);
+	  $mlm_checkedlayers = array();
+	  foreach ($mlm_layers as $mlm_clayer) {
+		if (intval($mlm_clayer) > 0)
+		  $mlm_checkedlayers[] = intval($mlm_clayer);
+	  }	  
+	if (count($mlm_checkedlayers) > 0)
+		$mlm_q = 'WHERE id IN ('.implode(',', $mlm_checkedlayers).')';			  
+	$layerviewlat = $wpdb->get_var('SELECT layerviewlat FROM '.$table_name_layers.' '.$mlm_q);
+	$layerviewlon = $wpdb->get_var('SELECT layerviewlon FROM '.$table_name_layers.' '.$mlm_q);
  	$latUser = isset($_GET['latitude']) ? floatval($_GET['latitude']) : $layerviewlat;
 	$lonUser = isset($_GET['longitude']) ? floatval($_GET['longitude']) : $layerviewlon;
   }
- 
-  $radius = $lmm_options[ 'ar_wikitude_radius' ];
+   $radius = $lmm_options[ 'ar_wikitude_radius' ];
   $distanceLLA = 0.01 * $radius / 1112;
   $boundingBoxLatitude1 = $latUser - $distanceLLA;
   $boundingBoxLatitude2 = $latUser + $distanceLLA;
@@ -57,12 +64,12 @@ if (isset($_GET['layer'])) {
   isset($_GET['searchterm']) ? $searchterm = mysql_real_escape_string($_GET['searchterm']) : $searchterm = NULL;
   if ($searchterm != NULL)
   {
-		  $q = 'LIMIT 0';
+		  $q = ''; //info: removed limit 5000
 		  if ($layer == '*' or $layer == 'all') {
-			$q = "WHERE m.lat BETWEEN " . $boundingBoxLatitude1 . " AND " . $boundingBoxLatitude2 . " AND m.lon BETWEEN " . $boundingBoxLongitude1 . " AND " . $boundingBoxLongitude2 . " AND (m.markername LIKE '%" . $searchterm . "%' OR m.popuptext LIKE '%" . $searchterm . "%') LIMIT 5000";
+			$q = "WHERE m.lat BETWEEN " . $boundingBoxLatitude1 . " AND " . $boundingBoxLatitude2 . " AND m.lon BETWEEN " . $boundingBoxLongitude1 . " AND " . $boundingBoxLongitude2 . " AND (m.markername LIKE '%" . $searchterm . "%' OR m.popuptext LIKE '%" . $searchterm . "%')"; //info: removed limit 5000
 		  } else {
-			$sql_mlm_check = 'SELECT multi_layer_map FROM '.$table_name_layers.' WHERE id='.$layer;
-			$sql_mlm_check_list = 'SELECT multi_layer_map_list FROM '.$table_name_layers.' WHERE id='.$layer;
+			$sql_mlm_check = 'SELECT multi_layer_map FROM '.$table_name_layers.' '.$mlm_q;
+			$sql_mlm_check_list = 'SELECT multi_layer_map_list FROM '.$table_name_layers.' '.$mlm_q;
 			$mlm_check = $wpdb->get_var($sql_mlm_check);
 			$mlm_check_list = $wpdb->get_row($sql_mlm_check_list, ARRAY_A);
 			if ($mlm_check == 0) {
@@ -81,7 +88,7 @@ if (isset($_GET['layer'])) {
 				$q = "WHERE layer IN (".implode(",", $mlm_check_list).") and m.lat BETWEEN " . $boundingBoxLatitude1 . " AND " . $boundingBoxLatitude2 . " AND m.lon BETWEEN " . $boundingBoxLongitude1 . " AND " . $boundingBoxLongitude2 . " AND (m.markername LIKE '%" . $searchterm . "%' OR m.popuptext LIKE '%" . $searchterm . "%')";
 			} else if ( ($mlm_check == 1) && (in_array('all',$mlm_check_list) ) ) {
 				$clayer = 0;
-				$q = "LIMIT 5000";
+				$q = ''; //info: removed limit 5000
 			} 
 		}
 		$sql = 'SELECT m.id as mid, m.layer as mlayer, m.markername as mmarkername, m.icon as micon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
@@ -136,12 +143,12 @@ if (isset($_GET['layer'])) {
 		echo '</kml>';
   	//info: if no searchterm
 	}  else  {
-		  $q = 'LIMIT 0';
+		  $q = ''; //info: removed limit 5000
 		  if ($layer == '*' or $layer == 'all') {
-			$q = "WHERE m.lat BETWEEN " . $boundingBoxLatitude1 . " AND " . $boundingBoxLatitude2 . " AND m.lon BETWEEN " . $boundingBoxLongitude1 . " AND " . $boundingBoxLongitude2 . " LIMIT 5000";
+			$q = "WHERE m.lat BETWEEN " . $boundingBoxLatitude1 . " AND " . $boundingBoxLatitude2 . " AND m.lon BETWEEN " . $boundingBoxLongitude1 . " AND " . $boundingBoxLongitude2 . "";//info: removed limit 5000
 		  } else {
-			$sql_mlm_check = 'SELECT multi_layer_map FROM '.$table_name_layers.' WHERE id='.$layer;
-			$sql_mlm_check_list = 'SELECT multi_layer_map_list FROM '.$table_name_layers.' WHERE id='.$layer;
+			$sql_mlm_check = 'SELECT multi_layer_map FROM '.$table_name_layers.' '.$mlm_q;
+			$sql_mlm_check_list = 'SELECT multi_layer_map_list FROM '.$table_name_layers.' '.$mlm_q;
 			$mlm_check = $wpdb->get_var($sql_mlm_check);
 			$mlm_check_list = $wpdb->get_row($sql_mlm_check_list, ARRAY_A);
 			if ($mlm_check == 0) {
@@ -160,7 +167,7 @@ if (isset($_GET['layer'])) {
 				$q = "WHERE layer IN (" . implode(",", $mlm_check_list) . ") and m.lat BETWEEN " . $boundingBoxLatitude1 . " AND " . $boundingBoxLatitude2 . " AND m.lon BETWEEN " . $boundingBoxLongitude1 . " AND " . $boundingBoxLongitude2 . "";
 			} else if ( ($mlm_check == 1) && (in_array('all',$mlm_check_list) ) ) {
 				$clayer = 0;
-				$q = "LIMIT 5000";
+				$q = ''; //info: removed limit 5000
 			} 
 		}
 		$sql = 'SELECT m.id as mid, m.layer as mlayer, m.markername as mmarkername, m.icon as micon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
@@ -219,8 +226,8 @@ elseif (isset($_GET['marker'])) {
   $markerid = mysql_real_escape_string($_GET['marker']);
   $markers = explode(',', $markerid);
   $maxNumberOfPois = isset($_GET['maxNumberOfPois']) ? intval($_GET['maxNumberOfPois']) : $lmm_options[ 'ar_wikitude_maxnumberpois' ];
-  $markerlat = $wpdb->get_var('SELECT lat FROM '.$table_name_markers.' WHERE id='.$markerid);
-  $markerlon = $wpdb->get_var('SELECT lon FROM '.$table_name_markers.' WHERE id='.$markerid);
+  $markerlat = $wpdb->get_var('SELECT lat FROM '.$table_name_markers.' WHERE id IN ('.$markerid.')');
+  $markerlon = $wpdb->get_var('SELECT lon FROM '.$table_name_markers.' WHERE id IN ('.$markerid.')');
  
   $latUser = isset($_GET['latitude']) ? floatval($_GET['latitude']) : $markerlat;
   $lonUser = isset($_GET['longitude']) ? floatval($_GET['longitude']) : $markerlon;

@@ -32,7 +32,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
    $rows = array();
         $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-	$objects = $wpdb->get_results('SELECT m.id as mid, l.name as layername,m.lat as lat, m.popuptext as popuptext, m.openpopup as openpopup, m.lon as lon,m.icon as icon, m.zoom as zoom, m.mapwidth as mapwidth, m.mapwidthunit as mapwidthunit, m.mapheight as mapheight, m.markername as markername, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, l.createdby as lcreatedby, l.createdon as lcreatedon, l.updatedby as lupdatedby, l.updatedon as lupdatedon FROM '.$table_name_markers.' as m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id order by m.id',OBJECT_K);
+	$objects = $wpdb->get_results('SELECT m.id as mid, l.name as layername,m.lat as lat, m.popuptext as popuptext, m.openpopup as openpopup, m.lon as lon,m.icon as icon, m.zoom as zoom, m.mapwidth as mapwidth, m.mapwidthunit as mapwidthunit, m.mapheight as mapheight, m.markername as markername, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, l.createdby as lcreatedby, l.createdon as lcreatedon, l.updatedby as lupdatedby, l.updatedon as lupdatedon, m.overlays_custom as moverlays_custom, m.overlays_custom2 as moverlays_custom2, m.overlays_custom3 as moverlays_custom3, m.overlays_custom4 as moverlays_custom4, m.wms as mwms, m.wms2 as mwms2, m.wms3 as mwms3, m.wms4 as mwms4, m.wms5 as mwms5, m.wms6 as mwms6, m.wms7 as mwms7, m.wms8 as mwms8, m.wms9 as mwms9, m.wms10 as mwms10, m.kml_timestamp as mkml_timestamp FROM '.$table_name_markers.' as m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id order by m.id',OBJECT_K);
 	foreach ($objects as $row) {
 		$columns = array();
 		$columns['id'] = $row->mid;
@@ -61,9 +61,24 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 		$columns['l.createdon'] = $row->lcreatedon;
 		$columns['l.updatedby'] = $row->lupdatedby;
 		$columns['l.updatedon'] = $row->lupdatedon;
+		$columns['m.overlays_custom'] = $row->moverlays_custom;
+		$columns['m.overlays_custom2'] = $row->moverlays_custom2;
+		$columns['m.overlays_custom3'] = $row->moverlays_custom3;
+		$columns['m.overlays_custom4'] = $row->moverlays_custom4;
+		$columns['m.wms'] = $row->mwms;
+		$columns['m.wms2'] = $row->mwms2;
+		$columns['m.wms3'] = $row->mwms3;
+		$columns['m.wms4'] = $row->mwms4;
+		$columns['m.wms5'] = $row->mwms5;
+		$columns['m.wms6'] = $row->mwms6;
+		$columns['m.wms7'] = $row->mwms7;
+		$columns['m.wms8'] = $row->mwms8;
+		$columns['m.wms9'] = $row->mwms9;
+		$columns['m.wms10'] = $row->mwms10;
+		$columns['m.kml_timestamp'] = $row->mkml_timestamp;
 		$rows[] = join(';',$columns); 
 	}
-        $header = "Markerid;Markername;Layername;PopupText;OpenPopup;Latitude;Longitude;Icon;Zoom;Mapwidth;MapwidthUnit;Mapheight;MapheightUnit;MarkerCreatedBy;MarkerCreatedOn;MarkerUpdatedBy;MarkerUpdatedOn;LayerCreatedBy;LayerCreatedOn;LayerUpdatedBy;LayerUpdatedOn";
+        $header = "Markerid;Markername;Layername;PopupText;OpenPopup;Latitude;Longitude;Icon;Zoom;Mapwidth;MapwidthUnit;Mapheight;MapheightUnit;MarkerCreatedBy;MarkerCreatedOn;MarkerUpdatedBy;MarkerUpdatedOn;LayerCreatedBy;LayerCreatedOn;LayerUpdatedBy;LayerUpdatedOn;Overlays_Custom;Overlays_Custom2;Overlays_Custom3;Overlays_Custom4;WMS;WMS2;WMS3;WMS4;WMS5;WMS6;WMS7;WMS8;WMS9;WMS10;KML_Timestamp";
 	$file = $header."\n".join("\n",$rows); 
 	header('Content-Type: text/plain; charset=UTF-8');
 	echo $file;
