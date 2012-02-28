@@ -8,7 +8,7 @@ Author:            Robert Harm (with special support from Sindre Wimberger)
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
 Tested up to:      3.4-alpha-19904
-Stable tag:        1.7
+Stable tag:        1.8
 
 Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 
@@ -50,6 +50,7 @@ to the visitors of your website.
 * display a list of markers below layer maps
 * show standalone maps in fullscreen mode
 * support for microformat geo-markup to make your maps machine-readable
+* support for custom marker timestamps for more precise KML animations
 * create QR code images for standalone maps in fullscreen mode
 * automatically add meta-tags with location information to maps
 * automatically add microformat geo-markup to maps
@@ -87,8 +88,9 @@ Please let me know which feature you think is missing by adding your ideas at [h
 
 * English (en_US)
 * German (de_DE)
-* Japanese (ja) [Shu Higashi](http://twitter.com/higa4)
-* Spanish (es_ES) David Ramirez, [http://www.hiperterminal.com](http://www.hiperterminal.com)
+* Japanese (ja) thanks to [Shu Higashi](http://twitter.com/higa4)
+* Spanish (es_ES) thanks to David Ramirez, [http://www.hiperterminal.com](http://www.hiperterminal.com)
+* Dutch (nl_NL) thanks to Marijke Metz [http://www.mergenmetz.nl](http://www.mergenmetz.nl)
 
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
@@ -151,6 +153,7 @@ This program is free software; you can redistribute it and/or modify it under th
 * OpenStreetMap - The Free Wiki World Map: [OpenStreetMap License](http://wiki.openstreetmap.org/wiki/OpenStreetMap_License) 
 * Map Icons Collection by Nicolas Mollet - [http://mapicons.nicolasmollet.com](http://mapicons.nicolasmollet.com)
 * Datasource OGD Vienna maps: Stadt Wien, Creative Commons Attribution (by) [http://data.wien.gv.at](http://data.wien.gv.at)
+* Any+Time DatePicker/TimePicker, [http://www.ama3.com/anytime/](http://www.ama3.com/anytime/), licence: BY-NC-SA 3.0
 * Adress autocompletion powered by [Google Places API](http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html)
 * Map center icon [Joseph Wain](http://glyphish.com/) - Creative Commons Attribution (by)
 * Plus, json & csv-export icon by [Yusuke Kamiyamane](http://www.pinvoke.com/) - Creative Commons Attribution (by)
@@ -164,6 +167,9 @@ This program is free software; you can redistribute it and/or modify it under th
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
 == Upgrade Notice ==
+= v1.8 =
+added timestamp support for more precise KML animations and option to set default icon, Dutch translation, bugfixes
+
 = v1.7 =
 added multi-layer-maps, Wikitude enhancements, added Spanish translation
 
@@ -207,6 +213,24 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v1.8 - 28.02.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v1.8)
+* NEW: added option to add a timestamp for each marker for more precise KML animations
+* NEW: added option to change the default marker icon for new marker maps
+* NEW: option to configure output of names for KML (show, hide, put in front of popup-text)
+* NEW: added Dutch translation thanks to [Marijke](http://www.mergenmetz.nl)
+* OPTIMIZED: reduced load for GeoJSON feeds up to 75% (full list of attributes can be shown by adding &full=yes to URL)
+* CHANGED: updated columns for CSV export file (custom overlay & WMS status, kml timestamp)
+* CHANGED: KML links are now opened in the same window (removed target="_blank")
+* BUGFIX: UTC offset calculations for KML timestamp was wrong if UTC was < 0
+* BUGFIX: markers are not clickable anymore if there is no popup text 
+* BUGFIX: styles for each marker icon in KML output are now unique (SELECT DISTINCT...)
+* BUGFIX: output of multiple markers as KML did not work (leaflet-kml.php?marker/layer=1,2,3)
+* BUGFIX: output of multiple markers as GeoRSS did not work (leaflet-georss.php?marker/layer=1,2,3)
+* BUGFIX: output of multiple markers as ARML did not work (leaflet-wikitude.php?marker/layer=1,2,3)
+* BUGFIX: if single layer was changed into multi layer map, list of markers was still displayed below map
+* BUGFIX: button "add to layer" did not work on new layers
+
 = v1.7 - 22.02.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v1.7)
 * NEW: added multi-layer support allowing you to combine markers from different layer maps
