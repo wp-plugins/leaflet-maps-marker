@@ -31,7 +31,7 @@
 		<li>- Leaflet by Cloudmade, <a href="http://leaflet.cloudmade.com" target="_blank">http://leaflet.cloudmade.com</a></li>
 		<li>- Datasource OGD Vienna maps: Stadt Wien - <a href="http://data.wien.gv.at" target="_blank">http://data.wien.gv.at</a></li>
 		<li>- Address autocompletion powered by <a href="http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html" target="_blank">Google Places API</a></li>
-		<li>- Any+Time DatePicker/TimePicker, <a href="http://www.ama3.com/anytime/" target="_blank">http://www.ama3.com/anytime/</a>, licence: BY-NC-SA 3.0</li>
+		<li>- Jquery TimePicker by Trent Richardson, <a href="http://trentrichardson.com/examples/timepicker/" target="_blank">http://trentrichardson.com/examples/timepicker/</a>, licence: GPL</li>
 		<li>- <a href="http://mapicons.nicolasmollet.com" target="_blank">Map Icons Collection</a> by Nicolas Mollet</li>
 		<li>- Map center icon by <a href="http://glyphish.com/" target="_blank">Joseph Wain</a>, licence: Creative Commons Attribution (by)</li>
 		<li>- Plus, json, layer &amp; csv-export icon by <a href="http://www.pinvoke.com/" target="_blank">Yusuke Kamiyamane</a>, licence: Creative Commons Attribution (by)</li>
@@ -39,9 +39,10 @@
 	</ul>
 	<h3><?php _e('Translations','lmm') ?></h3>
 	<ul>
-		<li>- Spanish (by David Ramírez, <a href="http://www.hiperterminal.com" target="_blank">http://www.hiperterminal.com</a>)</li>
-		<li>- Japanese (by Shu Higashi, <a href="http://twitter.com/higa4" target="_blank">@higa4</a>)</li>
-		<li>- German (by <a href="http://twitter.com/robertharm" target="_blank">@RobertHarm</a>)</li>
+		<li>- German (de_DE) by <a href="http://twitter.com/robertharm" target="_blank">@RobertHarm</a></li>
+		<li>- Spanish (es_ES) by David Ramírez, <a href="http://www.hiperterminal.com" target="_blank">http://www.hiperterminal.com</a></li>
+		<li>- Japanese (ja) by Shu Higashi, <a href="http://twitter.com/higa4" target="_blank">@higa4</a></li>
+		<li>- Dutch (nl_NL) by Marijke Metz <a href="http://www.mergenmetz.nl" target="_blank">http://www.mergenmetz.nl</a></li>
 	</ul>
 	<h3><?php _e('Credits & special thanks','lmm') ?></h3>
 	<ul>

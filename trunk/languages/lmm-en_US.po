@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MapsMarker.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-28 20:49+0100\n"
-"PO-Revision-Date: 2012-02-28 20:49+0100\n"
+"POT-Creation-Date: 2012-02-29 19:38+0100\n"
+"PO-Revision-Date: 2012-02-29 19:38+0100\n"
 "Last-Translator: Robert Harm <info@mapsmarker.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,10 +26,10 @@ msgstr ""
 #: ../leaflet-admin-header.php:8
 #: ../leaflet-maps-marker.php:664
 #: ../leaflet-maps-marker.php:742
-#: ../leaflet-maps-marker.php:1042
-#: ../leaflet-marker.php:721
-#: ../leaflet-marker.php:725
-#: ../leaflet-marker.php:729
+#: ../leaflet-maps-marker.php:1045
+#: ../leaflet-marker.php:726
+#: ../leaflet-marker.php:730
+#: ../leaflet-marker.php:734
 msgid "Settings"
 msgstr ""
 
@@ -725,7 +725,7 @@ msgstr ""
 #: ../class-leaflet-options.php:2918
 #: ../class-leaflet-options.php:3115
 #: ../class-leaflet-options.php:3312
-#: ../leaflet-maps-marker.php:1041
+#: ../leaflet-maps-marker.php:1044
 msgid "Layers"
 msgstr ""
 
@@ -910,16 +910,16 @@ msgstr ""
 #: ../leaflet-maps-marker.php:469
 #: ../leaflet-maps-marker.php:470
 #: ../leaflet-maps-marker.php:471
-#: ../leaflet-marker.php:596
-#: ../leaflet-marker.php:597
-#: ../leaflet-marker.php:598
-#: ../leaflet-marker.php:599
-#: ../leaflet-marker.php:600
 #: ../leaflet-marker.php:601
 #: ../leaflet-marker.php:602
 #: ../leaflet-marker.php:603
 #: ../leaflet-marker.php:604
 #: ../leaflet-marker.php:605
+#: ../leaflet-marker.php:606
+#: ../leaflet-marker.php:607
+#: ../leaflet-marker.php:608
+#: ../leaflet-marker.php:609
+#: ../leaflet-marker.php:610
 msgid "Legend"
 msgstr ""
 
@@ -990,7 +990,7 @@ msgstr ""
 #: ../class-leaflet-options.php:4747
 #: ../leaflet-layer.php:289
 #: ../leaflet-layer.php:430
-#: ../leaflet-marker.php:434
+#: ../leaflet-marker.php:439
 #: ../leaflet-tools.php:651
 msgid "yes"
 msgstr ""
@@ -1010,7 +1010,7 @@ msgstr ""
 #: ../class-leaflet-options.php:4748
 #: ../leaflet-layer.php:290
 #: ../leaflet-layer.php:429
-#: ../leaflet-marker.php:432
+#: ../leaflet-marker.php:437
 #: ../leaflet-tools.php:653
 msgid "no"
 msgstr ""
@@ -1181,7 +1181,7 @@ msgstr ""
 #: ../leaflet-layer.php:561
 #: ../leaflet-list-markers.php:94
 #: ../leaflet-list-markers.php:142
-#: ../leaflet-marker.php:407
+#: ../leaflet-marker.php:412
 #: ../leaflet-tools.php:395
 msgid "Icon"
 msgstr ""
@@ -1318,18 +1318,18 @@ msgstr ""
 #: ../leaflet-fullscreen.php:749
 #: ../leaflet-fullscreen.php:752
 #: ../leaflet-fullscreen.php:755
-#: ../leaflet-geojson.php:93
-#: ../leaflet-geojson.php:95
-#: ../leaflet-geojson.php:97
-#: ../leaflet-geojson.php:195
+#: ../leaflet-geojson.php:94
+#: ../leaflet-geojson.php:96
+#: ../leaflet-geojson.php:98
 #: ../leaflet-geojson.php:197
 #: ../leaflet-geojson.php:199
+#: ../leaflet-geojson.php:201
 #: ../leaflet-maps-marker.php:603
 #: ../leaflet-maps-marker.php:606
 #: ../leaflet-maps-marker.php:609
-#: ../leaflet-marker.php:723
-#: ../leaflet-marker.php:727
-#: ../leaflet-marker.php:731
+#: ../leaflet-marker.php:728
+#: ../leaflet-marker.php:732
+#: ../leaflet-marker.php:736
 msgid "Directions"
 msgstr ""
 
@@ -1622,16 +1622,16 @@ msgstr ""
 #: ../leaflet-maps-marker.php:400
 #: ../leaflet-maps-marker.php:401
 #: ../leaflet-maps-marker.php:402
-#: ../leaflet-marker.php:530
-#: ../leaflet-marker.php:531
-#: ../leaflet-marker.php:532
-#: ../leaflet-marker.php:533
-#: ../leaflet-marker.php:534
 #: ../leaflet-marker.php:535
 #: ../leaflet-marker.php:536
 #: ../leaflet-marker.php:537
 #: ../leaflet-marker.php:538
 #: ../leaflet-marker.php:539
+#: ../leaflet-marker.php:540
+#: ../leaflet-marker.php:541
+#: ../leaflet-marker.php:542
+#: ../leaflet-marker.php:543
+#: ../leaflet-marker.php:544
 msgid "Map"
 msgstr ""
 
@@ -2058,7 +2058,7 @@ msgstr ""
 #: ../leaflet-layer.php:564
 #: ../leaflet-list-markers.php:97
 #: ../leaflet-list-markers.php:145
-#: ../leaflet-marker.php:428
+#: ../leaflet-marker.php:433
 #: ../leaflet-tools.php:442
 msgid "Popup text"
 msgstr ""
@@ -2358,7 +2358,7 @@ msgstr ""
 #: ../leaflet-maps-marker.php:271
 #: ../leaflet-maps-marker.php:295
 #: ../leaflet-maps-marker.php:378
-#: ../leaflet-marker.php:325
+#: ../leaflet-marker.php:330
 msgid "Export as KML for Google Earth/Google Maps"
 msgstr ""
 
@@ -2381,7 +2381,7 @@ msgstr ""
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
-#: ../leaflet-marker.php:328
+#: ../leaflet-marker.php:333
 msgid "Open standalone map in fullscreen mode"
 msgstr ""
 
@@ -2403,7 +2403,7 @@ msgstr ""
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
-#: ../leaflet-marker.php:331
+#: ../leaflet-marker.php:336
 msgid "Create QR code image for standalone map in fullscreen mode"
 msgstr ""
 
@@ -2412,7 +2412,7 @@ msgstr ""
 #: ../leaflet-layer.php:312
 #: ../leaflet-maps-marker.php:280
 #: ../leaflet-maps-marker.php:304
-#: ../leaflet-marker.php:334
+#: ../leaflet-marker.php:339
 msgid "Export as GeoJSON"
 msgstr ""
 
@@ -2421,7 +2421,7 @@ msgstr ""
 #: ../leaflet-layer.php:315
 #: ../leaflet-maps-marker.php:283
 #: ../leaflet-maps-marker.php:307
-#: ../leaflet-marker.php:337
+#: ../leaflet-marker.php:342
 msgid "Export as GeoRSS"
 msgstr ""
 
@@ -2430,7 +2430,7 @@ msgstr ""
 #: ../leaflet-layer.php:318
 #: ../leaflet-maps-marker.php:286
 #: ../leaflet-maps-marker.php:310
-#: ../leaflet-marker.php:340
+#: ../leaflet-marker.php:345
 msgid "Export as ARML for Wikitude Augmented-Reality browser"
 msgstr ""
 
@@ -2438,7 +2438,7 @@ msgstr ""
 #: ../leaflet-fullscreen.php:537
 #: ../leaflet-layer.php:683
 #: ../leaflet-maps-marker.php:391
-#: ../leaflet-marker.php:528
+#: ../leaflet-marker.php:533
 msgid "Plugin"
 msgstr ""
 
@@ -2450,8 +2450,8 @@ msgstr ""
 #: ../leaflet-layer.php:690
 #: ../leaflet-maps-marker.php:397
 #: ../leaflet-maps-marker.php:398
-#: ../leaflet-marker.php:534
-#: ../leaflet-marker.php:535
+#: ../leaflet-marker.php:539
+#: ../leaflet-marker.php:540
 msgid "City of Vienna"
 msgstr ""
 
@@ -2469,12 +2469,12 @@ msgstr ""
 #: ../leaflet-fullscreen.php:749
 #: ../leaflet-fullscreen.php:752
 #: ../leaflet-fullscreen.php:755
-#: ../leaflet-geojson.php:93
-#: ../leaflet-geojson.php:95
-#: ../leaflet-geojson.php:97
-#: ../leaflet-geojson.php:195
+#: ../leaflet-geojson.php:94
+#: ../leaflet-geojson.php:96
+#: ../leaflet-geojson.php:98
 #: ../leaflet-geojson.php:197
 #: ../leaflet-geojson.php:199
+#: ../leaflet-geojson.php:201
 #: ../leaflet-layer.php:352
 #: ../leaflet-layer.php:355
 #: ../leaflet-layer.php:358
@@ -2487,12 +2487,12 @@ msgstr ""
 #: ../leaflet-maps-marker.php:603
 #: ../leaflet-maps-marker.php:606
 #: ../leaflet-maps-marker.php:609
-#: ../leaflet-marker.php:315
-#: ../leaflet-marker.php:318
-#: ../leaflet-marker.php:321
-#: ../leaflet-marker.php:723
-#: ../leaflet-marker.php:727
-#: ../leaflet-marker.php:731
+#: ../leaflet-marker.php:320
+#: ../leaflet-marker.php:323
+#: ../leaflet-marker.php:326
+#: ../leaflet-marker.php:728
+#: ../leaflet-marker.php:732
+#: ../leaflet-marker.php:736
 msgid "Get directions"
 msgstr ""
 
@@ -2566,7 +2566,7 @@ msgstr ""
 msgid "Translations"
 msgstr ""
 
-#: ../leaflet-help-credits.php:46
+#: ../leaflet-help-credits.php:47
 msgid "Credits & special thanks"
 msgstr ""
 
@@ -2740,7 +2740,7 @@ msgstr ""
 #: ../leaflet-layer.php:291
 #: ../leaflet-layer.php:370
 #: ../leaflet-marker.php:246
-#: ../leaflet-marker.php:348
+#: ../leaflet-marker.php:353
 msgid "(Settings)"
 msgstr ""
 
@@ -2828,7 +2828,7 @@ msgid "edit"
 msgstr ""
 
 #: ../leaflet-layer.php:370
-#: ../leaflet-marker.php:348
+#: ../leaflet-marker.php:353
 msgid "WMS layers"
 msgstr ""
 
@@ -2865,7 +2865,7 @@ msgid "marker"
 msgstr ""
 
 #: ../leaflet-layer.php:455
-#: ../leaflet-marker.php:494
+#: ../leaflet-marker.php:499
 msgid "Audit"
 msgstr ""
 
@@ -2874,7 +2874,7 @@ msgid "Layer added by"
 msgstr ""
 
 #: ../leaflet-layer.php:460
-#: ../leaflet-marker.php:499
+#: ../leaflet-marker.php:504
 msgid "last update by"
 msgstr ""
 
@@ -2925,7 +2925,7 @@ msgid "For details on assigned markers to this multi-layer map, please open the 
 msgstr ""
 
 #: ../leaflet-layer.php:606
-#: ../leaflet-marker.php:514
+#: ../leaflet-marker.php:519
 #, php-format
 msgid "Do you really want to delete marker %1$s (ID %2$s)?"
 msgstr ""
@@ -2964,8 +2964,8 @@ msgstr ""
 
 #: ../leaflet-layer.php:1013
 #: ../leaflet-layer.php:1019
-#: ../leaflet-marker.php:847
-#: ../leaflet-marker.php:853
+#: ../leaflet-marker.php:852
+#: ../leaflet-marker.php:858
 msgid "Invalid format! Please only use numbers and a . instead of a , as decimal separator!"
 msgstr ""
 
@@ -3030,7 +3030,7 @@ msgstr ""
 
 #: ../leaflet-list-layers.php:37
 #: ../leaflet-list-layers.php:79
-#: ../leaflet-maps-marker.php:1040
+#: ../leaflet-maps-marker.php:1043
 msgid "Markers"
 msgstr ""
 
@@ -3202,157 +3202,81 @@ msgstr ""
 msgid "or set marker coordinates by clicking on the preview map"
 msgstr ""
 
-#: ../leaflet-marker.php:285
-msgid "Timestamp for KML animation"
-msgstr ""
-
-#: ../leaflet-marker.php:285
-msgid "Click here for more information on animations in KML/Google Earth"
-msgstr ""
-
-#: ../leaflet-marker.php:287
-msgid "If empty, marker creation date will be used"
-msgstr ""
-
-#: ../leaflet-marker.php:290
-msgid "Sun"
-msgstr ""
-
-#: ../leaflet-marker.php:290
-msgid "Mon"
-msgstr ""
-
-#: ../leaflet-marker.php:290
-msgid "Tue"
-msgstr ""
-
-#: ../leaflet-marker.php:290
-msgid "Wed"
-msgstr ""
-
-#: ../leaflet-marker.php:290
-msgid "Thu"
-msgstr ""
-
-#: ../leaflet-marker.php:290
-msgid "Fri"
-msgstr ""
-
-#: ../leaflet-marker.php:290
-msgid "Sat"
-msgstr ""
-
-#: ../leaflet-marker.php:291
-msgid "Day of Month"
-msgstr ""
-
 #: ../leaflet-marker.php:292
-msgid "Hour"
+msgid "Time"
 msgstr ""
 
 #: ../leaflet-marker.php:293
-msgid "Minute"
+msgid "Hour"
 msgstr ""
 
 #: ../leaflet-marker.php:294
-msgid "Second"
+msgid "Minute"
 msgstr ""
 
 #: ../leaflet-marker.php:295
-msgid "Please select a date and time"
+msgid "Second"
 msgstr ""
 
 #: ../leaflet-marker.php:296
-msgid "Year"
+msgid "Now"
 msgstr ""
 
 #: ../leaflet-marker.php:297
-msgid "Jan"
+msgid "Add"
 msgstr ""
 
-#: ../leaflet-marker.php:297
-msgid "Feb"
+#: ../leaflet-marker.php:302
+msgid "Timestamp for KML animation"
 msgstr ""
 
-#: ../leaflet-marker.php:297
-msgid "Mar"
+#: ../leaflet-marker.php:302
+msgid "Click here for more information on animations in KML/Google Earth"
 msgstr ""
 
-#: ../leaflet-marker.php:297
-msgid "Apr"
+#: ../leaflet-marker.php:304
+msgid "If empty, marker creation date will be used"
 msgstr ""
 
-#: ../leaflet-marker.php:297
-msgid "May"
-msgstr ""
-
-#: ../leaflet-marker.php:297
-msgid "Jun"
-msgstr ""
-
-#: ../leaflet-marker.php:297
-msgid "Jul"
-msgstr ""
-
-#: ../leaflet-marker.php:297
-msgid "Aug"
-msgstr ""
-
-#: ../leaflet-marker.php:297
-msgid "Sep"
-msgstr ""
-
-#: ../leaflet-marker.php:297
-msgid "Oct"
-msgstr ""
-
-#: ../leaflet-marker.php:297
-msgid "Nov"
-msgstr ""
-
-#: ../leaflet-marker.php:297
-msgid "Dec"
-msgstr ""
-
-#: ../leaflet-marker.php:343
+#: ../leaflet-marker.php:348
 msgid "if set, markername will be inserted here"
 msgstr ""
 
-#: ../leaflet-marker.php:413
+#: ../leaflet-marker.php:418
 #, php-format
 msgid "If you want to use different icons, please visit the %1$s (offering more than 700 compatible icons) and upload the new icons to the directory %2$s/"
 msgstr ""
 
-#: ../leaflet-marker.php:414
+#: ../leaflet-marker.php:419
 #, php-format
 msgid "If you want to use different icons, please visit the %1$s (offering more than 700 compatible icons) and ask your WordPress admin to upload the new icons to the directory %2$s/"
 msgstr ""
 
-#: ../leaflet-marker.php:430
+#: ../leaflet-marker.php:435
 msgid "open by default?"
 msgstr ""
 
-#: ../leaflet-marker.php:436
+#: ../leaflet-marker.php:441
 msgid "If no is selected, the popup will only be visible after clicking on the marker on marker- or layer-maps. If yes is selected, the popup is shown by default on marker-maps but not on layer-maps, where this feature is not supported"
 msgstr ""
 
-#: ../leaflet-marker.php:488
+#: ../leaflet-marker.php:493
 msgid "Note: image width gets resized to 260px automatically to fit in popup"
 msgstr ""
 
-#: ../leaflet-marker.php:496
+#: ../leaflet-marker.php:501
 msgid "Marker added by"
 msgstr ""
 
-#: ../leaflet-marker.php:506
+#: ../leaflet-marker.php:511
 msgid "update marker"
 msgstr ""
 
-#: ../leaflet-marker.php:506
+#: ../leaflet-marker.php:511
 msgid "add marker"
 msgstr ""
 
-#: ../leaflet-marker.php:516
+#: ../leaflet-marker.php:521
 msgid "delete marker"
 msgstr ""
 
