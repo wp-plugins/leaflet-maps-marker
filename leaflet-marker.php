@@ -282,21 +282,26 @@ echo '<p><a class=\'button-secondary\' href=\'' . WP_ADMIN_URL . 'admin.php?page
 					<input type="radio" name="panel" value="0" <?php checked($panel, 0 ); ?>>
 					<?php _e('hide','lmm') ?>
 					<br/><br/>				
+					<script type="text/javascript">
+						var $j = jQuery.noConflict();
+						$j(function() {
+						$j("#kml_timestamp").datetimepicker({
+							dateFormat: 'yy-mm-dd',
+							changeMonth: true,
+							changeYear: true,
+							timeText: '<?php esc_attr_e('Time','lmm'); ?>',
+							hourText: '<?php esc_attr_e('Hour','lmm'); ?>',
+							minuteText: '<?php esc_attr_e('Minute','lmm'); ?>',
+							secondText: '<?php esc_attr_e('Second','lmm'); ?>',
+							currentText: '<?php esc_attr_e('Now','lmm'); ?>',
+							closeText: '<?php esc_attr_e('Add','lmm'); ?>',
+							timeFormat: 'hh:mm:ss',
+							showSecond: true,
+						});});
+					</script>
 					<label for="kml_datetime"><strong><?php _e('Timestamp for KML animation','lmm') ?>:</strong></label> <a href="http://www.mapsmarker.com/kml-timestamp" target="_blank"><img src="<?php echo LEAFLET_PLUGIN_URL; ?>img/icon-question-mark.png" title="<?php esc_attr_e('Click here for more information on animations in KML/Google Earth','lmm'); ?>" width="12" height="12" border="0"/></a><br/>
 					<input type="text" id="kml_timestamp" name="kml_timestamp" value="<?php echo $kml_timestamp ; ?>" style="width:145px;background-image:url(<?php echo LEAFLET_PLUGIN_URL; ?>img/icon-calendar.png);background-position:123px center;background-repeat:no-repeat;" /><br/>
 					<small><?php _e('If empty, marker creation date will be used','lmm') ?><br/></small></p>
-					<script>
-					  AnyTime.picker( "kml_timestamp",
-					    { 	dayAbbreviations: ["<?php esc_attr_e('Sun','lmm'); ?>","<?php esc_attr_e('Mon','lmm'); ?>","<?php esc_attr_e('Tue','lmm'); ?>","<?php esc_attr_e('Wed','lmm'); ?>","<?php esc_attr_e('Thu','lmm'); ?>","<?php esc_attr_e('Fri','lmm'); ?>","<?php esc_attr_e('Sat','lmm'); ?>"],
-							labelDayOfMonth: "<?php esc_attr_e('Day of Month','lmm'); ?>",
-							labelHour: "<?php esc_attr_e('Hour','lmm'); ?>",
-							labelMinute: "<?php esc_attr_e('Minute','lmm'); ?>",
-							labelSecond: "<?php esc_attr_e('Second','lmm'); ?>",
-							labelTitle: "<?php esc_attr_e('Please select a date and time','lmm'); ?>",
-							labelYear: "<?php esc_attr_e('Year','lmm'); ?>",
-							monthAbbreviations: ["<?php esc_attr_e('Jan','lmm'); ?>","<?php esc_attr_e('Feb','lmm'); ?>","<?php esc_attr_e('Mar','lmm'); ?>","<?php esc_attr_e('Apr','lmm'); ?>","<?php esc_attr_e('May','lmm'); ?>","<?php esc_attr_e('Jun','lmm'); ?>","<?php esc_attr_e('Jul','lmm'); ?>","<?php esc_attr_e('Aug','lmm'); ?>","<?php esc_attr_e('Sep','lmm'); ?>","<?php esc_attr_e('Oct','lmm'); ?>","<?php esc_attr_e('Nov','lmm'); ?>","<?php esc_attr_e('Dec','lmm'); ?>"]
-						} );
-					</script>
 				</td>
 				<td id="wmscheckboxes">
 					<?php 
