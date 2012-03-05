@@ -6,7 +6,7 @@
                                         title : 'Insert map',
 					file : '/wp-admin/admin-ajax.php?action=get_mm_list',
 					width : 450 + parseInt(ed.getLang('example.delta_width', 0)),
-					height : 420 + parseInt(ed.getLang('example.delta_height', 0)),
+					height : 440 + parseInt(ed.getLang('example.delta_height', 0)),
                                         inline: 1
 				})
 			});
