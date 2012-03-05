@@ -8,7 +8,7 @@ Author:            Robert Harm (with special support from Sindre Wimberger)
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
 Tested up to:      3.4-alpha-19904
-Stable tag:        1.8
+Stable tag:        1.9
 
 Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 
@@ -47,6 +47,7 @@ to the visitors of your website.
 * export your markers as ARML for displaying in the augmented-reality browser from Wikitude
 * export your markers as csv-file
 * configure up to 3 basemaps from Cloudmade with custom styles
+* TinyMCE button for easily searching and adding maps on post/pages edit screen
 * display a list of markers below layer maps
 * show standalone maps in fullscreen mode
 * support for microformat geo-markup to make your maps machine-readable
@@ -90,7 +91,8 @@ Please let me know which feature you think is missing by adding your ideas at [h
 * German (de_DE)
 * Japanese (ja) thanks to [Shu Higashi](http://twitter.com/higa4)
 * Spanish (es_ES) thanks to David Ramirez, [http://www.hiperterminal.com](http://www.hiperterminal.com)
-* Dutch (nl_NL) thanks to Marijke Metz [http://www.mergenmetz.nl](http://www.mergenmetz.nl)
+* Dutch (nl_NL) thanks to Marijke Metz, [http://www.mergenmetz.nl](http://www.mergenmetz.nl)
+* French (fr_FR) thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com)
 
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
@@ -167,6 +169,9 @@ This program is free software; you can redistribute it and/or modify it under th
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
 == Upgrade Notice ==
+= v1.9 =
+added tinymce-button for inserting maps, removed OSM osmarender basemap
+
 = v1.8 =
 added timestamp support for more precise KML animations and option to set default icon, Dutch translation, bugfixes
 
@@ -213,6 +218,14 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v1.9 - 05.03.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v1.9)
+* NEW: added TinyMCE-button for easily searching and inserting maps on post/pages-edit screen
+* NEW: added French translation thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com)
+* UPDATED Dutch translation thanks to [Marijke](http://www.mergenmetz.nl)
+* UPDATED Japanes translations thanks to [Shu Higashi](http://twitter.com/higa4)
+* REMOVED support for OSM Osmarender basemaps (service has been discontinued)
+
 = v1.8 - 29.02.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v1.8)
 * NEW: added option to add a timestamp for each marker for more precise KML animations

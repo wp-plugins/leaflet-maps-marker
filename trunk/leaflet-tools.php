@@ -261,7 +261,6 @@ $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE 
 		</td>
 		<td>
 		<input type="radio" name="basemap" value="osm_mapnik" checked /> <?php echo $lmm_options['default_basemap_name_osm_mapnik']; ?><br />
-		<input type="radio" name="basemap" value="osm_osmarender" /> <?php echo $lmm_options['default_basemap_name_osm_osmarender']; ?><br />
 		<input type="radio" name="basemap" value="mapquest_osm" /> <?php echo $lmm_options['default_basemap_name_mapquest_osm']; ?><br />
 		<input type="radio" name="basemap" value="mapquest_aerial" /> <?php echo $lmm_options['default_basemap_name_mapquest_aerial']; ?><br />
 		<input type="radio" name="basemap" value="ogdwien_basemap" /> <?php echo $lmm_options['default_basemap_name_ogdwien_basemap']; ?><br />
@@ -513,7 +512,6 @@ $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE 
 		</td>
 		<td>
 		<input type="radio" name="basemap-layer" value="osm_mapnik" checked /> <?php echo $lmm_options['default_basemap_name_osm_mapnik']; ?><br />
-		<input type="radio" name="basemap-layer" value="osm_osmarender" /> <?php echo $lmm_options['default_basemap_name_osm_osmarender']; ?><br />
 		<input type="radio" name="basemap-layer" value="mapquest_osm" /> <?php echo $lmm_options['default_basemap_name_mapquest_osm']; ?><br />
 		<input type="radio" name="basemap-layer" value="mapquest_aerial" /> <?php echo $lmm_options['default_basemap_name_mapquest_aerial']; ?><br />
 		<input type="radio" name="basemap-layer" value="ogdwien_basemap" /> <?php echo $lmm_options['default_basemap_name_ogdwien_basemap']; ?><br />
