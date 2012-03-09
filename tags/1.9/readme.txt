@@ -131,8 +131,8 @@ For demo maps please visit [http://www.mapsmarker.com/demo](http://www.mapsmarke
 1. Frontend: marker map (with open popup and image, basemap: OGD Vienna satellite, overlay: OGD Vienna addresses, controlbox: expanded)
 2. Frontend: layer map (5 marker, different icons, basemap: OpenStreetMap, controlbox: collapsed)
 3. Frontend: map with WMS layer enabled and additional marker
-4. Frontend: layer map in Google Earth (via KML export)
-5. [youtube http://www.youtube.com/watch?v=LXliLaZ4u-E]
+4. [youtube http://www.youtube.com/watch?v=LXliLaZ4u-E]
+5. Frontend: layer map in Google Earth (via KML export)
 6. Frontend: layer map in Google Maps (via KML export)
 7. Frontend: showing marker in Wikitude (via Augmented-Reality API)
 8. Backend: add/edit marker-screen - allows you to fully customize the marker map (used basemap & overlays, map size, zoom, controlbox status, marker icon, popup-text and behaviour etc).
