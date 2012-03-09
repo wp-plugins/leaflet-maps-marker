@@ -51,7 +51,7 @@ to the visitors of your website.
 * display a list of markers below layer maps
 * show standalone maps in fullscreen mode
 * support for microformat geo-markup to make your maps machine-readable
-* support for custom marker timestamps for more precise KML animations
+* support for custom marker timestamps for more precise KML animations - [demo video](http://www.youtube.com/watch?v=LXliLaZ4u-E)
 * create QR code images for standalone maps in fullscreen mode
 * automatically add meta-tags with location information to maps
 * automatically add microformat geo-markup to maps
@@ -132,15 +132,16 @@ For demo maps please visit [http://www.mapsmarker.com/demo](http://www.mapsmarke
 2. Frontend: layer map (5 marker, different icons, basemap: OpenStreetMap, controlbox: collapsed)
 3. Frontend: map with WMS layer enabled and additional marker
 4. Frontend: layer map in Google Earth (via KML export)
-5. Frontend: layer map in Google Maps (via KML export)
-6. Frontend: showing marker in Wikitude (via Augmented-Reality API)
-7. Backend: add/edit marker-screen - allows you to fully customize the marker map (used basemap & overlays, map size, zoom, controlbox status, marker icon, popup-text and behaviour etc).
-8. Backend: add/edit layer - allows you to fully customize the layer map (used basemap & overlays, set center, map size, zoom, controlbox status etc).
-9. Backend: markerlist - for easy administration of all your markers
-10. Backend: layerlist - for easy administration of all your layers
-11. Backend: plugin settings page allows you to easily set all necessary settings & restore the defaults if you messed something up
-12. Backend: csv-export of all markers - just copy and paste into your favorite spreadsheet application for use in other applications
-13. Backend: tools section - allows mass-actions more markers (assignements, deletions)
+5. [youtube http://www.youtube.com/watch?v=LXliLaZ4u-E]
+6. Frontend: layer map in Google Maps (via KML export)
+7. Frontend: showing marker in Wikitude (via Augmented-Reality API)
+8. Backend: add/edit marker-screen - allows you to fully customize the marker map (used basemap & overlays, map size, zoom, controlbox status, marker icon, popup-text and behaviour etc).
+9. Backend: add/edit layer - allows you to fully customize the layer map (used basemap & overlays, set center, map size, zoom, controlbox status etc).
+10. Backend: markerlist - for easy administration of all your markers
+11. Backend: layerlist - for easy administration of all your layers
+12. Backend: plugin settings page allows you to easily set all necessary settings & restore the defaults if you messed something up
+13. Backend: csv-export of all markers - just copy and paste into your favorite spreadsheet application for use in other applications
+14. Backend: tools section - allows mass-actions more markers (assignements, deletions)
 
 == Other Notes ==
 
