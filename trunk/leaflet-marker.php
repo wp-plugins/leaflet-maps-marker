@@ -844,13 +844,13 @@ var marker,selectlayer,osm_mapnik,mapquest_osm,mapquest_aerial,ogdwien_basemap,o
 	//info: check if lat is a number
 	$('input:text[name=lat]').blur(function(e) {
 		if(isNaN(lat.val())) {
-                alert('<?php _e('Invalid format! Please only use numbers and a . instead of a , as decimal separator!','lmm') ?>');
+                alert('<?php esc_attr_e('Invalid format! Please only use numbers and a . instead of a , as decimal separator!','lmm') ?>');
 		}
 	});
 	//info: check if lon is a number
 	$('input:text[name=lon]').blur(function(e) {
 		if(isNaN(lon.val())) {
-                alert('<?php _e('Invalid format! Please only use numbers and a . instead of a , as decimal separator!','lmm') ?>');
+                alert('<?php esc_attr_e('Invalid format! Please only use numbers and a . instead of a , as decimal separator!','lmm') ?>');
 		}
 	});
 	//info: sets map center to new marker position when entering lat/lon manually

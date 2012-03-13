@@ -1005,13 +1005,13 @@ var markers = {};
 	//info: check if layerviewlat is a number
 	$('input:text[name=layerviewlat]').blur(function(e) {
 		if(isNaN(layerviewlat.val())) {
-                alert('<?php _e('Invalid format! Please only use numbers and a . instead of a , as decimal separator!','lmm') ?>');
+                alert('<?php esc_attr_e('Invalid format! Please only use numbers and a . instead of a , as decimal separator!','lmm') ?>');
 		}
 	});
 	//info: check if layerviewlon is a number
 	$('input:text[name=layerviewlon]').blur(function(e) {
 		if(isNaN(layerviewlon.val())) {
-                alert('<?php _e('Invalid format! Please only use numbers and a . instead of a , as decimal separator!','lmm') ?>');
+                alert('<?php esc_attr_e('Invalid format! Please only use numbers and a . instead of a , as decimal separator!','lmm') ?>');
 		}
 	});
 	//info: sets map center to new layer center position when entering lat/lon manually
