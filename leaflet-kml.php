@@ -147,7 +147,9 @@ if (isset($_GET['layer'])) {
 	}
 	echo '<name>' . $name . '</name>'.PHP_EOL;
 	echo '<TimeStamp><when>' . date("Y-m-d", $date_kml) . 'T' . date("h:m:s", $time_kml) . $plus_minus . $offset_kml . '</when></TimeStamp>'.PHP_EOL;
-	echo '<atom:author>' . $marker['mcreatedby'] . '</atom:author>'.PHP_EOL;
+	echo '<atom:author><atom:name>' . $marker['mcreatedby'] . '</atom:name></atom:author>'.PHP_EOL;
+	$home_url = home_url();
+	echo '<atom:link href="' . $home_url . '" />'.PHP_EOL;
 	echo '<description><![CDATA[' .  $name_popup . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
 	echo '<Point>'.PHP_EOL;
 	echo '<coordinates>' . $marker['mlon'] . ',' . $marker['mlat'] . '</coordinates>'.PHP_EOL;
@@ -267,7 +269,9 @@ elseif (isset($_GET['marker'])) {
 	}
 	echo '<name>' . $name . '</name>'.PHP_EOL;
 	echo '<TimeStamp><when>' . date("Y-m-d", $date_kml) . 'T' . date("h:m:s", $time_kml) . $plus_minus . $offset_kml . '</when></TimeStamp>'.PHP_EOL;
-	echo '<atom:author>' . $marker['mcreatedby'] . '</atom:author>'.PHP_EOL;
+	echo '<atom:author><atom:name>' . $marker['mcreatedby'] . '</atom:name></atom:author>'.PHP_EOL;
+	$home_url = home_url();
+	echo '<atom:link href="' . $home_url . '" />'.PHP_EOL;
 	echo '<description><![CDATA[' .  $name_popup . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
 	echo '<Point>'.PHP_EOL;
 	echo '<coordinates>' . $marker['mlon'] . ',' . $marker['mlat'] . '</coordinates>'.PHP_EOL;
