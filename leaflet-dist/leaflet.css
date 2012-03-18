@@ -2,11 +2,15 @@
 .lmm-listmarkers-panel-icons {
 	float:right;
 	margin-right:5px !important;	
+	position:relative;
+	z-index:5;
+	width:135px;
+	text-align:right;
+	line-height:10px;
 }
 .lmm-listmarkers-panel-icons a {
 	border:none;	
 }
-
 .lmm-listmarkers img {
 	max-width:440px !important;
 	height:auto;

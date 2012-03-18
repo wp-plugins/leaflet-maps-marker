@@ -302,7 +302,7 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 			echo '<option value="' . $row['id'] . '">' . stripslashes($row['name']) . ' (ID ' . $row['id'] . ')</option>';
 		?>
 		</select><br/>
-		<input type="submit" value="<?php _e('submit', 'lmm') ?>" style="margin: 0 0 5px 18px;"/>
+		<input class="button-secondary" type="submit" value="<?php _e('submit', 'lmm') ?>" style="margin: 0 0 5px 18px;"/>
 		</td></tr></table>
 	
 	</form>

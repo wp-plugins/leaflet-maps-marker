@@ -36,7 +36,7 @@ function register_button( $buttons ) {
 Register TinyMCE Plugin
 */
 function add_plugin( $plugin_array ) {
-	$plugin_array['mm_shortcode'] = plugins_url( 'js/lmm_tinymce_shortcode.js' , __FILE__ );
+	$plugin_array['mm_shortcode'] = LEAFLET_PLUGIN_URL . 'js/lmm_tinymce_shortcode.js';
 	return $plugin_array;
 }
 add_action('wp_ajax_get_mm_list',  'get_mm_list');
@@ -65,11 +65,11 @@ function get_mm_list(){
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Insert map</title>
-        <script type='text/javascript' src='/wp-admin/load-scripts.php?c=1&load=jquery'></script>
-        <script type='text/javascript' src='/wp-includes/js/tinymce/tiny_mce_popup.js'></script>
-        <script type='text/javascript' src='<?php echo plugins_url( 'js/lmm_tinymce_shortcode.js' , __FILE__ ) ?>'></script>
-        <link rel='stylesheet' href='<?php echo plugins_url( 'css/marker_select_box.css' , __FILE__ ) ?>' type='text/css' media='all' />
+	<title><?php _e('Insert map','lmm') ?></title>
+		<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'js/jquery_for_tinymce_button.js' ?>'></script>
+		<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'js/tiny_mce_popup.js' ?>'></script>
+        <script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'js/lmm_tinymce_shortcode.js' ?>'></script>
+        <link rel='stylesheet' href='<?php echo LEAFLET_PLUGIN_URL . 'css/marker_select_box.css' ?>' type='text/css' media='all' />
 </head>
 <body>
 <span id="msb_header_description"><?php _e('If no search term is entered, the latest 15 maps will be shown.','lmm'); ?></span>
@@ -176,11 +176,26 @@ function buildMarkersList($array){
 		} else {
 			$name = $one['name'] . ' (ID '. $one['id'].')';
 		}
+		
+		if ($one['type'] == 'marker') {
+			$maptype = __('Marker','lmm'). '<br/>ID '. $one['id'];
+		} else {
+			$maptype = __('Layer','lmm'). ' <br/>ID '. $one['id'];
+		}
 	?>
     <div class="list_item">
-        <span class="name" title="<?php esc_attr_e('name and ID','lmm');?>"><?php echo $name; ?></span><span class="date" title="<?php esc_attr_e('created on','lmm');?>"><?php echo $date; ?></span>
+	<table style="width:100%;"><tr>
+	<td style="width:55px;">
+		<span class="name" title="<?php esc_attr_e('map type and ID','lmm');?>"><?php echo $maptype; ?></span>
+	</td>
+	<td valign="top">
+        <span class="name" title="<?php esc_attr_e('name','lmm');?>"><strong><?php echo stripslashes($one['name']); ?></strong></span>
+	</td>
+	<td valign="top">
+		<span class="date" title="<?php esc_attr_e('created on','lmm');?>"><?php echo $date; ?></span>
         <input type="hidden" value="<?php echo $one['type']?>" name="msb_type">
         <input type="hidden" value="<?php echo $one['id']?>" name="msb_id">
+	</td></tr></table>
     </div>
     <?php endforeach; ?>  
 <?php
