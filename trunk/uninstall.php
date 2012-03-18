@@ -15,6 +15,7 @@ if (is_multisite())
 			delete_option('leafletmapsmarker_version');
 			delete_option('leafletmapsmarker_options');
 			delete_option('leafletmapsmarker_redirect');
+			delete_option('leafletmapsmarker_update_info');
 			/* Remove and clean tables */
 			$GLOBALS['wpdb']->query("DROP TABLE `".$GLOBALS['wpdb']->prefix."leafletmapsmarker_layers`");
 			$GLOBALS['wpdb']->query("DROP TABLE `".$GLOBALS['wpdb']->prefix."leafletmapsmarker_markers`");
@@ -38,6 +39,7 @@ else
 	delete_option('leafletmapsmarker_version');
 	delete_option('leafletmapsmarker_options');
 	delete_option('leafletmapsmarker_redirect');
+	delete_option('leafletmapsmarker_update_info');
 	/* Remove and clean tables */
 	$GLOBALS['wpdb']->query("DROP TABLE `".$GLOBALS['wpdb']->prefix."leafletmapsmarker_layers`");
 	$GLOBALS['wpdb']->query("DROP TABLE `".$GLOBALS['wpdb']->prefix."leafletmapsmarker_markers`");
