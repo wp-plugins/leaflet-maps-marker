@@ -118,7 +118,7 @@ function get_mm_list(){
                 self.setMarkerType(type);
             })
             $('#msb_serch').live('keyup', function(){
-                $.post('/wp-admin/admin-ajax.php?action=get_mm_list&q='+$(this).val(), function(data){
+                $.post('<?php if (!is_multisite()) { echo admin_url(); } else { echo get_admin_url(); } ?>admin-ajax.php?action=get_mm_list&q='+$(this).val(), function(data){
                         $('.list_item').remove();
                         $('#msb_listContainer').append(data);
                 })
