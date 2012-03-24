@@ -94,7 +94,7 @@ Please let me know which feature you think is missing by adding your ideas at [h
 * Spanish (es_ES) thanks to David Ramirez, [http://www.hiperterminal.com](http://www.hiperterminal.com)
 * Dutch (nl_NL) thanks to Marijke Metz, [http://www.mergenmetz.nl](http://www.mergenmetz.nl)
 * French (fr_FR) thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com)
-* Italian (it_IT) thanks to [Luca Barbetti](lucabarbetti@gmail.com)
+* Italian (it_IT) thanks to [Luca Barbetti](http://twitter.com/okibone)
 
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
@@ -172,6 +172,9 @@ This program is free software; you can redistribute it and/or modify it under th
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
 == Upgrade Notice ==
+= v2.2 =
+added new map options, bugfix
+
 = v2.1 =
 added support for MapBox basemaps, TinyMCE button optimizations, check for incompatible plugins, Italian translation
 
@@ -227,13 +230,19 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v2.2 - xx.03.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v2.2)
+* NEW: support for new map options (dragging, touchzoom, scrollWheelZoom...)
+* CHANGED: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
+* BUGFIX: TinyMCE button did not work when WordPress was installed in custom directory
+
 = v2.1 - 18.03.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.1)
 * NEW: added changelog info box after each plugin update
 * NEW: added support for MapBox basemaps
 * NEW: added option to hide API links on markers list below layer maps
 * NEW: added check for incompatible plugins
-* NEW: Italian translation thanks to Luca Barbetti
+* NEW: Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
 * CHANGED: optimized search results table for maps (started with TinyMCE button on post/page edit screen)
 * CHANGED: updated French translation thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com)
 * CHANGED: updated Dutch translation thanks to [Marijke](http://www.mergenmetz.nl)
