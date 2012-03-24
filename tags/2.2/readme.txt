@@ -230,7 +230,7 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
-= v2.2 - xx.03.2012 =
+= v2.2 - 24.03.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.2)
 * NEW: support for new map options (dragging, touchzoom, scrollWheelZoom...)
 * CHANGED: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
