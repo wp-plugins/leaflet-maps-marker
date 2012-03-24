@@ -263,7 +263,7 @@ class Leafletmapsmarker_options {
 		echo '<span class="leafletmapsmarker-listings"><p><strong>Index</strong></p><ul style="list-style-type:disc;margin-left:24px;">
 			<li>' . __('General settings','lmm') . '</li>
 			<li>' . __('KML settings','lmm') . '</li>
-			<li>' . __('CRS (Coordinate Reference System)','lmm') . '</li>
+			<li>' . __('General Map settings','lmm') . '</li>
 			<li>' . __('Available columns for marker listing page','lmm') . '</li>
 			<li>' . __('Available columns for layer listing page','lmm') . '</li></ul></span>';
 	}	
@@ -5486,13 +5486,13 @@ class Leafletmapsmarker_options {
 			)
 		);
 		/*
-		* Projections / CRS - Coordinate Reference System
+		* General map settings
 		*/
 		$this->settings['misc_projections_heading'] = array(
 			'version' => '1.0',
 			'section' => 'misc',
 			'title'   => '', 
-			'desc'    => __( 'CRS (Coordinate Reference System)', 'lmm'),
+			'desc'    => __( 'General Map settings', 'lmm'),
 			'type'    => 'heading'
 		);
 		$this->settings['misc_projections_helptext'] = array(
@@ -5500,14 +5500,98 @@ class Leafletmapsmarker_options {
 			'section' => 'misc',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Used for created maps - do not change this if you are not sure what it means!', 'lmm'),
+			'desc'    => __( 'The following settings will be used for all marker and layer maps', 'lmm'),
 			'type'    => 'helptext'
 		);
+		$this->settings['misc_map_dragging'] = array(
+			'version' => '2.2',
+			'section' => 'misc',
+			'title'   => 'dragging',
+			'desc'    => __('Whether the map be draggable with mouse/touch or not.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => 'true',
+				'false' => 'false'
+			)
+		);			
+		$this->settings['misc_map_touchzoom'] = array(
+			'version' => '2.2',
+			'section' => 'misc',
+			'title'   => 'touchZoom',
+			'desc'    => __('Whether the map can be zoomed by touch-dragging with two fingers.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => 'true',
+				'false' => 'false'
+			)
+		);			
+		$this->settings['misc_map_scrollwheelzoom'] = array(
+			'version' => '2.2',
+			'section' => 'misc',
+			'title'   => 'scrollWheelZoom',
+			'desc'    => __('Whether the map can be zoomed by using the mouse wheel.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => 'true',
+				'false' => 'false'
+			)
+		);	
+		$this->settings['misc_map_doubleclickzoom'] = array(
+			'version' => '2.2',
+			'section' => 'misc',
+			'title'   => 'doubleClickZoom',
+			'desc'    => __('Whether the map can be zoomed in by double clicking on it.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => 'true',
+				'false' => 'false'
+			)
+		);					
+		$this->settings['misc_map_zoomcontrol'] = array(
+			'version' => '2.2',
+			'section' => 'misc',
+			'title'   => 'zoomControl',
+			'desc'    => __('Whether the zoom control is added to the map by default.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => 'true',
+				'false' => 'false'
+			)
+		);			
+		$this->settings['misc_map_trackresize'] = array(
+			'version' => '2.2',
+			'section' => 'misc',
+			'title'   => 'trackResize',
+			'desc'    => __('Whether the map automatically handles browser window resize to update itself.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => 'true',
+				'false' => 'false'
+			)
+		);	
+		$this->settings['misc_map_closepopuponclick'] = array(
+			'version' => '2.2',
+			'section' => 'misc',
+			'title'   => 'closePopupOnClick',
+			'desc'    => __('Set it to false if you do not want popups to close when user clicks the map.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => 'true',
+				'false' => 'false'
+			)
+		);					
 		$this->settings['misc_projections'] = array(
 			'version' => '1.0',
 			'section' => 'misc',
 			'title'   => __( 'Coordinate Reference System', 'lmm' ),
-			'desc'    => '',
+			'desc'    => __( 'Used for created maps - do not change this if you are not sure what it means!', 'lmm'),
 			'type'    => 'radio',
 			'std'     => 'L.CRS.EPSG3857',
 			'choices' => array(
@@ -6124,7 +6208,6 @@ class Leafletmapsmarker_options {
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
-		/* template for plugin updates 
 		//info:  set defaults for options introduced in v2.2
 		if (get_option('leafletmapsmarker_version') == '2.1' )
 		{
@@ -6132,6 +6215,22 @@ class Leafletmapsmarker_options {
 			foreach ( $this->settings as $id => $setting ) 
 			{
 				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.2')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}
+		/* template for plugin updates 
+		//info:  set defaults for options introduced in v2.3
+		if (get_option('leafletmapsmarker_version') == '2.2' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting ) 
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.3')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
