@@ -19,15 +19,15 @@ function mm_shortcode_button() {
      return;
    }
    if ( get_user_option('rich_editing') == 'true' ) {
-     add_filter( 'mce_external_plugins', 'add_plugin' );
-     add_filter( 'mce_buttons', 'register_button' );
+     add_filter( 'mce_external_plugins', 'lmm_add_plugin' );
+     add_filter( 'mce_buttons', 'lmm_register_button' );
    }
 }
 
 /**
 Register Button
 */
-function register_button( $buttons ) {
+function lmm_register_button( $buttons ) {
 	array_push( $buttons, "|", "mm_shortcode" );
 	return $buttons;
 }
@@ -35,7 +35,7 @@ function register_button( $buttons ) {
 /**
 Register TinyMCE Plugin
 */
-function add_plugin( $plugin_array ) {
+function lmm_add_plugin( $plugin_array ) {
 	$plugin_array['mm_shortcode'] = LEAFLET_PLUGIN_URL . 'js/lmm_tinymce_shortcode.js';
 	return $plugin_array;
 }
