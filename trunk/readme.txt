@@ -7,7 +7,7 @@ Author URI:        http://www.harm.co.at
 Author:            Robert Harm (with special support from Sindre Wimberger)
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
-Tested up to:      3.4beta2
+Tested up to:      3.4-beta3
 Stable tag:        2.2
 
 Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
@@ -172,6 +172,9 @@ This program is free software; you can redistribute it and/or modify it under th
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
 == Upgrade Notice ==
+= v2.3 =
+added sort options for marker and layer listing pages
+
 = v2.2 =
 added new map options, bugfix
 
@@ -230,6 +233,16 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v2.3 - 26.04.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v2.3)
+* NEW: added sort options for marker and layer listing pages in backend
+* NEW: localized paypal check out pages for donations :-)
+* CHANGED: updated French translation thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com)
+* CHANGED: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
+* BUGFIX: TinyMCE button error on certain installations (function redeclaration, different wp-admin-directory)
+* BUGFIX: list of markers below layer maps was not as wide as the map on some templates
+* BUGFIX: changed constant WP_ADMIN_URL to LEAFLET_WP_ADMIN_URL due to problems on some blogs
+
 = v2.2 - 24.03.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.2)
 * NEW: support for new map options (dragging, touchzoom, scrollWheelZoom...)

@@ -20,30 +20,30 @@ if (!empty($action)) {
 		$result = $wpdb->prepare( "UPDATE $table_name_markers SET layer = %d where layer = %d", $_POST['layer_assign_to'], $_POST['layer_assign_from'] );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_markers" );
-		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('All markers from layer ID %1$s have been successfully assigned to layer ID %2$s','lmm'), $_POST['layer_assign_from'], $_POST['layer_assign_to']) . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('All markers from layer ID %1$s have been successfully assigned to layer ID %2$s','lmm'), $_POST['layer_assign_from'], $_POST['layer_assign_to']) . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
 		
   }
   elseif ($action == 'mass_delete_from_layer') {
 		$result = $wpdb->prepare( "DELETE FROM $table_name_markers where layer = %d", $_POST['delete_from_layer']);
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_markers" );
-		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('All markers from layer ID %1$s have been successfully deleted','lmm'), $_POST['delete_from_layer']) . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('All markers from layer ID %1$s have been successfully deleted','lmm'), $_POST['delete_from_layer']) . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
   elseif ($action == 'mass_delete_all_markers') {
 		$result = $wpdb->prepare( "DELETE FROM $table_name_markers");
 		$wpdb->query( $result );
   		$delete_confirm_checkbox = isset($_POST['delete_confirm_checkbox']) ? '1' : '0';
 	  	if ($delete_confirm_checkbox == 1) {
-			echo '<p><div class="updated" style="padding:10px;">' . __('All markers from all layers have been successfully deleted','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+			echo '<p><div class="updated" style="padding:10px;">' . __('All markers from all layers have been successfully deleted','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
 		} else {
-			echo '<p><div class="error" style="padding:10px;">' . __('Please confirm that you want to delete all markers by checking the checkbox','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+			echo '<p><div class="error" style="padding:10px;">' . __('Please confirm that you want to delete all markers by checking the checkbox','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
 		}
   }
   elseif ($action == 'basemap') {
 		$result = $wpdb->prepare( "UPDATE $table_name_markers SET basemap = %s", $_POST['basemap'] );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_markers" );
-		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('The basemap for all markers has been successfully set to %1$s','lmm'), $_POST['basemap']) . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('The basemap for all markers has been successfully set to %1$s','lmm'), $_POST['basemap']) . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }  
   elseif ($action == 'overlays') {
 		$overlays_checkbox = isset($_POST['overlays_custom']) ? '1' : '0';
@@ -53,7 +53,7 @@ if (!empty($action)) {
 		$result = $wpdb->prepare( "UPDATE $table_name_markers SET overlays_custom = %s, overlays_custom2 = %s, overlays_custom3 = %s, overlays_custom4 = %s", $overlays_checkbox, $overlays2_checkbox, $overlays3_checkbox, $overlays4_checkbox );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_markers" );
-		echo '<p><div class="updated" style="padding:10px;">' . __('The overlays status for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . __('The overlays status for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
   elseif ($action == 'wms') {
 		$wms_checkbox = isset($_POST['wms']) ? '1' : '0';
@@ -68,55 +68,55 @@ if (!empty($action)) {
 		$wms10_checkbox = isset($_POST['wms10']) ? '1' : '0';
 		$result = $wpdb->prepare( "UPDATE $table_name_markers SET wms = %d, wms2 = %d, wms3 = %d, wms4 = %d, wms5 = %d, wms6 = %d, wms7 = %d, wms8 = %d, wms9 = %d, wms10 = %d", $wms_checkbox, $wms2_checkbox, $wms3_checkbox, $wms4_checkbox, $wms5_checkbox, $wms6_checkbox, $wms7_checkbox, $wms8_checkbox, $wms9_checkbox, $wms10_checkbox );
 		$wpdb->query( $result );
-		echo '<p><div class="updated" style="padding:10px;">' . __('The WMS status for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . __('The WMS status for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }  
   elseif ($action == 'mapsize') {
 		$result = $wpdb->prepare( "UPDATE $table_name_markers SET mapwidth = %d, mapwidthunit = %s, mapheight = %d", $_POST['mapwidth'], $_POST['mapwidthunit'], $_POST['mapheight'] );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_markers" );
-		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('The map size for all markers has been successfully set to width =  %1$s %2$s and height = %3$s px','lmm'), $_POST['mapwidth'], $_POST['mapwidthunit'], $_POST['mapheight']) . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('The map size for all markers has been successfully set to width =  %1$s %2$s and height = %3$s px','lmm'), $_POST['mapwidth'], $_POST['mapwidthunit'], $_POST['mapheight']) . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
   elseif ($action == 'zoom') {
 		$result = $wpdb->prepare( "UPDATE $table_name_markers SET zoom = %d", $_POST['zoom'] );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_markers" );
-		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('Zoom level for all markers has been successfully set to %1$s','lmm'), $_POST['zoom']) . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('Zoom level for all markers has been successfully set to %1$s','lmm'), $_POST['zoom']) . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
   elseif ($action == 'controlbox') {
 		$result = $wpdb->prepare( "UPDATE $table_name_markers SET controlbox = %d", $_POST['controlbox'] );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_markers" );
-		echo '<p><div class="updated" style="padding:10px;">' . __('Controlbox status for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . __('Controlbox status for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
   elseif ($action == 'panel') {
 		$result = $wpdb->prepare( "UPDATE $table_name_markers SET panel = %d", $_POST['panel'] );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_markers" );
-		echo '<p><div class="updated" style="padding:10px;">' . __('Panel status for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . __('Panel status for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
   elseif ($action == 'icon') {
 		$result = $wpdb->prepare( "UPDATE $table_name_markers SET icon = %s", $_POST['icon'] );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_markers" );
-		echo '<p><div class="updated" style="padding:10px;">' . __('The icon for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . __('The icon for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
   elseif ($action == 'openpopup') {
 		$result = $wpdb->prepare( "UPDATE $table_name_markers SET openpopup = %d", $_POST['openpopup'] );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_markers" );
-		echo '<p><div class="updated" style="padding:10px;">' . __('The popup status for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>'; 
+		echo '<p><div class="updated" style="padding:10px;">' . __('The popup status for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>'; 
   }
   elseif ($action == 'popuptext') {
 		$result = $wpdb->prepare( "UPDATE $table_name_markers SET popuptext = %s", $_POST['popuptext'] );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_markers" );
-		echo '<p><div class="updated" style="padding:10px;">' . __('The popup text for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . __('The popup text for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
   elseif ($action == 'basemap-layer') {
 		$result = $wpdb->prepare( "UPDATE $table_name_layers SET basemap = %s", $_POST['basemap-layer'] );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_layers" );
-		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('The basemap for all layers has been successfully set to %1$s','lmm'), $_POST['basemap-layer']) . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('The basemap for all layers has been successfully set to %1$s','lmm'), $_POST['basemap-layer']) . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }  
   elseif ($action == 'overlays-layer') {
 		$overlays_checkbox = isset($_POST['overlays_custom-layer']) ? '1' : '0';
@@ -126,7 +126,7 @@ if (!empty($action)) {
 		$result = $wpdb->prepare( "UPDATE $table_name_layers SET overlays_custom = %s, overlays_custom2 = %s, overlays_custom3 = %s, overlays_custom4 = %s", $overlays_checkbox, $overlays2_checkbox, $overlays3_checkbox, $overlays4_checkbox );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_layers" );
-		echo '<p><div class="updated" style="padding:10px;">' . __('The overlays status for all layers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . __('The overlays status for all layers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
   elseif ($action == 'wms-layer') {
 		$wms_checkbox = isset($_POST['wms-layer']) ? '1' : '0';
@@ -141,37 +141,37 @@ if (!empty($action)) {
 		$wms10_checkbox = isset($_POST['wms10-layer']) ? '1' : '0';
 		$result = $wpdb->prepare( "UPDATE $table_name_layers SET wms = %d, wms2 = %d, wms3 = %d, wms4 = %d, wms5 = %d, wms6 = %d, wms7 = %d, wms8 = %d, wms9 = %d, wms10 = %d", $wms_checkbox, $wms2_checkbox, $wms3_checkbox, $wms4_checkbox, $wms5_checkbox, $wms6_checkbox, $wms7_checkbox, $wms8_checkbox, $wms9_checkbox, $wms10_checkbox );
 		$wpdb->query( $result );
-		echo '<p><div class="updated" style="padding:10px;">' . __('The WMS status for all layers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . __('The WMS status for all layers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }  
   elseif ($action == 'mapsize-layer') {
 		$result = $wpdb->prepare( "UPDATE $table_name_layers SET mapwidth = %d, mapwidthunit = %s, mapheight = %d", $_POST['mapwidth-layer'], $_POST['mapwidthunit-layer'], $_POST['mapheight-layer'] );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_layers" );
-		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('The map size for all layers has been successfully set to width =  %1$s %2$s and height = %3$s px','lmm'), $_POST['mapwidth-layer'], $_POST['mapwidthunit-layer'], $_POST['mapheight-layer']) . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('The map size for all layers has been successfully set to width =  %1$s %2$s and height = %3$s px','lmm'), $_POST['mapwidth-layer'], $_POST['mapwidthunit-layer'], $_POST['mapheight-layer']) . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
   elseif ($action == 'zoom-layer') {
 		$result = $wpdb->prepare( "UPDATE $table_name_layers SET layerzoom = %s", $_POST['zoom-layer'] );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_layers" );
-		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('Zoom level for all layers has been successfully set to %1$s','lmm'), $_POST['zoom-layer']) . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('Zoom level for all layers has been successfully set to %1$s','lmm'), $_POST['zoom-layer']) . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
   elseif ($action == 'controlbox-layer') {
 		$result = $wpdb->prepare( "UPDATE $table_name_layers SET controlbox = %d", $_POST['controlbox-layer'] );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_layers" );
-		echo '<p><div class="updated" style="padding:10px;">' . __('Controlbox status for all layers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . __('Controlbox status for all layers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
   elseif ($action == 'panel-layer') {
 		$result = $wpdb->prepare( "UPDATE $table_name_layers SET panel = %d", $_POST['panel-layer'] );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_layers" );
-		echo '<p><div class="updated" style="padding:10px;">' . __('Panel status for all layers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . __('Panel status for all layers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
   elseif ($action == 'listmarkers-layer') {
 		$result = $wpdb->prepare( "UPDATE $table_name_layers SET listmarkers = %d", $_POST['listmarkers-layer'] );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_layers" );
-		echo '<p><div class="updated" style="padding:10px;">' . __('The list marker-status for all layers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
+		echo '<p><div class="updated" style="padding:10px;">' . __('The list marker-status for all layers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
 } else {
 $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE id>0', ARRAY_A);

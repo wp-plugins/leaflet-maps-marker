@@ -36,7 +36,8 @@ function lmm_register_button( $buttons ) {
 Register TinyMCE Plugin
 */
 function lmm_add_plugin( $plugin_array ) {
-	$plugin_array['mm_shortcode'] = LEAFLET_PLUGIN_URL . 'js/lmm_tinymce_shortcode.js';
+	if (!is_multisite()) { $adminurl = admin_url(); } else { $adminurl = get_admin_url(); }
+	$plugin_array['mm_shortcode'] = LEAFLET_PLUGIN_URL . 'js/lmm_tinymce_shortcode.php?adminurl='.$adminurl.'&leafletpluginurl='.LEAFLET_PLUGIN_URL;
 	return $plugin_array;
 }
 add_action('wp_ajax_get_mm_list',  'get_mm_list');
@@ -68,7 +69,7 @@ function get_mm_list(){
 	<title><?php _e('Insert map','lmm') ?></title>
 		<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'js/jquery_for_tinymce_button.js' ?>'></script>
 		<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'js/tiny_mce_popup.js' ?>'></script>
-        <script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'js/lmm_tinymce_shortcode.js' ?>'></script>
+        <script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'js/lmm_tinymce_shortcode.php' ?>'></script>
         <link rel='stylesheet' href='<?php echo LEAFLET_PLUGIN_URL . 'css/marker_select_box.css' ?>' type='text/css' media='all' />
 </head>
 <body>
@@ -84,7 +85,6 @@ function get_mm_list(){
 <a href="#" id="msb_cancel"><?php _e('Cancel','lmm'); ?></a>
 <br/><br/>
 <span id="msb_attribution">powered by <a href="http://www.mapsmarker.com" target"_blank">MapsMarker.com</a></span>
-
 
 <script type="text/javascript">
 (function($){

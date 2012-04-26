@@ -4,12 +4,12 @@ Plugin Name: Leaflet Maps Marker
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, OSM, travelblog, opendata, opengov, ogdwien, google maps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, cloudmade, mapquest, wms, mapbox
-Version: 2.2
+Version: 2.3
 Author: Robert Harm (with special support from Sindre Wimberger)
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
 Requires at least: 3.0
-Tested up to: 3.4-alpha-20205
+Tested up to: 3.4-beta3
 Requires at least PHP 5.2
 Copyright 2011-2012 - @RobertHarm - All rights reserved
 Parts of this plugin were originally based on the Leaflet Plugin by Hind (Copyright 2011)
@@ -33,8 +33,8 @@ if (version_compare(phpversion(),"5.2","<")){
   exit('[Leaflet Maps Marker Plugin - installation failed]: PHP 5.2 is needed for this plugin (you are using PHP '.phpversion().'; note: support for PHP 4 has been officially discontinued since 2007-12-31!) - please upgrade your PHP installation!');
 }
 //info: define necessary paths and urls
-if ( ! defined( 'WP_ADMIN_URL' ) )
-	define( 'WP_ADMIN_URL', get_admin_url() );
+if ( ! defined( 'LEAFLET_WP_ADMIN_URL' ) )
+	define( 'LEAFLET_WP_ADMIN_URL', get_admin_url() );
 if ( ! defined( 'LEAFLET_PLUGIN_URL' ) )
 define ("LEAFLET_PLUGIN_URL", plugin_dir_url(__FILE__));
 $lmm_upload_dir = wp_upload_dir();
@@ -354,7 +354,7 @@ function leafletmapsmarker() {
 	{
 	$layer_mark_list = $wpdb->get_results('SELECT l.id as lid, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid, m.createdon as mcreatedon, m.updatedon as mupdatedon FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$id.' ORDER BY ' . $lmm_options[ 'defaults_layer_listmarkers_order_by' ] . ' ' . $lmm_options[ 'defaults_layer_listmarkers_sort_order' ] . ' LIMIT ' . intval($lmm_options[ 'defaults_layer_listmarkers_limit' ]), ARRAY_A);
 	$lmm_out .= '<div id="lmm-listmarkers-'.$uid.'" class="lmm-listmarkers" style="width:' . $mapwidth.$mapwidthunit . ';">'.PHP_EOL;
-	$lmm_out .= '<table>';
+	$lmm_out .= '<table width="' . $mapwidth.$mapwidthunit . '">';
 	foreach ($layer_mark_list as $row){
 		$lmm_out .= '<tr><td style="width:35px;vertical-align:top;text-align:center;">';
 		if ($row['micon'] != null) { 
@@ -1069,22 +1069,28 @@ function leafletmapsmarker() {
 		$save_defaults_for_new_options = new Leafletmapsmarker_options();
 		$save_defaults_for_new_options->save_defaults_for_new_options();
 		update_option('leafletmapsmarker_version', '2.2');
+	}
+	if (get_option('leafletmapsmarker_version') == '2.2' ) {
+		$save_defaults_for_new_options = new Leafletmapsmarker_options();
+		$save_defaults_for_new_options->save_defaults_for_new_options();
+		update_option('leafletmapsmarker_version', '2.3');
+		update_option('leafletmapsmarker_update_info', 'show');
 		//info: redirect to settings page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 		if (get_option('leafletmapsmarker_redirect') == 'true') 
 		{
 			update_option('leafletmapsmarker_redirect', 'false');
-			wp_redirect(WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings&display=install_note');
+			wp_redirect(LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings&display=install_note');
 		} else {
 			update_option('leafletmapsmarker_update_info', 'show');
 		}
 	}
 	/* template for plugin updates 
-	if (get_option('leafletmapsmarker_version') == '2.2' ) {
+	if (get_option('leafletmapsmarker_version') == '2.3' ) {
 		//optional: add code for sql ddl updates
 		//mandatory if new options in class-leaflet-options.php were added
 		$save_defaults_for_new_options = new Leafletmapsmarker_options();
 		$save_defaults_for_new_options->save_defaults_for_new_options();
-		update_option('leafletmapsmarker_version', '2.3');
+		update_option('leafletmapsmarker_version', '2.4');
 		update_option('leafletmapsmarker_update_info', 'show');
 		//mandatory: move code for redirect-on-first-activation-check to here
 	}
@@ -1098,9 +1104,9 @@ function leafletmapsmarker() {
     	if ( $file == FB_BASENAME ) {
         	array_unshift(
 	            $links,
-    	        '<a href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_markers">'.__('Markers','lmm').'</a>',
-        	    '<a href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_layers">'.__('Layers','lmm').'</a>' ,
-            	'<a href="' . WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings">'.__('Settings','lmm').'</a>'
+    	        '<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_markers">'.__('Markers','lmm').'</a>',
+        	    '<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_layers">'.__('Layers','lmm').'</a>' ,
+            	'<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings">'.__('Settings','lmm').'</a>'
 	        );
     	}
 	    return $links;

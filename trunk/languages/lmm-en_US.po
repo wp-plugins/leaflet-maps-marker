@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MapsMarker.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-24 20:45+0100\n"
-"PO-Revision-Date: 2012-03-24 20:46+0100\n"
+"POT-Creation-Date: 2012-04-26 19:22+0100\n"
+"PO-Revision-Date: 2012-04-26 19:22+0100\n"
 "Last-Translator: Robert Harm <info@mapsmarker.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 #: ../leaflet-admin-header.php:8
 #: ../leaflet-maps-marker.php:690
 #: ../leaflet-maps-marker.php:770
-#: ../leaflet-maps-marker.php:1103
+#: ../leaflet-maps-marker.php:1109
 #: ../leaflet-marker.php:731
 #: ../leaflet-marker.php:735
 #: ../leaflet-marker.php:739
@@ -50,24 +50,34 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
+#: ../class-leaflet-options.php:178
+#: ../class-leaflet-options.php:197
+#: ../class-leaflet-options.php:209
+#: ../class-leaflet-options.php:237
+#: ../class-leaflet-options.php:245
+#: ../class-leaflet-options.php:253
+#: ../class-leaflet-options.php:263
+msgid "Index"
+msgstr ""
+
 #: ../class-leaflet-options.php:179
-#: ../class-leaflet-options.php:374
+#: ../class-leaflet-options.php:376
 msgid "Default basemap for new markers/layers"
 msgstr ""
 
 #: ../class-leaflet-options.php:180
-#: ../class-leaflet-options.php:415
+#: ../class-leaflet-options.php:417
 msgid "Names for default basemaps"
 msgstr ""
 
 #: ../class-leaflet-options.php:181
-#: ../class-leaflet-options.php:546
+#: ../class-leaflet-options.php:548
 msgid "Available basemaps in control box"
 msgstr ""
 
 #: ../class-leaflet-options.php:182
-#: ../class-leaflet-options.php:677
-#: ../class-leaflet-options.php:691
+#: ../class-leaflet-options.php:679
+#: ../class-leaflet-options.php:693
 msgid "OGD Vienna Selector"
 msgstr ""
 
@@ -76,12 +86,12 @@ msgid "Cloudmade 1 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:184
-#: ../class-leaflet-options.php:762
+#: ../class-leaflet-options.php:764
 msgid "Cloudmade 2 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:185
-#: ../class-leaflet-options.php:808
+#: ../class-leaflet-options.php:810
 msgid "Cloudmade 3 settings"
 msgstr ""
 
@@ -90,52 +100,52 @@ msgid "MapBox 1 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:187
-#: ../class-leaflet-options.php:912
+#: ../class-leaflet-options.php:914
 msgid "MapBox 2 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:188
-#: ../class-leaflet-options.php:970
+#: ../class-leaflet-options.php:972
 msgid "MapBox 3 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:189
-#: ../class-leaflet-options.php:1028
+#: ../class-leaflet-options.php:1030
 msgid "Custom basemap 1 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:190
-#: ../class-leaflet-options.php:1098
+#: ../class-leaflet-options.php:1100
 msgid "Custom basemap 2 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:191
-#: ../class-leaflet-options.php:1168
+#: ../class-leaflet-options.php:1170
 msgid "Custom basemap 3 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:198
-#: ../class-leaflet-options.php:1246
+#: ../class-leaflet-options.php:1248
 msgid "Available overlays for new markers/layers"
 msgstr ""
 
 #: ../class-leaflet-options.php:199
-#: ../class-leaflet-options.php:1299
+#: ../class-leaflet-options.php:1301
 msgid "Custom overlay settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:200
-#: ../class-leaflet-options.php:1378
+#: ../class-leaflet-options.php:1380
 msgid "Custom overlay 2 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:201
-#: ../class-leaflet-options.php:1457
+#: ../class-leaflet-options.php:1459
 msgid "Custom overlay 3 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:202
-#: ../class-leaflet-options.php:1535
+#: ../class-leaflet-options.php:1537
 msgid "Custom overlay 4 settings"
 msgstr ""
 
@@ -144,778 +154,827 @@ msgid "WMS stands for <a href=\"http://www.opengeospatial.org/standards/wms\" ta
 msgstr ""
 
 #: ../class-leaflet-options.php:210
-#: ../class-leaflet-options.php:1622
+#: ../class-leaflet-options.php:1624
 msgid "Available WMS layers for new markers/layers"
 msgstr ""
 
 #: ../class-leaflet-options.php:211
-#: ../class-leaflet-options.php:1720
+#: ../class-leaflet-options.php:1722
 msgid "WMS layer 1 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:212
-#: ../class-leaflet-options.php:1918
+#: ../class-leaflet-options.php:1920
 msgid "WMS layer 2 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:213
-#: ../class-leaflet-options.php:2115
+#: ../class-leaflet-options.php:2117
 msgid "WMS layer 3 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:214
-#: ../class-leaflet-options.php:2312
+#: ../class-leaflet-options.php:2314
 msgid "WMS layer 4 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:215
-#: ../class-leaflet-options.php:2509
+#: ../class-leaflet-options.php:2511
 msgid "WMS layer 5 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:216
-#: ../class-leaflet-options.php:2706
+#: ../class-leaflet-options.php:2708
 msgid "WMS layer 6 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:217
-#: ../class-leaflet-options.php:2903
+#: ../class-leaflet-options.php:2905
 msgid "WMS layer 7 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:218
-#: ../class-leaflet-options.php:3100
+#: ../class-leaflet-options.php:3102
 msgid "WMS layer 8 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:219
-#: ../class-leaflet-options.php:3297
+#: ../class-leaflet-options.php:3299
 msgid "WMS layer 9 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:220
-#: ../class-leaflet-options.php:3494
+#: ../class-leaflet-options.php:3496
 msgid "WMS layer 10 settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:238
-#: ../class-leaflet-options.php:3901
+#: ../class-leaflet-options.php:3903
 msgid "Default values for new markers"
 msgstr ""
 
 #: ../class-leaflet-options.php:239
-#: ../class-leaflet-options.php:4205
+#: ../class-leaflet-options.php:4207
 msgid "Default values for markers added directly"
 msgstr ""
 
 #: ../class-leaflet-options.php:246
-#: ../class-leaflet-options.php:4817
-#: ../class-leaflet-options.php:4831
+#: ../class-leaflet-options.php:4819
+#: ../class-leaflet-options.php:4833
 msgid "Google Places bounds"
 msgstr ""
 
 #: ../class-leaflet-options.php:247
-#: ../class-leaflet-options.php:4884
-#: ../class-leaflet-options.php:4898
+#: ../class-leaflet-options.php:4886
+#: ../class-leaflet-options.php:4900
 msgid "Google Places search prefix"
 msgstr ""
 
 #: ../class-leaflet-options.php:254
 #: ../class-leaflet-options.php:264
-#: ../class-leaflet-options.php:4932
-#: ../class-leaflet-options.php:5344
+#: ../class-leaflet-options.php:4934
+#: ../class-leaflet-options.php:5346
 msgid "General settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:265
-#: ../class-leaflet-options.php:1843
-#: ../class-leaflet-options.php:2041
-#: ../class-leaflet-options.php:2238
-#: ../class-leaflet-options.php:2435
-#: ../class-leaflet-options.php:2632
-#: ../class-leaflet-options.php:2829
-#: ../class-leaflet-options.php:3026
-#: ../class-leaflet-options.php:3223
-#: ../class-leaflet-options.php:3420
-#: ../class-leaflet-options.php:3617
-#: ../class-leaflet-options.php:5464
+#: ../class-leaflet-options.php:1845
+#: ../class-leaflet-options.php:2043
+#: ../class-leaflet-options.php:2240
+#: ../class-leaflet-options.php:2437
+#: ../class-leaflet-options.php:2634
+#: ../class-leaflet-options.php:2831
+#: ../class-leaflet-options.php:3028
+#: ../class-leaflet-options.php:3225
+#: ../class-leaflet-options.php:3422
+#: ../class-leaflet-options.php:3619
+#: ../class-leaflet-options.php:5466
 msgid "KML settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:266
-#: ../class-leaflet-options.php:5495
+#: ../class-leaflet-options.php:5497
 msgid "General Map settings"
 msgstr ""
 
 #: ../class-leaflet-options.php:267
-#: ../class-leaflet-options.php:5610
+#: ../class-leaflet-options.php:5612
 msgid "Available columns for marker listing page"
 msgstr ""
 
 #: ../class-leaflet-options.php:268
-#: ../class-leaflet-options.php:5812
+#: ../class-leaflet-options.php:5814
+msgid "Sort order for marker listing page"
+msgstr ""
+
+#: ../class-leaflet-options.php:269
+#: ../class-leaflet-options.php:5861
 msgid "Available columns for layer listing page"
 msgstr ""
 
-#: ../class-leaflet-options.php:381
+#: ../class-leaflet-options.php:270
+#: ../class-leaflet-options.php:6047
+msgid "Sort order for layer listing page"
+msgstr ""
+
+#: ../class-leaflet-options.php:383
 msgid "Please select the basemap which should be pre-selected as default for new markers and layers. Can be changed afterwards on each marker/layer."
 msgstr ""
 
-#: ../class-leaflet-options.php:387
-#: ../class-leaflet-options.php:4219
+#: ../class-leaflet-options.php:389
+#: ../class-leaflet-options.php:4221
 msgid "Default basemap"
-msgstr ""
-
-#: ../class-leaflet-options.php:392
-#: ../class-leaflet-options.php:4224
-msgid "OpenStreetMap (Mapnik, max zoom 18)"
-msgstr ""
-
-#: ../class-leaflet-options.php:393
-#: ../class-leaflet-options.php:4225
-msgid "MapQuest (OSM, max zoom 18)"
 msgstr ""
 
 #: ../class-leaflet-options.php:394
 #: ../class-leaflet-options.php:4226
-msgid "MapQuest (Aerial, max zoom 12 globally, 12+ in the United States)"
+msgid "OpenStreetMap (Mapnik, max zoom 18)"
 msgstr ""
 
 #: ../class-leaflet-options.php:395
 #: ../class-leaflet-options.php:4227
-msgid "OGD Vienna basemap (max zoom 19)"
+msgid "MapQuest (OSM, max zoom 18)"
 msgstr ""
 
 #: ../class-leaflet-options.php:396
 #: ../class-leaflet-options.php:4228
+msgid "MapQuest (Aerial, max zoom 12 globally, 12+ in the United States)"
+msgstr ""
+
+#: ../class-leaflet-options.php:397
+#: ../class-leaflet-options.php:4229
+msgid "OGD Vienna basemap (max zoom 19)"
+msgstr ""
+
+#: ../class-leaflet-options.php:398
+#: ../class-leaflet-options.php:4230
 msgid "OGD Vienna satellite (max zoom 19)"
 msgstr ""
 
-#: ../class-leaflet-options.php:403
-#: ../class-leaflet-options.php:650
-#: ../class-leaflet-options.php:4232
+#: ../class-leaflet-options.php:405
+#: ../class-leaflet-options.php:652
+#: ../class-leaflet-options.php:4234
 msgid "Custom basemap"
 msgstr ""
 
-#: ../class-leaflet-options.php:404
-#: ../class-leaflet-options.php:658
-#: ../class-leaflet-options.php:4233
+#: ../class-leaflet-options.php:406
+#: ../class-leaflet-options.php:660
+#: ../class-leaflet-options.php:4235
 msgid "Custom basemap 2"
 msgstr ""
 
-#: ../class-leaflet-options.php:405
-#: ../class-leaflet-options.php:666
-#: ../class-leaflet-options.php:4234
+#: ../class-leaflet-options.php:407
+#: ../class-leaflet-options.php:668
+#: ../class-leaflet-options.php:4236
 msgid "Custom basemap 3"
 msgstr ""
 
-#: ../class-leaflet-options.php:423
+#: ../class-leaflet-options.php:425
 msgid "Optionally you can also change the name of the predefined basemaps in the controlbox."
 msgstr ""
 
-#: ../class-leaflet-options.php:516
+#: ../class-leaflet-options.php:518
 msgid "Custom Basemap"
 msgstr ""
 
-#: ../class-leaflet-options.php:524
+#: ../class-leaflet-options.php:526
 msgid "Custom Basemap 2"
 msgstr ""
 
-#: ../class-leaflet-options.php:532
+#: ../class-leaflet-options.php:534
 msgid "Custom Basemap 3"
 msgstr ""
 
-#: ../class-leaflet-options.php:554
+#: ../class-leaflet-options.php:556
 msgid "Please select the basemaps which should be available in the control box."
 msgstr ""
 
-#: ../class-leaflet-options.php:560
+#: ../class-leaflet-options.php:562
 msgid "Basemaps available in control box"
 msgstr ""
 
-#: ../class-leaflet-options.php:561
+#: ../class-leaflet-options.php:563
 msgid "OpenStreetMap (Mapnik)"
 msgstr ""
 
-#: ../class-leaflet-options.php:569
+#: ../class-leaflet-options.php:571
 msgid "MapQuest (OSM)"
 msgstr ""
 
-#: ../class-leaflet-options.php:577
+#: ../class-leaflet-options.php:579
 msgid "MapQuest (Aerial)"
 msgstr ""
 
-#: ../class-leaflet-options.php:586
+#: ../class-leaflet-options.php:588
 msgid "OGD Vienna basemap"
 msgstr ""
 
-#: ../class-leaflet-options.php:594
+#: ../class-leaflet-options.php:596
 msgid "OGD Vienna satellite"
 msgstr ""
 
-#: ../class-leaflet-options.php:685
+#: ../class-leaflet-options.php:687
 msgid "If coordinates within boundaries of Vienna/Austria are selected for a marker or layer, the basemap automatically switches to OGD Vienna basemap and the overlay OGD Vienna addresses gets checked."
 msgstr ""
 
-#: ../class-leaflet-options.php:696
+#: ../class-leaflet-options.php:698
 msgid "enabled (use OGD Vienna basemap)"
 msgstr ""
 
-#: ../class-leaflet-options.php:697
+#: ../class-leaflet-options.php:699
 msgid "enabled (use OGD Vienna satellite)"
 msgstr ""
 
-#: ../class-leaflet-options.php:698
+#: ../class-leaflet-options.php:700
 msgid "disabled (use default basemap)"
 msgstr ""
 
-#: ../class-leaflet-options.php:705
+#: ../class-leaflet-options.php:707
 msgid "enable OGD Vienna addresses overlay"
 msgstr ""
 
-#: ../class-leaflet-options.php:716
+#: ../class-leaflet-options.php:718
 msgid "Cloudmade settings"
 msgstr ""
 
-#: ../class-leaflet-options.php:724
-#: ../class-leaflet-options.php:770
-#: ../class-leaflet-options.php:816
+#: ../class-leaflet-options.php:726
+#: ../class-leaflet-options.php:772
+#: ../class-leaflet-options.php:818
 msgid "Tutorial for Cloudmade configuration:"
 msgstr ""
 
-#: ../class-leaflet-options.php:729
-#: ../class-leaflet-options.php:775
-#: ../class-leaflet-options.php:821
+#: ../class-leaflet-options.php:731
+#: ../class-leaflet-options.php:777
+#: ../class-leaflet-options.php:823
 msgid "API key"
 msgstr ""
 
-#: ../class-leaflet-options.php:746
-#: ../class-leaflet-options.php:792
-#: ../class-leaflet-options.php:838
+#: ../class-leaflet-options.php:748
+#: ../class-leaflet-options.php:794
+#: ../class-leaflet-options.php:840
 msgid "Double resolution"
 msgstr ""
 
-#: ../class-leaflet-options.php:747
-#: ../class-leaflet-options.php:793
-#: ../class-leaflet-options.php:839
+#: ../class-leaflet-options.php:749
+#: ../class-leaflet-options.php:795
+#: ../class-leaflet-options.php:841
 msgid "This will improve map look for iPhone 4, Motorola Milestone, etc."
 msgstr ""
 
-#: ../class-leaflet-options.php:751
-#: ../class-leaflet-options.php:797
-#: ../class-leaflet-options.php:843
-#: ../class-leaflet-options.php:4837
-#: ../class-leaflet-options.php:4904
-#: ../class-leaflet-options.php:5409
-#: ../class-leaflet-options.php:5421
-#: ../class-leaflet-options.php:5433
-#: ../class-leaflet-options.php:5445
+#: ../class-leaflet-options.php:753
+#: ../class-leaflet-options.php:799
+#: ../class-leaflet-options.php:845
+#: ../class-leaflet-options.php:3983
+#: ../class-leaflet-options.php:4839
+#: ../class-leaflet-options.php:4906
+#: ../class-leaflet-options.php:5411
+#: ../class-leaflet-options.php:5423
+#: ../class-leaflet-options.php:5435
+#: ../class-leaflet-options.php:5447
 msgid "enabled"
 msgstr ""
 
-#: ../class-leaflet-options.php:752
-#: ../class-leaflet-options.php:798
-#: ../class-leaflet-options.php:844
-#: ../class-leaflet-options.php:4836
-#: ../class-leaflet-options.php:4903
-#: ../class-leaflet-options.php:5410
-#: ../class-leaflet-options.php:5422
-#: ../class-leaflet-options.php:5434
-#: ../class-leaflet-options.php:5446
+#: ../class-leaflet-options.php:754
+#: ../class-leaflet-options.php:800
+#: ../class-leaflet-options.php:846
+#: ../class-leaflet-options.php:3982
+#: ../class-leaflet-options.php:4838
+#: ../class-leaflet-options.php:4905
+#: ../class-leaflet-options.php:5412
+#: ../class-leaflet-options.php:5424
+#: ../class-leaflet-options.php:5436
+#: ../class-leaflet-options.php:5448
 msgid "disabled"
 msgstr ""
 
-#: ../class-leaflet-options.php:854
+#: ../class-leaflet-options.php:856
 msgid "MapBox settings"
 msgstr ""
 
-#: ../class-leaflet-options.php:867
-#: ../class-leaflet-options.php:925
-#: ../class-leaflet-options.php:983
+#: ../class-leaflet-options.php:869
+#: ../class-leaflet-options.php:927
+#: ../class-leaflet-options.php:985
 msgid "User"
 msgstr ""
 
-#: ../class-leaflet-options.php:868
-#: ../class-leaflet-options.php:876
-#: ../class-leaflet-options.php:926
-#: ../class-leaflet-options.php:934
-#: ../class-leaflet-options.php:984
-#: ../class-leaflet-options.php:992
+#: ../class-leaflet-options.php:870
+#: ../class-leaflet-options.php:878
+#: ../class-leaflet-options.php:928
+#: ../class-leaflet-options.php:936
+#: ../class-leaflet-options.php:986
+#: ../class-leaflet-options.php:994
 msgid "e.g."
 msgstr ""
 
-#: ../class-leaflet-options.php:875
-#: ../class-leaflet-options.php:933
-#: ../class-leaflet-options.php:991
+#: ../class-leaflet-options.php:877
+#: ../class-leaflet-options.php:935
+#: ../class-leaflet-options.php:993
 #: ../leaflet-fullscreen.php:102
 #: ../leaflet-fullscreen.php:482
 msgid "map"
 msgstr ""
 
-#: ../class-leaflet-options.php:883
-#: ../class-leaflet-options.php:941
-#: ../class-leaflet-options.php:999
-#: ../class-leaflet-options.php:1057
-#: ../class-leaflet-options.php:1127
-#: ../class-leaflet-options.php:1197
-#: ../class-leaflet-options.php:1337
-#: ../class-leaflet-options.php:1416
-#: ../class-leaflet-options.php:1494
-#: ../class-leaflet-options.php:1573
+#: ../class-leaflet-options.php:885
+#: ../class-leaflet-options.php:943
+#: ../class-leaflet-options.php:1001
+#: ../class-leaflet-options.php:1059
+#: ../class-leaflet-options.php:1129
+#: ../class-leaflet-options.php:1199
+#: ../class-leaflet-options.php:1339
+#: ../class-leaflet-options.php:1418
+#: ../class-leaflet-options.php:1496
+#: ../class-leaflet-options.php:1575
 msgid "Minimum zoom level"
 msgstr ""
 
-#: ../class-leaflet-options.php:891
-#: ../class-leaflet-options.php:949
-#: ../class-leaflet-options.php:1007
-#: ../class-leaflet-options.php:1065
-#: ../class-leaflet-options.php:1135
-#: ../class-leaflet-options.php:1205
-#: ../class-leaflet-options.php:1345
-#: ../class-leaflet-options.php:1424
-#: ../class-leaflet-options.php:1502
-#: ../class-leaflet-options.php:1581
+#: ../class-leaflet-options.php:893
+#: ../class-leaflet-options.php:951
+#: ../class-leaflet-options.php:1009
+#: ../class-leaflet-options.php:1067
+#: ../class-leaflet-options.php:1137
+#: ../class-leaflet-options.php:1207
+#: ../class-leaflet-options.php:1347
+#: ../class-leaflet-options.php:1426
+#: ../class-leaflet-options.php:1504
+#: ../class-leaflet-options.php:1583
 msgid "Maximum zoom level"
 msgstr ""
 
-#: ../class-leaflet-options.php:899
-#: ../class-leaflet-options.php:957
-#: ../class-leaflet-options.php:1015
-#: ../class-leaflet-options.php:1049
-#: ../class-leaflet-options.php:1119
-#: ../class-leaflet-options.php:1189
-#: ../class-leaflet-options.php:1329
-#: ../class-leaflet-options.php:1408
-#: ../class-leaflet-options.php:1486
-#: ../class-leaflet-options.php:1565
-#: ../class-leaflet-options.php:1794
-#: ../class-leaflet-options.php:1992
-#: ../class-leaflet-options.php:2181
-#: ../class-leaflet-options.php:2386
-#: ../class-leaflet-options.php:2583
-#: ../class-leaflet-options.php:2780
-#: ../class-leaflet-options.php:2977
-#: ../class-leaflet-options.php:3174
-#: ../class-leaflet-options.php:3371
-#: ../class-leaflet-options.php:3568
+#: ../class-leaflet-options.php:901
+#: ../class-leaflet-options.php:959
+#: ../class-leaflet-options.php:1017
+#: ../class-leaflet-options.php:1051
+#: ../class-leaflet-options.php:1121
+#: ../class-leaflet-options.php:1191
+#: ../class-leaflet-options.php:1331
+#: ../class-leaflet-options.php:1410
+#: ../class-leaflet-options.php:1488
+#: ../class-leaflet-options.php:1567
+#: ../class-leaflet-options.php:1796
+#: ../class-leaflet-options.php:1994
+#: ../class-leaflet-options.php:2183
+#: ../class-leaflet-options.php:2388
+#: ../class-leaflet-options.php:2585
+#: ../class-leaflet-options.php:2782
+#: ../class-leaflet-options.php:2979
+#: ../class-leaflet-options.php:3176
+#: ../class-leaflet-options.php:3373
+#: ../class-leaflet-options.php:3570
 msgid "Attribution"
 msgstr ""
 
-#: ../class-leaflet-options.php:900
-#: ../class-leaflet-options.php:958
-#: ../class-leaflet-options.php:1016
-#: ../class-leaflet-options.php:1042
-#: ../class-leaflet-options.php:1050
-#: ../class-leaflet-options.php:1086
-#: ../class-leaflet-options.php:1112
-#: ../class-leaflet-options.php:1120
-#: ../class-leaflet-options.php:1156
-#: ../class-leaflet-options.php:1182
-#: ../class-leaflet-options.php:1190
-#: ../class-leaflet-options.php:1226
-#: ../class-leaflet-options.php:1322
-#: ../class-leaflet-options.php:1366
-#: ../class-leaflet-options.php:1401
-#: ../class-leaflet-options.php:1445
-#: ../class-leaflet-options.php:1479
-#: ../class-leaflet-options.php:1523
-#: ../class-leaflet-options.php:1558
-#: ../class-leaflet-options.php:1602
-#: ../class-leaflet-options.php:1834
-#: ../class-leaflet-options.php:2032
-#: ../class-leaflet-options.php:2229
-#: ../class-leaflet-options.php:2426
-#: ../class-leaflet-options.php:2623
-#: ../class-leaflet-options.php:2820
-#: ../class-leaflet-options.php:3017
-#: ../class-leaflet-options.php:3214
-#: ../class-leaflet-options.php:3411
-#: ../class-leaflet-options.php:3608
+#: ../class-leaflet-options.php:902
+#: ../class-leaflet-options.php:960
+#: ../class-leaflet-options.php:1018
+#: ../class-leaflet-options.php:1044
+#: ../class-leaflet-options.php:1052
+#: ../class-leaflet-options.php:1088
+#: ../class-leaflet-options.php:1114
+#: ../class-leaflet-options.php:1122
+#: ../class-leaflet-options.php:1158
+#: ../class-leaflet-options.php:1184
+#: ../class-leaflet-options.php:1192
+#: ../class-leaflet-options.php:1228
+#: ../class-leaflet-options.php:1324
+#: ../class-leaflet-options.php:1368
+#: ../class-leaflet-options.php:1403
+#: ../class-leaflet-options.php:1447
+#: ../class-leaflet-options.php:1481
+#: ../class-leaflet-options.php:1525
+#: ../class-leaflet-options.php:1560
+#: ../class-leaflet-options.php:1604
+#: ../class-leaflet-options.php:1836
+#: ../class-leaflet-options.php:2034
+#: ../class-leaflet-options.php:2231
+#: ../class-leaflet-options.php:2428
+#: ../class-leaflet-options.php:2625
+#: ../class-leaflet-options.php:2822
+#: ../class-leaflet-options.php:3019
+#: ../class-leaflet-options.php:3216
+#: ../class-leaflet-options.php:3413
+#: ../class-leaflet-options.php:3610
 msgid "For example"
 msgstr ""
 
-#: ../class-leaflet-options.php:1036
-#: ../class-leaflet-options.php:1106
-#: ../class-leaflet-options.php:1176
+#: ../class-leaflet-options.php:1038
+#: ../class-leaflet-options.php:1108
+#: ../class-leaflet-options.php:1178
 msgid "Please enter settings for custom basemap"
 msgstr ""
 
-#: ../class-leaflet-options.php:1041
-#: ../class-leaflet-options.php:1111
-#: ../class-leaflet-options.php:1181
-#: ../class-leaflet-options.php:1321
-#: ../class-leaflet-options.php:1400
-#: ../class-leaflet-options.php:1478
-#: ../class-leaflet-options.php:1557
+#: ../class-leaflet-options.php:1043
+#: ../class-leaflet-options.php:1113
+#: ../class-leaflet-options.php:1183
+#: ../class-leaflet-options.php:1323
+#: ../class-leaflet-options.php:1402
+#: ../class-leaflet-options.php:1480
+#: ../class-leaflet-options.php:1559
 msgid "Tiles URL"
 msgstr ""
 
-#: ../class-leaflet-options.php:1058
-#: ../class-leaflet-options.php:1066
-#: ../class-leaflet-options.php:1128
-#: ../class-leaflet-options.php:1136
-#: ../class-leaflet-options.php:1198
-#: ../class-leaflet-options.php:1206
-#: ../class-leaflet-options.php:1338
-#: ../class-leaflet-options.php:1346
-#: ../class-leaflet-options.php:1417
-#: ../class-leaflet-options.php:1425
-#: ../class-leaflet-options.php:1495
-#: ../class-leaflet-options.php:1503
-#: ../class-leaflet-options.php:1574
-#: ../class-leaflet-options.php:1582
+#: ../class-leaflet-options.php:1060
+#: ../class-leaflet-options.php:1068
+#: ../class-leaflet-options.php:1130
+#: ../class-leaflet-options.php:1138
+#: ../class-leaflet-options.php:1200
+#: ../class-leaflet-options.php:1208
+#: ../class-leaflet-options.php:1340
+#: ../class-leaflet-options.php:1348
+#: ../class-leaflet-options.php:1419
+#: ../class-leaflet-options.php:1427
+#: ../class-leaflet-options.php:1497
+#: ../class-leaflet-options.php:1505
+#: ../class-leaflet-options.php:1576
+#: ../class-leaflet-options.php:1584
 msgid "Note: maximum zoom level may vary on your basemap"
 msgstr ""
 
-#: ../class-leaflet-options.php:1074
-#: ../class-leaflet-options.php:1144
-#: ../class-leaflet-options.php:1214
-#: ../class-leaflet-options.php:1354
-#: ../class-leaflet-options.php:1433
-#: ../class-leaflet-options.php:1511
-#: ../class-leaflet-options.php:1590
-#: ../class-leaflet-options.php:1822
-#: ../class-leaflet-options.php:2020
-#: ../class-leaflet-options.php:2217
-#: ../class-leaflet-options.php:2414
-#: ../class-leaflet-options.php:2611
-#: ../class-leaflet-options.php:2808
-#: ../class-leaflet-options.php:3005
-#: ../class-leaflet-options.php:3202
-#: ../class-leaflet-options.php:3399
-#: ../class-leaflet-options.php:3596
+#: ../class-leaflet-options.php:1076
+#: ../class-leaflet-options.php:1146
+#: ../class-leaflet-options.php:1216
+#: ../class-leaflet-options.php:1356
+#: ../class-leaflet-options.php:1435
+#: ../class-leaflet-options.php:1513
+#: ../class-leaflet-options.php:1592
+#: ../class-leaflet-options.php:1824
+#: ../class-leaflet-options.php:2022
+#: ../class-leaflet-options.php:2219
+#: ../class-leaflet-options.php:2416
+#: ../class-leaflet-options.php:2613
+#: ../class-leaflet-options.php:2810
+#: ../class-leaflet-options.php:3007
+#: ../class-leaflet-options.php:3204
+#: ../class-leaflet-options.php:3401
+#: ../class-leaflet-options.php:3598
 msgid "Support for subdomains?"
 msgstr ""
 
-#: ../class-leaflet-options.php:1075
-#: ../class-leaflet-options.php:1145
-#: ../class-leaflet-options.php:1215
-#: ../class-leaflet-options.php:1355
-#: ../class-leaflet-options.php:1434
-#: ../class-leaflet-options.php:1512
-#: ../class-leaflet-options.php:1591
+#: ../class-leaflet-options.php:1077
+#: ../class-leaflet-options.php:1147
+#: ../class-leaflet-options.php:1217
+#: ../class-leaflet-options.php:1357
+#: ../class-leaflet-options.php:1436
+#: ../class-leaflet-options.php:1514
+#: ../class-leaflet-options.php:1593
 msgid "Will replace {s} from tiles url if available"
 msgstr ""
 
-#: ../class-leaflet-options.php:1079
-#: ../class-leaflet-options.php:1149
-#: ../class-leaflet-options.php:1219
-#: ../class-leaflet-options.php:1359
-#: ../class-leaflet-options.php:1438
-#: ../class-leaflet-options.php:1516
-#: ../class-leaflet-options.php:1595
-#: ../class-leaflet-options.php:1828
-#: ../class-leaflet-options.php:2026
-#: ../class-leaflet-options.php:2223
-#: ../class-leaflet-options.php:2420
-#: ../class-leaflet-options.php:2617
-#: ../class-leaflet-options.php:2814
-#: ../class-leaflet-options.php:3011
-#: ../class-leaflet-options.php:3208
-#: ../class-leaflet-options.php:3405
-#: ../class-leaflet-options.php:3602
+#: ../class-leaflet-options.php:1081
+#: ../class-leaflet-options.php:1151
+#: ../class-leaflet-options.php:1221
+#: ../class-leaflet-options.php:1361
+#: ../class-leaflet-options.php:1440
+#: ../class-leaflet-options.php:1518
+#: ../class-leaflet-options.php:1597
+#: ../class-leaflet-options.php:1830
+#: ../class-leaflet-options.php:2028
+#: ../class-leaflet-options.php:2225
+#: ../class-leaflet-options.php:2422
+#: ../class-leaflet-options.php:2619
+#: ../class-leaflet-options.php:2816
+#: ../class-leaflet-options.php:3013
+#: ../class-leaflet-options.php:3210
+#: ../class-leaflet-options.php:3407
+#: ../class-leaflet-options.php:3604
 msgid "Yes (please enter subdomains in next form field)"
 msgstr ""
 
-#: ../class-leaflet-options.php:1080
-#: ../class-leaflet-options.php:1150
-#: ../class-leaflet-options.php:1220
-#: ../class-leaflet-options.php:1360
-#: ../class-leaflet-options.php:1439
-#: ../class-leaflet-options.php:1517
-#: ../class-leaflet-options.php:1596
-#: ../class-leaflet-options.php:1808
-#: ../class-leaflet-options.php:1827
-#: ../class-leaflet-options.php:2006
-#: ../class-leaflet-options.php:2025
-#: ../class-leaflet-options.php:2195
-#: ../class-leaflet-options.php:2222
-#: ../class-leaflet-options.php:2400
-#: ../class-leaflet-options.php:2419
-#: ../class-leaflet-options.php:2597
-#: ../class-leaflet-options.php:2616
-#: ../class-leaflet-options.php:2794
-#: ../class-leaflet-options.php:2813
-#: ../class-leaflet-options.php:2991
-#: ../class-leaflet-options.php:3010
-#: ../class-leaflet-options.php:3188
-#: ../class-leaflet-options.php:3207
-#: ../class-leaflet-options.php:3385
-#: ../class-leaflet-options.php:3404
-#: ../class-leaflet-options.php:3582
-#: ../class-leaflet-options.php:3601
+#: ../class-leaflet-options.php:1082
+#: ../class-leaflet-options.php:1152
+#: ../class-leaflet-options.php:1222
+#: ../class-leaflet-options.php:1362
+#: ../class-leaflet-options.php:1441
+#: ../class-leaflet-options.php:1519
+#: ../class-leaflet-options.php:1598
+#: ../class-leaflet-options.php:1810
+#: ../class-leaflet-options.php:1829
+#: ../class-leaflet-options.php:2008
+#: ../class-leaflet-options.php:2027
+#: ../class-leaflet-options.php:2197
+#: ../class-leaflet-options.php:2224
+#: ../class-leaflet-options.php:2402
+#: ../class-leaflet-options.php:2421
+#: ../class-leaflet-options.php:2599
+#: ../class-leaflet-options.php:2618
+#: ../class-leaflet-options.php:2796
+#: ../class-leaflet-options.php:2815
+#: ../class-leaflet-options.php:2993
+#: ../class-leaflet-options.php:3012
+#: ../class-leaflet-options.php:3190
+#: ../class-leaflet-options.php:3209
+#: ../class-leaflet-options.php:3387
+#: ../class-leaflet-options.php:3406
+#: ../class-leaflet-options.php:3584
+#: ../class-leaflet-options.php:3603
 msgid "No"
 msgstr ""
 
-#: ../class-leaflet-options.php:1085
-#: ../class-leaflet-options.php:1155
-#: ../class-leaflet-options.php:1225
-#: ../class-leaflet-options.php:1365
-#: ../class-leaflet-options.php:1444
-#: ../class-leaflet-options.php:1522
-#: ../class-leaflet-options.php:1601
-#: ../class-leaflet-options.php:1833
-#: ../class-leaflet-options.php:2031
-#: ../class-leaflet-options.php:2228
-#: ../class-leaflet-options.php:2425
-#: ../class-leaflet-options.php:2622
-#: ../class-leaflet-options.php:2819
-#: ../class-leaflet-options.php:3016
-#: ../class-leaflet-options.php:3213
-#: ../class-leaflet-options.php:3410
-#: ../class-leaflet-options.php:3607
+#: ../class-leaflet-options.php:1087
+#: ../class-leaflet-options.php:1157
+#: ../class-leaflet-options.php:1227
+#: ../class-leaflet-options.php:1367
+#: ../class-leaflet-options.php:1446
+#: ../class-leaflet-options.php:1524
+#: ../class-leaflet-options.php:1603
+#: ../class-leaflet-options.php:1835
+#: ../class-leaflet-options.php:2033
+#: ../class-leaflet-options.php:2230
+#: ../class-leaflet-options.php:2427
+#: ../class-leaflet-options.php:2624
+#: ../class-leaflet-options.php:2821
+#: ../class-leaflet-options.php:3018
+#: ../class-leaflet-options.php:3215
+#: ../class-leaflet-options.php:3412
+#: ../class-leaflet-options.php:3609
 msgid "Subdomain names"
 msgstr ""
 
-#: ../class-leaflet-options.php:1254
+#: ../class-leaflet-options.php:1256
 msgid "Please select the overlays which should be available in the control box."
 msgstr ""
 
-#: ../class-leaflet-options.php:1260
+#: ../class-leaflet-options.php:1262
 msgid "Available overlays in control box"
 msgstr ""
 
-#: ../class-leaflet-options.php:1261
-#: ../class-leaflet-options.php:4002
-#: ../class-leaflet-options.php:4291
-#: ../class-leaflet-options.php:4498
+#: ../class-leaflet-options.php:1263
+#: ../class-leaflet-options.php:4004
+#: ../class-leaflet-options.php:4293
+#: ../class-leaflet-options.php:4500
 msgid "Custom overlay"
 msgstr ""
 
-#: ../class-leaflet-options.php:1269
-#: ../class-leaflet-options.php:4010
-#: ../class-leaflet-options.php:4299
-#: ../class-leaflet-options.php:4506
+#: ../class-leaflet-options.php:1271
+#: ../class-leaflet-options.php:4012
+#: ../class-leaflet-options.php:4301
+#: ../class-leaflet-options.php:4508
 msgid "Custom overlay 2"
 msgstr ""
 
-#: ../class-leaflet-options.php:1278
-#: ../class-leaflet-options.php:4019
-#: ../class-leaflet-options.php:4308
-#: ../class-leaflet-options.php:4514
+#: ../class-leaflet-options.php:1280
+#: ../class-leaflet-options.php:4021
+#: ../class-leaflet-options.php:4310
+#: ../class-leaflet-options.php:4516
 msgid "Custom overlay 3"
 msgstr ""
 
-#: ../class-leaflet-options.php:1287
-#: ../class-leaflet-options.php:4027
-#: ../class-leaflet-options.php:4317
-#: ../class-leaflet-options.php:4522
+#: ../class-leaflet-options.php:1289
+#: ../class-leaflet-options.php:4029
+#: ../class-leaflet-options.php:4319
+#: ../class-leaflet-options.php:4524
 msgid "Custom overlay 4"
 msgstr ""
 
-#: ../class-leaflet-options.php:1307
-#: ../class-leaflet-options.php:1386
-#: ../class-leaflet-options.php:1465
-#: ../class-leaflet-options.php:1543
+#: ../class-leaflet-options.php:1309
+#: ../class-leaflet-options.php:1388
+#: ../class-leaflet-options.php:1467
+#: ../class-leaflet-options.php:1545
 msgid "Please enter settings for custom overlay"
 msgstr ""
 
-#: ../class-leaflet-options.php:1312
-#: ../class-leaflet-options.php:1391
-#: ../class-leaflet-options.php:1470
-#: ../class-leaflet-options.php:1548
-#: ../class-leaflet-options.php:1734
-#: ../class-leaflet-options.php:1932
-#: ../class-leaflet-options.php:2129
-#: ../class-leaflet-options.php:2326
-#: ../class-leaflet-options.php:2523
-#: ../class-leaflet-options.php:2720
-#: ../class-leaflet-options.php:2917
-#: ../class-leaflet-options.php:3114
-#: ../class-leaflet-options.php:3311
-#: ../class-leaflet-options.php:3508
+#: ../class-leaflet-options.php:1314
+#: ../class-leaflet-options.php:1393
+#: ../class-leaflet-options.php:1472
+#: ../class-leaflet-options.php:1550
+#: ../class-leaflet-options.php:1736
+#: ../class-leaflet-options.php:1934
+#: ../class-leaflet-options.php:2131
+#: ../class-leaflet-options.php:2328
+#: ../class-leaflet-options.php:2525
+#: ../class-leaflet-options.php:2722
+#: ../class-leaflet-options.php:2919
+#: ../class-leaflet-options.php:3116
+#: ../class-leaflet-options.php:3313
+#: ../class-leaflet-options.php:3510
 #: ../leaflet-list-layers.php:36
 #: ../leaflet-list-layers.php:78
 msgid "Name"
 msgstr ""
 
-#: ../class-leaflet-options.php:1313
-#: ../class-leaflet-options.php:1392
-#: ../class-leaflet-options.php:1471
-#: ../class-leaflet-options.php:1549
+#: ../class-leaflet-options.php:1315
+#: ../class-leaflet-options.php:1394
+#: ../class-leaflet-options.php:1473
+#: ../class-leaflet-options.php:1551
 msgid "Will be displayed in controlbox if selected"
 msgstr ""
 
-#: ../class-leaflet-options.php:1314
+#: ../class-leaflet-options.php:1316
 msgid "OGD Vienna addresses"
 msgstr ""
 
-#: ../class-leaflet-options.php:1630
+#: ../class-leaflet-options.php:1632
 msgid "Please select the WMS layers which should be available when creating new markers/layers"
 msgstr ""
 
-#: ../class-leaflet-options.php:1636
+#: ../class-leaflet-options.php:1638
 msgid "Available WMS layers"
 msgstr ""
 
-#: ../class-leaflet-options.php:1742
-#: ../class-leaflet-options.php:1940
-#: ../class-leaflet-options.php:2137
-#: ../class-leaflet-options.php:2334
-#: ../class-leaflet-options.php:2531
-#: ../class-leaflet-options.php:2728
-#: ../class-leaflet-options.php:2925
-#: ../class-leaflet-options.php:3122
-#: ../class-leaflet-options.php:3319
-#: ../class-leaflet-options.php:3516
+#: ../class-leaflet-options.php:1744
+#: ../class-leaflet-options.php:1942
+#: ../class-leaflet-options.php:2139
+#: ../class-leaflet-options.php:2336
+#: ../class-leaflet-options.php:2533
+#: ../class-leaflet-options.php:2730
+#: ../class-leaflet-options.php:2927
+#: ../class-leaflet-options.php:3124
+#: ../class-leaflet-options.php:3321
+#: ../class-leaflet-options.php:3518
 msgid "baseURL"
 msgstr ""
 
-#: ../class-leaflet-options.php:1750
-#: ../class-leaflet-options.php:1948
-#: ../class-leaflet-options.php:2145
-#: ../class-leaflet-options.php:2342
-#: ../class-leaflet-options.php:2539
-#: ../class-leaflet-options.php:2736
-#: ../class-leaflet-options.php:2933
-#: ../class-leaflet-options.php:3130
-#: ../class-leaflet-options.php:3327
-#: ../class-leaflet-options.php:3524
-#: ../leaflet-maps-marker.php:1102
+#: ../class-leaflet-options.php:1752
+#: ../class-leaflet-options.php:1950
+#: ../class-leaflet-options.php:2147
+#: ../class-leaflet-options.php:2344
+#: ../class-leaflet-options.php:2541
+#: ../class-leaflet-options.php:2738
+#: ../class-leaflet-options.php:2935
+#: ../class-leaflet-options.php:3132
+#: ../class-leaflet-options.php:3329
+#: ../class-leaflet-options.php:3526
+#: ../leaflet-maps-marker.php:1108
 msgid "Layers"
 msgstr ""
 
-#: ../class-leaflet-options.php:1751
-#: ../class-leaflet-options.php:1949
-#: ../class-leaflet-options.php:2146
-#: ../class-leaflet-options.php:2343
-#: ../class-leaflet-options.php:2540
-#: ../class-leaflet-options.php:2737
-#: ../class-leaflet-options.php:2934
-#: ../class-leaflet-options.php:3131
-#: ../class-leaflet-options.php:3328
-#: ../class-leaflet-options.php:3525
+#: ../class-leaflet-options.php:1753
+#: ../class-leaflet-options.php:1951
+#: ../class-leaflet-options.php:2148
+#: ../class-leaflet-options.php:2345
+#: ../class-leaflet-options.php:2542
+#: ../class-leaflet-options.php:2739
+#: ../class-leaflet-options.php:2936
+#: ../class-leaflet-options.php:3133
+#: ../class-leaflet-options.php:3330
+#: ../class-leaflet-options.php:3527
 msgid "(required) Comma-separated list of WMS layers to show"
 msgstr ""
 
-#: ../class-leaflet-options.php:1758
-#: ../class-leaflet-options.php:1956
-#: ../class-leaflet-options.php:2153
-#: ../class-leaflet-options.php:2350
-#: ../class-leaflet-options.php:2547
-#: ../class-leaflet-options.php:2744
-#: ../class-leaflet-options.php:2941
-#: ../class-leaflet-options.php:3138
-#: ../class-leaflet-options.php:3335
-#: ../class-leaflet-options.php:3532
+#: ../class-leaflet-options.php:1760
+#: ../class-leaflet-options.php:1958
+#: ../class-leaflet-options.php:2155
+#: ../class-leaflet-options.php:2352
+#: ../class-leaflet-options.php:2549
+#: ../class-leaflet-options.php:2746
+#: ../class-leaflet-options.php:2943
+#: ../class-leaflet-options.php:3140
+#: ../class-leaflet-options.php:3337
+#: ../class-leaflet-options.php:3534
 msgid "Styles"
 msgstr ""
 
-#: ../class-leaflet-options.php:1759
-#: ../class-leaflet-options.php:1957
-#: ../class-leaflet-options.php:2154
-#: ../class-leaflet-options.php:2351
-#: ../class-leaflet-options.php:2548
-#: ../class-leaflet-options.php:2745
-#: ../class-leaflet-options.php:2942
-#: ../class-leaflet-options.php:3139
-#: ../class-leaflet-options.php:3336
-#: ../class-leaflet-options.php:3533
+#: ../class-leaflet-options.php:1761
+#: ../class-leaflet-options.php:1959
+#: ../class-leaflet-options.php:2156
+#: ../class-leaflet-options.php:2353
+#: ../class-leaflet-options.php:2550
+#: ../class-leaflet-options.php:2747
+#: ../class-leaflet-options.php:2944
+#: ../class-leaflet-options.php:3141
+#: ../class-leaflet-options.php:3338
+#: ../class-leaflet-options.php:3535
 msgid "Comma-separated list of WMS styles"
 msgstr ""
 
-#: ../class-leaflet-options.php:1766
-#: ../class-leaflet-options.php:1964
-#: ../class-leaflet-options.php:2161
-#: ../class-leaflet-options.php:2358
-#: ../class-leaflet-options.php:2555
-#: ../class-leaflet-options.php:2752
-#: ../class-leaflet-options.php:2949
-#: ../class-leaflet-options.php:3146
-#: ../class-leaflet-options.php:3343
-#: ../class-leaflet-options.php:3540
+#: ../class-leaflet-options.php:1768
+#: ../class-leaflet-options.php:1966
+#: ../class-leaflet-options.php:2163
+#: ../class-leaflet-options.php:2360
+#: ../class-leaflet-options.php:2557
+#: ../class-leaflet-options.php:2754
+#: ../class-leaflet-options.php:2951
+#: ../class-leaflet-options.php:3148
+#: ../class-leaflet-options.php:3345
+#: ../class-leaflet-options.php:3542
 msgid "Format"
 msgstr ""
 
-#: ../class-leaflet-options.php:1774
-#: ../class-leaflet-options.php:1972
-#: ../class-leaflet-options.php:2169
-#: ../class-leaflet-options.php:2366
-#: ../class-leaflet-options.php:2563
-#: ../class-leaflet-options.php:2760
-#: ../class-leaflet-options.php:2957
-#: ../class-leaflet-options.php:3154
-#: ../class-leaflet-options.php:3351
-#: ../class-leaflet-options.php:3548
+#: ../class-leaflet-options.php:1776
+#: ../class-leaflet-options.php:1974
+#: ../class-leaflet-options.php:2171
+#: ../class-leaflet-options.php:2368
+#: ../class-leaflet-options.php:2565
+#: ../class-leaflet-options.php:2762
+#: ../class-leaflet-options.php:2959
+#: ../class-leaflet-options.php:3156
+#: ../class-leaflet-options.php:3353
+#: ../class-leaflet-options.php:3550
 msgid "Transparent"
 msgstr ""
 
-#: ../class-leaflet-options.php:1775
-#: ../class-leaflet-options.php:1973
-#: ../class-leaflet-options.php:2170
-#: ../class-leaflet-options.php:2367
-#: ../class-leaflet-options.php:2564
-#: ../class-leaflet-options.php:2761
-#: ../class-leaflet-options.php:2958
-#: ../class-leaflet-options.php:3155
-#: ../class-leaflet-options.php:3352
-#: ../class-leaflet-options.php:3549
+#: ../class-leaflet-options.php:1777
+#: ../class-leaflet-options.php:1975
+#: ../class-leaflet-options.php:2172
+#: ../class-leaflet-options.php:2369
+#: ../class-leaflet-options.php:2566
+#: ../class-leaflet-options.php:2763
+#: ../class-leaflet-options.php:2960
+#: ../class-leaflet-options.php:3157
+#: ../class-leaflet-options.php:3354
+#: ../class-leaflet-options.php:3551
 msgid "If yes, the WMS service will return images with transparency"
 msgstr ""
 
-#: ../class-leaflet-options.php:1786
-#: ../class-leaflet-options.php:1984
-#: ../class-leaflet-options.php:2209
-#: ../class-leaflet-options.php:2378
-#: ../class-leaflet-options.php:2575
-#: ../class-leaflet-options.php:2772
-#: ../class-leaflet-options.php:2969
-#: ../class-leaflet-options.php:3166
-#: ../class-leaflet-options.php:3363
-#: ../class-leaflet-options.php:3560
+#: ../class-leaflet-options.php:1781
+#: ../class-leaflet-options.php:1979
+#: ../class-leaflet-options.php:2176
+#: ../class-leaflet-options.php:2373
+#: ../class-leaflet-options.php:2570
+#: ../class-leaflet-options.php:2767
+#: ../class-leaflet-options.php:2964
+#: ../class-leaflet-options.php:3161
+#: ../class-leaflet-options.php:3358
+#: ../class-leaflet-options.php:3555
+#: ../class-leaflet-options.php:5211
+#: ../class-leaflet-options.php:5223
+#: ../class-leaflet-options.php:5516
+#: ../class-leaflet-options.php:5528
+#: ../class-leaflet-options.php:5540
+#: ../class-leaflet-options.php:5552
+#: ../class-leaflet-options.php:5564
+#: ../class-leaflet-options.php:5576
+#: ../class-leaflet-options.php:5588
+msgid "true"
+msgstr ""
+
+#: ../class-leaflet-options.php:1782
+#: ../class-leaflet-options.php:1980
+#: ../class-leaflet-options.php:2177
+#: ../class-leaflet-options.php:2374
+#: ../class-leaflet-options.php:2571
+#: ../class-leaflet-options.php:2768
+#: ../class-leaflet-options.php:2965
+#: ../class-leaflet-options.php:3162
+#: ../class-leaflet-options.php:3359
+#: ../class-leaflet-options.php:3556
+#: ../class-leaflet-options.php:5210
+#: ../class-leaflet-options.php:5222
+msgid "false"
+msgstr ""
+
+#: ../class-leaflet-options.php:1788
+#: ../class-leaflet-options.php:1986
+#: ../class-leaflet-options.php:2211
+#: ../class-leaflet-options.php:2380
+#: ../class-leaflet-options.php:2577
+#: ../class-leaflet-options.php:2774
+#: ../class-leaflet-options.php:2971
+#: ../class-leaflet-options.php:3168
+#: ../class-leaflet-options.php:3365
+#: ../class-leaflet-options.php:3562
 msgid "Version"
 msgstr ""
 
-#: ../class-leaflet-options.php:1787
-#: ../class-leaflet-options.php:1985
-#: ../class-leaflet-options.php:2210
-#: ../class-leaflet-options.php:2379
-#: ../class-leaflet-options.php:2576
-#: ../class-leaflet-options.php:2773
-#: ../class-leaflet-options.php:2970
-#: ../class-leaflet-options.php:3167
-#: ../class-leaflet-options.php:3364
-#: ../class-leaflet-options.php:3561
+#: ../class-leaflet-options.php:1789
+#: ../class-leaflet-options.php:1987
+#: ../class-leaflet-options.php:2212
+#: ../class-leaflet-options.php:2381
+#: ../class-leaflet-options.php:2578
+#: ../class-leaflet-options.php:2775
+#: ../class-leaflet-options.php:2972
+#: ../class-leaflet-options.php:3169
+#: ../class-leaflet-options.php:3366
+#: ../class-leaflet-options.php:3563
 msgid "Version of the WMS service to use"
 msgstr ""
 
-#: ../class-leaflet-options.php:1802
-#: ../class-leaflet-options.php:2000
-#: ../class-leaflet-options.php:2189
-#: ../class-leaflet-options.php:2394
-#: ../class-leaflet-options.php:2591
-#: ../class-leaflet-options.php:2788
-#: ../class-leaflet-options.php:2985
-#: ../class-leaflet-options.php:3182
-#: ../class-leaflet-options.php:3379
-#: ../class-leaflet-options.php:3576
+#: ../class-leaflet-options.php:1804
+#: ../class-leaflet-options.php:2002
+#: ../class-leaflet-options.php:2191
+#: ../class-leaflet-options.php:2396
+#: ../class-leaflet-options.php:2593
+#: ../class-leaflet-options.php:2790
+#: ../class-leaflet-options.php:2987
+#: ../class-leaflet-options.php:3184
+#: ../class-leaflet-options.php:3381
+#: ../class-leaflet-options.php:3578
 msgid "Display legend?"
 msgstr ""
 
-#: ../class-leaflet-options.php:1807
-#: ../class-leaflet-options.php:2005
-#: ../class-leaflet-options.php:2194
-#: ../class-leaflet-options.php:2399
-#: ../class-leaflet-options.php:2596
-#: ../class-leaflet-options.php:2793
-#: ../class-leaflet-options.php:2990
-#: ../class-leaflet-options.php:3187
-#: ../class-leaflet-options.php:3384
-#: ../class-leaflet-options.php:3581
+#: ../class-leaflet-options.php:1809
+#: ../class-leaflet-options.php:2007
+#: ../class-leaflet-options.php:2196
+#: ../class-leaflet-options.php:2401
+#: ../class-leaflet-options.php:2598
+#: ../class-leaflet-options.php:2795
+#: ../class-leaflet-options.php:2992
+#: ../class-leaflet-options.php:3189
+#: ../class-leaflet-options.php:3386
+#: ../class-leaflet-options.php:3583
 #: ../leaflet-tools.php:672
 msgid "Yes"
 msgstr ""
 
-#: ../class-leaflet-options.php:1814
-#: ../class-leaflet-options.php:2012
-#: ../class-leaflet-options.php:2201
-#: ../class-leaflet-options.php:2406
-#: ../class-leaflet-options.php:2603
-#: ../class-leaflet-options.php:2800
-#: ../class-leaflet-options.php:2997
-#: ../class-leaflet-options.php:3194
-#: ../class-leaflet-options.php:3391
-#: ../class-leaflet-options.php:3588
+#: ../class-leaflet-options.php:1816
+#: ../class-leaflet-options.php:2014
+#: ../class-leaflet-options.php:2203
+#: ../class-leaflet-options.php:2408
+#: ../class-leaflet-options.php:2605
+#: ../class-leaflet-options.php:2802
+#: ../class-leaflet-options.php:2999
+#: ../class-leaflet-options.php:3196
+#: ../class-leaflet-options.php:3393
+#: ../class-leaflet-options.php:3590
 #: ../leaflet-fullscreen.php:225
 #: ../leaflet-fullscreen.php:226
 #: ../leaflet-fullscreen.php:227
@@ -969,71 +1028,71 @@ msgstr ""
 msgid "Legend"
 msgstr ""
 
-#: ../class-leaflet-options.php:1815
-#: ../class-leaflet-options.php:2013
-#: ../class-leaflet-options.php:2202
-#: ../class-leaflet-options.php:2407
-#: ../class-leaflet-options.php:2604
-#: ../class-leaflet-options.php:2801
-#: ../class-leaflet-options.php:2998
-#: ../class-leaflet-options.php:3195
-#: ../class-leaflet-options.php:3392
-#: ../class-leaflet-options.php:3589
+#: ../class-leaflet-options.php:1817
+#: ../class-leaflet-options.php:2015
+#: ../class-leaflet-options.php:2204
+#: ../class-leaflet-options.php:2409
+#: ../class-leaflet-options.php:2606
+#: ../class-leaflet-options.php:2803
+#: ../class-leaflet-options.php:3000
+#: ../class-leaflet-options.php:3197
+#: ../class-leaflet-options.php:3394
+#: ../class-leaflet-options.php:3591
 msgid "URL of image which gets show when hovering the text \"(Legend)\" next to WMS attribution text"
 msgstr ""
 
-#: ../class-leaflet-options.php:1823
-#: ../class-leaflet-options.php:2021
-#: ../class-leaflet-options.php:2218
-#: ../class-leaflet-options.php:2415
-#: ../class-leaflet-options.php:2612
-#: ../class-leaflet-options.php:2809
-#: ../class-leaflet-options.php:3006
-#: ../class-leaflet-options.php:3203
-#: ../class-leaflet-options.php:3400
-#: ../class-leaflet-options.php:3597
+#: ../class-leaflet-options.php:1825
+#: ../class-leaflet-options.php:2023
+#: ../class-leaflet-options.php:2220
+#: ../class-leaflet-options.php:2417
+#: ../class-leaflet-options.php:2614
+#: ../class-leaflet-options.php:2811
+#: ../class-leaflet-options.php:3008
+#: ../class-leaflet-options.php:3205
+#: ../class-leaflet-options.php:3402
+#: ../class-leaflet-options.php:3599
 msgid "Will replace {s} from base url if available"
 msgstr ""
 
-#: ../class-leaflet-options.php:1844
-#: ../class-leaflet-options.php:2042
-#: ../class-leaflet-options.php:2239
-#: ../class-leaflet-options.php:2436
-#: ../class-leaflet-options.php:2633
-#: ../class-leaflet-options.php:2830
-#: ../class-leaflet-options.php:3027
-#: ../class-leaflet-options.php:3224
-#: ../class-leaflet-options.php:3421
-#: ../class-leaflet-options.php:3618
+#: ../class-leaflet-options.php:1846
+#: ../class-leaflet-options.php:2044
+#: ../class-leaflet-options.php:2241
+#: ../class-leaflet-options.php:2438
+#: ../class-leaflet-options.php:2635
+#: ../class-leaflet-options.php:2832
+#: ../class-leaflet-options.php:3029
+#: ../class-leaflet-options.php:3226
+#: ../class-leaflet-options.php:3423
+#: ../class-leaflet-options.php:3620
 msgid "If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML."
 msgstr ""
 
-#: ../class-leaflet-options.php:1850
-#: ../class-leaflet-options.php:2048
-#: ../class-leaflet-options.php:2245
-#: ../class-leaflet-options.php:2442
-#: ../class-leaflet-options.php:2639
-#: ../class-leaflet-options.php:2836
-#: ../class-leaflet-options.php:3033
-#: ../class-leaflet-options.php:3230
-#: ../class-leaflet-options.php:3427
-#: ../class-leaflet-options.php:3624
+#: ../class-leaflet-options.php:1852
+#: ../class-leaflet-options.php:2050
+#: ../class-leaflet-options.php:2247
+#: ../class-leaflet-options.php:2444
+#: ../class-leaflet-options.php:2641
+#: ../class-leaflet-options.php:2838
+#: ../class-leaflet-options.php:3035
+#: ../class-leaflet-options.php:3232
+#: ../class-leaflet-options.php:3429
+#: ../class-leaflet-options.php:3626
 msgid "Does the WMS server support KML output?"
 msgstr ""
 
-#: ../class-leaflet-options.php:1855
-#: ../class-leaflet-options.php:2053
-#: ../class-leaflet-options.php:2250
-#: ../class-leaflet-options.php:2447
-#: ../class-leaflet-options.php:2644
-#: ../class-leaflet-options.php:2841
-#: ../class-leaflet-options.php:3038
-#: ../class-leaflet-options.php:3235
-#: ../class-leaflet-options.php:3432
-#: ../class-leaflet-options.php:3629
-#: ../class-leaflet-options.php:4701
-#: ../class-leaflet-options.php:4964
-#: ../class-leaflet-options.php:5015
+#: ../class-leaflet-options.php:1857
+#: ../class-leaflet-options.php:2055
+#: ../class-leaflet-options.php:2252
+#: ../class-leaflet-options.php:2449
+#: ../class-leaflet-options.php:2646
+#: ../class-leaflet-options.php:2843
+#: ../class-leaflet-options.php:3040
+#: ../class-leaflet-options.php:3237
+#: ../class-leaflet-options.php:3434
+#: ../class-leaflet-options.php:3631
+#: ../class-leaflet-options.php:4703
+#: ../class-leaflet-options.php:4966
+#: ../class-leaflet-options.php:5017
 #: ../leaflet-layer.php:289
 #: ../leaflet-layer.php:430
 #: ../leaflet-marker.php:439
@@ -1041,19 +1100,19 @@ msgstr ""
 msgid "yes"
 msgstr ""
 
-#: ../class-leaflet-options.php:1856
-#: ../class-leaflet-options.php:2054
-#: ../class-leaflet-options.php:2251
-#: ../class-leaflet-options.php:2448
-#: ../class-leaflet-options.php:2645
-#: ../class-leaflet-options.php:2842
-#: ../class-leaflet-options.php:3039
-#: ../class-leaflet-options.php:3236
-#: ../class-leaflet-options.php:3433
-#: ../class-leaflet-options.php:3630
-#: ../class-leaflet-options.php:4700
-#: ../class-leaflet-options.php:4965
-#: ../class-leaflet-options.php:5016
+#: ../class-leaflet-options.php:1858
+#: ../class-leaflet-options.php:2056
+#: ../class-leaflet-options.php:2253
+#: ../class-leaflet-options.php:2450
+#: ../class-leaflet-options.php:2647
+#: ../class-leaflet-options.php:2844
+#: ../class-leaflet-options.php:3041
+#: ../class-leaflet-options.php:3238
+#: ../class-leaflet-options.php:3435
+#: ../class-leaflet-options.php:3632
+#: ../class-leaflet-options.php:4702
+#: ../class-leaflet-options.php:4967
+#: ../class-leaflet-options.php:5018
 #: ../leaflet-layer.php:290
 #: ../leaflet-layer.php:429
 #: ../leaflet-marker.php:437
@@ -1061,43 +1120,17 @@ msgstr ""
 msgid "no"
 msgstr ""
 
-#: ../class-leaflet-options.php:1863
-#: ../class-leaflet-options.php:2061
-#: ../class-leaflet-options.php:2258
-#: ../class-leaflet-options.php:2455
-#: ../class-leaflet-options.php:2652
-#: ../class-leaflet-options.php:2849
-#: ../class-leaflet-options.php:3046
-#: ../class-leaflet-options.php:3243
-#: ../class-leaflet-options.php:3440
-#: ../class-leaflet-options.php:3637
+#: ../class-leaflet-options.php:1865
+#: ../class-leaflet-options.php:2063
+#: ../class-leaflet-options.php:2260
+#: ../class-leaflet-options.php:2457
+#: ../class-leaflet-options.php:2654
+#: ../class-leaflet-options.php:2851
+#: ../class-leaflet-options.php:3048
+#: ../class-leaflet-options.php:3245
+#: ../class-leaflet-options.php:3442
+#: ../class-leaflet-options.php:3639
 msgid "http-address of the KML-webservice of the WMS layer"
-msgstr ""
-
-#: ../class-leaflet-options.php:1875
-#: ../class-leaflet-options.php:2073
-#: ../class-leaflet-options.php:2270
-#: ../class-leaflet-options.php:2467
-#: ../class-leaflet-options.php:2664
-#: ../class-leaflet-options.php:2861
-#: ../class-leaflet-options.php:3058
-#: ../class-leaflet-options.php:3255
-#: ../class-leaflet-options.php:3452
-#: ../class-leaflet-options.php:3649
-msgid "onChange (refresh when the file is loaded and whenever the Link parameters change)"
-msgstr ""
-
-#: ../class-leaflet-options.php:1876
-#: ../class-leaflet-options.php:2074
-#: ../class-leaflet-options.php:2271
-#: ../class-leaflet-options.php:2468
-#: ../class-leaflet-options.php:2665
-#: ../class-leaflet-options.php:2862
-#: ../class-leaflet-options.php:3059
-#: ../class-leaflet-options.php:3256
-#: ../class-leaflet-options.php:3453
-#: ../class-leaflet-options.php:3650
-msgid "onInterval (refresh every n seconds (specified in refreshInterval)"
 msgstr ""
 
 #: ../class-leaflet-options.php:1877
@@ -1110,7 +1143,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3257
 #: ../class-leaflet-options.php:3454
 #: ../class-leaflet-options.php:3651
-msgid "onExpire (refresh the file when the expiration time is reached)"
+msgid "onChange (refresh when the file is loaded and whenever the Link parameters change)"
 msgstr ""
 
 #: ../class-leaflet-options.php:1878
@@ -1123,46 +1156,46 @@ msgstr ""
 #: ../class-leaflet-options.php:3258
 #: ../class-leaflet-options.php:3455
 #: ../class-leaflet-options.php:3652
+msgid "onInterval (refresh every n seconds (specified in refreshInterval)"
+msgstr ""
+
+#: ../class-leaflet-options.php:1879
+#: ../class-leaflet-options.php:2077
+#: ../class-leaflet-options.php:2274
+#: ../class-leaflet-options.php:2471
+#: ../class-leaflet-options.php:2668
+#: ../class-leaflet-options.php:2865
+#: ../class-leaflet-options.php:3062
+#: ../class-leaflet-options.php:3259
+#: ../class-leaflet-options.php:3456
+#: ../class-leaflet-options.php:3653
+msgid "onExpire (refresh the file when the expiration time is reached)"
+msgstr ""
+
+#: ../class-leaflet-options.php:1880
+#: ../class-leaflet-options.php:2078
+#: ../class-leaflet-options.php:2275
+#: ../class-leaflet-options.php:2472
+#: ../class-leaflet-options.php:2669
+#: ../class-leaflet-options.php:2866
+#: ../class-leaflet-options.php:3063
+#: ../class-leaflet-options.php:3260
+#: ../class-leaflet-options.php:3457
+#: ../class-leaflet-options.php:3654
 msgid "onStop (after camera movement stops)"
 msgstr ""
 
-#: ../class-leaflet-options.php:1885
-#: ../class-leaflet-options.php:2083
-#: ../class-leaflet-options.php:2280
-#: ../class-leaflet-options.php:2477
-#: ../class-leaflet-options.php:2674
-#: ../class-leaflet-options.php:2871
-#: ../class-leaflet-options.php:3068
-#: ../class-leaflet-options.php:3265
-#: ../class-leaflet-options.php:3462
-#: ../class-leaflet-options.php:3659
+#: ../class-leaflet-options.php:1887
+#: ../class-leaflet-options.php:2085
+#: ../class-leaflet-options.php:2282
+#: ../class-leaflet-options.php:2479
+#: ../class-leaflet-options.php:2676
+#: ../class-leaflet-options.php:2873
+#: ../class-leaflet-options.php:3070
+#: ../class-leaflet-options.php:3267
+#: ../class-leaflet-options.php:3464
+#: ../class-leaflet-options.php:3661
 msgid "Indicates to refresh the file every n seconds"
-msgstr ""
-
-#: ../class-leaflet-options.php:1897
-#: ../class-leaflet-options.php:2095
-#: ../class-leaflet-options.php:2292
-#: ../class-leaflet-options.php:2489
-#: ../class-leaflet-options.php:2686
-#: ../class-leaflet-options.php:2883
-#: ../class-leaflet-options.php:3080
-#: ../class-leaflet-options.php:3277
-#: ../class-leaflet-options.php:3474
-#: ../class-leaflet-options.php:3671
-msgid "never (ignore changes in the view)"
-msgstr ""
-
-#: ../class-leaflet-options.php:1898
-#: ../class-leaflet-options.php:2096
-#: ../class-leaflet-options.php:2293
-#: ../class-leaflet-options.php:2490
-#: ../class-leaflet-options.php:2687
-#: ../class-leaflet-options.php:2884
-#: ../class-leaflet-options.php:3081
-#: ../class-leaflet-options.php:3278
-#: ../class-leaflet-options.php:3475
-#: ../class-leaflet-options.php:3672
-msgid "onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)"
 msgstr ""
 
 #: ../class-leaflet-options.php:1899
@@ -1175,169 +1208,195 @@ msgstr ""
 #: ../class-leaflet-options.php:3279
 #: ../class-leaflet-options.php:3476
 #: ../class-leaflet-options.php:3673
+msgid "never (ignore changes in the view)"
+msgstr ""
+
+#: ../class-leaflet-options.php:1900
+#: ../class-leaflet-options.php:2098
+#: ../class-leaflet-options.php:2295
+#: ../class-leaflet-options.php:2492
+#: ../class-leaflet-options.php:2689
+#: ../class-leaflet-options.php:2886
+#: ../class-leaflet-options.php:3083
+#: ../class-leaflet-options.php:3280
+#: ../class-leaflet-options.php:3477
+#: ../class-leaflet-options.php:3674
+msgid "onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)"
+msgstr ""
+
+#: ../class-leaflet-options.php:1901
+#: ../class-leaflet-options.php:2099
+#: ../class-leaflet-options.php:2296
+#: ../class-leaflet-options.php:2493
+#: ../class-leaflet-options.php:2690
+#: ../class-leaflet-options.php:2887
+#: ../class-leaflet-options.php:3084
+#: ../class-leaflet-options.php:3281
+#: ../class-leaflet-options.php:3478
+#: ../class-leaflet-options.php:3675
 msgid "onRequest (refresh the file only when the user explicitly requests it)"
 msgstr ""
 
-#: ../class-leaflet-options.php:1906
-#: ../class-leaflet-options.php:2104
-#: ../class-leaflet-options.php:2301
-#: ../class-leaflet-options.php:2498
-#: ../class-leaflet-options.php:2695
-#: ../class-leaflet-options.php:2892
-#: ../class-leaflet-options.php:3089
-#: ../class-leaflet-options.php:3286
-#: ../class-leaflet-options.php:3483
-#: ../class-leaflet-options.php:3680
+#: ../class-leaflet-options.php:1908
+#: ../class-leaflet-options.php:2106
+#: ../class-leaflet-options.php:2303
+#: ../class-leaflet-options.php:2500
+#: ../class-leaflet-options.php:2697
+#: ../class-leaflet-options.php:2894
+#: ../class-leaflet-options.php:3091
+#: ../class-leaflet-options.php:3288
+#: ../class-leaflet-options.php:3485
+#: ../class-leaflet-options.php:3682
 msgid "After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)"
 msgstr ""
 
-#: ../class-leaflet-options.php:3909
+#: ../class-leaflet-options.php:3911
 msgid "Will be used when creating a new marker. All values can be changed afterwards on each marker."
 msgstr ""
 
-#: ../class-leaflet-options.php:3914
-#: ../class-leaflet-options.php:4430
-#: ../class-leaflet-options.php:4850
-#: ../class-leaflet-options.php:4866
+#: ../class-leaflet-options.php:3916
+#: ../class-leaflet-options.php:4432
+#: ../class-leaflet-options.php:4852
+#: ../class-leaflet-options.php:4868
 msgid "Latitude"
 msgstr ""
 
-#: ../class-leaflet-options.php:3915
-#: ../class-leaflet-options.php:3923
-#: ../class-leaflet-options.php:4431
-#: ../class-leaflet-options.php:4439
-#: ../class-leaflet-options.php:4851
-#: ../class-leaflet-options.php:4859
-#: ../class-leaflet-options.php:4867
-#: ../class-leaflet-options.php:4875
+#: ../class-leaflet-options.php:3917
+#: ../class-leaflet-options.php:3925
+#: ../class-leaflet-options.php:4433
+#: ../class-leaflet-options.php:4441
+#: ../class-leaflet-options.php:4853
+#: ../class-leaflet-options.php:4861
+#: ../class-leaflet-options.php:4869
+#: ../class-leaflet-options.php:4877
 msgid "Please use a dot instead of a coma as decimal delimiter!"
 msgstr ""
 
-#: ../class-leaflet-options.php:3922
-#: ../class-leaflet-options.php:4438
-#: ../class-leaflet-options.php:4858
-#: ../class-leaflet-options.php:4874
+#: ../class-leaflet-options.php:3924
+#: ../class-leaflet-options.php:4440
+#: ../class-leaflet-options.php:4860
+#: ../class-leaflet-options.php:4876
 msgid "Longitude"
 msgstr ""
 
-#: ../class-leaflet-options.php:3930
-#: ../class-leaflet-options.php:5286
-#: ../class-leaflet-options.php:5633
+#: ../class-leaflet-options.php:3932
+#: ../class-leaflet-options.php:5288
+#: ../class-leaflet-options.php:5635
 #: ../leaflet-layer.php:517
 #: ../leaflet-layer.php:561
-#: ../leaflet-list-markers.php:116
-#: ../leaflet-list-markers.php:164
+#: ../leaflet-list-markers.php:115
+#: ../leaflet-list-markers.php:163
 #: ../leaflet-marker.php:412
 #: ../leaflet-tools.php:394
 msgid "Icon"
 msgstr ""
 
-#: ../class-leaflet-options.php:3931
+#: ../class-leaflet-options.php:3933
 msgid "If you want to use another icon than the blue pin, please enter the file name of the icon in the form field - e.g. smiley_happy.png"
 msgstr ""
 
-#: ../class-leaflet-options.php:3938
-#: ../class-leaflet-options.php:4239
-#: ../class-leaflet-options.php:4446
-#: ../class-leaflet-options.php:5681
-#: ../class-leaflet-options.php:5875
+#: ../class-leaflet-options.php:3940
+#: ../class-leaflet-options.php:4241
+#: ../class-leaflet-options.php:4448
+#: ../class-leaflet-options.php:5683
+#: ../class-leaflet-options.php:5924
 #: ../leaflet-layer.php:271
 #: ../leaflet-layer.php:528
 #: ../leaflet-layer.php:572
 #: ../leaflet-list-layers.php:45
 #: ../leaflet-list-layers.php:87
-#: ../leaflet-list-markers.php:131
-#: ../leaflet-list-markers.php:179
+#: ../leaflet-list-markers.php:130
+#: ../leaflet-list-markers.php:178
 #: ../leaflet-marker.php:266
 #: ../leaflet-tools.php:345
 #: ../leaflet-tools.php:596
 msgid "Zoom"
 msgstr ""
 
-#: ../class-leaflet-options.php:3946
-#: ../class-leaflet-options.php:4247
-#: ../class-leaflet-options.php:4454
+#: ../class-leaflet-options.php:3948
+#: ../class-leaflet-options.php:4249
+#: ../class-leaflet-options.php:4456
 msgid "Map width"
 msgstr ""
 
-#: ../class-leaflet-options.php:3955
-#: ../class-leaflet-options.php:4256
-#: ../class-leaflet-options.php:4463
+#: ../class-leaflet-options.php:3957
+#: ../class-leaflet-options.php:4258
+#: ../class-leaflet-options.php:4465
 msgid "Map width unit"
 msgstr ""
 
-#: ../class-leaflet-options.php:3966
-#: ../class-leaflet-options.php:4267
-#: ../class-leaflet-options.php:4474
+#: ../class-leaflet-options.php:3968
+#: ../class-leaflet-options.php:4269
+#: ../class-leaflet-options.php:4476
 msgid "Map height"
 msgstr ""
 
-#: ../class-leaflet-options.php:3975
+#: ../class-leaflet-options.php:3977
 msgid "Open popup by default"
 msgstr ""
 
-#: ../class-leaflet-options.php:3987
-#: ../class-leaflet-options.php:4276
-#: ../class-leaflet-options.php:4483
+#: ../class-leaflet-options.php:3989
+#: ../class-leaflet-options.php:4278
+#: ../class-leaflet-options.php:4485
 msgid "Basemap/layer controlbox on frontend"
 msgstr ""
 
-#: ../class-leaflet-options.php:3992
-#: ../class-leaflet-options.php:4281
-#: ../class-leaflet-options.php:4488
-#: ../class-leaflet-options.php:5092
+#: ../class-leaflet-options.php:3994
+#: ../class-leaflet-options.php:4283
+#: ../class-leaflet-options.php:4490
+#: ../class-leaflet-options.php:5094
 #: ../leaflet-layer.php:278
 #: ../leaflet-list-layers.php:143
 #: ../leaflet-list-layers.php:144
+#: ../leaflet-list-markers.php:222
 #: ../leaflet-list-markers.php:223
-#: ../leaflet-list-markers.php:224
 #: ../leaflet-marker.php:274
 #: ../leaflet-tools.php:363
 #: ../leaflet-tools.php:614
 msgid "hidden"
 msgstr ""
 
-#: ../class-leaflet-options.php:3993
-#: ../class-leaflet-options.php:4282
-#: ../class-leaflet-options.php:4489
+#: ../class-leaflet-options.php:3995
+#: ../class-leaflet-options.php:4284
+#: ../class-leaflet-options.php:4491
 #: ../leaflet-layer.php:279
 #: ../leaflet-list-layers.php:144
-#: ../leaflet-list-markers.php:224
+#: ../leaflet-list-markers.php:223
 #: ../leaflet-marker.php:275
 #: ../leaflet-tools.php:364
 #: ../leaflet-tools.php:615
 msgid "collapsed (except on mobiles)"
 msgstr ""
 
-#: ../class-leaflet-options.php:3994
-#: ../class-leaflet-options.php:4283
-#: ../class-leaflet-options.php:4490
+#: ../class-leaflet-options.php:3996
+#: ../class-leaflet-options.php:4285
+#: ../class-leaflet-options.php:4492
 #: ../leaflet-layer.php:280
 #: ../leaflet-list-layers.php:144
-#: ../leaflet-list-markers.php:224
+#: ../leaflet-list-markers.php:223
 #: ../leaflet-marker.php:276
 #: ../leaflet-tools.php:365
 #: ../leaflet-tools.php:616
 msgid "expanded"
 msgstr ""
 
-#: ../class-leaflet-options.php:4001
-#: ../class-leaflet-options.php:4290
-#: ../class-leaflet-options.php:4497
+#: ../class-leaflet-options.php:4003
+#: ../class-leaflet-options.php:4292
+#: ../class-leaflet-options.php:4499
 #: ../leaflet-tools.php:282
 #: ../leaflet-tools.php:533
 msgid "Checked overlays in control box"
 msgstr ""
 
-#: ../class-leaflet-options.php:4034
+#: ../class-leaflet-options.php:4036
 #: ../leaflet-marker.php:279
 #: ../leaflet-tools.php:377
 msgid "Panel for displaying marker name and API URLs on top of map"
 msgstr ""
 
-#: ../class-leaflet-options.php:4039
-#: ../class-leaflet-options.php:4534
-#: ../class-leaflet-options.php:5483
+#: ../class-leaflet-options.php:4041
+#: ../class-leaflet-options.php:4536
+#: ../class-leaflet-options.php:5485
 #: ../leaflet-layer.php:284
 #: ../leaflet-marker.php:281
 #: ../leaflet-tools.php:381
@@ -1345,9 +1404,9 @@ msgstr ""
 msgid "show"
 msgstr ""
 
-#: ../class-leaflet-options.php:4040
-#: ../class-leaflet-options.php:4535
-#: ../class-leaflet-options.php:5484
+#: ../class-leaflet-options.php:4042
+#: ../class-leaflet-options.php:4537
+#: ../class-leaflet-options.php:5486
 #: ../leaflet-layer.php:285
 #: ../leaflet-marker.php:283
 #: ../leaflet-tools.php:383
@@ -1355,13 +1414,13 @@ msgstr ""
 msgid "hide"
 msgstr ""
 
-#: ../class-leaflet-options.php:4047
-#: ../class-leaflet-options.php:4542
+#: ../class-leaflet-options.php:4049
+#: ../class-leaflet-options.php:4544
 msgid "Visible API links in panel"
 msgstr ""
 
-#: ../class-leaflet-options.php:4048
-#: ../class-leaflet-options.php:4743
+#: ../class-leaflet-options.php:4050
+#: ../class-leaflet-options.php:4745
 #: ../leaflet-fullscreen.php:759
 #: ../leaflet-fullscreen.php:762
 #: ../leaflet-fullscreen.php:765
@@ -1380,11 +1439,11 @@ msgstr ""
 msgid "Directions"
 msgstr ""
 
-#: ../class-leaflet-options.php:4064
-#: ../class-leaflet-options.php:4551
-#: ../class-leaflet-options.php:4759
-#: ../class-leaflet-options.php:5769
-#: ../class-leaflet-options.php:5955
+#: ../class-leaflet-options.php:4066
+#: ../class-leaflet-options.php:4553
+#: ../class-leaflet-options.php:4761
+#: ../class-leaflet-options.php:5771
+#: ../class-leaflet-options.php:6004
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
 #: ../leaflet-layer.php:240
@@ -1394,20 +1453,20 @@ msgstr ""
 #: ../leaflet-list-layers.php:63
 #: ../leaflet-list-layers.php:105
 #: ../leaflet-list-layers.php:155
-#: ../leaflet-list-markers.php:149
-#: ../leaflet-list-markers.php:197
-#: ../leaflet-list-markers.php:242
+#: ../leaflet-list-markers.php:148
+#: ../leaflet-list-markers.php:196
+#: ../leaflet-list-markers.php:241
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
 msgid "Fullscreen"
 msgstr ""
 
-#: ../class-leaflet-options.php:4072
-#: ../class-leaflet-options.php:4559
-#: ../class-leaflet-options.php:4767
-#: ../class-leaflet-options.php:5777
-#: ../class-leaflet-options.php:5963
+#: ../class-leaflet-options.php:4074
+#: ../class-leaflet-options.php:4561
+#: ../class-leaflet-options.php:4769
+#: ../class-leaflet-options.php:5779
+#: ../class-leaflet-options.php:6012
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
 #: ../leaflet-layer.php:240
@@ -1417,224 +1476,237 @@ msgstr ""
 #: ../leaflet-list-layers.php:65
 #: ../leaflet-list-layers.php:107
 #: ../leaflet-list-layers.php:156
-#: ../leaflet-list-markers.php:151
-#: ../leaflet-list-markers.php:199
-#: ../leaflet-list-markers.php:243
+#: ../leaflet-list-markers.php:150
+#: ../leaflet-list-markers.php:198
+#: ../leaflet-list-markers.php:242
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
 msgid "QR code"
 msgstr ""
 
-#: ../class-leaflet-options.php:4102
-#: ../class-leaflet-options.php:4589
+#: ../class-leaflet-options.php:4104
+#: ../class-leaflet-options.php:4591
 msgid "Panel background color"
 msgstr ""
 
-#: ../class-leaflet-options.php:4110
-#: ../class-leaflet-options.php:4597
+#: ../class-leaflet-options.php:4112
+#: ../class-leaflet-options.php:4599
 msgid "Panel text css"
 msgstr ""
 
-#: ../class-leaflet-options.php:4120
-#: ../class-leaflet-options.php:4325
-#: ../class-leaflet-options.php:4607
+#: ../class-leaflet-options.php:4122
+#: ../class-leaflet-options.php:4327
+#: ../class-leaflet-options.php:4609
 msgid "Checked WMS layers"
 msgstr ""
 
-#: ../class-leaflet-options.php:4121
-#: ../class-leaflet-options.php:4326
-#: ../class-leaflet-options.php:4608
+#: ../class-leaflet-options.php:4123
+#: ../class-leaflet-options.php:4328
+#: ../class-leaflet-options.php:4610
 msgid "WMS 1"
 msgstr ""
 
-#: ../class-leaflet-options.php:4129
-#: ../class-leaflet-options.php:4334
-#: ../class-leaflet-options.php:4616
+#: ../class-leaflet-options.php:4131
+#: ../class-leaflet-options.php:4336
+#: ../class-leaflet-options.php:4618
 msgid "WMS 2"
 msgstr ""
 
-#: ../class-leaflet-options.php:4137
-#: ../class-leaflet-options.php:4342
-#: ../class-leaflet-options.php:4624
+#: ../class-leaflet-options.php:4139
+#: ../class-leaflet-options.php:4344
+#: ../class-leaflet-options.php:4626
 msgid "WMS 3"
 msgstr ""
 
-#: ../class-leaflet-options.php:4145
-#: ../class-leaflet-options.php:4350
-#: ../class-leaflet-options.php:4632
+#: ../class-leaflet-options.php:4147
+#: ../class-leaflet-options.php:4352
+#: ../class-leaflet-options.php:4634
 msgid "WMS 4"
 msgstr ""
 
-#: ../class-leaflet-options.php:4153
-#: ../class-leaflet-options.php:4358
-#: ../class-leaflet-options.php:4640
+#: ../class-leaflet-options.php:4155
+#: ../class-leaflet-options.php:4360
+#: ../class-leaflet-options.php:4642
 msgid "WMS 5"
 msgstr ""
 
-#: ../class-leaflet-options.php:4161
-#: ../class-leaflet-options.php:4366
-#: ../class-leaflet-options.php:4648
+#: ../class-leaflet-options.php:4163
+#: ../class-leaflet-options.php:4368
+#: ../class-leaflet-options.php:4650
 msgid "WMS 6"
 msgstr ""
 
-#: ../class-leaflet-options.php:4169
-#: ../class-leaflet-options.php:4374
-#: ../class-leaflet-options.php:4656
+#: ../class-leaflet-options.php:4171
+#: ../class-leaflet-options.php:4376
+#: ../class-leaflet-options.php:4658
 msgid "WMS 7"
 msgstr ""
 
-#: ../class-leaflet-options.php:4177
-#: ../class-leaflet-options.php:4382
-#: ../class-leaflet-options.php:4664
+#: ../class-leaflet-options.php:4179
+#: ../class-leaflet-options.php:4384
+#: ../class-leaflet-options.php:4666
 msgid "WMS 8"
 msgstr ""
 
-#: ../class-leaflet-options.php:4185
-#: ../class-leaflet-options.php:4390
-#: ../class-leaflet-options.php:4672
+#: ../class-leaflet-options.php:4187
+#: ../class-leaflet-options.php:4392
+#: ../class-leaflet-options.php:4674
 msgid "WMS 9"
 msgstr ""
 
-#: ../class-leaflet-options.php:4193
-#: ../class-leaflet-options.php:4398
-#: ../class-leaflet-options.php:4680
+#: ../class-leaflet-options.php:4195
+#: ../class-leaflet-options.php:4400
+#: ../class-leaflet-options.php:4682
 msgid "WMS 10"
 msgstr ""
 
-#: ../class-leaflet-options.php:4213
+#: ../class-leaflet-options.php:4215
 msgid "You can also add markers directly to posts or pages without having to save them to your database previously. You just have to use the shortcode with the attributes mlat and mlon (e.g. <strong>[mapsmarker mlat=\"48.216038\" mlon=\"16.378984\"]</strong>)."
 msgstr ""
 
-#: ../class-leaflet-options.php:4213
+#: ../class-leaflet-options.php:4215
 msgid "Defaults values for markers added directly:"
 msgstr ""
 
-#: ../class-leaflet-options.php:4417
+#: ../class-leaflet-options.php:4419
 msgid "Default values for new layers"
 msgstr ""
 
-#: ../class-leaflet-options.php:4425
+#: ../class-leaflet-options.php:4427
 msgid "Will be used when creating a new layer. All values can be changed afterwards on each layer."
 msgstr ""
 
-#: ../class-leaflet-options.php:4529
+#: ../class-leaflet-options.php:4531
 #: ../leaflet-layer.php:283
 #: ../leaflet-tools.php:628
 msgid "Panel for displaying layer name and API URLs on top of map"
 msgstr ""
 
-#: ../class-leaflet-options.php:4567
+#: ../class-leaflet-options.php:4569
 msgid "not available on multi layer maps"
 msgstr ""
 
-#: ../class-leaflet-options.php:4688
+#: ../class-leaflet-options.php:4690
 msgid "List marker settings"
 msgstr ""
 
-#: ../class-leaflet-options.php:4695
+#: ../class-leaflet-options.php:4697
 #: ../leaflet-layer.php:288
 #: ../leaflet-tools.php:645
 msgid "Display a list of markers under the map"
 msgstr ""
 
-#: ../class-leaflet-options.php:4696
+#: ../class-leaflet-options.php:4698
 msgid "(not available on multi layer maps)"
 msgstr ""
 
-#: ../class-leaflet-options.php:4707
+#: ../class-leaflet-options.php:4709
+#: ../class-leaflet-options.php:5828
+#: ../class-leaflet-options.php:6061
 msgid "Order list of markers by"
 msgstr ""
 
-#: ../class-leaflet-options.php:4713
+#: ../class-leaflet-options.php:4715
+#: ../class-leaflet-options.php:5834
 msgid "marker name"
 msgstr ""
 
-#: ../class-leaflet-options.php:4714
+#: ../class-leaflet-options.php:4716
+#: ../class-leaflet-options.php:5836
+#: ../class-leaflet-options.php:6068
 msgid "created on"
 msgstr ""
 
-#: ../class-leaflet-options.php:4715
+#: ../class-leaflet-options.php:4717
+#: ../class-leaflet-options.php:5838
+#: ../class-leaflet-options.php:6070
 msgid "updated on"
 msgstr ""
 
-#: ../class-leaflet-options.php:4721
+#: ../class-leaflet-options.php:4723
+#: ../class-leaflet-options.php:5845
+#: ../class-leaflet-options.php:6077
 msgid "Sort order"
 msgstr ""
 
-#: ../class-leaflet-options.php:4726
+#: ../class-leaflet-options.php:4728
+#: ../class-leaflet-options.php:5850
+#: ../class-leaflet-options.php:6082
 msgid "ascending"
 msgstr ""
 
-#: ../class-leaflet-options.php:4727
+#: ../class-leaflet-options.php:4729
+#: ../class-leaflet-options.php:5851
+#: ../class-leaflet-options.php:6083
 msgid "descending"
 msgstr ""
 
-#: ../class-leaflet-options.php:4732
+#: ../class-leaflet-options.php:4734
 msgid "Limit"
 msgstr ""
 
-#: ../class-leaflet-options.php:4733
+#: ../class-leaflet-options.php:4735
 msgid "maximum number of markers to display in the list"
 msgstr ""
 
-#: ../class-leaflet-options.php:4742
+#: ../class-leaflet-options.php:4744
 msgid "Visible API links for each marker"
 msgstr ""
 
-#: ../class-leaflet-options.php:4810
+#: ../class-leaflet-options.php:4812
 msgid "Leaflet Maps Marker uses the <a href=\"http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html\" target=\"_blank\">Google Places Autocomplete API</a> to easily find coordinates for places or addresses. This feature is enabled by default. Preview:"
 msgstr ""
 
-#: ../class-leaflet-options.php:4825
+#: ../class-leaflet-options.php:4827
 msgid "You can get better search results if you enable the bounds feature. This allows you to specify the area in which to primarily search for places or addresses. Please note: the results are biased towards, but not restricted to places or addresses contained within these bounds."
 msgstr ""
 
-#: ../class-leaflet-options.php:4845
+#: ../class-leaflet-options.php:4847
 msgid "If enabled, please enter longitude and latitude values below for the corner points of the prefered search area. Below you find an example for Vienna/Austria:"
 msgstr ""
 
-#: ../class-leaflet-options.php:4892
+#: ../class-leaflet-options.php:4894
 msgid "You can also select a search prefix, which automatically gets added to search form when creating a new marker or layer."
 msgstr ""
 
-#: ../class-leaflet-options.php:4912
+#: ../class-leaflet-options.php:4914
 msgid "Prefix to use"
 msgstr ""
 
-#: ../class-leaflet-options.php:4940
+#: ../class-leaflet-options.php:4942
 msgid "Please select your prefered directions provider. This setting will be used for the directions link in the panel on top of marker maps and for the action panel which gets attached to the popup text on each marker if enabled."
 msgstr ""
 
-#: ../class-leaflet-options.php:4946
+#: ../class-leaflet-options.php:4948
 msgid "Use the following directions provider"
 msgstr ""
 
-#: ../class-leaflet-options.php:4951
+#: ../class-leaflet-options.php:4953
 msgid "Google Maps (worldwide)"
 msgstr ""
 
-#: ../class-leaflet-options.php:4952
+#: ../class-leaflet-options.php:4954
 msgid "yournavigation.org (based on OpenStreetMap, worldwide)"
 msgstr ""
 
-#: ../class-leaflet-options.php:4953
+#: ../class-leaflet-options.php:4955
 msgid "openrouteservice.org (based on OpenStreetMap, Europe only)"
 msgstr ""
 
-#: ../class-leaflet-options.php:4959
+#: ../class-leaflet-options.php:4961
 msgid "Attach directions panel to popup text on each marker"
 msgstr ""
 
-#: ../class-leaflet-options.php:4982
+#: ../class-leaflet-options.php:4984
 msgid "Google Maps directions settings"
 msgstr ""
 
-#: ../class-leaflet-options.php:4996
+#: ../class-leaflet-options.php:4998
 msgid "Map type"
 msgstr ""
 
-#: ../class-leaflet-options.php:5001
+#: ../class-leaflet-options.php:5003
 #: ../leaflet-fullscreen.php:154
 #: ../leaflet-fullscreen.php:155
 #: ../leaflet-fullscreen.php:156
@@ -1683,632 +1755,648 @@ msgstr ""
 msgid "Map"
 msgstr ""
 
-#: ../class-leaflet-options.php:5002
+#: ../class-leaflet-options.php:5004
 msgid "Satellite"
 msgstr ""
 
-#: ../class-leaflet-options.php:5003
+#: ../class-leaflet-options.php:5005
 msgid "Hybrid"
 msgstr ""
 
-#: ../class-leaflet-options.php:5004
+#: ../class-leaflet-options.php:5006
 msgid "Terrain"
 msgstr ""
 
-#: ../class-leaflet-options.php:5010
+#: ../class-leaflet-options.php:5012
 msgid "Show traffic layer?"
 msgstr ""
 
-#: ../class-leaflet-options.php:5022
+#: ../class-leaflet-options.php:5024
 msgid "Distance units"
 msgstr ""
 
-#: ../class-leaflet-options.php:5027
+#: ../class-leaflet-options.php:5029
 msgid "metric (km)"
 msgstr ""
 
-#: ../class-leaflet-options.php:5028
+#: ../class-leaflet-options.php:5030
 msgid "imperial (miles)"
 msgstr ""
 
-#: ../class-leaflet-options.php:5034
-#: ../class-leaflet-options.php:5131
+#: ../class-leaflet-options.php:5036
+#: ../class-leaflet-options.php:5133
 msgid "Route type"
 msgstr ""
 
-#: ../class-leaflet-options.php:5035
+#: ../class-leaflet-options.php:5037
 msgid "Avoid highways"
 msgstr ""
 
-#: ../class-leaflet-options.php:5043
+#: ../class-leaflet-options.php:5045
 msgid "Avoid tolls"
 msgstr ""
 
-#: ../class-leaflet-options.php:5051
+#: ../class-leaflet-options.php:5053
 msgid "Public transport (works only in some areas)"
 msgstr ""
 
-#: ../class-leaflet-options.php:5059
+#: ../class-leaflet-options.php:5061
 msgid "Walking directions"
 msgstr ""
 
-#: ../class-leaflet-options.php:5066
+#: ../class-leaflet-options.php:5068
 msgid "Language"
-msgstr ""
-
-#: ../class-leaflet-options.php:5071
-#: ../class-leaflet-options.php:5193
-msgid "English"
-msgstr ""
-
-#: ../class-leaflet-options.php:5072
-#: ../class-leaflet-options.php:5194
-msgid "German"
 msgstr ""
 
 #: ../class-leaflet-options.php:5073
 #: ../class-leaflet-options.php:5195
-msgid "Italian"
+msgid "English"
 msgstr ""
 
 #: ../class-leaflet-options.php:5074
 #: ../class-leaflet-options.php:5196
-msgid "French"
+msgid "German"
 msgstr ""
 
 #: ../class-leaflet-options.php:5075
 #: ../class-leaflet-options.php:5197
-msgid "Spanish"
+msgid "Italian"
 msgstr ""
 
 #: ../class-leaflet-options.php:5076
-msgid "Chinese (simplified)"
+#: ../class-leaflet-options.php:5198
+msgid "French"
 msgstr ""
 
 #: ../class-leaflet-options.php:5077
-msgid "Dutch"
+#: ../class-leaflet-options.php:5199
+msgid "Spanish"
 msgstr ""
 
 #: ../class-leaflet-options.php:5078
-msgid "Japanese"
+msgid "Chinese (simplified)"
 msgstr ""
 
 #: ../class-leaflet-options.php:5079
-msgid "Catalan"
+msgid "Dutch"
 msgstr ""
 
 #: ../class-leaflet-options.php:5080
-msgid "Galego"
+msgid "Japanese"
 msgstr ""
 
 #: ../class-leaflet-options.php:5081
+msgid "Catalan"
+msgstr ""
+
+#: ../class-leaflet-options.php:5082
+msgid "Galego"
+msgstr ""
+
+#: ../class-leaflet-options.php:5083
 msgid "Euskara"
 msgstr ""
 
-#: ../class-leaflet-options.php:5087
+#: ../class-leaflet-options.php:5089
 msgid "Overview map"
 msgstr ""
 
-#: ../class-leaflet-options.php:5093
+#: ../class-leaflet-options.php:5095
 #: ../leaflet-list-layers.php:143
-#: ../leaflet-list-markers.php:223
+#: ../leaflet-list-markers.php:222
 msgid "visible"
 msgstr ""
 
-#: ../class-leaflet-options.php:5104
+#: ../class-leaflet-options.php:5106
 msgid "yournavigation.org settings"
 msgstr ""
 
-#: ../class-leaflet-options.php:5118
+#: ../class-leaflet-options.php:5120
 msgid "Type of transport"
 msgstr ""
 
-#: ../class-leaflet-options.php:5123
+#: ../class-leaflet-options.php:5125
 msgid "Motorcar"
 msgstr ""
 
-#: ../class-leaflet-options.php:5124
+#: ../class-leaflet-options.php:5126
 msgid "Bicycle"
 msgstr ""
 
-#: ../class-leaflet-options.php:5125
+#: ../class-leaflet-options.php:5127
 msgid "Foot"
 msgstr ""
 
-#: ../class-leaflet-options.php:5136
-#: ../class-leaflet-options.php:5179
+#: ../class-leaflet-options.php:5138
+#: ../class-leaflet-options.php:5181
 msgid "fastest route"
 msgstr ""
 
-#: ../class-leaflet-options.php:5137
-#: ../class-leaflet-options.php:5180
+#: ../class-leaflet-options.php:5139
+#: ../class-leaflet-options.php:5182
 msgid "shortest route"
 msgstr ""
 
-#: ../class-leaflet-options.php:5143
+#: ../class-leaflet-options.php:5145
 msgid "Gosmore instance to calculate the route"
 msgstr ""
 
-#: ../class-leaflet-options.php:5148
+#: ../class-leaflet-options.php:5150
 msgid "mapnik (for normal routing using car, bicycle or foot)"
 msgstr ""
 
-#: ../class-leaflet-options.php:5149
+#: ../class-leaflet-options.php:5151
 msgid "cn (for using bicycle routing using cycle route networks only)"
 msgstr ""
 
-#: ../class-leaflet-options.php:5160
+#: ../class-leaflet-options.php:5162
 msgid "openrouteservice.org settings"
 msgstr ""
 
-#: ../class-leaflet-options.php:5174
+#: ../class-leaflet-options.php:5176
 msgid "Route preferences"
 msgstr ""
 
-#: ../class-leaflet-options.php:5181
+#: ../class-leaflet-options.php:5183
 msgid "route for pedestrians"
 msgstr ""
 
-#: ../class-leaflet-options.php:5182
+#: ../class-leaflet-options.php:5184
 msgid "route for bicycles"
 msgstr ""
 
-#: ../class-leaflet-options.php:5188
+#: ../class-leaflet-options.php:5190
 msgid "Language of route instructions"
 msgstr ""
 
-#: ../class-leaflet-options.php:5203
+#: ../class-leaflet-options.php:5205
 msgid "No motorways?"
 msgstr ""
 
-#: ../class-leaflet-options.php:5208
-#: ../class-leaflet-options.php:5220
-msgid "false"
-msgstr ""
-
-#: ../class-leaflet-options.php:5209
-#: ../class-leaflet-options.php:5221
-msgid "true"
-msgstr ""
-
-#: ../class-leaflet-options.php:5215
+#: ../class-leaflet-options.php:5217
 msgid "No tollways?"
 msgstr ""
 
-#: ../class-leaflet-options.php:5239
+#: ../class-leaflet-options.php:5241
 msgid "Markers created with Leaflet Maps Marker can also be displayed via <a href=\"http://en.wikipedia.org/wiki/Augmented_reality\" target=\"_blank\">Augmented-Reality technology</a> on mobile devices. As a first steps, an API to <a href=\"http://www.wikitude.com\" target=\"_blank\">Wikitude</a> has been implemented. APIs to other Augmented-Reality-Providers (like <a href=\"http://www.layar.com\" target=\"_blank\">Layar</a> or <a href=\"http://www.junaio.de\" target=\"_blank\">Junaio</a>) will probably follow in one of the next versions. Sample screenshots:"
 msgstr ""
 
-#: ../class-leaflet-options.php:5249
+#: ../class-leaflet-options.php:5251
 msgid "Wikitude settings"
 msgstr ""
 
-#: ../class-leaflet-options.php:5257
+#: ../class-leaflet-options.php:5259
 msgid "Please visit <a href=\"http://www.mapsmarker.com/wikitude\" target=\"_blank\">http://www.mapsmarker.com/wikitude</a> for instructions how to submit your marker or layer maps to Wikitude."
 msgstr ""
 
-#: ../class-leaflet-options.php:5262
+#: ../class-leaflet-options.php:5264
 msgid "Provider name"
 msgstr ""
 
-#: ../class-leaflet-options.php:5263
+#: ../class-leaflet-options.php:5265
 msgid "Identifies the content provider or content channel, no spaces/special characters"
 msgstr ""
 
-#: ../class-leaflet-options.php:5270
+#: ../class-leaflet-options.php:5272
 msgid "Provider URL"
 msgstr ""
 
-#: ../class-leaflet-options.php:5271
+#: ../class-leaflet-options.php:5273
 msgid "Link to content provider"
 msgstr ""
 
-#: ../class-leaflet-options.php:5278
+#: ../class-leaflet-options.php:5280
 msgid "Logo"
 msgstr ""
 
-#: ../class-leaflet-options.php:5279
+#: ../class-leaflet-options.php:5281
 msgid "The logo is displayed on the left bottom corner on Wikitude when an icon is selected - 96x96 pixel, transparent PNG"
 msgstr ""
 
-#: ../class-leaflet-options.php:5287
+#: ../class-leaflet-options.php:5289
 msgid "The icon is displayed in the cam view of Wikitude to indicate a marker - 32x32 pixel, transparent PNG"
 msgstr ""
 
-#: ../class-leaflet-options.php:5294
+#: ../class-leaflet-options.php:5296
 msgid "E-Mail"
 msgstr ""
 
-#: ../class-leaflet-options.php:5295
+#: ../class-leaflet-options.php:5297
 msgid "Optional: displayed on each marker; used for sending an email directly from Wikitude"
 msgstr ""
 
-#: ../class-leaflet-options.php:5302
+#: ../class-leaflet-options.php:5304
 msgid "Phone"
 msgstr ""
 
-#: ../class-leaflet-options.php:5303
+#: ../class-leaflet-options.php:5305
 msgid "Optional: example: +4312345 - when a phone number is given, Wikitude displays a \"call me\" button in the bubble; used for every marker."
 msgstr ""
 
-#: ../class-leaflet-options.php:5310
+#: ../class-leaflet-options.php:5312
 msgid "Attachment"
 msgstr ""
 
-#: ../class-leaflet-options.php:5311
+#: ../class-leaflet-options.php:5313
 msgid "Optional: displayed on each marker; can be a link to a resource (image, PDF file...). You could use this to issue coupons or vouchers for potential clients that found you via Wikitude."
 msgstr ""
 
-#: ../class-leaflet-options.php:5318
+#: ../class-leaflet-options.php:5320
 msgid "Search radius (in meter)"
 msgstr ""
 
-#: ../class-leaflet-options.php:5319
+#: ../class-leaflet-options.php:5321
 msgid "Retrieve POIs (Points of Interests) from database within this search radius in meters from the current location of the Wikitude user"
 msgstr ""
 
-#: ../class-leaflet-options.php:5326
+#: ../class-leaflet-options.php:5328
 msgid "Maximum number of POIs"
 msgstr ""
 
-#: ../class-leaflet-options.php:5327
+#: ../class-leaflet-options.php:5329
 msgid "Used if Wikitude does not pass the variable maxNumberofPois - 50 is the maximum recommended"
 msgstr ""
 
-#: ../class-leaflet-options.php:5358
+#: ../class-leaflet-options.php:5360
 msgid "User role needed for adding and editing markers/layers"
 msgstr ""
 
-#: ../class-leaflet-options.php:5359
+#: ../class-leaflet-options.php:5361
 msgid "Note: the settings and tools pages are always visible to admins only."
-msgstr ""
-
-#: ../class-leaflet-options.php:5363
-#: ../class-leaflet-options.php:5378
-msgid "Administrator (Capability activate_plugins)"
-msgstr ""
-
-#: ../class-leaflet-options.php:5364
-#: ../class-leaflet-options.php:5379
-msgid "Editor (Capability moderate_comments)"
 msgstr ""
 
 #: ../class-leaflet-options.php:5365
 #: ../class-leaflet-options.php:5380
-msgid "Author (Capability edit_published_posts)"
+msgid "Administrator (Capability activate_plugins)"
 msgstr ""
 
 #: ../class-leaflet-options.php:5366
 #: ../class-leaflet-options.php:5381
-msgid "Contributor (Capability edit_posts)"
+msgid "Editor (Capability moderate_comments)"
 msgstr ""
 
 #: ../class-leaflet-options.php:5367
 #: ../class-leaflet-options.php:5382
+msgid "Author (Capability edit_published_posts)"
+msgstr ""
+
+#: ../class-leaflet-options.php:5368
+#: ../class-leaflet-options.php:5383
+msgid "Contributor (Capability edit_posts)"
+msgstr ""
+
+#: ../class-leaflet-options.php:5369
+#: ../class-leaflet-options.php:5384
 msgid "Subscriber (Capability read)"
 msgstr ""
 
-#: ../class-leaflet-options.php:5373
+#: ../class-leaflet-options.php:5375
 msgid "User role needed for deleting markers/layers"
 msgstr ""
 
-#: ../class-leaflet-options.php:5374
+#: ../class-leaflet-options.php:5376
 msgid "Note: the settings and tool pages are always visible to admins only."
 msgstr ""
 
-#: ../class-leaflet-options.php:5387
-#: ../leaflet-list-markers.php:99
-#: ../leaflet-list-markers.php:311
+#: ../class-leaflet-options.php:5389
+#: ../leaflet-list-markers.php:98
+#: ../leaflet-list-markers.php:310
 msgid "Markers per page"
 msgstr ""
 
-#: ../class-leaflet-options.php:5388
+#: ../class-leaflet-options.php:5390
 msgid "How many markers should be listed on one page at the page \"list all markers\"?"
 msgstr ""
 
-#: ../class-leaflet-options.php:5395
-#: ../class-leaflet-options.php:5753
-#: ../class-leaflet-options.php:5939
+#: ../class-leaflet-options.php:5397
+#: ../class-leaflet-options.php:5755
+#: ../class-leaflet-options.php:5988
 #: ../leaflet-layer.php:542
 #: ../leaflet-layer.php:586
 #: ../leaflet-list-layers.php:59
 #: ../leaflet-list-layers.php:101
-#: ../leaflet-list-markers.php:145
-#: ../leaflet-list-markers.php:193
+#: ../leaflet-list-markers.php:144
+#: ../leaflet-list-markers.php:192
 msgid "Shortcode"
 msgstr ""
 
-#: ../class-leaflet-options.php:5396
+#: ../class-leaflet-options.php:5398
 msgid "Shortcode to add markers or layers into articles or pages  - Example: [mapsmarker marker=\"1\"].<br/> Attention: if you change the shortcode after having embedded shortcodes into posts/Pages, the shortcode on these specific articles/pages has to be changed also manually - otherwise these markers/layers will not be show on frontend!"
 msgstr ""
 
-#: ../class-leaflet-options.php:5404
+#: ../class-leaflet-options.php:5406
 msgid "TinyMCE button"
 msgstr ""
 
-#: ../class-leaflet-options.php:5405
+#: ../class-leaflet-options.php:5407
 msgid "if enabled, a button on post/page edit screen gets added for easily searching and inserting maps"
 msgstr ""
 
-#: ../class-leaflet-options.php:5416
+#: ../class-leaflet-options.php:5418
 msgid "Add GeoRSS feed to &lt;head&gt;"
 msgstr ""
 
-#: ../class-leaflet-options.php:5417
+#: ../class-leaflet-options.php:5419
 msgid "if enabled, a GeoRSS feed for all markers will be added to the &lt;head&gt;-section of the website, allowing users to subscribe to your markers"
 msgstr ""
 
-#: ../class-leaflet-options.php:5428
+#: ../class-leaflet-options.php:5430
 msgid "Wordpress Admin Bar integration"
 msgstr ""
 
-#: ../class-leaflet-options.php:5429
+#: ../class-leaflet-options.php:5431
 msgid "show or hide drop down menu for Leaflet Maps Marker in Wordpress Admin Bar"
 msgstr ""
 
-#: ../class-leaflet-options.php:5440
+#: ../class-leaflet-options.php:5442
 msgid "Global statistics"
 msgstr ""
 
-#: ../class-leaflet-options.php:5441
+#: ../class-leaflet-options.php:5443
 msgid "Anonymous marker/layer hit counter"
 msgstr ""
 
-#: ../class-leaflet-options.php:5451
+#: ../class-leaflet-options.php:5453
 msgid "QR code image size"
 msgstr ""
 
-#: ../class-leaflet-options.php:5452
+#: ../class-leaflet-options.php:5454
 msgid "Width and height in pixel of QR code image for marker/layer standalone fullscreen map links"
 msgstr ""
 
-#: ../class-leaflet-options.php:5472
+#: ../class-leaflet-options.php:5474
 msgid "Choose how marker names should be displayed in KML files"
 msgstr ""
 
-#: ../class-leaflet-options.php:5478
+#: ../class-leaflet-options.php:5480
 msgid "Marker names in KML"
 msgstr ""
 
-#: ../class-leaflet-options.php:5485
+#: ../class-leaflet-options.php:5487
 msgid "put in front of popup-text"
 msgstr ""
 
-#: ../class-leaflet-options.php:5503
+#: ../class-leaflet-options.php:5505
 msgid "The following settings will be used for all marker and layer maps"
 msgstr ""
 
-#: ../class-leaflet-options.php:5510
+#: ../class-leaflet-options.php:5512
 msgid "Whether the map be draggable with mouse/touch or not."
 msgstr ""
 
-#: ../class-leaflet-options.php:5522
+#: ../class-leaflet-options.php:5524
 msgid "Whether the map can be zoomed by touch-dragging with two fingers."
 msgstr ""
 
-#: ../class-leaflet-options.php:5534
+#: ../class-leaflet-options.php:5536
 msgid "Whether the map can be zoomed by using the mouse wheel."
 msgstr ""
 
-#: ../class-leaflet-options.php:5546
+#: ../class-leaflet-options.php:5548
 msgid "Whether the map can be zoomed in by double clicking on it."
 msgstr ""
 
-#: ../class-leaflet-options.php:5558
+#: ../class-leaflet-options.php:5560
 msgid "Whether the zoom control is added to the map by default."
 msgstr ""
 
-#: ../class-leaflet-options.php:5570
+#: ../class-leaflet-options.php:5572
 msgid "Whether the map automatically handles browser window resize to update itself."
 msgstr ""
 
-#: ../class-leaflet-options.php:5582
+#: ../class-leaflet-options.php:5584
 msgid "Set it to false if you do not want popups to close when user clicks the map."
 msgstr ""
 
-#: ../class-leaflet-options.php:5593
+#: ../class-leaflet-options.php:5595
 msgid "Coordinate Reference System"
 msgstr ""
 
-#: ../class-leaflet-options.php:5594
+#: ../class-leaflet-options.php:5596
 msgid "Used for created maps - do not change this if you are not sure what it means!"
 msgstr ""
 
-#: ../class-leaflet-options.php:5598
+#: ../class-leaflet-options.php:5600
 msgid "EPSG:3857 (Spherical Mercator), used by most of commercial map providers (CloudMade, Google, Yahoo, Bing, etc.)"
 msgstr ""
 
-#: ../class-leaflet-options.php:5599
+#: ../class-leaflet-options.php:5601
 msgid "EPSG:4326 (Plate Carree), very popular among GIS enthusiasts"
 msgstr ""
 
-#: ../class-leaflet-options.php:5600
+#: ../class-leaflet-options.php:5602
 msgid "EPSG:4326 (Mercator), used by some map providers."
 msgstr ""
 
-#: ../class-leaflet-options.php:5618
+#: ../class-leaflet-options.php:5620
 msgid "Please select the columns which should be available on the page \"List all markers\""
 msgstr ""
 
-#: ../class-leaflet-options.php:5624
-#: ../class-leaflet-options.php:5826
+#: ../class-leaflet-options.php:5626
+#: ../class-leaflet-options.php:5875
 msgid "Columns to show"
 msgstr ""
 
-#: ../class-leaflet-options.php:5641
+#: ../class-leaflet-options.php:5643
 #: ../leaflet-layer.php:518
 #: ../leaflet-layer.php:562
-#: ../leaflet-list-markers.php:117
-#: ../leaflet-list-markers.php:165
+#: ../leaflet-list-markers.php:116
+#: ../leaflet-list-markers.php:164
 #: ../leaflet-marker.php:220
 msgid "Marker name"
 msgstr ""
 
-#: ../class-leaflet-options.php:5649
+#: ../class-leaflet-options.php:5651
 #: ../leaflet-layer.php:520
 #: ../leaflet-layer.php:564
-#: ../leaflet-list-markers.php:119
-#: ../leaflet-list-markers.php:167
+#: ../leaflet-list-markers.php:118
+#: ../leaflet-list-markers.php:166
 #: ../leaflet-marker.php:433
 #: ../leaflet-tools.php:441
 msgid "Popup text"
 msgstr ""
 
-#: ../class-leaflet-options.php:5657
-#: ../class-leaflet-options.php:5859
+#: ../class-leaflet-options.php:5659
+#: ../class-leaflet-options.php:5908
 #: ../leaflet-layer.php:530
 #: ../leaflet-layer.php:574
 #: ../leaflet-list-layers.php:47
 #: ../leaflet-list-layers.php:89
-#: ../leaflet-list-markers.php:133
-#: ../leaflet-list-markers.php:181
+#: ../leaflet-list-markers.php:132
+#: ../leaflet-list-markers.php:180
 #: ../leaflet-tools.php:260
 #: ../leaflet-tools.php:511
 msgid "Basemap"
 msgstr ""
 
-#: ../class-leaflet-options.php:5665
-#: ../leaflet-list-markers.php:84
-#: ../leaflet-list-markers.php:121
-#: ../leaflet-list-markers.php:169
+#: ../class-leaflet-options.php:5667
+#: ../leaflet-list-markers.php:83
+#: ../leaflet-list-markers.php:120
+#: ../leaflet-list-markers.php:168
 #: ../leaflet-marker.php:224
 #: ../leaflet-tools.php:229
 msgid "Layer"
 msgstr ""
 
-#: ../class-leaflet-options.php:5673
+#: ../class-leaflet-options.php:5675
 #: ../leaflet-layer.php:524
 #: ../leaflet-layer.php:568
-#: ../leaflet-list-markers.php:127
-#: ../leaflet-list-markers.php:175
+#: ../leaflet-list-markers.php:126
+#: ../leaflet-list-markers.php:174
 #: ../leaflet-marker.php:245
 msgid "Coordinates"
 msgstr ""
 
-#: ../class-leaflet-options.php:5689
+#: ../class-leaflet-options.php:5691
 #: ../leaflet-layer.php:522
 #: ../leaflet-layer.php:566
-#: ../leaflet-list-markers.php:123
-#: ../leaflet-list-markers.php:171
+#: ../leaflet-list-markers.php:122
+#: ../leaflet-list-markers.php:170
 #: ../leaflet-tools.php:425
 msgid "Popup status"
 msgstr ""
 
-#: ../class-leaflet-options.php:5697
-#: ../class-leaflet-options.php:5891
+#: ../class-leaflet-options.php:5699
+#: ../class-leaflet-options.php:5940
 #: ../leaflet-list-layers.php:43
 #: ../leaflet-list-layers.php:85
-#: ../leaflet-list-markers.php:125
-#: ../leaflet-list-markers.php:173
+#: ../leaflet-list-markers.php:124
+#: ../leaflet-list-markers.php:172
 msgid "Panel status"
 msgstr ""
 
-#: ../class-leaflet-options.php:5705
-#: ../class-leaflet-options.php:5883
+#: ../class-leaflet-options.php:5707
+#: ../class-leaflet-options.php:5932
 #: ../leaflet-layer.php:263
 #: ../leaflet-layer.php:526
 #: ../leaflet-layer.php:570
 #: ../leaflet-list-layers.php:41
 #: ../leaflet-list-layers.php:83
-#: ../leaflet-list-markers.php:129
-#: ../leaflet-list-markers.php:177
+#: ../leaflet-list-markers.php:128
+#: ../leaflet-list-markers.php:176
 #: ../leaflet-marker.php:257
 #: ../leaflet-tools.php:324
 #: ../leaflet-tools.php:575
 msgid "Map size"
 msgstr ""
 
-#: ../class-leaflet-options.php:5713
-#: ../class-leaflet-options.php:5899
+#: ../class-leaflet-options.php:5715
+#: ../class-leaflet-options.php:5948
 #: ../leaflet-layer.php:532
 #: ../leaflet-layer.php:576
 #: ../leaflet-list-layers.php:49
 #: ../leaflet-list-layers.php:91
-#: ../leaflet-list-markers.php:135
-#: ../leaflet-list-markers.php:183
+#: ../leaflet-list-markers.php:134
+#: ../leaflet-list-markers.php:182
 msgid "Created by"
 msgstr ""
 
-#: ../class-leaflet-options.php:5721
-#: ../class-leaflet-options.php:5907
+#: ../class-leaflet-options.php:5723
+#: ../class-leaflet-options.php:5956
 #: ../leaflet-layer.php:534
 #: ../leaflet-layer.php:578
 #: ../leaflet-list-layers.php:51
 #: ../leaflet-list-layers.php:93
-#: ../leaflet-list-markers.php:137
-#: ../leaflet-list-markers.php:185
+#: ../leaflet-list-markers.php:136
+#: ../leaflet-list-markers.php:184
 msgid "Created on"
 msgstr ""
 
-#: ../class-leaflet-options.php:5729
-#: ../class-leaflet-options.php:5915
+#: ../class-leaflet-options.php:5731
+#: ../class-leaflet-options.php:5964
 #: ../leaflet-layer.php:536
 #: ../leaflet-layer.php:580
 #: ../leaflet-list-layers.php:53
 #: ../leaflet-list-layers.php:95
-#: ../leaflet-list-markers.php:139
-#: ../leaflet-list-markers.php:187
+#: ../leaflet-list-markers.php:138
+#: ../leaflet-list-markers.php:186
 msgid "Updated by"
 msgstr ""
 
-#: ../class-leaflet-options.php:5737
-#: ../class-leaflet-options.php:5923
+#: ../class-leaflet-options.php:5739
+#: ../class-leaflet-options.php:5972
 #: ../leaflet-layer.php:538
 #: ../leaflet-layer.php:582
 #: ../leaflet-list-layers.php:55
 #: ../leaflet-list-layers.php:97
-#: ../leaflet-list-markers.php:141
-#: ../leaflet-list-markers.php:189
+#: ../leaflet-list-markers.php:140
+#: ../leaflet-list-markers.php:188
 msgid "Updated on"
 msgstr ""
 
-#: ../class-leaflet-options.php:5745
-#: ../class-leaflet-options.php:5931
+#: ../class-leaflet-options.php:5747
+#: ../class-leaflet-options.php:5980
 #: ../leaflet-layer.php:540
 #: ../leaflet-layer.php:584
 #: ../leaflet-list-layers.php:57
 #: ../leaflet-list-layers.php:99
-#: ../leaflet-list-markers.php:143
-#: ../leaflet-list-markers.php:191
+#: ../leaflet-list-markers.php:142
+#: ../leaflet-list-markers.php:190
 msgid "Controlbox status"
 msgstr ""
 
-#: ../class-leaflet-options.php:5820
-msgid "Please select the columns which should be available on the page \"List all layers\""
+#: ../class-leaflet-options.php:5822
+msgid "Please select order by and sort order for \"List all markers\" page"
 msgstr ""
 
 #: ../class-leaflet-options.php:5835
+msgid "assigned layer"
+msgstr ""
+
+#: ../class-leaflet-options.php:5837
+#: ../class-leaflet-options.php:6069
+msgid "created by"
+msgstr ""
+
+#: ../class-leaflet-options.php:5839
+#: ../class-leaflet-options.php:6071
+msgid "updated by"
+msgstr ""
+
+#: ../class-leaflet-options.php:5869
+msgid "Please select the columns which should be available on the page \"List all layers\""
+msgstr ""
+
+#: ../class-leaflet-options.php:5884
 #: ../leaflet-list-layers.php:35
 #: ../leaflet-list-layers.php:77
 msgid "Type"
 msgstr ""
 
-#: ../class-leaflet-options.php:5843
+#: ../class-leaflet-options.php:5892
 #: ../leaflet-layer.php:246
 msgid "Layer name"
 msgstr ""
 
-#: ../class-leaflet-options.php:5851
+#: ../class-leaflet-options.php:5900
 msgid "Number of markers"
 msgstr ""
 
-#: ../class-leaflet-options.php:5867
+#: ../class-leaflet-options.php:5916
 #: ../leaflet-layer.php:250
 #: ../leaflet-list-layers.php:39
 #: ../leaflet-list-layers.php:81
 msgid "Layer center"
 msgstr ""
 
-#: ../class-leaflet-options.php:6002
+#: ../class-leaflet-options.php:6055
+msgid "Please select order by and sort order for \"List all layers\" page"
+msgstr ""
+
+#: ../class-leaflet-options.php:6067
+msgid "layer name"
+msgstr ""
+
+#: ../class-leaflet-options.php:6096
 msgid "Reset Settings"
 msgstr ""
 
-#: ../class-leaflet-options.php:6006
+#: ../class-leaflet-options.php:6100
 msgid "Check this box and click \"Save Changes\" below to reset plugin options to their defaults."
 msgstr ""
 
 #: ../leaflet-admin-header.php:16
-#: ../leaflet-list-markers.php:90
+#: ../leaflet-list-markers.php:89
 #: ../leaflet-maps-marker.php:685
 #: ../leaflet-maps-marker.php:737
 msgid "List all markers"
@@ -2347,79 +2435,79 @@ msgstr ""
 msgid "Help & Credits"
 msgstr ""
 
-#: ../leaflet-admin-header.php:58
+#: ../leaflet-admin-header.php:79
 msgid "remove message"
 msgstr ""
 
-#: ../leaflet-admin-header.php:67
+#: ../leaflet-admin-header.php:88
 msgid "<strong>Warning: you are using the plugin jQuery Colorbox which is causing maps to break!</strong><br/><br/>Here is how to fix this:<br/>1. click on to \"Settings\" / \"jQuery Colorbox\" in your WordPress admin menu<br/>2. Uncheck the setting \"Automate jQuery Colorbox for all images in pages, posts and galleries:\"<br/>3. check the setting \"Automate jQuery Colorbox for images in WordPress galleries only:\" instead<br/>4. save changes<br/><br/>This message will disappear automatically when the jQuery Colorbox option was updated."
 msgstr ""
 
-#: ../leaflet-admin-header.php:73
+#: ../leaflet-admin-header.php:94
 msgid "<strong>Warning: you are using the plugin cformsII which is causing the TinyMCE editor to break when creating new maps!</strong><br/><br/>Here is how to fix this:<br/>1. click on to \"cformsII\" / \"Global Settings\" in your WordPress admin menu<br/>2. open the tab \"WP Editor Button support\"<br/>3. check the option \"Fix TinyMCE error\"<br/>4. save changes<br/><br/>If you do not see this option in your settings, please upgrade to the latest version first (this has to be done manually - see plugin website http://www.deliciousdays.com/cforms-plugin/ for details)<br/><br/>This message will disappear automatically when the cformsII option \"Fix TinyMCE error\" is checked."
 msgstr ""
 
-#: ../leaflet-admin-header.php:77
+#: ../leaflet-admin-header.php:98
 msgid "<strong>Warning: you are using the outdated plugin WP Google Analytics which is incompatible with Leaflet Maps Marker. Please update to a more current Google analytics plugin like http://wordpress.org/extend/plugins/google-analytics-for-wordpress/"
 msgstr ""
 
-#: ../leaflet-admin-header.php:107
+#: ../leaflet-admin-header.php:146
 msgid "Message"
 msgstr ""
 
-#: ../leaflet-admin-header.php:110
+#: ../leaflet-admin-header.php:149
 msgid "If you like to donate a certain amount of money to show your support, you can also use Paypal. If you don´t have a Paypal account, you can use your credit card or bank account (where available). Please click on the paypal image to proceed to the donation form."
 msgstr ""
 
-#: ../leaflet-admin-header.php:113
+#: ../leaflet-admin-header.php:152
 msgid "The easiest way to support this plugin is to buy something from Amazon by using this referrer link. Note: this doesn´t cost you anything as your purchase volume won´t be increased, but I will receive 6 per cent of your purchase volume as a referral fee."
 msgstr ""
 
-#: ../leaflet-admin-header.php:114
+#: ../leaflet-admin-header.php:153
 msgid "Another way to show your support for this plugin is to buy something from my Amazon wishlist, respectively sending me a greeting card worth from 15 to 500 $ with a personal note, which I would very much appreciate."
 msgstr ""
 
-#: ../leaflet-admin-header.php:120
+#: ../leaflet-admin-header.php:159
 msgid "A message from the plugin´s author"
 msgstr ""
 
-#: ../leaflet-admin-header.php:120
+#: ../leaflet-admin-header.php:159
 msgid "Show website of plugin author"
 msgstr ""
 
-#: ../leaflet-admin-header.php:121
+#: ../leaflet-admin-header.php:160
 msgid "It is hard to continue development and support for Leaflet Maps Marker-plugin without contributions from users like you."
 msgstr ""
 
-#: ../leaflet-admin-header.php:121
+#: ../leaflet-admin-header.php:160
 msgid "If you enjoy using the plugin - <strong>particularly within a commercial context</strong> - please consider making a donation."
 msgstr ""
 
-#: ../leaflet-admin-header.php:121
+#: ../leaflet-admin-header.php:160
 msgid "Your donation help keeping the plugin free for everyone and allow me to spend more time on developing, maintaining and support."
 msgstr ""
 
-#: ../leaflet-admin-header.php:121
+#: ../leaflet-admin-header.php:160
 msgid "I´d be happy to accept your donation! Thanks!"
 msgstr ""
 
-#: ../leaflet-admin-header.php:121
+#: ../leaflet-admin-header.php:160
 msgid "For more information on how to donate, please visit"
 msgstr ""
 
-#: ../leaflet-admin-header.php:121
+#: ../leaflet-admin-header.php:160
 msgid "please rate this plugin on wordpress.org"
 msgstr ""
 
-#: ../leaflet-admin-header.php:121
+#: ../leaflet-admin-header.php:160
 msgid "Rate plugin"
 msgstr ""
 
 #: ../leaflet-exportcsv.php:29
 #: ../leaflet-layer.php:20
 #: ../leaflet-list-markers.php:18
-#: ../leaflet-list-markers.php:74
-#: ../leaflet-list-markers.php:81
+#: ../leaflet-list-markers.php:73
+#: ../leaflet-list-markers.php:80
 #: ../leaflet-marker.php:23
 #: ../leaflet-tools.php:18
 msgid "Security check failed - please call this function from the according Leaflet Maps Marker admin page!"
@@ -2478,8 +2566,8 @@ msgstr ""
 #: ../leaflet-layer.php:590
 #: ../leaflet-list-layers.php:63
 #: ../leaflet-list-layers.php:105
-#: ../leaflet-list-markers.php:149
-#: ../leaflet-list-markers.php:197
+#: ../leaflet-list-markers.php:148
+#: ../leaflet-list-markers.php:196
 #: ../leaflet-maps-marker.php:277
 #: ../leaflet-maps-marker.php:301
 #: ../leaflet-maps-marker.php:383
@@ -2501,8 +2589,8 @@ msgstr ""
 #: ../leaflet-layer.php:592
 #: ../leaflet-list-layers.php:65
 #: ../leaflet-list-layers.php:107
-#: ../leaflet-list-markers.php:151
-#: ../leaflet-list-markers.php:199
+#: ../leaflet-list-markers.php:150
+#: ../leaflet-list-markers.php:198
 #: ../leaflet-maps-marker.php:280
 #: ../leaflet-maps-marker.php:304
 #: ../leaflet-maps-marker.php:389
@@ -2712,8 +2800,8 @@ msgstr ""
 #: ../leaflet-layer.php:588
 #: ../leaflet-list-layers.php:61
 #: ../leaflet-list-layers.php:103
-#: ../leaflet-list-markers.php:147
-#: ../leaflet-list-markers.php:195
+#: ../leaflet-list-markers.php:146
+#: ../leaflet-list-markers.php:194
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
@@ -2727,8 +2815,8 @@ msgstr ""
 #: ../leaflet-layer.php:594
 #: ../leaflet-list-layers.php:67
 #: ../leaflet-list-layers.php:109
-#: ../leaflet-list-markers.php:153
-#: ../leaflet-list-markers.php:201
+#: ../leaflet-list-markers.php:152
+#: ../leaflet-list-markers.php:200
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
@@ -2742,8 +2830,8 @@ msgstr ""
 #: ../leaflet-layer.php:596
 #: ../leaflet-list-layers.php:69
 #: ../leaflet-list-layers.php:111
-#: ../leaflet-list-markers.php:155
-#: ../leaflet-list-markers.php:203
+#: ../leaflet-list-markers.php:154
+#: ../leaflet-list-markers.php:202
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
@@ -2757,8 +2845,8 @@ msgstr ""
 #: ../leaflet-layer.php:598
 #: ../leaflet-list-layers.php:71
 #: ../leaflet-list-layers.php:113
-#: ../leaflet-list-markers.php:157
-#: ../leaflet-list-markers.php:205
+#: ../leaflet-list-markers.php:156
+#: ../leaflet-list-markers.php:204
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
@@ -2875,7 +2963,7 @@ msgstr ""
 #: ../leaflet-layer.php:264
 #: ../leaflet-layer.php:619
 #: ../leaflet-list-layers.php:148
-#: ../leaflet-list-markers.php:237
+#: ../leaflet-list-markers.php:236
 #: ../leaflet-marker.php:258
 #: ../leaflet-tools.php:327
 #: ../leaflet-tools.php:578
@@ -2885,7 +2973,7 @@ msgstr ""
 #: ../leaflet-layer.php:268
 #: ../leaflet-layer.php:619
 #: ../leaflet-list-layers.php:148
-#: ../leaflet-list-markers.php:237
+#: ../leaflet-list-markers.php:236
 #: ../leaflet-marker.php:263
 #: ../leaflet-tools.php:332
 #: ../leaflet-tools.php:583
@@ -2924,7 +3012,7 @@ msgstr ""
 
 #: ../leaflet-layer.php:362
 #: ../leaflet-layer.php:646
-#: ../leaflet-list-markers.php:261
+#: ../leaflet-list-markers.php:260
 #: ../leaflet-marker.php:204
 msgid "Edit marker"
 msgstr ""
@@ -2932,7 +3020,7 @@ msgstr ""
 #: ../leaflet-layer.php:362
 #: ../leaflet-layer.php:646
 #: ../leaflet-list-layers.php:173
-#: ../leaflet-list-markers.php:261
+#: ../leaflet-list-markers.php:260
 msgid "edit"
 msgstr ""
 
@@ -2963,7 +3051,7 @@ msgstr ""
 
 #: ../leaflet-layer.php:447
 #: ../leaflet-layer.php:506
-#: ../leaflet-list-markers.php:98
+#: ../leaflet-list-markers.php:97
 #: ../leaflet-tools.php:193
 #: ../leaflet-tools.php:197
 #: ../leaflet-tools.php:203
@@ -3024,8 +3112,8 @@ msgstr ""
 #: ../leaflet-layer.php:506
 #: ../leaflet-list-layers.php:23
 #: ../leaflet-list-layers.php:198
-#: ../leaflet-list-markers.php:97
-#: ../leaflet-list-markers.php:309
+#: ../leaflet-list-markers.php:96
+#: ../leaflet-list-markers.php:308
 msgid "Total"
 msgstr ""
 
@@ -3041,8 +3129,8 @@ msgstr ""
 
 #: ../leaflet-layer.php:607
 #: ../leaflet-list-layers.php:125
-#: ../leaflet-list-markers.php:217
-#: ../leaflet-list-markers.php:294
+#: ../leaflet-list-markers.php:216
+#: ../leaflet-list-markers.php:293
 msgid "delete"
 msgstr ""
 
@@ -3051,24 +3139,24 @@ msgid "No marker assigned to this layer"
 msgstr ""
 
 #: ../leaflet-layer.php:634
-#: ../leaflet-list-markers.php:222
+#: ../leaflet-list-markers.php:221
 #: ../leaflet-tools.php:430
 msgid "open"
 msgstr ""
 
 #: ../leaflet-layer.php:634
-#: ../leaflet-list-markers.php:222
+#: ../leaflet-list-markers.php:221
 #: ../leaflet-tools.php:428
 msgid "closed"
 msgstr ""
 
 #: ../leaflet-layer.php:637
-#: ../leaflet-list-markers.php:229
+#: ../leaflet-list-markers.php:228
 msgid "Edit marker "
 msgstr ""
 
 #: ../leaflet-layer.php:644
-#: ../leaflet-list-markers.php:259
+#: ../leaflet-list-markers.php:258
 msgid "standard icon"
 msgstr ""
 
@@ -3086,50 +3174,50 @@ msgstr ""
 
 #: ../leaflet-list-layers.php:21
 #: ../leaflet-list-layers.php:204
-#: ../leaflet-list-markers.php:95
-#: ../leaflet-list-markers.php:321
+#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:320
 msgid "Export all markers as csv-file"
 msgstr ""
 
 #: ../leaflet-list-layers.php:21
 #: ../leaflet-list-layers.php:204
-#: ../leaflet-list-markers.php:95
-#: ../leaflet-list-markers.php:321
+#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:320
 msgid "Export all markers as KML"
 msgstr ""
 
 #: ../leaflet-list-layers.php:21
 #: ../leaflet-list-layers.php:204
-#: ../leaflet-list-markers.php:95
-#: ../leaflet-list-markers.php:321
+#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:320
 msgid "Export all markers as GeoJSON"
 msgstr ""
 
 #: ../leaflet-list-layers.php:21
 #: ../leaflet-list-layers.php:204
-#: ../leaflet-list-markers.php:95
-#: ../leaflet-list-markers.php:321
+#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:320
 msgid "Subscribe to markers via GeoRSS"
 msgstr ""
 
 #: ../leaflet-list-layers.php:21
 #: ../leaflet-list-layers.php:204
-#: ../leaflet-list-markers.php:95
-#: ../leaflet-list-markers.php:321
+#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:320
 msgid "Export all markers as ARML for Wikitude"
 msgstr ""
 
 #: ../leaflet-list-layers.php:21
 #: ../leaflet-list-layers.php:204
-#: ../leaflet-list-markers.php:95
-#: ../leaflet-list-markers.php:321
+#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:320
 msgid "Geo Sitemap"
 msgstr ""
 
 #: ../leaflet-list-layers.php:21
 #: ../leaflet-list-layers.php:204
-#: ../leaflet-list-markers.php:95
-#: ../leaflet-list-markers.php:321
+#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:320
 msgid "Click here for more information on how to submit your Geo Sitemap to Google"
 msgstr ""
 
@@ -3140,21 +3228,21 @@ msgstr ""
 
 #: ../leaflet-list-layers.php:24
 #: ../leaflet-list-layers.php:199
-#: ../leaflet-list-markers.php:100
-#: ../leaflet-list-markers.php:312
+#: ../leaflet-list-markers.php:99
+#: ../leaflet-list-markers.php:311
 msgid "select columns to display"
 msgstr ""
 
 #: ../leaflet-list-layers.php:24
 #: ../leaflet-list-layers.php:199
-#: ../leaflet-list-markers.php:100
-#: ../leaflet-list-markers.php:312
+#: ../leaflet-list-markers.php:99
+#: ../leaflet-list-markers.php:311
 msgid "columns"
 msgstr ""
 
 #: ../leaflet-list-layers.php:37
 #: ../leaflet-list-layers.php:79
-#: ../leaflet-maps-marker.php:1101
+#: ../leaflet-maps-marker.php:1107
 msgid "Markers"
 msgstr ""
 
@@ -3186,15 +3274,15 @@ msgstr ""
 msgid "page"
 msgstr ""
 
-#: ../leaflet-list-markers.php:71
+#: ../leaflet-list-markers.php:70
 msgid "Please only select one mass action"
 msgstr ""
 
-#: ../leaflet-list-markers.php:72
-#: ../leaflet-list-markers.php:79
-#: ../leaflet-list-markers.php:85
-#: ../leaflet-list-markers.php:109
-#: ../leaflet-list-markers.php:320
+#: ../leaflet-list-markers.php:71
+#: ../leaflet-list-markers.php:78
+#: ../leaflet-list-markers.php:84
+#: ../leaflet-list-markers.php:108
+#: ../leaflet-list-markers.php:319
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:93
@@ -3202,75 +3290,75 @@ msgstr ""
 msgid "show all markers"
 msgstr ""
 
-#: ../leaflet-list-markers.php:72
-#: ../leaflet-list-markers.php:79
-#: ../leaflet-list-markers.php:85
+#: ../leaflet-list-markers.php:71
+#: ../leaflet-list-markers.php:78
+#: ../leaflet-list-markers.php:84
 #: ../leaflet-marker.php:48
 msgid "add new maker"
 msgstr ""
 
-#: ../leaflet-list-markers.php:78
+#: ../leaflet-list-markers.php:77
 msgid "The selected markers have been deleted"
 msgstr ""
 
-#: ../leaflet-list-markers.php:84
+#: ../leaflet-list-markers.php:83
 msgid "The selected markers have been assigned to the selected layer"
 msgstr ""
 
-#: ../leaflet-list-markers.php:84
-#: ../leaflet-list-markers.php:310
+#: ../leaflet-list-markers.php:83
+#: ../leaflet-list-markers.php:309
 msgid "Marker"
 msgstr ""
 
-#: ../leaflet-list-markers.php:95
-#: ../leaflet-list-markers.php:321
+#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:320
 msgid "Add marker"
 msgstr ""
 
-#: ../leaflet-list-markers.php:97
-#: ../leaflet-list-markers.php:309
+#: ../leaflet-list-markers.php:96
+#: ../leaflet-list-markers.php:308
 msgid "Search result"
 msgstr ""
 
-#: ../leaflet-list-markers.php:100
-#: ../leaflet-list-markers.php:312
+#: ../leaflet-list-markers.php:99
+#: ../leaflet-list-markers.php:311
 msgid "Change number in settings"
 msgstr ""
 
-#: ../leaflet-list-markers.php:107
-#: ../leaflet-list-markers.php:318
+#: ../leaflet-list-markers.php:106
+#: ../leaflet-list-markers.php:317
 msgid "search"
 msgstr ""
 
-#: ../leaflet-list-markers.php:212
+#: ../leaflet-list-markers.php:211
 msgid "No marker created yet"
 msgstr ""
 
-#: ../leaflet-list-markers.php:217
+#: ../leaflet-list-markers.php:216
 msgid "Do you really want to delete this marker?"
 msgstr ""
 
-#: ../leaflet-list-markers.php:221
-#: ../leaflet-list-markers.php:299
+#: ../leaflet-list-markers.php:220
+#: ../leaflet-list-markers.php:298
 #: ../leaflet-tools.php:193
 #: ../leaflet-tools.php:203
 #: ../leaflet-tools.php:231
 msgid "unassigned"
 msgstr ""
 
-#: ../leaflet-list-markers.php:221
+#: ../leaflet-list-markers.php:220
 msgid "Edit layer "
 msgstr ""
 
-#: ../leaflet-list-markers.php:291
+#: ../leaflet-list-markers.php:290
 msgid "Mass actions for selected markers"
 msgstr ""
 
-#: ../leaflet-list-markers.php:297
+#: ../leaflet-list-markers.php:296
 msgid "assign to the following layer:"
 msgstr ""
 
-#: ../leaflet-list-markers.php:305
+#: ../leaflet-list-markers.php:304
 msgid "submit"
 msgstr ""
 
@@ -3768,27 +3856,27 @@ msgstr ""
 msgid "Wikitude API powered by www.mapsmarker.com"
 msgstr ""
 
-#: ../tinymce_plugin.php:68
+#: ../tinymce_plugin.php:69
 msgid "Insert map"
 msgstr ""
 
-#: ../tinymce_plugin.php:75
+#: ../tinymce_plugin.php:76
 msgid "If no search term is entered, the latest 15 maps will be shown."
 msgstr ""
 
-#: ../tinymce_plugin.php:76
+#: ../tinymce_plugin.php:77
 msgid "Search"
 msgstr ""
 
-#: ../tinymce_plugin.php:78
+#: ../tinymce_plugin.php:79
 msgid "Please select the map you would like to add"
 msgstr ""
 
-#: ../tinymce_plugin.php:82
+#: ../tinymce_plugin.php:83
 msgid "Add shortcode"
 msgstr ""
 
-#: ../tinymce_plugin.php:84
+#: ../tinymce_plugin.php:85
 msgid "Cancel"
 msgstr ""
 
