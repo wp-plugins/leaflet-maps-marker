@@ -4,12 +4,12 @@ Plugin Name: Leaflet Maps Marker
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, OSM, travelblog, opendata, opengov, ogdwien, google maps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, cloudmade, mapquest, wms, mapbox
-Version: 2.3
-Author: Robert Harm (with special support from Sindre Wimberger)
+Version: 2.3.1
+Author: Robert Harm
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
 Requires at least: 3.0
-Tested up to: 3.4-beta3
+Tested up to: 3.4-beta4-20892
 Requires at least PHP 5.2
 Copyright 2011-2012 - @RobertHarm - All rights reserved
 Parts of this plugin were originally based on the Leaflet Plugin by Hind (Copyright 2011)
@@ -135,7 +135,7 @@ function leafletmapsmarker() {
 	  $mapheight = $row['mapheight'];
 	  $mapwidthunit = $row['mapwidthunit'];
 	  $panel = $row['panel'];
-	  $paneltext = ($row['name'] == NULL) ? '&nbsp;' : $row['name'];
+	  $paneltext = ($row['name'] == NULL) ? '&nbsp;' : htmlspecialchars($row['name']);
 	  $controlbox = $row['controlbox'];
 	  $overlays_custom = $row['overlays_custom'];
 	  $overlays_custom2 = $row['overlays_custom2'];
@@ -179,7 +179,7 @@ function leafletmapsmarker() {
 					$mapwidthunit = $row['mapwidthunit'];
 					$mapheight = $row['mapheight'];
 					$panel = $row['panel'];
-					$paneltext = ($row['markername'] == NULL) ? '&nbsp;' : $row['markername'];
+					$paneltext = ($row['markername'] == NULL) ? '&nbsp;' : htmlspecialchars($row['markername']);
 					$controlbox = $row['controlbox'];
 					$overlays_custom = $row['overlays_custom'];
 					$overlays_custom2 = $row['overlays_custom2'];
@@ -327,7 +327,7 @@ function leafletmapsmarker() {
 			$lmm_out .= '<div id="lmm_geo_tags_'.$uid.'" class="lmm-geo-tags geo">' . $paneltext . ': <span class="latitude">' . $lat . '</span>, <span class="longitude">' . $lon . '</span></div>'.PHP_EOL;
 		} else {
 			foreach ($layer_mark_list_microformats as $row){
-				$lmm_out .= '<div id="lmm_geo_tags_'.$uid.'" class="lmm-geo-tags geo">' . $row['markername'] . ': <span class="latitude">' . $row['mlat'] . '</span>, <span class="longitude">' . $row['mlon'] . '</span></div>'.PHP_EOL;
+				$lmm_out .= '<div id="lmm_geo_tags_'.$uid.'" class="lmm-geo-tags geo">' . htmlspecialchars($row['markername']) . ': <span class="latitude">' . $row['mlat'] . '</span>, <span class="longitude">' . $row['mlon'] . '</span></div>'.PHP_EOL;
 			}
 		}
 	}
@@ -397,7 +397,7 @@ function leafletmapsmarker() {
 		if ( (isset($lmm_options[ 'defaults_layer_listmarkers_api_wikitude' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_listmarkers_api_wikitude' ] == 1 ) ) {
 			$lmm_out .= '&nbsp;<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-wikitude.php?layer=' . $row['markerid'] . '" style="text-decoration:none;" title="' . __('Export as ARML for Wikitude Augmented-Reality browser','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-wikitude.png" width="14" height="14" alt="Wikitude-Logo" class="lmm-panel-api-images" /></a>';
 		}
-		$lmm_out .= '</div><strong>' . stripslashes($row['markername']) . '</strong><br/>' . stripslashes($row['mpopuptext']) . '</td></tr>';
+		$lmm_out .= '</div><strong>' . stripslashes(htmlspecialchars($row['markername'])) . '</strong><br/>' . stripslashes($row['mpopuptext']) . '</td></tr>';
 	} //info: end foreach
 	$lmm_out .= '</table></div>';
 	}
@@ -1074,6 +1074,9 @@ function leafletmapsmarker() {
 		$save_defaults_for_new_options = new Leafletmapsmarker_options();
 		$save_defaults_for_new_options->save_defaults_for_new_options();
 		update_option('leafletmapsmarker_version', '2.3');
+	}
+	if (get_option('leafletmapsmarker_version') == '2.3' ) {
+		update_option('leafletmapsmarker_version', '2.3.1');
 		update_option('leafletmapsmarker_update_info', 'show');
 		//info: redirect to settings page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 		if (get_option('leafletmapsmarker_redirect') == 'true') 
@@ -1085,7 +1088,7 @@ function leafletmapsmarker() {
 		}
 	}
 	/* template for plugin updates 
-	if (get_option('leafletmapsmarker_version') == '2.3' ) {
+	if (get_option('leafletmapsmarker_version') == '2.3.1' ) {
 		//optional: add code for sql ddl updates
 		//mandatory if new options in class-leaflet-options.php were added
 		$save_defaults_for_new_options = new Leafletmapsmarker_options();

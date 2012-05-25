@@ -194,7 +194,7 @@ $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE 
 		<?php
 		foreach ($layerlist as $row) {
 			$markercount = $wpdb->get_var('SELECT count(*) FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$row['id']);
-			echo '<option value="' . $row['id'] . '">ID ' . $row['id'] . ' - ' . stripslashes($row['name']) . ' (' . $markercount .' ' . __('marker','lmm') . ')</option>';
+			echo '<option value="' . $row['id'] . '">ID ' . $row['id'] . ' - ' . stripslashes(htmlspecialchars($row['name'])) . ' (' . $markercount .' ' . __('marker','lmm') . ')</option>';
 		}
 		?>
 		</select>
@@ -204,7 +204,7 @@ $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE 
 		<?php
 		foreach ($layerlist as $row) {
 			$markercount = $wpdb->get_var('SELECT count(*) FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$row['id']);
-			echo '<option value="' . $row['id'] . '">ID ' . $row['id'] . ' - ' . stripslashes($row['name']) . ' (' . $markercount .' ' . __('marker','lmm') . ')</option>';
+			echo '<option value="' . $row['id'] . '">ID ' . $row['id'] . ' - ' . stripslashes(htmlspecialchars($row['name'])) . ' (' . $markercount .' ' . __('marker','lmm') . ')</option>';
 		}
 		?>
 		</select>
@@ -232,7 +232,7 @@ $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE 
 		<?php
 		foreach ($layerlist as $row) {
 			$markercount = $wpdb->get_var('SELECT count(*) FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$row['id']);
-			echo '<option value="' . $row['id'] . '">ID ' . $row['id'] . ' - ' . stripslashes($row['name']) . ' (' . $markercount .' ' . __('marker','lmm') . ')</option>';
+			echo '<option value="' . $row['id'] . '">ID ' . $row['id'] . ' - ' . stripslashes(htmlspecialchars($row['name'])) . ' (' . $markercount .' ' . __('marker','lmm') . ')</option>';
 		}
 		?>
 		</select>
