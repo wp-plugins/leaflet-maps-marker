@@ -217,7 +217,7 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 		} else {
 			$delete_link_marker = '';
 		}
-     $rowlayername = ($row['layerid'] == 0) ? "" . __('unassigned','lmm') . "<br>" : "<a title='" . __('Edit layer ','lmm') . $row['layer'] . "' href='" . LEAFLET_WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_layer&id=" . $row['layer'] . "'>" . $row['layername'] . " (ID " .$row['layerid'] . ")</a>";
+     $rowlayername = ($row['layerid'] == 0) ? "" . __('unassigned','lmm') . "<br>" : "<a title='" . __('Edit layer ','lmm') . $row['layer'] . "' href='" . LEAFLET_WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_layer&id=" . $row['layer'] . "'>" . htmlspecialchars($row['layername']) . " (ID " .$row['layerid'] . ")</a>";
      $openpopupstatus = ($row['openpopup'] == 1) ? __('open','lmm') : __('closed','lmm');
      $openpanelstatus = ($row['panel'] == 1) ? __('visible','lmm') : __('hidden','lmm');
 	 if ($row['controlbox'] == 0) { $controlboxstatus = __('hidden','lmm'); } else if ($row['controlbox'] == 1) { $controlboxstatus = __('collapsed (except on mobiles)','lmm'); } else if ($row['controlbox'] == 2) { $controlboxstatus = __('expanded','lmm'); };
@@ -257,8 +257,7 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
          } else { 
          echo '<img src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png" title="' . esc_attr__('standard icon','lmm') . '" />';};
       echo '</td>
-		  <td><strong><a title="' . esc_attr__('Edit marker','lmm') . ' (' . $row['id'].')" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['id'] . '" class="row-title">' . stripslashes($row['markername']) . '</a></strong><br/><div class="row-actions"><span class="edit"><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['id'] . '">' . __('edit','lmm') . '</a>' . $delete_link_marker . '</div></td>	  
-		  
+		  <td><strong><a title="' . esc_attr__('Edit marker','lmm') . ' (' . $row['id'].')" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['id'] . '" class="row-title">' . stripslashes(htmlspecialchars($row['markername'])) . '</a></strong><br/><div class="row-actions"><span class="edit"><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['id'] . '">' . __('edit','lmm') . '</a>' . $delete_link_marker . '</div></td>	  
 		  ' . $column_popuptext . '
 		  ' . $column_layer . '
 		  ' . $column_openpopup . '
@@ -298,7 +297,7 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 		<option value="0"><?php _e('unassigned','lmm') ?></option>		
 		<?php
 			foreach ($layerlist as $row)
-			echo '<option value="' . $row['id'] . '">' . stripslashes($row['name']) . ' (ID ' . $row['id'] . ')</option>';
+			echo '<option value="' . $row['id'] . '">' . stripslashes(htmlspecialchars($row['name'])) . ' (ID ' . $row['id'] . ')</option>';
 		?>
 		</select><br/>
 		<input class="button-secondary" type="submit" value="<?php _e('submit', 'lmm') ?>" style="margin: 0 0 5px 18px;"/>

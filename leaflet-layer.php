@@ -152,7 +152,7 @@ else {
   if ($isedit) {
     $id = intval($_GET['id']);
     $row = $wpdb->get_row('SELECT l.id as lid, l.name as lname, l.basemap as lbasemap, l.layerzoom as llayerzoom, l.mapwidth as lmapwidth, l.mapwidthunit as lmapwidthunit, l.mapheight as lmapheight, l.panel as lpanel, l.layerviewlat as llayerviewlat, l.layerviewlon as llayerviewlon, l.createdby as lcreatedby, l.createdon as lcreatedon, l.updatedby as lupdatedby, l.updatedon as lupdatedon, l.controlbox as lcontrolbox, l.overlays_custom as loverlays_custom, l.overlays_custom2 as loverlays_custom2, l.overlays_custom3 as loverlays_custom3, l.overlays_custom4 as loverlays_custom4,l.wms as lwms, l.wms2 as lwms2, l.wms3 as lwms3, l.wms4 as lwms4, l.wms5 as lwms5, l.wms6 as lwms6, l.wms7 as lwms7, l.wms8 as lwms8, l.wms9 as lwms9, l.wms10 as lwms10, l.listmarkers as llistmarkers, l.multi_layer_map as lmulti_layer_map, m.id as markerid, m.markername as markername, m.lat as mlat, m.lon as mlon, m.icon as micon, m.popuptext as mpopuptext, m.zoom as mzoom, m.mapwidth as mmapwidth, m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight FROM '.$table_name_layers.' as l LEFT OUTER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$id, ARRAY_A); 
-    $name = $row['lname'];
+    $name = htmlspecialchars($row['lname']);
     $basemap = $row['lbasemap'];
     $layerzoom = $row['llayerzoom'];	
     $mapwidth = $row['lmapwidth'];
@@ -161,7 +161,7 @@ else {
     $layerviewlat = $row['llayerviewlat'];	
     $layerviewlon = $row['llayerviewlon'];		
     $markerid = $row['markerid'];
-    $markername = $row['markername'];
+    $markername = htmlspecialchars($row['markername']);
     $mlat = $row['mlat'];
     $mlon = $row['mlon'];
     $coords = $mlat.', '.$mlon;
@@ -338,9 +338,9 @@ echo '<p><a class=\'button-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.
 					foreach ($layer_marker_list as $row){
 					echo '<tr><td style="width:35px;vertical-align:top;text-align:center;">';
 					if ($row['micon'] != null) { 
-						echo '<img src="' . LEAFLET_PLUGIN_ICONS_URL . '/'.$row['micon'].'" title="' . stripslashes($row['markername']) . '" />'; 
+						echo '<img src="' . LEAFLET_PLUGIN_ICONS_URL . '/'.$row['micon'].'" title="' . stripslashes(htmlspecialchars($row['markername'])) . '" />'; 
 					} else { 
-						echo '<img src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png" title="' . stripslashes($row['markername']) . '" />';
+						echo '<img src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png" title="' . stripslashes(htmlspecialchars($row['markername'])) . '" />';
 					};
 					echo '</td><td><div class="lmm-listmarkers-panel-icons">';
 					if ($lmm_options['directions_provider'] == 'googlemaps') {
@@ -359,7 +359,7 @@ echo '<p><a class=\'button-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.
 					}
 					echo '&nbsp;<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?marker=' . $row['markerid'] . '" style="text-decoration:none;" title="' . __('Open standalone map in fullscreen mode','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-fullscreen.png" width="14" height="14" alt="Fullscreen-Logo" class="lmm-panel-api-images" /></a>';
 					echo '&nbsp;<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-kml.php?marker=' . $row['markerid'] . '&name=' . $lmm_options[ 'misc_kml' ] . '" style="text-decoration:none;" title="' . __('Export as KML for Google Earth/Google Maps','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-kml.png" width="14" height="14" alt="KML-Logo" class="lmm-panel-api-images" /></a>';
-					echo '</div><strong>' . stripslashes($row['markername']) . '</strong> (<a title="' . esc_attr__('Edit marker','lmm') . ' (ID ' . $row['markerid'].')" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['markerid'].'" class="row-title">' . __('edit','lmm') . '</a>)<br/>' . stripslashes($row['mpopuptext']) . '</td></tr>';
+					echo '</div><strong>' . stripslashes(htmlspecialchars($row['markername'])) . '</strong> (<a title="' . esc_attr__('Edit marker','lmm') . ' (ID ' . $row['markerid'].')" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['markerid'].'" class="row-title">' . __('edit','lmm') . '</a>)<br/>' . stripslashes($row['mpopuptext']) . '</td></tr>';
 					} //info: end foreach
 					} //info: end count($layer_marker_list)
 					} //info: end $isedit
@@ -444,7 +444,7 @@ echo '<p><a class=\'button-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.
 						} else {
 							$mlm_checked{$mlmrow['lid']} = '';
 						} 
-						echo '<input type="checkbox" id="mlm-'.$mlmrow['lid'].'" name="mlm-'.$mlmrow['lid'].'" ' . $mlm_checked{$mlmrow['lid']} . '> <a href="' . LEAFLET_WP_ADMIN_URL . '"admin.php?page=leafletmapsmarker_layer&id='.$mlmrow['lid'].'">' . stripslashes($mlmrow['lname']) . ' (' . $mlm_markercount . ' ' .  __('marker','lmm') . ', ID ' . $mlmrow['lid'] . ')</a><br/>';
+						echo '<input type="checkbox" id="mlm-'.$mlmrow['lid'].'" name="mlm-'.$mlmrow['lid'].'" ' . $mlm_checked{$mlmrow['lid']} . '> <a href="' . LEAFLET_WP_ADMIN_URL . '"admin.php?page=leafletmapsmarker_layer&id='.$mlmrow['lid'].'">' . stripslashes(htmlspecialchars($mlmrow['lname'])) . ' (' . $mlm_markercount . ' ' .  __('marker','lmm') . ', ID ' . $mlmrow['lid'] . ')</a><br/>';
 						};
 					echo '</div>'.PHP_EOL;
 					?>
@@ -643,7 +643,7 @@ $markernonce = wp_create_nonce('marker-nonce'); //info: for delete-links
          } else { 
          echo '<img src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png" title="' . esc_attr__('standard icon','lmm') . '" />';};
       echo '</td>
-      <td><strong><a title="' . esc_attr__('Edit marker','lmm') . ' (ID ' . $row['markerid'].')" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['markerid'].'" class="row-title">' . stripslashes($row['markername']) . '</a></strong><br/><div class="row-actions"><span class="edit"><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id='.$row['markerid'].'">' . __('edit','lmm') . '</a>' . $delete_link_marker . '</div></td>	  
+      <td><strong><a title="' . esc_attr__('Edit marker','lmm') . ' (ID ' . $row['markerid'].')" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['markerid'].'" class="row-title">' . stripslashes(htmlspecialchars($row['markername'])) . '</a></strong><br/><div class="row-actions"><span class="edit"><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id='.$row['markerid'].'">' . __('edit','lmm') . '</a>' . $delete_link_marker . '</div></td>	  
 	' . $column_popuptext . '
 	' . $column_openpopup . '
 	' . $column_coordinates . '

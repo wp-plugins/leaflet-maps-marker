@@ -150,7 +150,7 @@ else {
   if ($isedit) {
     $id = intval($_GET['id']);
     $row = $wpdb->get_row('SELECT markername,basemap,layer,lat,lon,icon,popuptext,zoom,openpopup,mapwidth,mapwidthunit,mapheight,panel,createdby,createdon,updatedby,updatedon,controlbox,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10,kml_timestamp FROM '.$table_name_markers.' WHERE id='.$id, ARRAY_A);
-    $markername = $row['markername'];
+    $markername = htmlspecialchars($row['markername']);
     $basemap = $row['basemap'];
     $layer = $row['layer'];
     $lat = $row['lat'];
@@ -229,7 +229,7 @@ echo '<p><a class=\'button-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.
 						</option>
 						<?php
 							foreach ($layerlist as $row)
-							echo '<option value="' . $row['id'] . '"' . ($row['id'] == $layer ? ' selected="selected"' : '') . '>' . stripslashes($row['name']) . ' (ID ' . $row['id'] . ')</option>';
+							echo '<option value="' . $row['id'] . '"' . ($row['id'] == $layer ? ' selected="selected"' : '') . '>' . stripslashes(htmlspecialchars($row['name'])) . ' (ID ' . $row['id'] . ')</option>';
 						?>
 					</select>
 					<br>

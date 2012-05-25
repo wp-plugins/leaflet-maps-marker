@@ -29,7 +29,7 @@ $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 $lmm_options = get_option( 'leafletmapsmarker_options' );
 if (isset($_GET['layer'])) {
-	$layer = mysql_real_escape_string($_GET['layer']); //info: not intval() cause otherwise $layer=0 when creating new layer and showing all markers with layer id = 0
+	$layer = intval($_GET['layer']);
 	$uid = substr(md5(''.rand()), 0, 8);
 	$pname = 'pa'.$uid;
 	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
@@ -43,7 +43,7 @@ if (isset($_GET['layer'])) {
 	$mapheight = $row['mapheight'];
 	$mapwidthunit = $row['mapwidthunit'];
 	$panel = $row['panel'];
-	$paneltext = ($row['name'] == NULL) ? '&nbsp;' : $row['name'];
+	$paneltext = ($row['name'] == NULL) ? '&nbsp;' : htmlspecialchars($row['name']);
 	$controlbox = $row['controlbox'];
 	$overlays_custom = $row['overlays_custom'];
 	$overlays_custom2 = $row['overlays_custom2'];
@@ -139,7 +139,7 @@ if (isset($_GET['layer'])) {
 		$lmm_out .= '<div class="lmm-geo-tags geo">' . $paneltext . ': <span class="latitude">' . $lat . '</span>, <span class="longitude">' . $lon . '</span></div>'.PHP_EOL;
 	} else {
 		foreach ($layermarklist as $row){
-			$lmm_out .= '<div class="lmm-geo-tags geo">' . $row['markername'] . ': <span class="latitude">' . $row['mlat'] . '</span>, <span class="longitude">' . $row['mlon'] . '</span></div>'.PHP_EOL;
+			$lmm_out .= '<div class="lmm-geo-tags geo">' . htmlspecialchars($row['markername']) . ': <span class="latitude">' . $row['mlat'] . '</span>, <span class="longitude">' . $row['mlon'] . '</span></div>'.PHP_EOL;
 		}
 	}
 	$plugin_version = get_option('leafletmapsmarker_version');
@@ -399,7 +399,7 @@ if (isset($_GET['layer'])) {
   	} //info: end check if marker/layer exists	 	
 } //info: end isset($_GET['layer'])
 elseif (isset($_GET['marker'])) {
-	$markerid = mysql_real_escape_string($_GET['marker']);
+	$markerid = intval($_GET['marker']);
     $uid = substr(md5(''.rand()), 0, 8);
     $pname = 'pa'.$uid;
 	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
@@ -424,7 +424,7 @@ elseif (isset($_GET['marker'])) {
 			$mapwidthunit = $row['mapwidthunit'];
 			$mapheight = $row['mapheight'];
 			$panel = $row['panel'];
-			$paneltext = ($row['markername'] == NULL) ? '&nbsp;' : $row['markername'];
+			$paneltext = ($row['markername'] == NULL) ? '&nbsp;' : htmlspecialchars($row['markername']);
 			$controlbox = $row['controlbox'];
 			$overlays_custom = $row['overlays_custom'];
 			$overlays_custom2 = $row['overlays_custom2'];

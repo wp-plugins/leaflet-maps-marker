@@ -40,7 +40,7 @@ if ($lmm_options[ 'wms_wms9_kml_support' ] == 'yes') { $wms9_kml_output = '<Netw
 if ($lmm_options[ 'wms_wms10_kml_support' ] == 'yes') { $wms10_kml_output = '<NetworkLink id="mapsmarker_wms10"><name><![CDATA[' . $lmm_options[ 'wms_wms10_name' ] . ']]></name><visibility>1</visibility><open>0</open><atom:author><![CDATA[' . $lmm_options[ 'wms_wms10_attribution' ] . ']]></atom:author><Snippet maxLines="2"><![CDATA[' . $lmm_options[ 'wms_wms10_attribution' ] . ']]></Snippet><Link><href><![CDATA[' . $lmm_options[ 'wms_wms10_kml_href' ] . ']]></href><refreshMode>' . $lmm_options[ 'wms_wms10_kml_refreshMode' ] . '</refreshMode><refreshInterval>' . $lmm_options[ 'wms_wms10_kml_refreshInterval' ] . '</refreshInterval><viewRefreshMode>' . $lmm_options[ 'wms_wms10_kml_viewRefreshMode' ] . '</viewRefreshMode><viewRefreshTime>' . $lmm_options[ 'wms_wms10_kml_viewRefreshTime' ] . '</viewRefreshTime></Link></NetworkLink>'; };
   
 if (isset($_GET['layer'])) {
-  $layer = mysql_real_escape_string($_GET['layer']);
+  $layer = intval($_GET['layer']);
   
   $q = ''; //info: removed limit 5000
   if ($layer == '*' or $layer == 'all')
@@ -190,7 +190,7 @@ if (isset($_GET['layer'])) {
   } //info: check if layer exists end
   }
 elseif (isset($_GET['marker'])) {
-  $markerid = mysql_real_escape_string($_GET['marker']);
+  $markerid = intval($_GET['marker']);
   $markers = explode(',', $markerid);
   $checkedmarkers = array();
   foreach ($markers as $cmarker) {

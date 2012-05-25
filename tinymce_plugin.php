@@ -189,7 +189,7 @@ function buildMarkersList($array){
 		<span class="name" title="<?php esc_attr_e('map type and ID','lmm');?>"><?php echo $maptype; ?></span>
 	</td>
 	<td valign="top">
-        <span class="name" title="<?php esc_attr_e('name','lmm');?>"><strong><?php echo stripslashes($one['name']); ?></strong></span>
+        <span class="name" title="<?php esc_attr_e('name','lmm');?>"><strong><?php echo stripslashes(htmlspecialchars($one['name'])); ?></strong></span>
 	</td>
 	<td valign="top">
 		<span class="date" title="<?php esc_attr_e('created on','lmm');?>"><?php echo $date; ?></span>

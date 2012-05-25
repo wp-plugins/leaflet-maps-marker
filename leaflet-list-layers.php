@@ -170,7 +170,7 @@ if ($getorder == 'asc') { $sortordericon = 'asc'; } else { $sortordericon = 'des
 		echo '<tr valign="middle" class="alternate" id="link-' . $row['id'] . '">
 		<td>'.$row['id'].'</td>
 		<td>'.$multi_layer_map_type.'</td>
-		<td><strong><a title="' . __('Edit', 'lmm') . ' &laquo;' . $row['name'] . '&raquo;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_layer&id=' . $row['id'] . '" class="row-title">' . stripslashes($row['name']) . '</a></strong><br><div class="row-actions"><span class="edit"><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_layer&id=' . $row['id'] . '">' . __('edit','lmm') . '</a></span>'. $delete_link_layer . $add_new_marker_to_layer . '</div></td>
+		<td><strong><a title="' . __('Edit', 'lmm') . ' &laquo;' . htmlspecialchars($row['name']) . '&raquo;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_layer&id=' . $row['id'] . '" class="row-title">' . stripslashes(htmlspecialchars($row['name'])) . '</a></strong><br><div class="row-actions"><span class="edit"><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_layer&id=' . $row['id'] . '">' . __('edit','lmm') . '</a></span>'. $delete_link_layer . $add_new_marker_to_layer . '</div></td>
 		<td style="text-align:center;"><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_layer&id=' . $row['id'] . '#assigned_markers" title="' . esc_attr__('show markers assigned to this layer','lmm') . '">'.$markercount.'</a></td>
 		  ' . $column_layercenter . '
 		  ' . $column_mapsize . '
