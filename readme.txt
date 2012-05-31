@@ -173,7 +173,7 @@ For more information on translations of the plugin and how to contribute a new t
 
 == Upgrade Notice ==
 = v2.3.1 =
-security release - fixed possible SQL injections and cross site scripting issues
+security release - fixed several SQL injections and cross site scripting issues based on an external audit of the plugin
 
 = v2.3 =
 added sort options for marker and layer listing pages
@@ -238,7 +238,7 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 == Changelog ==
 = v2.3.1 - 25.05.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.3.1)
-* BUGFIX: fixed possible SQL injections and cross site scripting issues
+* BUGFIX: fixed several SQL injections and cross site scripting issues based on an external audit of the plugin
 
 = v2.3 - 26.04.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.3)

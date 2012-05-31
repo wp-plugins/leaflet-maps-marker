@@ -39,7 +39,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 			<tr><td>
 			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
 			</td><td>
-			fixed possible SQL injections and cross site scripting issues
+			fixed several SQL injections and cross site scripting issues based on an external audit of the plugin
 			</td></tr>
 			</table>
 			<p>If you upgraded from a version <2.3, please visit <a href="http://www.mapsmarker.com/changelog" target="_blank">http://www.mapsmarker.com/changelog</a> for a complete list of changes.</p>

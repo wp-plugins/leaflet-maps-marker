@@ -8,20 +8,29 @@ $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 $radius = 1;
 $pagenum = isset($_POST['paged']) ? intval($_POST['paged']) : (isset($_GET['paged']) ? intval($_GET['paged']) : 1);
-$columnsort = isset($_GET['orderby']) ? mysql_real_escape_string($_GET['orderby']) : $lmm_options[ 'misc_marker_listing_sort_order_by' ]; 
-$columnsortorder = isset($_GET['order']) ? mysql_real_escape_string($_GET['order']) : $lmm_options[ 'misc_marker_listing_sort_sort_order' ]; 
+//info: security check if input variable is valid
+$columnsort_values = array('m.id','m.icon','m.markername','m.popuptext','l.name','m.openpopup','m.panel','m.zoom','m.basemap','m.createdon','m.createdby','m.updatedon','m.updatedby','m.controlbox');
+$columnsort_input = isset($_GET['orderby']) ? mysql_real_escape_string($_GET['orderby']) : $lmm_options[ 'misc_marker_listing_sort_order_by' ];
+$columnsort = (in_array($columnsort_input, $columnsort_values)) ? $columnsort_input : $lmm_options[ 'misc_marker_listing_sort_order_by' ];
+//info: security check if input variable is valid
+$columnsortorder_values = array('asc','desc','ASC','DESC');
+$columnsortorder_input = isset($_GET['order']) ? mysql_real_escape_string($_GET['order']) : $lmm_options[ 'misc_marker_listing_sort_sort_order' ]; 
+$columnsortorder = (in_array($columnsortorder_input, $columnsortorder_values)) ? $columnsortorder_input : $lmm_options[ 'misc_marker_listing_sort_sort_order' ];
+//$columnsort = isset($_GET['orderby']) ? mysql_real_escape_string($_GET['orderby']) : $lmm_options[ 'misc_marker_listing_sort_order_by' ]; 
+//$columnsortorder = isset($_GET['order']) ? mysql_real_escape_string($_GET['order']) : $lmm_options[ 'misc_marker_listing_sort_sort_order' ]; 
 $start = ($pagenum - 1) * intval($lmm_options[ 'markers_per_page' ]);
 $action = isset($_POST['action']) ? $_POST['action'] : (isset($_GET['action']) ? $_GET['action'] : '');
-$searchtext = isset($_POST['searchtext']) ? $_POST['searchtext'] : (isset($_GET['searchtext']) ? mysql_real_escape_string($_GET['searchtext']) : '');
+$searchtext = isset($_POST['searchtext']) ? '%' .mysql_real_escape_string($_POST['searchtext']) . '%' : (isset($_GET['searchtext']) ? '%' . mysql_real_escape_string($_GET['searchtext']) : '') . '%';
+$markers_per_page_validated = intval($lmm_options[ 'markers_per_page' ]);
 if ($action == 'search') {
 	$markersearchnonce = isset($_POST['_wpnonce']) ? $_POST['_wpnonce'] : '';
 		if (! wp_verify_nonce($markersearchnonce, 'markersearch-nonce') ) die('<br/>'.__('Security check failed - please call this function from the according Leaflet Maps Marker admin page!','lmm').'');
         $mcount = intval($wpdb->get_var('SELECT COUNT(*) FROM '.$table_name_markers.' WHERE markername like \'%'.$searchtext.'%'.'\' OR popuptext like \'%'.$searchtext.'%'.'\''));
-		$marklist = $wpdb->get_results('SELECT m.id,CONCAT(m.lat,\',\',m.lon) AS coords,m.basemap,m.icon,m.popuptext,m.layer,m.zoom,m.openpopup as openpopup,m.lat,m.lon,m.mapwidth,m.mapheight,m.mapwidthunit,m.markername,m.panel,m.createdby,m.createdon,m.updatedby,m.updatedon,m.controlbox,m.overlays_custom,m.overlays_custom2,m.overlays_custom3,m.overlays_custom4,m.wms,m.wms2,m.wms3,m.wms4,m.wms5,m.wms6,m.wms7,m.wms8,m.wms9,m.wms10,l.name AS layername,l.id as layerid FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id WHERE m.markername like \'%'.$searchtext.'%'.'\' OR m.popuptext like \'%'.$searchtext.'%'.'\' order by '.$columnsort.' '.$columnsortorder.' LIMIT '.intval($lmm_options[ 'markers_per_page' ]).' OFFSET '.$start, ARRAY_A);
+		$marklist = $wpdb->get_results( $wpdb->prepare("SELECT m.id,CONCAT(m.lat,',',m.lon) AS coords,m.basemap,m.icon,m.popuptext,m.layer,m.zoom,m.openpopup as openpopup,m.lat,m.lon,m.mapwidth,m.mapheight,m.mapwidthunit,m.markername,m.panel,m.createdby,m.createdon,m.updatedby,m.updatedon,m.controlbox,m.overlays_custom,m.overlays_custom2,m.overlays_custom3,m.overlays_custom4,m.wms,m.wms2,m.wms3,m.wms4,m.wms5,m.wms6,m.wms7,m.wms8,m.wms9,m.wms10,l.name AS layername,l.id as layerid FROM $table_name_markers AS m LEFT OUTER JOIN $table_name_layers AS l ON m.layer=l.id WHERE m.markername like %s OR m.popuptext like %s order by $columnsort $columnsortorder LIMIT $markers_per_page_validated OFFSET $start", $searchtext, $searchtext), ARRAY_A);
 	} else {
         $mcount = intval($wpdb->get_var('SELECT COUNT(*) FROM '.$table_name_markers));
- 	$marklist = $wpdb->get_results('SELECT m.id,CONCAT(m.lat,\',\',m.lon) AS coords,m.basemap,m.icon,m.popuptext,m.layer,m.zoom,m.openpopup as openpopup,m.lat,m.lon,m.mapwidth,m.mapheight,m.mapwidthunit,m.markername,m.panel,m.createdby,m.createdon,m.updatedby,m.updatedon,m.controlbox,m.overlays_custom,m.overlays_custom2,m.overlays_custom3,m.overlays_custom4,m.wms,m.wms2,m.wms3,m.wms4,m.wms5,m.wms6,m.wms7,m.wms8,m.wms9,m.wms10,l.name AS layername,l.id as layerid FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id order by '.$columnsort.' '.$columnsortorder.' LIMIT '.intval($lmm_options[ 'markers_per_page' ]).' OFFSET '.$start, ARRAY_A);
-		}
+ 	$marklist = $wpdb->get_results( $wpdb->prepare('SELECT m.id,CONCAT(m.lat,\',\',m.lon) AS coords,m.basemap,m.icon,m.popuptext,m.layer,m.zoom,m.openpopup as openpopup,m.lat,m.lon,m.mapwidth,m.mapheight,m.mapwidthunit,m.markername,m.panel,m.createdby,m.createdon,m.updatedby,m.updatedon,m.controlbox,m.overlays_custom,m.overlays_custom2,m.overlays_custom3,m.overlays_custom4,m.wms,m.wms2,m.wms3,m.wms4,m.wms5,m.wms6,m.wms7,m.wms8,m.wms9,m.wms10,l.name AS layername,l.id as layerid FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id order by '.$columnsort.' '.$columnsortorder.' LIMIT '.intval($lmm_options[ 'markers_per_page' ]).' OFFSET '.$start), ARRAY_A);
+	}
 if ($start > $mcount or $start < 0)
 $start = 0;
 //info:  get pagination
@@ -71,20 +80,21 @@ if ($mcount > intval($lmm_options[ 'markers_per_page' ])) {
 		echo '<p><a class=\'button-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_markers\'>' . __('show all markers','lmm') . '</a>&nbsp;&nbsp;&nbsp;<a class=\'button-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker\'>' . __('add new maker','lmm') . '</a></p>';
 	} else if ( ($deleteselected == '1') && isset($_POST['checkedmarkers']) ) {
 		if (! wp_verify_nonce($massactionnonce, 'massaction-nonce') ) die('<br/>'.__('Security check failed - please call this function from the according Leaflet Maps Marker admin page!','lmm').'');
-		$checked_markers = implode(",", $_POST['checkedmarkers']);
+		$checked_markers_prepared = implode(",", $_POST['checkedmarkers']);
+		$checked_markers = preg_replace('/[a-z|A-Z| |\=]/', '', $checked_markers_prepared);
 		$wpdb->query( "DELETE FROM $table_name_markers WHERE id IN (" . htmlspecialchars($checked_markers) . ")");
 		$wpdb->query( "OPTIMIZE TABLE $table_name_markers" );
-		echo '<p><div class="updated" style="padding:10px;">' . __('The selected markers have been deleted','lmm') . ' (ID ' . $checked_markers . ')</div>';
+		echo '<p><div class="updated" style="padding:10px;">' . __('The selected markers have been deleted','lmm') . ' (ID ' . htmlspecialchars($checked_markers) . ')</div>';
 		echo '<p><a class=\'button-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_markers\'>' . __('show all markers','lmm') . '</a>&nbsp;&nbsp;&nbsp;<a class=\'button-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker\'>' . __('add new maker','lmm') . '</a></p>';
 	} else if ( ($assignselected == '1') && isset($_POST['checkedmarkers']) ) {
 		if (! wp_verify_nonce($massactionnonce, 'massaction-nonce') ) die('<br/>'.__('Security check failed - please call this function from the according Leaflet Maps Marker admin page!','lmm').'');
-		$checked_markers = implode(",", $_POST['checkedmarkers']);
-		$wpdb->query( "UPDATE $table_name_markers SET layer = " . intval($_POST['layer']) . " where id IN (" . htmlspecialchars($checked_markers) . ")");
-		echo '<p><div class="updated" style="padding:10px;">' . __('The selected markers have been assigned to the selected layer','lmm') . ' (' . __('Marker','lmm') . ' ID ' . $checked_markers . ', ' . __('Layer','lmm') . ' ID ' . $_POST['layer'] . ')</div>';
+		$checked_markers_prepared = implode(",", $_POST['checkedmarkers']);
+		$checked_markers = preg_replace('/[a-z|A-Z| |\=]/', '', $checked_markers_prepared);
+		$wpdb->query( "UPDATE $table_name_markers SET layer = " . intval($_POST['layer']) . " where id IN (" . $checked_markers . ")");
+		echo '<p><div class="updated" style="padding:10px;">' . __('The selected markers have been assigned to the selected layer','lmm') . ' (' . __('Marker','lmm') . ' ID ' . htmlspecialchars($checked_markers) . ', ' . __('Layer','lmm') . ' ID ' . htmlspecialchars($_POST['layer']) . ')</div>';
 		echo '<p><a class=\'button-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_markers\'>' . __('show all markers','lmm') . '</a>&nbsp;&nbsp;&nbsp;<a class=\'button-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker\'>' . __('add new maker','lmm') . '</a></p>';
 	} else {
 	?>
-
 	<h3>
 		<?php _e('List all markers','lmm') ?>
 	</h3>
@@ -102,7 +112,7 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 		<form method="post" style="display:inline;">
 			<?php wp_nonce_field('markersearch-nonce'); ?>
 			<input type="hidden" name="action" value="search" />
-			<input style="width: 150px;" type="text" id="searchtext" name="searchtext" value="<?php echo (isset($_POST['searchtext']) != NULL) ? stripslashes($_POST['searchtext']) : "" ?>"/>
+			<input style="width: 150px;" type="text" id="searchtext" name="searchtext" value="<?php echo (isset($_POST['searchtext']) != NULL) ? htmlspecialchars(stripslashes($_POST['searchtext'])) : "" ?>"/>
 			<input type="submit" name="searchsubmit" value="<?php _e('search', 'lmm') ?>"/>
 		</form>
 		&nbsp;&nbsp;&nbsp;<?php echo $showall = (isset($_POST['searchtext']) != NULL) ? "<a style=\"text-decoration:none;\" href=\"" . LEAFLET_WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_markers\">" . __('show all markers','lmm') . "</a>" : ""; ?> <?php echo $pager; ?> </div>
@@ -283,7 +293,6 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 	?>
 			</tbody>
 		</table>
-
 		<table cellspacing="0" style="width:auto;margin:20px 0;" class="wp-list-table widefat fixed bookmarks">
 		<tr><td>
 		<p><b><?php _e('Mass actions for selected markers','lmm') ?></b></p>
@@ -312,7 +321,7 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 		<form method="post" style="display:inline;">
 			<?php wp_nonce_field('markersearch-nonce'); ?>
 			<input type="hidden" name="action" value="search" />
-			<input style="width: 150px;" type="text" id="searchtext" name="searchtext" value="<?php echo (isset($_POST['searchtext']) != NULL) ? stripslashes($_POST['searchtext']) : "" ?>"/>
+			<input style="width: 150px;" type="text" id="searchtext" name="searchtext" value="<?php echo (isset($_POST['searchtext']) != NULL) ? htmlspecialchars(stripslashes($_POST['searchtext'])) : "" ?>"/>
 			<input type="submit" name="searchsubmit" value="<?php _e('search', 'lmm') ?>"/>
 		</form>
 		&nbsp;&nbsp;&nbsp;<?php echo $showall = (isset($_POST['searchtext']) != NULL) ? "<a style=\"text-decoration:none;\" href=\"" . LEAFLET_WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_markers\">" . __('show all markers','lmm') . "</a>" : ""; ?> <?php echo $pager; ?> </div>
