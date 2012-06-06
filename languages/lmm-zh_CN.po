@@ -2,53 +2,55 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MapsMarker.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-06 19:53+0100\n"
-"PO-Revision-Date: 2012-06-06 19:54+0100\n"
-"Last-Translator: Robert Harm <info@mapsmarker.com>\n"
+"POT-Creation-Date: 2012-06-5 20:00+0800\n"
+"PO-Revision-Date: 2012-06-06 00:02+0800\n"
+"Last-Translator: John Shen <synyan@hotmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _e;__;esc_attr_e;esc_attr__\n"
 "X-Poedit-Basepath: .\n"
+"X-Poedit-Language: Chinese (Simplified)\n"
+"X-Poedit-Country: CHINA\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../class-leaflet-options.php:47
 msgid "Default Field"
-msgstr ""
+msgstr "默认区域"
 
 #: ../class-leaflet-options.php:48
 msgid "This is a default description."
-msgstr ""
+msgstr "这是默认的描述"
 
 #: ../class-leaflet-options.php:80
 #: ../leaflet-admin-header.php:8
-#: ../leaflet-maps-marker.php:706
-#: ../leaflet-maps-marker.php:786
-#: ../leaflet-maps-marker.php:1130
+#: ../leaflet-maps-marker.php:690
+#: ../leaflet-maps-marker.php:770
+#: ../leaflet-maps-marker.php:1109
 #: ../leaflet-marker.php:731
 #: ../leaflet-marker.php:735
 #: ../leaflet-marker.php:739
 msgid "Settings"
-msgstr ""
+msgstr "设置"
 
 #: ../class-leaflet-options.php:84
 #, php-format
 msgid "You just successfully installed the \"Leaflet Maps Marker\" plugin. You can now optionally change the default settings below or <a href=\"%1$sadmin.php?page=leafletmapsmarker_marker\">add your first marker</a>.<br/>For tutorials and help, please check the <a href=\"%1$sadmin.php?page=leafletmapsmarker_help\">Help &amp; Credits page</a>!"
-msgstr ""
+msgstr "你已成功安装\"Leaflet Maps Marker\"插件。你现在能改变下面的默认设置或者<a href=\"%1$sadmin.php?page=leafletmapsmarker_marker\">增加你的第一个地标啦</a>.<br/>如需教程或帮助，请查 <a href=\"%1$sadmin.php?page=leafletmapsmarker_help\">帮助&amp;贡献 页面</a>!"
 
 #: ../class-leaflet-options.php:88
 msgid "Warning: the custom map icon directory at <code>/wp-contents/uploads/leaflet-maps-marker-icons</code> could not be created due to file permission settings on your webserver. Leaflet Maps Marker will work as designed, but only with one map icon available.<br/>You can add the included map icons manually by following the steps at <a href=\"http://www.mapsmarker.com/incomplete-installation\" target=\"_blank\">http://www.mapsmarker.com/incomplete-installation</a>"
-msgstr ""
+msgstr "警告: 自定义地图图标所在的目录<code>/wp-contents/uploads/leaflet-maps-marker-icons</code>不能被创建，因为你的网站服务器权限问题。Leaflet Maps Marker 将按原设定工作，但只提供一个地图图标。<br/>不过你可以手工增加地图地标，请参照下列步骤：<a href=\"http://www.mapsmarker.com/incomplete-installation\" target=\"_blank\">http://www.mapsmarker.com/incomplete-installation</a>"
 
 #: ../class-leaflet-options.php:94
 msgid "Plugin options updated."
-msgstr ""
+msgstr "插件选项已更新"
 
 #: ../class-leaflet-options.php:108
 msgid "Save Changes"
-msgstr ""
+msgstr "保存修改"
 
 #: ../class-leaflet-options.php:178
 #: ../class-leaflet-options.php:197
@@ -58,184 +60,184 @@ msgstr ""
 #: ../class-leaflet-options.php:253
 #: ../class-leaflet-options.php:263
 msgid "Index"
-msgstr ""
+msgstr "索引"
 
 #: ../class-leaflet-options.php:179
 #: ../class-leaflet-options.php:376
 msgid "Default basemap for new markers/layers"
-msgstr ""
+msgstr "增加新地标/新图层默认的基础地图"
 
 #: ../class-leaflet-options.php:180
 #: ../class-leaflet-options.php:417
 msgid "Names for default basemaps"
-msgstr ""
+msgstr "默认基础地图名称"
 
 #: ../class-leaflet-options.php:181
 #: ../class-leaflet-options.php:548
 msgid "Available basemaps in control box"
-msgstr ""
+msgstr "控制台提供的基础地图"
 
 #: ../class-leaflet-options.php:182
 #: ../class-leaflet-options.php:679
 #: ../class-leaflet-options.php:693
 msgid "OGD Vienna Selector"
-msgstr ""
+msgstr "OGD Vienna 选择"
 
 #: ../class-leaflet-options.php:183
 msgid "Cloudmade 1 settings"
-msgstr ""
+msgstr "Cloudmade 1 设置"
 
 #: ../class-leaflet-options.php:184
 #: ../class-leaflet-options.php:764
 msgid "Cloudmade 2 settings"
-msgstr ""
+msgstr "Cloudmade 2 设置"
 
 #: ../class-leaflet-options.php:185
 #: ../class-leaflet-options.php:810
 msgid "Cloudmade 3 settings"
-msgstr ""
+msgstr "Cloudmade 3 设置"
 
 #: ../class-leaflet-options.php:186
 msgid "MapBox 1 settings"
-msgstr ""
+msgstr "MapBox 1 设置"
 
 #: ../class-leaflet-options.php:187
 #: ../class-leaflet-options.php:914
 msgid "MapBox 2 settings"
-msgstr ""
+msgstr "MapBox 2 设置"
 
 #: ../class-leaflet-options.php:188
 #: ../class-leaflet-options.php:972
 msgid "MapBox 3 settings"
-msgstr ""
+msgstr "MapBox 3 设置"
 
 #: ../class-leaflet-options.php:189
 #: ../class-leaflet-options.php:1030
 msgid "Custom basemap 1 settings"
-msgstr ""
+msgstr "自定义 基础地图 1 设置"
 
 #: ../class-leaflet-options.php:190
 #: ../class-leaflet-options.php:1100
 msgid "Custom basemap 2 settings"
-msgstr ""
+msgstr "自定义 基础地图 2 设置"
 
 #: ../class-leaflet-options.php:191
 #: ../class-leaflet-options.php:1170
 msgid "Custom basemap 3 settings"
-msgstr ""
+msgstr "自定义 基础地图 3 设置"
 
 #: ../class-leaflet-options.php:198
 #: ../class-leaflet-options.php:1248
 msgid "Available overlays for new markers/layers"
-msgstr ""
+msgstr "新地标/新图层可用的自定义层"
 
 #: ../class-leaflet-options.php:199
 #: ../class-leaflet-options.php:1301
 msgid "Custom overlay settings"
-msgstr ""
+msgstr "自定义层设置"
 
 #: ../class-leaflet-options.php:200
 #: ../class-leaflet-options.php:1380
 msgid "Custom overlay 2 settings"
-msgstr ""
+msgstr "自定义层2设置"
 
 #: ../class-leaflet-options.php:201
 #: ../class-leaflet-options.php:1459
 msgid "Custom overlay 3 settings"
-msgstr ""
+msgstr "自定义层3设置"
 
 #: ../class-leaflet-options.php:202
 #: ../class-leaflet-options.php:1537
 msgid "Custom overlay 4 settings"
-msgstr ""
+msgstr "自定义层4设置"
 
 #: ../class-leaflet-options.php:209
 msgid "WMS stands for <a href=\"http://www.opengeospatial.org/standards/wms\" target=\"_blank\">Web Map Service</a> and is a standard protocol for serving georeferenced map images over the Internet that are generated by a map server using data from a GIS database.<br/>With Leaflet Maps Marker you can configure up to 10 WMS layers which can be enabled for each map. As default, 10 WMS layers from <a href=\"http://data.wien.gv.at\" target=\"_blank\">OGD Vienna</a> and from the <a href=\"http://www.eea.europa.eu/code/gis\" target=\"_blank\">European Environment Agency</a> have been predefined for you.<br/>A selection of further possible WMS layers can be found at <a href=\"http://www.mapsmarker.com/wms\" target=\"_blank\">http://www.mapsmarker.com/wms</a>"
-msgstr ""
+msgstr "WMS的意思是<a href=\"http://www.opengeospatial.org/standards/wms\" target=\"_blank\">Web Map Service（网络地图服务）</a>，它是一个标准的协议，用来使用从地图服务器产生的GIS数据库中的数据生成互联网地理参考地图图像。<br/>使用Leaflet Maps Marker 你可以为每个地图配置多达10个WMS的层。默认10个WMS层精选自<a href=\"http://data.wien.gv.at\" target=\"_blank\">OGD Vienna</a>与<a href=\"http://www.eea.europa.eu/code/gis\" target=\"_blank\">European Environment Agency（欧洲环境机构）</a><br/>另外可以从下面选更多的WMS层：<a href=\"http://www.mapsmarker.com/wms\" target=\"_blank\">http://www.mapsmarker.com/wms</a>"
 
 #: ../class-leaflet-options.php:210
 #: ../class-leaflet-options.php:1624
 msgid "Available WMS layers for new markers/layers"
-msgstr ""
+msgstr "新地标/新图层可选用的WMS层"
 
 #: ../class-leaflet-options.php:211
 #: ../class-leaflet-options.php:1722
 msgid "WMS layer 1 settings"
-msgstr ""
+msgstr "WMS 层 1 设置"
 
 #: ../class-leaflet-options.php:212
 #: ../class-leaflet-options.php:1920
 msgid "WMS layer 2 settings"
-msgstr ""
+msgstr "WMS 层 2 设置"
 
 #: ../class-leaflet-options.php:213
 #: ../class-leaflet-options.php:2117
 msgid "WMS layer 3 settings"
-msgstr ""
+msgstr "WMS 层 3 设置"
 
 #: ../class-leaflet-options.php:214
 #: ../class-leaflet-options.php:2314
 msgid "WMS layer 4 settings"
-msgstr ""
+msgstr "WMS 层 4 设置"
 
 #: ../class-leaflet-options.php:215
 #: ../class-leaflet-options.php:2511
 msgid "WMS layer 5 settings"
-msgstr ""
+msgstr "WMS 层 5 设置"
 
 #: ../class-leaflet-options.php:216
 #: ../class-leaflet-options.php:2708
 msgid "WMS layer 6 settings"
-msgstr ""
+msgstr "WMS 层 6 设置"
 
 #: ../class-leaflet-options.php:217
 #: ../class-leaflet-options.php:2905
 msgid "WMS layer 7 settings"
-msgstr ""
+msgstr "WMS 层 7 设置"
 
 #: ../class-leaflet-options.php:218
 #: ../class-leaflet-options.php:3102
 msgid "WMS layer 8 settings"
-msgstr ""
+msgstr "WMS 层 8 设置"
 
 #: ../class-leaflet-options.php:219
 #: ../class-leaflet-options.php:3299
 msgid "WMS layer 9 settings"
-msgstr ""
+msgstr "WMS 层 9 设置"
 
 #: ../class-leaflet-options.php:220
 #: ../class-leaflet-options.php:3496
 msgid "WMS layer 10 settings"
-msgstr ""
+msgstr "WMS 层 10 设置"
 
 #: ../class-leaflet-options.php:238
 #: ../class-leaflet-options.php:3903
 msgid "Default values for new markers"
-msgstr ""
+msgstr "新地标的默认值"
 
 #: ../class-leaflet-options.php:239
 #: ../class-leaflet-options.php:4207
 msgid "Default values for markers added directly"
-msgstr ""
+msgstr "在写文章时可直接增加新地标所使用的默认值"
 
 #: ../class-leaflet-options.php:246
 #: ../class-leaflet-options.php:4819
 #: ../class-leaflet-options.php:4833
 msgid "Google Places bounds"
-msgstr ""
+msgstr "谷歌地图数据绑定"
 
 #: ../class-leaflet-options.php:247
 #: ../class-leaflet-options.php:4886
 #: ../class-leaflet-options.php:4900
 msgid "Google Places search prefix"
-msgstr ""
+msgstr "谷歌地图搜索前缀"
 
 #: ../class-leaflet-options.php:254
 #: ../class-leaflet-options.php:264
 #: ../class-leaflet-options.php:4934
 #: ../class-leaflet-options.php:5346
 msgid "General settings"
-msgstr ""
+msgstr "一般设置"
 
 #: ../class-leaflet-options.php:265
 #: ../class-leaflet-options.php:1845
@@ -248,178 +250,178 @@ msgstr ""
 #: ../class-leaflet-options.php:3225
 #: ../class-leaflet-options.php:3422
 #: ../class-leaflet-options.php:3619
-#: ../class-leaflet-options.php:5516
+#: ../class-leaflet-options.php:5466
 msgid "KML settings"
-msgstr ""
+msgstr "KML设置"
 
 #: ../class-leaflet-options.php:266
-#: ../class-leaflet-options.php:5547
+#: ../class-leaflet-options.php:5497
 msgid "General Map settings"
-msgstr ""
+msgstr "一般地图设置"
 
 #: ../class-leaflet-options.php:267
-#: ../class-leaflet-options.php:5662
+#: ../class-leaflet-options.php:5612
 msgid "Available columns for marker listing page"
-msgstr ""
+msgstr "可用的地标列表"
 
 #: ../class-leaflet-options.php:268
-#: ../class-leaflet-options.php:5864
+#: ../class-leaflet-options.php:5814
 msgid "Sort order for marker listing page"
-msgstr ""
+msgstr "地标列表排序"
 
 #: ../class-leaflet-options.php:269
-#: ../class-leaflet-options.php:5911
+#: ../class-leaflet-options.php:5861
 msgid "Available columns for layer listing page"
-msgstr ""
+msgstr "可用的图层列表"
 
 #: ../class-leaflet-options.php:270
-#: ../class-leaflet-options.php:6097
+#: ../class-leaflet-options.php:6047
 msgid "Sort order for layer listing page"
-msgstr ""
+msgstr "图层列表排序"
 
 #: ../class-leaflet-options.php:383
 msgid "Please select the basemap which should be pre-selected as default for new markers and layers. Can be changed afterwards on each marker/layer."
-msgstr ""
+msgstr "请选择默认使用的基础地图。该设置也可在以后更改。"
 
 #: ../class-leaflet-options.php:389
 #: ../class-leaflet-options.php:4221
 msgid "Default basemap"
-msgstr ""
+msgstr "默认基础地图"
 
 #: ../class-leaflet-options.php:394
 #: ../class-leaflet-options.php:4226
 msgid "OpenStreetMap (Mapnik, max zoom 18)"
-msgstr ""
+msgstr "OpenStreetMap (Mapnik, 放大级别 18)"
 
 #: ../class-leaflet-options.php:395
 #: ../class-leaflet-options.php:4227
 msgid "MapQuest (OSM, max zoom 18)"
-msgstr ""
+msgstr "MapQuest (OSM 开放街道地图, 放大级别 18)"
 
 #: ../class-leaflet-options.php:396
 #: ../class-leaflet-options.php:4228
 msgid "MapQuest (Aerial, max zoom 12 globally, 12+ in the United States)"
-msgstr ""
+msgstr "MapQuest (Aerial 卫星图, 放大级别 世界12, 美国12+)"
 
 #: ../class-leaflet-options.php:397
 #: ../class-leaflet-options.php:4229
 msgid "OGD Vienna basemap (max zoom 19)"
-msgstr ""
+msgstr "OGD Vienna 基础地图 (放大级别 19)"
 
 #: ../class-leaflet-options.php:398
 #: ../class-leaflet-options.php:4230
 msgid "OGD Vienna satellite (max zoom 19)"
-msgstr ""
+msgstr "OGD Vienna 卫星图 (放大级别 19)"
 
 #: ../class-leaflet-options.php:405
 #: ../class-leaflet-options.php:652
 #: ../class-leaflet-options.php:4234
 msgid "Custom basemap"
-msgstr ""
+msgstr "自定义基础地图"
 
 #: ../class-leaflet-options.php:406
 #: ../class-leaflet-options.php:660
 #: ../class-leaflet-options.php:4235
 msgid "Custom basemap 2"
-msgstr ""
+msgstr "自定义基础地图2"
 
 #: ../class-leaflet-options.php:407
 #: ../class-leaflet-options.php:668
 #: ../class-leaflet-options.php:4236
 msgid "Custom basemap 3"
-msgstr ""
+msgstr "自定义基础地图3"
 
 #: ../class-leaflet-options.php:425
 msgid "Optionally you can also change the name of the predefined basemaps in the controlbox."
-msgstr ""
+msgstr "你也可以在控制台改变之前定义的基础地图名称"
 
 #: ../class-leaflet-options.php:518
 msgid "Custom Basemap"
-msgstr ""
+msgstr "自定义基础地图"
 
 #: ../class-leaflet-options.php:526
 msgid "Custom Basemap 2"
-msgstr ""
+msgstr "自定义基础地图2"
 
 #: ../class-leaflet-options.php:534
 msgid "Custom Basemap 3"
-msgstr ""
+msgstr "自定义基础地图3"
 
 #: ../class-leaflet-options.php:556
 msgid "Please select the basemaps which should be available in the control box."
-msgstr ""
+msgstr "请在控制台选择基础地图"
 
 #: ../class-leaflet-options.php:562
 msgid "Basemaps available in control box"
-msgstr ""
+msgstr "控制台显示的基础地图"
 
 #: ../class-leaflet-options.php:563
 msgid "OpenStreetMap (Mapnik)"
-msgstr ""
+msgstr "OpenStreetMap (Mapnik)"
 
 #: ../class-leaflet-options.php:571
 msgid "MapQuest (OSM)"
-msgstr ""
+msgstr "MapQuest (OSM开放街道地图)"
 
 #: ../class-leaflet-options.php:579
 msgid "MapQuest (Aerial)"
-msgstr ""
+msgstr "MapQuest (Aerial卫星图)"
 
 #: ../class-leaflet-options.php:588
 msgid "OGD Vienna basemap"
-msgstr ""
+msgstr "OGD Vienna基础地图"
 
 #: ../class-leaflet-options.php:596
 msgid "OGD Vienna satellite"
-msgstr ""
+msgstr "OGD Vienna卫星图"
 
 #: ../class-leaflet-options.php:687
 msgid "If coordinates within boundaries of Vienna/Austria are selected for a marker or layer, the basemap automatically switches to OGD Vienna basemap and the overlay OGD Vienna addresses gets checked."
-msgstr ""
+msgstr "如果奥地利维也纳境内的坐标使用在地标或图层，则基础地图自动切换到OGD Vienna基础地图，其上层的OGD Vienna地址将自动检查."
 
 #: ../class-leaflet-options.php:698
 msgid "enabled (use OGD Vienna basemap)"
-msgstr ""
+msgstr "开 (使用OGD Vienna基础地图)"
 
 #: ../class-leaflet-options.php:699
 msgid "enabled (use OGD Vienna satellite)"
-msgstr ""
+msgstr "开 (使用OGD Vienna卫星地图)"
 
 #: ../class-leaflet-options.php:700
 msgid "disabled (use default basemap)"
-msgstr ""
+msgstr "关 (使用默认基础地图)"
 
 #: ../class-leaflet-options.php:707
 msgid "enable OGD Vienna addresses overlay"
-msgstr ""
+msgstr "打开OGD Vienna地址层"
 
 #: ../class-leaflet-options.php:718
 msgid "Cloudmade settings"
-msgstr ""
+msgstr "Cloudmade设置"
 
 #: ../class-leaflet-options.php:726
 #: ../class-leaflet-options.php:772
 #: ../class-leaflet-options.php:818
 msgid "Tutorial for Cloudmade configuration:"
-msgstr ""
+msgstr "Cloudmade配置教程"
 
 #: ../class-leaflet-options.php:731
 #: ../class-leaflet-options.php:777
 #: ../class-leaflet-options.php:823
 msgid "API key"
-msgstr ""
+msgstr "API密钥"
 
 #: ../class-leaflet-options.php:748
 #: ../class-leaflet-options.php:794
 #: ../class-leaflet-options.php:840
 msgid "Double resolution"
-msgstr ""
+msgstr "双清晰度"
 
 #: ../class-leaflet-options.php:749
 #: ../class-leaflet-options.php:795
 #: ../class-leaflet-options.php:841
 msgid "This will improve map look for iPhone 4, Motorola Milestone, etc."
-msgstr ""
+msgstr "这将改善iPhone 4、摩托罗拉里程碑等手机上的视图。"
 
 #: ../class-leaflet-options.php:753
 #: ../class-leaflet-options.php:799
@@ -432,7 +434,7 @@ msgstr ""
 #: ../class-leaflet-options.php:5435
 #: ../class-leaflet-options.php:5447
 msgid "enabled"
-msgstr ""
+msgstr "开"
 
 #: ../class-leaflet-options.php:754
 #: ../class-leaflet-options.php:800
@@ -445,17 +447,17 @@ msgstr ""
 #: ../class-leaflet-options.php:5436
 #: ../class-leaflet-options.php:5448
 msgid "disabled"
-msgstr ""
+msgstr "关"
 
 #: ../class-leaflet-options.php:856
 msgid "MapBox settings"
-msgstr ""
+msgstr "MapBox设置"
 
 #: ../class-leaflet-options.php:869
 #: ../class-leaflet-options.php:927
 #: ../class-leaflet-options.php:985
 msgid "User"
-msgstr ""
+msgstr "用户"
 
 #: ../class-leaflet-options.php:870
 #: ../class-leaflet-options.php:878
@@ -464,15 +466,15 @@ msgstr ""
 #: ../class-leaflet-options.php:986
 #: ../class-leaflet-options.php:994
 msgid "e.g."
-msgstr ""
+msgstr "例如"
 
 #: ../class-leaflet-options.php:877
 #: ../class-leaflet-options.php:935
 #: ../class-leaflet-options.php:993
 #: ../leaflet-fullscreen.php:102
-#: ../leaflet-fullscreen.php:484
+#: ../leaflet-fullscreen.php:482
 msgid "map"
-msgstr ""
+msgstr "地图"
 
 #: ../class-leaflet-options.php:885
 #: ../class-leaflet-options.php:943
@@ -485,7 +487,7 @@ msgstr ""
 #: ../class-leaflet-options.php:1496
 #: ../class-leaflet-options.php:1575
 msgid "Minimum zoom level"
-msgstr ""
+msgstr "最小放大级别"
 
 #: ../class-leaflet-options.php:893
 #: ../class-leaflet-options.php:951
@@ -498,7 +500,7 @@ msgstr ""
 #: ../class-leaflet-options.php:1504
 #: ../class-leaflet-options.php:1583
 msgid "Maximum zoom level"
-msgstr ""
+msgstr "最大放大级别"
 
 #: ../class-leaflet-options.php:901
 #: ../class-leaflet-options.php:959
@@ -521,7 +523,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3373
 #: ../class-leaflet-options.php:3570
 msgid "Attribution"
-msgstr ""
+msgstr "归属"
 
 #: ../class-leaflet-options.php:902
 #: ../class-leaflet-options.php:960
@@ -554,13 +556,13 @@ msgstr ""
 #: ../class-leaflet-options.php:3413
 #: ../class-leaflet-options.php:3610
 msgid "For example"
-msgstr ""
+msgstr "例如"
 
 #: ../class-leaflet-options.php:1038
 #: ../class-leaflet-options.php:1108
 #: ../class-leaflet-options.php:1178
 msgid "Please enter settings for custom basemap"
-msgstr ""
+msgstr "请输入基础地图设置"
 
 #: ../class-leaflet-options.php:1043
 #: ../class-leaflet-options.php:1113
@@ -570,7 +572,7 @@ msgstr ""
 #: ../class-leaflet-options.php:1480
 #: ../class-leaflet-options.php:1559
 msgid "Tiles URL"
-msgstr ""
+msgstr "Tiles URL(地图瓦片拼接网址)"
 
 #: ../class-leaflet-options.php:1060
 #: ../class-leaflet-options.php:1068
@@ -587,7 +589,7 @@ msgstr ""
 #: ../class-leaflet-options.php:1576
 #: ../class-leaflet-options.php:1584
 msgid "Note: maximum zoom level may vary on your basemap"
-msgstr ""
+msgstr "注：根据基础地图不同，最大放大级别可能也不同"
 
 #: ../class-leaflet-options.php:1076
 #: ../class-leaflet-options.php:1146
@@ -607,7 +609,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3401
 #: ../class-leaflet-options.php:3598
 msgid "Support for subdomains?"
-msgstr ""
+msgstr "支持子域名？"
 
 #: ../class-leaflet-options.php:1077
 #: ../class-leaflet-options.php:1147
@@ -617,7 +619,7 @@ msgstr ""
 #: ../class-leaflet-options.php:1514
 #: ../class-leaflet-options.php:1593
 msgid "Will replace {s} from tiles url if available"
-msgstr ""
+msgstr "如果支持，将取代tiles url（地图瓦片拼接网址）中的{s}"
 
 #: ../class-leaflet-options.php:1081
 #: ../class-leaflet-options.php:1151
@@ -637,7 +639,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3407
 #: ../class-leaflet-options.php:3604
 msgid "Yes (please enter subdomains in next form field)"
-msgstr ""
+msgstr "是 (请在下表域输入子域名）"
 
 #: ../class-leaflet-options.php:1082
 #: ../class-leaflet-options.php:1152
@@ -667,7 +669,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3584
 #: ../class-leaflet-options.php:3603
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: ../class-leaflet-options.php:1087
 #: ../class-leaflet-options.php:1157
@@ -687,50 +689,50 @@ msgstr ""
 #: ../class-leaflet-options.php:3412
 #: ../class-leaflet-options.php:3609
 msgid "Subdomain names"
-msgstr ""
+msgstr "子域名名字"
 
 #: ../class-leaflet-options.php:1256
 msgid "Please select the overlays which should be available in the control box."
-msgstr ""
+msgstr "请在控制台选择覆盖图层"
 
 #: ../class-leaflet-options.php:1262
 msgid "Available overlays in control box"
-msgstr ""
+msgstr "控制台可选的覆盖图层"
 
 #: ../class-leaflet-options.php:1263
 #: ../class-leaflet-options.php:4004
 #: ../class-leaflet-options.php:4293
 #: ../class-leaflet-options.php:4500
 msgid "Custom overlay"
-msgstr ""
+msgstr "自定义覆盖图层"
 
 #: ../class-leaflet-options.php:1271
 #: ../class-leaflet-options.php:4012
 #: ../class-leaflet-options.php:4301
 #: ../class-leaflet-options.php:4508
 msgid "Custom overlay 2"
-msgstr ""
+msgstr "自定义覆盖图层2"
 
 #: ../class-leaflet-options.php:1280
 #: ../class-leaflet-options.php:4021
 #: ../class-leaflet-options.php:4310
 #: ../class-leaflet-options.php:4516
 msgid "Custom overlay 3"
-msgstr ""
+msgstr "自定义覆盖图层3"
 
 #: ../class-leaflet-options.php:1289
 #: ../class-leaflet-options.php:4029
 #: ../class-leaflet-options.php:4319
 #: ../class-leaflet-options.php:4524
 msgid "Custom overlay 4"
-msgstr ""
+msgstr "自定义覆盖图层4"
 
 #: ../class-leaflet-options.php:1309
 #: ../class-leaflet-options.php:1388
 #: ../class-leaflet-options.php:1467
 #: ../class-leaflet-options.php:1545
 msgid "Please enter settings for custom overlay"
-msgstr ""
+msgstr "请输入自定义覆盖图层设置"
 
 #: ../class-leaflet-options.php:1314
 #: ../class-leaflet-options.php:1393
@@ -746,29 +748,29 @@ msgstr ""
 #: ../class-leaflet-options.php:3116
 #: ../class-leaflet-options.php:3313
 #: ../class-leaflet-options.php:3510
-#: ../leaflet-list-layers.php:42
-#: ../leaflet-list-layers.php:84
+#: ../leaflet-list-layers.php:36
+#: ../leaflet-list-layers.php:78
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: ../class-leaflet-options.php:1315
 #: ../class-leaflet-options.php:1394
 #: ../class-leaflet-options.php:1473
 #: ../class-leaflet-options.php:1551
 msgid "Will be displayed in controlbox if selected"
-msgstr ""
+msgstr "如果选择将在控制台显示"
 
 #: ../class-leaflet-options.php:1316
 msgid "OGD Vienna addresses"
-msgstr ""
+msgstr "OGD Vienna地址"
 
 #: ../class-leaflet-options.php:1632
 msgid "Please select the WMS layers which should be available when creating new markers/layers"
-msgstr ""
+msgstr "建立新地标/新层时请选择WMS图层"
 
 #: ../class-leaflet-options.php:1638
 msgid "Available WMS layers"
-msgstr ""
+msgstr "可选的WMS图层"
 
 #: ../class-leaflet-options.php:1744
 #: ../class-leaflet-options.php:1942
@@ -781,7 +783,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3321
 #: ../class-leaflet-options.php:3518
 msgid "baseURL"
-msgstr ""
+msgstr "基础URL"
 
 #: ../class-leaflet-options.php:1752
 #: ../class-leaflet-options.php:1950
@@ -793,9 +795,9 @@ msgstr ""
 #: ../class-leaflet-options.php:3132
 #: ../class-leaflet-options.php:3329
 #: ../class-leaflet-options.php:3526
-#: ../leaflet-maps-marker.php:1129
+#: ../leaflet-maps-marker.php:1108
 msgid "Layers"
-msgstr ""
+msgstr "图层"
 
 #: ../class-leaflet-options.php:1753
 #: ../class-leaflet-options.php:1951
@@ -808,7 +810,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3330
 #: ../class-leaflet-options.php:3527
 msgid "(required) Comma-separated list of WMS layers to show"
-msgstr ""
+msgstr "(必选)显示以逗号分隔的WMS图层列表"
 
 #: ../class-leaflet-options.php:1760
 #: ../class-leaflet-options.php:1958
@@ -821,7 +823,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3337
 #: ../class-leaflet-options.php:3534
 msgid "Styles"
-msgstr ""
+msgstr "样式"
 
 #: ../class-leaflet-options.php:1761
 #: ../class-leaflet-options.php:1959
@@ -834,7 +836,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3338
 #: ../class-leaflet-options.php:3535
 msgid "Comma-separated list of WMS styles"
-msgstr ""
+msgstr "以逗号分隔的WMS图层列表"
 
 #: ../class-leaflet-options.php:1768
 #: ../class-leaflet-options.php:1966
@@ -847,7 +849,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3345
 #: ../class-leaflet-options.php:3542
 msgid "Format"
-msgstr ""
+msgstr "格式"
 
 #: ../class-leaflet-options.php:1776
 #: ../class-leaflet-options.php:1974
@@ -860,7 +862,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3353
 #: ../class-leaflet-options.php:3550
 msgid "Transparent"
-msgstr ""
+msgstr "透明"
 
 #: ../class-leaflet-options.php:1777
 #: ../class-leaflet-options.php:1975
@@ -873,7 +875,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3354
 #: ../class-leaflet-options.php:3551
 msgid "If yes, the WMS service will return images with transparency"
-msgstr ""
+msgstr "如果选择是，则WMS服务将返回透明图片"
 
 #: ../class-leaflet-options.php:1781
 #: ../class-leaflet-options.php:1979
@@ -887,15 +889,15 @@ msgstr ""
 #: ../class-leaflet-options.php:3555
 #: ../class-leaflet-options.php:5211
 #: ../class-leaflet-options.php:5223
-#: ../class-leaflet-options.php:5566
-#: ../class-leaflet-options.php:5578
-#: ../class-leaflet-options.php:5590
-#: ../class-leaflet-options.php:5602
-#: ../class-leaflet-options.php:5614
-#: ../class-leaflet-options.php:5626
-#: ../class-leaflet-options.php:5638
+#: ../class-leaflet-options.php:5516
+#: ../class-leaflet-options.php:5528
+#: ../class-leaflet-options.php:5540
+#: ../class-leaflet-options.php:5552
+#: ../class-leaflet-options.php:5564
+#: ../class-leaflet-options.php:5576
+#: ../class-leaflet-options.php:5588
 msgid "true"
-msgstr ""
+msgstr "是"
 
 #: ../class-leaflet-options.php:1782
 #: ../class-leaflet-options.php:1980
@@ -910,7 +912,7 @@ msgstr ""
 #: ../class-leaflet-options.php:5210
 #: ../class-leaflet-options.php:5222
 msgid "false"
-msgstr ""
+msgstr "否"
 
 #: ../class-leaflet-options.php:1788
 #: ../class-leaflet-options.php:1986
@@ -923,7 +925,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3365
 #: ../class-leaflet-options.php:3562
 msgid "Version"
-msgstr ""
+msgstr "版本"
 
 #: ../class-leaflet-options.php:1789
 #: ../class-leaflet-options.php:1987
@@ -936,7 +938,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3366
 #: ../class-leaflet-options.php:3563
 msgid "Version of the WMS service to use"
-msgstr ""
+msgstr "WMS服务的版本"
 
 #: ../class-leaflet-options.php:1804
 #: ../class-leaflet-options.php:2002
@@ -949,7 +951,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3381
 #: ../class-leaflet-options.php:3578
 msgid "Display legend?"
-msgstr ""
+msgstr "显示图例？"
 
 #: ../class-leaflet-options.php:1809
 #: ../class-leaflet-options.php:2007
@@ -963,7 +965,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3583
 #: ../leaflet-tools.php:672
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: ../class-leaflet-options.php:1816
 #: ../class-leaflet-options.php:2014
@@ -985,6 +987,8 @@ msgstr ""
 #: ../leaflet-fullscreen.php:232
 #: ../leaflet-fullscreen.php:233
 #: ../leaflet-fullscreen.php:234
+#: ../leaflet-fullscreen.php:614
+#: ../leaflet-fullscreen.php:615
 #: ../leaflet-fullscreen.php:616
 #: ../leaflet-fullscreen.php:617
 #: ../leaflet-fullscreen.php:618
@@ -993,8 +997,6 @@ msgstr ""
 #: ../leaflet-fullscreen.php:621
 #: ../leaflet-fullscreen.php:622
 #: ../leaflet-fullscreen.php:623
-#: ../leaflet-fullscreen.php:624
-#: ../leaflet-fullscreen.php:625
 #: ../leaflet-layer.php:751
 #: ../leaflet-layer.php:752
 #: ../leaflet-layer.php:753
@@ -1005,16 +1007,16 @@ msgstr ""
 #: ../leaflet-layer.php:758
 #: ../leaflet-layer.php:759
 #: ../leaflet-layer.php:760
-#: ../leaflet-maps-marker.php:500
-#: ../leaflet-maps-marker.php:501
-#: ../leaflet-maps-marker.php:502
-#: ../leaflet-maps-marker.php:503
-#: ../leaflet-maps-marker.php:504
-#: ../leaflet-maps-marker.php:505
-#: ../leaflet-maps-marker.php:506
-#: ../leaflet-maps-marker.php:507
-#: ../leaflet-maps-marker.php:508
-#: ../leaflet-maps-marker.php:509
+#: ../leaflet-maps-marker.php:484
+#: ../leaflet-maps-marker.php:485
+#: ../leaflet-maps-marker.php:486
+#: ../leaflet-maps-marker.php:487
+#: ../leaflet-maps-marker.php:488
+#: ../leaflet-maps-marker.php:489
+#: ../leaflet-maps-marker.php:490
+#: ../leaflet-maps-marker.php:491
+#: ../leaflet-maps-marker.php:492
+#: ../leaflet-maps-marker.php:493
 #: ../leaflet-marker.php:602
 #: ../leaflet-marker.php:603
 #: ../leaflet-marker.php:604
@@ -1026,7 +1028,7 @@ msgstr ""
 #: ../leaflet-marker.php:610
 #: ../leaflet-marker.php:611
 msgid "Legend"
-msgstr ""
+msgstr "图例"
 
 #: ../class-leaflet-options.php:1817
 #: ../class-leaflet-options.php:2015
@@ -1039,7 +1041,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3394
 #: ../class-leaflet-options.php:3591
 msgid "URL of image which gets show when hovering the text \"(Legend)\" next to WMS attribution text"
-msgstr ""
+msgstr "当鼠标悬停在WMS属性旁字体\"(Legend)\"上时，显示的图片URL地址"
 
 #: ../class-leaflet-options.php:1825
 #: ../class-leaflet-options.php:2023
@@ -1052,7 +1054,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3402
 #: ../class-leaflet-options.php:3599
 msgid "Will replace {s} from base url if available"
-msgstr ""
+msgstr "将替代可用的基本url中的{s}"
 
 #: ../class-leaflet-options.php:1846
 #: ../class-leaflet-options.php:2044
@@ -1065,7 +1067,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3423
 #: ../class-leaflet-options.php:3620
 msgid "If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML."
-msgstr ""
+msgstr "如果WMS服务器支持WMS图层的KML输出，则下面的设置将在WMS图层输出KML时使用。"
 
 #: ../class-leaflet-options.php:1852
 #: ../class-leaflet-options.php:2050
@@ -1078,7 +1080,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3429
 #: ../class-leaflet-options.php:3626
 msgid "Does the WMS server support KML output?"
-msgstr ""
+msgstr "WMS服务器是否支持KML输出？"
 
 #: ../class-leaflet-options.php:1857
 #: ../class-leaflet-options.php:2055
@@ -1098,7 +1100,7 @@ msgstr ""
 #: ../leaflet-marker.php:439
 #: ../leaflet-tools.php:649
 msgid "yes"
-msgstr ""
+msgstr "是"
 
 #: ../class-leaflet-options.php:1858
 #: ../class-leaflet-options.php:2056
@@ -1118,7 +1120,7 @@ msgstr ""
 #: ../leaflet-marker.php:437
 #: ../leaflet-tools.php:651
 msgid "no"
-msgstr ""
+msgstr "否"
 
 #: ../class-leaflet-options.php:1865
 #: ../class-leaflet-options.php:2063
@@ -1131,7 +1133,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3442
 #: ../class-leaflet-options.php:3639
 msgid "http-address of the KML-webservice of the WMS layer"
-msgstr ""
+msgstr "WMS层的KML网络服务的http地址"
 
 #: ../class-leaflet-options.php:1877
 #: ../class-leaflet-options.php:2075
@@ -1144,7 +1146,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3454
 #: ../class-leaflet-options.php:3651
 msgid "onChange (refresh when the file is loaded and whenever the Link parameters change)"
-msgstr ""
+msgstr "onChange事件（当文件装载且链接参数改变时刷新）"
 
 #: ../class-leaflet-options.php:1878
 #: ../class-leaflet-options.php:2076
@@ -1157,7 +1159,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3455
 #: ../class-leaflet-options.php:3652
 msgid "onInterval (refresh every n seconds (specified in refreshInterval)"
-msgstr ""
+msgstr "onInterval事件（每n秒刷新一次(在refreshInterval事件中阐述)）"
 
 #: ../class-leaflet-options.php:1879
 #: ../class-leaflet-options.php:2077
@@ -1170,7 +1172,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3456
 #: ../class-leaflet-options.php:3653
 msgid "onExpire (refresh the file when the expiration time is reached)"
-msgstr ""
+msgstr "onExpire事件（时间过期时刷新文件）"
 
 #: ../class-leaflet-options.php:1880
 #: ../class-leaflet-options.php:2078
@@ -1183,7 +1185,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3457
 #: ../class-leaflet-options.php:3654
 msgid "onStop (after camera movement stops)"
-msgstr ""
+msgstr "onStop事件（相机移动停止后）"
 
 #: ../class-leaflet-options.php:1887
 #: ../class-leaflet-options.php:2085
@@ -1196,7 +1198,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3464
 #: ../class-leaflet-options.php:3661
 msgid "Indicates to refresh the file every n seconds"
-msgstr ""
+msgstr "指示每n秒刷新文件一次"
 
 #: ../class-leaflet-options.php:1899
 #: ../class-leaflet-options.php:2097
@@ -1209,7 +1211,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3476
 #: ../class-leaflet-options.php:3673
 msgid "never (ignore changes in the view)"
-msgstr ""
+msgstr "从不（忽略视图中的变化）"
 
 #: ../class-leaflet-options.php:1900
 #: ../class-leaflet-options.php:2098
@@ -1222,7 +1224,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3477
 #: ../class-leaflet-options.php:3674
 msgid "onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)"
-msgstr ""
+msgstr "onStop事件（移动停止后n秒刷新文件，n在viewRefreshTime中定义"
 
 #: ../class-leaflet-options.php:1901
 #: ../class-leaflet-options.php:2099
@@ -1235,7 +1237,7 @@ msgstr ""
 #: ../class-leaflet-options.php:3478
 #: ../class-leaflet-options.php:3675
 msgid "onRequest (refresh the file only when the user explicitly requests it)"
-msgstr ""
+msgstr "onRequest（仅当用户明确请求时才刷新文件）"
 
 #: ../class-leaflet-options.php:1908
 #: ../class-leaflet-options.php:2106
@@ -1248,18 +1250,18 @@ msgstr ""
 #: ../class-leaflet-options.php:3485
 #: ../class-leaflet-options.php:3682
 msgid "After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)"
-msgstr ""
+msgstr "当相机移动停止后，定义在刷新视图前等待的秒数(当viewRefreshMode设置为onStop时使用)"
 
 #: ../class-leaflet-options.php:3911
 msgid "Will be used when creating a new marker. All values can be changed afterwards on each marker."
-msgstr ""
+msgstr "当创建新地标时使用。所有值均可在以后更改。"
 
 #: ../class-leaflet-options.php:3916
 #: ../class-leaflet-options.php:4432
 #: ../class-leaflet-options.php:4852
 #: ../class-leaflet-options.php:4868
 msgid "Latitude"
-msgstr ""
+msgstr "纬度"
 
 #: ../class-leaflet-options.php:3917
 #: ../class-leaflet-options.php:3925
@@ -1270,115 +1272,115 @@ msgstr ""
 #: ../class-leaflet-options.php:4869
 #: ../class-leaflet-options.php:4877
 msgid "Please use a dot instead of a coma as decimal delimiter!"
-msgstr ""
+msgstr "请使用半角句号点而非逗号来表示小数点！"
 
 #: ../class-leaflet-options.php:3924
 #: ../class-leaflet-options.php:4440
 #: ../class-leaflet-options.php:4860
 #: ../class-leaflet-options.php:4876
 msgid "Longitude"
-msgstr ""
+msgstr "经度"
 
 #: ../class-leaflet-options.php:3932
 #: ../class-leaflet-options.php:5288
-#: ../class-leaflet-options.php:5685
+#: ../class-leaflet-options.php:5635
 #: ../leaflet-layer.php:517
 #: ../leaflet-layer.php:561
-#: ../leaflet-list-markers.php:125
-#: ../leaflet-list-markers.php:173
+#: ../leaflet-list-markers.php:115
+#: ../leaflet-list-markers.php:163
 #: ../leaflet-marker.php:412
 #: ../leaflet-tools.php:394
 msgid "Icon"
-msgstr ""
+msgstr "图标"
 
 #: ../class-leaflet-options.php:3933
 msgid "If you want to use another icon than the blue pin, please enter the file name of the icon in the form field - e.g. smiley_happy.png"
-msgstr ""
+msgstr "如果你要使用除蓝图标外的另一个图标作为默认图标，请输入该图标的文件名，例如：smiley_happy.png"
 
 #: ../class-leaflet-options.php:3940
 #: ../class-leaflet-options.php:4241
 #: ../class-leaflet-options.php:4448
-#: ../class-leaflet-options.php:5733
-#: ../class-leaflet-options.php:5974
+#: ../class-leaflet-options.php:5683
+#: ../class-leaflet-options.php:5924
 #: ../leaflet-layer.php:271
 #: ../leaflet-layer.php:528
 #: ../leaflet-layer.php:572
-#: ../leaflet-list-layers.php:51
-#: ../leaflet-list-layers.php:93
-#: ../leaflet-list-markers.php:140
-#: ../leaflet-list-markers.php:188
+#: ../leaflet-list-layers.php:45
+#: ../leaflet-list-layers.php:87
+#: ../leaflet-list-markers.php:130
+#: ../leaflet-list-markers.php:178
 #: ../leaflet-marker.php:266
 #: ../leaflet-tools.php:345
 #: ../leaflet-tools.php:596
 msgid "Zoom"
-msgstr ""
+msgstr "放大"
 
 #: ../class-leaflet-options.php:3948
 #: ../class-leaflet-options.php:4249
 #: ../class-leaflet-options.php:4456
 msgid "Map width"
-msgstr ""
+msgstr "地图长度"
 
 #: ../class-leaflet-options.php:3957
 #: ../class-leaflet-options.php:4258
 #: ../class-leaflet-options.php:4465
 msgid "Map width unit"
-msgstr ""
+msgstr "地图长度单位"
 
 #: ../class-leaflet-options.php:3968
 #: ../class-leaflet-options.php:4269
 #: ../class-leaflet-options.php:4476
 msgid "Map height"
-msgstr ""
+msgstr "地图高度"
 
 #: ../class-leaflet-options.php:3977
 msgid "Open popup by default"
-msgstr ""
+msgstr "默认打开弹出窗口"
 
 #: ../class-leaflet-options.php:3989
 #: ../class-leaflet-options.php:4278
 #: ../class-leaflet-options.php:4485
 msgid "Basemap/layer controlbox on frontend"
-msgstr ""
+msgstr "基础地图/图层控制台显示在前台"
 
 #: ../class-leaflet-options.php:3994
 #: ../class-leaflet-options.php:4283
 #: ../class-leaflet-options.php:4490
 #: ../class-leaflet-options.php:5094
 #: ../leaflet-layer.php:278
-#: ../leaflet-list-layers.php:149
-#: ../leaflet-list-layers.php:150
-#: ../leaflet-list-markers.php:232
-#: ../leaflet-list-markers.php:233
+#: ../leaflet-list-layers.php:143
+#: ../leaflet-list-layers.php:144
+#: ../leaflet-list-markers.php:222
+#: ../leaflet-list-markers.php:223
 #: ../leaflet-marker.php:274
 #: ../leaflet-tools.php:363
 #: ../leaflet-tools.php:614
 msgid "hidden"
-msgstr ""
+msgstr "隐藏"
 
 #: ../class-leaflet-options.php:3995
 #: ../class-leaflet-options.php:4284
 #: ../class-leaflet-options.php:4491
 #: ../leaflet-layer.php:279
-#: ../leaflet-list-layers.php:150
-#: ../leaflet-list-markers.php:233
+#: ../leaflet-list-layers.php:144
+#: ../leaflet-list-markers.php:223
 #: ../leaflet-marker.php:275
 #: ../leaflet-tools.php:364
 #: ../leaflet-tools.php:615
 msgid "collapsed (except on mobiles)"
-msgstr ""
+msgstr "折叠（手机上不显示）"
 
 #: ../class-leaflet-options.php:3996
 #: ../class-leaflet-options.php:4285
 #: ../class-leaflet-options.php:4492
 #: ../leaflet-layer.php:280
-#: ../leaflet-list-layers.php:150
-#: ../leaflet-list-markers.php:233
+#: ../leaflet-list-layers.php:144
+#: ../leaflet-list-markers.php:223
 #: ../leaflet-marker.php:276
 #: ../leaflet-tools.php:365
 #: ../leaflet-tools.php:616
 msgid "expanded"
-msgstr ""
+msgstr "展开"
 
 #: ../class-leaflet-options.php:4003
 #: ../class-leaflet-options.php:4292
@@ -1386,326 +1388,325 @@ msgstr ""
 #: ../leaflet-tools.php:282
 #: ../leaflet-tools.php:533
 msgid "Checked overlays in control box"
-msgstr ""
+msgstr "控制台已选的覆盖层"
 
 #: ../class-leaflet-options.php:4036
 #: ../leaflet-marker.php:279
 #: ../leaflet-tools.php:377
 msgid "Panel for displaying marker name and API URLs on top of map"
-msgstr ""
+msgstr "在地图顶部显示地标和API URL地址的面板"
 
 #: ../class-leaflet-options.php:4041
 #: ../class-leaflet-options.php:4536
-#: ../class-leaflet-options.php:5535
+#: ../class-leaflet-options.php:5485
 #: ../leaflet-layer.php:284
 #: ../leaflet-marker.php:281
 #: ../leaflet-tools.php:381
 #: ../leaflet-tools.php:632
 msgid "show"
-msgstr ""
+msgstr "显示"
 
 #: ../class-leaflet-options.php:4042
 #: ../class-leaflet-options.php:4537
-#: ../class-leaflet-options.php:5536
+#: ../class-leaflet-options.php:5486
 #: ../leaflet-layer.php:285
 #: ../leaflet-marker.php:283
 #: ../leaflet-tools.php:383
 #: ../leaflet-tools.php:634
 msgid "hide"
-msgstr ""
+msgstr "隐藏"
 
 #: ../class-leaflet-options.php:4049
 #: ../class-leaflet-options.php:4544
 msgid "Visible API links in panel"
-msgstr ""
+msgstr "面板上可见的API链接"
 
 #: ../class-leaflet-options.php:4050
 #: ../class-leaflet-options.php:4745
+#: ../leaflet-fullscreen.php:759
 #: ../leaflet-fullscreen.php:762
 #: ../leaflet-fullscreen.php:765
-#: ../leaflet-fullscreen.php:768
 #: ../leaflet-geojson.php:94
 #: ../leaflet-geojson.php:96
 #: ../leaflet-geojson.php:98
 #: ../leaflet-geojson.php:197
 #: ../leaflet-geojson.php:199
 #: ../leaflet-geojson.php:201
-#: ../leaflet-maps-marker.php:645
-#: ../leaflet-maps-marker.php:648
-#: ../leaflet-maps-marker.php:651
+#: ../leaflet-maps-marker.php:629
+#: ../leaflet-maps-marker.php:632
+#: ../leaflet-maps-marker.php:635
 #: ../leaflet-marker.php:733
 #: ../leaflet-marker.php:737
 #: ../leaflet-marker.php:741
 msgid "Directions"
-msgstr ""
+msgstr "指路"
 
 #: ../class-leaflet-options.php:4066
 #: ../class-leaflet-options.php:4553
 #: ../class-leaflet-options.php:4761
-#: ../class-leaflet-options.php:5821
-#: ../class-leaflet-options.php:6054
+#: ../class-leaflet-options.php:5771
+#: ../class-leaflet-options.php:6004
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
 #: ../leaflet-layer.php:240
 #: ../leaflet-layer.php:546
 #: ../leaflet-layer.php:590
 #: ../leaflet-layer.php:624
-#: ../leaflet-list-layers.php:69
-#: ../leaflet-list-layers.php:111
-#: ../leaflet-list-layers.php:161
-#: ../leaflet-list-markers.php:158
-#: ../leaflet-list-markers.php:206
-#: ../leaflet-list-markers.php:251
+#: ../leaflet-list-layers.php:63
+#: ../leaflet-list-layers.php:105
+#: ../leaflet-list-layers.php:155
+#: ../leaflet-list-markers.php:148
+#: ../leaflet-list-markers.php:196
+#: ../leaflet-list-markers.php:241
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
 msgid "Fullscreen"
-msgstr ""
+msgstr "全屏"
 
 #: ../class-leaflet-options.php:4074
 #: ../class-leaflet-options.php:4561
 #: ../class-leaflet-options.php:4769
-#: ../class-leaflet-options.php:5829
-#: ../class-leaflet-options.php:6062
+#: ../class-leaflet-options.php:5779
+#: ../class-leaflet-options.php:6012
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
 #: ../leaflet-layer.php:240
 #: ../leaflet-layer.php:548
 #: ../leaflet-layer.php:592
 #: ../leaflet-layer.php:625
-#: ../leaflet-list-layers.php:71
-#: ../leaflet-list-layers.php:113
-#: ../leaflet-list-layers.php:162
-#: ../leaflet-list-markers.php:160
-#: ../leaflet-list-markers.php:208
-#: ../leaflet-list-markers.php:252
+#: ../leaflet-list-layers.php:65
+#: ../leaflet-list-layers.php:107
+#: ../leaflet-list-layers.php:156
+#: ../leaflet-list-markers.php:150
+#: ../leaflet-list-markers.php:198
+#: ../leaflet-list-markers.php:242
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
 msgid "QR code"
-msgstr ""
+msgstr "QR代码"
 
 #: ../class-leaflet-options.php:4104
 #: ../class-leaflet-options.php:4591
 msgid "Panel background color"
-msgstr ""
+msgstr "面板背景色"
 
 #: ../class-leaflet-options.php:4112
 #: ../class-leaflet-options.php:4599
 msgid "Panel text css"
-msgstr ""
+msgstr "面板字体CSS"
 
 #: ../class-leaflet-options.php:4122
 #: ../class-leaflet-options.php:4327
 #: ../class-leaflet-options.php:4609
 msgid "Checked WMS layers"
-msgstr ""
+msgstr "已选的WMS图层"
 
 #: ../class-leaflet-options.php:4123
 #: ../class-leaflet-options.php:4328
 #: ../class-leaflet-options.php:4610
 msgid "WMS 1"
-msgstr ""
+msgstr "WMS 1"
 
 #: ../class-leaflet-options.php:4131
 #: ../class-leaflet-options.php:4336
 #: ../class-leaflet-options.php:4618
 msgid "WMS 2"
-msgstr ""
+msgstr "WMS 2"
 
 #: ../class-leaflet-options.php:4139
 #: ../class-leaflet-options.php:4344
 #: ../class-leaflet-options.php:4626
 msgid "WMS 3"
-msgstr ""
+msgstr "WMS 3"
 
 #: ../class-leaflet-options.php:4147
 #: ../class-leaflet-options.php:4352
 #: ../class-leaflet-options.php:4634
 msgid "WMS 4"
-msgstr ""
+msgstr "WMS 4"
 
 #: ../class-leaflet-options.php:4155
 #: ../class-leaflet-options.php:4360
 #: ../class-leaflet-options.php:4642
 msgid "WMS 5"
-msgstr ""
+msgstr "WMS 5"
 
 #: ../class-leaflet-options.php:4163
 #: ../class-leaflet-options.php:4368
 #: ../class-leaflet-options.php:4650
 msgid "WMS 6"
-msgstr ""
+msgstr "WMS 6"
 
 #: ../class-leaflet-options.php:4171
 #: ../class-leaflet-options.php:4376
 #: ../class-leaflet-options.php:4658
 msgid "WMS 7"
-msgstr ""
+msgstr "WMS 7"
 
 #: ../class-leaflet-options.php:4179
 #: ../class-leaflet-options.php:4384
 #: ../class-leaflet-options.php:4666
 msgid "WMS 8"
-msgstr ""
+msgstr "WMS 8"
 
 #: ../class-leaflet-options.php:4187
 #: ../class-leaflet-options.php:4392
 #: ../class-leaflet-options.php:4674
 msgid "WMS 9"
-msgstr ""
+msgstr "WMS 9"
 
 #: ../class-leaflet-options.php:4195
 #: ../class-leaflet-options.php:4400
 #: ../class-leaflet-options.php:4682
 msgid "WMS 10"
-msgstr ""
+msgstr "WMS 10"
 
 #: ../class-leaflet-options.php:4215
 msgid "You can also add markers directly to posts or pages without having to save them to your database previously. You just have to use the shortcode with the attributes mlat and mlon (e.g. <strong>[mapsmarker mlat=\"48.216038\" mlon=\"16.378984\"]</strong>)."
-msgstr ""
+msgstr "你也可以不需要设置直接在文章或页面增加地标。请使用包含属性mlat（纬度）和mlon（经度）的短代码 （例如 <strong>[mapsmarker mlat=\"48.216038\" mlon=\"16.378984\"]</strong>)."
 
 #: ../class-leaflet-options.php:4215
 msgid "Defaults values for markers added directly:"
-msgstr ""
+msgstr "直接增加地标的默认值"
 
 #: ../class-leaflet-options.php:4419
 msgid "Default values for new layers"
-msgstr ""
+msgstr "新图层的默认值"
 
 #: ../class-leaflet-options.php:4427
 msgid "Will be used when creating a new layer. All values can be changed afterwards on each layer."
-msgstr ""
+msgstr "创建新图层时使用。所有值可在以后更改。"
 
 #: ../class-leaflet-options.php:4531
 #: ../leaflet-layer.php:283
 #: ../leaflet-tools.php:628
 msgid "Panel for displaying layer name and API URLs on top of map"
-msgstr ""
+msgstr "地图上方显示图层名和API URL的面板"
 
 #: ../class-leaflet-options.php:4569
 msgid "not available on multi layer maps"
-msgstr ""
+msgstr "在多层地图中不可用"
 
 #: ../class-leaflet-options.php:4690
 msgid "List marker settings"
-msgstr ""
+msgstr "列出地标设置"
 
 #: ../class-leaflet-options.php:4697
 #: ../leaflet-layer.php:288
 #: ../leaflet-tools.php:645
 msgid "Display a list of markers under the map"
-msgstr ""
+msgstr "在地图下方显示地标列表"
 
 #: ../class-leaflet-options.php:4698
 msgid "(not available on multi layer maps)"
-msgstr ""
+msgstr "(在多层地图中不可用)"
 
 #: ../class-leaflet-options.php:4709
-#: ../class-leaflet-options.php:5878
-#: ../class-leaflet-options.php:6111
+#: ../class-leaflet-options.php:5828
+#: ../class-leaflet-options.php:6061
 msgid "Order list of markers by"
-msgstr ""
+msgstr "按如下顺序排列地标列表"
 
 #: ../class-leaflet-options.php:4715
-#: ../class-leaflet-options.php:5884
+#: ../class-leaflet-options.php:5834
 msgid "marker name"
-msgstr ""
+msgstr "地标名"
 
 #: ../class-leaflet-options.php:4716
-#: ../class-leaflet-options.php:5886
-#: ../class-leaflet-options.php:6118
-#: ../leaflet-maps-marker.php:1289
+#: ../class-leaflet-options.php:5836
+#: ../class-leaflet-options.php:6068
 msgid "created on"
-msgstr ""
+msgstr "创建事件"
 
 #: ../class-leaflet-options.php:4717
-#: ../class-leaflet-options.php:5888
-#: ../class-leaflet-options.php:6120
+#: ../class-leaflet-options.php:5838
+#: ../class-leaflet-options.php:6070
 msgid "updated on"
-msgstr ""
+msgstr "更新时间"
 
 #: ../class-leaflet-options.php:4723
-#: ../class-leaflet-options.php:5895
-#: ../class-leaflet-options.php:6127
+#: ../class-leaflet-options.php:5845
+#: ../class-leaflet-options.php:6077
 msgid "Sort order"
-msgstr ""
+msgstr "排序次序"
 
 #: ../class-leaflet-options.php:4728
-#: ../class-leaflet-options.php:5900
-#: ../class-leaflet-options.php:6132
+#: ../class-leaflet-options.php:5850
+#: ../class-leaflet-options.php:6082
 msgid "ascending"
-msgstr ""
+msgstr "升序"
 
 #: ../class-leaflet-options.php:4729
-#: ../class-leaflet-options.php:5901
-#: ../class-leaflet-options.php:6133
+#: ../class-leaflet-options.php:5851
+#: ../class-leaflet-options.php:6083
 msgid "descending"
-msgstr ""
+msgstr "降序"
 
 #: ../class-leaflet-options.php:4734
 msgid "Limit"
-msgstr ""
+msgstr "限制"
 
 #: ../class-leaflet-options.php:4735
 msgid "maximum number of markers to display in the list"
-msgstr ""
+msgstr "本列表显示的最大数量地标"
 
 #: ../class-leaflet-options.php:4744
 msgid "Visible API links for each marker"
-msgstr ""
+msgstr "每个地标可见的API链接"
 
 #: ../class-leaflet-options.php:4812
 msgid "Leaflet Maps Marker uses the <a href=\"http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html\" target=\"_blank\">Google Places Autocomplete API</a> to easily find coordinates for places or addresses. This feature is enabled by default. Preview:"
-msgstr ""
+msgstr "Leaflet Maps Maker使用<a href=\"http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html\" target=\"_blank\">Google Places Autocomplete API</a>轻松找到地点或地址.该功能默认开启. 预览:"
 
 #: ../class-leaflet-options.php:4827
 msgid "You can get better search results if you enable the bounds feature. This allows you to specify the area in which to primarily search for places or addresses. Please note: the results are biased towards, but not restricted to places or addresses contained within these bounds."
-msgstr ""
+msgstr "如果你开启bounds（边界）功能则会获得更好的搜索效果。Bounds功能让你很容易搜索到你想要找的地址。请注意：结果会有偏差，不局限于这些边界所包含的地址内。"
 
 #: ../class-leaflet-options.php:4847
 msgid "If enabled, please enter longitude and latitude values below for the corner points of the prefered search area. Below you find an example for Vienna/Austria:"
-msgstr ""
+msgstr "如果开启，请在下面输入经度和纬度已获得想要的搜索区域的角点。下面以奥地利维也纳举例："
 
 #: ../class-leaflet-options.php:4894
 msgid "You can also select a search prefix, which automatically gets added to search form when creating a new marker or layer."
-msgstr ""
+msgstr "你也可以选择搜索前缀，在创建新地标或图层时会自动的带出搜索结果"
 
 #: ../class-leaflet-options.php:4914
 msgid "Prefix to use"
-msgstr ""
+msgstr "使用的前缀"
 
 #: ../class-leaflet-options.php:4942
 msgid "Please select your prefered directions provider. This setting will be used for the directions link in the panel on top of marker maps and for the action panel which gets attached to the popup text on each marker if enabled."
-msgstr ""
+msgstr "请输入你想要的指路提供商。这个设置将在地图上方的面板中以及点击图标后弹出的文字框面板中使用。"
 
 #: ../class-leaflet-options.php:4948
 msgid "Use the following directions provider"
-msgstr ""
+msgstr "使用如下指路提供商"
 
 #: ../class-leaflet-options.php:4953
 msgid "Google Maps (worldwide)"
-msgstr ""
+msgstr "谷歌地图(世界)"
 
 #: ../class-leaflet-options.php:4954
 msgid "yournavigation.org (based on OpenStreetMap, worldwide)"
-msgstr ""
+msgstr "yournavigation.org (基于OpenStreetMap, 世界)"
 
 #: ../class-leaflet-options.php:4955
 msgid "openrouteservice.org (based on OpenStreetMap, Europe only)"
-msgstr ""
+msgstr "openrouteservice.org (基于OpenStreetMap, 仅限欧洲)"
 
 #: ../class-leaflet-options.php:4961
 msgid "Attach directions panel to popup text on each marker"
-msgstr ""
+msgstr "在每个地标弹出的面板中添加指路功能"
 
 #: ../class-leaflet-options.php:4984
 msgid "Google Maps directions settings"
-msgstr ""
+msgstr "谷歌地图指路功能设置"
 
 #: ../class-leaflet-options.php:4998
 msgid "Map type"
-msgstr ""
+msgstr "地图类型"
 
 #: ../class-leaflet-options.php:5003
 #: ../leaflet-fullscreen.php:154
@@ -1717,6 +1718,8 @@ msgstr ""
 #: ../leaflet-fullscreen.php:160
 #: ../leaflet-fullscreen.php:161
 #: ../leaflet-fullscreen.php:162
+#: ../leaflet-fullscreen.php:543
+#: ../leaflet-fullscreen.php:544
 #: ../leaflet-fullscreen.php:545
 #: ../leaflet-fullscreen.php:546
 #: ../leaflet-fullscreen.php:547
@@ -1724,8 +1727,6 @@ msgstr ""
 #: ../leaflet-fullscreen.php:549
 #: ../leaflet-fullscreen.php:550
 #: ../leaflet-fullscreen.php:551
-#: ../leaflet-fullscreen.php:552
-#: ../leaflet-fullscreen.php:553
 #: ../leaflet-layer.php:684
 #: ../leaflet-layer.php:685
 #: ../leaflet-layer.php:686
@@ -1735,15 +1736,15 @@ msgstr ""
 #: ../leaflet-layer.php:690
 #: ../leaflet-layer.php:691
 #: ../leaflet-layer.php:692
-#: ../leaflet-maps-marker.php:429
-#: ../leaflet-maps-marker.php:430
-#: ../leaflet-maps-marker.php:431
-#: ../leaflet-maps-marker.php:432
-#: ../leaflet-maps-marker.php:433
-#: ../leaflet-maps-marker.php:434
-#: ../leaflet-maps-marker.php:435
-#: ../leaflet-maps-marker.php:436
-#: ../leaflet-maps-marker.php:437
+#: ../leaflet-maps-marker.php:413
+#: ../leaflet-maps-marker.php:414
+#: ../leaflet-maps-marker.php:415
+#: ../leaflet-maps-marker.php:416
+#: ../leaflet-maps-marker.php:417
+#: ../leaflet-maps-marker.php:418
+#: ../leaflet-maps-marker.php:419
+#: ../leaflet-maps-marker.php:420
+#: ../leaflet-maps-marker.php:421
 #: ../leaflet-marker.php:534
 #: ../leaflet-marker.php:535
 #: ../leaflet-marker.php:536
@@ -1754,855 +1755,810 @@ msgstr ""
 #: ../leaflet-marker.php:541
 #: ../leaflet-marker.php:542
 msgid "Map"
-msgstr ""
+msgstr "地图"
 
 #: ../class-leaflet-options.php:5004
 msgid "Satellite"
-msgstr ""
+msgstr "卫星"
 
 #: ../class-leaflet-options.php:5005
 msgid "Hybrid"
-msgstr ""
+msgstr "混合"
 
 #: ../class-leaflet-options.php:5006
 msgid "Terrain"
-msgstr ""
+msgstr "地形"
 
 #: ../class-leaflet-options.php:5012
 msgid "Show traffic layer?"
-msgstr ""
+msgstr "显示交通状况？"
 
 #: ../class-leaflet-options.php:5024
 msgid "Distance units"
-msgstr ""
+msgstr "距离单位"
 
 #: ../class-leaflet-options.php:5029
 msgid "metric (km)"
-msgstr ""
+msgstr "公制（km）"
 
 #: ../class-leaflet-options.php:5030
 msgid "imperial (miles)"
-msgstr ""
+msgstr "英制（英里）"
 
 #: ../class-leaflet-options.php:5036
 #: ../class-leaflet-options.php:5133
 msgid "Route type"
-msgstr ""
+msgstr "路线类型"
 
 #: ../class-leaflet-options.php:5037
 msgid "Avoid highways"
-msgstr ""
+msgstr "避免高速公路"
 
 #: ../class-leaflet-options.php:5045
 msgid "Avoid tolls"
-msgstr ""
+msgstr "避免收费公路"
 
 #: ../class-leaflet-options.php:5053
 msgid "Public transport (works only in some areas)"
-msgstr ""
+msgstr "公共交通（仅在某些区域适用）"
 
 #: ../class-leaflet-options.php:5061
 msgid "Walking directions"
-msgstr ""
+msgstr "步行"
 
 #: ../class-leaflet-options.php:5068
 msgid "Language"
-msgstr ""
+msgstr "语言"
 
 #: ../class-leaflet-options.php:5073
 #: ../class-leaflet-options.php:5195
-#: ../class-leaflet-options.php:5486
 msgid "English"
-msgstr ""
+msgstr "英语"
 
 #: ../class-leaflet-options.php:5074
 #: ../class-leaflet-options.php:5196
-#: ../class-leaflet-options.php:5487
 msgid "German"
-msgstr ""
+msgstr "德语"
 
 #: ../class-leaflet-options.php:5075
 #: ../class-leaflet-options.php:5197
-#: ../class-leaflet-options.php:5492
 msgid "Italian"
-msgstr ""
+msgstr "意大利语"
 
 #: ../class-leaflet-options.php:5076
 #: ../class-leaflet-options.php:5198
-#: ../class-leaflet-options.php:5491
 msgid "French"
-msgstr ""
+msgstr "法语"
 
 #: ../class-leaflet-options.php:5077
 #: ../class-leaflet-options.php:5199
-#: ../class-leaflet-options.php:5488
 msgid "Spanish"
-msgstr ""
+msgstr "西班牙语"
 
 #: ../class-leaflet-options.php:5078
 msgid "Chinese (simplified)"
-msgstr ""
+msgstr "简体中文"
 
 #: ../class-leaflet-options.php:5079
-#: ../class-leaflet-options.php:5490
 msgid "Dutch"
-msgstr ""
+msgstr "荷兰语"
 
 #: ../class-leaflet-options.php:5080
-#: ../class-leaflet-options.php:5489
 msgid "Japanese"
-msgstr ""
+msgstr "日语"
 
 #: ../class-leaflet-options.php:5081
 msgid "Catalan"
-msgstr ""
+msgstr "加泰罗尼亚语"
 
 #: ../class-leaflet-options.php:5082
 msgid "Galego"
-msgstr ""
+msgstr "加利西亚语"
 
 #: ../class-leaflet-options.php:5083
 msgid "Euskara"
-msgstr ""
+msgstr "巴斯克语"
 
 #: ../class-leaflet-options.php:5089
 msgid "Overview map"
-msgstr ""
+msgstr "地图概览"
 
 #: ../class-leaflet-options.php:5095
-#: ../leaflet-list-layers.php:149
-#: ../leaflet-list-markers.php:232
+#: ../leaflet-list-layers.php:143
+#: ../leaflet-list-markers.php:222
 msgid "visible"
-msgstr ""
+msgstr "可见"
 
 #: ../class-leaflet-options.php:5106
 msgid "yournavigation.org settings"
-msgstr ""
+msgstr "yournavigation.org 设置"
 
 #: ../class-leaflet-options.php:5120
 msgid "Type of transport"
-msgstr ""
+msgstr "交通方式"
 
 #: ../class-leaflet-options.php:5125
 msgid "Motorcar"
-msgstr ""
+msgstr "汽车"
 
 #: ../class-leaflet-options.php:5126
 msgid "Bicycle"
-msgstr ""
+msgstr "自行车"
 
 #: ../class-leaflet-options.php:5127
 msgid "Foot"
-msgstr ""
+msgstr "步行"
 
 #: ../class-leaflet-options.php:5138
 #: ../class-leaflet-options.php:5181
 msgid "fastest route"
-msgstr ""
+msgstr "最快路线"
 
 #: ../class-leaflet-options.php:5139
 #: ../class-leaflet-options.php:5182
 msgid "shortest route"
-msgstr ""
+msgstr "最短路线"
 
 #: ../class-leaflet-options.php:5145
 msgid "Gosmore instance to calculate the route"
-msgstr ""
+msgstr "OSM地图用于计算路程的Gosmore距离，"
 
 #: ../class-leaflet-options.php:5150
 msgid "mapnik (for normal routing using car, bicycle or foot)"
-msgstr ""
+msgstr "mapnik (汽车、自行车或步行的一般导航)"
 
 #: ../class-leaflet-options.php:5151
 msgid "cn (for using bicycle routing using cycle route networks only)"
-msgstr ""
+msgstr "cn (使用自行车路线网络导航)"
 
 #: ../class-leaflet-options.php:5162
 msgid "openrouteservice.org settings"
-msgstr ""
+msgstr "openrouteservice.org 设置"
 
 #: ../class-leaflet-options.php:5176
 msgid "Route preferences"
-msgstr ""
+msgstr "路线偏好设置"
 
 #: ../class-leaflet-options.php:5183
 msgid "route for pedestrians"
-msgstr ""
+msgstr "行人路线"
 
 #: ../class-leaflet-options.php:5184
 msgid "route for bicycles"
-msgstr ""
+msgstr "自行车路线"
 
 #: ../class-leaflet-options.php:5190
 msgid "Language of route instructions"
-msgstr ""
+msgstr "路线指示语言"
 
 #: ../class-leaflet-options.php:5205
 msgid "No motorways?"
-msgstr ""
+msgstr "避开高速公路？"
 
 #: ../class-leaflet-options.php:5217
 msgid "No tollways?"
-msgstr ""
+msgstr "避开收费公路？"
 
 #: ../class-leaflet-options.php:5241
 msgid "Markers created with Leaflet Maps Marker can also be displayed via <a href=\"http://en.wikipedia.org/wiki/Augmented_reality\" target=\"_blank\">Augmented-Reality technology</a> on mobile devices. As a first steps, an API to <a href=\"http://www.wikitude.com\" target=\"_blank\">Wikitude</a> has been implemented. APIs to other Augmented-Reality-Providers (like <a href=\"http://www.layar.com\" target=\"_blank\">Layar</a> or <a href=\"http://www.junaio.de\" target=\"_blank\">Junaio</a>) will probably follow in one of the next versions. Sample screenshots:"
-msgstr ""
+msgstr "使用Leaflet Maps Marker创建的地标也可以用<a href=\"http://en.wikipedia.org/wiki/Augmented_reality\" target=\"_blank\">Augmented-Reality technology</a>在移动设备上显示。首先，使用API<a href=\"http://www.wikitude.com\" target=\"_blank\">Wikitude</a>。其次，Augmented-Reality-Providers的其他API(像 <a href=\"http://www.layar.com\" target=\"_blank\">Layar</a>或者<a href=\"http://www.junaio.de\" target=\"_blank\">Junaio</a>) 可能将在下一版中出现。截屏例子："
 
 #: ../class-leaflet-options.php:5251
 msgid "Wikitude settings"
-msgstr ""
+msgstr "Wikitude设置"
 
 #: ../class-leaflet-options.php:5259
 msgid "Please visit <a href=\"http://www.mapsmarker.com/wikitude\" target=\"_blank\">http://www.mapsmarker.com/wikitude</a> for instructions how to submit your marker or layer maps to Wikitude."
-msgstr ""
+msgstr "请访问<a href=\"http://www.mapsmarker.com/wikitude\" target=\"_blank\">http://www.mapsmarker.com/wikitude</a>获得如何提交你的地标或图层地图到Wikitude的指示。"
 
 #: ../class-leaflet-options.php:5264
 msgid "Provider name"
-msgstr ""
+msgstr "提供者名字"
 
 #: ../class-leaflet-options.php:5265
 msgid "Identifies the content provider or content channel, no spaces/special characters"
-msgstr ""
+msgstr "鉴定内容提供商或内容通道，没有空格/特殊字符"
 
 #: ../class-leaflet-options.php:5272
 msgid "Provider URL"
-msgstr ""
+msgstr "提供商URL"
 
 #: ../class-leaflet-options.php:5273
 msgid "Link to content provider"
-msgstr ""
+msgstr "链接到内容提供商"
 
 #: ../class-leaflet-options.php:5280
 msgid "Logo"
-msgstr ""
+msgstr "标志"
 
 #: ../class-leaflet-options.php:5281
 msgid "The logo is displayed on the left bottom corner on Wikitude when an icon is selected - 96x96 pixel, transparent PNG"
-msgstr ""
+msgstr "当一个96x96像素透明PNG的图标选定后，标志将在Wikitude的左下角显示"
 
 #: ../class-leaflet-options.php:5289
 msgid "The icon is displayed in the cam view of Wikitude to indicate a marker - 32x32 pixel, transparent PNG"
-msgstr ""
+msgstr "该32x32像素透明PNG图标将在wikitude的摄像机视角展示地标"
 
 #: ../class-leaflet-options.php:5296
 msgid "E-Mail"
-msgstr ""
+msgstr "电邮"
 
 #: ../class-leaflet-options.php:5297
 msgid "Optional: displayed on each marker; used for sending an email directly from Wikitude"
-msgstr ""
+msgstr "可选：在每个地标中显示；从Wikitude直接发送电邮时使用"
 
 #: ../class-leaflet-options.php:5304
 msgid "Phone"
-msgstr ""
+msgstr "电话"
 
 #: ../class-leaflet-options.php:5305
 msgid "Optional: example: +4312345 - when a phone number is given, Wikitude displays a \"call me\" button in the bubble; used for every marker."
-msgstr ""
+msgstr "可选：例如 +4312345 - 当有电话号码时，Wikitude显示\"call me\"的小圈圈；所有地标均可用"
 
 #: ../class-leaflet-options.php:5312
 msgid "Attachment"
-msgstr ""
+msgstr "附件"
 
 #: ../class-leaflet-options.php:5313
 msgid "Optional: displayed on each marker; can be a link to a resource (image, PDF file...). You could use this to issue coupons or vouchers for potential clients that found you via Wikitude."
-msgstr ""
+msgstr "可选：在每个地标中显示；可以是一个到图片或PDF文件的链接。你可以使用此工具将优惠券或凭证发给从Wikitude找到你的潜在客户。"
 
 #: ../class-leaflet-options.php:5320
 msgid "Search radius (in meter)"
-msgstr ""
+msgstr "搜索半径（米）"
 
 #: ../class-leaflet-options.php:5321
 msgid "Retrieve POIs (Points of Interests) from database within this search radius in meters from the current location of the Wikitude user"
-msgstr ""
+msgstr "在搜索半径范围内从数据库获取当前Wikitude用户的POI（兴趣点）"
 
 #: ../class-leaflet-options.php:5328
 msgid "Maximum number of POIs"
-msgstr ""
+msgstr "最大数量兴趣点"
 
 #: ../class-leaflet-options.php:5329
 msgid "Used if Wikitude does not pass the variable maxNumberofPois - 50 is the maximum recommended"
-msgstr ""
+msgstr "如果Wikitude不传递变量maxNumberofPoins（推荐不超过50个），则使用"
 
 #: ../class-leaflet-options.php:5360
 msgid "User role needed for adding and editing markers/layers"
-msgstr ""
+msgstr "增加或编辑地标/图层需要的用户角色"
 
 #: ../class-leaflet-options.php:5361
 msgid "Note: the settings and tools pages are always visible to admins only."
-msgstr ""
+msgstr "注：设置和工具页面仅对管理员可见。"
 
 #: ../class-leaflet-options.php:5365
 #: ../class-leaflet-options.php:5380
 msgid "Administrator (Capability activate_plugins)"
-msgstr ""
+msgstr "管理员（权限 activate_plugins）"
 
 #: ../class-leaflet-options.php:5366
 #: ../class-leaflet-options.php:5381
 msgid "Editor (Capability moderate_comments)"
-msgstr ""
+msgstr "编辑（权限 moderate_comments）"
 
 #: ../class-leaflet-options.php:5367
 #: ../class-leaflet-options.php:5382
 msgid "Author (Capability edit_published_posts)"
-msgstr ""
+msgstr "作者（权限 edit_published_posts）"
 
 #: ../class-leaflet-options.php:5368
 #: ../class-leaflet-options.php:5383
 msgid "Contributor (Capability edit_posts)"
-msgstr ""
+msgstr "供稿者（权限 edit_posts）"
 
 #: ../class-leaflet-options.php:5369
 #: ../class-leaflet-options.php:5384
 msgid "Subscriber (Capability read)"
-msgstr ""
+msgstr "订阅者（权限 read）"
 
 #: ../class-leaflet-options.php:5375
 msgid "User role needed for deleting markers/layers"
-msgstr ""
+msgstr "删除地标/图层需要的用户角色"
 
 #: ../class-leaflet-options.php:5376
 msgid "Note: the settings and tool pages are always visible to admins only."
-msgstr ""
+msgstr "注：设置和工具页面仅对管理员可见。"
 
 #: ../class-leaflet-options.php:5389
-#: ../leaflet-list-markers.php:108
-#: ../leaflet-list-markers.php:318
+#: ../leaflet-list-markers.php:98
+#: ../leaflet-list-markers.php:310
 msgid "Markers per page"
-msgstr ""
+msgstr "每页的地标"
 
 #: ../class-leaflet-options.php:5390
 msgid "How many markers should be listed on one page at the page \"list all markers\"?"
 msgstr ""
 
 #: ../class-leaflet-options.php:5397
-#: ../class-leaflet-options.php:5805
-#: ../class-leaflet-options.php:6038
+#: ../class-leaflet-options.php:5755
+#: ../class-leaflet-options.php:5988
 #: ../leaflet-layer.php:542
 #: ../leaflet-layer.php:586
-#: ../leaflet-list-layers.php:65
-#: ../leaflet-list-layers.php:107
-#: ../leaflet-list-markers.php:154
-#: ../leaflet-list-markers.php:202
+#: ../leaflet-list-layers.php:59
+#: ../leaflet-list-layers.php:101
+#: ../leaflet-list-markers.php:144
+#: ../leaflet-list-markers.php:192
 msgid "Shortcode"
-msgstr ""
+msgstr "短代码"
 
 #: ../class-leaflet-options.php:5398
 msgid "Shortcode to add markers or layers into articles or pages  - Example: [mapsmarker marker=\"1\"].<br/> Attention: if you change the shortcode after having embedded shortcodes into posts/Pages, the shortcode on these specific articles/pages has to be changed also manually - otherwise these markers/layers will not be show on frontend!"
-msgstr ""
+msgstr "在文章或页面使用短代码插入地标，例如：[mapsmarker marker=\"1\"].<br/> 注意：如果你改变了插入页面的短代码的源码，则你也需要手工更改这些页面中的短代码，否则地标/图层将不会显示！"
 
 #: ../class-leaflet-options.php:5406
 msgid "TinyMCE button"
-msgstr ""
+msgstr "TinyMCE按钮"
 
 #: ../class-leaflet-options.php:5407
 msgid "if enabled, a button on post/page edit screen gets added for easily searching and inserting maps"
-msgstr ""
+msgstr "如果启用，在每篇文章/页面编辑视图上将自动增加一个按钮可以更容易的搜索或添加地图"
 
 #: ../class-leaflet-options.php:5418
 msgid "Add GeoRSS feed to &lt;head&gt;"
-msgstr ""
+msgstr "增加GeoRSS feed到&lt;head&gt;"
 
 #: ../class-leaflet-options.php:5419
 msgid "if enabled, a GeoRSS feed for all markers will be added to the &lt;head&gt;-section of the website, allowing users to subscribe to your markers"
-msgstr ""
+msgstr "如果启用，所有地标的GeoRSS feed将添加到网站的&lt;head&gt;区域，使用户可以订阅你的地标"
 
 #: ../class-leaflet-options.php:5430
 msgid "Wordpress Admin Bar integration"
-msgstr ""
+msgstr "嵌入Wordpress管理条"
 
 #: ../class-leaflet-options.php:5431
 msgid "show or hide drop down menu for Leaflet Maps Marker in Wordpress Admin Bar"
-msgstr ""
+msgstr "显示或隐藏在Wordpress管理条中的Leaflet Maps Maker下拉列表"
 
 #: ../class-leaflet-options.php:5442
 msgid "Global statistics"
-msgstr ""
+msgstr "全局统计"
 
 #: ../class-leaflet-options.php:5443
 msgid "Anonymous marker/layer hit counter"
-msgstr ""
+msgstr "匿名地标/图层计数"
 
 #: ../class-leaflet-options.php:5453
 msgid "QR code image size"
-msgstr ""
+msgstr "QR代码图片尺寸"
 
 #: ../class-leaflet-options.php:5454
 msgid "Width and height in pixel of QR code image for marker/layer standalone fullscreen map links"
-msgstr ""
+msgstr "地标/图层单独全屏地图链接的QR代码图片像素宽和高"
 
-#: ../class-leaflet-options.php:5466
-msgid "Language settings"
-msgstr ""
+#: ../class-leaflet-options.php:5474
+msgid "Choose how marker names should be displayed in KML files"
+msgstr "选择在KML文件中如何显示地标名字"
 
 #: ../class-leaflet-options.php:5480
-msgid "Default language"
-msgstr ""
+msgid "Marker names in KML"
+msgstr "KML地标名字"
 
-#: ../class-leaflet-options.php:5485
-msgid "automatic (use WordPress default)"
-msgstr ""
-
-#: ../class-leaflet-options.php:5493
-msgid "Chinese"
-msgstr ""
-
-#: ../class-leaflet-options.php:5499
-msgid "Where to change the default language"
-msgstr ""
-
-#: ../class-leaflet-options.php:5500
-msgid "This setting will only be used when the plugin language is not selected automatically"
-msgstr ""
-
-#: ../class-leaflet-options.php:5504
-msgid "WordPress admin area only"
-msgstr ""
+#: ../class-leaflet-options.php:5487
+msgid "put in front of popup-text"
+msgstr "在弹出文字前放置"
 
 #: ../class-leaflet-options.php:5505
-msgid "WordPress frontend only"
-msgstr ""
+msgid "The following settings will be used for all marker and layer maps"
+msgstr "下列设置将用于所有地标和图层地图"
 
-#: ../class-leaflet-options.php:5506
-msgid "WordPress admin area and frontend"
-msgstr ""
+#: ../class-leaflet-options.php:5512
+msgid "Whether the map be draggable with mouse/touch or not."
+msgstr "地图是否可以用鼠标/触摸屏拉伸"
 
 #: ../class-leaflet-options.php:5524
-msgid "Choose how marker names should be displayed in KML files"
-msgstr ""
-
-#: ../class-leaflet-options.php:5530
-msgid "Marker names in KML"
-msgstr ""
-
-#: ../class-leaflet-options.php:5537
-msgid "put in front of popup-text"
-msgstr ""
-
-#: ../class-leaflet-options.php:5555
-msgid "The following settings will be used for all marker and layer maps"
-msgstr ""
-
-#: ../class-leaflet-options.php:5562
-msgid "Whether the map be draggable with mouse/touch or not."
-msgstr ""
-
-#: ../class-leaflet-options.php:5574
 msgid "Whether the map can be zoomed by touch-dragging with two fingers."
-msgstr ""
+msgstr "地图是否可以用两手指拉伸放大"
 
-#: ../class-leaflet-options.php:5586
+#: ../class-leaflet-options.php:5536
 msgid "Whether the map can be zoomed by using the mouse wheel."
-msgstr ""
+msgstr "地图是否可以用鼠标滚轮放大"
 
-#: ../class-leaflet-options.php:5598
+#: ../class-leaflet-options.php:5548
 msgid "Whether the map can be zoomed in by double clicking on it."
-msgstr ""
+msgstr "地图是否可以双击放大"
 
-#: ../class-leaflet-options.php:5610
+#: ../class-leaflet-options.php:5560
 msgid "Whether the zoom control is added to the map by default."
-msgstr ""
+msgstr "默认是否开启放大控制界面"
 
-#: ../class-leaflet-options.php:5622
+#: ../class-leaflet-options.php:5572
 msgid "Whether the map automatically handles browser window resize to update itself."
-msgstr ""
+msgstr "地图是否自适应浏览器窗口尺寸"
 
-#: ../class-leaflet-options.php:5634
+#: ../class-leaflet-options.php:5584
 msgid "Set it to false if you do not want popups to close when user clicks the map."
-msgstr ""
+msgstr "如果你不想用户点击地图时弹出窗口关闭，设为否"
 
-#: ../class-leaflet-options.php:5645
+#: ../class-leaflet-options.php:5595
 msgid "Coordinate Reference System"
-msgstr ""
+msgstr "坐标参考系统"
 
-#: ../class-leaflet-options.php:5646
+#: ../class-leaflet-options.php:5596
 msgid "Used for created maps - do not change this if you are not sure what it means!"
-msgstr ""
+msgstr "用于已创建地图——如果你不确定是神马意思请不要更改！"
 
-#: ../class-leaflet-options.php:5650
+#: ../class-leaflet-options.php:5600
 msgid "EPSG:3857 (Spherical Mercator), used by most of commercial map providers (CloudMade, Google, Yahoo, Bing, etc.)"
-msgstr ""
+msgstr "EPSG:3857 (Spherical Mercator), 大部分地图提供商（CloudMade, Google, Yahoo, Bing等）使用"
 
-#: ../class-leaflet-options.php:5651
+#: ../class-leaflet-options.php:5601
 msgid "EPSG:4326 (Plate Carree), very popular among GIS enthusiasts"
-msgstr ""
+msgstr "EPSG:4326 (Plate Carree), GIS爱好者中很受欢迎"
 
-#: ../class-leaflet-options.php:5652
+#: ../class-leaflet-options.php:5602
 msgid "EPSG:4326 (Mercator), used by some map providers."
-msgstr ""
+msgstr "EPSG:4326 (Mercator), 某些地图提供商使用"
 
-#: ../class-leaflet-options.php:5670
+#: ../class-leaflet-options.php:5620
 msgid "Please select the columns which should be available on the page \"List all markers\""
-msgstr ""
+msgstr "请选择在页面\"List all markers\"中显示的栏"
 
-#: ../class-leaflet-options.php:5676
-#: ../class-leaflet-options.php:5925
+#: ../class-leaflet-options.php:5626
+#: ../class-leaflet-options.php:5875
 msgid "Columns to show"
-msgstr ""
+msgstr "显示的栏"
 
-#: ../class-leaflet-options.php:5693
+#: ../class-leaflet-options.php:5643
 #: ../leaflet-layer.php:518
 #: ../leaflet-layer.php:562
-#: ../leaflet-list-markers.php:126
-#: ../leaflet-list-markers.php:174
+#: ../leaflet-list-markers.php:116
+#: ../leaflet-list-markers.php:164
 #: ../leaflet-marker.php:220
 msgid "Marker name"
-msgstr ""
+msgstr "地标名"
 
-#: ../class-leaflet-options.php:5701
+#: ../class-leaflet-options.php:5651
 #: ../leaflet-layer.php:520
 #: ../leaflet-layer.php:564
-#: ../leaflet-list-markers.php:128
-#: ../leaflet-list-markers.php:176
+#: ../leaflet-list-markers.php:118
+#: ../leaflet-list-markers.php:166
 #: ../leaflet-marker.php:433
 #: ../leaflet-tools.php:441
 msgid "Popup text"
-msgstr ""
+msgstr "弹出的文字"
 
-#: ../class-leaflet-options.php:5709
-#: ../class-leaflet-options.php:5958
+#: ../class-leaflet-options.php:5659
+#: ../class-leaflet-options.php:5908
 #: ../leaflet-layer.php:530
 #: ../leaflet-layer.php:574
-#: ../leaflet-list-layers.php:53
-#: ../leaflet-list-layers.php:95
-#: ../leaflet-list-markers.php:142
-#: ../leaflet-list-markers.php:190
+#: ../leaflet-list-layers.php:47
+#: ../leaflet-list-layers.php:89
+#: ../leaflet-list-markers.php:132
+#: ../leaflet-list-markers.php:180
 #: ../leaflet-tools.php:260
 #: ../leaflet-tools.php:511
 msgid "Basemap"
-msgstr ""
+msgstr "基本地图"
 
-#: ../class-leaflet-options.php:5717
-#: ../leaflet-list-markers.php:94
-#: ../leaflet-list-markers.php:130
-#: ../leaflet-list-markers.php:178
+#: ../class-leaflet-options.php:5667
+#: ../leaflet-list-markers.php:83
+#: ../leaflet-list-markers.php:120
+#: ../leaflet-list-markers.php:168
 #: ../leaflet-marker.php:224
 #: ../leaflet-tools.php:229
 msgid "Layer"
-msgstr ""
+msgstr "图层"
 
-#: ../class-leaflet-options.php:5725
+#: ../class-leaflet-options.php:5675
 #: ../leaflet-layer.php:524
 #: ../leaflet-layer.php:568
-#: ../leaflet-list-markers.php:136
-#: ../leaflet-list-markers.php:184
+#: ../leaflet-list-markers.php:126
+#: ../leaflet-list-markers.php:174
 #: ../leaflet-marker.php:245
 msgid "Coordinates"
-msgstr ""
+msgstr "坐标"
 
-#: ../class-leaflet-options.php:5741
+#: ../class-leaflet-options.php:5691
 #: ../leaflet-layer.php:522
 #: ../leaflet-layer.php:566
-#: ../leaflet-list-markers.php:132
-#: ../leaflet-list-markers.php:180
+#: ../leaflet-list-markers.php:122
+#: ../leaflet-list-markers.php:170
 #: ../leaflet-tools.php:425
 msgid "Popup status"
-msgstr ""
+msgstr "弹出状态"
 
-#: ../class-leaflet-options.php:5749
-#: ../class-leaflet-options.php:5990
-#: ../leaflet-list-layers.php:49
-#: ../leaflet-list-layers.php:91
-#: ../leaflet-list-markers.php:134
-#: ../leaflet-list-markers.php:182
+#: ../class-leaflet-options.php:5699
+#: ../class-leaflet-options.php:5940
+#: ../leaflet-list-layers.php:43
+#: ../leaflet-list-layers.php:85
+#: ../leaflet-list-markers.php:124
+#: ../leaflet-list-markers.php:172
 msgid "Panel status"
-msgstr ""
+msgstr "面板状态"
 
-#: ../class-leaflet-options.php:5757
-#: ../class-leaflet-options.php:5982
+#: ../class-leaflet-options.php:5707
+#: ../class-leaflet-options.php:5932
 #: ../leaflet-layer.php:263
 #: ../leaflet-layer.php:526
 #: ../leaflet-layer.php:570
-#: ../leaflet-list-layers.php:47
-#: ../leaflet-list-layers.php:89
-#: ../leaflet-list-markers.php:138
-#: ../leaflet-list-markers.php:186
+#: ../leaflet-list-layers.php:41
+#: ../leaflet-list-layers.php:83
+#: ../leaflet-list-markers.php:128
+#: ../leaflet-list-markers.php:176
 #: ../leaflet-marker.php:257
 #: ../leaflet-tools.php:324
 #: ../leaflet-tools.php:575
 msgid "Map size"
-msgstr ""
+msgstr "地图尺寸"
 
-#: ../class-leaflet-options.php:5765
-#: ../class-leaflet-options.php:5998
+#: ../class-leaflet-options.php:5715
+#: ../class-leaflet-options.php:5948
 #: ../leaflet-layer.php:532
 #: ../leaflet-layer.php:576
-#: ../leaflet-list-layers.php:55
-#: ../leaflet-list-layers.php:97
-#: ../leaflet-list-markers.php:144
-#: ../leaflet-list-markers.php:192
+#: ../leaflet-list-layers.php:49
+#: ../leaflet-list-layers.php:91
+#: ../leaflet-list-markers.php:134
+#: ../leaflet-list-markers.php:182
 msgid "Created by"
-msgstr ""
+msgstr "创建人"
 
-#: ../class-leaflet-options.php:5773
-#: ../class-leaflet-options.php:6006
+#: ../class-leaflet-options.php:5723
+#: ../class-leaflet-options.php:5956
 #: ../leaflet-layer.php:534
 #: ../leaflet-layer.php:578
-#: ../leaflet-list-layers.php:57
-#: ../leaflet-list-layers.php:99
-#: ../leaflet-list-markers.php:146
-#: ../leaflet-list-markers.php:194
-#: ../leaflet-maps-marker.php:1207
+#: ../leaflet-list-layers.php:51
+#: ../leaflet-list-layers.php:93
+#: ../leaflet-list-markers.php:136
+#: ../leaflet-list-markers.php:184
 msgid "Created on"
-msgstr ""
+msgstr "创建时间"
 
-#: ../class-leaflet-options.php:5781
-#: ../class-leaflet-options.php:6014
+#: ../class-leaflet-options.php:5731
+#: ../class-leaflet-options.php:5964
 #: ../leaflet-layer.php:536
 #: ../leaflet-layer.php:580
-#: ../leaflet-list-layers.php:59
-#: ../leaflet-list-layers.php:101
-#: ../leaflet-list-markers.php:148
-#: ../leaflet-list-markers.php:196
+#: ../leaflet-list-layers.php:53
+#: ../leaflet-list-layers.php:95
+#: ../leaflet-list-markers.php:138
+#: ../leaflet-list-markers.php:186
 msgid "Updated by"
-msgstr ""
+msgstr "更新人"
 
-#: ../class-leaflet-options.php:5789
-#: ../class-leaflet-options.php:6022
+#: ../class-leaflet-options.php:5739
+#: ../class-leaflet-options.php:5972
 #: ../leaflet-layer.php:538
 #: ../leaflet-layer.php:582
-#: ../leaflet-list-layers.php:61
-#: ../leaflet-list-layers.php:103
-#: ../leaflet-list-markers.php:150
-#: ../leaflet-list-markers.php:198
-#: ../leaflet-maps-marker.php:1208
+#: ../leaflet-list-layers.php:55
+#: ../leaflet-list-layers.php:97
+#: ../leaflet-list-markers.php:140
+#: ../leaflet-list-markers.php:188
 msgid "Updated on"
-msgstr ""
+msgstr "更新时间"
 
-#: ../class-leaflet-options.php:5797
-#: ../class-leaflet-options.php:6030
+#: ../class-leaflet-options.php:5747
+#: ../class-leaflet-options.php:5980
 #: ../leaflet-layer.php:540
 #: ../leaflet-layer.php:584
-#: ../leaflet-list-layers.php:63
-#: ../leaflet-list-layers.php:105
-#: ../leaflet-list-markers.php:152
-#: ../leaflet-list-markers.php:200
+#: ../leaflet-list-layers.php:57
+#: ../leaflet-list-layers.php:99
+#: ../leaflet-list-markers.php:142
+#: ../leaflet-list-markers.php:190
 msgid "Controlbox status"
-msgstr ""
+msgstr "控制台状态"
 
-#: ../class-leaflet-options.php:5872
+#: ../class-leaflet-options.php:5822
 msgid "Please select order by and sort order for \"List all markers\" page"
-msgstr ""
+msgstr "请选择\"List all markers\"页面的排序方式"
 
-#: ../class-leaflet-options.php:5885
+#: ../class-leaflet-options.php:5835
 msgid "assigned layer"
-msgstr ""
+msgstr "指定图层"
 
-#: ../class-leaflet-options.php:5887
-#: ../class-leaflet-options.php:6119
+#: ../class-leaflet-options.php:5837
+#: ../class-leaflet-options.php:6069
 msgid "created by"
-msgstr ""
+msgstr "创建人"
 
-#: ../class-leaflet-options.php:5889
-#: ../class-leaflet-options.php:6121
+#: ../class-leaflet-options.php:5839
+#: ../class-leaflet-options.php:6071
 msgid "updated by"
-msgstr ""
+msgstr "更新人"
 
-#: ../class-leaflet-options.php:5919
+#: ../class-leaflet-options.php:5869
 msgid "Please select the columns which should be available on the page \"List all layers\""
-msgstr ""
+msgstr "请选择\"List all layers\"页面中显示的栏"
 
-#: ../class-leaflet-options.php:5934
-#: ../leaflet-list-layers.php:41
-#: ../leaflet-list-layers.php:83
+#: ../class-leaflet-options.php:5884
+#: ../leaflet-list-layers.php:35
+#: ../leaflet-list-layers.php:77
 msgid "Type"
-msgstr ""
+msgstr "类型"
 
-#: ../class-leaflet-options.php:5942
+#: ../class-leaflet-options.php:5892
 #: ../leaflet-layer.php:246
 msgid "Layer name"
-msgstr ""
+msgstr "图层名"
 
-#: ../class-leaflet-options.php:5950
+#: ../class-leaflet-options.php:5900
 msgid "Number of markers"
-msgstr ""
+msgstr "地标数量"
 
-#: ../class-leaflet-options.php:5966
+#: ../class-leaflet-options.php:5916
 #: ../leaflet-layer.php:250
-#: ../leaflet-list-layers.php:45
-#: ../leaflet-list-layers.php:87
+#: ../leaflet-list-layers.php:39
+#: ../leaflet-list-layers.php:81
 msgid "Layer center"
-msgstr ""
+msgstr "图层中心"
 
-#: ../class-leaflet-options.php:6105
+#: ../class-leaflet-options.php:6055
 msgid "Please select order by and sort order for \"List all layers\" page"
-msgstr ""
+msgstr "请选择\"List all layers\"页面的排序方式"
 
-#: ../class-leaflet-options.php:6117
+#: ../class-leaflet-options.php:6067
 msgid "layer name"
-msgstr ""
+msgstr "图层名"
 
-#: ../class-leaflet-options.php:6146
+#: ../class-leaflet-options.php:6096
 msgid "Reset Settings"
-msgstr ""
+msgstr "重置"
 
-#: ../class-leaflet-options.php:6150
+#: ../class-leaflet-options.php:6100
 msgid "Check this box and click \"Save Changes\" below to reset plugin options to their defaults."
-msgstr ""
+msgstr "选择本框并点击 \"Save Changes\" 以重置所有设置回默认值。"
 
 #: ../leaflet-admin-header.php:16
-#: ../leaflet-list-markers.php:99
-#: ../leaflet-maps-marker.php:701
-#: ../leaflet-maps-marker.php:753
+#: ../leaflet-list-markers.php:89
+#: ../leaflet-maps-marker.php:685
+#: ../leaflet-maps-marker.php:737
 msgid "List all markers"
-msgstr ""
+msgstr "列出所有地标"
 
 #: ../leaflet-admin-header.php:17
-#: ../leaflet-maps-marker.php:702
-#: ../leaflet-maps-marker.php:759
+#: ../leaflet-maps-marker.php:686
+#: ../leaflet-maps-marker.php:743
 #: ../leaflet-marker.php:204
 msgid "Add new marker"
-msgstr ""
+msgstr "增加新地标"
 
 #: ../leaflet-admin-header.php:18
 #: ../leaflet-list-layers.php:8
-#: ../leaflet-maps-marker.php:703
-#: ../leaflet-maps-marker.php:765
+#: ../leaflet-maps-marker.php:687
+#: ../leaflet-maps-marker.php:749
 msgid "List all layers"
-msgstr ""
+msgstr "列出所有层"
 
 #: ../leaflet-admin-header.php:19
 #: ../leaflet-layer.php:230
-#: ../leaflet-maps-marker.php:704
-#: ../leaflet-maps-marker.php:771
+#: ../leaflet-maps-marker.php:688
+#: ../leaflet-maps-marker.php:755
 msgid "Add new layer"
-msgstr ""
+msgstr "增加新层"
 
 #: ../leaflet-admin-header.php:20
-#: ../leaflet-maps-marker.php:705
-#: ../leaflet-maps-marker.php:780
+#: ../leaflet-maps-marker.php:689
+#: ../leaflet-maps-marker.php:764
 msgid "Tools"
-msgstr ""
+msgstr "工具"
 
 #: ../leaflet-admin-header.php:23
-#: ../leaflet-maps-marker.php:707
-#: ../leaflet-maps-marker.php:795
+#: ../leaflet-maps-marker.php:691
+#: ../leaflet-maps-marker.php:779
 msgid "Help & Credits"
-msgstr ""
+msgstr "帮助&贡献"
 
-#: ../leaflet-admin-header.php:80
+#: ../leaflet-admin-header.php:79
 msgid "remove message"
-msgstr ""
+msgstr "移除信息"
 
 #: ../leaflet-admin-header.php:88
 msgid "<strong>Warning: you are using the plugin jQuery Colorbox which is causing maps to break!</strong><br/><br/>Here is how to fix this:<br/>1. click on to \"Settings\" / \"jQuery Colorbox\" in your WordPress admin menu<br/>2. Uncheck the setting \"Automate jQuery Colorbox for all images in pages, posts and galleries:\"<br/>3. check the setting \"Automate jQuery Colorbox for images in WordPress galleries only:\" instead<br/>4. save changes<br/><br/>This message will disappear automatically when the jQuery Colorbox option was updated."
-msgstr ""
+msgstr "<strong>警告：你正在使用插件jQuery Colorbox，会导致地图崩溃！</strong><br/><br/>此处是解决方法：<br/>1. 在你的Wordpress管理界面点 \"Settings\" / \"jQuery Colorbox\"<br/>2. 反选 \"Automate jQuery Colorbox for all images in pages, posts and galleries:\"<br/>3. 勾选设置 \"Automate jQuery Colorbox for images in WordPress galleries only:\" <br/>4. 保存设置<br/><br/>当jQuery Colorbox更新后，本信息会自动消失。"
 
 #: ../leaflet-admin-header.php:94
 msgid "<strong>Warning: you are using the plugin cformsII which is causing the TinyMCE editor to break when creating new maps!</strong><br/><br/>Here is how to fix this:<br/>1. click on to \"cformsII\" / \"Global Settings\" in your WordPress admin menu<br/>2. open the tab \"WP Editor Button support\"<br/>3. check the option \"Fix TinyMCE error\"<br/>4. save changes<br/><br/>If you do not see this option in your settings, please upgrade to the latest version first (this has to be done manually - see plugin website http://www.deliciousdays.com/cforms-plugin/ for details)<br/><br/>This message will disappear automatically when the cformsII option \"Fix TinyMCE error\" is checked."
-msgstr ""
+msgstr "<strong>警告：你正在使用插件cformsII，会导致TinyMCE编辑器创建地图时崩溃！</strong><br/><br/>此处是解决方法：<br/>1. 在你的WordPress管理界面点 \"cformsII\" / \"Global Settings\"<br/>2. 打开 \"WP Editor Button support\"<br/>3. 点选\"Fix TinyMCE error\"<br/>4. 保存设置<br/><br/>如果没找到本选项，则请升级到最新版本 (请手工升级，参见 http://www.deliciousdays.com/cforms-plugin/ )<br/><br/>当cformsII的\"Fix TinyMCE error\"选项勾选后，本消息会自动消失。"
 
 #: ../leaflet-admin-header.php:98
 msgid "<strong>Warning: you are using the outdated plugin WP Google Analytics which is incompatible with Leaflet Maps Marker. Please update to a more current Google analytics plugin like http://wordpress.org/extend/plugins/google-analytics-for-wordpress/"
-msgstr ""
+msgstr "<strong>警告: 你正在使用过时 WP Google Analytics 插件，与当前Maps Maker不兼容，请升级到更新的Google Analytics插件，如 http://wordpress.org/extend/plugins/google-analytics-for-wordpress/"
 
 #: ../leaflet-admin-header.php:146
 msgid "Message"
-msgstr ""
+msgstr "消息"
 
 #: ../leaflet-admin-header.php:149
 msgid "If you like to donate a certain amount of money to show your support, you can also use Paypal. If you don´t have a Paypal account, you can use your credit card or bank account (where available). Please click on the paypal image to proceed to the donation form."
-msgstr ""
+msgstr "如果亲希望捐献，请使用Paypal。如果亲没有Paypal账户，用信用卡或银行账户都可以。请点击paypal图标来捐献。"
 
 #: ../leaflet-admin-header.php:152
 msgid "The easiest way to support this plugin is to buy something from Amazon by using this referrer link. Note: this doesn´t cost you anything as your purchase volume won´t be increased, but I will receive 6 per cent of your purchase volume as a referral fee."
-msgstr ""
+msgstr "支持本软件最简单的方法是点这个链接购买亚马逊的物品。注：点了以后不会花费亲一毛钱，但是我会因广告收到6%所点选物品金额。"
 
 #: ../leaflet-admin-header.php:153
 msgid "Another way to show your support for this plugin is to buy something from my Amazon wishlist, respectively sending me a greeting card worth from 15 to 500 $ with a personal note, which I would very much appreciate."
-msgstr ""
+msgstr "另一种支持本软件的方法，从我亚马逊的wishlist里买点东西，如果送给我一个15~500美金的购物卡，我会开心得不得了滴。"
 
 #: ../leaflet-admin-header.php:159
 msgid "A message from the plugin´s author"
-msgstr ""
+msgstr "从作者发来的消息"
 
 #: ../leaflet-admin-header.php:159
 msgid "Show website of plugin author"
-msgstr ""
+msgstr "作者的网站"
 
 #: ../leaflet-admin-header.php:160
 msgid "It is hard to continue development and support for Leaflet Maps Marker-plugin without contributions from users like you."
-msgstr ""
+msgstr "Leaflet Maps Marker插件的发展离不开亲们的支持。"
 
 #: ../leaflet-admin-header.php:160
 msgid "If you enjoy using the plugin - <strong>particularly within a commercial context</strong> - please consider making a donation."
-msgstr ""
+msgstr "如果你喜欢此插件，<strong>特别是想用在商业领域</strong>，请考虑捐献一下。"
 
 #: ../leaflet-admin-header.php:160
 msgid "Your donation help keeping the plugin free for everyone and allow me to spend more time on developing, maintaining and support."
-msgstr ""
+msgstr "亲们的捐献让插件继续免费，并让我能花费更多时间开发、维护和支持。"
 
 #: ../leaflet-admin-header.php:160
 msgid "I´d be happy to accept your donation! Thanks!"
-msgstr ""
+msgstr "我会很高兴接受亲们的捐献！谢谢！中文汉化：<a href=\"http://www.synyan.net\" target=\"_blank\">http://synyan.net</a>"
 
 #: ../leaflet-admin-header.php:160
 msgid "For more information on how to donate, please visit"
-msgstr ""
+msgstr "更多关于如何捐献的信息，请访问"
 
 #: ../leaflet-admin-header.php:160
 msgid "please rate this plugin on wordpress.org"
-msgstr ""
+msgstr "请在wordpress.org给本插件评分"
 
 #: ../leaflet-admin-header.php:160
 msgid "Rate plugin"
-msgstr ""
+msgstr "给插件评分"
 
 #: ../leaflet-exportcsv.php:29
 #: ../leaflet-layer.php:20
-#: ../leaflet-list-markers.php:27
-#: ../leaflet-list-markers.php:82
-#: ../leaflet-list-markers.php:90
+#: ../leaflet-list-markers.php:18
+#: ../leaflet-list-markers.php:73
+#: ../leaflet-list-markers.php:80
 #: ../leaflet-marker.php:23
 #: ../leaflet-tools.php:18
 msgid "Security check failed - please call this function from the according Leaflet Maps Marker admin page!"
-msgstr ""
+msgstr "安全检查失败：请从Leaflet Maps Maker管理界面调用此函数！"
 
 #: ../leaflet-exportcsv.php:88
 msgid "Error - CSV export of all markers not allowed."
-msgstr ""
+msgstr "错误：不允许CSV导出所有地标。"
 
 #: ../leaflet-fullscreen.php:67
 #: ../leaflet-layer.php:216
-#: ../leaflet-maps-marker.php:253
+#: ../leaflet-maps-marker.php:237
 #, php-format
 msgid "Error: a layer with the ID %1$s does not exist!"
-msgstr ""
+msgstr "错误：ID为 %1$s 的图层不存在！"
 
 #: ../leaflet-fullscreen.php:69
-#: ../leaflet-fullscreen.php:451
-#: ../leaflet-maps-marker.php:262
+#: ../leaflet-fullscreen.php:449
+#: ../leaflet-maps-marker.php:246
 msgid "Go to plugin website"
-msgstr ""
+msgstr "前往插件主页"
 
 #: ../leaflet-fullscreen.php:94
-#: ../leaflet-fullscreen.php:476
-#: ../leaflet-maps-marker.php:843
-#: ../leaflet-maps-marker.php:851
+#: ../leaflet-fullscreen.php:474
+#: ../leaflet-maps-marker.php:827
+#: ../leaflet-maps-marker.php:835
 msgid "Zoom in"
-msgstr ""
+msgstr "放大"
 
 #: ../leaflet-fullscreen.php:94
-#: ../leaflet-fullscreen.php:476
-#: ../leaflet-maps-marker.php:844
-#: ../leaflet-maps-marker.php:852
+#: ../leaflet-fullscreen.php:474
+#: ../leaflet-maps-marker.php:828
+#: ../leaflet-maps-marker.php:836
 msgid "Zoom out"
-msgstr ""
+msgstr "缩小"
 
 #: ../leaflet-fullscreen.php:110
-#: ../leaflet-fullscreen.php:508
+#: ../leaflet-fullscreen.php:506
 #: ../leaflet-layer.php:303
 #: ../leaflet-layer.php:361
-#: ../leaflet-maps-marker.php:290
-#: ../leaflet-maps-marker.php:314
-#: ../leaflet-maps-marker.php:402
+#: ../leaflet-maps-marker.php:274
+#: ../leaflet-maps-marker.php:298
+#: ../leaflet-maps-marker.php:386
 #: ../leaflet-marker.php:330
 msgid "Export as KML for Google Earth/Google Maps"
-msgstr ""
+msgstr "导出KML文件给谷歌地球/谷歌地图使用"
 
 #: ../leaflet-fullscreen.php:113
-#: ../leaflet-fullscreen.php:511
+#: ../leaflet-fullscreen.php:509
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
 #: ../leaflet-layer.php:240
@@ -2610,22 +2566,22 @@ msgstr ""
 #: ../leaflet-layer.php:360
 #: ../leaflet-layer.php:546
 #: ../leaflet-layer.php:590
-#: ../leaflet-list-layers.php:69
-#: ../leaflet-list-layers.php:111
-#: ../leaflet-list-markers.php:158
-#: ../leaflet-list-markers.php:206
-#: ../leaflet-maps-marker.php:293
-#: ../leaflet-maps-marker.php:317
-#: ../leaflet-maps-marker.php:399
+#: ../leaflet-list-layers.php:63
+#: ../leaflet-list-layers.php:105
+#: ../leaflet-list-markers.php:148
+#: ../leaflet-list-markers.php:196
+#: ../leaflet-maps-marker.php:277
+#: ../leaflet-maps-marker.php:301
+#: ../leaflet-maps-marker.php:383
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
 #: ../leaflet-marker.php:333
 msgid "Open standalone map in fullscreen mode"
-msgstr ""
+msgstr "在全屏模式打开单独地图"
 
 #: ../leaflet-fullscreen.php:116
-#: ../leaflet-fullscreen.php:514
+#: ../leaflet-fullscreen.php:512
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
 #: ../leaflet-layer.php:240
@@ -2633,85 +2589,85 @@ msgstr ""
 #: ../leaflet-layer.php:309
 #: ../leaflet-layer.php:548
 #: ../leaflet-layer.php:592
-#: ../leaflet-list-layers.php:71
-#: ../leaflet-list-layers.php:113
-#: ../leaflet-list-markers.php:160
-#: ../leaflet-list-markers.php:208
-#: ../leaflet-maps-marker.php:296
-#: ../leaflet-maps-marker.php:320
-#: ../leaflet-maps-marker.php:405
+#: ../leaflet-list-layers.php:65
+#: ../leaflet-list-layers.php:107
+#: ../leaflet-list-markers.php:150
+#: ../leaflet-list-markers.php:198
+#: ../leaflet-maps-marker.php:280
+#: ../leaflet-maps-marker.php:304
+#: ../leaflet-maps-marker.php:389
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
 #: ../leaflet-marker.php:336
 msgid "Create QR code image for standalone map in fullscreen mode"
-msgstr ""
+msgstr "在全屏模式创建QR代码图片"
 
 #: ../leaflet-fullscreen.php:119
-#: ../leaflet-fullscreen.php:517
+#: ../leaflet-fullscreen.php:515
 #: ../leaflet-layer.php:312
-#: ../leaflet-maps-marker.php:299
-#: ../leaflet-maps-marker.php:323
-#: ../leaflet-maps-marker.php:408
+#: ../leaflet-maps-marker.php:283
+#: ../leaflet-maps-marker.php:307
+#: ../leaflet-maps-marker.php:392
 #: ../leaflet-marker.php:339
 msgid "Export as GeoJSON"
-msgstr ""
+msgstr "导出为GeoJSON"
 
 #: ../leaflet-fullscreen.php:122
-#: ../leaflet-fullscreen.php:520
+#: ../leaflet-fullscreen.php:518
 #: ../leaflet-layer.php:315
-#: ../leaflet-maps-marker.php:302
-#: ../leaflet-maps-marker.php:326
-#: ../leaflet-maps-marker.php:411
+#: ../leaflet-maps-marker.php:286
+#: ../leaflet-maps-marker.php:310
+#: ../leaflet-maps-marker.php:395
 #: ../leaflet-marker.php:342
 msgid "Export as GeoRSS"
-msgstr ""
+msgstr "导出为GeoRSS"
 
 #: ../leaflet-fullscreen.php:125
-#: ../leaflet-fullscreen.php:523
+#: ../leaflet-fullscreen.php:521
 #: ../leaflet-layer.php:318
-#: ../leaflet-maps-marker.php:305
-#: ../leaflet-maps-marker.php:329
-#: ../leaflet-maps-marker.php:414
+#: ../leaflet-maps-marker.php:289
+#: ../leaflet-maps-marker.php:313
+#: ../leaflet-maps-marker.php:398
 #: ../leaflet-marker.php:345
 msgid "Export as ARML for Wikitude Augmented-Reality browser"
-msgstr ""
+msgstr "导出为ARML,给Wikitude Augmented-Reality浏览器使用"
 
 #: ../leaflet-fullscreen.php:153
-#: ../leaflet-fullscreen.php:544
+#: ../leaflet-fullscreen.php:542
 #: ../leaflet-layer.php:683
-#: ../leaflet-maps-marker.php:428
+#: ../leaflet-maps-marker.php:412
 #: ../leaflet-marker.php:533
 msgid "Plugin"
-msgstr ""
+msgstr "插件"
 
 #: ../leaflet-fullscreen.php:157
 #: ../leaflet-fullscreen.php:158
-#: ../leaflet-fullscreen.php:548
-#: ../leaflet-fullscreen.php:549
+#: ../leaflet-fullscreen.php:546
+#: ../leaflet-fullscreen.php:547
 #: ../leaflet-layer.php:687
 #: ../leaflet-layer.php:688
-#: ../leaflet-maps-marker.php:432
-#: ../leaflet-maps-marker.php:433
+#: ../leaflet-maps-marker.php:416
+#: ../leaflet-maps-marker.php:417
 #: ../leaflet-marker.php:537
 #: ../leaflet-marker.php:538
 msgid "City of Vienna"
-msgstr ""
+msgstr "维也纳城"
 
-#: ../leaflet-fullscreen.php:449
+#: ../leaflet-fullscreen.php:447
 #: ../leaflet-kml.php:213
-#: ../leaflet-maps-marker.php:254
+#: ../leaflet-maps-marker.php:238
 #: ../leaflet-marker.php:190
 #, php-format
 msgid "Error: a marker with the ID %1$s does not exist!"
-msgstr ""
+msgstr "错误：ID为 %1$s 的地标不存在！"
 
-#: ../leaflet-fullscreen.php:498
-#: ../leaflet-fullscreen.php:501
-#: ../leaflet-fullscreen.php:504
+#: ../leaflet-fullscreen.php:496
+#: ../leaflet-fullscreen.php:499
+#: ../leaflet-fullscreen.php:502
+#: ../leaflet-fullscreen.php:759
 #: ../leaflet-fullscreen.php:762
 #: ../leaflet-fullscreen.php:765
-#: ../leaflet-fullscreen.php:768
 #: ../leaflet-geojson.php:94
 #: ../leaflet-geojson.php:96
 #: ../leaflet-geojson.php:98
@@ -2721,15 +2677,15 @@ msgstr ""
 #: ../leaflet-layer.php:352
 #: ../leaflet-layer.php:355
 #: ../leaflet-layer.php:358
-#: ../leaflet-maps-marker.php:280
-#: ../leaflet-maps-marker.php:283
-#: ../leaflet-maps-marker.php:286
-#: ../leaflet-maps-marker.php:389
-#: ../leaflet-maps-marker.php:392
-#: ../leaflet-maps-marker.php:395
-#: ../leaflet-maps-marker.php:645
-#: ../leaflet-maps-marker.php:648
-#: ../leaflet-maps-marker.php:651
+#: ../leaflet-maps-marker.php:264
+#: ../leaflet-maps-marker.php:267
+#: ../leaflet-maps-marker.php:270
+#: ../leaflet-maps-marker.php:373
+#: ../leaflet-maps-marker.php:376
+#: ../leaflet-maps-marker.php:379
+#: ../leaflet-maps-marker.php:629
+#: ../leaflet-maps-marker.php:632
+#: ../leaflet-maps-marker.php:635
 #: ../leaflet-marker.php:320
 #: ../leaflet-marker.php:323
 #: ../leaflet-marker.php:326
@@ -2737,98 +2693,98 @@ msgstr ""
 #: ../leaflet-marker.php:737
 #: ../leaflet-marker.php:741
 msgid "Get directions"
-msgstr ""
+msgstr "指路"
 
 #: ../leaflet-georss.php:88
 #: ../leaflet-georss.php:153
 msgid "maps"
-msgstr ""
+msgstr "地图"
 
 #: ../leaflet-help-credits.php:10
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
 #: ../leaflet-help-credits.php:12
-#: ../leaflet-maps-marker.php:815
+#: ../leaflet-maps-marker.php:799
 msgid "Do you have questions or issues with Leaflet Maps Marker? Please use the following support channels appropriately."
-msgstr ""
+msgstr "亲有任何关于Leaflet Maps Maker的问题或疑问，请使用下面的“支持”渠道。"
 
 #: ../leaflet-help-credits.php:15
-#: ../leaflet-maps-marker.php:817
+#: ../leaflet-maps-marker.php:801
 msgid "FAQ"
-msgstr ""
+msgstr "FAQ"
 
 #: ../leaflet-help-credits.php:15
 msgid "(frequently asked questions)"
-msgstr ""
+msgstr "(常见问题)"
 
 #: ../leaflet-help-credits.php:16
-#: ../leaflet-maps-marker.php:818
+#: ../leaflet-maps-marker.php:802
 msgid "Documentation"
-msgstr ""
+msgstr "文档"
 
 #: ../leaflet-help-credits.php:17
-#: ../leaflet-maps-marker.php:819
+#: ../leaflet-maps-marker.php:803
 msgid "Ideas"
-msgstr ""
+msgstr "想法"
 
 #: ../leaflet-help-credits.php:17
 msgid "(feature requests)"
-msgstr ""
+msgstr "(功能要求)"
 
 #: ../leaflet-help-credits.php:18
 msgid "(free community support)"
-msgstr ""
+msgstr "(免费社区支持)"
 
 #: ../leaflet-help-credits.php:19
 msgid "(paid community support)"
-msgstr ""
+msgstr "(付费社区支持)"
 
 #: ../leaflet-help-credits.php:20
 msgid "(paid professional support)"
-msgstr ""
+msgstr "(付费专家支持)"
 
 #: ../leaflet-help-credits.php:23
-#: ../leaflet-maps-marker.php:824
+#: ../leaflet-maps-marker.php:808
 msgid "More information on support"
-msgstr ""
+msgstr "更多支持信息"
 
 #: ../leaflet-help-credits.php:24
 msgid "Licence"
-msgstr ""
+msgstr "许可"
 
 #: ../leaflet-help-credits.php:26
 msgid "Good news, this plugin is free for everyone! Since it is released under the GPL2, you can use it free of charge on your personal or commercial blog.<br/>But if you enjoy this plugin, you can thank me and leave a small donation for the time I have spent writing and supporting this plugin.<br/>Please see <a href=\"http://www.mapsmarker.com/donations\" target=\"_blank\">http://www.mapsmarker.com/donations</a> for details."
-msgstr ""
+msgstr "好消息，本插件是免费的！因为它在GPL2协议下发布，亲可以免费在个人或商业博客中使用本插件。<br/>但是，如果喜欢本插件，亲可以为我的辛勤劳动奉献一点捐献.<br/>请参见捐献页面：<a href=\"http://www.mapsmarker.com/donations\" target=\"_blank\">http://www.mapsmarker.com/donations</a> . 中文汉化：<a href=\"http://www.synyan.net\" target=\"_blank\">http://synyan.net</a>"
 
 #: ../leaflet-help-credits.php:28
 msgid "Licenses for used libraries, services and images"
-msgstr ""
+msgstr "使用的库、服务和图像许可"
 
 #: ../leaflet-help-credits.php:41
 msgid "Translations"
-msgstr ""
+msgstr "翻译"
 
-#: ../leaflet-help-credits.php:51
+#: ../leaflet-help-credits.php:50
 msgid "Credits & special thanks"
-msgstr ""
+msgstr "贡献和特别感谢"
 
 #: ../leaflet-kml.php:86
 #, php-format
 msgid "Warning: no markers are assigned to the layer with the ID %1$s or the layer does not exist!"
-msgstr ""
+msgstr "警告：本图层没有ID为 %1$s 的任何地标或图层不存在！"
 
 #: ../leaflet-layer.php:50
 #: ../leaflet-layer.php:77
 #: ../leaflet-layer.php:511
 #: ../leaflet-layer.php:670
-#: ../leaflet-list-layers.php:175
+#: ../leaflet-list-layers.php:169
 msgid "add new marker to this layer"
-msgstr ""
+msgstr "为本图层增加新地标"
 
 #: ../leaflet-layer.php:51
 msgid "Layer has been successfully added"
-msgstr ""
+msgstr "增加图层成功"
 
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
@@ -2837,80 +2793,80 @@ msgstr ""
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:214
 msgid "Shortcode and API URLs"
-msgstr ""
+msgstr "短代码和API URL"
 
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
 #: ../leaflet-layer.php:240
 #: ../leaflet-layer.php:544
 #: ../leaflet-layer.php:588
-#: ../leaflet-list-layers.php:67
-#: ../leaflet-list-layers.php:109
-#: ../leaflet-list-markers.php:156
-#: ../leaflet-list-markers.php:204
+#: ../leaflet-list-layers.php:61
+#: ../leaflet-list-layers.php:103
+#: ../leaflet-list-markers.php:146
+#: ../leaflet-list-markers.php:194
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
 msgid "Click here for more information on how to use as KML in Google Earth or Google Maps"
-msgstr ""
+msgstr "点这里获取如何在谷歌地球或谷歌地图中使用KML的信息"
 
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
 #: ../leaflet-layer.php:241
 #: ../leaflet-layer.php:550
 #: ../leaflet-layer.php:594
-#: ../leaflet-list-layers.php:73
-#: ../leaflet-list-layers.php:115
-#: ../leaflet-list-markers.php:162
-#: ../leaflet-list-markers.php:210
+#: ../leaflet-list-layers.php:67
+#: ../leaflet-list-layers.php:109
+#: ../leaflet-list-markers.php:152
+#: ../leaflet-list-markers.php:200
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
 msgid "Click here for more information on how to integrate GeoJSON into external websites or apps"
-msgstr ""
+msgstr "点这里获取更多如何整合GeoJSON到外部网站或应用的信息"
 
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
 #: ../leaflet-layer.php:241
 #: ../leaflet-layer.php:552
 #: ../leaflet-layer.php:596
-#: ../leaflet-list-layers.php:75
-#: ../leaflet-list-layers.php:117
-#: ../leaflet-list-markers.php:164
-#: ../leaflet-list-markers.php:212
+#: ../leaflet-list-layers.php:69
+#: ../leaflet-list-layers.php:111
+#: ../leaflet-list-markers.php:154
+#: ../leaflet-list-markers.php:202
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
 msgid "Click here for more information on how to subscribe to new markers via GeoRSS"
-msgstr ""
+msgstr "点这里获取如何通过GeoRSS订阅新地标的信息"
 
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
 #: ../leaflet-layer.php:241
 #: ../leaflet-layer.php:554
 #: ../leaflet-layer.php:598
-#: ../leaflet-list-layers.php:77
-#: ../leaflet-list-layers.php:119
-#: ../leaflet-list-markers.php:166
-#: ../leaflet-list-markers.php:214
+#: ../leaflet-list-layers.php:71
+#: ../leaflet-list-layers.php:113
+#: ../leaflet-list-markers.php:156
+#: ../leaflet-list-markers.php:204
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:215
 msgid "Click here for more information on how to display in Wikitude Augmented-Reality browser"
-msgstr ""
+msgstr "点这里获取如何显示在Wikitude Augmented-Reality浏览器显示的信息"
 
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 msgid "Please copy the shortcode above and paste it into the post or page where you want the map to appear or use one of the API URLs for embedding in external websites or apps"
-msgstr ""
+msgstr "请拷贝上面的短代码并粘贴到文章或页面以显示你想要的地图，或使用其中一个API URL来植入外部网站或应用"
 
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
 #: ../leaflet-marker.php:236
 msgid "edit layer"
-msgstr ""
+msgstr "编辑层"
 
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
@@ -2918,7 +2874,7 @@ msgstr ""
 #: ../leaflet-layer.php:112
 #: ../leaflet-layer.php:218
 msgid "show all layers"
-msgstr ""
+msgstr "显示所有层"
 
 #: ../leaflet-layer.php:51
 #: ../leaflet-layer.php:91
@@ -2927,57 +2883,57 @@ msgstr ""
 #: ../leaflet-layer.php:218
 #: ../leaflet-marker.php:237
 msgid "add new layer"
-msgstr ""
+msgstr "增加新层"
 
 #: ../leaflet-layer.php:58
 #: ../leaflet-layer.php:95
 #: ../leaflet-marker.php:55
 #: ../leaflet-marker.php:85
 msgid "Error: coordinates cannot be empty!"
-msgstr ""
+msgstr "错误：坐标不能为空！"
 
 #: ../leaflet-layer.php:58
 #: ../leaflet-layer.php:95
 #: ../leaflet-marker.php:55
 #: ../leaflet-marker.php:85
 msgid "Go back to form"
-msgstr ""
+msgstr "回到表格"
 
 #: ../leaflet-layer.php:91
 msgid "Layer has been successfully updated"
-msgstr ""
+msgstr "图层成功更新"
 
 #: ../leaflet-layer.php:104
 msgid "Layer and assigned markers have been successfully deleted"
-msgstr ""
+msgstr "图层和相关地标成功删除"
 
 #: ../leaflet-layer.php:112
 msgid "Layer has been successfully deleted (assigned markers have not been deleted)"
-msgstr ""
+msgstr "图层成功删除（相关地标没有删除）"
 
 #: ../leaflet-layer.php:230
 msgid "Edit layer"
-msgstr ""
+msgstr "编辑涂层"
 
 #: ../leaflet-layer.php:234
 #: ../leaflet-marker.php:209
 msgid "Parameter"
-msgstr ""
+msgstr "参数"
 
 #: ../leaflet-layer.php:235
 #: ../leaflet-marker.php:210
 msgid "Value"
-msgstr ""
+msgstr "值"
 
 #: ../leaflet-layer.php:241
 #: ../leaflet-marker.php:215
 msgid "Use this shortcode in posts or pages on your website or one of the API URLs for embedding in external websites or apps"
-msgstr ""
+msgstr "使用此短代码到文章或页面，或使用其中一个API URL来植入外部网站或应用"
 
 #: ../leaflet-layer.php:251
 #: ../leaflet-marker.php:246
 msgid "Please select a place or an address"
-msgstr ""
+msgstr "请选择地点或地址"
 
 #: ../leaflet-layer.php:251
 #: ../leaflet-layer.php:291
@@ -2985,119 +2941,119 @@ msgstr ""
 #: ../leaflet-marker.php:246
 #: ../leaflet-marker.php:353
 msgid "(Settings)"
-msgstr ""
+msgstr "(设置)"
 
 #: ../leaflet-layer.php:255
 #: ../leaflet-marker.php:250
 msgid "or paste coordinates here"
-msgstr ""
+msgstr "或在此粘贴坐标"
 
 #: ../leaflet-layer.php:256
 #: ../leaflet-marker.php:251
 msgid "latitude"
-msgstr ""
+msgstr "纬度"
 
 #: ../leaflet-layer.php:257
 #: ../leaflet-marker.php:252
 msgid "longitude"
-msgstr ""
+msgstr "经度"
 
 #: ../leaflet-layer.php:259
 msgid "or set layer center by clicking on the preview map"
-msgstr ""
+msgstr "或点击之前的地图来设置图层中心"
 
 #: ../leaflet-layer.php:264
 #: ../leaflet-layer.php:619
-#: ../leaflet-list-layers.php:154
-#: ../leaflet-list-markers.php:246
+#: ../leaflet-list-layers.php:148
+#: ../leaflet-list-markers.php:236
 #: ../leaflet-marker.php:258
 #: ../leaflet-tools.php:327
 #: ../leaflet-tools.php:578
 msgid "Width"
-msgstr ""
+msgstr "宽度"
 
 #: ../leaflet-layer.php:268
 #: ../leaflet-layer.php:619
-#: ../leaflet-list-layers.php:154
-#: ../leaflet-list-markers.php:246
+#: ../leaflet-list-layers.php:148
+#: ../leaflet-list-markers.php:236
 #: ../leaflet-marker.php:263
 #: ../leaflet-tools.php:332
 #: ../leaflet-tools.php:583
 msgid "Height"
-msgstr ""
+msgstr "高度"
 
 #: ../leaflet-layer.php:274
 #: ../leaflet-marker.php:270
 msgid "Please change zoom level by clicking on + or - symbols or using your mouse wheel on preview map"
-msgstr ""
+msgstr "请点击 + 或 - 变换放大级别，或在地图上方使用鼠标滚轮"
 
 #: ../leaflet-layer.php:277
 #: ../leaflet-marker.php:273
 #: ../leaflet-tools.php:360
 #: ../leaflet-tools.php:611
 msgid "Basemap/overlay controlbox on frontend"
-msgstr ""
+msgstr "基础地图/覆盖图层前台控制台"
 
 #: ../leaflet-layer.php:281
 #: ../leaflet-marker.php:277
 msgid "Controlbox on backend is always expanded"
-msgstr ""
+msgstr "后台控制台总是展开的"
 
 #: ../leaflet-layer.php:291
 msgid "Max. number of markers to display:"
-msgstr ""
+msgstr "最大地标显示数量"
 
 #: ../leaflet-layer.php:321
 msgid "if set, layername will be inserted here"
-msgstr ""
+msgstr "如果设置，层名将在这里插入"
 
 #: ../leaflet-layer.php:332
 #: ../leaflet-layer.php:336
 msgid "Markers assigned to this layer will be listed here"
-msgstr ""
+msgstr "在此图层添加的地标将在这里列出"
 
 #: ../leaflet-layer.php:362
 #: ../leaflet-layer.php:646
-#: ../leaflet-list-markers.php:270
+#: ../leaflet-list-markers.php:260
 #: ../leaflet-marker.php:204
 msgid "Edit marker"
-msgstr ""
+msgstr "编辑地标"
 
 #: ../leaflet-layer.php:362
 #: ../leaflet-layer.php:646
-#: ../leaflet-list-layers.php:179
-#: ../leaflet-list-markers.php:270
+#: ../leaflet-list-layers.php:173
+#: ../leaflet-list-markers.php:260
 msgid "edit"
-msgstr ""
+msgstr "编辑"
 
 #: ../leaflet-layer.php:370
 #: ../leaflet-marker.php:353
 msgid "WMS layers"
-msgstr ""
+msgstr "WMS层"
 
 #: ../leaflet-layer.php:428
 msgid "Multi Layer Map"
-msgstr ""
+msgstr "多重层地图"
 
 #: ../leaflet-layer.php:431
 msgid "Show markers from other layers on this map"
-msgstr ""
+msgstr "在此地图上显示其他层的地标"
 
 #: ../leaflet-layer.php:437
 msgid "Please select the layers, whose markers you would like to display on this multi layer map. Please note that the following features are not supported for multi layer maps: adding markers directly, displaying a list of markers under the map, access of all assigned markers via GeoJSON (please use GeoJSON-feeds for individual layers instead) and dynamic preview in backend (select layers instead, click save and the edit button again). Please also do not change an existing layer map with assigned markers to a multi layer map, as those assigned markers will not be displayed on the multi layer map."
-msgstr ""
+msgstr "请选择你想在此多层地图上显示多个地标的多个层。请注意，下列功能在多层地图不适用：直接添加地标、在地图下显示地标列表、从GeoJSON获取所有地标（请使用GeoJSON-feeds获取单层），以及动态后台预览（请使用选择层，保存，然后再编辑）。请不要改变已将地标赋给多层地图的单层地图，因为会使得多层地图中的地标无法显示。"
 
 #: ../leaflet-layer.php:439
 msgid "display all markers"
-msgstr ""
+msgstr "显示所有地标"
 
 #: ../leaflet-layer.php:439
 msgid "Display markers from selected layers only"
-msgstr ""
+msgstr "仅显示选择图层中的地标"
 
 #: ../leaflet-layer.php:447
 #: ../leaflet-layer.php:506
-#: ../leaflet-list-markers.php:107
+#: ../leaflet-list-markers.php:97
 #: ../leaflet-tools.php:193
 #: ../leaflet-tools.php:197
 #: ../leaflet-tools.php:203
@@ -3105,581 +3061,475 @@ msgstr ""
 #: ../leaflet-tools.php:231
 #: ../leaflet-tools.php:235
 msgid "marker"
-msgstr ""
+msgstr "地标"
 
 #: ../leaflet-layer.php:455
 #: ../leaflet-marker.php:499
 msgid "Audit"
-msgstr ""
+msgstr "审计"
 
 #: ../leaflet-layer.php:457
 msgid "Layer added by"
-msgstr ""
+msgstr "图层添加人"
 
 #: ../leaflet-layer.php:460
 #: ../leaflet-marker.php:504
 msgid "last update by"
-msgstr ""
+msgstr "最后更新人"
 
 #: ../leaflet-layer.php:467
 msgid "update layer"
-msgstr ""
+msgstr "更新图层"
 
 #: ../leaflet-layer.php:467
 msgid "add layer"
-msgstr ""
+msgstr "增加图层"
 
 #: ../leaflet-layer.php:477
 #, php-format
 msgid "Do you really want to delete layer %1$s (ID %2$s)?"
-msgstr ""
+msgstr "你真的想要删除图层%1$s (ID %2$s)吗?"
 
 #: ../leaflet-layer.php:478
 msgid "delete layer"
-msgstr ""
+msgstr "删除图层"
 
 #: ../leaflet-layer.php:487
 #, php-format
 msgid "Do you really want to delete layer %1$s (ID %2$s) and all %3$s assigned markers?"
-msgstr ""
+msgstr "你真的想要删除图层%1$s (ID %2$s)和所有%3$s添加的地标吗？"
 
 #: ../leaflet-layer.php:489
 msgid "delete layer AND assigned markers"
-msgstr ""
+msgstr "删除图层和添加的地标"
 
 #: ../leaflet-layer.php:499
 msgid "Marker assigned to this layer"
-msgstr ""
+msgstr "添加到本图层的地标"
 
 #: ../leaflet-layer.php:501
 msgid "Marker assigned to this multi layer map"
-msgstr ""
+msgstr "添加到本多层地图的地标"
 
 #: ../leaflet-layer.php:506
-#: ../leaflet-list-layers.php:29
-#: ../leaflet-list-layers.php:204
-#: ../leaflet-list-markers.php:106
-#: ../leaflet-list-markers.php:316
+#: ../leaflet-list-layers.php:23
+#: ../leaflet-list-layers.php:198
+#: ../leaflet-list-markers.php:96
+#: ../leaflet-list-markers.php:308
 msgid "Total"
-msgstr ""
+msgstr "全部"
 
 #: ../leaflet-layer.php:509
 msgid "For details on assigned markers to this multi-layer map, please open the individual layer maps."
-msgstr ""
+msgstr "更多关于本多层地图地标的信息，请打开单独的图层地图。"
 
 #: ../leaflet-layer.php:606
 #: ../leaflet-marker.php:519
 #, php-format
 msgid "Do you really want to delete marker %1$s (ID %2$s)?"
-msgstr ""
+msgstr "你真的想要删除地标%1$s (ID %2$s)吗？"
 
 #: ../leaflet-layer.php:607
-#: ../leaflet-list-layers.php:131
-#: ../leaflet-list-markers.php:226
-#: ../leaflet-list-markers.php:301
+#: ../leaflet-list-layers.php:125
+#: ../leaflet-list-markers.php:216
+#: ../leaflet-list-markers.php:293
 msgid "delete"
-msgstr ""
+msgstr "删除"
 
 #: ../leaflet-layer.php:612
 msgid "No marker assigned to this layer"
-msgstr ""
+msgstr "本图层无地标"
 
 #: ../leaflet-layer.php:634
-#: ../leaflet-list-markers.php:231
+#: ../leaflet-list-markers.php:221
 #: ../leaflet-tools.php:430
 msgid "open"
-msgstr ""
+msgstr "开"
 
 #: ../leaflet-layer.php:634
-#: ../leaflet-list-markers.php:231
+#: ../leaflet-list-markers.php:221
 #: ../leaflet-tools.php:428
 msgid "closed"
-msgstr ""
+msgstr "关"
 
 #: ../leaflet-layer.php:637
-#: ../leaflet-list-markers.php:238
+#: ../leaflet-list-markers.php:228
 msgid "Edit marker "
-msgstr ""
+msgstr "编辑地标 "
 
 #: ../leaflet-layer.php:644
-#: ../leaflet-list-markers.php:268
+#: ../leaflet-list-markers.php:258
 msgid "standard icon"
-msgstr ""
+msgstr "标准图标"
 
 #: ../leaflet-layer.php:1019
 #: ../leaflet-layer.php:1025
 #: ../leaflet-marker.php:858
 #: ../leaflet-marker.php:864
 msgid "Invalid format! Please only use numbers and a . instead of a , as decimal separator!"
-msgstr ""
+msgstr "非法格式！请使用数字，并使用.作为小数点！"
 
-#: ../leaflet-list-layers.php:27
-#: ../leaflet-list-layers.php:210
-msgid "Add layer"
-msgstr ""
-
-#: ../leaflet-list-layers.php:27
-#: ../leaflet-list-layers.php:210
-#: ../leaflet-list-markers.php:104
-#: ../leaflet-list-markers.php:328
-msgid "Export all markers as csv-file"
-msgstr ""
-
-#: ../leaflet-list-layers.php:27
-#: ../leaflet-list-layers.php:210
-#: ../leaflet-list-markers.php:104
-#: ../leaflet-list-markers.php:328
-msgid "Export all markers as KML"
-msgstr ""
-
-#: ../leaflet-list-layers.php:27
-#: ../leaflet-list-layers.php:210
-#: ../leaflet-list-markers.php:104
-#: ../leaflet-list-markers.php:328
-msgid "Export all markers as GeoJSON"
-msgstr ""
-
-#: ../leaflet-list-layers.php:27
-#: ../leaflet-list-layers.php:210
-#: ../leaflet-list-markers.php:104
-#: ../leaflet-list-markers.php:328
-msgid "Subscribe to markers via GeoRSS"
-msgstr ""
-
-#: ../leaflet-list-layers.php:27
-#: ../leaflet-list-layers.php:210
-#: ../leaflet-list-markers.php:104
-#: ../leaflet-list-markers.php:328
-msgid "Export all markers as ARML for Wikitude"
-msgstr ""
-
-#: ../leaflet-list-layers.php:27
-#: ../leaflet-list-layers.php:210
-#: ../leaflet-list-markers.php:104
-#: ../leaflet-list-markers.php:328
-msgid "Geo Sitemap"
-msgstr ""
-
-#: ../leaflet-list-layers.php:27
-#: ../leaflet-list-layers.php:210
-#: ../leaflet-list-markers.php:104
-#: ../leaflet-list-markers.php:328
-msgid "Click here for more information on how to submit your Geo Sitemap to Google"
-msgstr ""
-
-#: ../leaflet-list-layers.php:29
+#: ../leaflet-list-layers.php:21
 #: ../leaflet-list-layers.php:204
+msgid "Add layer"
+msgstr "增加图层"
+
+#: ../leaflet-list-layers.php:21
+#: ../leaflet-list-layers.php:204
+#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:320
+msgid "Export all markers as csv-file"
+msgstr "导出所有地标为CSV文件"
+
+#: ../leaflet-list-layers.php:21
+#: ../leaflet-list-layers.php:204
+#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:320
+msgid "Export all markers as KML"
+msgstr "导出所有地标为KML文件"
+
+#: ../leaflet-list-layers.php:21
+#: ../leaflet-list-layers.php:204
+#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:320
+msgid "Export all markers as GeoJSON"
+msgstr "导出所有地标为GeoJSON"
+
+#: ../leaflet-list-layers.php:21
+#: ../leaflet-list-layers.php:204
+#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:320
+msgid "Subscribe to markers via GeoRSS"
+msgstr "通过GeoRSS订阅地标"
+
+#: ../leaflet-list-layers.php:21
+#: ../leaflet-list-layers.php:204
+#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:320
+msgid "Export all markers as ARML for Wikitude"
+msgstr "导出所有地标为Wikitude的ARML文件"
+
+#: ../leaflet-list-layers.php:21
+#: ../leaflet-list-layers.php:204
+#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:320
+msgid "Geo Sitemap"
+msgstr "Geo网站地图"
+
+#: ../leaflet-list-layers.php:21
+#: ../leaflet-list-layers.php:204
+#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:320
+msgid "Click here for more information on how to submit your Geo Sitemap to Google"
+msgstr "点击这里获取更多如何将你的Geo网站地图递交到谷歌的信息"
+
+#: ../leaflet-list-layers.php:23
+#: ../leaflet-list-layers.php:198
 msgid "layer"
-msgstr ""
+msgstr "图层"
 
-#: ../leaflet-list-layers.php:30
-#: ../leaflet-list-layers.php:205
-#: ../leaflet-list-markers.php:109
-#: ../leaflet-list-markers.php:319
+#: ../leaflet-list-layers.php:24
+#: ../leaflet-list-layers.php:199
+#: ../leaflet-list-markers.php:99
+#: ../leaflet-list-markers.php:311
 msgid "select columns to display"
-msgstr ""
+msgstr "选择要显示的栏"
 
-#: ../leaflet-list-layers.php:30
-#: ../leaflet-list-layers.php:205
-#: ../leaflet-list-markers.php:109
-#: ../leaflet-list-markers.php:319
+#: ../leaflet-list-layers.php:24
+#: ../leaflet-list-layers.php:199
+#: ../leaflet-list-markers.php:99
+#: ../leaflet-list-markers.php:311
 msgid "columns"
-msgstr ""
+msgstr "栏"
 
-#: ../leaflet-list-layers.php:43
-#: ../leaflet-list-layers.php:85
-#: ../leaflet-maps-marker.php:1128
+#: ../leaflet-list-layers.php:37
+#: ../leaflet-list-layers.php:79
+#: ../leaflet-maps-marker.php:1107
 msgid "Markers"
-msgstr ""
+msgstr "地标"
 
-#: ../leaflet-list-layers.php:126
+#: ../leaflet-list-layers.php:120
 msgid "No layer created yet"
-msgstr ""
+msgstr "未创建任何图层"
 
-#: ../leaflet-list-layers.php:131
+#: ../leaflet-list-layers.php:125
 msgid "Do you really want to delete this layer?"
-msgstr ""
+msgstr "你真的要删除本图层吗？"
 
-#: ../leaflet-list-layers.php:148
+#: ../leaflet-list-layers.php:142
 msgid "single layer map"
-msgstr ""
+msgstr "单图层地图"
 
-#: ../leaflet-list-layers.php:148
+#: ../leaflet-list-layers.php:142
 msgid "multi layer map"
-msgstr ""
+msgstr "多图层地图"
 
-#: ../leaflet-list-layers.php:179
+#: ../leaflet-list-layers.php:173
 msgid "Edit"
-msgstr ""
+msgstr "编辑"
 
-#: ../leaflet-list-layers.php:180
+#: ../leaflet-list-layers.php:174
 msgid "show markers assigned to this layer"
-msgstr ""
+msgstr "显示添加到本图层的地标"
 
-#: ../leaflet-list-markers.php:44
+#: ../leaflet-list-markers.php:35
 msgid "page"
-msgstr ""
+msgstr "页面"
 
-#: ../leaflet-list-markers.php:79
+#: ../leaflet-list-markers.php:70
 msgid "Please only select one mass action"
-msgstr ""
+msgstr "请只选择一个批处理"
 
-#: ../leaflet-list-markers.php:80
-#: ../leaflet-list-markers.php:88
-#: ../leaflet-list-markers.php:95
-#: ../leaflet-list-markers.php:118
-#: ../leaflet-list-markers.php:327
+#: ../leaflet-list-markers.php:71
+#: ../leaflet-list-markers.php:78
+#: ../leaflet-list-markers.php:84
+#: ../leaflet-list-markers.php:108
+#: ../leaflet-list-markers.php:319
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:93
 #: ../leaflet-marker.php:192
 msgid "show all markers"
-msgstr ""
+msgstr "显示所有地标"
 
-#: ../leaflet-list-markers.php:80
-#: ../leaflet-list-markers.php:88
-#: ../leaflet-list-markers.php:95
+#: ../leaflet-list-markers.php:71
+#: ../leaflet-list-markers.php:78
+#: ../leaflet-list-markers.php:84
 #: ../leaflet-marker.php:48
 msgid "add new maker"
-msgstr ""
+msgstr "增加新地标"
 
-#: ../leaflet-list-markers.php:87
+#: ../leaflet-list-markers.php:77
 msgid "The selected markers have been deleted"
-msgstr ""
+msgstr "选定的地标已删除"
 
-#: ../leaflet-list-markers.php:94
+#: ../leaflet-list-markers.php:83
 msgid "The selected markers have been assigned to the selected layer"
-msgstr ""
+msgstr "选定的地标已被添加到选定的层上"
+
+#: ../leaflet-list-markers.php:83
+#: ../leaflet-list-markers.php:309
+msgid "Marker"
+msgstr "地标"
 
 #: ../leaflet-list-markers.php:94
-#: ../leaflet-list-markers.php:317
-msgid "Marker"
-msgstr ""
-
-#: ../leaflet-list-markers.php:104
-#: ../leaflet-list-markers.php:328
+#: ../leaflet-list-markers.php:320
 msgid "Add marker"
-msgstr ""
+msgstr "增加地标"
+
+#: ../leaflet-list-markers.php:96
+#: ../leaflet-list-markers.php:308
+msgid "Search result"
+msgstr "搜索结果"
+
+#: ../leaflet-list-markers.php:99
+#: ../leaflet-list-markers.php:311
+msgid "Change number in settings"
+msgstr "在设置中改变数量"
 
 #: ../leaflet-list-markers.php:106
-#: ../leaflet-list-markers.php:316
-msgid "Search result"
-msgstr ""
-
-#: ../leaflet-list-markers.php:109
-#: ../leaflet-list-markers.php:319
-msgid "Change number in settings"
-msgstr ""
-
-#: ../leaflet-list-markers.php:116
-#: ../leaflet-list-markers.php:325
+#: ../leaflet-list-markers.php:317
 msgid "search"
-msgstr ""
+msgstr "搜索"
 
-#: ../leaflet-list-markers.php:221
+#: ../leaflet-list-markers.php:211
 msgid "No marker created yet"
-msgstr ""
+msgstr "还没创建任何地标"
 
-#: ../leaflet-list-markers.php:226
+#: ../leaflet-list-markers.php:216
 msgid "Do you really want to delete this marker?"
-msgstr ""
+msgstr "你真的想删除此地标吗？"
 
-#: ../leaflet-list-markers.php:230
-#: ../leaflet-list-markers.php:306
+#: ../leaflet-list-markers.php:220
+#: ../leaflet-list-markers.php:298
 #: ../leaflet-tools.php:193
 #: ../leaflet-tools.php:203
 #: ../leaflet-tools.php:231
 msgid "unassigned"
-msgstr ""
+msgstr "未添加"
 
-#: ../leaflet-list-markers.php:230
+#: ../leaflet-list-markers.php:220
 msgid "Edit layer "
-msgstr ""
+msgstr "编辑涂层 "
 
-#: ../leaflet-list-markers.php:298
+#: ../leaflet-list-markers.php:290
 msgid "Mass actions for selected markers"
-msgstr ""
+msgstr "批处理选定地标"
+
+#: ../leaflet-list-markers.php:296
+msgid "assign to the following layer:"
+msgstr "添加到下述图层："
 
 #: ../leaflet-list-markers.php:304
-msgid "assign to the following layer:"
-msgstr ""
-
-#: ../leaflet-list-markers.php:312
 msgid "submit"
-msgstr ""
+msgstr "提交"
 
-#: ../leaflet-maps-marker.php:242
-#: ../leaflet-maps-marker.php:245
+#: ../leaflet-maps-marker.php:226
+#: ../leaflet-maps-marker.php:229
 msgid "Show embedded map in full-screen mode"
-msgstr ""
+msgstr "在全屏模式显示嵌入地图"
 
-#: ../leaflet-maps-marker.php:702
+#: ../leaflet-maps-marker.php:686
 msgid "add/edit marker"
-msgstr ""
+msgstr "增加/编辑地标"
 
-#: ../leaflet-maps-marker.php:704
+#: ../leaflet-maps-marker.php:688
 msgid "add/edit layer"
-msgstr ""
+msgstr "增加/编辑层"
 
-#: ../leaflet-maps-marker.php:748
+#: ../leaflet-maps-marker.php:732
 msgid "by"
-msgstr ""
+msgstr "by"
+
+#: ../leaflet-maps-marker.php:787
+msgid "Open plugin website"
+msgstr "打开插件网站"
+
+#: ../leaflet-maps-marker.php:801
+msgid "frequently asked questions"
+msgstr "常见问题"
 
 #: ../leaflet-maps-marker.php:803
-msgid "Open plugin website"
-msgstr ""
+msgid "feature requests"
+msgstr "功能请求"
+
+#: ../leaflet-maps-marker.php:804
+msgid "free community support"
+msgstr "免费社区支持"
+
+#: ../leaflet-maps-marker.php:805
+msgid "paid community support"
+msgstr "付费社区支持"
+
+#: ../leaflet-maps-marker.php:806
+msgid "paid professional support"
+msgstr "付费专家支持"
 
 #: ../leaflet-maps-marker.php:817
-msgid "frequently asked questions"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:819
-msgid "feature requests"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:820
-msgid "free community support"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:821
-msgid "paid community support"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:822
-msgid "paid professional support"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:833
 msgid "Help & Support"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1143
-msgid "Widget to show the most recent Leaflet Maps Marker entries"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1145
-msgid "Leaflet Maps Marker - recent markers"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1149
-#: ../leaflet-maps-marker.php:1226
-msgid "Recent markers"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1164
-msgid "Title"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1166
-msgid "Text before list of markers"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1168
-msgid "Number of markers to display"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1173
-msgid "Show icons"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1175
-msgid "Icon width"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1178
-msgid "Show popuptext (no HTML)"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1182
-msgid "Link target"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1184
-msgid "fullscreen"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1188
-msgid "no link"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1193
-msgid "Show marker creation time"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1195
-msgid "Date format"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1199
-msgid "Separator lines"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1201
-msgid "Color"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1205
-msgid "Order by"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1211
-msgid "desc"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1212
-msgid "asc"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1214
-msgid "Text after list of markers"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1217
-msgid "Show GeoRSS subscribe link"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1220
-msgid "Show attribution link"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1272
-#: ../leaflet-maps-marker.php:1279
-msgid "show map"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1301
-msgid "via GeoRSS - please use RSS Reader like http://google.com/reader for example"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1301
-msgid "Subscribe to markers"
-msgstr ""
-
-#: ../leaflet-maps-marker.php:1304
-msgid "powered by"
-msgstr ""
+msgstr "帮助&支持"
 
 #: ../leaflet-marker.php:16
 msgid "edit assigned layer"
-msgstr ""
+msgstr "编辑指定页面"
 
 #: ../leaflet-marker.php:48
 msgid "Marker has been successfully added"
-msgstr ""
+msgstr "地标成功添加"
 
 #: ../leaflet-marker.php:48
 #: ../leaflet-marker.php:81
 msgid "edit marker"
-msgstr ""
+msgstr "编辑地标"
 
 #: ../leaflet-marker.php:81
 msgid "Marker has been successfully updated"
-msgstr ""
+msgstr "地标成功更新"
 
 #: ../leaflet-marker.php:81
 #: ../leaflet-marker.php:93
 #: ../leaflet-marker.php:192
 msgid "add new marker"
-msgstr ""
+msgstr "添加新地标"
 
 #: ../leaflet-marker.php:93
 msgid "Marker has been successfully deleted"
-msgstr ""
+msgstr "地标成功删除"
 
 #: ../leaflet-marker.php:228
 msgid "Do not assign marker to a layer"
-msgstr ""
+msgstr "请勿添加地标到层"
 
 #: ../leaflet-marker.php:236
 msgid "or"
-msgstr ""
+msgstr "或"
 
 #: ../leaflet-marker.php:254
 msgid "or set marker coordinates by clicking on the preview map"
-msgstr ""
+msgstr "或点击前面的地图设置地标坐标"
 
 #: ../leaflet-marker.php:292
 msgid "Time"
-msgstr ""
+msgstr "事件"
 
 #: ../leaflet-marker.php:293
 msgid "Hour"
-msgstr ""
+msgstr "小时"
 
 #: ../leaflet-marker.php:294
 msgid "Minute"
-msgstr ""
+msgstr "分钟"
 
 #: ../leaflet-marker.php:295
 msgid "Second"
-msgstr ""
+msgstr "秒"
 
 #: ../leaflet-marker.php:296
 msgid "Now"
-msgstr ""
+msgstr "现在"
 
 #: ../leaflet-marker.php:297
 msgid "Add"
-msgstr ""
+msgstr "增加"
 
 #: ../leaflet-marker.php:302
 msgid "Timestamp for KML animation"
-msgstr ""
+msgstr "KML动画时间戳"
 
 #: ../leaflet-marker.php:302
 msgid "Click here for more information on animations in KML/Google Earth"
-msgstr ""
+msgstr "点这里获取更多关于KML/谷歌地球动画的信息"
 
 #: ../leaflet-marker.php:304
 msgid "If empty, marker creation date will be used"
-msgstr ""
+msgstr "如果为空，则地标创建日将被使用"
 
 #: ../leaflet-marker.php:348
 msgid "if set, markername will be inserted here"
-msgstr ""
+msgstr "如果设置，则地标名字将在这里插入"
 
 #: ../leaflet-marker.php:418
 #, php-format
 msgid "If you want to use different icons, please visit the %1$s (offering more than 700 compatible icons) and upload the new icons to the directory %2$s/"
-msgstr ""
+msgstr "如果你想要使用不同的图标，请访问%1$s（提供超过700种图标），并将其上传到 %2$s/"
 
 #: ../leaflet-marker.php:419
 #, php-format
 msgid "If you want to use different icons, please visit the %1$s (offering more than 700 compatible icons) and ask your WordPress admin to upload the new icons to the directory %2$s/"
-msgstr ""
+msgstr "如果你想要使用不同的图标，请访问%1$s（提供超过700种图标），并请你的WordPress管理员将其上传到 %2$s/"
 
 #: ../leaflet-marker.php:435
 msgid "open by default?"
-msgstr ""
+msgstr "默认打开？"
 
 #: ../leaflet-marker.php:441
 msgid "If no is selected, the popup will only be visible after clicking on the marker on marker- or layer-maps. If yes is selected, the popup is shown by default on marker-maps but not on layer-maps, where this feature is not supported"
-msgstr ""
+msgstr "如果选择否，则弹出框将仅在点击地标地图或有地标的层地图时可见。如果选择是，则弹出框默认在地标地图弹出但不在层地图弹出"
 
 #: ../leaflet-marker.php:493
 msgid "Note: image width gets resized to 260px automatically to fit in popup"
-msgstr ""
+msgstr "注：图片宽度自动缩小为260px以适应弹出框"
 
 #: ../leaflet-marker.php:501
 msgid "Marker added by"
-msgstr ""
+msgstr "地标添加人"
 
 #: ../leaflet-marker.php:511
 msgid "update marker"
-msgstr ""
+msgstr "更新地标"
 
 #: ../leaflet-marker.php:511
 msgid "add marker"
-msgstr ""
+msgstr "添加地标"
 
 #: ../leaflet-marker.php:521
 msgid "delete marker"
-msgstr ""
+msgstr "删除地标"
 
 #: ../leaflet-tools.php:23
 #, php-format
 msgid "All markers from layer ID %1$s have been successfully assigned to layer ID %2$s"
-msgstr ""
+msgstr "所有在层ID%1$s中的地标都被成功添加到层ID %2$s"
 
 #: ../leaflet-tools.php:23
 #: ../leaflet-tools.php:30
@@ -3704,339 +3554,339 @@ msgstr ""
 #: ../leaflet-tools.php:168
 #: ../leaflet-tools.php:174
 msgid "Back to Tools"
-msgstr ""
+msgstr "回到工具栏"
 
 #: ../leaflet-tools.php:30
 #, php-format
 msgid "All markers from layer ID %1$s have been successfully deleted"
-msgstr ""
+msgstr "所有层ID %1$s 中的所有地标都被成功删除"
 
 #: ../leaflet-tools.php:37
 msgid "All markers from all layers have been successfully deleted"
-msgstr ""
+msgstr "所有层中的所有地标都被成功删除"
 
 #: ../leaflet-tools.php:39
 msgid "Please confirm that you want to delete all markers by checking the checkbox"
-msgstr ""
+msgstr "请勾选此框确认你要删除所有地标"
 
 #: ../leaflet-tools.php:46
 #, php-format
 msgid "The basemap for all markers has been successfully set to %1$s"
-msgstr ""
+msgstr "所有地标的基本地图被成功设为 %1$s "
 
 #: ../leaflet-tools.php:56
 msgid "The overlays status for all markers has been successfully updated"
-msgstr ""
+msgstr "所有地标的覆盖图层状态都被成功更新"
 
 #: ../leaflet-tools.php:71
 msgid "The WMS status for all markers has been successfully updated"
-msgstr ""
+msgstr "所有地标的WMS状态都被成功更新"
 
 #: ../leaflet-tools.php:77
 #, php-format
 msgid "The map size for all markers has been successfully set to width =  %1$s %2$s and height = %3$s px"
-msgstr ""
+msgstr "所有地标的地图尺寸都被成功设为 width =  %1$s %2$s 和 height = %3$s px"
 
 #: ../leaflet-tools.php:83
 #, php-format
 msgid "Zoom level for all markers has been successfully set to %1$s"
-msgstr ""
+msgstr "所有地标的缩放级别都被成功设为 %1$s "
 
 #: ../leaflet-tools.php:89
 msgid "Controlbox status for all markers has been successfully updated"
-msgstr ""
+msgstr "所有地标的控制台状态都被成功更新了"
 
 #: ../leaflet-tools.php:95
 msgid "Panel status for all markers has been successfully updated"
-msgstr ""
+msgstr "所有地标的面板状态都被成功更新了"
 
 #: ../leaflet-tools.php:101
 msgid "The icon for all markers has been successfully updated"
-msgstr ""
+msgstr "所有地标的图标都被成功更新了"
 
 #: ../leaflet-tools.php:107
 msgid "The popup status for all markers has been successfully updated"
-msgstr ""
+msgstr "所有地标的弹出框状态都被成功更新了"
 
 #: ../leaflet-tools.php:113
 msgid "The popup text for all markers has been successfully updated"
-msgstr ""
+msgstr "所有地标的弹出框文字都被成功更新了"
 
 #: ../leaflet-tools.php:119
 #, php-format
 msgid "The basemap for all layers has been successfully set to %1$s"
-msgstr ""
+msgstr "所有图层的基础地图都被成功设为 %1$s "
 
 #: ../leaflet-tools.php:129
 msgid "The overlays status for all layers has been successfully updated"
-msgstr ""
+msgstr "所有图层的覆盖图层状态都被成功更新了"
 
 #: ../leaflet-tools.php:144
 msgid "The WMS status for all layers has been successfully updated"
-msgstr ""
+msgstr "所有图层的WMS状态都被成功更新了"
 
 #: ../leaflet-tools.php:150
 #, php-format
 msgid "The map size for all layers has been successfully set to width =  %1$s %2$s and height = %3$s px"
-msgstr ""
+msgstr "所有图层的地图尺寸都被成功设置为width =  %1$s %2$s 和 height = %3$s px"
 
 #: ../leaflet-tools.php:156
 #, php-format
 msgid "Zoom level for all layers has been successfully set to %1$s"
-msgstr ""
+msgstr "所有图层的缩放级别都被成功设置为 %1$s"
 
 #: ../leaflet-tools.php:162
 msgid "Controlbox status for all layers has been successfully updated"
-msgstr ""
+msgstr "所有图层的控制台状态都被成功更新了"
 
 #: ../leaflet-tools.php:168
 msgid "Panel status for all layers has been successfully updated"
-msgstr ""
+msgstr "所有图层的面板状态都被成功更新了"
 
 #: ../leaflet-tools.php:174
 msgid "The list marker-status for all layers has been successfully updated"
-msgstr ""
+msgstr "所有图层的地标状态列表都被成功更新了"
 
 #: ../leaflet-tools.php:186
 msgid "Move markers to a layer"
-msgstr ""
+msgstr "移动地标到层"
 
 #: ../leaflet-tools.php:190
 msgid "Source"
-msgstr ""
+msgstr "资源"
 
 #: ../leaflet-tools.php:201
 msgid "Target"
-msgstr ""
+msgstr "目标"
 
 #: ../leaflet-tools.php:213
 msgid "move markers"
-msgstr ""
+msgstr "移动地标"
 
 #: ../leaflet-tools.php:213
 msgid "Do you really want to move the selected markers?"
-msgstr ""
+msgstr "你真的要移动选定的地标吗？"
 
 #: ../leaflet-tools.php:225
 msgid "Delete all markers from a layer"
-msgstr ""
+msgstr "从层中删除所有地标"
 
 #: ../leaflet-tools.php:241
 msgid "delete all markers from selected layer"
-msgstr ""
+msgstr "从选定层中删除所有地标"
 
 #: ../leaflet-tools.php:241
 msgid "Do you really want to delete all markers from the selected layer? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要从选定层中删除所有地标吗？（不可逆）"
 
 #: ../leaflet-tools.php:251
 #, php-format
 msgid "Change settings for all %1$s existing marker maps"
-msgstr ""
+msgstr "改变所有%1$s地标地图的设置"
 
 #: ../leaflet-tools.php:273
 msgid "change basemap for all markers"
-msgstr ""
+msgstr "改变所有地标的基础地图"
 
 #: ../leaflet-tools.php:273
 msgid "Do you really want to change the basemap for all markers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有地标的基础地图吗？（不可逆）"
 
 #: ../leaflet-tools.php:291
 msgid "change overlay status for all markers"
-msgstr ""
+msgstr "改变所有地标的覆盖层状态"
 
 #: ../leaflet-tools.php:291
 msgid "Do you really want to change the overlay status for all markers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有地标的覆盖层吗？（不可逆）"
 
 #: ../leaflet-tools.php:300
 #: ../leaflet-tools.php:551
 msgid "Active WMS layers"
-msgstr ""
+msgstr "活动的WMS图层"
 
 #: ../leaflet-tools.php:315
 msgid "change active WMS layers for all markers"
-msgstr ""
+msgstr "改变所有地标的活动的WMS图层"
 
 #: ../leaflet-tools.php:315
 msgid "Do you really want to change active WMS layers for all markers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有地标的活动的WMS层吗？（不可逆）"
 
 #: ../leaflet-tools.php:336
 msgid "change mapsize for all markers"
-msgstr ""
+msgstr "改变所有地标的地图尺寸"
 
 #: ../leaflet-tools.php:336
 msgid "Do you really want to change the map size for all markers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有地标的地图尺寸吗？（不可逆）"
 
 #: ../leaflet-tools.php:351
 msgid "change zoom for all markers"
-msgstr ""
+msgstr "改变所有地标的缩放级别"
 
 #: ../leaflet-tools.php:351
 msgid "Do you really want to change the zoom level for all markers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有地标的缩放级别吗？（不可逆）"
 
 #: ../leaflet-tools.php:368
 msgid "change controlbox status for all markers"
-msgstr ""
+msgstr "改变所有地标的控制台状态"
 
 #: ../leaflet-tools.php:368
 msgid "Do you really want to change the controlbox status for all markers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有地标的控制台状态吗？（不可逆）"
 
 #: ../leaflet-tools.php:385
 msgid "change panel status for all markers"
-msgstr ""
+msgstr "改变所有地标的面板状态"
 
 #: ../leaflet-tools.php:385
 msgid "Do you really want to change the panel status for all markers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有地标的面板状态吗？（不可逆）"
 
 #: ../leaflet-tools.php:416
 msgid "update icon for all markers"
-msgstr ""
+msgstr "更新所有地标的图标"
 
 #: ../leaflet-tools.php:416
 msgid "Do you really want to change the icon for all markers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有地标的图标吗？（不可逆）"
 
 #: ../leaflet-tools.php:432
 msgid "change popup status for all markers"
-msgstr ""
+msgstr "改变所有地标的弹出框状态"
 
 #: ../leaflet-tools.php:432
 msgid "Do you really want to change the popup status for all markers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有地标的弹出框状态吗？（不可逆）"
 
 #: ../leaflet-tools.php:492
 msgid "change popup text for all markers"
-msgstr ""
+msgstr "改变所有地标的弹出框文字"
 
 #: ../leaflet-tools.php:492
 msgid "Do you really want to change the popup text for all markers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有地标的弹出框文字吗？（不可逆）"
 
 #: ../leaflet-tools.php:502
 #, php-format
 msgid "Change settings for all %1$s existing layer maps"
-msgstr ""
+msgstr "改变所有%1$s层地图的设置"
 
 #: ../leaflet-tools.php:524
 msgid "change basemap for all layers"
-msgstr ""
+msgstr "改变所有层的基础地图"
 
 #: ../leaflet-tools.php:524
 msgid "Do you really want to change the basemap for all layers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有层的基础地图吗？（不可逆）"
 
 #: ../leaflet-tools.php:542
 msgid "change overlay status for all layers"
-msgstr ""
+msgstr "改变所有层的覆盖层状态"
 
 #: ../leaflet-tools.php:542
 msgid "Do you really want to change the overlay status for all layers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有层的覆盖层状态吗？（不可逆）"
 
 #: ../leaflet-tools.php:566
 msgid "change active WMS layers for all layers"
-msgstr ""
+msgstr "改变所有层的活动WMS层"
 
 #: ../leaflet-tools.php:566
 msgid "Do you really want to change active WMS layers for all layers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有层的活动WMS层吗？（不可逆）"
 
 #: ../leaflet-tools.php:587
 msgid "change mapsize for all layers"
-msgstr ""
+msgstr "改变所有层的地图尺寸"
 
 #: ../leaflet-tools.php:587
 msgid "Do you really want to change the map size for all layers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有层的地图尺寸吗？（不可逆）"
 
 #: ../leaflet-tools.php:602
 msgid "change zoom for all layers"
-msgstr ""
+msgstr "改变所有层的缩放级别"
 
 #: ../leaflet-tools.php:602
 msgid "Do you really want to change the zoom level for all layers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有层的缩放级别吗？（不可逆）"
 
 #: ../leaflet-tools.php:619
 msgid "change controlbox status for all layers"
-msgstr ""
+msgstr "改变所有层的控制台状态"
 
 #: ../leaflet-tools.php:619
 msgid "Do you really want to change the controlbox status for all layers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有层的控制台状态吗？（不可逆）"
 
 #: ../leaflet-tools.php:636
 msgid "change panel status for all layers"
-msgstr ""
+msgstr "改变所有层的面板状态"
 
 #: ../leaflet-tools.php:636
 msgid "Do you really want to change the panel status for all layers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有层的面板状态吗？（不可逆）"
 
 #: ../leaflet-tools.php:653
 msgid "change list marker-status for all layers"
-msgstr ""
+msgstr "改变所有层的地标状态列表"
 
 #: ../leaflet-tools.php:653
 msgid "Do you really want to change the list marker-status for all layers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要改变所有层的地标状态列表吗？（不可逆）"
 
 #: ../leaflet-tools.php:666
 #, php-format
 msgid "Delete all %1$s markers from all %2$s layers"
-msgstr ""
+msgstr "从 %2$s 层删除所有 %1$s 地标"
 
 #: ../leaflet-tools.php:675
 msgid "delete all markers from all layers"
-msgstr ""
+msgstr "从所有层删除所有地标"
 
 #: ../leaflet-tools.php:675
 msgid "Do you really want to delete all markers from all layers? (cannot be undone)"
-msgstr ""
+msgstr "你真的想要删除所有层的所有地标吗？（不可逆）"
 
 #: ../leaflet-wikitude.php:109
 #: ../leaflet-wikitude.php:188
 #: ../leaflet-wikitude.php:267
 #: ../leaflet-wikitude.php:337
 msgid "Wikitude API powered by www.mapsmarker.com"
-msgstr ""
+msgstr "Wikitude API由www.mapsmarker.com提供"
 
 #: ../tinymce_plugin.php:69
 msgid "Insert map"
-msgstr ""
+msgstr "插入地图"
 
 #: ../tinymce_plugin.php:76
 msgid "If no search term is entered, the latest 15 maps will be shown."
-msgstr ""
+msgstr "如果不输入搜索元，则显示最近的15个地图"
 
 #: ../tinymce_plugin.php:77
 msgid "Search"
-msgstr ""
+msgstr "搜索"
 
 #: ../tinymce_plugin.php:79
 msgid "Please select the map you would like to add"
-msgstr ""
+msgstr "请选择你想要添加的地图"
 
 #: ../tinymce_plugin.php:83
 msgid "Add shortcode"
-msgstr ""
+msgstr "增加短代码"
 
 #: ../tinymce_plugin.php:85
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: ../tinymce_plugin.php:189
 msgid "map type and ID"
-msgstr ""
+msgstr "地图类型和ID"
 
 #: ../tinymce_plugin.php:192
 msgid "name"
-msgstr ""
+msgstr "名字"
 

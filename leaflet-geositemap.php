@@ -39,7 +39,7 @@ $lmm_options = get_option( 'leafletmapsmarker_options' );
   header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
   header('Content-Type:text/xml; charset=utf-8'); 
   echo '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
-  echo '<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:geo="http://www.google.com/geo/schemas/sitemap/1.0">'.PHP_EOL;
+  echo '<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'.PHP_EOL;
 
   foreach ($markers as $marker) {
 	if  ( ($marker['mupdatedon'] == NULL) || ($marker['mupdatedon'] == '0000-00-00 00:00:00') ){ 
@@ -49,9 +49,6 @@ $lmm_options = get_option( 'leafletmapsmarker_options' );
 	}
 	echo '<url>'.PHP_EOL;
 	echo '<loc>'. LEAFLET_PLUGIN_URL . 'leaflet-kml.php?marker=' . $marker['mid'] . '</loc>'.PHP_EOL;
-	echo '<geo:geo>'.PHP_EOL;
-	echo '<geo:format>kml</geo:format>'.PHP_EOL;
-	echo '</geo:geo>'.PHP_EOL;
 	echo '<lastmod>' . date("Y-m-d", $date_kml) . '</lastmod>'.PHP_EOL;
 	echo '</url>'.PHP_EOL;
   }
@@ -64,9 +61,6 @@ $lmm_options = get_option( 'leafletmapsmarker_options' );
 	}
 	echo '<url>'.PHP_EOL;
 	echo '<loc>'. LEAFLET_PLUGIN_URL . 'leaflet-kml.php?layer=' . $layer['lid'] . '</loc>'.PHP_EOL;
-	echo '<geo:geo>'.PHP_EOL;
-	echo '<geo:format>kml</geo:format>'.PHP_EOL;
-	echo '</geo:geo>'.PHP_EOL;
 	echo '<lastmod>' . date("Y-m-d", $date_kml) . '</lastmod>'.PHP_EOL;
 	echo '</url>'.PHP_EOL;
   }
