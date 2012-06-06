@@ -359,7 +359,9 @@ if (isset($_GET['layer'])) {
 	if (!(empty($mlat) or empty($mlon)) ) {
 	$lmm_out .= 'var marker = new L.Marker(new L.LatLng('.$mlat.', '.$mlon.'));'.PHP_EOL;
 	if (!empty($micon)) $lmm_out .= 'marker.options.icon = new L.Icon("'.LEAFLET_PLUGIN_ICONS_URL . '/'.$micon.'");'.PHP_EOL;
+	if ( ($mpopuptext == NULL) && ($lmm_options['directions_popuptext_panel'] == 'no') ) { $lmm_out .= 'marker.options.clickable = false;'.PHP_EOL; };
 	$lmm_out .= $mapname.'.addLayer(marker);'.PHP_EOL;
+	
 	if (!empty($mpopuptext)) $lmm_out .= 'marker.bindPopup("' . preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$mpopuptext) . '")'.$mopenpopup.';'.PHP_EOL;
 	} else if (!empty($geojson) or !empty($geojsonurl) or !empty($layer) ) {
 		$lmm_out .= 'var geojson = new L.GeoJSON();'.PHP_EOL;
@@ -748,6 +750,7 @@ elseif (isset($_GET['marker'])) {
 	if (!(empty($mlat) or empty($mlon)) ) {
 	$lmm_out .= 'var marker = new L.Marker(new L.LatLng('.$mlat.', '.$mlon.'));'.PHP_EOL;
 	if (!empty($micon)) $lmm_out .= 'marker.options.icon = new L.Icon("'.LEAFLET_PLUGIN_ICONS_URL . '/'.$micon.'");'.PHP_EOL;
+	if ( ($mpopuptext == NULL) && ($lmm_options['directions_popuptext_panel'] == 'no') ) { $lmm_out .= 'marker.options.clickable = false;'.PHP_EOL; };	
 	$lmm_out .= $mapname.'.addLayer(marker);'.PHP_EOL;
 	
 	if ( ($lmm_options['directions_popuptext_panel'] == 'yes') && ($lmm_options['directions_provider'] == 'googlemaps') ) { 

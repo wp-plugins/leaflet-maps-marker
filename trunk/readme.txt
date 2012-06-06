@@ -2,12 +2,12 @@
 Contributors:      harmr
 Plugin Name:       Leaflet Maps Marker
 Plugin URI:        http://www.mapsmarker.com
-Tags:              map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, google maps, googlemaps, gmaps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, layer, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice
+Tags:              map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, google maps, googlemaps, gmaps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, layer, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice, widget
 Author URI:        http://www.harm.co.at
-Author:            Robert Harm (with special support from Sindre Wimberger)
+Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
-Tested up to:      3.4-beta4-20892
+Tested up to:      3.4
 Stable tag:        2.3
 
 Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
@@ -46,6 +46,7 @@ to the visitors of your website.
 * export your markers as GeoRSS for embedding in external websites or apps
 * export your markers as ARML for displaying in the augmented-reality browser from Wikitude
 * export your markers as csv-file
+* option to add widgets showing recent marker entries
 * configure up to 3 basemaps from Cloudmade with custom styles
 * TinyMCE button for easily searching and adding maps on post/pages edit screen
 * display a list of markers below layer maps
@@ -64,6 +65,7 @@ to the visitors of your website.
 * option to reset plugin settings to defaults
 * option to change the default shortcode '[mapsmarker...]'
 * dynamic preview of maps in backend (no need to reload)
+* option to select plugin default language in settings for backend and frontend
 * WordPress Admin Bar integration to quickly access plugins features (can be disabled)
 * global stats for marker/layer count on mapsmarker.com (can be disabled)
 * "OGD Vienna selector": if a place within boundaries of Vienna/Austria is chosen, OGD Vienna basemaps are automatically selected
@@ -95,7 +97,9 @@ Please let me know which feature you think is missing by adding your ideas at [h
 * Dutch (nl_NL) thanks to Marijke Metz, [http://www.mergenmetz.nl](http://www.mergenmetz.nl)
 * French (fr_FR) thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com)
 * Italian (it_IT) thanks to [Luca Barbetti](http://twitter.com/okibone)
+* Chinese (zh_CN) thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
 
+Leaflet Maps Marker also supports easy switching between translations through a specific plugin setting.
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
 = Leaflet Maps Marker Needs Your Support =
@@ -172,8 +176,8 @@ This program is free software; you can redistribute it and/or modify it under th
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
 == Upgrade Notice ==
-= v2.3.1 =
-security release - fixed several SQL injections and cross site scripting issues based on an external audit of the plugin
+= v2.4 =
+added recent marker widget, Chinese translation, language selection and security fixes based on an external audit of the plugin
 
 = v2.3 =
 added sort options for marker and layer listing pages
@@ -236,9 +240,15 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
-= v2.3.1 - 25.05.2012 =
-* [Blog post with more details about this release](http://www.mapsmarker.com/v2.3.1)
+= v2.4 - 07.06.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v2.4)
+* NEW: option to add widgets showing recent marker entries
+* NEW: Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* NEW: option to select plugin default language in settings for backend and frontend
 * BUGFIX: fixed several SQL injections and cross site scripting issues based on an external audit of the plugin
+* BUGFIX: CSS bugfix for wrong sized leaflet attribution links on several templates
+* BUGFIX: direction link on popuptext was not shown if popuptext was empty
+* CHANGED: removed geo tags from Google (geo) sitemap as they are not supported anymore
 
 = v2.3 - 26.04.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.3)

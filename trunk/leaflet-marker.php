@@ -718,7 +718,7 @@ var marker,selectlayer,osm_mapnik,mapquest_osm,mapquest_aerial,ogdwien_basemap,o
   <?php if ($icon != NULL) { ?>
   marker.options.icon = new L.Icon('<?php echo LEAFLET_PLUGIN_ICONS_URL . '/'.$icon ?>');
   <?php }?>
-  <?php if ($popuptext == NULL) { ?>
+  <?php if ( ($popuptext == NULL) && ($lmm_options['directions_popuptext_panel'] == 'no') ) { ?>
   marker.options.clickable = false;
   <?php }?>
   selectlayer.addLayer(marker);

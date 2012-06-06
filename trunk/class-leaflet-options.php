@@ -266,8 +266,8 @@ class Leafletmapsmarker_options {
 			<li>' . __('General Map settings','lmm') . '</li>
 			<li>' . __('Available columns for marker listing page','lmm') . '</li>
 			<li>' . __('Sort order for marker listing page','lmm') . '</li>
-			<li>' . __('Available columns for layer listing page','lmm') . '</li></ul></span>
-			<li>' . __('Sort order for layer listing page','lmm') . '</li>';
+			<li>' . __('Available columns for layer listing page','lmm') . '</li>
+			<li>' . __('Sort order for layer listing page','lmm') . '</li></ul></span>';
 	}	
 	/**
 	 * HTML output for text field
@@ -5457,6 +5457,56 @@ class Leafletmapsmarker_options {
 			'section' => 'misc'
 		);
 		/*
+		* Language Settings
+		*/
+		$this->settings['misc_language_heading'] = array(
+			'version' => '2.4',
+			'section' => 'misc',
+			'title'   => '', 
+			'desc'    => __( 'Language settings', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['misc_language_helptext'] = array(
+			'version' => '2.4',
+			'section' => 'misc',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => '',
+			'type'    => 'helptext'
+		);
+		$this->settings['misc_plugin_language'] = array(
+			'version' => '2.4',
+			'section' => 'misc',
+			'title'   => __('Default language','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'automatic',
+			'choices' => array(
+				'automatic' => __('automatic (use WordPress default)','lmm'),
+				'en_US' => __('English','lmm') . ' (en_US)',
+				'de_DE' => __('German','lmm') . ' (de_DE)',
+				'es_ES' => __('Spanish','lmm') . ' (es_ES)',
+				'ja' => __('Japanese','lmm') . ' (ja)',
+				'nl_NL' => __('Dutch','lmm') . ' (nl_NL)',
+				'fr_FR' => __('French','lmm') . ' (fr_FR)',
+				'it_IT' => __('Italian','lmm') . ' (it_IT)',
+				'zn_CH' => __('Chinese','lmm') . ' (zn_CH)',
+			)
+		);
+		$this->settings['misc_plugin_language_area'] = array(
+			'version' => '2.4',
+			'section' => 'misc',
+			'title'   => __('Where to change the default language','lmm'),
+			'desc'    => __('This setting will only be used when the plugin language is not selected automatically','lmm'),
+			'type'    => 'radio',
+			'std'     => 'backend',
+			'choices' => array(
+				'backend' => __('WordPress admin area only','lmm'),
+				'frontend' => __('WordPress frontend only','lmm'),
+				'both' => __('WordPress admin area and frontend','lmm')
+			)
+		);		
+		/*
 		* KML Settings
 		*/
 		$this->settings['misc_kml_heading'] = array(
@@ -6332,14 +6382,29 @@ class Leafletmapsmarker_options {
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
-		/* template for plugin updates 
 		//info:  set defaults for options introduced in v2.4
-		if (get_option('leafletmapsmarker_version') == '2.3.1' )
+		if (get_option('leafletmapsmarker_version') == '2.3' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting ) 
 			{
 				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.4')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}
+		/* template for plugin updates 
+		//info:  set defaults for options introduced in v2.5
+		if (get_option('leafletmapsmarker_version') == '2.4' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting ) 
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.5')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
