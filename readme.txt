@@ -8,7 +8,7 @@ Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
 Tested up to:      3.4
-Stable tag:        2.3
+Stable tag:        2.4
 
 Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 
