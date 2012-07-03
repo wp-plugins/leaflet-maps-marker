@@ -65,7 +65,7 @@ function leafletmapsmarker() {
 	if ( isset($lmm_options['misc_plugin_language']) && ($lmm_options['misc_plugin_language'] != 'automatic') ){
 		add_filter('plugin_locale', array(&$this,'lmm_set_plugin_locale'), 'lmm');
 	}
-	add_action('widgets_init', create_function('', 'return register_widget("lmm_recent_marker_widget");'));
+	add_action('widgets_init', create_function('', 'return register_widget("lmm_recent_marker_widget")'));
   }
   function lmm_load_translation_files() {
 	load_plugin_textdomain('lmm', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/');
