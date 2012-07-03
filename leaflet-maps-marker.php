@@ -46,7 +46,7 @@ if ( ! defined( 'LEAFLET_PLUGIN_ICONS_DIR' ) )
 require_once( plugin_dir_path( __FILE__ ).'class-leaflet-options.php' );
 class Leafletmapsmarker
 {
-function leafletmapsmarker() {
+function __construct() {
 	$lmm_options = get_option( 'leafletmapsmarker_options' );
 	add_action('init', array(&$this, 'lmm_load_translation_files'),1);
 	add_action('admin_init', array(&$this, 'lmm_install_and_updates'),2); //info: register_action_hook not used as otherwise Wordpress Network installs break
@@ -1142,7 +1142,7 @@ class lmm_recent_marker_widget extends WP_Widget {
 			'classname' => 'lmm_recent_marker_widget',
 			'description' => __('Widget to show the most recent Leaflet Maps Marker entries', 'lmm'));
 		$control_options = array();
-		$this->WP_Widget('lmm_recent_marker_widget', __('Leaflet Maps Marker - recent markers', 'lmm'), $widget_options, $control_options);
+		parent::__construct( __CLASS__, __('Leaflet Maps Marker - recent markers', 'lmm'), $widget_options, $control_options);
 	}
 	public function form($instance) {
 		$instance = wp_parse_args((array) $instance, array(
