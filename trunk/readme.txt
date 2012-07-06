@@ -7,17 +7,17 @@ Author URI:        http://www.harm.co.at
 Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
-Tested up to:      3.4
+Tested up to:      3.5-alpha-21103
 Stable tag:        2.4
 
-Pin, organize & show your favorite places through OpenStreetMap/WMTS, Google Maps/Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
+Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), GeoJSON, GeoRSS or Augmented-Reality browsers
 
 == Description ==
 
 = Plugin's Official Site =
 http://mapsmarker.com
 
-* [Demo](http://www.mapsmarker.com/demo/) - [FAQ](http://www.mapsmarker.com/faq/) - [Docs](http://www.mapsmarker.com/docs/) - [Support](http://mapsmarker.com/support/) - [Github](https://github.com/robertharm/Leaflet-Maps-Marker) - [Donations](http://mapsmarker.com/donations) - [Twitter](http://twitter.com/mapsmarker) - [Facebook](http://facebook.com/mapsmarker)
+* [Demo](http://www.mapsmarker.com/demo/) - [FAQ](http://www.mapsmarker.com/faq/) - [Docs](http://www.mapsmarker.com/docs/) - [Support](http://mapsmarker.com/support/) - [Github](https://github.com/robertharm/Leaflet-Maps-Marker) - [Donations](http://mapsmarker.com/donations) - [Twitter](http://twitter.com/mapsmarker) - [Facebook](http://facebook.com/mapsmarker) - [Translations](http://translate.mapsmarker.com/projects/lmm)
 
 = Main features = 
 
@@ -31,7 +31,7 @@ Leaflet Maps Marker allows you to
 * organize your markers in layers and
 * show them thanks to the [Leaflet library from Cloudmade](http://leaflet.cloudmade.com/)
 * by adding a shortcode (e.g. mapsmarker marker="1")] to posts or pages
-* through OSM/OpenStreetMap, MapQuest, Cloudmade, [OGD Vienna Maps](http://data.wien.gv.at)
+* through OSM/OpenStreetMap, Google Maps, MapQuest, Cloudmade, [OGD Vienna Maps](http://data.wien.gv.at)
 * or any custom WMTS-map
 
 to the visitors of your website.
@@ -74,6 +74,7 @@ to the visitors of your website.
 = Technical details =
 
 * Wordpress Multisite compatibility
+* plugin was successfully tested to ÖNORM 7700 and OWASP TOP 10 for security issues
 * full UTF8-support for cyrillic, chinese or other alphabets on marker/layername and marker popup text
 * support for other languages through .po/.mo-files (please see http://mapsmarker.com/languages for details if you want to contribute a new translation)
 * GeoJSON feeds for every marker and layer with [JSONP support](http://www.mapsmarker.com/geojson)
@@ -90,14 +91,18 @@ Please let me know which feature you think is missing by adding your ideas at [h
 
 = Available translations =
 
-* English (en_US)
-* German (de_DE)
-* Japanese (ja) thanks to [Shu Higashi](http://twitter.com/higa4)
-* Spanish (es_ES) thanks to David Ramirez, [http://www.hiperterminal.com](http://www.hiperterminal.com)
-* Dutch (nl_NL) thanks to Marijke Metz, [http://www.mergenmetz.nl](http://www.mergenmetz.nl)
-* French (fr_FR) thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com)
-* Italian (it_IT) thanks to [Luca Barbetti](http://twitter.com/okibone)
+* Bulgarian (bg_BG) thanks to Andon Ivanov, [http://coffebreak.info](http://coffebreak.info)
 * Chinese (zh_CN) thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* Dutch (nl_NL) thanks to Marijke Metz, [http://www.mergenmetz.nl](http://www.mergenmetz.nl)
+* English (en_US)
+* French (fr_FR) thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com) and Rodolphe Quiedeville, [http://rodolphe.quiedeville.org/](http://rodolphe.quiedeville.org/)
+* German (de_DE)
+* Italian (it_IT) thanks to [Luca Barbetti](http://twitter.com/okibone)
+* Japanese (ja) thanks to [Shu Higashi](http://twitter.com/higa4)
+* Polish (pl_PL) translation thanks to Pawel Wyszynski, [http://injit.pl](http://injit.pl)
+* Russian (ru_RU) thanks to Ekaterina Golubina, supported by Teplitsa of Social Technologies - [http://te-st.ru](http://te-st.ru)
+* Spanish (es_ES) thanks to David Ramirez, [http://www.hiperterminal.com](http://www.hiperterminal.com) and Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
+* Turkish (tr_TR) thanks to Emre Erkan, [http://www.karalamalar.net](http://www.karalamalar.net)
 
 Leaflet Maps Marker also supports easy switching between translations through a specific plugin setting.
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
@@ -176,6 +181,9 @@ This program is free software; you can redistribute it and/or modify it under th
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
 == Upgrade Notice ==
+= v2.5 =
+Google Maps support, new collaborative translation site [http://translate.mapsmarker.com](http://translate.mapsmarker.com), Russian+Bulgarian+Turkish translation, admin dashboard widget
+
 = v2.4 =
 added recent marker widget, Chinese translation, language selection and security fixes based on an external audit of the plugin
 
@@ -240,12 +248,33 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v2.5 - 06.07.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v2.5)
+* NEW: support for Google Maps as basemaps
+* NEW: admin dashboard widget showing latest markers and blog posts from mapsmarker.com
+* NEW: Russian translation thanks to Ekaterina Golubina, supported by Teplitsa of Social Technologies - [http://te-st.ru](http://te-st.ru)
+* NEW: Bulgarian translation thanks to Andon Ivanov, [http://coffebreak.info](http://coffebreak.info)
+* NEW: Turkish (tr_TR) thanks to Emre Erkan, [http://www.karalamalar.net](http://www.karalamalar.net)
+* NEW: Polish (pl_PL) translation thanks to Pawel Wyszynski, [http://injit.pl](http://injit.pl)
+* NEW: new collaborative translation site [http://translate.mapsmarker.com](http://translate.mapsmarker.com)- contributing new translations is now more easier than ever :-)
+* CHANGED: updated Japanese translations thanks to [Shu Higashi](http://twitter.com/higa4)
+* CHANGED: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
+* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* CHANGED: updated Spanish translation thanks to Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
+* CHANGED: updated French translation thanks to Rodolphe Quiedeville, [http://rodolphe.quiedeville.org/](http://rodolphe.quiedeville.org/)
+* CHANGED: updated Dutch translation thanks to [Marijke](http://www.mergenmetz.nl)
+* CHANGED: show "no markers created yet" on sidebar widget, if no markers are available
+* CHANGED: added translations strings for plugin update notice
+* BUGFIX: v2.4 was broken on Wordpress 3.0-3.1.3
+* BUGFIX: WMS layer legend links were broken on marker/layer maps in admin area
+* BUGFIX: \" in popup text caused layer maps to break (now " gets replaced with ')
+
 = v2.4 - 07.06.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.4)
 * NEW: option to add widgets showing recent marker entries
 * NEW: Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
 * NEW: option to select plugin default language in settings for backend and frontend
-* BUGFIX: fixed several SQL injections and cross site scripting issues based on an external audit of the plugin
+* BUGFIX: fixed several SQL injections and cross site scripting issues based on an external audit of the plugin (ÖNORM 7700, OWASP TOP 10)
 * BUGFIX: CSS bugfix for wrong sized leaflet attribution links on several templates
 * BUGFIX: direction link on popuptext was not shown if popuptext was empty
 * CHANGED: removed geo tags from Google (geo) sitemap as they are not supported anymore

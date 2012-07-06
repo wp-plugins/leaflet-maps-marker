@@ -394,6 +394,9 @@ class Leafletmapsmarker_options {
 				'osm_mapnik' => __('OpenStreetMap (Mapnik, max zoom 18)','lmm'),
 				'mapquest_osm' => __('MapQuest (OSM, max zoom 18)','lmm'),
 				'mapquest_aerial' => __('MapQuest (Aerial, max zoom 12 globally, 12+ in the United States)','lmm'),
+				'googleLayer_roadmap' => __('Google Maps (Roadmap)','lmm'),
+				'googleLayer_satellite' => __('Google Maps (Satellite)','lmm'),
+				'googleLayer_hybrid' => __('Google Maps (Hybrid)','lmm'),
 				'ogdwien_basemap' => __('OGD Vienna basemap (max zoom 19)','lmm'),
 				'ogdwien_satellite' => __('OGD Vienna satellite (max zoom 19)','lmm'),
 				'cloudmade' => 'Cloudmade',
@@ -446,6 +449,30 @@ class Leafletmapsmarker_options {
 			'title'   => 'Mapquest (Aerial)',
 			'desc'    => '',
 			'std'     => 'Mapquest (Aerial)',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);
+		$this->settings['default_basemap_name_googleLayer_roadmap'] = array(
+			'version' => '2.5',
+			'title'   => __('Google Maps (Roadmap)','lmm'),
+			'desc'    => '',
+			'std'   => __('Google Maps (Roadmap)','lmm'),
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);
+		$this->settings['default_basemap_name_googleLayer_satellite'] = array(
+			'version' => '2.5',
+			'title'   => __('Google Maps (Satellite)','lmm'),
+			'desc'    => '',
+			'std'   => __('Google Maps (Satellite)','lmm'),
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);
+		$this->settings['default_basemap_name_googleLayer_hybrid'] = array(
+			'version' => '2.5',
+			'title'   => __('Google Maps (Hybrid)','lmm'),
+			'desc'    => '',
+			'std'   => __('Google Maps (Hybrid)','lmm'),
 			'type'    => 'text',
 			'section' => 'basemaps'
 		);
@@ -580,7 +607,30 @@ class Leafletmapsmarker_options {
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
-		
+		$this->settings['controlbox_googleLayer_roadmap'] = array(
+			'version' => '2.5',
+			'section' => 'basemaps',
+			'title'   => '',
+			'desc'    => __('Google Maps (Roadmap)','lmm'),
+			'type'    => 'checkbox',
+			'std'     => 1 
+		);
+		$this->settings['controlbox_googleLayer_satellite'] = array(
+			'version' => '2.5',
+			'section' => 'basemaps',
+			'title'   => '',
+			'desc'    => __('Google Maps (Satellite)','lmm'),
+			'type'    => 'checkbox',
+			'std'     => 1 
+		);
+		$this->settings['controlbox_googleLayer_hybrid'] = array(
+			'version' => '2.5',
+			'section' => 'basemaps',
+			'title'   => '',
+			'desc'    => __('Google Maps (Hybrid)','lmm'),
+			'type'    => 'checkbox',
+			'std'     => 1 
+		);
 		$this->settings['controlbox_ogdwien_basemap'] = array(
 			'version' => '1.0',
 			'section' => 'basemaps',
@@ -3930,7 +3980,7 @@ class Leafletmapsmarker_options {
 		$this->settings['defaults_marker_icon'] = array(
 			'version' => '1.8',
 			'title'   => __( 'Icon', 'lmm' ),
-			'desc'    => __( 'If you want to use another icon than the blue pin, please enter the file name of the icon in the form field - e.g. smiley_happy.png', 'lmm' ),
+			'desc'    => sprintf(__( 'If you want to use another icon than the blue pin, please enter the file name of the icon (located in the directory %s) in the form field - e.g. smiley_happy.png', 'lmm' ),LEAFLET_PLUGIN_ICONS_URL),
 			'std'     => '',
 			'type'    => 'text',
 			'section' => 'defaults_marker'
@@ -4226,6 +4276,9 @@ class Leafletmapsmarker_options {
 				'osm_mapnik' => __('OpenStreetMap (Mapnik, max zoom 18)','lmm'),
 				'mapquest_osm' => __('MapQuest (OSM, max zoom 18)','lmm'),
 				'mapquest_aerial' => __('MapQuest (Aerial, max zoom 12 globally, 12+ in the United States)','lmm'),
+				'googleLayer_roadmap' => __('Google Maps (Roadmap)','lmm'),
+				'googleLayer_satellite' => __('Google Maps (Satellite)','lmm'),
+				'googleLayer_hybrid' => __('Google Maps (Hybrid)','lmm'),
 				'ogdwien_basemap' => __('OGD Vienna basemap (max zoom 19)','lmm'),
 				'ogdwien_satellite' => __('OGD Vienna satellite (max zoom 19)','lmm'),
 				'cloudmade' => 'Cloudmade',
@@ -5427,8 +5480,20 @@ class Leafletmapsmarker_options {
 		$this->settings['admin_bar_integration'] = array(
 			'version' => '1.0',
 			'section' => 'misc',
-			'title'   => __('Wordpress Admin Bar integration','lmm'),
+			'title'   => __('WordPress Admin Bar integration','lmm'),
 			'desc'    => __('show or hide drop down menu for Leaflet Maps Marker in Wordpress Admin Bar','lmm'),
+			'type'    => 'radio',
+			'std'     => 'enabled',
+			'choices' => array(
+				'enabled' => __('enabled','lmm'),
+				'disabled' => __('disabled','lmm')
+			)
+		);
+		$this->settings['misc_admin_dashboard_widget'] = array(
+			'version' => '2.5',
+			'section' => 'misc',
+			'title'   => __('WordPress admin dashboard widget','lmm'),
+			'desc'    => __('shows a widget on the admin dashboard which displays latest markers and blog posts from mapsmarker.com','lmm'),
 			'type'    => 'radio',
 			'std'     => 'enabled',
 			'choices' => array(
@@ -5483,14 +5548,18 @@ class Leafletmapsmarker_options {
 			'std'     => 'automatic',
 			'choices' => array(
 				'automatic' => __('automatic (use WordPress default)','lmm'),
-				'en_US' => __('English','lmm') . ' (en_US)',
-				'de_DE' => __('German','lmm') . ' (de_DE)',
-				'es_ES' => __('Spanish','lmm') . ' (es_ES)',
-				'ja' => __('Japanese','lmm') . ' (ja)',
-				'nl_NL' => __('Dutch','lmm') . ' (nl_NL)',
-				'fr_FR' => __('French','lmm') . ' (fr_FR)',
-				'it_IT' => __('Italian','lmm') . ' (it_IT)',
+				'bg_BG' => __('Bulgarian','lmm') . ' (bg_BG)',
 				'zn_CH' => __('Chinese','lmm') . ' (zn_CH)',
+				'nl_NL' => __('Dutch','lmm') . ' (nl_NL)',
+				'en_US' => __('English','lmm') . ' (en_US)',
+				'fr_FR' => __('French','lmm') . ' (fr_FR)',
+				'de_DE' => __('German','lmm') . ' (de_DE)',
+				'it_IT' => __('Italian','lmm') . ' (it_IT)',
+				'ja' => __('Japanese','lmm') . ' (ja)',
+				'pl_PL' => __('Polish','lmm') . ' (pl_PL)',
+				'ru_RU' => __('Russian','lmm') . ' (ru_RU)',
+				'es_ES' => __('Spanish','lmm') . ' (es_ES)',
+				'tr_TR' => __('Turkish','lmm') . ' (tr_TR)'
 			)
 		);
 		$this->settings['misc_plugin_language_area'] = array(
@@ -6397,7 +6466,6 @@ class Leafletmapsmarker_options {
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
-		/* template for plugin updates 
 		//info:  set defaults for options introduced in v2.5
 		if (get_option('leafletmapsmarker_version') == '2.4' )
 		{
@@ -6405,6 +6473,22 @@ class Leafletmapsmarker_options {
 			foreach ( $this->settings as $id => $setting ) 
 			{
 				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.5')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}
+		/* template for plugin updates 
+		//info:  set defaults for options introduced in v2.6
+		if (get_option('leafletmapsmarker_version') == '2.5' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting ) 
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.6')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
