@@ -86,7 +86,7 @@ if (isset($_GET['layer'])) {
 	  echo '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml">'.PHP_EOL;
 		if ($layer == '*' or $layer == 'all') {
 			echo '<title>' . get_bloginfo('name') . ' - ' . __('maps','lmm') . '</title>'.PHP_EOL;
-			echo '<link href="' . get_bloginfo('url') . '"/>'.PHP_EOL;
+			echo '<link href="' . home_url() . '"/>'.PHP_EOL;
 			echo '<id>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-all-layers</id>'.PHP_EOL;
 			} else {
 			echo '<title>' . get_bloginfo('name') . ' - ' . $layername . '</title>'.PHP_EOL;
@@ -116,7 +116,7 @@ if (isset($_GET['layer'])) {
 		echo '<content><![CDATA[' . stripslashes($marker['mpopuptext']) . ']]></content>'.PHP_EOL;
 		echo '<logo>' . $micon_url . '</logo>'.PHP_EOL;
 		echo '<icon>' . $micon_url . '</icon>'.PHP_EOL;
-		echo '<source>' . get_bloginfo('url') . '</source>'.PHP_EOL;
+		echo '<source>' . home_url() . '</source>'.PHP_EOL;
 		echo '<georss:where>'.PHP_EOL;
 		//info: add if srsnames are verified - <gml:Point srsName="' . $srsname . '">
 		echo '<gml:Point>'.PHP_EOL;
@@ -178,7 +178,7 @@ if (isset($_GET['layer'])) {
 		echo '<author>' . $marker['mcreatedby'] . '</author>'.PHP_EOL;
 		echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
 		echo '<image>' . $micon_url . '</image>'.PHP_EOL;
-		echo '<source>' . get_bloginfo('url') . '</source>'.PHP_EOL;
+		echo '<source>' . home_url() . '</source>'.PHP_EOL;
 		echo '<georss:where>'.PHP_EOL;
 		echo '<gml:Point>'.PHP_EOL;
 		echo '<gml:pos>'.$marker['mlat'].' '.$marker['mlon'].'</gml:pos>'.PHP_EOL;
@@ -248,7 +248,7 @@ elseif (isset($_GET['marker'])) {
 		echo '<content><![CDATA[' . stripslashes($marker['mpopuptext']) . ']]></content>'.PHP_EOL;
 		echo '<logo>' . $micon_url . '</logo>'.PHP_EOL;
 		echo '<icon>' . $micon_url . '</icon>'.PHP_EOL;
-		echo '<source>' . get_bloginfo('url') . '</source>'.PHP_EOL;
+		echo '<source>' . home_url() . '</source>'.PHP_EOL;
 		echo '<georss:where>'.PHP_EOL;
 		//info: add if srsnames are verified - <gml:Point srsName="' . $srsname . '">
 		echo '<gml:Point>'.PHP_EOL;
@@ -301,7 +301,7 @@ elseif (isset($_GET['marker'])) {
 		echo '<author>' . stripslashes($marker['mcreatedby']) . '</author>'.PHP_EOL;
 		echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
 		echo '<image>' . $micon_url . '</image>'.PHP_EOL;
-		echo '<source>' . get_bloginfo('url') . '</source>'.PHP_EOL;
+		echo '<source>' . home_url() . '</source>'.PHP_EOL;
 		echo '<georss:where>'.PHP_EOL;
 		echo '<gml:Point>'.PHP_EOL;
 		echo '<gml:pos>'.$marker['mlat'].' '.$marker['mlon'].'</gml:pos>'.PHP_EOL;

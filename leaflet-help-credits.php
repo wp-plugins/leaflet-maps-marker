@@ -14,6 +14,7 @@
 	<ul>
 		<li>- <a href="http://www.mapsmarker.com/faq/" target="_blank"><?php _e('FAQ','lmm') ?></a>	<?php _e('(frequently asked questions)','lmm') ?></li>
 		<li>- <a href="http://www.mapsmarker.com/docs/" target="_blank"><?php _e('Documentation','lmm') ?></a></li>
+		<li>- <a href="http://www.mapsmarker.com/docs/changelog/" target="_blank"><?php _e('Changelog','lmm') ?></a></li>
 		<li>- <a href="http://www.mapsmarker.com/ideas/" target="_blank"><?php _e('Ideas','lmm') ?></a> <?php _e('(feature requests)','lmm') ?></li>
 		<li>- <a href="http://wordpress.org/tags/leaflet-maps-marker?forum_id=10" target="_blank">WordPress Support Forum</a> <?php _e('(free community support)','lmm') ?></li>
 		<li>- <a href="http://wpquestions.com/affiliates/register/name/robertharm" target="_blank">WP Questions</a>	<?php _e('(paid community support)','lmm') ?></li>
@@ -37,16 +38,29 @@
 		<li>- Plus, json, layer &amp; csv-export icon by <a href="http://www.pinvoke.com/" target="_blank">Yusuke Kamiyamane</a>, licence: Creative Commons Attribution (by)</li>
 		<li>- Question Mark Icon by <a href="http://www.randomjabber.com/" target="_blank">RandomJabber</a></li>
 		<li>- Images for changelog from <a href="http://www.mozilla.org/en-US/firefox/11.0/releasenotes/">Firefox release notes</a>, licence: Creative Commons Attribution ShareAlike (CC BY-SA 3.0)</li> 
+		<li>- Language icon on admin dashboard from <a href="http://p.yusukekamiyamane.com/" target="_blank">Yusuke Kamiyamane</a>, licence: Creative Commons Attribution (by)</li>
 	</ul>
 	<h3><?php _e('Translations','lmm') ?></h3>
+	<p>
+	<?php 
+	$translation_website = '<a href="http://translate.mapsmarker.com/projects/lmm" target="_blank">http://translate.mapsmarker.com/projects/lmm</a>';
+	$translation_output = sprintf(__('Adding a new translation or updating an existing one is quite easy - please visit %s for more information!','lmm'),$translation_website); 
+	echo $translation_output;
+	?>	
+	</p>
 	<ul>
-		<li>- German (de_DE) by <a href="http://twitter.com/robertharm" target="_blank">@RobertHarm</a></li>
-		<li>- Spanish (es_ES) by David Ramírez, <a href="http://www.hiperterminal.com" target="_blank">http://www.hiperterminal.com</a></li>
-		<li>- Japanese (ja) by Shu Higashi, <a href="http://twitter.com/higa4" target="_blank">@higa4</a></li>
-		<li>- Dutch (nl_NL) by Marijke Metz, <a href="http://www.mergenmetz.nl" target="_blank">http://www.mergenmetz.nl</a></li>
-		<li>- French (fr_FR) by Vincèn Pujol, <a href="http://www.skivr.com" target="_blank">http://www.skivr.com</a></li>
-		<li>- Italian (it_IT) by <a href="mailto:lucabarbetti@gmail.com">Luca Barbetti</a></li>
+		<li>- Bulgarian (bg_BG) thanks to Andon Ivanov, <a href="http://coffebreak.info" target="_blank">http://coffebreak.info</a></li>
 		<li>- Chinese (zn_CH) by John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a>
+		<li>- Dutch (nl_NL) by Marijke Metz, <a href="http://www.mergenmetz.nl" target="_blank">http://www.mergenmetz.nl</a></li>
+		<li>- English (en_US) by <a href="http://twitter.com/robertharm" target="_blank">@RobertHarm</a></li>
+		<li>- French (fr_FR) by Vincèn Pujol, <a href="http://www.skivr.com" target="_blank">http://www.skivr.com</a></li>
+		<li>- German (de_DE) by <a href="http://twitter.com/robertharm" target="_blank">@RobertHarm</a></li>
+		<li>- Italian (it_IT) by <a href="mailto:lucabarbetti@gmail.com">Luca Barbetti</a></li>
+		<li>- Japanese (ja) by Shu Higashi, <a href="http://twitter.com/higa4" target="_blank">@higa4</a></li>
+		<li>- Polish translation thanks to Pawel Wyszy&#324;ski, <a href="http://injit.pl" target="_blank">http://injit.pl</a></li>
+		<li>- Russian (ru_RU) thanks to Ekaterina Golubina, , supported by Teplitsa of Social Technologies - <a href="http://te-st.ru" target="_blank">http://te-st.ru</a></li>
+		<li>- Spanish (es_ES) by David Ramírez, <a href="http://www.hiperterminal.com" target="_blank">http://www.hiperterminal.com</a> &amp; Alvaro Lara, <a href="http://www.alvarolara.com" target="_blank">http://www.alvarolara.com</a></li>
+		<li>- Turkish (tr_TR) thanks to Emre Erkan, <a href="http://www.karalamalar.net" target="_blank">http://www.karalamalar.net</a></li>
 	</ul>
 	<h3><?php _e('Credits & special thanks','lmm') ?></h3>
 	<ul>

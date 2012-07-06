@@ -675,12 +675,12 @@ $markernonce = wp_create_nonce('marker-nonce'); //info: for delete-links
 <!--wrap--> 
 <script type="text/javascript">
 /* //<![CDATA[ */
-var marker,selectlayer,osm_mapnik,mapquest_osm,mapquest_aerial,ogdwien_basemap,ogdwien_satellite,cloudmade,cloudmade2,cloudmade3,mapbox,mapbox2,mapbox3,custom_basemap,custom_basemap2,custom_basemap3,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10,layersControl;
+var marker,selectlayer,googleLayer_roadmap,googleLayer_satellite,googleLayer_hybrid,osm_mapnik,mapquest_osm,mapquest_aerial,ogdwien_basemap,ogdwien_satellite,cloudmade,cloudmade2,cloudmade3,mapbox,mapbox2,mapbox3,custom_basemap,custom_basemap2,custom_basemap3,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10,layersControl;
 var markers = {};
 (function($) {
   selectlayer = new L.Map("selectlayer", { dragging: <?php echo $lmm_options['misc_map_dragging'] ?>, touchZoom: <?php echo $lmm_options['misc_map_touchzoom'] ?>, scrollWheelZoom: <?php echo $lmm_options['misc_map_scrollwheelzoom'] ?>, doubleClickZoom: <?php echo $lmm_options['misc_map_doubleclickzoom'] ?>, zoomControl: <?php echo $lmm_options['misc_map_zoomcontrol'] ?>, trackResize: <?php echo $lmm_options['misc_map_trackresize'] ?>, closePopupOnClick: <?php echo $lmm_options['misc_map_closepopuponclick'] ?>, crs: <?php echo $lmm_options['misc_projections'] ?> });
 	<?php 
-		$attrib_prefix = __("Plugin","lmm").': <a href=\"http://mapsmarker.com/go\" target=\"_blank\" title=\"powered by \'Leaflet Maps Marker\'-Plugin for WordPress\">MapsMarker.com</a> (<a href=\"http://leaflet.cloudmade.com\" target=\"_blank\" title=\"\'Leaflet Maps Marker\' uses the JavaScript library \'Leaflet\' for interactive maps by CloudMade\">Leaflet</a>, <a href=\"http://mapicons.nicolasmollet.com\" target=\"_blank\" title=\"\'Leaflet Maps Marker\' uses icons from the \'Maps Icons Collection\'\">Icons</a>)';
+		$attrib_prefix = '<a href=\"http://mapsmarker.com/go\" target=\"_blank\" title=\"powered by \'Leaflet Maps Marker\'-Plugin for WordPress\ (using the fabulous leaflet library [http://leaflet.cloudmade.com] and icons from the \'Maps Icons Collection\' [http://mapicons.nicolasmollet.com])\">MapsMarker.com</a>'; 
 		$attrib_osm_mapnik = __("Map",'lmm').': &copy; ' . date("Y") . ' <a href=\"http://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap contributors</a>, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\" target=\"_blank\">CC-BY-SA</a>';
 		$attrib_mapquest_osm = __("Map",'lmm').': Tiles Courtesy of <a href=\"http://www.mapquest.com/\" target=\"_blank\">MapQuest</a> <img src=\"' . LEAFLET_PLUGIN_URL . 'img/logo-mapquest.png\" style=\"\" />';
 		$attrib_mapquest_aerial = __("Map",'lmm').': <a href=\"http://www.mapquest.com/\" target=\"_blank\">MapQuest</a> <img src=\"' . LEAFLET_PLUGIN_URL . 'img/logo-mapquest.png\" />, Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency';
@@ -696,6 +696,9 @@ var markers = {};
 	osm_mapnik = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {mmid: 'osm_mapnik', maxZoom: 18, minZoom: 1, errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>img/error-tile-image.png", attribution: "<?php echo $attrib_osm_mapnik; ?>"});
 	mapquest_osm = new L.TileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {mmid: 'mapquest_osm', maxZoom: 18, minZoom: 1, errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>img/error-tile-image.png", attribution: "<?php echo $attrib_mapquest_osm; ?>", subdomains: ['otile1','otile2','otile3','otile4']});
 	mapquest_aerial = new L.TileLayer("http://{s}.mqcdn.com/naip/{z}/{x}/{y}.png", {mmid: 'mapquest_aerial', maxZoom: 18, minZoom: 1, errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>img/error-tile-image.png", attribution: "<?php echo $attrib_mapquest_aerial; ?>", subdomains: ['oatile1','oatile2','oatile3','oatile4']});
+	googleLayer_roadmap = new L.Google("ROADMAP", {mmid: 'googleLayer_roadmap'});
+	googleLayer_satellite = new L.Google("SATELLITE", {mmid: 'googleLayer_satellite'});
+	googleLayer_hybrid = new L.Google("HYBRID", {mmid: 'googleLayer_hybrid'});
 	ogdwien_basemap = new L.TileLayer("http://{s}.wien.gv.at/wmts/fmzk/pastell/google3857/{z}/{y}/{x}.jpeg", {mmid: 'ogdwien_basemap', maxZoom: 19, minZoom: 11, errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>img/error-tile-image.png", attribution: "<?php echo $attrib_ogdwien_basemap; ?>", subdomains: ['maps','maps1', 'maps2', 'maps3']});
 	ogdwien_satellite = new L.TileLayer("http://{s}.wien.gv.at/wmts/lb/farbe/google3857/{z}/{y}/{x}.jpeg", {mmid: 'ogdwien_satellite', maxZoom: 19, minZoom: 11, errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>img/error-tile-image.png", attribution: "<?php echo $attrib_ogdwien_satellite; ?>", subdomains: ['maps','maps1', 'maps2', 'maps3']});
 	//info: create Cloudmade TileURLs
@@ -748,16 +751,16 @@ var markers = {};
 	$wms10_subdomains = ((isset($lmm_options[ 'wms_wms10_subdomains_enabled' ]) == TRUE ) && ($lmm_options[ 'wms_wms10_subdomains_enabled' ] == 'yes' )) ? ", subdomains: [" . htmlspecialchars_decode($lmm_options[ 'wms_wms10_subdomains_names' ], ENT_QUOTES) . "]" :  "";
 	
 	//info: define wms legends
-	$wms_attribution = addslashes($lmm_options[ 'wms_wms_attribution' ]) . ( ($lmm_options[ 'wms_wms_legend_enabled' ] == 'yes' ) ? ' (<a href=&quot;' . $lmm_options[ 'wms_wms_legend' ] . '&quot; target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
-	$wms2_attribution = addslashes($lmm_options[ 'wms_wms2_attribution' ]) . ( ($lmm_options[ 'wms_wms2_legend_enabled' ] == 'yes' ) ? ' (<a href=&quot;' . $lmm_options[ 'wms_wms2_legend' ] . '&quot; target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
-	$wms3_attribution = addslashes($lmm_options[ 'wms_wms3_attribution' ]) . ( ($lmm_options[ 'wms_wms3_legend_enabled' ] == 'yes' ) ? ' (<a href=&quot;' . $lmm_options[ 'wms_wms3_legend' ] . '&quot; target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
-	$wms4_attribution = addslashes($lmm_options[ 'wms_wms4_attribution' ]) . ( ($lmm_options[ 'wms_wms4_legend_enabled' ] == 'yes' ) ? ' (<a href=&quot;' . $lmm_options[ 'wms_wms4_legend' ] . '&quot; target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
-	$wms5_attribution = addslashes($lmm_options[ 'wms_wms5_attribution' ]) . ( ($lmm_options[ 'wms_wms5_legend_enabled' ] == 'yes' ) ? ' (<a href=&quot;' . $lmm_options[ 'wms_wms5_legend' ] . '&quot; target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
-	$wms6_attribution = addslashes($lmm_options[ 'wms_wms6_attribution' ]) . ( ($lmm_options[ 'wms_wms6_legend_enabled' ] == 'yes' ) ? ' (<a href=&quot;' . $lmm_options[ 'wms_wms6_legend' ] . '&quot; target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
-	$wms7_attribution = addslashes($lmm_options[ 'wms_wms7_attribution' ]) . ( ($lmm_options[ 'wms_wms7_legend_enabled' ] == 'yes' ) ? ' (<a href=&quot;' . $lmm_options[ 'wms_wms7_legend' ] . '&quot; target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
-	$wms8_attribution = addslashes($lmm_options[ 'wms_wms8_attribution' ]) . ( ($lmm_options[ 'wms_wms8_legend_enabled' ] == 'yes' ) ? ' (<a href=&quot;' . $lmm_options[ 'wms_wms8_legend' ] . '&quot; target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
-	$wms9_attribution = addslashes($lmm_options[ 'wms_wms9_attribution' ]) . ( ($lmm_options[ 'wms_wms9_legend_enabled' ] == 'yes' ) ? ' (<a href=&quot;' . $lmm_options[ 'wms_wms9_legend' ] . '&quot; target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
-	$wms10_attribution = addslashes($lmm_options[ 'wms_wms10_attribution' ]) . ( ($lmm_options[ 'wms_wms10_legend_enabled' ] == 'yes' ) ? ' (<a href=&quot;' . $lmm_options[ 'wms_wms10_legend' ] . '&quot; target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
+	$wms_attribution = addslashes($lmm_options[ 'wms_wms_attribution' ]) . ( ($lmm_options[ 'wms_wms_legend_enabled' ] == 'yes' ) ? ' (<a href="' . $lmm_options[ 'wms_wms_legend' ] . '" target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
+	$wms2_attribution = addslashes($lmm_options[ 'wms_wms2_attribution' ]) . ( ($lmm_options[ 'wms_wms2_legend_enabled' ] == 'yes' ) ? ' (<a href="' . $lmm_options[ 'wms_wms2_legend' ] . '" target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
+	$wms3_attribution = addslashes($lmm_options[ 'wms_wms3_attribution' ]) . ( ($lmm_options[ 'wms_wms3_legend_enabled' ] == 'yes' ) ? ' (<a href="' . $lmm_options[ 'wms_wms3_legend' ] . '" target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
+	$wms4_attribution = addslashes($lmm_options[ 'wms_wms4_attribution' ]) . ( ($lmm_options[ 'wms_wms4_legend_enabled' ] == 'yes' ) ? ' (<a href="' . $lmm_options[ 'wms_wms4_legend' ] . '" target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
+	$wms5_attribution = addslashes($lmm_options[ 'wms_wms5_attribution' ]) . ( ($lmm_options[ 'wms_wms5_legend_enabled' ] == 'yes' ) ? ' (<a href="' . $lmm_options[ 'wms_wms5_legend' ] . '" target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
+	$wms6_attribution = addslashes($lmm_options[ 'wms_wms6_attribution' ]) . ( ($lmm_options[ 'wms_wms6_legend_enabled' ] == 'yes' ) ? ' (<a href="' . $lmm_options[ 'wms_wms6_legend' ] . '" target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
+	$wms7_attribution = addslashes($lmm_options[ 'wms_wms7_attribution' ]) . ( ($lmm_options[ 'wms_wms7_legend_enabled' ] == 'yes' ) ? ' (<a href="' . $lmm_options[ 'wms_wms7_legend' ] . '" target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
+	$wms8_attribution = addslashes($lmm_options[ 'wms_wms8_attribution' ]) . ( ($lmm_options[ 'wms_wms8_legend_enabled' ] == 'yes' ) ? ' (<a href="' . $lmm_options[ 'wms_wms8_legend' ] . '" target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
+	$wms9_attribution = addslashes($lmm_options[ 'wms_wms9_attribution' ]) . ( ($lmm_options[ 'wms_wms9_legend_enabled' ] == 'yes' ) ? ' (<a href="' . $lmm_options[ 'wms_wms9_legend' ] . '" target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
+	$wms10_attribution = addslashes($lmm_options[ 'wms_wms10_attribution' ]) . ( ($lmm_options[ 'wms_wms10_legend_enabled' ] == 'yes' ) ? ' (<a href="' . $lmm_options[ 'wms_wms10_legend' ] . '" target=&quot;_blank&quot; >' . __('Legend','lmm') . '</a>)' : '') . ''; 
 	?>
 	
 	//info: define wms layers
@@ -783,6 +786,12 @@ var markers = {};
 			$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_mapquest_osm' ]) . "': mapquest_osm,";
 		if ( (isset($lmm_options[ 'controlbox_mapquest_aerial' ]) == TRUE ) && ($lmm_options[ 'controlbox_mapquest_aerial' ] == 1 ) )
 			$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_mapquest_aerial' ]) . "': mapquest_aerial,";
+		if ( (isset($lmm_options[ 'controlbox_googleLayer_roadmap' ]) == TRUE ) && ($lmm_options[ 'controlbox_googleLayer_roadmap' ] == 1 ) )
+			$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_googleLayer_roadmap' ]) . "': googleLayer_roadmap,";
+		if ( (isset($lmm_options[ 'controlbox_googleLayer_satellite' ]) == TRUE ) && ($lmm_options[ 'controlbox_googleLayer_satellite' ] == 1 ) )
+			$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_googleLayer_satellite' ]) . "': googleLayer_satellite,";
+		if ( (isset($lmm_options[ 'controlbox_googleLayer_hybrid' ]) == TRUE ) && ($lmm_options[ 'controlbox_googleLayer_hybrid' ] == 1 ) )
+			$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_googleLayer_hybrid' ]) . "': googleLayer_hybrid,";
 		if ( (isset($lmm_options[ 'controlbox_ogdwien_basemap' ]) == TRUE ) && ($lmm_options[ 'controlbox_ogdwien_basemap' ] == 1 ) )
 			$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_ogdwien_basemap' ]) . "': ogdwien_basemap,";
 		if ( (isset($lmm_options[ 'controlbox_ogdwien_satellite' ]) == TRUE ) && ($lmm_options[ 'controlbox_ogdwien_satellite' ] == 1 ) )
@@ -1046,7 +1055,9 @@ var markers = {};
 			}
 		}
 		function setup(){
-			check(gLoader.loadMap);
+			//info: disabled with v2.5/Google Maps
+			//check(gLoader.loadMap);
+			return true;
 		}
 		function load(){
 		script = document.createElement("script");
@@ -1094,7 +1105,21 @@ var markers = {};
 				if( (place.geometry.location.lat().toFixed(6) > 48.321560) || (place.geometry.location.lat().toFixed(6) < 48.116142) || (place.geometry.location.lng().toFixed(6) < 16.182175) || (place.geometry.location.lng().toFixed(6) > 16.579056) ) 
 				{
 					selectlayer.attributionControl._attributions = [];
-					selectlayer.removeLayer(<?php echo $lmm_options[ 'ogdvienna_selector' ] ?>).removeControl(layersControl).addLayer(osm_mapnik);
+					if ('<?php echo $basemap ?>' == 'googleLayer_roadmap') {
+						selectlayer.removeLayer(<?php echo $lmm_options[ 'ogdvienna_selector' ] ?>).removeControl(layersControl).addLayer(googleLayer_roadmap);
+					} else if ('<?php echo $basemap ?>' == 'googleLayer_satellite') {
+						selectlayer.removeLayer(<?php echo $lmm_options[ 'ogdvienna_selector' ] ?>).removeControl(layersControl).addLayer(googleLayer_satellite);
+					} else if ('<?php echo $basemap ?>' == 'googleLayer_hybrid') {
+						selectlayer.removeLayer(<?php echo $lmm_options[ 'ogdvienna_selector' ] ?>).removeControl(layersControl).addLayer(googleLayer_hybrid);
+					} else if ('<?php echo $basemap ?>' == 'osm_mapnik') {
+						selectlayer.removeLayer(<?php echo $lmm_options[ 'ogdvienna_selector' ] ?>).removeControl(layersControl).addLayer(osm_mapnik);
+					} else if ('<?php echo $basemap ?>' == 'mapquest_osm') {
+						selectlayer.removeLayer(<?php echo $lmm_options[ 'ogdvienna_selector' ] ?>).removeControl(layersControl).addLayer(mapquest_osm);
+					} else if ('<?php echo $basemap ?>' == 'mapquest_aerial') {
+						selectlayer.removeLayer(<?php echo $lmm_options[ 'ogdvienna_selector' ] ?>).removeControl(layersControl).addLayer(mapquest_aerial);
+					} else  {
+						selectlayer.removeLayer(<?php echo $lmm_options[ 'ogdvienna_selector' ] ?>).removeControl(layersControl).addLayer(osm_mapnik);
+					}
 					if (('<?php echo $basemap ?>' == 'ogdwien_basemap') || ('<?php echo $basemap ?>' == 'ogdwien_satellite'))
 					{
 					selectlayer.removeLayer(overlays_custom);
@@ -1124,13 +1149,14 @@ var markers = {};
 			});			
 		}				
 		return{
-		setup:setup,
-		check:check,
-		loadMap:loadMap,
+		//info: disabled with v2.5/Google Maps - delete? 
+		//setup:setup,
+		//check:check,
+		//loadMap:loadMap,
 		autocomplete:initAutocomplete
 		}
 	}();
-	gLoader.setup();
+	gLoader.autocomplete();
 /* //]]> */
 </script>
 <?php //info: check if marker exists - part 2 
