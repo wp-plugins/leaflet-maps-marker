@@ -1,54 +1,54 @@
-# Translation of Leaflet Maps Marker in Russian
+# Translation of Leaflet Maps Marker in Yiddish
 # This file is distributed under the same license as the Leaflet Maps Marker package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2012-07-18 19:54:02+0000\n"
+"PO-Revision-Date: 2012-07-18 19:54:51+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/0.1\n"
 "Project-Id-Version: Leaflet Maps Marker\n"
 
 #: ../class-leaflet-options.php:184 ../class-leaflet-options.php:797
 msgid "Bing Maps API key"
-msgstr ""
+msgstr "‫Bing מאַפּעס API שליסל‬"
 
 #: ../class-leaflet-options.php:249 ../class-leaflet-options.php:4969
 #: ../class-leaflet-options.php:4982
 msgid "Google Maps API key"
-msgstr ""
+msgstr "‫Google מאַפּעס API שליסל‬"
 
 #: ../class-leaflet-options.php:401 ../class-leaflet-options.php:402
 #: ../class-leaflet-options.php:403 ../class-leaflet-options.php:645
 #: ../class-leaflet-options.php:653 ../class-leaflet-options.php:661
 msgid "API key required for commercial usage!"
-msgstr ""
+msgstr "‫מע דאַרף אַן API-שליסל אױף קאָמערציאַלע צװעקן!‬"
 
 #: ../class-leaflet-options.php:404 ../class-leaflet-options.php:488
 #: ../class-leaflet-options.php:490 ../class-leaflet-options.php:669
 msgid "Bing Maps (Aerial)"
-msgstr ""
+msgstr "‫Bing-מאַפּעס (פֿון דער לופֿטן)‬"
 
 #: ../class-leaflet-options.php:404 ../class-leaflet-options.php:405
 #: ../class-leaflet-options.php:406 ../class-leaflet-options.php:669
 #: ../class-leaflet-options.php:677 ../class-leaflet-options.php:685
 msgid "API key required!"
-msgstr ""
+msgstr "‫מע דאַרף אַן API-שליסל!‬"
 
 #: ../class-leaflet-options.php:405 ../class-leaflet-options.php:496
 #: ../class-leaflet-options.php:498 ../class-leaflet-options.php:677
 msgid "Bing Maps (Aerial+Labels)"
-msgstr ""
+msgstr "‫Bing-מאַפּעס (פֿון דער לופֿטן, מיט עטיקעטן)‬"
 
 #: ../class-leaflet-options.php:406 ../class-leaflet-options.php:504
 #: ../class-leaflet-options.php:506 ../class-leaflet-options.php:685
 msgid "Bing Maps (Road)"
-msgstr ""
+msgstr "‫Bing-מאַפּעס (גאַסן)‬"
 
 #: ../class-leaflet-options.php:784
 msgid "Bing Maps API Key"
-msgstr ""
+msgstr "‫Bing מאַפּעס API שליסל‬"
 
 #: ../class-leaflet-options.php:792
 msgid "An API key is required if you want to use Bing Maps as basemap for marker or layer maps. Please click on the question mark for more info on how to get your API key."
@@ -64,23 +64,23 @@ msgstr ""
 
 #: ../class-leaflet-options.php:4983
 msgid "Please enter your Google Maps API key here"
-msgstr ""
+msgstr "‫לײג דאָ אַרײַן אײַער API-שליסל פֿאַר Google-מאַפּעס‬"
 
 #: ../class-leaflet-options.php:5681
 msgid "Hindi"
-msgstr ""
+msgstr "הינדוסטאַני"
 
 #: ../class-leaflet-options.php:5684
 msgid "Polish"
-msgstr ""
+msgstr "פּױליש"
 
 #: ../class-leaflet-options.php:5687
 msgid "Yiddish"
-msgstr ""
+msgstr "ייִדיש"
 
 #: ../class-leaflet-options.php:5688
 msgid "Turkish"
-msgstr ""
+msgstr "טערקיש"
 
 #: ../leaflet-admin-header.php:110
 msgid "<strong>Warning: you enabled support for bing maps but did not provide an API key. Please visit <a href=\"http://www.mapsmarker.com/bing-maps\" target=\"_blank\">http://www.mapsmarker.com/bing-maps</a> for info on how to get a free bing maps API key!"
@@ -94,59 +94,59 @@ msgstr ""
 #: ../class-leaflet-options.php:466 ../class-leaflet-options.php:645
 #: ../class-leaflet-options.php:4360
 msgid "Google Maps (Roadmap)"
-msgstr ""
+msgstr "‫Google מאַפּעס (װעגמאַפּע)‬"
 
 #: ../class-leaflet-options.php:402 ../class-leaflet-options.php:472
 #: ../class-leaflet-options.php:474 ../class-leaflet-options.php:653
 #: ../class-leaflet-options.php:4361
 msgid "Google Maps (Satellite)"
-msgstr ""
+msgstr "‫Google מאַפּעס (סאַטעליט)‬"
 
 #: ../class-leaflet-options.php:403 ../class-leaflet-options.php:480
 #: ../class-leaflet-options.php:482 ../class-leaflet-options.php:661
 #: ../class-leaflet-options.php:4362
 msgid "Google Maps (Hybrid)"
-msgstr ""
+msgstr "‫Google מאַפּעס (עטלעכט צוזאַמען)‬"
 
 #: ../class-leaflet-options.php:4064
 msgid "If you want to use another icon than the blue pin, please enter the file name of the icon (located in the directory %s) in the form field - e.g. smiley_happy.png"
-msgstr ""
+msgstr "‫אױב איר װילט ניצן אַן אַנדער בילדל, ניט די בלױע שפּילקע, שרײַב דעם טעקע־נאָמען װוּ דאָס בילדל געפֿינט זיך (אין פּאַפּקע %s) אין דעם פֿאָרומולאַר־פֿעלד, װי, למשל, smiley_happy.png‬"
 
 #: ../class-leaflet-options.php:5606
 msgid "WordPress Admin Bar integration"
-msgstr ""
+msgstr "‫WordPress אַדמיניסטראַציע־װײַזער אַרײַנפּאַסונג‬"
 
 #: ../class-leaflet-options.php:5618
 msgid "WordPress admin dashboard widget"
-msgstr ""
+msgstr "‫WordPress אַדמיניסטראַציע דיריגיר־צעטל צפּיחתל‬"
 
 #: ../class-leaflet-options.php:5619
 msgid "shows a widget on the admin dashboard which displays latest markers and blog posts from mapsmarker.com"
-msgstr ""
+msgstr "‫װײַזט אַ צפּיחתל אױף דעם אַדמיניסטראַציע־דיריגיר־צעטל צו װײַזן די לעצטע אָנװײַזפּונקן און בלאָג־אָנזאָגן פֿון mapsmarker.com‬"
 
 #: ../class-leaflet-options.php:5685
 msgid "Russian"
-msgstr ""
+msgstr "רוסיש"
 
 #: ../class-leaflet-options.php:5674
 msgid "Bulgarian"
-msgstr ""
+msgstr "בולגאַריש"
 
 #: ../leaflet-admin-header.php:40
 msgid "Leaflet Maps Marker has been updated successfully!"
-msgstr ""
+msgstr "‫הצלחה אין דערהײַנטיקן Leaflet Maps Marker"
 
 #: ../leaflet-admin-header.php:41
 msgid "For more details about this release, please visit %s"
-msgstr ""
+msgstr "‫צו באַקומען נאָך פּרטים װעגן דער װערסיע, קומט צו גאַסט בײַ %s‬"
 
 #: ../leaflet-admin-header.php:42
 msgid "Changelog for version %s:"
-msgstr ""
+msgstr "‫בײַט־לאָגבוך פֿון װערסיע %s:‬"
 
 #: ../leaflet-admin-header.php:95
 msgid "If you upgraded from a version <%s, please visit %s for a complete list of changes."
-msgstr ""
+msgstr "‫אױב איר האָט דערנײַט פֿון אַ װערסיע פֿריִער פֿון %s, קומט צו גאַסט בײַ %s כּדי צו זען אַ גאַנצע רשימה ענדערונגען.‬"
 
 #: ../leaflet-admin-header.php:96
 msgid "If you like using the plugin, please consider <a href=\"http://www.mapsmarker.com/donations\" target=\"_blank\">making a donation</a> and <a href=\"http://wordpress.org/extend/plugins/leaflet-maps-marker/\" target=\"_blank\">rate the plugin on wordpress.org</a> - thanks!"
@@ -154,653 +154,653 @@ msgstr ""
 
 #: ../leaflet-admin-header.php:194
 msgid "please help translating this plugin"
-msgstr ""
+msgstr "העלפֿט, זײַט אַזױ גוט, אין איבערזעצן דעם אַרײַנשטעכװאַרג"
 
 #: ../leaflet-help-credits.php:19
 msgid "Changelog"
-msgstr ""
+msgstr "בײַט־לאָגבוך"
 
 #: ../leaflet-help-credits.php:49
 msgid "Adding a new translation or updating an existing one is quite easy - please visit %s for more information!"
-msgstr ""
+msgstr "‫צוצולײגן אַ נײַע איבערזעצונג, אָדער צו דערהײַנטיקן אַן איצטיקע איבערזעצונג איז טאַקע גרינג — קומט צו גאַסט בײַ %s פֿאַר נאָך אינפֿאָרמאַציע!‬"
 
 #: ../leaflet-maps-marker.php:106
 msgid "translations"
-msgstr ""
+msgstr "איבערזעצונגען"
 
 #: ../leaflet-maps-marker.php:106
 msgid "donations"
-msgstr ""
+msgstr "נדבֿות"
 
 #: ../leaflet-maps-marker.php:107 ../leaflet-maps-marker.php:109
 msgid "Latest blog posts from www.mapsmarker.com"
-msgstr ""
+msgstr "‫די לעצטע בלאָג־אָנזאָגן פֿון www.mapsmarker.com‬"
 
 #: ../leaflet-maps-marker.php:109
 msgid "no blog posts available"
-msgstr ""
+msgstr "ניט קײן בלאָג־אָנזאָגן בנימצא"
 
 #: ../leaflet-maps-marker.php:129
 msgid "Number of markers to show:"
-msgstr ""
+msgstr "‫װיפֿל אָנװײַזפּונקטן צו װײַזן:‬"
 
 #: ../leaflet-maps-marker.php:131
 msgid "Hide blog posts and link section:"
-msgstr ""
+msgstr "באַהאַלט בלאָג־אָנזאָגן און פֿאַרבינדונג־סעקציע"
 
 #: ../leaflet-layer.php:253 ../leaflet-layer.php:293 ../leaflet-layer.php:383
 #: ../leaflet-marker.php:248 ../leaflet-marker.php:355
 msgid "(Settings)"
-msgstr "(Настройки)"
+msgstr "‫(אײַנשטעלונגען)‬"
 
 #: ../leaflet-layer.php:257 ../leaflet-marker.php:252
 msgid "or paste coordinates here"
-msgstr "или введите координаты здесь"
+msgstr "אָדער קלעפּ קאָאָרדינאַטן צו אָט־אָ־דאָ"
 
 #: ../leaflet-layer.php:258 ../leaflet-marker.php:253
 msgid "latitude"
-msgstr "широта"
+msgstr "לאַטיטוד"
 
 #: ../leaflet-layer.php:259 ../leaflet-marker.php:254
 msgid "longitude"
-msgstr "долгота"
+msgstr "לאָנגיטוד"
 
 #: ../leaflet-layer.php:261
 msgid "or set layer center by clicking on the preview map"
-msgstr "или установите центр слоя, кликнув по карте предварительного просмотра"
+msgstr "אָדער באַשטעטיק שיכט־צענטרום מיט אַ קליק אױף פֿאָראױס־זען מאַפּע"
 
 #: ../leaflet-layer.php:266 ../leaflet-layer.php:632
 #: ../leaflet-list-layers.php:156 ../leaflet-list-markers.php:248
 #: ../leaflet-marker.php:260 ../leaflet-tools.php:329 ../leaflet-tools.php:580
 msgid "Width"
-msgstr "Ширина"
+msgstr "ברײט"
 
 #: ../leaflet-layer.php:270 ../leaflet-layer.php:632
 #: ../leaflet-list-layers.php:156 ../leaflet-list-markers.php:248
 #: ../leaflet-marker.php:265 ../leaflet-tools.php:334 ../leaflet-tools.php:585
 msgid "Height"
-msgstr "Высота"
+msgstr "הײך"
 
 #: ../leaflet-layer.php:276 ../leaflet-marker.php:272
 msgid "Please change zoom level by clicking on + or - symbols or using your mouse wheel on preview map"
-msgstr "Пожалуйста, измените масштаб, кликнув на символы + или - или воспользовавшись колесом прокрутки вашей мыши на карте предварительного просмотра"
+msgstr "בײַט דעם פֿאַרגרעסער־צאָל מיט אַ קליק אױף + אָדער - אָדער מיטן מײַזלראָד אױף דער פֿאָראױסזען־מאַפּע"
 
 #: ../leaflet-layer.php:279 ../leaflet-marker.php:275 ../leaflet-tools.php:362
 #: ../leaflet-tools.php:613
 msgid "Basemap/overlay controlbox on frontend"
-msgstr "Фронтальное окно управления основной картой/наложением"
+msgstr "יסוד־מאַפּע / לײג קאָנטראָל־קעסטל איבער אױף אָנהײב־זײַט"
 
 #: ../leaflet-layer.php:283 ../leaflet-marker.php:279
 msgid "Controlbox on backend is always expanded"
-msgstr "Боковое окно управления всегда развёрнуто"
+msgstr "קאָנטראָל־קעסטל אױף סוף־זײַט װערט אַלעמאָל דערגאַנצט"
 
 #: ../leaflet-layer.php:293
 msgid "Max. number of markers to display:"
-msgstr "Макс. число отображаемых маркеров:"
+msgstr "דער גרעסטער צאָל װײַזפּונקטן צו װײַזן"
 
 #: ../leaflet-layer.php:323
 msgid "if set, layername will be inserted here"
-msgstr "Если установлено, имя слоя будет вводиться здесь"
+msgstr "אױב באַשטעטיקט װעט דער שיכטנאָמען זיך װײַזן דאָ"
 
 #: ../leaflet-layer.php:334 ../leaflet-layer.php:338
 msgid "Markers assigned to this layer will be listed here"
-msgstr "Маркеры данного слоя будут перечислены здесь"
+msgstr "װײַזפּונקטן פֿון דעם שיכט װעלן זיך װײַזן דאָ"
 
 #: ../leaflet-layer.php:370 ../leaflet-layer.php:659
 #: ../leaflet-list-markers.php:272 ../leaflet-marker.php:206
 msgid "Edit marker"
-msgstr "Редактировать маркер"
+msgstr "רעדאַקטיר דעם װײַזפּונקט"
 
 #: ../leaflet-layer.php:370 ../leaflet-layer.php:659
 #: ../leaflet-list-layers.php:181 ../leaflet-list-markers.php:272
 msgid "edit"
-msgstr "редактировать"
+msgstr "רעדאַקטיר"
 
 #: ../leaflet-layer.php:383 ../leaflet-marker.php:355
 msgid "WMS layers"
-msgstr "Слои WMS"
+msgstr "‫WMS שיכטן‬\n"
 
 #: ../leaflet-layer.php:441
 msgid "Multi Layer Map"
-msgstr "Многослойная Карта"
+msgstr "פֿילשיכטיקע מאַפּע"
 
 #: ../leaflet-layer.php:444
 msgid "Show markers from other layers on this map"
-msgstr "Отображать маркеры других слоев на этой карте"
+msgstr "װײַז די װײַזפּונקטן פֿון אַנדערע שיכטן פֿון דער מאַפּע"
 
 #: ../leaflet-layer.php:450
 msgid "Please select the layers, whose markers you would like to display on this multi layer map. Please note that the following features are not supported for multi layer maps: adding markers directly, displaying a list of markers under the map, access of all assigned markers via GeoJSON (please use GeoJSON-feeds for individual layers instead) and dynamic preview in backend (select layers instead, click save and the edit button again). Please also do not change an existing layer map with assigned markers to a multi layer map, as those assigned markers will not be displayed on the multi layer map."
-msgstr "Пожалуйста, выберите слои, маркеры которых вы хотели бы отобразить на этой многослойной карте. Пожалуйста, обратите внимание, что следующие функции не поддерживаются многослойными картами: прямое добавление маркеров, отображение списка маркеров под картой, доступ всех назначенных маркеров через GeoJSON (вместо этого используйте GeoJSON-фиды для каждого отдельного слоя) и динамический предварительный просмотр заднего плана (вместо этого выберите слои, нажмите кнопку сохранить и редактировать). Пожалуйста, также не меняйте существующий слой карты с назначенными маркерами на многослойную карту, так как назначенные маркеры не будут отображаться на многослойной карте. "
+msgstr "‫קלײַבט אױס די שיכטן װאָס זײערע אָנװײַזפּונקטן װילט איר זען אױף אָט־דער פֿילשיכטלעכע מאַפּע.  די דאָזיקע פֿעיִקײַטן פּאַנס ניט אין פֿילשיכטלעכע מאַפּעס: צולײגן אָנװײַזפּונקן דירעקט, װײַזן אַ רשימה פֿון אָנװײַזפּונקטן אונטער דער מאַפּע, באַקומען אַלע אַסיגנירטע אָנװײַזפּונקטן דורך GeoJSON (ניצט GeoJSON שטראָמען פֿאַר באַזונדערע שיכטן) און דינאַמישע פֿאָרױסזען אין הינטערפּראָגראַם (אַנשטאָט דעם, קלײַבט שיכטן אױס, גיט אַ קליק אױף ,,היט אױפֿ״, און דערנאָקך ,,רעדאַקטיר״).  אױב אַן איצטיקע שיכט־מאַפּע האָט אַסיגנירטע אָנװײַזפּונקן, בעסער ניט איבערצוּװאַדלען אין אַ פֿילשיכטלעקער מאַפּע, װײַל יענע אָנװײַזפּונקטן װעט מען ניט זען אין דער פֿילשיכטלעכער מאַפּע.‬"
 
 #: ../leaflet-layer.php:452
 msgid "display all markers"
-msgstr "отобразить все маркеры"
+msgstr "װײַז אַלע װײַזפּונקטן"
 
 #: ../leaflet-layer.php:452
 msgid "Display markers from selected layers only"
-msgstr "Отображать маркеры только выбранных слоев"
+msgstr "װײַז די װײַזפּונקטן נאָר פֿון די דערװײלטע שיכטן"
 
 #: ../leaflet-layer.php:460 ../leaflet-layer.php:519
 #: ../leaflet-list-markers.php:109 ../leaflet-tools.php:195
 #: ../leaflet-tools.php:199 ../leaflet-tools.php:205 ../leaflet-tools.php:209
 #: ../leaflet-tools.php:233 ../leaflet-tools.php:237
 msgid "marker"
-msgstr "маркер"
+msgstr "װײַזפּונקט"
 
 #: ../leaflet-layer.php:468 ../leaflet-marker.php:501
 msgid "Audit"
-msgstr "Проверка"
+msgstr "רעװידיר"
 
 #: ../leaflet-layer.php:470
 msgid "Layer added by"
-msgstr "Автор слоя:"
+msgstr "שיכט צוגעגעבן פֿון"
 
 #: ../leaflet-layer.php:473 ../leaflet-marker.php:506
 msgid "last update by"
-msgstr "Автор последнего обновления:"
+msgstr "לעצטע דערהײַנטיקונג פֿון"
 
 #: ../leaflet-layer.php:480
 msgid "update layer"
-msgstr "обновить слой"
+msgstr "דערהײַנטיק אַ שיכט"
 
 #: ../leaflet-layer.php:480
 msgid "add layer"
-msgstr "добавить слой"
+msgstr "געב צו אַ שיכט"
 
 #: ../leaflet-layer.php:490
 msgid "Do you really want to delete layer %1$s (ID %2$s)?"
-msgstr "Вы действительно хотите удалить слой %1$s (ID %2$s)?"
+msgstr "‫איר װילט טאַקע אָפּמעקן שיכט %1$s (ID %2$s)?‬"
 
 #: ../leaflet-layer.php:491
 msgid "delete layer"
-msgstr "удалить слой"
+msgstr "מעק שיכט אָפּ"
 
 #: ../leaflet-layer.php:500
 msgid "Do you really want to delete layer %1$s (ID %2$s) and all %3$s assigned markers?"
-msgstr "Вы действительно хотите удалить слой %1$s (ID %2$s) и все %3$s назначенные маркеры?"
+msgstr "איר װילט טאַקע אָפּמעקן שיכט %1$s (ID %2$s) מיט אַלע %3$s װײַזפּונקטן?"
 
 #: ../leaflet-layer.php:502
 msgid "delete layer AND assigned markers"
-msgstr "удалить слой И назначенные маркеры"
+msgstr "מעק שיכט אָפּ מיט אַלע זײַנע װײַזפּונקטן"
 
 #: ../leaflet-layer.php:512
 msgid "Marker assigned to this layer"
-msgstr "Маркер, назначенный этому слою"
+msgstr "װײַזפּונקט אַסיגנירט צו דעם שיכט"
 
 #: ../leaflet-layer.php:514
 msgid "Marker assigned to this multi layer map"
-msgstr "Маркер, назначенный этой многослойной карте"
+msgstr "װײַזפּונקט אַסיגנירט צו דער פֿילשיכטיקער מאַפּע"
 
 #: ../leaflet-layer.php:519 ../leaflet-list-layers.php:31
 #: ../leaflet-list-layers.php:206 ../leaflet-list-markers.php:108
 #: ../leaflet-list-markers.php:318
 msgid "Total"
-msgstr "Всего"
+msgstr "סך־הכּל"
 
 #: ../leaflet-layer.php:522
 msgid "For details on assigned markers to this multi-layer map, please open the individual layer maps."
-msgstr "Чтобы получить детали по назначенным этой многослойной карте маркерам, пожалуйста, откройте каждый слой карты."
+msgstr "צו זען פּרטים פֿון װײַזפּונקטן אין דער פֿילשיכטיקער מאַפּע, עפֿן די שיכט־מאַפּעס גופֿא"
 
 #: ../leaflet-layer.php:619 ../leaflet-marker.php:521
 msgid "Do you really want to delete marker %1$s (ID %2$s)?"
-msgstr "Вы действительно хотите удалить маркер %1$s (ID %2$s)?"
+msgstr "‫איר װילט טאַקע אָפּמעקן דעם װײַזפּונקט %1$s (ID %2$s)?‬"
 
 #: ../leaflet-layer.php:620 ../leaflet-list-layers.php:133
 #: ../leaflet-list-markers.php:228 ../leaflet-list-markers.php:303
 msgid "delete"
-msgstr "удалить"
+msgstr "מעק אָפּ"
 
 #: ../leaflet-layer.php:625
 msgid "No marker assigned to this layer"
-msgstr "У этого слоя нет назначенных маркеров"
+msgstr "דער שיכט האָט ניט קײן װײַזפּונקט"
 
 #: ../leaflet-layer.php:647 ../leaflet-list-markers.php:233
 #: ../leaflet-tools.php:432
 msgid "open"
-msgstr "открыть"
+msgstr "עפֿן "
 
 #: ../leaflet-layer.php:647 ../leaflet-list-markers.php:233
 #: ../leaflet-tools.php:430
 msgid "closed"
-msgstr "закрыто"
+msgstr "פֿאַרמאַכט"
 
 #: ../leaflet-layer.php:650 ../leaflet-list-markers.php:240
 msgid "Edit marker "
-msgstr "Редактировать маркер"
+msgstr "רעדאַקטיר דעם װײַזפּונקט"
 
 #: ../leaflet-layer.php:657 ../leaflet-list-markers.php:270
 msgid "standard icon"
-msgstr "стандартный ярлык"
+msgstr "דאָס סטאַנדאַרדע בילדל"
 
 #: ../leaflet-layer.php:1054 ../leaflet-layer.php:1060
 #: ../leaflet-marker.php:882 ../leaflet-marker.php:888
 msgid "Invalid format! Please only use numbers and a . instead of a , as decimal separator!"
-msgstr "Недействительный формат! Пожалуйста, используйте только числа и точки (не запятые) в качестве разделителя дробных чисел!"
+msgstr "אומלעקסיקע פֿאָרמאַטירונג!  ניצט בלױז ציפֿערן, מיט אַ פּינטל . און ניט קײן קאָמאַ , אין מיטן נומער"
 
 #: ../leaflet-list-layers.php:29 ../leaflet-list-layers.php:212
 msgid "Add layer"
-msgstr "Добавить слой"
+msgstr "לײג צו אַ שיכט"
 
 #: ../leaflet-list-layers.php:29 ../leaflet-list-layers.php:212
 #: ../leaflet-list-markers.php:106 ../leaflet-list-markers.php:330
 msgid "Export all markers as csv-file"
-msgstr "Экспортировать все маркеры как csv-файл"
+msgstr "‫עקספּאָרטיר אַלע אָנװײַזפּונקן אין אַ CSV־טעקע‬"
 
 #: ../leaflet-list-layers.php:29 ../leaflet-list-layers.php:212
 #: ../leaflet-list-markers.php:106 ../leaflet-list-markers.php:330
 msgid "Export all markers as KML"
-msgstr "Экспортировать все маркеры как KML"
+msgstr "‫עקספּאָרטיר אַלע אָנװײַזפּונקן אין אַ KML־טעקע‬"
 
 #: ../leaflet-list-layers.php:29 ../leaflet-list-layers.php:212
 #: ../leaflet-list-markers.php:106 ../leaflet-list-markers.php:330
 msgid "Export all markers as GeoJSON"
-msgstr "Экспортировать все маркеры как GeoJSON"
+msgstr "‫עקספּאָרטיר אַלע אָנװײַזפּונקן אין אַ GeoJSON־טעקע‬"
 
 #: ../leaflet-list-layers.php:29 ../leaflet-list-layers.php:212
 #: ../leaflet-list-markers.php:106 ../leaflet-list-markers.php:330
 msgid "Subscribe to markers via GeoRSS"
-msgstr "Подписаться на маркеры через GeoRSS"
+msgstr "‫אַבאָניר אין אָנװײַזפּונקטן דורך GeoRSS‬"
 
 #: ../leaflet-list-layers.php:29 ../leaflet-list-layers.php:212
 #: ../leaflet-list-markers.php:106 ../leaflet-list-markers.php:330
 msgid "Export all markers as ARML for Wikitude"
-msgstr "Экспортировать все маркеры в качестве ARML для Wikitude"
+msgstr "‫עקספּאָרטיר אַלע אָנװײַזפּונקן אין אַ ARML־טעקע פֿאַר Wikitude"
 
 #: ../leaflet-list-layers.php:29 ../leaflet-list-layers.php:212
 #: ../leaflet-list-markers.php:106 ../leaflet-list-markers.php:330
 msgid "Geo Sitemap"
-msgstr "Geo карта сайта"
+msgstr "‫Geo אָרטמאַפּע‬"
 
 #: ../leaflet-list-layers.php:29 ../leaflet-list-layers.php:212
 #: ../leaflet-list-markers.php:106 ../leaflet-list-markers.php:330
 msgid "Click here for more information on how to submit your Geo Sitemap to Google"
-msgstr "Кликните здесь, чтобы узнать, как занести вашу Geo карту сайта в Google"
+msgstr "‫גיט אַ קליק דאָ צו באַקומען אינפֿאָרמאַציע װעגן אַרײַנשיקן אײַער Geo אָרטמאַפּע אין Google"
 
 #: ../leaflet-list-layers.php:31 ../leaflet-list-layers.php:206
 msgid "layer"
-msgstr "слой"
+msgstr "שיכט"
 
 #: ../leaflet-list-layers.php:32 ../leaflet-list-layers.php:207
 #: ../leaflet-list-markers.php:111 ../leaflet-list-markers.php:321
 msgid "select columns to display"
-msgstr "выберите колонки для отображения"
+msgstr "קלײַב אױס זײַלן צו װײַזן"
 
 #: ../leaflet-list-layers.php:32 ../leaflet-list-layers.php:207
 #: ../leaflet-list-markers.php:111 ../leaflet-list-markers.php:321
 msgid "columns"
-msgstr "колонки"
+msgstr "זײַלן"
 
 #: ../leaflet-list-layers.php:45 ../leaflet-list-layers.php:87
 #: ../leaflet-maps-marker.php:1274
 msgid "Markers"
-msgstr "Маркеры"
+msgstr "װײַזפּונקטן"
 
 #: ../leaflet-list-layers.php:128
 msgid "No layer created yet"
-msgstr "Пока нет созданных слоев"
+msgstr "נאָך ניט קײן שיכט"
 
 #: ../leaflet-list-layers.php:133
 msgid "Do you really want to delete this layer?"
-msgstr "Вы действительно хотите удалить этот слой?"
+msgstr "איר װילט טאַקע אָפּמעקן דעם שיכט?"
 
 #: ../leaflet-list-layers.php:150
 msgid "single layer map"
-msgstr "карта с одним слоем"
+msgstr "אײנשיכטלעכע מאַפּע"
 
 #: ../leaflet-list-layers.php:150
 msgid "multi layer map"
-msgstr "многослойная карта"
+msgstr "פֿילשיכטלעכע מאַפּע"
 
 #: ../leaflet-list-layers.php:181
 msgid "Edit"
-msgstr "Редактировать"
+msgstr "רעדאַקטיר"
 
 #: ../leaflet-list-layers.php:182
 msgid "show markers assigned to this layer"
-msgstr "Отобразить маркеры, назначенные этому слою"
+msgstr "װײַז די װײַזפּוקנטן פֿון דעם שיכט"
 
 #: ../leaflet-list-markers.php:46
 msgid "page"
-msgstr "страница"
+msgstr "זײַטל"
 
 #: ../leaflet-list-markers.php:81
 msgid "Please only select one mass action"
-msgstr "Пожалуйста, выберите только одно действие"
+msgstr "קלײַבט אױס בלױז אײן מאַסנאַקט"
 
 #: ../leaflet-list-markers.php:82 ../leaflet-list-markers.php:90
 #: ../leaflet-list-markers.php:97 ../leaflet-list-markers.php:120
 #: ../leaflet-list-markers.php:329 ../leaflet-marker.php:50
 #: ../leaflet-marker.php:83 ../leaflet-marker.php:95 ../leaflet-marker.php:194
 msgid "show all markers"
-msgstr "отобразить все маркеры"
+msgstr "װײַז אַלע װײַזפּונקטן"
 
 #: ../leaflet-list-markers.php:82 ../leaflet-list-markers.php:90
 #: ../leaflet-list-markers.php:97 ../leaflet-marker.php:50
 msgid "add new maker"
-msgstr "добавить новый маркер"
+msgstr "לײג אַ נײַעם װײַזפּוקנט צו"
 
 #: ../leaflet-list-markers.php:89
 msgid "The selected markers have been deleted"
-msgstr "Выбранные маркеры были удалены"
+msgstr "די אױסגעקליבענע װײַזפּונקטן זײַנען אָפּגעמעקט"
 
 #: ../leaflet-list-markers.php:96
 msgid "The selected markers have been assigned to the selected layer"
-msgstr "Выбранные маркеры были назначены указанному слою"
+msgstr "די אױסגעקליבענע װײַזפּונקטן זײַנען אַסיגנירט צום אױסגעקליבענעם שיכט"
 
 #: ../leaflet-list-markers.php:96 ../leaflet-list-markers.php:319
 msgid "Marker"
-msgstr "Маркер"
+msgstr "װײַזפּונקט"
 
 #: ../leaflet-list-markers.php:106 ../leaflet-list-markers.php:330
 msgid "Add marker"
-msgstr "Добавить маркер"
+msgstr "לײג אַ װײַזפּוקנט צו"
 
 #: ../leaflet-list-markers.php:108 ../leaflet-list-markers.php:318
 msgid "Search result"
-msgstr "Результаты поиска"
+msgstr "זוך די רעזולטאַט"
 
 #: ../leaflet-list-markers.php:111 ../leaflet-list-markers.php:321
 msgid "Change number in settings"
-msgstr "Изменить номер в настройках"
+msgstr "בײַט דעם נומער אין די פֿאַרשטעלונגען"
 
 #: ../leaflet-list-markers.php:118 ../leaflet-list-markers.php:327
 msgid "search"
-msgstr "поиск"
+msgstr "זוך"
 
 #: ../leaflet-list-markers.php:223 ../leaflet-maps-marker.php:96
 #: ../leaflet-maps-marker.php:1445
 msgid "No marker created yet"
-msgstr "Пока нет созданных маркеров"
+msgstr "נאָך ניט קײן װײַזפּונקט"
 
 #: ../leaflet-list-markers.php:228
 msgid "Do you really want to delete this marker?"
-msgstr "Вы действительно хотите удалить этот маркер?"
+msgstr "איר װילט טאַקע אָפּמעקן דעם װײַזפּונקט?"
 
 #: ../leaflet-list-markers.php:232 ../leaflet-list-markers.php:308
 #: ../leaflet-tools.php:195 ../leaflet-tools.php:205 ../leaflet-tools.php:233
 msgid "unassigned"
-msgstr "неназначенный"
+msgstr "ניט אַסיגנירט"
 
 #: ../leaflet-list-markers.php:232
 msgid "Edit layer "
-msgstr "Редактировать слой"
+msgstr "רעדאַקטיר דעם שיכט"
 
 #: ../leaflet-list-markers.php:300
 msgid "Mass actions for selected markers"
-msgstr "Выполнить действия с выбранными маркерами"
+msgstr "מאַסנאַקטן פֿאַר אױסגעקליבענע אָנװײַזפּונקטן"
 
 #: ../leaflet-list-markers.php:306
 msgid "assign to the following layer:"
-msgstr "назначить следующему слою:"
+msgstr "אַסיגניר צו אָט דעם שיכט:"
 
 #: ../leaflet-list-markers.php:314
 msgid "submit"
-msgstr "применить"
+msgstr "שיק אַרײַן"
 
 #: ../leaflet-maps-marker.php:306 ../leaflet-maps-marker.php:309
 msgid "Show embedded map in full-screen mode"
-msgstr "Отобразить встроенную карту в полноэкранном режиме"
+msgstr "װײַז די אײַנגעבאַקענע מאַפּע מיט אַ פֿולן עקראַן"
 
 #: ../leaflet-maps-marker.php:799
 msgid "add/edit marker"
-msgstr "добавить/редактировать маркер"
+msgstr "לײג צו אָדער רעדאַקטיר אַ װײַזפּונקט"
 
 #: ../leaflet-maps-marker.php:801
 msgid "add/edit layer"
-msgstr "добавить/редактировать слой"
+msgstr "לײג צו אָדער רעדאַקטיר אַ שיכט"
 
 #: ../leaflet-maps-marker.php:845
 msgid "by"
-msgstr "от"
+msgstr "פֿון"
 
 #: ../leaflet-maps-marker.php:900
 msgid "Open plugin website"
-msgstr "Открыть веб-сайт плагина"
+msgstr "עפֿן דאָס װעבס־אָרט פֿאַרן אַרײַנשטעכװאַרג"
 
 #: ../leaflet-maps-marker.php:914
 msgid "frequently asked questions"
-msgstr "часто задаваемые вопросы"
+msgstr "אָפֿט־געפֿרעגטע שאלות"
 
 #: ../leaflet-maps-marker.php:916
 msgid "feature requests"
-msgstr "функциональные запросы"
+msgstr "פֿעיִקײַט־בקשות"
 
 #: ../leaflet-maps-marker.php:917
 msgid "free community support"
-msgstr "бесплатная поддержка сообщества"
+msgstr "אונטערשטיץ פֿון דער װעלט בחינם"
 
 #: ../leaflet-maps-marker.php:918
 msgid "paid community support"
-msgstr "платная поддержка сообщества"
+msgstr "באַצאָלטער אונטערשטיץ"
 
 #: ../leaflet-maps-marker.php:919
 msgid "paid professional support"
-msgstr "платная профессиональная поддержка"
+msgstr "באַצאָלטער אונטערשטיץ פֿון פּראָפֿעסיאָנאַלן"
 
 #: ../leaflet-maps-marker.php:930
 msgid "Help & Support"
-msgstr "Помощь и поддержка"
+msgstr "געהילף און אונטערשטיץ"
 
 #: ../leaflet-maps-marker.php:1289
 msgid "Widget to show the most recent Leaflet Maps Marker entries"
-msgstr "Виджет, отображающий последние добавления в Leaflet Maps Marker"
+msgstr "‫צפּיחתל צו װײַזן די לעצטע אײנסן אין Leaflet Maps Marker"
 
 #: ../leaflet-maps-marker.php:76 ../leaflet-maps-marker.php:1291
 msgid "Leaflet Maps Marker - recent markers"
-msgstr "Leaflet Maps Marker - последние добавленные маркеры"
+msgstr "‫Leaflet Maps Marker – אַנומלטיקע אײנסן‬"
 
 #: ../leaflet-maps-marker.php:1295 ../leaflet-maps-marker.php:1372
 msgid "Recent markers"
-msgstr "Последние добавленные маркеры"
+msgstr "אַנומלטע אָנװײַזפּונקטן"
 
 #: ../leaflet-maps-marker.php:1310
 msgid "Title"
-msgstr "Название"
+msgstr "טיטל"
 
 #: ../leaflet-maps-marker.php:1312
 msgid "Text before list of markers"
-msgstr "Текст перед списком маркеров"
+msgstr "טעקסט װאָס קומט פֿאַר דער רשימה פֿון אָנװײַזפּונקטן"
 
 #: ../leaflet-maps-marker.php:1314
 msgid "Number of markers to display"
-msgstr "Число отображамых маркеров"
+msgstr "װיפֿל אָנװײַזפּונקטן צו װײַזן"
 
 #: ../leaflet-maps-marker.php:1319
 msgid "Show icons"
-msgstr "Отображать ярлыки"
+msgstr "װײַז בילדלעך"
 
 #: ../leaflet-maps-marker.php:1321
 msgid "Icon width"
-msgstr "Ширина ярлыка"
+msgstr "די ברײט פֿון אַ בילדל"
 
 #: ../leaflet-maps-marker.php:1324
 msgid "Show popuptext (no HTML)"
-msgstr "Отображать всплывающий текст (не HTML)"
+msgstr "װײַז אױפֿשפּרינגטעקסט (אָן HTML)"
 
 #: ../leaflet-maps-marker.php:1328
 msgid "Link target"
-msgstr "Цель ссылки"
+msgstr "ציל פֿון פֿאַרבינדונג"
 
 #: ../leaflet-maps-marker.php:1330
 msgid "fullscreen"
-msgstr "во весь экран"
+msgstr "אַ פֿולער עקראַן"
 
 #: ../leaflet-maps-marker.php:1334
 msgid "no link"
-msgstr "нет ссылки"
+msgstr "ניט קײן פֿאַרבינדונג"
 
 #: ../leaflet-maps-marker.php:1339
 msgid "Show marker creation time"
-msgstr "Отобразить время создания маркера"
+msgstr "װײַז די צײַט פֿון שאַפֿן דעם אָנװײַזפּונקט"
 
 #: ../leaflet-maps-marker.php:1341
 msgid "Date format"
-msgstr "Формат даты"
+msgstr "טאָג־פֿאָרמאַטירונג"
 
 #: ../leaflet-maps-marker.php:1345
 msgid "Separator lines"
-msgstr "Разделительные линии"
+msgstr "צעשײדער־שורות"
 
 #: ../leaflet-maps-marker.php:1347
 msgid "Color"
-msgstr "Цвет"
+msgstr "פֿאַרב"
 
 #: ../leaflet-maps-marker.php:1351
 msgid "Order by"
-msgstr "Запрос от"
+msgstr "סאָרטיר לױט"
 
 #: ../leaflet-maps-marker.php:1357
 msgid "desc"
-msgstr "по убыванию"
+msgstr "העכסטנס ערשט"
 
 #: ../leaflet-maps-marker.php:1358
 msgid "asc"
-msgstr "по возрастанию"
+msgstr "נידעריקסטנס ערשט"
 
 #: ../leaflet-maps-marker.php:1360
 msgid "Text after list of markers"
-msgstr "Текст после списка маркеров"
+msgstr "טעקסט נאָך אַ שורה אָנװײַזפּונקטן"
 
 #: ../leaflet-maps-marker.php:1363
 msgid "Show GeoRSS subscribe link"
-msgstr "Отображать ссылку подписки GeoRSS"
+msgstr "װײַז אַן אַבאָניר־פֿאַרבינדונג צו GeoRSS"
 
 #: ../leaflet-maps-marker.php:1366
 msgid "Show attribution link"
-msgstr "Отображать ссылку на оригинал"
+msgstr "װײַז די אַטריבוציע־פֿאַרבינדונג"
 
 #: ../leaflet-maps-marker.php:1419 ../leaflet-maps-marker.php:1426
 msgid "show map"
-msgstr "отобразить карту"
+msgstr "װײַז מאַפּע"
 
 #: ../leaflet-maps-marker.php:1451
 msgid "via GeoRSS - please use RSS Reader like http://google.com/reader for example"
-msgstr "Для GeoRSS используйте, пожалуйста, программу для чтения RSS, например, http://google.com/reader"
+msgstr "‫מיט GeoRSS – ניצט אַן RSS לײענער װי http://google.com/reader למשל‬"
 
 #: ../leaflet-maps-marker.php:1451
 msgid "Subscribe to markers"
-msgstr "Подписаться на маркеры"
+msgstr "אַבאָניר צו װײַזפּונקטן"
 
 #: ../leaflet-maps-marker.php:1454
 msgid "powered by"
-msgstr "при поддержке"
+msgstr "מיטן כּח פֿון"
 
 #: ../leaflet-marker.php:18
 msgid "edit assigned layer"
-msgstr "редактировать назначенный слой"
+msgstr "רעדאַקטיר אַסיגנירטן שיכט"
 
 #: ../leaflet-marker.php:50
 msgid "Marker has been successfully added"
-msgstr "Маркер был успешно добавлен"
+msgstr "הצלחה אין צולײגן דעם אָנװײַזפּונקט"
 
 #: ../leaflet-maps-marker.php:89 ../leaflet-maps-marker.php:91
 #: ../leaflet-marker.php:50 ../leaflet-marker.php:83
 msgid "edit marker"
-msgstr "редактировать маркер"
+msgstr "רעדאַקטיר דעם אָנװײַזפּונקט"
 
 #: ../leaflet-marker.php:83
 msgid "Marker has been successfully updated"
-msgstr "Маркер был успешно обновлен"
+msgstr "הצלחה אין דערהײַנטיקן דעם אָנװײַזפּונקט"
 
 #: ../leaflet-marker.php:83 ../leaflet-marker.php:95 ../leaflet-marker.php:194
 msgid "add new marker"
-msgstr "добавить новый маркер"
+msgstr "לײג אַ נײַעם אָנװײַזפּונקט צו"
 
 #: ../leaflet-marker.php:95
 msgid "Marker has been successfully deleted"
-msgstr "Маркер был успешно удален"
+msgstr "הצלחה אין אָפּמעקן דעם אָנװײַזפּונקט"
 
 #: ../leaflet-marker.php:230
 msgid "Do not assign marker to a layer"
-msgstr "Не назначайте маркер слою"
+msgstr "אַסיגניר ניט דעם אָנװײַזפּונקט צו קײן שיכט"
 
 #: ../leaflet-marker.php:238
 msgid "or"
-msgstr "или"
+msgstr "אָדער"
 
 #: ../leaflet-marker.php:256
 msgid "or set marker coordinates by clicking on the preview map"
-msgstr "или установите координаты маркера, кликнув на карту предварительного просмотра"
+msgstr "אָדער באַשטעטיק קאָאָרדינאַטן פֿון אָנװײַזפּונקט מיט אַ קליק אין פֿאָראױסזען־מאַפּע"
 
 #: ../leaflet-marker.php:294
 msgid "Time"
-msgstr "Время"
+msgstr "צײַט"
 
 #: ../leaflet-marker.php:295
 msgid "Hour"
-msgstr "Час"
+msgstr "שעה"
 
 #: ../leaflet-marker.php:296
 msgid "Minute"
-msgstr "Минута"
+msgstr "מינוט"
 
 #: ../leaflet-marker.php:297
 msgid "Second"
-msgstr "Секунда"
+msgstr "רגע"
 
 #: ../leaflet-marker.php:298
 msgid "Now"
-msgstr "Сейчас"
+msgstr "איצט"
 
 #: ../leaflet-marker.php:299
 msgid "Add"
-msgstr "Добавить"
+msgstr "געב צו"
 
 #: ../leaflet-marker.php:304
 msgid "Timestamp for KML animation"
-msgstr "Метка времени для анимации KML"
+msgstr "‫צײַט־שטעמפּל פֿאַר KML-אַנימאַציע‬"
 
 #: ../leaflet-marker.php:304
 msgid "Click here for more information on animations in KML/Google Earth"
-msgstr "Кликните сюда для получения информации об анимации в KML/Google Earth"
+msgstr "‫גיט דאָ אַ קליק צו באַקומען נאָך אינפֿאָרמאַציע װעגן אַנימאַציעס אין KML / Google Earth‬"
 
 #: ../leaflet-marker.php:306
 msgid "If empty, marker creation date will be used"
-msgstr "Если не указано, будет использоваться время создания"
+msgstr "אױב לײדיק װעט מען ניצן די צײַט װען מען האָט באַשאַפֿן דעם אָנװײַזפּונקט"
 
 #: ../leaflet-marker.php:350
 msgid "if set, markername will be inserted here"
-msgstr "если указано, название маркера будет здесь"
+msgstr "אױב באַשטעטיקט װעט זיך דער נאָמען פֿון אָנװײַזפּונקט דאָ טרעפֿן"
 
 #: ../leaflet-marker.php:420
 msgid "If you want to use different icons, please visit the %1$s (offering more than 700 compatible icons) and upload the new icons to the directory %2$s/"
-msgstr "Если вы хотите использовать другие ярлыки, пожалуйста, посетите %1$s (предлагается более 700 совместимых ярлыков) и загрузите новые ярлыки в директорию %2$s/"
+msgstr "‫אױב איר װילט ניצן אַנדערע בילדלעך, קום צו גאַסט בײַ %1$s (מיט איבער 700 בילדלעך װאָס פּאַסן) און לאָד נײַע בילדלעך אַרױף אין פּאַפּקע %2$s/‬\n"
 
 #: ../leaflet-marker.php:421
 msgid "If you want to use different icons, please visit the %1$s (offering more than 700 compatible icons) and ask your WordPress admin to upload the new icons to the directory %2$s/"
-msgstr "Если вы хотите использовать другие ярлыки, пожалуйста, посетите %1$s (предлагается более 700 совместимых ярлыков) и попросите администратора WordPress загрузить новые ярлыки в директорию %2$s/"
+msgstr "‫אױב איר װילט ניצן אַנדערע בילדלעך, קום צו גאַסט בײַ %1$ (מיט איבער 700 בילדלעך װאָס פּאַסן) און בעט אַז אײַער ררר אַדמיניסטראַטאָר זאָל אַרױפֿלאָדן די נײַע בילדלעך אין פּאַפּקע%2$s /‬\n"
 
 #: ../leaflet-marker.php:437
 msgid "open by default?"
-msgstr "открывать по умолчанию?"
+msgstr "‫עפֿן אומגעהײסן?‬"
 
 #: ../leaflet-marker.php:443
 msgid "If no is selected, the popup will only be visible after clicking on the marker on marker- or layer-maps. If yes is selected, the popup is shown by default on marker-maps but not on layer-maps, where this feature is not supported"
-msgstr "Если выбрано \"нет\", всплывающий текст будет виден только после клика по маркеру на маркированных или слойных картах. Если выбрано \"да\", то всплывающий текст будет отображен по умолчанию на маркированных, но не на слойных картах, которые не поддерживают эту функцию"
+msgstr "אױב מע זאָג אַז נײן, װעט דאָס אױפֿשפּרינג־צעטל זיך װײַזן נאָר װען מען גיט אַ קליק אױף אַן אָנװײַזפּונקט אױף אַ מאַפּע.  אױב מע זאָגט אַז יאָ, װעט דאָס אױפֿשפּרינג־צעטל זיך װײַזן אומגעהײסן אױף אָנװײַזפּונקט־מאַפּעס, אָבער ניט אױף שיכט־מאַפּעס, װאָס האָבן ניט די פֿעיִקײַט."
 
 #: ../leaflet-marker.php:495
 msgid "Note: image width gets resized to 260px automatically to fit in popup"
-msgstr "Внимание: ширина изображения будет автоматически изменена на 260пкс для соответствия всплывающему тексту"
+msgstr "באַמערקט: די ברײט פֿון אַ בילד װעט זיך פֿאַרגרעסערן אָדער פֿאַרקלענערן צו 260 פּינטלעך צוצופּאַסן צום אױפֿשפּרינג־צעטל"
 
 #: ../leaflet-marker.php:503
 msgid "Marker added by"
-msgstr "Автор добавленного маркера"
+msgstr "אָנװײַזפּונקט צוגעלײגט פֿון"
 
 #: ../leaflet-marker.php:513
 msgid "update marker"
-msgstr "обновить маркер"
+msgstr "דערהײַנטיק דעם אָנװײַזפּונקט"
 
 #: ../leaflet-marker.php:513
 msgid "add marker"
-msgstr "добавить маркер"
+msgstr "לײג צו אַן אָנװײַזפּונקט"
 
 #: ../leaflet-marker.php:523
 msgid "delete marker"
-msgstr "удалить маркер"
+msgstr "מעק אַן אָנװײַזפּונקט אָפּ"
 
 #: ../leaflet-tools.php:25
 msgid "All markers from layer ID %1$s have been successfully assigned to layer ID %2$s"
-msgstr "Все маркеры слоя ID %1$s были успешно переназначены слою ID %2$s"
+msgstr "‫הצלחה אין אַסיגנירן אַלע אָנװײַזפּונקטן פֿון שיכט %1$ צום צװײטן שיכט %2$‬\n"
 
 #: ../leaflet-tools.php:25 ../leaflet-tools.php:32 ../leaflet-tools.php:39
 #: ../leaflet-tools.php:41 ../leaflet-tools.php:48 ../leaflet-tools.php:58
@@ -811,510 +811,510 @@ msgstr "Все маркеры слоя ID %1$s были успешно пере�
 #: ../leaflet-tools.php:158 ../leaflet-tools.php:164 ../leaflet-tools.php:170
 #: ../leaflet-tools.php:176
 msgid "Back to Tools"
-msgstr "Обратно к Инструментам"
+msgstr "צוריק צו די מכשירים"
 
 #: ../leaflet-tools.php:32
 msgid "All markers from layer ID %1$s have been successfully deleted"
-msgstr "Все маркеры слоя ID %1$s были успешно удалены"
+msgstr "‫הצלחה אין אָפּמעקנט די אַלע אָנװײַזפּונקטן פֿון דער שיכט %1$‬"
 
 #: ../leaflet-tools.php:39
 msgid "All markers from all layers have been successfully deleted"
-msgstr "Все маркеры всех слоев были успешно удалены"
+msgstr "הצלחה אין אָפּמעקנט די אַלע אָנװײַזפּונקטן פֿון אַלע שיכטן"
 
 #: ../leaflet-tools.php:41
 msgid "Please confirm that you want to delete all markers by checking the checkbox"
-msgstr "Пожалуйста, подтвердите, что вы хотите удалить все маркеры, отметив галочкой"
+msgstr "באַשטעטיקט אַז איר װילט אָפּמעקן אַלע אָנװײַזפּונקטן מיט אַ קלעק אין קלעקקעסטל"
 
 #: ../leaflet-tools.php:48
 msgid "The basemap for all markers has been successfully set to %1$s"
-msgstr "Базовая карта всех маркеров была успешно установлена на %1$s"
+msgstr "‫הצלחה אין באַשטעטיקן די באַזנמאַפּע פֿון אַלע אָנװײַזפּונקטן צו %1$s‬"
 
 #: ../leaflet-tools.php:58
 msgid "The overlays status for all markers has been successfully updated"
-msgstr "Статус наложения для всех маркеров был успешно обновлен"
+msgstr "הצלחה אין דערהײַנטיקן דעם איבערשרײַב־סטאַטוס פֿון אַלע אָנװײַזפּונקטן"
 
 #: ../leaflet-tools.php:73
 msgid "The WMS status for all markers has been successfully updated"
-msgstr "WMS статус для всех маркеров был успешно обновлен"
+msgstr "‫הצלחה אין דערהײַנטיקן דעם WMS־סטאַטוס פֿון אַלע אָנװײַזפּונקטן‬\n"
 
 #: ../leaflet-tools.php:79
 msgid "The map size for all markers has been successfully set to width =  %1$s %2$s and height = %3$s px"
-msgstr "Размер карты для всех маркеров был успешно установлен: ширина =  %1$s %2$s и высота = %3$s пкс"
+msgstr "‫הצלחה אין באַשטעטיקן די מאַפּע־גרײס פֿון אַלע אָנװײַזפּונקטן, מיט ברײט %1$ און הײך %3$ פּינטלעך‬\n"
 
 #: ../leaflet-tools.php:85
 msgid "Zoom level for all markers has been successfully set to %1$s"
-msgstr "Уровень масштабирования для всех маркеров был успешно установлен на %1$s"
+msgstr "‫הצלחה אין באַשטעטיקן די פֿאַרגרעסערונג פֿון אַלע אָנװײַזפּונקטן צו %1$s‬\n"
 
 #: ../leaflet-tools.php:91
 msgid "Controlbox status for all markers has been successfully updated"
-msgstr "Статус бокового окна управления для всех маркеров был успешно обновлен"
+msgstr "הצלחה אין דערהײַנטיקן דעם סטאַטוס פֿון קאָנטראָליר־קעסטלעך פֿון אַלע אָנװײַזפּונקטן"
 
 #: ../leaflet-tools.php:97
 msgid "Panel status for all markers has been successfully updated"
-msgstr "Статус панели для всех маркеров был успешно обновлен"
+msgstr "הצלחה אין דערהײַנטיקן דעם טאַפֿליע־סטאַטוס פֿון אַלע אָנװײַזפּונקטן"
 
 #: ../leaflet-tools.php:103
 msgid "The icon for all markers has been successfully updated"
-msgstr "Ярлык для всех маркеров был успешно обновлен"
+msgstr "הצלחה אין דערהײַנטיקן דאָס בילדל פֿון אַלע אָנװײַזפּונקטן"
 
 #: ../leaflet-tools.php:109
 msgid "The popup status for all markers has been successfully updated"
-msgstr "Статус всплывающего текста для всех маркеров был успешно обновлен"
+msgstr "הצלחה אין דערהײַנטיקן דעם אױפֿשפּרינג־סטאַטוס פֿון אַלע אָנװײַזפּונקטן"
 
 #: ../leaflet-tools.php:115
 msgid "The popup text for all markers has been successfully updated"
-msgstr "Всплывающий текст для всех маркеров был успешно обновлен"
+msgstr "הצלחה אין דערהײַנטיקן דעם אױפֿשפּרינג־טעקסט פֿון אַלע אָנװײַזפּונקטן"
 
 #: ../leaflet-tools.php:121
 msgid "The basemap for all layers has been successfully set to %1$s"
-msgstr "Базовая карта для всех слоев была успешно установлена на %1$s"
+msgstr "‫הצלחה אין באַשטעטיקן די באַזנמאַפּע פֿון אַלע שיכטן צו %1$‬"
 
 #: ../leaflet-tools.php:131
 msgid "The overlays status for all layers has been successfully updated"
-msgstr "Статус наложения для всех слоев был успешно обновлен"
+msgstr "הצלחה אין דערהײַנטיקן דעם איבערשרײַב־סטאַטוס פֿון אַלע שיכטן"
 
 #: ../leaflet-tools.php:146
 msgid "The WMS status for all layers has been successfully updated"
-msgstr "WMS статус для всех слоев был успешно обновлен"
+msgstr "‫הצלחה אין דערהײַנטיקן דעם WMS־סטאַטוס פֿון אַלע שיכטן‬\n"
 
 #: ../leaflet-tools.php:152
 msgid "The map size for all layers has been successfully set to width =  %1$s %2$s and height = %3$s px"
-msgstr "Размер карты для всех слоев был успешно установлен: ширина =  %1$s %2$s и высота = %3$s пкс"
+msgstr "‫הצלחה אין באַשטעטיקן די מאַפּע־גרײס פֿון אַלע שיכטן מיט ברײט %1$s %2$s און הײך %3$s פּינטלעך‬"
 
 #: ../leaflet-tools.php:158
 msgid "Zoom level for all layers has been successfully set to %1$s"
-msgstr "Уровень масштабирования для всех слоев был успешно установлен на %1$s"
+msgstr "‫הצלחה אין באַשטעטיקן די פֿאַרגרעסערונג פֿון אַלע שיכטן צו %1$s‬"
 
 #: ../leaflet-tools.php:164
 msgid "Controlbox status for all layers has been successfully updated"
-msgstr "Статус бокового окна управления для всех слоев был успешно обновлен"
+msgstr "הצלחה אין דערהײַנטיקן דעם סטאַטוס פֿון קאָנטראָליר־קעסטלעך פֿון אַלע שיכטן"
 
 #: ../leaflet-tools.php:170
 msgid "Panel status for all layers has been successfully updated"
-msgstr "Панель статуса для всех слоев была успешно обновлена"
+msgstr "הצלחה אין דערהײַנטיקן דעם טאַפֿליע־סטאַטוס פֿון אַלע שיכטן"
 
 #: ../leaflet-tools.php:176
 msgid "The list marker-status for all layers has been successfully updated"
-msgstr "Список статусов маркеров для всех слоев был успешно обновлен"
+msgstr "הצלחה אין דערהײַנטיקן דעם סטאַטוס פֿון רשימות פֿון אָנװײַזפּונקטן אין אַלע שיכטן"
 
 #: ../leaflet-tools.php:188
 msgid "Move markers to a layer"
-msgstr "Переместить маркеры на слой"
+msgstr "רוקן אָנװײַזפּונקן איבער אין אַ שיכט אַרײַן"
 
 #: ../leaflet-tools.php:192
 msgid "Source"
-msgstr "Источник"
+msgstr "קװאַל"
 
 #: ../leaflet-tools.php:203
 msgid "Target"
-msgstr "Цель"
+msgstr "ציל"
 
 #: ../leaflet-tools.php:215
 msgid "move markers"
-msgstr "переместить маркеры"
+msgstr "רוק אָנװײַזפּונקטן איבער"
 
 #: ../leaflet-tools.php:215
 msgid "Do you really want to move the selected markers?"
-msgstr "Вы действительно хотите переместить выбранные маркеры?"
+msgstr "‫איר װילט טאַקע איבעררוקן די אױסגעקליבענע אָנװײַזפּונקן?‬"
 
 #: ../leaflet-tools.php:227
 msgid "Delete all markers from a layer"
-msgstr "Удалить все маркеры слоя"
+msgstr "מעק אָפּ די אַלע אָנװײַזפּונקן פֿון אַ שיכט"
 
 #: ../leaflet-tools.php:243
 msgid "delete all markers from selected layer"
-msgstr "удалить все маркеры выбранного слоя"
+msgstr "מעק אָפּ די אַלע אָנװײַזפּונקן פֿון אַן אױסגעקליבענעם שיכט"
 
 #: ../leaflet-tools.php:243
 msgid "Do you really want to delete all markers from the selected layer? (cannot be undone)"
-msgstr "Вы действительно хотите удалить все маркеры выбранного слоя? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע אָפּמעקן די אַלע אָנװײַזפּונקן פֿונעם  אױסגעקליבענעם שיכט? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:253
 msgid "Change settings for all %1$s existing marker maps"
-msgstr "Изменить настройки для всех %1$s существующих маркированных карт"
+msgstr "‫בײַט די פֿעסטיקונג פֿאַר אַלע איצטיקע %1$s אָנװײַזפּונקט־מאַפּעס‬\n"
 
 #: ../leaflet-tools.php:275
 msgid "change basemap for all markers"
-msgstr "изменить базовую карту для всех маркеров"
+msgstr "בײַט די באַזנמאַפּע פֿאַר אַלע אָנװײַזפּונקטן"
 
 #: ../leaflet-tools.php:275
 msgid "Do you really want to change the basemap for all markers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить базовую карту для всех маркеров? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן די באַזנמאַפּע פֿאַר אַלע אָנװײַזפּונקטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:293
 msgid "change overlay status for all markers"
-msgstr "изменить статус наложения для всех маркеров"
+msgstr "בײַט דעם איבערשרײַב־סטאַטוס פֿאַר אַלע אָנװײַזפּונקטן"
 
 #: ../leaflet-tools.php:293
 msgid "Do you really want to change the overlay status for all markers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить статус наложения для всех маркеров? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן דעם איבערשרײַב־סטאַטוס פֿאַר אַלע אָנװײַזפּונקטן? (ניט צי פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:302 ../leaflet-tools.php:553
 msgid "Active WMS layers"
-msgstr "Активные WMS слои"
+msgstr "אַקטיװע WMS-שיכטן"
 
 #: ../leaflet-tools.php:317
 msgid "change active WMS layers for all markers"
-msgstr "изменить активные WMS слои для всех маркеров"
+msgstr "‫בײַט די אַקטיװע WMS-שיכטן פֿאַר אַלע אָנװײַזפּונקטן‬"
 
 #: ../leaflet-tools.php:317
 msgid "Do you really want to change active WMS layers for all markers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить активные WMS слои для всех маркеров? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן די אַקטיװע WMS-שיכטן פֿאַר אַלע אָנװײַזפּונקטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:338
 msgid "change mapsize for all markers"
-msgstr "изменить размер карты для всех маркеров"
+msgstr "בײַט מאַפּע־גרײס פֿאַר אַלע אָנװײַזפּונקטן"
 
 #: ../leaflet-tools.php:338
 msgid "Do you really want to change the map size for all markers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить размер карты для всех маркеров? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן די מאַפּע־גרײס פֿאַר אַלע אָנװײַזפּונקטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:353
 msgid "change zoom for all markers"
-msgstr "изменить масштаб для всех маркеров"
+msgstr "בײַט די פֿאַרגרעסערונג פֿון אַלע אָנװײַזפּונקטן"
 
 #: ../leaflet-tools.php:353
 msgid "Do you really want to change the zoom level for all markers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить масштаб для всех маркеров? (действие нельзя аннулировать)"
+msgstr "‫איר װילט בײַטן די פֿאַרגרעסערונג פֿון אַלע אָנװײַזפּונקטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:370
 msgid "change controlbox status for all markers"
-msgstr "изменить статус окна управления для всех маркеров"
+msgstr "בײַט דעם קאָנטראָל־קעסטל־סטאַטוס פֿון אַלע אָנװײַזפּונקטן"
 
 #: ../leaflet-tools.php:370
 msgid "Do you really want to change the controlbox status for all markers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить статус окна управления для всех маркеров? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן דעם קאָנטראָל־קעסטל־סטאַטוס פֿון אַלע אָנװײַזפּונקטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:387
 msgid "change panel status for all markers"
-msgstr "изменить статус панели для всех мареров"
+msgstr "בײַט דעם טאַפֿליע־סטאַטוס פֿון אַלע אָנװײַזפּונקטן"
 
 #: ../leaflet-tools.php:387
 msgid "Do you really want to change the panel status for all markers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить статус панели для всех маркеров? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן דעם טאַפֿליע־סטאַטוס פֿון אַלע אָנװײַזפּונקטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:418
 msgid "update icon for all markers"
-msgstr "обновить ярлык для всех маркеров"
+msgstr "דערהײַניק דאָס בילדל פֿון אַלע אָנװײַזפּונקטן"
 
 #: ../leaflet-tools.php:418
 msgid "Do you really want to change the icon for all markers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить ярлык для всех маркеров? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע דערהײַניקן דאָס בילדל פֿון אַלע אָנװײַזפּונקטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:434
 msgid "change popup status for all markers"
-msgstr "изменить статус всплывающего текста для всех маркеров"
+msgstr "בײַט דעם אױפֿשפּרינג־סטאַטוס פֿון אַלע אָנװײַזפּונקטן"
 
 #: ../leaflet-tools.php:434
 msgid "Do you really want to change the popup status for all markers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить статус всплывающего текста для всех маркеров? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן דעם אױפֿשפּרינג־סטאַטוס פֿון אַלע אָנװײַזפּונקטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:494
 msgid "change popup text for all markers"
-msgstr "изменить всплывающий текст для всех маркеров"
+msgstr "בײַט דעם אױפֿשפּרינג־טעקסט פֿון אַלע אָנװײַזפּונקטן"
 
 #: ../leaflet-tools.php:494
 msgid "Do you really want to change the popup text for all markers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить всплывающий текст для всех маркеров? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן דעם אױפֿשפּרינג־טעקסט פֿון אַלע אָנװײַזפּונקטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:504
 msgid "Change settings for all %1$s existing layer maps"
-msgstr "Изменить настройки для всех %1$s существующих слойных карт"
+msgstr "‫בײַט די פֿעסטיקונג פֿון אַלע איצטיקע %1$s שיכט־מאַפּעס‬"
 
 #: ../leaflet-tools.php:526
 msgid "change basemap for all layers"
-msgstr "изменить базовую карту для всех слоев"
+msgstr "בײַט מאַפּע־באַזע פֿאַר אַלע שיכטן"
 
 #: ../leaflet-tools.php:526
 msgid "Do you really want to change the basemap for all layers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить базовую карту для всех слоев? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן די מאַפּע־באַזע פֿאַר אַלע אָנװײַזפּונקטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:544
 msgid "change overlay status for all layers"
-msgstr "изменить статус наложения для всех слоев"
+msgstr "בײַט דעם איבערשרײַב־סטאַטוס פֿאַר אַלע שיכטן"
 
 #: ../leaflet-tools.php:544
 msgid "Do you really want to change the overlay status for all layers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить статус наложения для всех слоев? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן דעם איבערשרײַב־סטאַטוס פֿאַר אַלע שיכטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:568
 msgid "change active WMS layers for all layers"
-msgstr "изменить активные WMS слои для всех слоев"
+msgstr "‫בײַט די אַקטיװע WMS-שיכטן פֿאַר אַלע שיכטן‬"
 
 #: ../leaflet-tools.php:568
 msgid "Do you really want to change active WMS layers for all layers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить активные WMS слои для всех слоев? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן די אַקטיװע WMS-שיכטן פֿאַר אַלע שיכטן? (ניט צו פֿאַרקערן!) ‬"
 
 #: ../leaflet-tools.php:589
 msgid "change mapsize for all layers"
-msgstr "изменить размер карты для всех слоев"
+msgstr "בײַט די מאַפּע־גרײס פֿאַר אַלע שיכטן"
 
 #: ../leaflet-tools.php:589
 msgid "Do you really want to change the map size for all layers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить размер карты для всех слоев? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן די מאַפּע־גרײס פֿאַר אַלע שיכטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:604
 msgid "change zoom for all layers"
-msgstr "изменить масштаб для всех слоев"
+msgstr "בײַט דעם פֿאַרגרעסער־צאָל פֿאַר אַלע שיכטן"
 
 #: ../leaflet-tools.php:604
 msgid "Do you really want to change the zoom level for all layers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить масштаб для всех слоев? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן דעם פֿאַרגרעסער־צאָל פֿאַר אַלע שיכטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:621
 msgid "change controlbox status for all layers"
-msgstr "изменить статус окна управления для всех слоев"
+msgstr "בײַט דעם קאָנטאָל־קעסטל־סטאַטוס פֿאַר אַלע שיכטן"
 
 #: ../leaflet-tools.php:621
 msgid "Do you really want to change the controlbox status for all layers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить статус окна управления для всех слоев? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן דעם קאָנטראָל־קעסטל־סטאַטוס פֿאַר אַלע שיכטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:638
 msgid "change panel status for all layers"
-msgstr "изменить статус панели для всех слоев"
+msgstr "בײַט דעם טאַפֿליע־סטאַטוס פֿאַר אַלע שיכטן"
 
 #: ../leaflet-tools.php:638
 msgid "Do you really want to change the panel status for all layers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить статус панели для всех слоев? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן דעם טאַפֿליע־סטאַטוס פֿון אַלע שיכטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:655
 msgid "change list marker-status for all layers"
-msgstr "изменить список статусов маркеров для всех слоев"
+msgstr "בײַט דעם סטאַטוס פֿון רשימות פֿון אָנװײַזפּונקטן פֿון אַלע שיכטן"
 
 #: ../leaflet-tools.php:655
 msgid "Do you really want to change the list marker-status for all layers? (cannot be undone)"
-msgstr "Вы действительно хотите изменить список статусов маркеров для всех слоев? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע בײַטן דעם סטאַטוס פֿון אָנװײַזפּונקט־רשימות פֿון אַלע שיכטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-tools.php:668
 msgid "Delete all %1$s markers from all %2$s layers"
-msgstr "Удалить все %1$s маркеры всех %2$s слоев"
+msgstr "‫מעק אָפּ אַלע %1$s אָנװײַזפּונקטן פֿון אַלע %2$s שיכטן‬"
 
 #: ../leaflet-tools.php:677
 msgid "delete all markers from all layers"
-msgstr "удалить все маркеры всех слоев"
+msgstr "מעק אָפּ אַלע אָנװײַזפּונקטן פֿון אַלע שיכטן"
 
 #: ../leaflet-tools.php:677
 msgid "Do you really want to delete all markers from all layers? (cannot be undone)"
-msgstr "Вы действительно хотите удалить все маркеры всех слоев? (действие нельзя аннулировать)"
+msgstr "‫איר װילט טאַקע אָפּמעקן אַלע אָנװײַזפּונקטן פֿון אַלע שיכטן? (ניט צו פֿאַרקערן!)‬"
 
 #: ../leaflet-wikitude.php:109 ../leaflet-wikitude.php:188
 #: ../leaflet-wikitude.php:267 ../leaflet-wikitude.php:337
 msgid "Wikitude API powered by www.mapsmarker.com"
-msgstr "Wikitude API при поддержке www.mapsmarker.com"
+msgstr "‫די פּראָגראַמירון־צובינד פֿון Wikitude ניצט דעם כּח פֿון www.mapsmarker.com"
 
 #: ../tinymce_plugin.php:72
 msgid "Insert map"
-msgstr "Вставить карту"
+msgstr "לײג אַ מאַפּע אַרײַן"
 
 #: ../tinymce_plugin.php:79
 msgid "If no search term is entered, the latest 15 maps will be shown."
-msgstr "Если не введен термин для поиска, будет показано как минимум 15 карт."
+msgstr "אױב מע באַשטעלט ניט קײן זוכטערמין, װעלן די לעצטע 15 מאַפּעס זיך װײַזן"
 
 #: ../tinymce_plugin.php:80
 msgid "Search"
-msgstr "Поиск"
+msgstr "זוך"
 
 #: ../tinymce_plugin.php:82
 msgid "Please select the map you would like to add"
-msgstr "Пожалуйста, выберите карту, которую вы хотели бы добавить"
+msgstr "קלײַבט אױס די מאַפּע װאָס איר װילט צולײגן"
 
 #: ../tinymce_plugin.php:86
 msgid "Add shortcode"
-msgstr "Добавить код"
+msgstr "לײג צו אַ קורצנאָמען"
 
 #: ../tinymce_plugin.php:88
 msgid "Cancel"
-msgstr "Отменить"
+msgstr "רוף אָפּ"
 
 #: ../tinymce_plugin.php:192
 msgid "map type and ID"
-msgstr "тип карты и идентификационный номер"
+msgstr "מאַפּע־מין און אידענטיפֿיקאַציע"
 
 #: ../tinymce_plugin.php:195
 msgid "name"
-msgstr "имя"
+msgstr "נאָמען"
 
 #: ../class-leaflet-options.php:49
 msgid "Default Field"
-msgstr "Поле по умолчанию"
+msgstr "געװײנטלעכער צעל־אינהאַלט"
 
 #: ../class-leaflet-options.php:50
 msgid "This is a default description."
-msgstr "Это описание по умолчанию."
+msgstr "דאָס איז אַ געװײנטלעכע דערקלערונג"
 
 #: ../class-leaflet-options.php:82 ../leaflet-admin-header.php:11
 #: ../leaflet-maps-marker.php:803 ../leaflet-maps-marker.php:883
 #: ../leaflet-maps-marker.php:1276 ../leaflet-marker.php:755
 #: ../leaflet-marker.php:759 ../leaflet-marker.php:763
 msgid "Settings"
-msgstr "Настройки"
+msgstr "אײַנשטעלונגען"
 
 #: ../class-leaflet-options.php:86
 msgid "You just successfully installed the \"Leaflet Maps Marker\" plugin. You can now optionally change the default settings below or <a href=\"%1$sadmin.php?page=leafletmapsmarker_marker\">add your first marker</a>.<br/>For tutorials and help, please check the <a href=\"%1$sadmin.php?page=leafletmapsmarker_help\">Help &amp; Credits page</a>!"
-msgstr "Только что вы успешно установили плагин \"Leaflet Maps Marker\". Сейчас вы можете по желанию изменить настройки или <a href=\"%1$sadmin.php?page=leafletmapsmarker_marker\"> добавить свой первый маркер</a>.<br/>Чтобы получить инструкции и помощь, пожалуйста, откройте <a href=\"%1$sadmin.php?page=leafletmapsmarker_help\">страницу Помощь и Разработчики</a>!"
+msgstr ""
 
 #: ../class-leaflet-options.php:90
 msgid "Warning: the custom map icon directory at <code>/wp-contents/uploads/leaflet-maps-marker-icons</code> could not be created due to file permission settings on your webserver. Leaflet Maps Marker will work as designed, but only with one map icon available.<br/>You can add the included map icons manually by following the steps at <a href=\"http://www.mapsmarker.com/incomplete-installation\" target=\"_blank\">http://www.mapsmarker.com/incomplete-installation</a>"
-msgstr "Предупреждение: папка ярлыков клиента для карт по адресу <code>/wp-contents/uploads/leaflet-maps-marker-icons</code> не была создана в связи с настройками ограничений доступ к файлам веб сервера. Плагин Leaflet Maps Marker будет работать с ограничениями. Только один вид ярлыков для карт будет доступен.<br/>Вы можете добавить ярлыки для карт вручную, следуя приведенной здесь инструкции <a href=\"http://www.mapsmarker.com/incomplete-installation\" target=\"_blank\">http://www.mapsmarker.com/incomplete-installation</a>"
+msgstr ""
 
 #: ../class-leaflet-options.php:96
 msgid "Plugin options updated."
-msgstr "Настройки плагина обновлены."
+msgstr "הצלחה אין דערהײַנטיקן די ברירות פֿון אײַנשטעכװאַרג"
 
 #: ../class-leaflet-options.php:110
 msgid "Save Changes"
-msgstr "Сохранить изменения"
+msgstr "היט אָפּ די ענדערונגען"
 
 #: ../class-leaflet-options.php:180 ../class-leaflet-options.php:200
 #: ../class-leaflet-options.php:212 ../class-leaflet-options.php:240
 #: ../class-leaflet-options.php:248 ../class-leaflet-options.php:257
 #: ../class-leaflet-options.php:267
 msgid "Index"
-msgstr "Индекс"
+msgstr "זוכצעטטל"
 
 #: ../class-leaflet-options.php:181 ../class-leaflet-options.php:380
 msgid "Default basemap for new markers/layers"
-msgstr "Базовая карта по умолчанию для новых маркеров/слоев"
+msgstr "געװײנטלעכע באַזנמאַפּע פֿאַר נײַע אָנװײַזפּונקן און שיכטן"
 
 #: ../class-leaflet-options.php:182 ../class-leaflet-options.php:427
 msgid "Names for default basemaps"
-msgstr "Названия для базовых карт по умолчанию"
+msgstr "נעמען פֿון געװײנטלעכע באַזנמאַפּעס"
 
 #: ../class-leaflet-options.php:183 ../class-leaflet-options.php:606
 msgid "Available basemaps in control box"
-msgstr "Доступные базовые карты в окне управления"
+msgstr "באַזנמאַפּעס װאָס געפֿינען זיך אין קאָנטראָלקעסטל"
 
 #: ../class-leaflet-options.php:185 ../class-leaflet-options.php:810
 #: ../class-leaflet-options.php:824
 msgid "OGD Vienna Selector"
-msgstr "OGD Венский Селектор"
+msgstr "‫סעלעקטירער פֿאַר װין־OGD ‬"
 
 #: ../class-leaflet-options.php:186
 msgid "Cloudmade 1 settings"
-msgstr "Настройки Cloudmade 1"
+msgstr "‫אײַנשטלעלונגען פֿון Cloudmade-1‬"
 
 #: ../class-leaflet-options.php:187 ../class-leaflet-options.php:895
 msgid "Cloudmade 2 settings"
-msgstr "Настройки Cloudmade 2"
+msgstr "‫אײַנשטלעלונגען פֿון Cloudmade-2‬"
 
 #: ../class-leaflet-options.php:188 ../class-leaflet-options.php:941
 msgid "Cloudmade 3 settings"
-msgstr "Настройки Cloudmade 3"
+msgstr "‫אײַנשטלעלונגען פֿון Cloudmade-3‬"
 
 #: ../class-leaflet-options.php:189
 msgid "MapBox 1 settings"
-msgstr "Настройки MapBox 1"
+msgstr "‫אײַנשטעלונגען פֿאַר MapBox 1‬"
 
 #: ../class-leaflet-options.php:190 ../class-leaflet-options.php:1045
 msgid "MapBox 2 settings"
-msgstr "Настройки MapBox 2"
+msgstr "‫אײַנשטעלונגען פֿאַר MapBox 2‬"
 
 #: ../class-leaflet-options.php:191 ../class-leaflet-options.php:1103
 msgid "MapBox 3 settings"
-msgstr "Настройки MapBox 3"
+msgstr "‫פֿעסטיגונג פֿון MapBox 3‬"
 
 #: ../class-leaflet-options.php:192 ../class-leaflet-options.php:1161
 msgid "Custom basemap 1 settings"
-msgstr "Настройки базовой карты клиента 1"
+msgstr "פֿאַראײגנטע באַזע־מאַפּע 2 אײַנשטעלונגען"
 
 #: ../class-leaflet-options.php:193 ../class-leaflet-options.php:1231
 msgid "Custom basemap 2 settings"
-msgstr "Настройки базовой карты клиента 2"
+msgstr "פֿאַראײגנטע באַזע־מאַפּע 3 אײַנשטעלונגען"
 
 #: ../class-leaflet-options.php:194 ../class-leaflet-options.php:1301
 msgid "Custom basemap 3 settings"
-msgstr "Настройки базовой карты клиента 3"
+msgstr "פֿאַראײגנטע באַזע־מאַפּע 3 אײַנשטעלונגען"
 
 #: ../class-leaflet-options.php:201 ../class-leaflet-options.php:1379
 msgid "Available overlays for new markers/layers"
-msgstr "Доступные наложения для новых маркеров/слоев"
+msgstr "פּאַסיקע איבערשרײַבונגען פֿאַר נײַע אָנװײַזפּונקטן און שיכטן"
 
 #: ../class-leaflet-options.php:202 ../class-leaflet-options.php:1432
 msgid "Custom overlay settings"
-msgstr "Настройки клиентского наложения"
+msgstr "פֿאַראײגנטע פֿעסטיקונגען פֿון איבערשרײַבונגען"
 
 #: ../class-leaflet-options.php:203 ../class-leaflet-options.php:1511
 msgid "Custom overlay 2 settings"
-msgstr "Настройки клиентского наложения 2"
+msgstr "פֿאַראײגנטע פֿעסטיקונגען פֿון איבערשרײַבונגען 2"
 
 #: ../class-leaflet-options.php:204 ../class-leaflet-options.php:1590
 msgid "Custom overlay 3 settings"
-msgstr "Настройки клиентского наложения 3"
+msgstr "פֿאַראײגנטע פֿעסטיקונגען פֿון איבערשרײַבונגען 3"
 
 #: ../class-leaflet-options.php:205 ../class-leaflet-options.php:1668
 msgid "Custom overlay 4 settings"
-msgstr "Настройки клиентского наложения 4"
+msgstr "פֿאַראײגנטע פֿעסטיקונגען פֿון איבערשרײַבונגען 4"
 
 #: ../class-leaflet-options.php:212
 msgid "WMS stands for <a href=\"http://www.opengeospatial.org/standards/wms\" target=\"_blank\">Web Map Service</a> and is a standard protocol for serving georeferenced map images over the Internet that are generated by a map server using data from a GIS database.<br/>With Leaflet Maps Marker you can configure up to 10 WMS layers which can be enabled for each map. As default, 10 WMS layers from <a href=\"http://data.wien.gv.at\" target=\"_blank\">OGD Vienna</a> and from the <a href=\"http://www.eea.europa.eu/code/gis\" target=\"_blank\">European Environment Agency</a> have been predefined for you.<br/>A selection of further possible WMS layers can be found at <a href=\"http://www.mapsmarker.com/wms\" target=\"_blank\">http://www.mapsmarker.com/wms</a>"
-msgstr "WMS - аббревиатура от <a href=\"http://www.opengeospatial.org/standards/wms\" target=\"_blank\">Web Map Service (Сервис Веб Карт)</a>, это стандартный протокол для предоставления изображений географических карт через Интернет. Изображения карт генерируются веб сервером с использованием данных из базы данных ГИС (GIS).<br/>С помощью плагина Leaflet Maps Marker вы можете настроить до 10 слоев WMS, каждый из которых можно активировать для каждой карты. 10 слоев WMS из <a href=\"http://data.wien.gv.at\" target=\"_blank\">OGD Вена</a> и из <a href=\"http://www.eea.europa.eu/code/gis\" target=\"_blank\">Европейского агентства по окружающей среде</a> были предустановлены для вас.<br/>Набор других возможных слоев WMS можно найти здесь: <a href=\"http://www.mapsmarker.com/wms\" target=\"_blank\">http://www.mapsmarker.com/wms</a>"
+msgstr ""
 
 #: ../class-leaflet-options.php:213 ../class-leaflet-options.php:1755
 msgid "Available WMS layers for new markers/layers"
-msgstr "Доступные слои WMS для новых маркеров/слоев"
+msgstr ""
 
 #: ../class-leaflet-options.php:214 ../class-leaflet-options.php:1853
 msgid "WMS layer 1 settings"
-msgstr "Настройки слоя WMS 1 "
+msgstr "‫WMS-אײַנשטעלונגען פֿאַר שיכט 1WMS-אײַנשטעלונגען פֿאַר שיכט 1‬"
 
 #: ../class-leaflet-options.php:215 ../class-leaflet-options.php:2051
 msgid "WMS layer 2 settings"
-msgstr "Настройки слоя WMS 2"
+msgstr "‫WMS-אײַנשטעלונגען פֿאַר שיכט 2‬"
 
 #: ../class-leaflet-options.php:216 ../class-leaflet-options.php:2248
 msgid "WMS layer 3 settings"
-msgstr "Настройки слоя WMS 3"
+msgstr "‫WMS-אײַנשטעלונגען פֿאַר שיכט 3‬"
 
 #: ../class-leaflet-options.php:217 ../class-leaflet-options.php:2445
 msgid "WMS layer 4 settings"
-msgstr "Настройки слоя WMS 4"
+msgstr "‫WMS-אײַנשטעלונגען פֿאַר שיכט 4‬"
 
 #: ../class-leaflet-options.php:218 ../class-leaflet-options.php:2642
 msgid "WMS layer 5 settings"
-msgstr "Настройки слоя WMS 5"
+msgstr "‫WMS-אײַנשטעלונגען פֿאַר שיכט 5‬"
 
 #: ../class-leaflet-options.php:219 ../class-leaflet-options.php:2839
 msgid "WMS layer 6 settings"
-msgstr "Настройки слоя WMS 6"
+msgstr "‫WMS-אײַנשטעלונגען פֿאַר שיכט 6‬"
 
 #: ../class-leaflet-options.php:220 ../class-leaflet-options.php:3036
 msgid "WMS layer 7 settings"
-msgstr "Настройки слоя WMS 7"
+msgstr "‫אײַנשטלעלונגען פֿון שיכט 7 פֿון WMS‬"
 
 #: ../class-leaflet-options.php:221 ../class-leaflet-options.php:3233
 msgid "WMS layer 8 settings"
-msgstr "Настройки слоя WMS 8"
+msgstr "‫אײַנשטלעלונגען פֿון שיכט 8 פֿון WMS‬"
 
 #: ../class-leaflet-options.php:222 ../class-leaflet-options.php:3430
 msgid "WMS layer 9 settings"
-msgstr "Настройки слоя WMS 9"
+msgstr "‫אײַנשטלעלונגען פֿון שיכט 9 פֿון WMS‬"
 
 #: ../class-leaflet-options.php:223 ../class-leaflet-options.php:3627
 msgid "WMS layer 10 settings"
-msgstr "Настройки слоя WMS 10"
+msgstr "‫אײַנשטלעלונגען פֿון שיכט 10 פֿון WMS‬"
 
 #: ../class-leaflet-options.php:241 ../class-leaflet-options.php:4034
 msgid "Default values for new markers"
-msgstr "Значения по умолчанию для новых маркеров"
+msgstr "געװײנטלעכע אײַנשטעלונגען פֿאַר נײַע אָנװײַזפּונקטן"
 
 #: ../class-leaflet-options.php:242 ../class-leaflet-options.php:4338
 msgid "Default values for markers added directly"
-msgstr "Значения по умолчанию для маркеров, добавленных напрямую"
+msgstr "געװײנטלעכע אײַנשטעלונגען פֿאַר אָנװײַזפּונקטן דירעקט צוגעלײגט"
 
 #: ../class-leaflet-options.php:250 ../class-leaflet-options.php:4995
 #: ../class-leaflet-options.php:5009
 msgid "Google Places bounds"
-msgstr "Границы Google Places"
+msgstr "‫גרענעצן פֿון Google-ערטער‬"
 
 #: ../class-leaflet-options.php:251 ../class-leaflet-options.php:5062
 #: ../class-leaflet-options.php:5076
 msgid "Google Places search prefix"
-msgstr "Поисковый префикс Google Places"
+msgstr "‫זוך־פּרעפֿיקס פֿון Google-ערטער‬"
 
 #: ../class-leaflet-options.php:258 ../class-leaflet-options.php:268
 #: ../class-leaflet-options.php:5110 ../class-leaflet-options.php:5522
 msgid "General settings"
-msgstr "Основные настройки"
+msgstr "אַלגעמײנע אײַנשטעלונגען"
 
 #: ../class-leaflet-options.php:269 ../class-leaflet-options.php:1976
 #: ../class-leaflet-options.php:2174 ../class-leaflet-options.php:2371
@@ -1323,94 +1323,94 @@ msgstr "Основные настройки"
 #: ../class-leaflet-options.php:3356 ../class-leaflet-options.php:3553
 #: ../class-leaflet-options.php:3750 ../class-leaflet-options.php:5711
 msgid "KML settings"
-msgstr "Настройки KML"
+msgstr "‫KML אײַנשטעלונגען‬"
 
 #: ../class-leaflet-options.php:270 ../class-leaflet-options.php:5742
 msgid "General Map settings"
-msgstr "Настройки основной карты"
+msgstr "אַלגעמײנע מאַפּע־אײַנשטעלונגען"
 
 #: ../class-leaflet-options.php:271 ../class-leaflet-options.php:5857
 msgid "Available columns for marker listing page"
-msgstr "Доступные колонки для страницы списка маркеров"
+msgstr "פּאַסיקע זײַלן פֿאַר דער זײַט מיט אַ רשימה אָנװײַזפּונקטן"
 
 #: ../class-leaflet-options.php:272 ../class-leaflet-options.php:6059
 msgid "Sort order for marker listing page"
-msgstr "Направление сортировки страницы списка маркеров"
+msgstr "סאָרטיר־סדר פֿאַר דער זײַט מיט אַ רשימה אָנװײַזפּונקטן"
 
 #: ../class-leaflet-options.php:273 ../class-leaflet-options.php:6106
 msgid "Available columns for layer listing page"
-msgstr "Доступные колонки для страницы списка слоев"
+msgstr "פּאַסיקע זײַלן פֿאַר דער זײַט מיט אַ רשימה שיכטן"
 
 #: ../class-leaflet-options.php:274 ../class-leaflet-options.php:6292
 msgid "Sort order for layer listing page"
-msgstr "Направление сортировки страницы списка слоев"
+msgstr "סאָרטיר־סדר פֿאַר דער זײַט מיט אַ רשימה שיכטן"
 
 #: ../class-leaflet-options.php:387
 msgid "Please select the basemap which should be pre-selected as default for new markers and layers. Can be changed afterwards on each marker/layer."
-msgstr "Пожалуйста, выберите базовую карту, которая должна назначаться по умолчанию для новых маркеров и слоев. Можно изменять позднее для каждого маркера/слоя."
+msgstr ""
 
 #: ../class-leaflet-options.php:393 ../class-leaflet-options.php:4352
 msgid "Default basemap"
-msgstr "Базовая карта по умолчанию"
+msgstr "געװײנטלעכע באַזע־מאַפּע"
 
 #: ../class-leaflet-options.php:398 ../class-leaflet-options.php:4357
 msgid "OpenStreetMap (Mapnik, max zoom 18)"
-msgstr "OpenStreetMap (Mapnik, макс. увеличение 18)"
+msgstr "‫OpenStreetMap (Mapnik, גרעסטער פֿאַרגרעסער־צאָל 18)‬"
 
 #: ../class-leaflet-options.php:399 ../class-leaflet-options.php:4358
 msgid "MapQuest (OSM, max zoom 18)"
-msgstr "MapQuest (OSM, макс. увеличение 18)"
+msgstr "‫MapQuest מיט (OSM, דער גרעסטער פֿאַרגרעסער־צאָל 18)‬"
 
 #: ../class-leaflet-options.php:400 ../class-leaflet-options.php:4359
 msgid "MapQuest (Aerial, max zoom 12 globally, 12+ in the United States)"
-msgstr "MapQuest (Aerial, макс. глобальное увеличение 12, 12+ в США)"
+msgstr ""
 
 #: ../class-leaflet-options.php:407 ../class-leaflet-options.php:4363
 msgid "OGD Vienna basemap (max zoom 19)"
-msgstr "OGD Венская базовая карта (макс. увеличение 19)"
+msgstr ""
 
 #: ../class-leaflet-options.php:408 ../class-leaflet-options.php:4364
 msgid "OGD Vienna satellite (max zoom 19)"
-msgstr "OGD Вена сателлит (макс. увеличение 19)"
+msgstr ""
 
 #: ../class-leaflet-options.php:415 ../class-leaflet-options.php:757
 #: ../class-leaflet-options.php:4368
 msgid "Custom basemap"
-msgstr "Клиентская базовая карта"
+msgstr "פֿאַראײגנטע באַזע־מאַפּע"
 
 #: ../class-leaflet-options.php:416 ../class-leaflet-options.php:765
 #: ../class-leaflet-options.php:4369
 msgid "Custom basemap 2"
-msgstr "Клиентская базовая карта 2"
+msgstr ""
 
 #: ../class-leaflet-options.php:417 ../class-leaflet-options.php:773
 #: ../class-leaflet-options.php:4370
 msgid "Custom basemap 3"
-msgstr "Клиентская базовая карта 3"
+msgstr "‫פֿאַראײגנטע באַזע־מאַפּע 3‬"
 
 #: ../class-leaflet-options.php:435
 msgid "Optionally you can also change the name of the predefined basemaps in the controlbox."
-msgstr "По желанию вы можете также изменить название предустановленных базовых карт в окне управления."
+msgstr ""
 
 #: ../class-leaflet-options.php:576
 msgid "Custom Basemap"
-msgstr "Клиентская базовая карта"
+msgstr "פֿאַראײגנטע באַזע־מאַפּע"
 
 #: ../class-leaflet-options.php:584
 msgid "Custom Basemap 2"
-msgstr "Клиентская базовая карта 2"
+msgstr "‫פֿאַראײגנטע באַזע־מאַפּע 2‬"
 
 #: ../class-leaflet-options.php:592
 msgid "Custom Basemap 3"
-msgstr "Клиентская базовая карта 3"
+msgstr "פֿאַראײגנטע באַזע־מאַפּע 3"
 
 #: ../class-leaflet-options.php:614
 msgid "Please select the basemaps which should be available in the control box."
-msgstr "Пожалуйста, выберите базовые карты, которые должны быть доступны в окне управления."
+msgstr ""
 
 #: ../class-leaflet-options.php:620
 msgid "Basemaps available in control box"
-msgstr "Базовые карты, доступные в окне управления"
+msgstr "פּאַסיקע באַזנמאַפּעס אין קאָנטראָלקעסטל"
 
 #: ../class-leaflet-options.php:621
 msgid "OpenStreetMap (Mapnik)"
@@ -1422,59 +1422,59 @@ msgstr "MapQuest (OSM)"
 
 #: ../class-leaflet-options.php:637
 msgid "MapQuest (Aerial)"
-msgstr "MapQuest (Аэросъемка)"
+msgstr "‫MapQuest (פֿוּן דער לופֿט)‬"
 
 #: ../class-leaflet-options.php:693
 msgid "OGD Vienna basemap"
-msgstr "OGD базовая карта Вены"
+msgstr "‫װין־OGD באַזנמאַפּע‬"
 
 #: ../class-leaflet-options.php:701
 msgid "OGD Vienna satellite"
-msgstr "OGD Вена сателлит"
+msgstr "‫װין־OGD סאַטעליט‬"
 
 #: ../class-leaflet-options.php:818
 msgid "If coordinates within boundaries of Vienna/Austria are selected for a marker or layer, the basemap automatically switches to OGD Vienna basemap and the overlay OGD Vienna addresses gets checked."
-msgstr "Если координаты, выбранные для маркера или слоя, находятся в пределах границ Вены/Австрии, базовая карта автоматически переключается на OGD базовую карту Вены и проверяется наложение OGD адреса Вены."
+msgstr ""
 
 #: ../class-leaflet-options.php:829
 msgid "enabled (use OGD Vienna basemap)"
-msgstr "активировано (использование OGD базовой карты Вены)"
+msgstr ""
 
 #: ../class-leaflet-options.php:830
 msgid "enabled (use OGD Vienna satellite)"
-msgstr "активировано (использование OGD Вена сателлит)"
+msgstr "‫דערמגעלעכט (ניץ OGD װין סאַטעליט)‬"
 
 #: ../class-leaflet-options.php:831
 msgid "disabled (use default basemap)"
-msgstr "деактивировано (использование базовой карты по умолчанию)"
+msgstr "‫ניט דערמגעלעכט (ניץ געװײנטלעכע באַזע־מאַפּע)‬"
 
 #: ../class-leaflet-options.php:838
 msgid "enable OGD Vienna addresses overlay"
-msgstr "активировать наложение OGD адреса Вены"
+msgstr "‫דערמגעלעך אַן איבערשרײַב פֿון OGD-װין אַדרעסן‬"
 
 #: ../class-leaflet-options.php:849
 msgid "Cloudmade settings"
-msgstr "Настройки Cloudmade"
+msgstr "‫אײַנשטעלונגען פֿאַר „CloudMade“‬"
 
 #: ../class-leaflet-options.php:857 ../class-leaflet-options.php:903
 #: ../class-leaflet-options.php:949
 msgid "Tutorial for Cloudmade configuration:"
-msgstr "Инструкция для настройки Cloudmade"
+msgstr "‫צא־אולמדניקל פֿאַר צופּאַסן „CloudMade“‬"
 
 #: ../class-leaflet-options.php:862 ../class-leaflet-options.php:908
 #: ../class-leaflet-options.php:954
 msgid "API key"
-msgstr "Ключ API"
+msgstr "‫שליסל צו API‬"
 
 #: ../class-leaflet-options.php:879 ../class-leaflet-options.php:925
 #: ../class-leaflet-options.php:971
 msgid "Double resolution"
-msgstr "Двойное разрешение"
+msgstr "פֿאַרטאָפּלטע רעזאָלוציע"
 
 #: ../class-leaflet-options.php:880 ../class-leaflet-options.php:926
 #: ../class-leaflet-options.php:972
 msgid "This will improve map look for iPhone 4, Motorola Milestone, etc."
-msgstr "Это улучшит качество изображения для iPhone 4, Motorola Milestone и др."
+msgstr ""
 
 #: ../class-leaflet-options.php:884 ../class-leaflet-options.php:930
 #: ../class-leaflet-options.php:976 ../class-leaflet-options.php:4114
@@ -1483,7 +1483,7 @@ msgstr "Это улучшит качество изображения для iPh
 #: ../class-leaflet-options.php:5611 ../class-leaflet-options.php:5623
 #: ../class-leaflet-options.php:5635
 msgid "enabled"
-msgstr "активировано"
+msgstr "דערמעגלעכט"
 
 #: ../class-leaflet-options.php:885 ../class-leaflet-options.php:931
 #: ../class-leaflet-options.php:977 ../class-leaflet-options.php:4113
@@ -1492,28 +1492,28 @@ msgstr "активировано"
 #: ../class-leaflet-options.php:5612 ../class-leaflet-options.php:5624
 #: ../class-leaflet-options.php:5636
 msgid "disabled"
-msgstr "деактивировано"
+msgstr "ניט דערמעגלעכט"
 
 #: ../class-leaflet-options.php:987
 msgid "MapBox settings"
-msgstr "Настройки MapBox"
+msgstr "‫MapBox אײַנשטעלונגען‬"
 
 #: ../class-leaflet-options.php:1000 ../class-leaflet-options.php:1058
 #: ../class-leaflet-options.php:1116
 msgid "User"
-msgstr "Пользователь"
+msgstr "ניצער"
 
 #: ../class-leaflet-options.php:1001 ../class-leaflet-options.php:1009
 #: ../class-leaflet-options.php:1059 ../class-leaflet-options.php:1067
 #: ../class-leaflet-options.php:1117 ../class-leaflet-options.php:1125
 msgid "e.g."
-msgstr "например"
+msgstr "למשל"
 
 #: ../class-leaflet-options.php:1008 ../class-leaflet-options.php:1066
 #: ../class-leaflet-options.php:1124 ../leaflet-fullscreen.php:113
 #: ../leaflet-fullscreen.php:528
 msgid "map"
-msgstr "карта"
+msgstr "מאַפּע"
 
 #: ../class-leaflet-options.php:1016 ../class-leaflet-options.php:1074
 #: ../class-leaflet-options.php:1132 ../class-leaflet-options.php:1190
@@ -1521,7 +1521,7 @@ msgstr "карта"
 #: ../class-leaflet-options.php:1470 ../class-leaflet-options.php:1549
 #: ../class-leaflet-options.php:1627 ../class-leaflet-options.php:1706
 msgid "Minimum zoom level"
-msgstr "Минимальный уровень увеличения"
+msgstr "דער קלענסטער פֿאַרגרעסער־צאָל"
 
 #: ../class-leaflet-options.php:1024 ../class-leaflet-options.php:1082
 #: ../class-leaflet-options.php:1140 ../class-leaflet-options.php:1198
@@ -1529,7 +1529,7 @@ msgstr "Минимальный уровень увеличения"
 #: ../class-leaflet-options.php:1478 ../class-leaflet-options.php:1557
 #: ../class-leaflet-options.php:1635 ../class-leaflet-options.php:1714
 msgid "Maximum zoom level"
-msgstr "Максимальный уровень увеличения"
+msgstr "דער גרעסטער פֿאַרגרעסער־צאָל"
 
 #: ../class-leaflet-options.php:1032 ../class-leaflet-options.php:1090
 #: ../class-leaflet-options.php:1148 ../class-leaflet-options.php:1182
@@ -1542,7 +1542,7 @@ msgstr "Максимальный уровень увеличения"
 #: ../class-leaflet-options.php:3110 ../class-leaflet-options.php:3307
 #: ../class-leaflet-options.php:3504 ../class-leaflet-options.php:3701
 msgid "Attribution"
-msgstr "Атрибуция"
+msgstr "אַטריבוציע"
 
 #: ../class-leaflet-options.php:1033 ../class-leaflet-options.php:1091
 #: ../class-leaflet-options.php:1149 ../class-leaflet-options.php:1175
@@ -1560,19 +1560,19 @@ msgstr "Атрибуция"
 #: ../class-leaflet-options.php:3150 ../class-leaflet-options.php:3347
 #: ../class-leaflet-options.php:3544 ../class-leaflet-options.php:3741
 msgid "For example"
-msgstr "Например,"
+msgstr "למשל"
 
 #: ../class-leaflet-options.php:1169 ../class-leaflet-options.php:1239
 #: ../class-leaflet-options.php:1309
 msgid "Please enter settings for custom basemap"
-msgstr "Пожалуйста, введите настройки для клиентской базовой карты"
+msgstr ""
 
 #: ../class-leaflet-options.php:1174 ../class-leaflet-options.php:1244
 #: ../class-leaflet-options.php:1314 ../class-leaflet-options.php:1454
 #: ../class-leaflet-options.php:1533 ../class-leaflet-options.php:1611
 #: ../class-leaflet-options.php:1690
 msgid "Tiles URL"
-msgstr "URL aдрес тиля"
+msgstr ""
 
 #: ../class-leaflet-options.php:1191 ../class-leaflet-options.php:1199
 #: ../class-leaflet-options.php:1261 ../class-leaflet-options.php:1269
@@ -1582,7 +1582,7 @@ msgstr "URL aдрес тиля"
 #: ../class-leaflet-options.php:1628 ../class-leaflet-options.php:1636
 #: ../class-leaflet-options.php:1707 ../class-leaflet-options.php:1715
 msgid "Note: maximum zoom level may vary on your basemap"
-msgstr "Внимание: максимальный уровень увеличения может изменяться на вашей базовой карте "
+msgstr "מערקזאַם: דער גרעסטער פֿאַרגרעסער־צאָל הענגט אָפּ אױף אײַערער באַזע־מאַפּע"
 
 #: ../class-leaflet-options.php:1207 ../class-leaflet-options.php:1277
 #: ../class-leaflet-options.php:1347 ../class-leaflet-options.php:1487
@@ -1594,14 +1594,14 @@ msgstr "Внимание: максимальный уровень увеличе
 #: ../class-leaflet-options.php:3335 ../class-leaflet-options.php:3532
 #: ../class-leaflet-options.php:3729
 msgid "Support for subdomains?"
-msgstr "Поддержка для субдоменов?"
+msgstr ""
 
 #: ../class-leaflet-options.php:1208 ../class-leaflet-options.php:1278
 #: ../class-leaflet-options.php:1348 ../class-leaflet-options.php:1488
 #: ../class-leaflet-options.php:1567 ../class-leaflet-options.php:1645
 #: ../class-leaflet-options.php:1724
 msgid "Will replace {s} from tiles url if available"
-msgstr "При наличии заменит {s} в адресе тиля"
+msgstr ""
 
 #: ../class-leaflet-options.php:1212 ../class-leaflet-options.php:1282
 #: ../class-leaflet-options.php:1352 ../class-leaflet-options.php:1492
@@ -1613,7 +1613,7 @@ msgstr "При наличии заменит {s} в адресе тиля"
 #: ../class-leaflet-options.php:3341 ../class-leaflet-options.php:3538
 #: ../class-leaflet-options.php:3735
 msgid "Yes (please enter subdomains in next form field)"
-msgstr "Да (пожалуйста, введите субдомены в следующее поле)"
+msgstr ""
 
 #: ../class-leaflet-options.php:1213 ../class-leaflet-options.php:1283
 #: ../class-leaflet-options.php:1353 ../class-leaflet-options.php:1493
@@ -1630,7 +1630,7 @@ msgstr "Да (пожалуйста, введите субдомены в сле�
 #: ../class-leaflet-options.php:3537 ../class-leaflet-options.php:3715
 #: ../class-leaflet-options.php:3734
 msgid "No"
-msgstr "Нет"
+msgstr "נײן"
 
 #: ../class-leaflet-options.php:1218 ../class-leaflet-options.php:1288
 #: ../class-leaflet-options.php:1358 ../class-leaflet-options.php:1498
@@ -1642,40 +1642,40 @@ msgstr "Нет"
 #: ../class-leaflet-options.php:3346 ../class-leaflet-options.php:3543
 #: ../class-leaflet-options.php:3740
 msgid "Subdomain names"
-msgstr "Имена субдоменов"
+msgstr ""
 
 #: ../class-leaflet-options.php:1387
 msgid "Please select the overlays which should be available in the control box."
-msgstr "Пожалуйста, выберите наложения, которые должны быть доступны в окне управления."
+msgstr ""
 
 #: ../class-leaflet-options.php:1393
 msgid "Available overlays in control box"
-msgstr "Наложения, доступные в окне управления"
+msgstr ""
 
 #: ../class-leaflet-options.php:1394 ../class-leaflet-options.php:4135
 #: ../class-leaflet-options.php:4427 ../class-leaflet-options.php:4634
 msgid "Custom overlay"
-msgstr "Клиентское наложение"
+msgstr "פֿאַראײגנטער איבערשרײַב"
 
 #: ../class-leaflet-options.php:1402 ../class-leaflet-options.php:4143
 #: ../class-leaflet-options.php:4435 ../class-leaflet-options.php:4642
 msgid "Custom overlay 2"
-msgstr "Клиентское наложение 2"
+msgstr "פֿאַראײגנטער איבערשרײַב 2"
 
 #: ../class-leaflet-options.php:1411 ../class-leaflet-options.php:4152
 #: ../class-leaflet-options.php:4444 ../class-leaflet-options.php:4650
 msgid "Custom overlay 3"
-msgstr "Клиентское наложение 3"
+msgstr "פֿאַראײגנטער איבערשרײַב 3"
 
 #: ../class-leaflet-options.php:1420 ../class-leaflet-options.php:4160
 #: ../class-leaflet-options.php:4453 ../class-leaflet-options.php:4658
 msgid "Custom overlay 4"
-msgstr "Клиентское наложение 4"
+msgstr "פֿאַראײגנטער איבערשרײַב 4"
 
 #: ../class-leaflet-options.php:1440 ../class-leaflet-options.php:1519
 #: ../class-leaflet-options.php:1598 ../class-leaflet-options.php:1676
 msgid "Please enter settings for custom overlay"
-msgstr "Пожалуйста, введите настройки для клиентского наложения"
+msgstr ""
 
 #: ../class-leaflet-options.php:1445 ../class-leaflet-options.php:1524
 #: ../class-leaflet-options.php:1603 ../class-leaflet-options.php:1681
@@ -1686,24 +1686,24 @@ msgstr "Пожалуйста, введите настройки для клие�
 #: ../class-leaflet-options.php:3444 ../class-leaflet-options.php:3641
 #: ../leaflet-list-layers.php:44 ../leaflet-list-layers.php:86
 msgid "Name"
-msgstr "Название"
+msgstr "נאָמען"
 
 #: ../class-leaflet-options.php:1446 ../class-leaflet-options.php:1525
 #: ../class-leaflet-options.php:1604 ../class-leaflet-options.php:1682
 msgid "Will be displayed in controlbox if selected"
-msgstr "Если выбрано, будет отображаться в окне управления"
+msgstr ""
 
 #: ../class-leaflet-options.php:1447
 msgid "OGD Vienna addresses"
-msgstr "OGD адреса Вены"
+msgstr ""
 
 #: ../class-leaflet-options.php:1763
 msgid "Please select the WMS layers which should be available when creating new markers/layers"
-msgstr "Пожалуйста, выберите WMS слои, которые должны быть доступны при создании новых маркеров/слоев"
+msgstr ""
 
 #: ../class-leaflet-options.php:1769
 msgid "Available WMS layers"
-msgstr "Доступные WMS слои"
+msgstr "‫WMS-שיכטן בנימצא‬"
 
 #: ../class-leaflet-options.php:1875 ../class-leaflet-options.php:2073
 #: ../class-leaflet-options.php:2270 ../class-leaflet-options.php:2467
@@ -1711,7 +1711,7 @@ msgstr "Доступные WMS слои"
 #: ../class-leaflet-options.php:3058 ../class-leaflet-options.php:3255
 #: ../class-leaflet-options.php:3452 ../class-leaflet-options.php:3649
 msgid "baseURL"
-msgstr "Базовый URL адрес"
+msgstr ""
 
 #: ../class-leaflet-options.php:1883 ../class-leaflet-options.php:2081
 #: ../class-leaflet-options.php:2278 ../class-leaflet-options.php:2475
@@ -1720,7 +1720,7 @@ msgstr "Базовый URL адрес"
 #: ../class-leaflet-options.php:3460 ../class-leaflet-options.php:3657
 #: ../leaflet-maps-marker.php:1275
 msgid "Layers"
-msgstr "Слои"
+msgstr "שיכטן"
 
 #: ../class-leaflet-options.php:1884 ../class-leaflet-options.php:2082
 #: ../class-leaflet-options.php:2279 ../class-leaflet-options.php:2476
@@ -1728,7 +1728,7 @@ msgstr "Слои"
 #: ../class-leaflet-options.php:3067 ../class-leaflet-options.php:3264
 #: ../class-leaflet-options.php:3461 ../class-leaflet-options.php:3658
 msgid "(required) Comma-separated list of WMS layers to show"
-msgstr "(обязательно) Разделенный запятыми список отображаемых WMS слоев "
+msgstr ""
 
 #: ../class-leaflet-options.php:1891 ../class-leaflet-options.php:2089
 #: ../class-leaflet-options.php:2286 ../class-leaflet-options.php:2483
@@ -1736,7 +1736,7 @@ msgstr "(обязательно) Разделенный запятыми спи�
 #: ../class-leaflet-options.php:3074 ../class-leaflet-options.php:3271
 #: ../class-leaflet-options.php:3468 ../class-leaflet-options.php:3665
 msgid "Styles"
-msgstr "Стили"
+msgstr "סטילן"
 
 #: ../class-leaflet-options.php:1892 ../class-leaflet-options.php:2090
 #: ../class-leaflet-options.php:2287 ../class-leaflet-options.php:2484
@@ -1744,7 +1744,7 @@ msgstr "Стили"
 #: ../class-leaflet-options.php:3075 ../class-leaflet-options.php:3272
 #: ../class-leaflet-options.php:3469 ../class-leaflet-options.php:3666
 msgid "Comma-separated list of WMS styles"
-msgstr "Разделенный запятыми список WMS стилей"
+msgstr ""
 
 #: ../class-leaflet-options.php:1899 ../class-leaflet-options.php:2097
 #: ../class-leaflet-options.php:2294 ../class-leaflet-options.php:2491
@@ -1752,7 +1752,7 @@ msgstr "Разделенный запятыми список WMS стилей"
 #: ../class-leaflet-options.php:3082 ../class-leaflet-options.php:3279
 #: ../class-leaflet-options.php:3476 ../class-leaflet-options.php:3673
 msgid "Format"
-msgstr "Формат"
+msgstr "פֿאָרמאַט"
 
 #: ../class-leaflet-options.php:1907 ../class-leaflet-options.php:2105
 #: ../class-leaflet-options.php:2302 ../class-leaflet-options.php:2499
@@ -1760,7 +1760,7 @@ msgstr "Формат"
 #: ../class-leaflet-options.php:3090 ../class-leaflet-options.php:3287
 #: ../class-leaflet-options.php:3484 ../class-leaflet-options.php:3681
 msgid "Transparent"
-msgstr "Прозрачный"
+msgstr "דורכזעעװדיק"
 
 #: ../class-leaflet-options.php:1908 ../class-leaflet-options.php:2106
 #: ../class-leaflet-options.php:2303 ../class-leaflet-options.php:2500
@@ -1768,7 +1768,7 @@ msgstr "Прозрачный"
 #: ../class-leaflet-options.php:3091 ../class-leaflet-options.php:3288
 #: ../class-leaflet-options.php:3485 ../class-leaflet-options.php:3682
 msgid "If yes, the WMS service will return images with transparency"
-msgstr "Если да, сервис WMS будет возвращать изображения с прозрачностью"
+msgstr ""
 
 #: ../class-leaflet-options.php:1912 ../class-leaflet-options.php:2110
 #: ../class-leaflet-options.php:2307 ../class-leaflet-options.php:2504
@@ -1781,7 +1781,7 @@ msgstr "Если да, сервис WMS будет возвращать изоб
 #: ../class-leaflet-options.php:5809 ../class-leaflet-options.php:5821
 #: ../class-leaflet-options.php:5833
 msgid "true"
-msgstr "верно"
+msgstr "אמת"
 
 #: ../class-leaflet-options.php:1913 ../class-leaflet-options.php:2111
 #: ../class-leaflet-options.php:2308 ../class-leaflet-options.php:2505
@@ -1790,7 +1790,7 @@ msgstr "верно"
 #: ../class-leaflet-options.php:3490 ../class-leaflet-options.php:3687
 #: ../class-leaflet-options.php:5386 ../class-leaflet-options.php:5398
 msgid "false"
-msgstr "неверно"
+msgstr "פֿאַלש"
 
 #: ../class-leaflet-options.php:1919 ../class-leaflet-options.php:2117
 #: ../class-leaflet-options.php:2342 ../class-leaflet-options.php:2511
@@ -1798,7 +1798,7 @@ msgstr "неверно"
 #: ../class-leaflet-options.php:3102 ../class-leaflet-options.php:3299
 #: ../class-leaflet-options.php:3496 ../class-leaflet-options.php:3693
 msgid "Version"
-msgstr "Версия"
+msgstr "װערסיע"
 
 #: ../class-leaflet-options.php:1920 ../class-leaflet-options.php:2118
 #: ../class-leaflet-options.php:2343 ../class-leaflet-options.php:2512
@@ -1806,7 +1806,7 @@ msgstr "Версия"
 #: ../class-leaflet-options.php:3103 ../class-leaflet-options.php:3300
 #: ../class-leaflet-options.php:3497 ../class-leaflet-options.php:3694
 msgid "Version of the WMS service to use"
-msgstr "Версия используемого WMS сервиса"
+msgstr ""
 
 #: ../class-leaflet-options.php:1935 ../class-leaflet-options.php:2133
 #: ../class-leaflet-options.php:2322 ../class-leaflet-options.php:2527
@@ -1814,7 +1814,7 @@ msgstr "Версия используемого WMS сервиса"
 #: ../class-leaflet-options.php:3118 ../class-leaflet-options.php:3315
 #: ../class-leaflet-options.php:3512 ../class-leaflet-options.php:3709
 msgid "Display legend?"
-msgstr "Отображать легенду?"
+msgstr "‫װײַז אונטערקעפּל?‬"
 
 #: ../class-leaflet-options.php:1940 ../class-leaflet-options.php:2138
 #: ../class-leaflet-options.php:2327 ../class-leaflet-options.php:2532
@@ -1823,7 +1823,7 @@ msgstr "Отображать легенду?"
 #: ../class-leaflet-options.php:3517 ../class-leaflet-options.php:3714
 #: ../leaflet-tools.php:674
 msgid "Yes"
-msgstr "Да"
+msgstr "יאָ"
 
 #: ../class-leaflet-options.php:1947 ../class-leaflet-options.php:2145
 #: ../class-leaflet-options.php:2334 ../class-leaflet-options.php:2539
@@ -1855,7 +1855,7 @@ msgstr "Да"
 #: ../leaflet-marker.php:619 ../leaflet-marker.php:620
 #: ../leaflet-marker.php:621
 msgid "Legend"
-msgstr "Легенда"
+msgstr "אונטערקעפּל"
 
 #: ../class-leaflet-options.php:1948 ../class-leaflet-options.php:2146
 #: ../class-leaflet-options.php:2335 ../class-leaflet-options.php:2540
@@ -1863,7 +1863,7 @@ msgstr "Легенда"
 #: ../class-leaflet-options.php:3131 ../class-leaflet-options.php:3328
 #: ../class-leaflet-options.php:3525 ../class-leaflet-options.php:3722
 msgid "URL of image which gets show when hovering the text \"(Legend)\" next to WMS attribution text"
-msgstr "URL изображение, которое отображается при наведении курсора на текст \"(Легенда)\" рядом с текстом WMS атрибуция"
+msgstr ""
 
 #: ../class-leaflet-options.php:1956 ../class-leaflet-options.php:2154
 #: ../class-leaflet-options.php:2351 ../class-leaflet-options.php:2548
@@ -1871,7 +1871,7 @@ msgstr "URL изображение, которое отображается пр
 #: ../class-leaflet-options.php:3139 ../class-leaflet-options.php:3336
 #: ../class-leaflet-options.php:3533 ../class-leaflet-options.php:3730
 msgid "Will replace {s} from base url if available"
-msgstr "При наличии заменит {s} в базовом адресе"
+msgstr ""
 
 #: ../class-leaflet-options.php:1977 ../class-leaflet-options.php:2175
 #: ../class-leaflet-options.php:2372 ../class-leaflet-options.php:2569
@@ -1879,7 +1879,7 @@ msgstr "При наличии заменит {s} в базовом адресе"
 #: ../class-leaflet-options.php:3160 ../class-leaflet-options.php:3357
 #: ../class-leaflet-options.php:3554 ../class-leaflet-options.php:3751
 msgid "If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML."
-msgstr "Если WMS сервер поддерживает KML вывод WMS слоя, будут использованы нижеуказанные настройки, когда карта маркера или слоя с активным WMS слоем экспортируется в качестве KML."
+msgstr ""
 
 #: ../class-leaflet-options.php:1983 ../class-leaflet-options.php:2181
 #: ../class-leaflet-options.php:2378 ../class-leaflet-options.php:2575
@@ -1887,7 +1887,7 @@ msgstr "Если WMS сервер поддерживает KML вывод WMS с
 #: ../class-leaflet-options.php:3166 ../class-leaflet-options.php:3363
 #: ../class-leaflet-options.php:3560 ../class-leaflet-options.php:3757
 msgid "Does the WMS server support KML output?"
-msgstr "Поддерживает ли WMS сервер вывод KML?"
+msgstr ""
 
 #: ../class-leaflet-options.php:1988 ../class-leaflet-options.php:2186
 #: ../class-leaflet-options.php:2383 ../class-leaflet-options.php:2580
@@ -1898,7 +1898,7 @@ msgstr "Поддерживает ли WMS сервер вывод KML?"
 #: ../class-leaflet-options.php:5193 ../leaflet-layer.php:291
 #: ../leaflet-layer.php:443 ../leaflet-marker.php:441 ../leaflet-tools.php:651
 msgid "yes"
-msgstr "да"
+msgstr "יאָ"
 
 #: ../class-leaflet-options.php:1989 ../class-leaflet-options.php:2187
 #: ../class-leaflet-options.php:2384 ../class-leaflet-options.php:2581
@@ -1909,7 +1909,7 @@ msgstr "да"
 #: ../class-leaflet-options.php:5194 ../leaflet-layer.php:292
 #: ../leaflet-layer.php:442 ../leaflet-marker.php:439 ../leaflet-tools.php:653
 msgid "no"
-msgstr "нет"
+msgstr "נײן"
 
 #: ../class-leaflet-options.php:1996 ../class-leaflet-options.php:2194
 #: ../class-leaflet-options.php:2391 ../class-leaflet-options.php:2588
@@ -1917,7 +1917,7 @@ msgstr "нет"
 #: ../class-leaflet-options.php:3179 ../class-leaflet-options.php:3376
 #: ../class-leaflet-options.php:3573 ../class-leaflet-options.php:3770
 msgid "http-address of the KML-webservice of the WMS layer"
-msgstr "http-адрес веб сервиса KML слоя WMS"
+msgstr ""
 
 #: ../class-leaflet-options.php:2008 ../class-leaflet-options.php:2206
 #: ../class-leaflet-options.php:2403 ../class-leaflet-options.php:2600
@@ -1925,7 +1925,7 @@ msgstr "http-адрес веб сервиса KML слоя WMS"
 #: ../class-leaflet-options.php:3191 ../class-leaflet-options.php:3388
 #: ../class-leaflet-options.php:3585 ../class-leaflet-options.php:3782
 msgid "onChange (refresh when the file is loaded and whenever the Link parameters change)"
-msgstr "onChange (обновлять при завершении загрузки файла и изменении параметров ссылки)"
+msgstr ""
 
 #: ../class-leaflet-options.php:2009 ../class-leaflet-options.php:2207
 #: ../class-leaflet-options.php:2404 ../class-leaflet-options.php:2601
@@ -1933,7 +1933,7 @@ msgstr "onChange (обновлять при завершении загрузк�
 #: ../class-leaflet-options.php:3192 ../class-leaflet-options.php:3389
 #: ../class-leaflet-options.php:3586 ../class-leaflet-options.php:3783
 msgid "onInterval (refresh every n seconds (specified in refreshInterval)"
-msgstr "onInterval (обновлять каждые n секунд (задается в параметре refreshInterval)"
+msgstr ""
 
 #: ../class-leaflet-options.php:2010 ../class-leaflet-options.php:2208
 #: ../class-leaflet-options.php:2405 ../class-leaflet-options.php:2602
@@ -1941,7 +1941,7 @@ msgstr "onInterval (обновлять каждые n секунд (задает
 #: ../class-leaflet-options.php:3193 ../class-leaflet-options.php:3390
 #: ../class-leaflet-options.php:3587 ../class-leaflet-options.php:3784
 msgid "onExpire (refresh the file when the expiration time is reached)"
-msgstr "onExpire (обновлять файл по истечении его времени действия)"
+msgstr ""
 
 #: ../class-leaflet-options.php:2011 ../class-leaflet-options.php:2209
 #: ../class-leaflet-options.php:2406 ../class-leaflet-options.php:2603
@@ -1949,7 +1949,7 @@ msgstr "onExpire (обновлять файл по истечении его в�
 #: ../class-leaflet-options.php:3194 ../class-leaflet-options.php:3391
 #: ../class-leaflet-options.php:3588 ../class-leaflet-options.php:3785
 msgid "onStop (after camera movement stops)"
-msgstr "onStop (после завершения двежения камеры)"
+msgstr ""
 
 #: ../class-leaflet-options.php:2018 ../class-leaflet-options.php:2216
 #: ../class-leaflet-options.php:2413 ../class-leaflet-options.php:2610
@@ -1957,7 +1957,7 @@ msgstr "onStop (после завершения двежения камеры)"
 #: ../class-leaflet-options.php:3201 ../class-leaflet-options.php:3398
 #: ../class-leaflet-options.php:3595 ../class-leaflet-options.php:3792
 msgid "Indicates to refresh the file every n seconds"
-msgstr "Задает время обновления файла в секундах"
+msgstr ""
 
 #: ../class-leaflet-options.php:2030 ../class-leaflet-options.php:2228
 #: ../class-leaflet-options.php:2425 ../class-leaflet-options.php:2622
@@ -1965,7 +1965,7 @@ msgstr "Задает время обновления файла в секунд�
 #: ../class-leaflet-options.php:3213 ../class-leaflet-options.php:3410
 #: ../class-leaflet-options.php:3607 ../class-leaflet-options.php:3804
 msgid "never (ignore changes in the view)"
-msgstr "никогда (игнорировать изменения в изображении)"
+msgstr ""
 
 #: ../class-leaflet-options.php:2031 ../class-leaflet-options.php:2229
 #: ../class-leaflet-options.php:2426 ../class-leaflet-options.php:2623
@@ -1973,7 +1973,7 @@ msgstr "никогда (игнорировать изменения в изоб�
 #: ../class-leaflet-options.php:3214 ../class-leaflet-options.php:3411
 #: ../class-leaflet-options.php:3608 ../class-leaflet-options.php:3805
 msgid "onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)"
-msgstr "onStop (обновлять файл спустя n секунд после остановки движения (где n задается в параметре viewRefreshTime)"
+msgstr ""
 
 #: ../class-leaflet-options.php:2032 ../class-leaflet-options.php:2230
 #: ../class-leaflet-options.php:2427 ../class-leaflet-options.php:2624
@@ -1981,7 +1981,7 @@ msgstr "onStop (обновлять файл спустя n секунд посл
 #: ../class-leaflet-options.php:3215 ../class-leaflet-options.php:3412
 #: ../class-leaflet-options.php:3609 ../class-leaflet-options.php:3806
 msgid "onRequest (refresh the file only when the user explicitly requests it)"
-msgstr "onRequest (обновлять файл только в случае запроса пользователя)"
+msgstr ""
 
 #: ../class-leaflet-options.php:2039 ../class-leaflet-options.php:2237
 #: ../class-leaflet-options.php:2434 ../class-leaflet-options.php:2631
@@ -1989,28 +1989,28 @@ msgstr "onRequest (обновлять файл только в случае за
 #: ../class-leaflet-options.php:3222 ../class-leaflet-options.php:3419
 #: ../class-leaflet-options.php:3616 ../class-leaflet-options.php:3813
 msgid "After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)"
-msgstr "После остановки камеры задает количество секунд ожидания перед обновлением изображения (используется, когда режим viewRefreshMode установлен на onStop)"
+msgstr ""
 
 #: ../class-leaflet-options.php:4042
 msgid "Will be used when creating a new marker. All values can be changed afterwards on each marker."
-msgstr "Будет использоваться при создании нового маркера. Все значения могут быть изменены позднее для каждого маркера."
+msgstr ""
 
 #: ../class-leaflet-options.php:4047 ../class-leaflet-options.php:4566
 #: ../class-leaflet-options.php:5028 ../class-leaflet-options.php:5044
 msgid "Latitude"
-msgstr "Широта"
+msgstr "לאַטיטוד"
 
 #: ../class-leaflet-options.php:4048 ../class-leaflet-options.php:4056
 #: ../class-leaflet-options.php:4567 ../class-leaflet-options.php:4575
 #: ../class-leaflet-options.php:5029 ../class-leaflet-options.php:5037
 #: ../class-leaflet-options.php:5045 ../class-leaflet-options.php:5053
 msgid "Please use a dot instead of a coma as decimal delimiter!"
-msgstr "Пожалуйста, используйте точку вместо запятой в качестве разделителя дробных чисел"
+msgstr ""
 
 #: ../class-leaflet-options.php:4055 ../class-leaflet-options.php:4574
 #: ../class-leaflet-options.php:5036 ../class-leaflet-options.php:5052
 msgid "Longitude"
-msgstr "Долгота"
+msgstr "לאָנגיטוד"
 
 #: ../class-leaflet-options.php:4063 ../class-leaflet-options.php:4844
 #: ../class-leaflet-options.php:5464 ../class-leaflet-options.php:5880
@@ -2018,7 +2018,7 @@ msgstr "Долгота"
 #: ../leaflet-list-markers.php:127 ../leaflet-list-markers.php:175
 #: ../leaflet-marker.php:414 ../leaflet-tools.php:396
 msgid "Icon"
-msgstr "Ярлык"
+msgstr "בילדל"
 
 #: ../class-leaflet-options.php:4071 ../class-leaflet-options.php:4375
 #: ../class-leaflet-options.php:4582 ../class-leaflet-options.php:5928
@@ -2028,31 +2028,31 @@ msgstr "Ярлык"
 #: ../leaflet-list-markers.php:142 ../leaflet-list-markers.php:190
 #: ../leaflet-marker.php:268 ../leaflet-tools.php:347 ../leaflet-tools.php:598
 msgid "Zoom"
-msgstr "Масштабирование"
+msgstr "פֿאַרגרעסער"
 
 #: ../class-leaflet-options.php:4079 ../class-leaflet-options.php:4383
 #: ../class-leaflet-options.php:4590
 msgid "Map width"
-msgstr "Ширина карты"
+msgstr "מאַפּע־ברײט"
 
 #: ../class-leaflet-options.php:4088 ../class-leaflet-options.php:4392
 #: ../class-leaflet-options.php:4599
 msgid "Map width unit"
-msgstr "Единица измерения ширины карты"
+msgstr "אײנס פֿון מאַפּע־ברײט"
 
 #: ../class-leaflet-options.php:4099 ../class-leaflet-options.php:4403
 #: ../class-leaflet-options.php:4610
 msgid "Map height"
-msgstr "Высота карты"
+msgstr "מאַפּע־הײך"
 
 #: ../class-leaflet-options.php:4108
 msgid "Open popup by default"
-msgstr "Открывать всплывающий текст по умолчанию"
+msgstr "עפֿן געװײנטלעקך אַן אױפֿשפּרינג"
 
 #: ../class-leaflet-options.php:4120 ../class-leaflet-options.php:4412
 #: ../class-leaflet-options.php:4619
 msgid "Basemap/layer controlbox on frontend"
-msgstr "Фронтальное окно управления базовой картой/слоем"
+msgstr ""
 
 #: ../class-leaflet-options.php:4125 ../class-leaflet-options.php:4417
 #: ../class-leaflet-options.php:4624 ../class-leaflet-options.php:5270
@@ -2061,48 +2061,48 @@ msgstr "Фронтальное окно управления базовой ка
 #: ../leaflet-list-markers.php:235 ../leaflet-marker.php:276
 #: ../leaflet-tools.php:365 ../leaflet-tools.php:616
 msgid "hidden"
-msgstr "скрыто"
+msgstr "פֿאַרבאָרגן"
 
 #: ../class-leaflet-options.php:4126 ../class-leaflet-options.php:4418
 #: ../class-leaflet-options.php:4625 ../leaflet-layer.php:281
 #: ../leaflet-list-layers.php:152 ../leaflet-list-markers.php:235
 #: ../leaflet-marker.php:277 ../leaflet-tools.php:366 ../leaflet-tools.php:617
 msgid "collapsed (except on mobiles)"
-msgstr "свернуто (за исключением мобильных устройств)"
+msgstr "‫פֿאַרקלענערט (אַחוץ אױף מאָבילקעס)‬"
 
 #: ../class-leaflet-options.php:4127 ../class-leaflet-options.php:4419
 #: ../class-leaflet-options.php:4626 ../leaflet-layer.php:282
 #: ../leaflet-list-layers.php:152 ../leaflet-list-markers.php:235
 #: ../leaflet-marker.php:278 ../leaflet-tools.php:367 ../leaflet-tools.php:618
 msgid "expanded"
-msgstr "развернуто"
+msgstr "פֿאַרגרעסערט"
 
 #: ../class-leaflet-options.php:4134 ../class-leaflet-options.php:4426
 #: ../class-leaflet-options.php:4633 ../leaflet-tools.php:284
 #: ../leaflet-tools.php:535
 msgid "Checked overlays in control box"
-msgstr "Выбранные наложения в окне управления"
+msgstr ""
 
 #: ../class-leaflet-options.php:4167 ../leaflet-marker.php:281
 #: ../leaflet-tools.php:379
 msgid "Panel for displaying marker name and API URLs on top of map"
-msgstr "Верхняя панель для отображения названия маркера и URL адресов программного интерфейса карты"
+msgstr ""
 
 #: ../class-leaflet-options.php:4172 ../class-leaflet-options.php:4670
 #: ../class-leaflet-options.php:5730 ../leaflet-layer.php:286
 #: ../leaflet-marker.php:283 ../leaflet-tools.php:383 ../leaflet-tools.php:634
 msgid "show"
-msgstr "отобразить"
+msgstr "װײַז"
 
 #: ../class-leaflet-options.php:4173 ../class-leaflet-options.php:4671
 #: ../class-leaflet-options.php:5731 ../leaflet-layer.php:287
 #: ../leaflet-marker.php:285 ../leaflet-tools.php:385 ../leaflet-tools.php:636
 msgid "hide"
-msgstr "скрыть"
+msgstr "פֿאַרשטעל"
 
 #: ../class-leaflet-options.php:4180 ../class-leaflet-options.php:4678
 msgid "Visible API links in panel"
-msgstr "Отображаемые API ссылки в панели"
+msgstr ""
 
 #: ../class-leaflet-options.php:4181 ../class-leaflet-options.php:4903
 #: ../leaflet-fullscreen.php:828 ../leaflet-fullscreen.php:831
@@ -2114,7 +2114,7 @@ msgstr "Отображаемые API ссылки в панели"
 #: ../leaflet-marker.php:757 ../leaflet-marker.php:761
 #: ../leaflet-marker.php:765
 msgid "Directions"
-msgstr "Направления"
+msgstr "אינסטרוקציעס"
 
 #: ../class-leaflet-options.php:4197 ../class-leaflet-options.php:4687
 #: ../class-leaflet-options.php:4919 ../class-leaflet-options.php:6016
@@ -2126,7 +2126,7 @@ msgstr "Направления"
 #: ../leaflet-list-markers.php:208 ../leaflet-list-markers.php:253
 #: ../leaflet-marker.php:50 ../leaflet-marker.php:83 ../leaflet-marker.php:217
 msgid "Fullscreen"
-msgstr "Во весь экран"
+msgstr "פֿולער עקראַן"
 
 #: ../class-leaflet-options.php:4205 ../class-leaflet-options.php:4695
 #: ../class-leaflet-options.php:4927 ../class-leaflet-options.php:6024
@@ -2138,25 +2138,25 @@ msgstr "Во весь экран"
 #: ../leaflet-list-markers.php:210 ../leaflet-list-markers.php:254
 #: ../leaflet-marker.php:50 ../leaflet-marker.php:83 ../leaflet-marker.php:217
 msgid "QR code"
-msgstr "QR код"
+msgstr ""
 
 #: ../class-leaflet-options.php:4235 ../class-leaflet-options.php:4725
 msgid "Panel background color"
-msgstr "Фоновый цвет панели"
+msgstr "טאַפֿליע־הינטערגרונט־פֿאַרב"
 
 #: ../class-leaflet-options.php:4243 ../class-leaflet-options.php:4733
 msgid "Panel text css"
-msgstr "Текст панели css"
+msgstr ""
 
 #: ../class-leaflet-options.php:4253 ../class-leaflet-options.php:4461
 #: ../class-leaflet-options.php:4743
 msgid "Checked WMS layers"
-msgstr "Выбранные WMS слои"
+msgstr ""
 
 #: ../class-leaflet-options.php:4254 ../class-leaflet-options.php:4462
 #: ../class-leaflet-options.php:4744
 msgid "WMS 1"
-msgstr "WMS 1"
+msgstr ""
 
 #: ../class-leaflet-options.php:4262 ../class-leaflet-options.php:4470
 #: ../class-leaflet-options.php:4752
@@ -2205,140 +2205,140 @@ msgstr "WMS 10"
 
 #: ../class-leaflet-options.php:4346
 msgid "You can also add markers directly to posts or pages without having to save them to your database previously. You just have to use the shortcode with the attributes mlat and mlon (e.g. <strong>[mapsmarker mlat=\"48.216038\" mlon=\"16.378984\"]</strong>)."
-msgstr "Вы можете также добавить маркеры напрямую в посты или на страницы без необходимости предварительного сохранения их в свою базу данных. Вам только нужно воспользоваться коротким кодом с атрибутами mlat и mlon (e.g. <strong>[mapsmarker mlat=\"48.216038\" mlon=\"16.378984\"]</strong>)."
+msgstr ""
 
 #: ../class-leaflet-options.php:4346
 msgid "Defaults values for markers added directly:"
-msgstr "Автоматические значения для маркеров, добавленных напрямую "
+msgstr ""
 
 #: ../class-leaflet-options.php:4553
 msgid "Default values for new layers"
-msgstr "Значения по умолчанию для новых слоев"
+msgstr ""
 
 #: ../class-leaflet-options.php:4561
 msgid "Will be used when creating a new layer. All values can be changed afterwards on each layer."
-msgstr "Будет использоваться при создании нового слоя. Все значения можно изменить позже для каждого слоя."
+msgstr ""
 
 #: ../class-leaflet-options.php:4665 ../leaflet-layer.php:285
 #: ../leaflet-tools.php:630
 msgid "Panel for displaying layer name and API URLs on top of map"
-msgstr "Верхняя панель для отображения названия слоя и URL адресов программного интерфейса карты"
+msgstr ""
 
 #: ../class-leaflet-options.php:4703
 msgid "not available on multi layer maps"
-msgstr "недоступно в многослойных картах"
+msgstr ""
 
 #: ../class-leaflet-options.php:4824
 msgid "List marker settings"
-msgstr "Список настроек маркера"
+msgstr ""
 
 #: ../class-leaflet-options.php:4831 ../leaflet-layer.php:290
 #: ../leaflet-tools.php:647
 msgid "Display a list of markers under the map"
-msgstr "Отобразить список маркеров под картой"
+msgstr ""
 
 #: ../class-leaflet-options.php:4832
 msgid "(not available on multi layer maps)"
-msgstr "(недоступно в многослойных картах)"
+msgstr ""
 
 #: ../class-leaflet-options.php:4867 ../class-leaflet-options.php:6073
 #: ../class-leaflet-options.php:6306
 msgid "Order list of markers by"
-msgstr "Сортировка списка маркеров по"
+msgstr ""
 
 #: ../class-leaflet-options.php:4873 ../class-leaflet-options.php:6079
 msgid "marker name"
-msgstr "названию маркера"
+msgstr "אָנװײַזפּונקט־נאָמען"
 
 #: ../class-leaflet-options.php:4874 ../class-leaflet-options.php:6081
 #: ../class-leaflet-options.php:6313 ../leaflet-maps-marker.php:91
 #: ../leaflet-maps-marker.php:1436
 msgid "created on"
-msgstr "дате создания"
+msgstr "באַשאַפֿן"
 
 #: ../class-leaflet-options.php:4875 ../class-leaflet-options.php:6083
 #: ../class-leaflet-options.php:6315
 msgid "updated on"
-msgstr "дате обновления"
+msgstr "דערהײַנטיקט"
 
 #: ../class-leaflet-options.php:4881 ../class-leaflet-options.php:6090
 #: ../class-leaflet-options.php:6322
 msgid "Sort order"
-msgstr "Порядок сортирования"
+msgstr "סאָרטיר־סדר"
 
 #: ../class-leaflet-options.php:4886 ../class-leaflet-options.php:6095
 #: ../class-leaflet-options.php:6327
 msgid "ascending"
-msgstr "по возрастанию"
+msgstr "אַרױף־צו"
 
 #: ../class-leaflet-options.php:4887 ../class-leaflet-options.php:6096
 #: ../class-leaflet-options.php:6328
 msgid "descending"
-msgstr "по убыванию"
+msgstr "אַראָפּ־צו"
 
 #: ../class-leaflet-options.php:4892
 msgid "Limit"
-msgstr "Ограничение"
+msgstr "שיעור"
 
 #: ../class-leaflet-options.php:4893
 msgid "maximum number of markers to display in the list"
-msgstr "максимальное число маркеров, отображаемых в списке"
+msgstr ""
 
 #: ../class-leaflet-options.php:4902
 msgid "Visible API links for each marker"
-msgstr "Видимые ссылки API для каждого маркера"
+msgstr ""
 
 #: ../class-leaflet-options.php:5003
 msgid "Leaflet Maps Marker uses the <a href=\"http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html\" target=\"_blank\">Google Places Autocomplete API</a> to easily find coordinates for places or addresses. This feature is enabled by default. Preview:"
-msgstr "Плагин Leaflet Maps Marker использует <a href=\"http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html\" target=\"_blank\">Google Places Autocomplete API</a> для быстрого поиска координат мест или адресов. Функция активирована по умолчанию. Предварительный просмотр:"
+msgstr ""
 
 #: ../class-leaflet-options.php:5003
 msgid "You can get better search results if you enable the bounds feature. This allows you to specify the area in which to primarily search for places or addresses. Please note: the results are biased towards, but not restricted to places or addresses contained within these bounds."
-msgstr "Вы получите лучшие результаты поиска, если активируете функцию географических ограничений. Она позволяет задавать территорию первичного поиска мест и адресов. Пожалуйста, обратите внимание: результаты не ограничиваются заданной территорией, но  приоритет отдается именно ей."
+msgstr ""
 
 #: ../class-leaflet-options.php:5023
 msgid "If enabled, please enter longitude and latitude values below for the corner points of the prefered search area. Below you find an example for Vienna/Austria:"
-msgstr "Если активировано, пожалуйста введите ниже значения долготы и широты для углов выбранной территории. Ниже вы найдете пример для Вены/Австрии:"
+msgstr ""
 
 #: ../class-leaflet-options.php:5070
 msgid "You can also select a search prefix, which automatically gets added to search form when creating a new marker or layer."
-msgstr "Вы можете также выбрать поисковый префикс, который будет автоматически добавляться в поисковую форму при создании нового маркера или слоя."
+msgstr ""
 
 #: ../class-leaflet-options.php:5090
 msgid "Prefix to use"
-msgstr "Используемый префикс"
+msgstr "פּרעפֿיקס"
 
 #: ../class-leaflet-options.php:5118
 msgid "Please select your prefered directions provider. This setting will be used for the directions link in the panel on top of marker maps and for the action panel which gets attached to the popup text on each marker if enabled."
-msgstr "Пожалуйста, выберите предпочитаемую службу направлений. Эта настройка будет использована для ссылки направлений в панели, расположенной сверху маркированных карт, и для панели действий, которая в случае активации получает связь с всплывающим текстом каждого маркера."
+msgstr ""
 
 #: ../class-leaflet-options.php:5124
 msgid "Use the following directions provider"
-msgstr "Использовать указанную службу направлений"
+msgstr ""
 
 #: ../class-leaflet-options.php:5129
 msgid "Google Maps (worldwide)"
-msgstr "Google Maps (глобальный)"
+msgstr ""
 
 #: ../class-leaflet-options.php:5130
 msgid "yournavigation.org (based on OpenStreetMap, worldwide)"
-msgstr "yournavigation.org (основан на OpenStreetMap, глобальный)"
+msgstr ""
 
 #: ../class-leaflet-options.php:5131
 msgid "openrouteservice.org (based on OpenStreetMap, Europe only)"
-msgstr "openrouteservice.org (основан на OpenStreetMap, только Европа)"
+msgstr ""
 
 #: ../class-leaflet-options.php:5137
 msgid "Attach directions panel to popup text on each marker"
-msgstr "Добавить панель направлений к всплывающему тексту на каждом маркере"
+msgstr ""
 
 #: ../class-leaflet-options.php:5160
 msgid "Google Maps directions settings"
-msgstr "Настройки направлений Google Maps"
+msgstr ""
 
 #: ../class-leaflet-options.php:5174
 msgid "Map type"
-msgstr "Тип карты"
+msgstr "מאַפּע־טיפּ"
 
 #: ../class-leaflet-options.php:5179 ../leaflet-fullscreen.php:165
 #: ../leaflet-fullscreen.php:166 ../leaflet-fullscreen.php:167
@@ -2363,310 +2363,310 @@ msgstr "Тип карты"
 #: ../leaflet-marker.php:541 ../leaflet-marker.php:542
 #: ../leaflet-marker.php:543 ../leaflet-marker.php:544
 msgid "Map"
-msgstr "Карта"
+msgstr "מאַפּע"
 
 #: ../class-leaflet-options.php:5180
 msgid "Satellite"
-msgstr "Сателлит"
+msgstr "סאַטעליט"
 
 #: ../class-leaflet-options.php:5181
 msgid "Hybrid"
-msgstr "Гибрид"
+msgstr ""
 
 #: ../class-leaflet-options.php:5182
 msgid "Terrain"
-msgstr "Местность"
+msgstr "לאַנד־פּרטים"
 
 #: ../class-leaflet-options.php:5188
 msgid "Show traffic layer?"
-msgstr "Отображать транспортный слой?"
+msgstr "‫װײַז פֿראַקער־שיכט?‬"
 
 #: ../class-leaflet-options.php:5200
 msgid "Distance units"
-msgstr "Единица измерения расстояния"
+msgstr "לענג־אײנסן"
 
 #: ../class-leaflet-options.php:5205
 msgid "metric (km)"
-msgstr "метрическая (км)"
+msgstr "‫מעטריש (ק\"מ)‬"
 
 #: ../class-leaflet-options.php:5206
 msgid "imperial (miles)"
-msgstr "имперская (мили)"
+msgstr "‫ענגליש (מײַלן)‬"
 
 #: ../class-leaflet-options.php:5212 ../class-leaflet-options.php:5309
 msgid "Route type"
-msgstr "Тип маршрута"
+msgstr "װעג־טיפּ"
 
 #: ../class-leaflet-options.php:5213
 msgid "Avoid highways"
-msgstr "Избегать шоссе"
+msgstr "מײַד־אָפּ שאָסײען"
 
 #: ../class-leaflet-options.php:5221
 msgid "Avoid tolls"
-msgstr "Избегать сборов"
+msgstr "מײַד־אָפּ באַצאָל־פּונקטן"
 
 #: ../class-leaflet-options.php:5229
 msgid "Public transport (works only in some areas)"
-msgstr "Общественный транспорт (функция доступна не везде)"
+msgstr "‫עפֿנטלעכע טראַנספּאָרט (בלױז אין געצײלטע ערטער)‬"
 
 #: ../class-leaflet-options.php:5237
 msgid "Walking directions"
-msgstr "Пеший маршрут"
+msgstr "אינסטרוקציעס פֿאַר פֿוסגײער"
 
 #: ../class-leaflet-options.php:5244
 msgid "Language"
-msgstr "Язык"
+msgstr "שפּראַך"
 
 #: ../class-leaflet-options.php:5249 ../class-leaflet-options.php:5371
 #: ../class-leaflet-options.php:5678
 msgid "English"
-msgstr "английский"
+msgstr "ענגליש"
 
 #: ../class-leaflet-options.php:5250 ../class-leaflet-options.php:5372
 #: ../class-leaflet-options.php:5680
 msgid "German"
-msgstr "немецкий"
+msgstr "דײַטש"
 
 #: ../class-leaflet-options.php:5251 ../class-leaflet-options.php:5373
 #: ../class-leaflet-options.php:5682
 msgid "Italian"
-msgstr "итальянский"
+msgstr "איטאַליעניש"
 
 #: ../class-leaflet-options.php:5252 ../class-leaflet-options.php:5374
 #: ../class-leaflet-options.php:5679
 msgid "French"
-msgstr "французский"
+msgstr "פֿראַנצײזיש"
 
 #: ../class-leaflet-options.php:5253 ../class-leaflet-options.php:5375
 #: ../class-leaflet-options.php:5686
 msgid "Spanish"
-msgstr "испанский"
+msgstr "שפּאַניש"
 
 #: ../class-leaflet-options.php:5254
 msgid "Chinese (simplified)"
-msgstr "китайский (упрощенный)"
+msgstr "‫כינעסיש (פֿאַראײנפֿאַכט)‬"
 
 #: ../class-leaflet-options.php:5255 ../class-leaflet-options.php:5677
 msgid "Dutch"
-msgstr "голландский"
+msgstr "נעדערלאַנדיש"
 
 #: ../class-leaflet-options.php:5256 ../class-leaflet-options.php:5683
 msgid "Japanese"
-msgstr "японский"
+msgstr "יאַפּאַניש"
 
 #: ../class-leaflet-options.php:5257 ../class-leaflet-options.php:5675
 msgid "Catalan"
-msgstr "каталанский"
+msgstr "קאַטאַלאַניש"
 
 #: ../class-leaflet-options.php:5258
 msgid "Galego"
-msgstr "галисийский"
+msgstr "גאַלעגאָ"
 
 #: ../class-leaflet-options.php:5259
 msgid "Euskara"
-msgstr "баскский"
+msgstr "עװוּסקאַראַ"
 
 #: ../class-leaflet-options.php:5265
 msgid "Overview map"
-msgstr "Обзор карты"
+msgstr "איבערבליק־מאַפּע"
 
 #: ../class-leaflet-options.php:5271 ../leaflet-list-layers.php:151
 #: ../leaflet-list-markers.php:234
 msgid "visible"
-msgstr "видимый"
+msgstr "זעעװדיק"
 
 #: ../class-leaflet-options.php:5282
 msgid "yournavigation.org settings"
-msgstr "Настройки yournavigation.org"
+msgstr ""
 
 #: ../class-leaflet-options.php:5296
 msgid "Type of transport"
-msgstr "Тип транспорта"
+msgstr "מין טראַנספּאָרט"
 
 #: ../class-leaflet-options.php:5301
 msgid "Motorcar"
-msgstr "Автомобиль"
+msgstr "אױטאָ"
 
 #: ../class-leaflet-options.php:5302
 msgid "Bicycle"
-msgstr "Велосипед"
+msgstr "ראָװער"
 
 #: ../class-leaflet-options.php:5303
 msgid "Foot"
-msgstr "Пеший"
+msgstr "פֿוס"
 
 #: ../class-leaflet-options.php:5314 ../class-leaflet-options.php:5357
 msgid "fastest route"
-msgstr "Быстрейший маршрут"
+msgstr "גיכסטער װעג"
 
 #: ../class-leaflet-options.php:5315 ../class-leaflet-options.php:5358
 msgid "shortest route"
-msgstr "Кротчайший маршрут"
+msgstr "אַם קורצסטן"
 
 #: ../class-leaflet-options.php:5321
 msgid "Gosmore instance to calculate the route"
-msgstr "Использовать Gosmore для расчета маршрута"
+msgstr ""
 
 #: ../class-leaflet-options.php:5326
 msgid "mapnik (for normal routing using car, bicycle or foot)"
-msgstr "mapnik (для нормальных авто-, вело- или пеших маршрутов)"
+msgstr ""
 
 #: ../class-leaflet-options.php:5327
 msgid "cn (for using bicycle routing using cycle route networks only)"
-msgstr "cn (для использования веломаршрутов, только на основе велодорожных сетей)"
+msgstr ""
 
 #: ../class-leaflet-options.php:5338
 msgid "openrouteservice.org settings"
-msgstr "Настройки openrouteservice.org"
+msgstr ""
 
 #: ../class-leaflet-options.php:5352
 msgid "Route preferences"
-msgstr "Настройки маршрута"
+msgstr ""
 
 #: ../class-leaflet-options.php:5359
 msgid "route for pedestrians"
-msgstr "маршрут для пешеходов"
+msgstr "װעג פֿאַר פֿוסגײער"
 
 #: ../class-leaflet-options.php:5360
 msgid "route for bicycles"
-msgstr "маршрут для велосипедов"
+msgstr "װעג פֿאַר ראָװערס"
 
 #: ../class-leaflet-options.php:5366
 msgid "Language of route instructions"
-msgstr "Язык инструкций маршрута"
+msgstr "שפּראַך פֿאַר פֿאָר/גײ אינסטרוקציעס"
 
 #: ../class-leaflet-options.php:5381
 msgid "No motorways?"
-msgstr "Без автомагистралей?"
+msgstr "‫קײן שאָסײען?‬"
 
 #: ../class-leaflet-options.php:5393
 msgid "No tollways?"
-msgstr "Без платных дорог?"
+msgstr "‫קײן באַצאָלפּונקטן?‬"
 
 #: ../class-leaflet-options.php:5417
 msgid "Markers created with Leaflet Maps Marker can also be displayed via <a href=\"http://en.wikipedia.org/wiki/Augmented_reality\" target=\"_blank\">Augmented-Reality technology</a> on mobile devices. As a first steps, an API to <a href=\"http://www.wikitude.com\" target=\"_blank\">Wikitude</a> has been implemented. APIs to other Augmented-Reality-Providers (like <a href=\"http://www.layar.com\" target=\"_blank\">Layar</a> or <a href=\"http://www.junaio.de\" target=\"_blank\">Junaio</a>) will probably follow in one of the next versions. Sample screenshots:"
-msgstr "Маркеры, созданные плагином Leaflet Maps Marker, могут также отображаться на мобильных устройствах с поддержкой технологии <a href=\"http://en.wikipedia.org/wiki/Augmented_reality\" target=\"_blank\">Augmented-Reality</a>. Для начала реализуется интерфейс программирования приложений на <a href=\"http://www.wikitude.com\" target=\"_blank\">Wikitude</a>. Интерфейсы программирования приложений для других служб Augmented-Reality (таких как <a href=\"http://www.layar.com\" target=\"_blank\">Layar</a> или <a href=\"http://www.junaio.de\" target=\"_blank\">Junaio</a>) появятся в одной из нижепредставленных версий. Примерные скриншоты:"
+msgstr ""
 
 #: ../class-leaflet-options.php:5427
 msgid "Wikitude settings"
-msgstr "Настройки Wikitude"
+msgstr ""
 
 #: ../class-leaflet-options.php:5435
 msgid "Please visit <a href=\"http://www.mapsmarker.com/wikitude\" target=\"_blank\">http://www.mapsmarker.com/wikitude</a> for instructions how to submit your marker or layer maps to Wikitude."
-msgstr "Пожалуйста, откройте <a href=\"http://www.mapsmarker.com/wikitude\" target=\"_blank\">http://www.mapsmarker.com/wikitude</a> для получения инструкций о том, как добавить вашу карту маркера или слоя на Wikitude."
+msgstr ""
 
 #: ../class-leaflet-options.php:5440
 msgid "Provider name"
-msgstr "Название провайдера"
+msgstr "אױסגעבער־נאָמען"
 
 #: ../class-leaflet-options.php:5441
 msgid "Identifies the content provider or content channel, no spaces/special characters"
-msgstr "Определяет провайдера контента или контент-канал, без пробелов/специальных знаков"
+msgstr ""
 
 #: ../class-leaflet-options.php:5448
 msgid "Provider URL"
-msgstr "URL-адрес провайдера"
+msgstr "‫אױסגעבער־URL‬"
 
 #: ../class-leaflet-options.php:5449
 msgid "Link to content provider"
-msgstr "Ссылка на контент-провайдера"
+msgstr ""
 
 #: ../class-leaflet-options.php:5456
 msgid "Logo"
-msgstr "Логотип"
+msgstr ""
 
 #: ../class-leaflet-options.php:5457
 msgid "The logo is displayed on the left bottom corner on Wikitude when an icon is selected - 96x96 pixel, transparent PNG"
-msgstr "Логотип отображается в левом нижнем углу Wikitude, если ярлык выбран - 96х96 пкс, прозрачный PNG"
+msgstr ""
 
 #: ../class-leaflet-options.php:5465
 msgid "The icon is displayed in the cam view of Wikitude to indicate a marker - 32x32 pixel, transparent PNG"
-msgstr "Ярлык отображается в режиме cam view в Wikitude, обозначая маркер - 32x32 пкс, прозрачный PNG"
+msgstr ""
 
 #: ../class-leaflet-options.php:5472 ../leaflet-maps-marker.php:106
 msgid "E-Mail"
-msgstr "Эл. почта"
+msgstr "בליצפּאָסט"
 
 #: ../class-leaflet-options.php:5473
 msgid "Optional: displayed on each marker; used for sending an email directly from Wikitude"
-msgstr "По желанию: отображается на каждом маркере; используется для отправки эл. почты напрямую из Wikitude"
+msgstr ""
 
 #: ../class-leaflet-options.php:5480
 msgid "Phone"
-msgstr "Телефон"
+msgstr "טעלעפֿאָן"
 
 #: ../class-leaflet-options.php:5481
 msgid "Optional: example: +4312345 - when a phone number is given, Wikitude displays a \"call me\" button in the bubble; used for every marker."
-msgstr "По желанию: например, +4312345 - если номер телефона задан, Wikitude отображает кнопку \"позвонить\"; используется для каждого маркера."
+msgstr ""
 
 #: ../class-leaflet-options.php:5488
 msgid "Attachment"
-msgstr "Приложение"
+msgstr "צוקלעפּעניש"
 
 #: ../class-leaflet-options.php:5489
 msgid "Optional: displayed on each marker; can be a link to a resource (image, PDF file...). You could use this to issue coupons or vouchers for potential clients that found you via Wikitude."
-msgstr "По желанию: отображается на каждом маркере; например, ссылка на ресурс (изображение, PDF-файл...). Вы можете использовать это для создания купонов или ваучеров для потенциальных клиентов, которые найдут вас на Wikitude."
+msgstr ""
 
 #: ../class-leaflet-options.php:5496
 msgid "Search radius (in meter)"
-msgstr "Радиус поиска (в метрах)"
+msgstr ""
 
 #: ../class-leaflet-options.php:5497
 msgid "Retrieve POIs (Points of Interests) from database within this search radius in meters from the current location of the Wikitude user"
-msgstr "Находить достопримечательности (POI) в базе данных в пределах радиуса поиска, заданного в метрах, от текущего местоположения пользователя Wikitude"
+msgstr ""
 
 #: ../class-leaflet-options.php:5504
 msgid "Maximum number of POIs"
-msgstr "Максимальное число POIs"
+msgstr ""
 
 #: ../class-leaflet-options.php:5505
 msgid "Used if Wikitude does not pass the variable maxNumberofPois - 50 is the maximum recommended"
-msgstr "Используется, если Wikitude не превышает переменную maxNumberofPois - 50, рекомендуемый максимум"
+msgstr ""
 
 #: ../class-leaflet-options.php:5536
 msgid "User role needed for adding and editing markers/layers"
-msgstr "Участие пользователя необходимо для добавления и редактирования маркеров/слоев"
+msgstr ""
 
 #: ../class-leaflet-options.php:5537
 msgid "Note: the settings and tools pages are always visible to admins only."
-msgstr "Внимание: страницы настроек и инструментов всегда видны только администратору."
+msgstr ""
 
 #: ../class-leaflet-options.php:5541 ../class-leaflet-options.php:5556
 msgid "Administrator (Capability activate_plugins)"
-msgstr "Администратор (уровень доступа activate_plugins)"
+msgstr ""
 
 #: ../class-leaflet-options.php:5542 ../class-leaflet-options.php:5557
 msgid "Editor (Capability moderate_comments)"
-msgstr "Редактор (уровень доступа moderate_comments)"
+msgstr ""
 
 #: ../class-leaflet-options.php:5543 ../class-leaflet-options.php:5558
 msgid "Author (Capability edit_published_posts)"
-msgstr "Автор (уровень доступа edit_published_posts)"
+msgstr ""
 
 #: ../class-leaflet-options.php:5544 ../class-leaflet-options.php:5559
 msgid "Contributor (Capability edit_posts)"
-msgstr "Участник (уровень доступа edit_posts)"
+msgstr ""
 
 #: ../class-leaflet-options.php:5545 ../class-leaflet-options.php:5560
 msgid "Subscriber (Capability read)"
-msgstr "Подписчик (уровень доступа read)"
+msgstr ""
 
 #: ../class-leaflet-options.php:5551
 msgid "User role needed for deleting markers/layers"
-msgstr "Участие пользователя необходимо для удаления маркеров/слоев"
+msgstr ""
 
 #: ../class-leaflet-options.php:5552
 msgid "Note: the settings and tool pages are always visible to admins only."
-msgstr "Внимание: страницы настроек и инструментов всегда видны только администратору."
+msgstr ""
 
 #: ../class-leaflet-options.php:5565 ../leaflet-list-markers.php:110
 #: ../leaflet-list-markers.php:320
 msgid "Markers per page"
-msgstr "Маркеров на страницу"
+msgstr ""
 
 #: ../class-leaflet-options.php:5566
 msgid "How many markers should be listed on one page at the page \"list all markers\"?"
-msgstr "Сколько маркеров должно отображаться на одной странице \"Список всех маркеров\"?"
+msgstr ""
 
 #: ../class-leaflet-options.php:5573 ../class-leaflet-options.php:6000
 #: ../class-leaflet-options.php:6233 ../leaflet-layer.php:555
@@ -2674,169 +2674,169 @@ msgstr "Сколько маркеров должно отображаться н
 #: ../leaflet-list-layers.php:109 ../leaflet-list-markers.php:156
 #: ../leaflet-list-markers.php:204
 msgid "Shortcode"
-msgstr "Короткий код"
+msgstr ""
 
 #: ../class-leaflet-options.php:5574
 msgid "Shortcode to add markers or layers into articles or pages  - Example: [mapsmarker marker=\"1\"].<br/> Attention: if you change the shortcode after having embedded shortcodes into posts/Pages, the shortcode on these specific articles/pages has to be changed also manually - otherwise these markers/layers will not be show on frontend!"
-msgstr "Короткий код для добавления маркеров или слоев в статьи или на страницы - Например: [mapsmarker marker=\"1\"].<br/> Внимание: если вы измените короткий код после встраивания в посты или страницы, короткий код на этих страницах должен быть также заменен вручную - в противном случае эти маркеры/слои не будут отображаться!"
+msgstr ""
 
 #: ../class-leaflet-options.php:5582
 msgid "TinyMCE button"
-msgstr "Кнопка TinyMCE"
+msgstr ""
 
 #: ../class-leaflet-options.php:5583
 msgid "if enabled, a button on post/page edit screen gets added for easily searching and inserting maps"
-msgstr "Если активировано, на экран поста/страницы добавляется кнопка для облегчения поиска и вставки карт."
+msgstr ""
 
 #: ../class-leaflet-options.php:5594
 msgid "Add GeoRSS feed to &lt;head&gt;"
-msgstr "Добавить GeoRSS фид в &lt;head&gt;"
+msgstr ""
 
 #: ../class-leaflet-options.php:5595
 msgid "if enabled, a GeoRSS feed for all markers will be added to the &lt;head&gt;-section of the website, allowing users to subscribe to your markers"
-msgstr "Если активировано, GeoRSS фид для всех маркеров будет добавлен в секцию веб страницы &lt;head&gt;, позволяя пользователям подписываться на ваши маркеры"
+msgstr ""
 
 #: ../class-leaflet-options.php:5607
 msgid "show or hide drop down menu for Leaflet Maps Marker in Wordpress Admin Bar"
-msgstr "отобразить или спрятать ниспадающее меню для плагина Leaflet Maps Marker в Панели Администратора Wordpress"
+msgstr ""
 
 #: ../class-leaflet-options.php:5630
 msgid "Global statistics"
-msgstr "Глобальная статистика"
+msgstr ""
 
 #: ../class-leaflet-options.php:5631
 msgid "Anonymous marker/layer hit counter"
-msgstr "Анонимный счетчик обращений к маркерам/слоям"
+msgstr ""
 
 #: ../class-leaflet-options.php:5641
 msgid "QR code image size"
-msgstr "Размер изображения QR кода"
+msgstr ""
 
 #: ../class-leaflet-options.php:5642
 msgid "Width and height in pixel of QR code image for marker/layer standalone fullscreen map links"
-msgstr "Ширина и высота в пикселях изображения QR кода для маркеров/слоев независимых полноэкранных ссылок на карты"
+msgstr ""
 
 #: ../class-leaflet-options.php:5654
 msgid "Language settings"
-msgstr "Языковые настройки"
+msgstr "שפּראַך־אײַנשטעלונגען"
 
 #: ../class-leaflet-options.php:5668
 msgid "Default language"
-msgstr "Язык по умолчанию"
+msgstr "געװײטנלעכע שפּראַך"
 
 #: ../class-leaflet-options.php:5673
 msgid "automatic (use WordPress default)"
-msgstr "автоматический (использовать WordPress по умолчанию)"
+msgstr ""
 
 #: ../class-leaflet-options.php:5676
 msgid "Chinese"
-msgstr "китайский"
+msgstr "כינעסיש"
 
 #: ../class-leaflet-options.php:5694
 msgid "Where to change the default language"
-msgstr "Где изменить язык, установленный по умолчанию"
+msgstr ""
 
 #: ../class-leaflet-options.php:5695
 msgid "This setting will only be used when the plugin language is not selected automatically"
-msgstr "Эта настройка будет использоваться только в том случае, если язык плагина не выбран автоматически"
+msgstr ""
 
 #: ../class-leaflet-options.php:5699
 msgid "WordPress admin area only"
-msgstr "Зона доступа только для администратора WordPress"
+msgstr ""
 
 #: ../class-leaflet-options.php:5700
 msgid "WordPress frontend only"
-msgstr "Только фронт WordPress"
+msgstr ""
 
 #: ../class-leaflet-options.php:5701
 msgid "WordPress admin area and frontend"
-msgstr "Зона и фронт администратора WordPress"
+msgstr ""
 
 #: ../class-leaflet-options.php:5719
 msgid "Choose how marker names should be displayed in KML files"
-msgstr "Выбрать способ отображения названий маркеров в KML файлах"
+msgstr ""
 
 #: ../class-leaflet-options.php:5725
 msgid "Marker names in KML"
-msgstr "Названия маркера в KML"
+msgstr ""
 
 #: ../class-leaflet-options.php:5732
 msgid "put in front of popup-text"
-msgstr "поставить перед всплывающим текстом"
+msgstr ""
 
 #: ../class-leaflet-options.php:5750
 msgid "The following settings will be used for all marker and layer maps"
-msgstr "Следующие настройки должны быть использованы для всех маркированных и слойных карт:"
+msgstr ""
 
 #: ../class-leaflet-options.php:5757
 msgid "Whether the map be draggable with mouse/touch or not."
-msgstr "Должна ли карта перетаскиваться мышью/прикосновением или нет."
+msgstr ""
 
 #: ../class-leaflet-options.php:5769
 msgid "Whether the map can be zoomed by touch-dragging with two fingers."
-msgstr "Должен ли масштаб карты меняться при прикосновении и передвижении двух пальцев."
+msgstr ""
 
 #: ../class-leaflet-options.php:5781
 msgid "Whether the map can be zoomed by using the mouse wheel."
-msgstr "Должен ли масштаб карты меняться при движении колеса прокрутки мыши."
+msgstr ""
 
 #: ../class-leaflet-options.php:5793
 msgid "Whether the map can be zoomed in by double clicking on it."
-msgstr "Должен ли масштаб карты меняться при двойном щелчке мышью."
+msgstr ""
 
 #: ../class-leaflet-options.php:5805
 msgid "Whether the zoom control is added to the map by default."
-msgstr "Должна ли панель контроля масштабирования добавляться к карте по умолчанию."
+msgstr ""
 
 #: ../class-leaflet-options.php:5817
 msgid "Whether the map automatically handles browser window resize to update itself."
-msgstr "Должна ли карта автоматически изменять размер окна браузера для обновления. "
+msgstr ""
 
 #: ../class-leaflet-options.php:5829
 msgid "Set it to false if you do not want popups to close when user clicks the map."
-msgstr "Установите значение на неверно, если вы не хотите, чтобы всплывающие окна закрывались, когда пользователь кликает по карте."
+msgstr ""
 
 #: ../class-leaflet-options.php:5840
 msgid "Coordinate Reference System"
-msgstr "Система связи координат"
+msgstr ""
 
 #: ../class-leaflet-options.php:5841
 msgid "Used for created maps - do not change this if you are not sure what it means!"
-msgstr "Используется для созданных карт - не меняйте это, если не уверены, что это обозначает!"
+msgstr ""
 
 #: ../class-leaflet-options.php:5845
 msgid "EPSG:3857 (Spherical Mercator), used by most of commercial map providers (CloudMade, Google, Yahoo, Bing, etc.)"
-msgstr "EPSG:3857 (Spherical Mercator), используется большинством коммерческих провайдеров карт (CloudMade, Google, Yahoo, Bing, и т.д.)"
+msgstr ""
 
 #: ../class-leaflet-options.php:5846
 msgid "EPSG:4326 (Plate Carree), very popular among GIS enthusiasts"
-msgstr "EPSG:4326 (Plate Carree), очень популярен среди энтузиастов GIS"
+msgstr ""
 
 #: ../class-leaflet-options.php:5847
 msgid "EPSG:4326 (Mercator), used by some map providers."
-msgstr "EPSG:4326 (Mercator), используется некоторыми провайдерами карт."
+msgstr ""
 
 #: ../class-leaflet-options.php:5865
 msgid "Please select the columns which should be available on the page \"List all markers\""
-msgstr "Пожалуйста, выберите колонки, которые должны быть доступны на странице \"Список всех маркеров\""
+msgstr ""
 
 #: ../class-leaflet-options.php:5871 ../class-leaflet-options.php:6120
 msgid "Columns to show"
-msgstr "Отображаемые колонки"
+msgstr "זײַלן צו װײַזן"
 
 #: ../class-leaflet-options.php:4852 ../class-leaflet-options.php:5888
 #: ../leaflet-layer.php:531 ../leaflet-layer.php:575
 #: ../leaflet-list-markers.php:128 ../leaflet-list-markers.php:176
 #: ../leaflet-marker.php:222
 msgid "Marker name"
-msgstr "Название маркера"
+msgstr ""
 
 #: ../class-leaflet-options.php:4860 ../class-leaflet-options.php:5896
 #: ../leaflet-layer.php:533 ../leaflet-layer.php:577
 #: ../leaflet-list-markers.php:130 ../leaflet-list-markers.php:178
 #: ../leaflet-marker.php:435 ../leaflet-tools.php:443
 msgid "Popup text"
-msgstr "Всплывающий текст"
+msgstr "אױפֿשפּרינג־טעקסט"
 
 #: ../class-leaflet-options.php:5904 ../class-leaflet-options.php:6153
 #: ../leaflet-layer.php:543 ../leaflet-layer.php:587
@@ -2844,31 +2844,31 @@ msgstr "Всплывающий текст"
 #: ../leaflet-list-markers.php:144 ../leaflet-list-markers.php:192
 #: ../leaflet-tools.php:262 ../leaflet-tools.php:513
 msgid "Basemap"
-msgstr "Базовая карта"
+msgstr "באַזע־מאַפּע"
 
 #: ../class-leaflet-options.php:5912 ../leaflet-list-markers.php:96
 #: ../leaflet-list-markers.php:132 ../leaflet-list-markers.php:180
 #: ../leaflet-marker.php:226 ../leaflet-tools.php:231
 msgid "Layer"
-msgstr "Слой"
+msgstr "שיכט"
 
 #: ../class-leaflet-options.php:5920 ../leaflet-layer.php:537
 #: ../leaflet-layer.php:581 ../leaflet-list-markers.php:138
 #: ../leaflet-list-markers.php:186 ../leaflet-marker.php:247
 msgid "Coordinates"
-msgstr "Координаты"
+msgstr "קאָאָרדינאַטן"
 
 #: ../class-leaflet-options.php:5936 ../leaflet-layer.php:535
 #: ../leaflet-layer.php:579 ../leaflet-list-markers.php:134
 #: ../leaflet-list-markers.php:182 ../leaflet-tools.php:427
 msgid "Popup status"
-msgstr "Статус вслывающиего текста"
+msgstr "אױפֿשפּרינג־סטאַטוס"
 
 #: ../class-leaflet-options.php:5944 ../class-leaflet-options.php:6185
 #: ../leaflet-list-layers.php:51 ../leaflet-list-layers.php:93
 #: ../leaflet-list-markers.php:136 ../leaflet-list-markers.php:184
 msgid "Panel status"
-msgstr "Статус панели"
+msgstr "טאַפֿליע־סטאַטוס"
 
 #: ../class-leaflet-options.php:5952 ../class-leaflet-options.php:6177
 #: ../leaflet-layer.php:265 ../leaflet-layer.php:539 ../leaflet-layer.php:583
@@ -2876,14 +2876,14 @@ msgstr "Статус панели"
 #: ../leaflet-list-markers.php:140 ../leaflet-list-markers.php:188
 #: ../leaflet-marker.php:259 ../leaflet-tools.php:326 ../leaflet-tools.php:577
 msgid "Map size"
-msgstr "Размер карты"
+msgstr "מאַפּע־גרײס"
 
 #: ../class-leaflet-options.php:5960 ../class-leaflet-options.php:6193
 #: ../leaflet-layer.php:545 ../leaflet-layer.php:589
 #: ../leaflet-list-layers.php:57 ../leaflet-list-layers.php:99
 #: ../leaflet-list-markers.php:146 ../leaflet-list-markers.php:194
 msgid "Created by"
-msgstr "Создано"
+msgstr "באַשאַפֿער:"
 
 #: ../class-leaflet-options.php:5968 ../class-leaflet-options.php:6201
 #: ../leaflet-layer.php:547 ../leaflet-layer.php:591
@@ -2891,14 +2891,14 @@ msgstr "Создано"
 #: ../leaflet-list-markers.php:148 ../leaflet-list-markers.php:196
 #: ../leaflet-maps-marker.php:1353
 msgid "Created on"
-msgstr "Дата создания"
+msgstr "באַשאַפֿט"
 
 #: ../class-leaflet-options.php:5976 ../class-leaflet-options.php:6209
 #: ../leaflet-layer.php:549 ../leaflet-layer.php:593
 #: ../leaflet-list-layers.php:61 ../leaflet-list-layers.php:103
 #: ../leaflet-list-markers.php:150 ../leaflet-list-markers.php:198
 msgid "Updated by"
-msgstr "Обновлено"
+msgstr "‫דערהײַנטיקער:‬"
 
 #: ../class-leaflet-options.php:5984 ../class-leaflet-options.php:6217
 #: ../leaflet-layer.php:551 ../leaflet-layer.php:595
@@ -2906,205 +2906,205 @@ msgstr "Обновлено"
 #: ../leaflet-list-markers.php:152 ../leaflet-list-markers.php:200
 #: ../leaflet-maps-marker.php:1354
 msgid "Updated on"
-msgstr "Дата обновления"
+msgstr "דערהײַנטיקט"
 
 #: ../class-leaflet-options.php:5992 ../class-leaflet-options.php:6225
 #: ../leaflet-layer.php:553 ../leaflet-layer.php:597
 #: ../leaflet-list-layers.php:65 ../leaflet-list-layers.php:107
 #: ../leaflet-list-markers.php:154 ../leaflet-list-markers.php:202
 msgid "Controlbox status"
-msgstr "Статус окна управления"
+msgstr ""
 
 #: ../class-leaflet-options.php:6067
 msgid "Please select order by and sort order for \"List all markers\" page"
-msgstr "Пожалуйста, выберите порядок сортировки для страницы \"Список всех маркеров\""
+msgstr ""
 
 #: ../class-leaflet-options.php:6080
 msgid "assigned layer"
-msgstr "назначенный слой"
+msgstr ""
 
 #: ../class-leaflet-options.php:6082 ../class-leaflet-options.php:6314
 #: ../leaflet-maps-marker.php:91
 msgid "created by"
-msgstr "создано"
+msgstr "‫באַשאַפֿער:‬"
 
 #: ../class-leaflet-options.php:6084 ../class-leaflet-options.php:6316
 msgid "updated by"
-msgstr "обновлено"
+msgstr ""
 
 #: ../class-leaflet-options.php:6114
 msgid "Please select the columns which should be available on the page \"List all layers\""
-msgstr "Пожалуйста, выберите колонки, которые должны быть доступны на странице \"Список всех слоев\""
+msgstr ""
 
 #: ../class-leaflet-options.php:6129 ../leaflet-list-layers.php:43
 #: ../leaflet-list-layers.php:85
 msgid "Type"
-msgstr "Тип"
+msgstr ""
 
 #: ../class-leaflet-options.php:6137 ../leaflet-layer.php:248
 msgid "Layer name"
-msgstr "Название слоя"
+msgstr ""
 
 #: ../class-leaflet-options.php:6145
 msgid "Number of markers"
-msgstr "Число маркеров"
+msgstr ""
 
 #: ../class-leaflet-options.php:6161 ../leaflet-layer.php:252
 #: ../leaflet-list-layers.php:47 ../leaflet-list-layers.php:89
 msgid "Layer center"
-msgstr "Центр слоя"
+msgstr ""
 
 #: ../class-leaflet-options.php:6300
 msgid "Please select order by and sort order for \"List all layers\" page"
-msgstr "Пожалуйста, выберите порядок сортировки для страницы \"Список всех слоёв\""
+msgstr ""
 
 #: ../class-leaflet-options.php:6312
 msgid "layer name"
-msgstr "название слоя"
+msgstr ""
 
 #: ../class-leaflet-options.php:6341
 msgid "Reset Settings"
-msgstr "Обнулить Настройки"
+msgstr ""
 
 #: ../class-leaflet-options.php:6345
 msgid "Check this box and click \"Save Changes\" below to reset plugin options to their defaults."
-msgstr "Отметьте галочкой ячейку ниже и нажмите \"Сохранить изменения\", чтобы обнулить настройки до стандартных."
+msgstr ""
 
 #: ../leaflet-admin-header.php:18 ../leaflet-list-markers.php:101
 #: ../leaflet-maps-marker.php:798 ../leaflet-maps-marker.php:850
 msgid "List all markers"
-msgstr "Отобразить все маркеры"
+msgstr ""
 
 #: ../leaflet-admin-header.php:19 ../leaflet-maps-marker.php:799
 #: ../leaflet-maps-marker.php:856 ../leaflet-marker.php:206
 msgid "Add new marker"
-msgstr "Добавить новый маркер"
+msgstr ""
 
 #: ../leaflet-admin-header.php:20 ../leaflet-list-layers.php:10
 #: ../leaflet-maps-marker.php:800 ../leaflet-maps-marker.php:862
 msgid "List all layers"
-msgstr "Отобразить все слои"
+msgstr "װײַז אַ רשימה פֿון אַלע שיכטן"
 
 #: ../leaflet-admin-header.php:21 ../leaflet-layer.php:232
 #: ../leaflet-maps-marker.php:801 ../leaflet-maps-marker.php:868
 msgid "Add new layer"
-msgstr "Добавить новый слой"
+msgstr "לײג־צו אַ נײַעם שיכט"
 
 #: ../leaflet-admin-header.php:22 ../leaflet-maps-marker.php:802
 #: ../leaflet-maps-marker.php:877
 msgid "Tools"
-msgstr "Инструменты"
+msgstr "מכשירים"
 
 #: ../leaflet-admin-header.php:25 ../leaflet-maps-marker.php:804
 #: ../leaflet-maps-marker.php:892
 msgid "Help & Credits"
-msgstr "Помощь и Разработчики"
+msgstr "געהילף און אָנערקענונגען"
 
 #: ../leaflet-admin-header.php:99
 msgid "remove message"
-msgstr "удалить сообщение"
+msgstr "נעם אָנזאָג אַװעק"
 
 #: ../leaflet-admin-header.php:116
 msgid "<strong>Warning: you are using the plugin jQuery Colorbox which is causing maps to break!</strong><br/><br/>Here is how to fix this:<br/>1. click on to \"Settings\" / \"jQuery Colorbox\" in your WordPress admin menu<br/>2. Uncheck the setting \"Automate jQuery Colorbox for all images in pages, posts and galleries:\"<br/>3. check the setting \"Automate jQuery Colorbox for images in WordPress galleries only:\" instead<br/>4. save changes<br/><br/>This message will disappear automatically when the jQuery Colorbox option was updated."
-msgstr "<strong>Предупреждение: вы используете плагин jQuery Colorbox, который вызывает ошибки при работе с картами!</strong><br/><br/>Вот как это исправить:<br/>1. зайдите в \"Настройки\" / \"jQuery Colorbox\" в меню администратора WordPress<br/>2. уберите галочку с пункта \"Автоматическая работа jQuery Colorbox для всех изображений на страницах, в постах и галереях:\"<br/>3. вместо этого поставьте галочку напротив \"Автоматическая работа jQuery Colorbox для изображений только в галереях WordPress:\"<br/>4. сохраните настройки.<br/><br/>Это сообщение исчезнет автоматически после обновления настроек jQuery Colorbox."
+msgstr ""
 
 #: ../leaflet-admin-header.php:122
 msgid "<strong>Warning: you are using the plugin cformsII which is causing the TinyMCE editor to break when creating new maps!</strong><br/><br/>Here is how to fix this:<br/>1. click on to \"cformsII\" / \"Global Settings\" in your WordPress admin menu<br/>2. open the tab \"WP Editor Button support\"<br/>3. check the option \"Fix TinyMCE error\"<br/>4. save changes<br/><br/>If you do not see this option in your settings, please upgrade to the latest version first (this has to be done manually - see plugin website http://www.deliciousdays.com/cforms-plugin/ for details)<br/><br/>This message will disappear automatically when the cformsII option \"Fix TinyMCE error\" is checked."
-msgstr "<strong>Предупреждение: вы используете плагин cformsII, который вызывает ошибки при создании новых карт в редакторе TinyMCE!</strong><br/><br/>Вот как это исправить:<br/>1. нажмите \"cformsII\" / \"Глобальные Настройки\" в меню администратора WordPress<br/>2. откройте вкладку \"Поддержка WP Editor Button\"<br/>3. поставьте галочку напротив \"Исправлять ошибку TinyMCE\"<br/>4. сохраните изменения.<br/><br/>Эсли такой опции в настройках нет, пожалуйста, обновитесь до последней версии (это нужно сделать вручную: зайдите на веб сайт плагина http://www.deliciousdays.com/cforms-plugin/ для получения подробной информации.)<br/><br/>Это сообщение исчезнет автоматически после активации опции \"Исправлять ошибку TinyMCE\" в cformsII."
+msgstr ""
 
 #: ../leaflet-admin-header.php:126
 msgid "<strong>Warning: you are using the outdated plugin WP Google Analytics which is incompatible with Leaflet Maps Marker. Please update to a more current Google analytics plugin like http://wordpress.org/extend/plugins/google-analytics-for-wordpress/"
-msgstr "<strong>Предупреждение: вы используете устаревший плагин WP Google Аналитика, который несовместим с Leaflet Maps Marker. Пожалуйста, обновите плагин Google Аналитика, например, до этой версии: http://wordpress.org/extend/plugins/google-analytics-for-wordpress/"
+msgstr ""
 
 #: ../leaflet-admin-header.php:180
 msgid "Message"
-msgstr "Сообщение"
+msgstr "אָנזאָג"
 
 #: ../leaflet-admin-header.php:183
 msgid "If you like to donate a certain amount of money to show your support, you can also use Paypal. If you don´t have a Paypal account, you can use your credit card or bank account (where available). Please click on the paypal image to proceed to the donation form."
-msgstr "Если вы хотите пожертвовать некоторую сумму денег, чтобы выразить вашу поддержку, вы можете воспользоваться услугами Paypal. Если у вас нет Paypal счета, вы можете воспользоваться кредитной картой или банковским счетом (если есть). Кликните по изображению paypal для оформления пожертвования."
+msgstr ""
 
 #: ../leaflet-admin-header.php:186
 msgid "The easiest way to support this plugin is to buy something from Amazon by using this referrer link. Note: this doesn´t cost you anything as your purchase volume won´t be increased, but I will receive 6 per cent of your purchase volume as a referral fee."
-msgstr "Самый простой способ поддержать плагин - покупка продуктов на Amazon с использованием этой ссылки посредника. Обратите внимание: это ничего не стоит, сумма покупки не изменится, но я получу 6 процентов от стоимости вашей покупки как посредник."
+msgstr ""
 
 #: ../leaflet-admin-header.php:187
 msgid "Another way to show your support for this plugin is to buy something from my Amazon wishlist, respectively sending me a greeting card worth from 15 to 500 $ with a personal note, which I would very much appreciate."
-msgstr "Другим способом выражения вашей поддержки этому плагину является покупка чего-либо из моего списка пожеланий на Amazon, соответственно, выслав мне открытку с персональным пожеланием ценностью от 15 до 500 долларов, за которые я буду очень благодарен."
+msgstr ""
 
 #: ../leaflet-admin-header.php:193
 msgid "A message from the plugin´s author"
-msgstr "Сообщение от автора этого плагина"
+msgstr ""
 
 #: ../leaflet-admin-header.php:193
 msgid "Show website of plugin author"
-msgstr "Открыть веб сайт автора плагина"
+msgstr ""
 
 #: ../leaflet-admin-header.php:194
 msgid "It is hard to continue development and support for Leaflet Maps Marker-plugin without contributions from users like you."
-msgstr "Трудно продолжать разработку и поддержку плагина Leaflet Maps Marker без взносов от таких пользователей как вы."
+msgstr ""
 
 #: ../leaflet-admin-header.php:194
 msgid "If you enjoy using the plugin - <strong>particularly within a commercial context</strong> - please consider making a donation."
-msgstr "Если вам нравится использовать плагин, <strong>особенно в коммерческих целях</strong>, пожалуйста, рассмотрите возможность внесения пожертвования."
+msgstr ""
 
 #: ../leaflet-admin-header.php:194
 msgid "Your donation help keeping the plugin free for everyone and allow me to spend more time on developing, maintaining and support."
-msgstr "Ваше пожертвование позволит сохранить плагин бесплатным для всех и позволит мне уделять больше времени его развитию, разработке и поддержке."
+msgstr ""
 
 #: ../leaflet-admin-header.php:194
 msgid "I´d be happy to accept your donation! Thanks!"
-msgstr "Я был бы счастлив получить ваше пожертвование! Спасибо!"
+msgstr ""
 
 #: ../leaflet-admin-header.php:194
 msgid "For more information on how to donate, please visit"
-msgstr "Для более подробной информации о том, как внести свой вклад, пожалуйста, посетите"
+msgstr ""
 
 #: ../leaflet-admin-header.php:194
 msgid "please rate this plugin on wordpress.org"
-msgstr "пожалуйста, оцените этот плагин на wordpress.org"
+msgstr ""
 
 #: ../leaflet-admin-header.php:194
 msgid "Rate plugin"
-msgstr "Оценить плагин"
+msgstr ""
 
 #: ../leaflet-exportcsv.php:29 ../leaflet-layer.php:22
 #: ../leaflet-list-markers.php:29 ../leaflet-list-markers.php:84
 #: ../leaflet-list-markers.php:92 ../leaflet-marker.php:25
 #: ../leaflet-tools.php:20
 msgid "Security check failed - please call this function from the according Leaflet Maps Marker admin page!"
-msgstr "Ошибка проверки безопасности - пожалуйста, обратитесь к этой функции на соответствующей странице администратора Leaflet Maps Marker!"
+msgstr ""
 
 #: ../leaflet-exportcsv.php:88
 msgid "Error - CSV export of all markers not allowed."
-msgstr "Ошибка - CSV экспорт всех маркеров не разрешен."
+msgstr ""
 
 #: ../leaflet-fullscreen.php:67 ../leaflet-layer.php:218
 #: ../leaflet-maps-marker.php:317
 msgid "Error: a layer with the ID %1$s does not exist!"
-msgstr "Ошибка: слой с ID %1$s не существует!"
+msgstr ""
 
 #: ../leaflet-fullscreen.php:69 ../leaflet-fullscreen.php:484
 #: ../leaflet-maps-marker.php:326
 msgid "Go to plugin website"
-msgstr "Перейти на веб сайт плагина"
+msgstr ""
 
 #: ../leaflet-fullscreen.php:94 ../leaflet-fullscreen.php:509
 #: ../leaflet-maps-marker.php:942 ../leaflet-maps-marker.php:969
 msgid "Zoom in"
-msgstr "Увеличить"
+msgstr "פֿאַרגרעסער"
 
 #: ../leaflet-fullscreen.php:94 ../leaflet-fullscreen.php:509
 #: ../leaflet-maps-marker.php:943 ../leaflet-maps-marker.php:970
 msgid "Zoom out"
-msgstr "Уменьшить"
+msgstr "פֿאַרקלענער"
 
 #: ../leaflet-fullscreen.php:121 ../leaflet-fullscreen.php:552
 #: ../leaflet-layer.php:305 ../leaflet-layer.php:367
 #: ../leaflet-maps-marker.php:354 ../leaflet-maps-marker.php:378
 #: ../leaflet-maps-marker.php:470 ../leaflet-marker.php:332
 msgid "Export as KML for Google Earth/Google Maps"
-msgstr "Экспортировать в качестве KML для Google Earth/Google Maps"
+msgstr ""
 
 #: ../leaflet-fullscreen.php:124 ../leaflet-fullscreen.php:555
 #: ../leaflet-layer.php:53 ../leaflet-layer.php:93 ../leaflet-layer.php:242
@@ -3116,7 +3116,7 @@ msgstr "Экспортировать в качестве KML для Google Earth
 #: ../leaflet-marker.php:50 ../leaflet-marker.php:83 ../leaflet-marker.php:217
 #: ../leaflet-marker.php:335
 msgid "Open standalone map in fullscreen mode"
-msgstr "Открыть независимую карту в полноэкранном режиме"
+msgstr ""
 
 #: ../leaflet-fullscreen.php:127 ../leaflet-fullscreen.php:558
 #: ../leaflet-layer.php:53 ../leaflet-layer.php:93 ../leaflet-layer.php:242
@@ -3128,28 +3128,28 @@ msgstr "Открыть независимую карту в полноэкран
 #: ../leaflet-marker.php:50 ../leaflet-marker.php:83 ../leaflet-marker.php:217
 #: ../leaflet-marker.php:338
 msgid "Create QR code image for standalone map in fullscreen mode"
-msgstr "Создать изображение с QR кодом для независимой карты в полноэкранном режиме"
+msgstr ""
 
 #: ../leaflet-fullscreen.php:130 ../leaflet-fullscreen.php:561
 #: ../leaflet-layer.php:314 ../leaflet-maps-marker.php:363
 #: ../leaflet-maps-marker.php:387 ../leaflet-maps-marker.php:476
 #: ../leaflet-marker.php:341
 msgid "Export as GeoJSON"
-msgstr "Экспортировать в качестве GeoJSON"
+msgstr ""
 
 #: ../leaflet-fullscreen.php:133 ../leaflet-fullscreen.php:564
 #: ../leaflet-layer.php:317 ../leaflet-maps-marker.php:366
 #: ../leaflet-maps-marker.php:390 ../leaflet-maps-marker.php:479
 #: ../leaflet-marker.php:344
 msgid "Export as GeoRSS"
-msgstr "Экспортировать в качестве GeoRSS"
+msgstr ""
 
 #: ../leaflet-fullscreen.php:136 ../leaflet-fullscreen.php:567
 #: ../leaflet-layer.php:320 ../leaflet-maps-marker.php:369
 #: ../leaflet-maps-marker.php:393 ../leaflet-maps-marker.php:482
 #: ../leaflet-marker.php:347
 msgid "Export as ARML for Wikitude Augmented-Reality browser"
-msgstr "Экспортировать в качестве ARML для браузера Wikitude Augmented-Reality"
+msgstr ""
 
 #: ../leaflet-fullscreen.php:168 ../leaflet-fullscreen.php:169
 #: ../leaflet-fullscreen.php:592 ../leaflet-fullscreen.php:593
@@ -3157,12 +3157,12 @@ msgstr "Экспортировать в качестве ARML для брауз�
 #: ../leaflet-maps-marker.php:507 ../leaflet-maps-marker.php:508
 #: ../leaflet-marker.php:539 ../leaflet-marker.php:540
 msgid "City of Vienna"
-msgstr "Город Вена"
+msgstr "די שטאָט װין"
 
 #: ../leaflet-fullscreen.php:482 ../leaflet-kml.php:213
 #: ../leaflet-maps-marker.php:318 ../leaflet-marker.php:192
 msgid "Error: a marker with the ID %1$s does not exist!"
-msgstr "Ошибка: маркер с ID %1$s не существует!"
+msgstr ""
 
 #: ../leaflet-fullscreen.php:542 ../leaflet-fullscreen.php:545
 #: ../leaflet-fullscreen.php:548 ../leaflet-fullscreen.php:828
@@ -3180,93 +3180,93 @@ msgstr "Ошибка: маркер с ID %1$s не существует!"
 #: ../leaflet-marker.php:757 ../leaflet-marker.php:761
 #: ../leaflet-marker.php:765
 msgid "Get directions"
-msgstr "Рассчитать маршрут"
+msgstr ""
 
 #: ../leaflet-georss.php:88 ../leaflet-georss.php:153
 msgid "maps"
-msgstr "карты"
+msgstr ""
 
 #: ../leaflet-help-credits.php:12
 msgid "Help"
-msgstr "Помощь"
+msgstr ""
 
 #: ../leaflet-help-credits.php:14 ../leaflet-maps-marker.php:912
 msgid "Do you have questions or issues with Leaflet Maps Marker? Please use the following support channels appropriately."
-msgstr "У вас есть вопросы или проблемы с Leaflet Maps Marker? Пожалуйста, используйте представленные ниже виды поддержки надлежащим образом."
+msgstr ""
 
 #: ../leaflet-help-credits.php:17 ../leaflet-maps-marker.php:914
 msgid "FAQ"
-msgstr "ЧАВО"
+msgstr ""
 
 #: ../leaflet-help-credits.php:17
 msgid "(frequently asked questions)"
-msgstr "(часто задаваемые вопросы)"
+msgstr ""
 
 #: ../leaflet-help-credits.php:18 ../leaflet-maps-marker.php:915
 msgid "Documentation"
-msgstr "Документация"
+msgstr "דאָקומענאַציע"
 
 #: ../leaflet-help-credits.php:20 ../leaflet-maps-marker.php:916
 msgid "Ideas"
-msgstr "Идеи"
+msgstr "פֿאָרשלאַגן"
 
 #: ../leaflet-help-credits.php:20
 msgid "(feature requests)"
-msgstr "(функциональные запросы)"
+msgstr ""
 
 #: ../leaflet-help-credits.php:21
 msgid "(free community support)"
-msgstr "(бесплатная поддержка сообщества)"
+msgstr ""
 
 #: ../leaflet-help-credits.php:22
 msgid "(paid community support)"
-msgstr "(платная поддержка сообщества)"
+msgstr ""
 
 #: ../leaflet-help-credits.php:23
 msgid "(paid professional support)"
-msgstr "(платная профессиональная поддержка)"
+msgstr ""
 
 #: ../leaflet-help-credits.php:26 ../leaflet-maps-marker.php:921
 msgid "More information on support"
-msgstr "Больше информации о поддержке"
+msgstr ""
 
 #: ../leaflet-help-credits.php:27
 msgid "Licence"
-msgstr "Лицензия"
+msgstr ""
 
 #: ../leaflet-help-credits.php:29
 msgid "Good news, this plugin is free for everyone! Since it is released under the GPL2, you can use it free of charge on your personal or commercial blog.<br/>But if you enjoy this plugin, you can thank me and leave a small donation for the time I have spent writing and supporting this plugin.<br/>Please see <a href=\"http://www.mapsmarker.com/donations\" target=\"_blank\">http://www.mapsmarker.com/donations</a> for details."
-msgstr "Хорошие новости: этот плагин бесплатен для всех! Так как он издан под лицензией GPL2, вы можете использовать его бесплатно для частных и коммерческих блогов. <br/>Но если вам нравится этот плагин, вы можите отблагодарить меня и оставить небольшое пожертвование за то время, которое я потратил на его разработку и поддержку.<br/>Пожалуйста, зайдите в раздел <a href=\"http://www.mapsmarker.com/donations\" target=\"_blank\">http://www.mapsmarker.com/donations</a> для получения подробной информации."
+msgstr ""
 
 #: ../leaflet-help-credits.php:31
 msgid "Licenses for used libraries, services and images"
-msgstr "Лицензии на все библиотеки, службы и изображения"
+msgstr ""
 
 #: ../leaflet-admin-header.php:194 ../leaflet-help-credits.php:45
 msgid "Translations"
-msgstr "Переводы"
+msgstr "איבערזעצונגען"
 
 #: ../leaflet-help-credits.php:70
 msgid "Credits & special thanks"
-msgstr "Разработчики и особая благодарность"
+msgstr "אָנערקענונגען און באַזונדערע דאַנק־װערטער"
 
 #: ../leaflet-kml.php:86
 msgid "Warning: no markers are assigned to the layer with the ID %1$s or the layer does not exist!"
-msgstr "Внимание: нет маркеров, назначенных слою с ID %1$s, или слой не существует!"
+msgstr ""
 
 #: ../leaflet-layer.php:52 ../leaflet-layer.php:79 ../leaflet-layer.php:524
 #: ../leaflet-layer.php:683 ../leaflet-list-layers.php:177
 msgid "add new marker to this layer"
-msgstr "добавить новый маркер к этому слою"
+msgstr ""
 
 #: ../leaflet-layer.php:53
 msgid "Layer has been successfully added"
-msgstr "Слой был успешно добавлен"
+msgstr ""
 
 #: ../leaflet-layer.php:53 ../leaflet-layer.php:93 ../leaflet-layer.php:241
 #: ../leaflet-marker.php:50 ../leaflet-marker.php:83 ../leaflet-marker.php:216
 msgid "Shortcode and API URLs"
-msgstr "Короткий код и URL адреса интерфейса программирования приложений"
+msgstr ""
 
 #: ../leaflet-layer.php:53 ../leaflet-layer.php:93 ../leaflet-layer.php:242
 #: ../leaflet-layer.php:557 ../leaflet-layer.php:601
@@ -3274,7 +3274,7 @@ msgstr "Короткий код и URL адреса интерфейса про�
 #: ../leaflet-list-markers.php:158 ../leaflet-list-markers.php:206
 #: ../leaflet-marker.php:50 ../leaflet-marker.php:83 ../leaflet-marker.php:217
 msgid "Click here for more information on how to use as KML in Google Earth or Google Maps"
-msgstr "Нажмите здесь для получения подробной информации о том, как использовать в качестве KML в Google Earth или Google Maps"
+msgstr ""
 
 #: ../leaflet-layer.php:53 ../leaflet-layer.php:93 ../leaflet-layer.php:243
 #: ../leaflet-layer.php:563 ../leaflet-layer.php:607
@@ -3282,7 +3282,7 @@ msgstr "Нажмите здесь для получения подробной �
 #: ../leaflet-list-markers.php:164 ../leaflet-list-markers.php:212
 #: ../leaflet-marker.php:50 ../leaflet-marker.php:83 ../leaflet-marker.php:217
 msgid "Click here for more information on how to integrate GeoJSON into external websites or apps"
-msgstr "Нажмите здесь для получения информации о том, как интегрировать GeoJSON во внешние веб сайты или приложения"
+msgstr ""
 
 #: ../leaflet-layer.php:53 ../leaflet-layer.php:93 ../leaflet-layer.php:243
 #: ../leaflet-layer.php:565 ../leaflet-layer.php:609
@@ -3290,7 +3290,7 @@ msgstr "Нажмите здесь для получения информации
 #: ../leaflet-list-markers.php:166 ../leaflet-list-markers.php:214
 #: ../leaflet-marker.php:50 ../leaflet-marker.php:83 ../leaflet-marker.php:217
 msgid "Click here for more information on how to subscribe to new markers via GeoRSS"
-msgstr "Нажмите здесь для получения информации о том, как подписаться на новые маркеры через GeoRSS"
+msgstr ""
 
 #: ../leaflet-layer.php:53 ../leaflet-layer.php:93 ../leaflet-layer.php:243
 #: ../leaflet-layer.php:567 ../leaflet-layer.php:611
@@ -3298,65 +3298,65 @@ msgstr "Нажмите здесь для получения информации
 #: ../leaflet-list-markers.php:168 ../leaflet-list-markers.php:216
 #: ../leaflet-marker.php:50 ../leaflet-marker.php:83 ../leaflet-marker.php:217
 msgid "Click here for more information on how to display in Wikitude Augmented-Reality browser"
-msgstr "Нажмите здесь для получения информации о том, как отображать в браузере Wikitude Augmented-Reality"
+msgstr ""
 
 #: ../leaflet-layer.php:53 ../leaflet-layer.php:93 ../leaflet-marker.php:50
 #: ../leaflet-marker.php:83
 msgid "Please copy the shortcode above and paste it into the post or page where you want the map to appear or use one of the API URLs for embedding in external websites or apps"
-msgstr "Пожалуйста, скопируйте короткий код сверху и вставьте его в пост или на страницу, где вы хотите видеть карту, или воспользуйтесь одним из URL адресов интерфейса программирования приложений для вставки карт во внешние веб сайты или приложения."
+msgstr ""
 
 #: ../leaflet-layer.php:53 ../leaflet-layer.php:93 ../leaflet-marker.php:238
 msgid "edit layer"
-msgstr "редактировать слой"
+msgstr "רעדאַגיר דעם שיכט"
 
 #: ../leaflet-layer.php:53 ../leaflet-layer.php:93 ../leaflet-layer.php:106
 #: ../leaflet-layer.php:114 ../leaflet-layer.php:220
 msgid "show all layers"
-msgstr "отобразить все слои"
+msgstr "װײַז אַלע שיכטן"
 
 #: ../leaflet-layer.php:53 ../leaflet-layer.php:93 ../leaflet-layer.php:106
 #: ../leaflet-layer.php:114 ../leaflet-layer.php:220 ../leaflet-marker.php:239
 msgid "add new layer"
-msgstr "добавить новый слой"
+msgstr "לײג אַ נײַעם שיכט צו"
 
 #: ../leaflet-layer.php:60 ../leaflet-layer.php:97 ../leaflet-marker.php:57
 #: ../leaflet-marker.php:87
 msgid "Error: coordinates cannot be empty!"
-msgstr "Ошибка: поля координат не могут быть пустыми!"
+msgstr ""
 
 #: ../leaflet-layer.php:60 ../leaflet-layer.php:97 ../leaflet-marker.php:57
 #: ../leaflet-marker.php:87
 msgid "Go back to form"
-msgstr "Вернуться к форме"
+msgstr ""
 
 #: ../leaflet-layer.php:93
 msgid "Layer has been successfully updated"
-msgstr "Слой был успешно обновлен"
+msgstr ""
 
 #: ../leaflet-layer.php:106
 msgid "Layer and assigned markers have been successfully deleted"
-msgstr "Слой и назначенные ему маркеры были успешно удалены"
+msgstr ""
 
 #: ../leaflet-layer.php:114
 msgid "Layer has been successfully deleted (assigned markers have not been deleted)"
-msgstr "Слой был успешно удален (назначенные ему маркеры не были удалены)"
+msgstr ""
 
 #: ../leaflet-layer.php:232
 msgid "Edit layer"
-msgstr "Редактировать слой"
+msgstr "רעדאַגיר דעם שיכט"
 
 #: ../leaflet-layer.php:236 ../leaflet-marker.php:211
 msgid "Parameter"
-msgstr "Параметр"
+msgstr ""
 
 #: ../leaflet-layer.php:237 ../leaflet-marker.php:212
 msgid "Value"
-msgstr "Значение"
+msgstr ""
 
 #: ../leaflet-layer.php:243 ../leaflet-marker.php:217
 msgid "Use this shortcode in posts or pages on your website or one of the API URLs for embedding in external websites or apps"
-msgstr "Используйте этот короткий код для постов или страниц на вашем веб сайте или один из URL адресов интерфейса программирования приложений для вставки карт во внешние веб сайты или приложения"
+msgstr ""
 
 #: ../leaflet-layer.php:253 ../leaflet-marker.php:248
 msgid "Please select a place or an address"
-msgstr "Пожалуйста, выберите место или адрес"
+msgstr ""

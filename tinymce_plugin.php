@@ -2,6 +2,9 @@
 /**
 Hook into WordPress
 */
+//info prevent file from being accessed directly
+if (basename($_SERVER['SCRIPT_FILENAME']) == 'tinymce_plugin.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
+
 add_action('admin_print_styles-post.php', 'marker_select_box_css');
 add_action('admin_print_styles-post-new.php', 'marker_select_box_css');
 

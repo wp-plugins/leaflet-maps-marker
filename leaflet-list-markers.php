@@ -2,6 +2,8 @@
 /*
     List all markers - Leaflet Maps Marker Plugin
 */
+//info prevent file from being accessed directly
+if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-list-markers.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
 global $wpdb;
 $lmm_options = get_option( 'leafletmapsmarker_options' );
 $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';

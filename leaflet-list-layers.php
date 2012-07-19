@@ -2,6 +2,8 @@
 /*
     List all layers - Leaflet Maps Marker Plugin
 */
+//info prevent file from being accessed directly
+if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-list-layers.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
 ?>
 <div class="wrap">
 <?php include('leaflet-admin-header.php'); ?>

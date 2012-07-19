@@ -4,7 +4,10 @@
 */
 ?>
 <?php 
+//info prevent file from being accessed directly
+if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-admin-header.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
 require_once(ABSPATH . "/wp-includes/pluggable.php");
+$lmm_options = get_option( 'leafletmapsmarker_options' ); //info: required for bing maps api key check
 $admin_quicklink_settings_buttons = ( current_user_can( "activate_plugins" ) ) ? "<a class='button-secondary' href='" . LEAFLET_WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_settings'>".__('Settings','lmm')."</a>" : "";
 ?>
 <div style="float:right;">
@@ -30,8 +33,8 @@ if ( ($update_info_action == 'hide') && ($new_install == 'false') ) {
 	update_option('leafletmapsmarker_update_info', 'hide');
 }
 if (get_option('leafletmapsmarker_update_info') == 'show') {
-	$lmm_version_old = '2.4';
-	$lmm_version_new = '2.5';
+	$lmm_version_old = '2.5';
+	$lmm_version_new = '2.6';
 	$lmm_changelog_new_version = '<a href="http://www.mapsmarker.com/v' . $lmm_version_new . '" target="_blank">http://www.mapsmarker.com/v' . $lmm_version_new . '</a>';
 	$lmm_full_changelog = '<a href="http://www.mapsmarker.com/changelog" target="_blank">http://www.mapsmarker.com/changelog</a>';
 	echo '<div class="updated" style="padding:10px;"><p><strong>' . __('Leaflet Maps Marker has been updated successfully!','lmm') . '</strong></p>
@@ -41,42 +44,52 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 			<tr><td>
 			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
 			</td><td>
-			support for Google Maps as basemaps
+			support for bing maps as basemaps (<a href="http://www.mapsmarker.com/bing-maps" target="_blank">API key required</a>)
 			</td></tr>
 			<tr><td>
 			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
 			</td><td>
-			admin dashboard widget showing latest markers and blog posts from mapsmarker.com
+			configure marker attributes to show in marker list below layer maps (icon, marker name, popuptext)
 			</td></tr>
 			<tr><td>
 			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
 			</td><td>
-			Russian translation thanks to Ekaterina Golubina, supported by Teplitsa of Social Technologies - <a href="http://te-st.ru" target="_blank">http://te-st.ru</a>
+			option to use Google Maps (Terrain) as basemap
 			</td></tr>
 			<tr><td>
 			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
 			</td><td>
-			Bulgarian translation thanks to Andon Ivanov, <a href="http://coffebreak.info" target="_blank">http://coffebreak.info</a>
+			option to add Google Maps API key (required for commercial usage) - see <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank">http://www.mapsmarker.com/google-maps-api-key</a> for more details
 			</td></tr>
 			<tr><td>
 			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
 			</td><td>
-			Turkish translation thanks to Emre Erkan, <a href="http://www.karalamalar.net" target="_blank">http://www.karalamalar.net</a>
+			Hindi translation thanks to Outshine Solutions, <a href="http://outshinesolutions.com" target="_blank">http://outshinesolutions.com</a> and Guntupalli Karunakar, <a href="http://indlinux.org" target="_blank">http://indlinux.org</a>
 			</td></tr>
 			<tr><td>
 			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
 			</td><td>
-			Polish translation thanks to Pawel Wyszy&#324;ski, <a href="http://injit.pl" target="_blank">http://injit.pl</a>
+			Yiddish translation thanks to Raphael Finkel, <a href="http://www.cs.uky.edu/~raphael/yiddish.html" target="_blank">http://www.cs.uky.edu/~raphael/yiddish.html</a>
 			</td></tr>
 			<tr><td>
 			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
 			</td><td>
-			new collaborative translation site <a href="http://translate.mapsmarker.com/projects/lmm" target="_blank">http://translate.mapsmarker.com</a> - contributing new translations is now more easier than ever :-)
+			Catalan translation thanks to Vicent Cubells, <a href="http://vcubells.net" target="_blank">http://vcubells.net</a>
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			Added compatibility check for plugin <a href="http://wordpress.org/extend/plugins/bwp-minify/" target="_blank">WordPress Better Minify</a>
 			</td></tr>
 			<tr><td>
 			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
 			</td><td>
-			updated Japanese translations thanks to [Shu Higashi](http://twitter.com/higa4)
+			increased Google Maps maximal zoom level from 18 to 22
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
+			</td><td>
+			changed the way Google Maps API is called in order to prevent errors with unset sensor parameter when using certain proxy servers (thanks <a href="http://EdWeWo.com" target="_blank">Dragan</a>!)
 			</td></tr>
 			<tr><td>
 			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
@@ -96,37 +109,17 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 			<tr><td>
 			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
 			</td><td>
-			updated French translation thanks to Rodolphe Quiedeville, <a href="http://rodolphe.quiedeville.org/" target="_blank">http://rodolphe.quiedeville.org/</a>
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
-			</td><td>
-			updated Dutch translation thanks to Marijke <a href="http://www.mergenmetz.nl" target="_blank">http://www.mergenmetz.nl</a>
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
-			</td><td>
-			show "no markers created yet" on sidebar widget, if no markers are available
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
-			</td><td>
-			added translations strings for plugin update notice
+			updated French translation thanks to Vincèn Pujol, <a href="http://www.skivr.com" target="_blank">http://www.skivr.com</a>
 			</td></tr>
 			<tr><td>
 			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
 			</td><td>
-			v2.4 was broken on Wordpress 3.0-3.1.3
+			maps using Google Maps Satellite as basemaps were broken
 			</td></tr>
 			<tr><td>
 			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
 			</td><td>
-			WMS layer legend links were broken on marker/layer maps in admin area
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
-			</td><td>
-			\" in popup text caused layer maps to break (now " get replaced with &#39;)
+			fixed vertical alignment of basemaps in layer control box in backend
 			</td></tr>
 			</table>
 			<p>' . sprintf(__('If you upgraded from a version <%s, please visit %s for a complete list of changes.','lmm'), $lmm_version_old, $lmm_full_changelog) . '</p>
@@ -137,7 +130,16 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 }
 ?>
 <?php
-//info: check for incompability with other plugins
+//info: check if bing maps api key is defined
+if (( (($lmm_options['standard_basemap'] == 'bingaerial') || ($lmm_options['standard_basemap'] == 'bingaerialwithlabels') || ($lmm_options['standard_basemap'] == 'bingroad')) 
+|| ((isset($lmm_options[ 'controlbox_bingaerial' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingaerial' ] == 1 )) 
+|| ((isset($lmm_options[ 'controlbox_bingaerialwithlabels' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingaerialwithlabels' ] == 1 )) 
+|| ((isset($lmm_options[ 'controlbox_bingroad' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingroad' ] == 1 )) 
+) && ( isset($lmm_options['bingmaps_api_key']) && ($lmm_options['bingmaps_api_key'] == NULL ) 
+)) {
+	echo '<p><div class="error" style="padding:10px;">' . __('<strong>Warning: you enabled support for bing maps but did not provide an API key. Please visit <a href="http://www.mapsmarker.com/bing-maps" target="_blank">http://www.mapsmarker.com/bing-maps</a> for info on how to get a free bing maps API key!','lmm') . '</strong></div></p>';
+}
+//info: check for incompabilities with other plugins
 if (is_plugin_active('jquery-colorbox/jquery-colorbox.php') ) {
 	$lmm_jquery_colorbox_options = get_option( 'jquery-colorbox_settings' );
 	if ($lmm_jquery_colorbox_options['autoColorbox'] == TRUE) { 
@@ -152,6 +154,14 @@ if (is_plugin_active('cforms/cforms.php') ) {
 }
 if (is_plugin_active('wp-google-analytics/wp-google-analytics.php') ) {
 	echo '<p><div class="error" style="padding:10px;">' . __('<strong>Warning: you are using the outdated plugin WP Google Analytics which is incompatible with Leaflet Maps Marker. Please update to a more current Google analytics plugin like http://wordpress.org/extend/plugins/google-analytics-for-wordpress/','lmm') . '</strong></div></p>';
+}
+if (is_plugin_active('bwp-minify/bwp-minify.php') ) {
+	$lmm_bwpminify_options = get_option( 'bwp_minify_general' );
+	if ($lmm_bwpminify_options['enable_min_js'] == 'yes') { 
+		if (strpos($lmm_bwpminify_options['input_ignore'], 'leafletmapsmarker') === false)  { 
+			echo '<p><div class="error" style="padding:10px;">' . __('<strong>Warning: you are using the plugin "Better WordPress Minify" which can cause Leaflet Maps Marker to break if the option "Minify JS files automatically?" is active. Please disable this option (Settings / BWP Minify) or add <strong>leafletmapsmarker</strong> to the form field "Scripts to be ignored (not minified)"','lmm') . '</strong></div></p>';
+		}
+	}
 }
 ?>
 <table cellpadding="5" cellspacing="0" style="border:1px solid #ccc;width:98%;background:#efefef;">
