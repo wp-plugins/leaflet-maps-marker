@@ -26,7 +26,7 @@ Leaflet Maps Marker allows you to
 
 * pin your favorites places with markers,
 * use integrated address search (Google Places API) for quickly finding your places,
-* choose from up to 700 custom free map icons from [Maps Icons Collection](http://mapicons.nicolasmollet.com),
+* choose from more than 700 custom free map icons from [Maps Icons Collection](http://mapicons.nicolasmollet.com),
 * add popup description text or images for each marker,
 * choose individual basemap, size and zoom level for each marker/layer map,
 * organize your markers in layers and
