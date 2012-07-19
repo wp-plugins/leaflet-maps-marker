@@ -84,6 +84,10 @@ if (isset($_GET['layer'])) {
 	$lmm_out .= '<html dir="ltr" lang="de-DE">'.PHP_EOL;
 	$lmm_out .= '<!--<![endif]-->'.PHP_EOL;
 	$lmm_out .= '<head>'.PHP_EOL;
+	$lmm_out .= '<meta charset="UTF-8" />'.PHP_EOL;
+	$lmm_out .= '<meta name="geo.position" content="' . $lat . ';' . $lon . '" />'.PHP_EOL;
+	$lmm_out .= '<meta name="ICBM" content="' . $lat . ', ' . $lon . '" />'.PHP_EOL;
+	$lmm_out .= '<meta name="page-type" content="' . __('map','lmm') . '" />'.PHP_EOL;
 	$lmm_out .= '<link rel="stylesheet" id="leafletmapsmarker-css" href="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.css" type="text/css" media="all">'.PHP_EOL;
 	$lmm_out .= '<!--[if lt IE 9]>'.PHP_EOL;
 	$lmm_out .= '<link rel="stylesheet" id="leafletmapsmarker-ie-only-css" href="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.ie.css" type="text/css" media="all" / >'.PHP_EOL;
@@ -96,12 +100,25 @@ if (isset($_GET['layer'])) {
 	$lmm_out .= '</script>'.PHP_EOL;
 	$lmm_out .= '<style>form { margin: 0 ; } </style>'.PHP_EOL; //info: for layer controlbox
 	$lmm_out .= '<script type="text/javascript" src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.js" type="text/css" media="all"></script>'.PHP_EOL;
+	//info: google maps
 	if ( defined('WPLANG') ) { $lang = substr(WPLANG, 0, 2); } else { $lang =  'en'; }
-	$lmm_out .= '<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.2&sensor=false&language=' . $lang . '"></script>'.PHP_EOL;
-	$lmm_out .= '<meta charset="UTF-8" />'.PHP_EOL;
-	$lmm_out .= '<meta name="geo.position" content="' . $lat . ';' . $lon . '" />'.PHP_EOL;
-	$lmm_out .= '<meta name="ICBM" content="' . $lat . ', ' . $lon . '" />'.PHP_EOL;
-	$lmm_out .= '<meta name="page-type" content="' . __('map','lmm') . '" />'.PHP_EOL;
+	if ( isset($lmm_options['google_maps_api_key']) && ($lmm_options['google_maps_api_key'] != NULL) ) { $google_maps_api_key = $lmm_options['google_maps_api_key']; } else { $google_maps_api_key == ''; }
+	$lmm_out .= '<script type="text/javascript" src="http://www.google.com/jsapi?key=' .$google_maps_api_key . '"></script>'.PHP_EOL;
+	$lmm_out .= '<script type="text/javascript">'.PHP_EOL;
+	$lmm_out .= '/* <![CDATA[ */'.PHP_EOL;
+	$lmm_out .= 'var leafletmapsmarker_gmaps_L10n = {"lmm_googlemaps_language":"' . $lang . '"};'.PHP_EOL;
+	$lmm_out .= '/* ]]> */'.PHP_EOL;
+	$lmm_out .= '</script>'.PHP_EOL;
+	$lmm_out .= '<script type="text/javascript" src="' . LEAFLET_PLUGIN_URL . 'js/gmaps-frontend.js"></script>'.PHP_EOL;
+	//info: bing maps
+	if (( (($lmm_options['standard_basemap'] == 'bingaerial') || ($lmm_options['standard_basemap'] == 'bingaerialwithlabels') || ($lmm_options['standard_basemap'] == 'bingroad')) 
+		|| ((isset($lmm_options[ 'controlbox_bingaerial' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingaerial' ] == 1 )) 
+		|| ((isset($lmm_options[ 'controlbox_bingaerialwithlabels' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingaerialwithlabels' ] == 1 )) 
+		|| ((isset($lmm_options[ 'controlbox_bingroad' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingroad' ] == 1 )) 
+		) && ( isset($lmm_options['bingmaps_api_key']) && ($lmm_options['bingmaps_api_key'] != NULL ) 
+		)) {
+		$lmm_out .= '<script type="text/javascript" src="' . LEAFLET_PLUGIN_URL . 'js/bing.js"></script>'.PHP_EOL;
+	}
 	$lmm_out .= '</head>'.PHP_EOL;
 	$lmm_out .= '<body style="margin:0;padding:0;height:100%;background: ' . addslashes($lmm_options[ 'defaults_layer_panel_background_color' ]) . ';overflow:hidden;">'.PHP_EOL;
 	//info: panel for layer/marker name and API URLs
@@ -129,7 +146,7 @@ if (isset($_GET['layer'])) {
 		$lmm_out .= '</span></div>'.PHP_EOL;
 	}
 	
-	//info: if panel enabled, only 94% height as otherwise attribution won´t be visible
+	//info: if panel enabled, only 94% height as otherwise attribution wont be visible
 	if ($panel == 1) {
 	$lmm_out .= '<div id="'.$mapname.'"  data-marker="'.$layer.'" style="width:100%; height:94%; height:auto !important; min-height: 94%; overflow: hidden !important; background:#ccc; padding:0; border:none; position:absolute;"></div>'. PHP_EOL;	
 	} else {
@@ -172,6 +189,12 @@ if (isset($_GET['layer'])) {
 	$lmm_out .= 'var googleLayer_roadmap = new L.Google("ROADMAP");'.PHP_EOL;
 	$lmm_out .= 'var googleLayer_satellite = new L.Google("SATELLITE");'.PHP_EOL;
 	$lmm_out .= 'var googleLayer_hybrid = new L.Google("HYBRID");'.PHP_EOL;
+	$lmm_out .= 'var googleLayer_terrain = new L.Google("TERRAIN");'.PHP_EOL;
+	if ( isset($lmm_options['bingmaps_api_key']) && ($lmm_options['bingmaps_api_key'] != NULL ) ) { 
+		$lmm_out .= 'var bingaerial = new L.BingLayerAerial("' . $lmm_options[ 'bingmaps_api_key' ] . '", {maxZoom: 21, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png"});'.PHP_EOL;
+		$lmm_out .= 'var bingaerialwithlabels = new L.BingLayerAerialWithLabels("' . $lmm_options[ 'bingmaps_api_key' ] . '", {maxZoom: 21, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png"});'.PHP_EOL;
+		$lmm_out .= 'var bingroad = new L.BingLayerRoad("' . $lmm_options[ 'bingmaps_api_key' ] . '", {maxZoom: 21, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png"});'.PHP_EOL;
+	};
 	$lmm_out .= 'var ogdwien_basemap = new L.TileLayer("http://{s}.wien.gv.at/wmts/fmzk/pastell/google3857/{z}/{y}/{x}.jpeg", {maxZoom: 19, minZoom: 11, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_ogdwien_basemap . '", subdomains: ["maps","maps1", "maps2", "maps3"]});'.PHP_EOL;
 	$lmm_out .= 'var ogdwien_satellite = new L.TileLayer("http://{s}.wien.gv.at/wmts/lb/farbe/google3857/{z}/{y}/{x}.jpeg", {maxZoom: 19, minZoom: 11, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_ogdwien_satellite . '", subdomains: ["maps","maps1", "maps2", "maps3"]});'.PHP_EOL;
 	//info: create Cloudmade TileURLs
@@ -284,6 +307,16 @@ if (isset($_GET['layer'])) {
 		$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_googleLayer_satellite' ]) . "': googleLayer_satellite,";
 	if ( (isset($lmm_options[ 'controlbox_googleLayer_hybrid' ]) == TRUE ) && ($lmm_options[ 'controlbox_googleLayer_hybrid' ] == 1 ) )
 		$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_googleLayer_hybrid' ]) . "': googleLayer_hybrid,";
+	if ( (isset($lmm_options[ 'controlbox_googleLayer_terrain' ]) == TRUE ) && ($lmm_options[ 'controlbox_googleLayer_terrain' ] == 1 ) )
+		$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_googleLayer_terrain' ]) . "': googleLayer_terrain,";
+	if ( isset($lmm_options['bingmaps_api_key']) && ($lmm_options['bingmaps_api_key'] != NULL ) ) { 
+		if ( (isset($lmm_options[ 'controlbox_bingaerial' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingaerial' ] == 1 ) )
+			$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_bingaerial' ]) . "': bingaerial,";
+		if ( (isset($lmm_options[ 'controlbox_bingaerialwithlabels' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingaerialwithlabels' ] == 1 ) )
+			$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_bingaerialwithlabels' ]) . "': bingaerialwithlabels,";
+		if ( (isset($lmm_options[ 'controlbox_bingroad' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingroad' ] == 1 ) )
+			$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_bingroad' ]) . "': bingroad,";
+	};
 	if ( (isset($lmm_options[ 'controlbox_ogdwien_basemap' ]) == TRUE ) && ($lmm_options[ 'controlbox_ogdwien_basemap' ] == 1 ) )
 		$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_ogdwien_basemap' ]) . "': ogdwien_basemap,";
 	if ( (isset($lmm_options[ 'controlbox_ogdwien_satellite' ]) == TRUE ) && ($lmm_options[ 'controlbox_ogdwien_satellite' ] == 1 ) )
@@ -477,6 +510,10 @@ elseif (isset($_GET['marker'])) {
 	$lmm_out .= '<html dir="ltr" lang="de-DE">'.PHP_EOL;
 	$lmm_out .= '<!--<![endif]-->'.PHP_EOL;
 	$lmm_out .= '<head>'.PHP_EOL;
+	$lmm_out .= '<meta charset="UTF-8" />'.PHP_EOL;
+	$lmm_out .= '<meta name="geo.position" content="' . $lat . ';' . $lon . '" />'.PHP_EOL;
+	$lmm_out .= '<meta name="ICBM" content="' . $lat . ', ' . $lon . '" />'.PHP_EOL;
+	$lmm_out .= '<meta name="page-type" content="' . __('map','lmm') . '" />'.PHP_EOL;
 	$lmm_out .= '<link rel="stylesheet" id="leafletmapsmarker-css" href="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.css" type="text/css" media="all">'.PHP_EOL;
 	$lmm_out .= '<!--[if lt IE 9]>'.PHP_EOL;
 	$lmm_out .= '<link rel="stylesheet" id="leafletmapsmarker-ie-only-css" href="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.ie.css" type="text/css" media="all" / >'.PHP_EOL;
@@ -489,12 +526,25 @@ elseif (isset($_GET['marker'])) {
 	$lmm_out .= '</script>'.PHP_EOL;
 	$lmm_out .= '<style>form { margin: 0 ; } </style>'.PHP_EOL; //info: for layer controlbox
 	$lmm_out .= '<script type="text/javascript" src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.js" type="text/css" media="all"></script>'.PHP_EOL;
+	//info: google maps
 	if ( defined('WPLANG') ) { $lang = substr(WPLANG, 0, 2); } else { $lang =  'en'; }
-	$lmm_out .= '<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3.2&sensor=false&language=' . $lang . '"></script>'.PHP_EOL;
-	$lmm_out .= '<meta charset="UTF-8" />'.PHP_EOL;
-	$lmm_out .= '<meta name="geo.position" content="' . $lat . ';' . $lon . '" />'.PHP_EOL;
-	$lmm_out .= '<meta name="ICBM" content="' . $lat . ', ' . $lon . '" />'.PHP_EOL;
-	$lmm_out .= '<meta name="page-type" content="' . __('map','lmm') . '" />'.PHP_EOL;
+	if ( isset($lmm_options['google_maps_api_key']) && ($lmm_options['google_maps_api_key'] != NULL) ) { $google_maps_api_key = $lmm_options['google_maps_api_key']; } else { $google_maps_api_key == ''; }
+	$lmm_out .= '<script type="text/javascript" src="http://www.google.com/jsapi?key=' .$google_maps_api_key . '"></script>'.PHP_EOL;
+	$lmm_out .= '<script type="text/javascript">'.PHP_EOL;
+	$lmm_out .= '/* <![CDATA[ */'.PHP_EOL;
+	$lmm_out .= 'var leafletmapsmarker_gmaps_L10n = {"lmm_googlemaps_language":"' . $lang . '"};'.PHP_EOL;
+	$lmm_out .= '/* ]]> */'.PHP_EOL;
+	$lmm_out .= '</script>'.PHP_EOL;
+	$lmm_out .= '<script type="text/javascript" src="' . LEAFLET_PLUGIN_URL . 'js/gmaps-frontend.js"></script>'.PHP_EOL;
+	//info: bing maps
+	if (( (($lmm_options['standard_basemap'] == 'bingaerial') || ($lmm_options['standard_basemap'] == 'bingaerialwithlabels') || ($lmm_options['standard_basemap'] == 'bingroad')) 
+		|| ((isset($lmm_options[ 'controlbox_bingaerial' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingaerial' ] == 1 )) 
+		|| ((isset($lmm_options[ 'controlbox_bingaerialwithlabels' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingaerialwithlabels' ] == 1 )) 
+		|| ((isset($lmm_options[ 'controlbox_bingroad' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingroad' ] == 1 )) 
+		) && ( isset($lmm_options['bingmaps_api_key']) && ($lmm_options['bingmaps_api_key'] != NULL ) 
+		)) {
+		$lmm_out .= '<script type="text/javascript" src="' . LEAFLET_PLUGIN_URL . 'js/bing.js"></script>'.PHP_EOL;
+	}
 	$lmm_out .= '</head>'.PHP_EOL;
 	$lmm_out .= '<body style="margin:0;padding:0;height:100%;background: ' . addslashes($lmm_options[ 'defaults_marker_panel_background_color' ]) . ';overflow:hidden;">'.PHP_EOL;
 	//info: panel for layer/marker name and API URLs
@@ -538,7 +588,7 @@ elseif (isset($_GET['marker'])) {
 		$lmm_out .= '</span></div>'.PHP_EOL;
 	}
 	
-	//info: if panel enabled, only 94% height as otherwise attribution won´t be visible
+	//info: if panel enabled, only 94% height as otherwise attribution wont be visible
 	if ($panel == 1) {
 	$lmm_out .= '<div id="'.$mapname.'"  data-marker="'.$markerid.'" style="width:100%; height:94%; height:auto !important; min-height: 94%; overflow: hidden !important; background:#ccc; padding:0; border:none; position:absolute;"></div>'. PHP_EOL;	
 	} else {
@@ -574,6 +624,12 @@ elseif (isset($_GET['marker'])) {
 	$lmm_out .= 'var googleLayer_roadmap = new L.Google("ROADMAP");'.PHP_EOL;
 	$lmm_out .= 'var googleLayer_satellite = new L.Google("SATELLITE");'.PHP_EOL;
 	$lmm_out .= 'var googleLayer_hybrid = new L.Google("HYBRID");'.PHP_EOL;
+	$lmm_out .= 'var googleLayer_terrain = new L.Google("TERRAIN");'.PHP_EOL;
+	if ( isset($lmm_options['bingmaps_api_key']) && ($lmm_options['bingmaps_api_key'] != NULL ) ) { 
+		$lmm_out .= 'var bingaerial = new L.BingLayerAerial("' . $lmm_options[ 'bingmaps_api_key' ] . '", {maxZoom: 21, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png"});'.PHP_EOL;
+		$lmm_out .= 'var bingaerialwithlabels = new L.BingLayerAerialWithLabels("' . $lmm_options[ 'bingmaps_api_key' ] . '", {maxZoom: 21, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png"});'.PHP_EOL;
+		$lmm_out .= 'var bingroad = new L.BingLayerRoad("' . $lmm_options[ 'bingmaps_api_key' ] . '", {maxZoom: 21, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png"});'.PHP_EOL;
+	};
 	$lmm_out .= 'var ogdwien_basemap = new L.TileLayer("http://{s}.wien.gv.at/wmts/fmzk/pastell/google3857/{z}/{y}/{x}.jpeg", {maxZoom: 19, minZoom: 11, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_ogdwien_basemap . '", subdomains: ["maps","maps1", "maps2", "maps3"]});'.PHP_EOL;
 	$lmm_out .= 'var ogdwien_satellite = new L.TileLayer("http://{s}.wien.gv.at/wmts/lb/farbe/google3857/{z}/{y}/{x}.jpeg", {maxZoom: 19, minZoom: 11, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_ogdwien_satellite . '", subdomains: ["maps","maps1", "maps2", "maps3"]});'.PHP_EOL;
 	//info: create Cloudmade TileURLs
@@ -686,6 +742,16 @@ elseif (isset($_GET['marker'])) {
 		$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_googleLayer_satellite' ]) . "': googleLayer_satellite,";
 	if ( (isset($lmm_options[ 'controlbox_googleLayer_hybrid' ]) == TRUE ) && ($lmm_options[ 'controlbox_googleLayer_hybrid' ] == 1 ) )
 		$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_googleLayer_hybrid' ]) . "': googleLayer_hybrid,";
+	if ( (isset($lmm_options[ 'controlbox_googleLayer_terrain' ]) == TRUE ) && ($lmm_options[ 'controlbox_googleLayer_terrain' ] == 1 ) )
+		$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_googleLayer_terrain' ]) . "': googleLayer_terrain,";
+	if ( isset($lmm_options['bingmaps_api_key']) && ($lmm_options['bingmaps_api_key'] != NULL ) ) { 
+		if ( (isset($lmm_options[ 'controlbox_bingaerial' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingaerial' ] == 1 ) )
+			$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_bingaerial' ]) . "': bingaerial,";
+		if ( (isset($lmm_options[ 'controlbox_bingaerialwithlabels' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingaerialwithlabels' ] == 1 ) )
+			$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_bingaerialwithlabels' ]) . "': bingaerialwithlabels,";
+		if ( (isset($lmm_options[ 'controlbox_bingroad' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingroad' ] == 1 ) )
+			$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_bingroad' ]) . "': bingroad,";
+	};
 	if ( (isset($lmm_options[ 'controlbox_ogdwien_basemap' ]) == TRUE ) && ($lmm_options[ 'controlbox_ogdwien_basemap' ] == 1 ) )
 		$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_ogdwien_basemap' ]) . "': ogdwien_basemap,";
 	if ( (isset($lmm_options[ 'controlbox_ogdwien_satellite' ]) == TRUE ) && ($lmm_options[ 'controlbox_ogdwien_satellite' ] == 1 ) )
