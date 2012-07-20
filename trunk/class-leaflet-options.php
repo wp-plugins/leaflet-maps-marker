@@ -23,7 +23,6 @@ class Leafletmapsmarker_options {
 		$this->sections['basemaps']      = 'Basemaps';
 		$this->sections['overlays']      = 'Overlays';
 		$this->sections['wms']      = 'WMS';
-		//$this->sections['vl']      = 'Vector layers';
 		$this->sections['defaults_marker']   = 'Marker defaults';
 		$this->sections['defaults_layer']   = 'Layer defaults';
 		$this->sections['google']   = 'Google';
@@ -222,17 +221,6 @@ class Leafletmapsmarker_options {
 			<li>' . __('WMS layer 9 settings','lmm') . '</li>
 			<li>' . __('WMS layer 10 settings','lmm') . '</li></ul></span>';
 	}
-	/**
-	 * Listing for vector layers
-	 */
-	/*public function display_vl_section() {
-		
-		echo '<span class="leafletmapsmarker-listings"><p>' . __( 'Vector layers is a javascript library by Jason Sanford which allows you to easily add one or more vector layers from a number of different geo web services to a Leaflet map. For more information please visit the <a href="http://geojason.info/leaflet-vector-layers/" target="_blank">project website</a>.', 'lmm') . '</p><p><strong>' . __('Index','lmm') . '</strong></p><ul style="list-style-type:disc;margin-left:24px;">
-			<li>' . __('ArcGIS Server settings','lmm') . '</li>
-			<li>' . __('Arc2Earth Sync instance settings','lmm') . '</li>
-			<li>' . __('GeoIQ dataset settings','lmm') . '</li>
-			<li>' . __('CartoDB table settings','lmm') . '</li></ul></span>';
-	}*/	
 	/**
 	 * Listing for marker defaults section
 	 */
@@ -3834,209 +3822,6 @@ class Leafletmapsmarker_options {
 		/*===========================================
 		*
 		*
-		* section Vector layers
-		*
-		*
-		===========================================*/
-		/*
-		* ArcGIS Server settings
-		*/
-		/*$this->settings['vl_ags_heading'] = array(
-			'version' => '1.8',
-			'section' => 'vl',
-			'title'   => '', 
-			'desc'    => __( 'ArcGIS Server settings', 'lmm'),
-			'type'    => 'heading'
-		);
-		$this->settings['vl_ags_helptext'] = array(
-			'version' => '1.8',
-			'section' => 'vl',
-			'std'     => '', 
-			'title'   => '',
-			'desc'    => __( 'Use these settings to create a layer that processes and displays features from an ArcGIS Server. You can also use this settings to create a layer from any services that implement Esris Geo REST specification, like <a href="http://www.arc2earth.com/" target="_blank">Arc2Earth</a>.', 'lmm'),
-			'type'    => 'helptext'
-		);
-		$this->settings['vl_ags_name'] = array(
-			'version' => '1.8',
-			'title'   => __('Name','lmm'),
-			'desc'    => '',
-			'std'     => 'Denver Light Rail Lines',
-			'type'    => 'text',
-			'section' => 'vl'
-		);		
-		$this->settings['vl_ags_url'] = array(
-			'version' => '1.8',
-			'title'   => 'url',
-			'desc'    => __( 'Required - A url for a specific layer in an ArcGIS Server service.', 'lmm' ),
-			'std'     => 'http://maps.rtd-denver.com/ArcGIS/rest/services/SystemMapLiteGoogleVectors/MapServer/1',
-			'type'    => 'text',
-			'section' => 'vl'
-		);			
-		$this->settings['vl_ags_scalerange'] = array(
-			'version' => '1.8',
-			'title'   => 'scaleRange',
-			'desc'    => __( 'An array with two number values that represent the minimum and maximum scales the layer is visible. For example: [13, 20]', 'lmm' ),
-			'std'     => '[13, 20]',
-			'type'    => 'text',
-			'section' => 'vl'
-		);				
-		$this->settings['vl_ags_dynamic'] = array(
-			'version' => '1.8',
-			'section' => 'vl',
-			'title'   => 'dynamic',
-			'desc'    => __('Whether or not the layer contains dynamic data. If true, feature geometry and attributes will be checked for changes after extent change and/or after a defined interval. For details check the <a href="http://geojason.info/leaflet-vector-layers/documentation/#docs-dynamic" target="_blank">dynamic data documentation</a>.','lmm'),
-			'type'    => 'radio',
-			'std'     => 'false',
-			'choices' => array(
-				'true' => __('true','lmm'),
-				'false' => __('false','lmm')
-			)
-		);	
-		$this->settings['vl_ags_autoupdate'] = array(
-			'version' => '1.8',
-			'section' => 'vl',
-			'title'   => 'autoUpdate',
-			'desc'    => __('Whether or not to auto-update a dynamic layer. If true, feature geometry and attributes will be updated at an interval set by the autoUpdateInterval option. For details check the <a href="http://geojason.info/leaflet-vector-layers/documentation/#docs-dynamic" target="_blank">dynamic data documentation</a>.','lmm'),
-			'type'    => 'radio',
-			'std'     => 'false',
-			'choices' => array(
-				'true' => __('true','lmm'),
-				'false' => __('false','lmm')
-			)
-		);	
-		$this->settings['vl_ags_autoupdateinterval'] = array(
-			'version' => '1.8',
-			'title'   => 'autoUpdateInterval',
-			'desc'    => __( 'The interval (in milliseconds) between checks for updated feature geometry and attributes when the autoUpdate option is set to true. For details check the <a href="http://geojason.info/leaflet-vector-layers/documentation/#docs-dynamic" target="_blank">dynamic data documentation</a>.', 'lmm' ),
-			'std'     => '',
-			'type'    => 'text',
-			'section' => 'vl'
-		);			
-		$this->settings['vl_ags_popuptemplate'] = array(
-			'version' => '1.8',
-			'title'   => 'popupTemplate',
-			'desc'    => __( 'A template for creating the content of a <a href="http://leaflet.cloudmade.com/reference.html#popup" target="_blank">Leaflet Popup</a> when a feature is clicked. For details check the <a href="http://geojason.info/leaflet-vector-layers/documentation/#docs-popup" target="_blank">Popup Template documentation</a>.', 'lmm' ),
-			'std'     => '<div class=&quot;iw-content&quot;><h3>Light Rail Line</h3><table class=&quot;condensed-table&quot;><tr><th>Route</th><td>{ROUTE}</td></tr></table></div>',
-			'type'    => 'text',
-			'section' => 'vl'
-		);		
-		$this->settings['vl_ags_singlepopup'] = array(
-			'version' => '1.8',
-			'section' => 'vl',
-			'title'   => 'singlePopup',
-			'desc'    => __('Whether or not to show a single Popup for a layer when features are clicked. This keeps the map from getting cluttered when multiple features are clicked.','lmm'),
-			'type'    => 'radio',
-			'std'     => 'false',
-			'choices' => array(
-				'true' => __('true','lmm'),
-				'false' => __('false','lmm')
-			)
-		);			
-		$this->settings['vl_ags_popupoptions'] = array(
-			'version' => '1.8',
-			'title'   => 'popupOptions',
-			'desc'    => __( 'Controls the width of and the presence of a close button for the Popup and whether the map should be panned when the Popup is opened.', 'lmm' ),
-			'std'     => '',
-			'type'    => 'text',
-			'section' => 'vl'
-		);
-		$this->settings['vl_ags_symbology'] = array(
-			'version' => '1.8',
-			'title'   => 'symbology',
-			'desc'    => __( 'The symbology options for the layer. Features can be rendered with a single symbology or can also be symbolized based on an attribute using unique values or a value range. For details check the <a href="http://geojason.info/leaflet-vector-layers/documentation/#docs-symbology" target="_blank">symbology options documentation</a>.', 'lmm' ),
-			'std'     => '{ type: "single", vectorOptions: { weight: 4, opacity: 0.8, color: "#004a00" } }',
-			'type'    => 'text',
-			'section' => 'vl'
-		);	
-		$this->settings['vl_ags_showall'] = array(
-			'version' => '1.8',
-			'section' => 'vl',
-			'title'   => 'showAll',
-			'desc'    => __('If true, all features will be fetched and shown once, not after a map extent change. This is helpful for layers with only a handful of features.','lmm'),
-			'type'    => 'radio',
-			'std'     => 'true',
-			'choices' => array(
-				'true' => __('true','lmm'),
-				'false' => __('false','lmm')
-			)
-		);	
-		$this->settings['vl_ags_fields'] = array(
-			'version' => '1.8',
-			'title'   => 'fields',
-			'desc'    => __( 'A list of comma separated fields to be returned with the features. For example "OBJECTID,OWNER_NAME" returns two fields and "*" returns all fields.', 'lmm' ),
-			'std'     => '*',
-			'type'    => 'text',
-			'section' => 'vl'
-		);	
-		$this->settings['vl_ags_uniqueFields'] = array(
-			'version' => '1.8',
-			'title'   => 'uniqueFields',
-			'desc'    => __( 'A field in the returned data that can be considered unique. This is not required but is very helpful in determining which features are already on the map when the map extent changes.', 'lmm' ),
-			'std'     => '',
-			'type'    => 'text',
-			'section' => 'vl'
-		);*/	
-													
-		/*
-		* Arc2Earth Sync instance settings
-		*/
-		/*$this->settings['vl_a2e_heading'] = array(
-			'version' => '1.8',
-			'section' => 'vl',
-			'title'   => '', 
-			'desc'    => __( 'Arc2Earth Sync instance settings', 'lmm'),
-			'type'    => 'heading'
-		);
-		$this->settings['vl_a2e_helptext'] = array(
-			'version' => '1.8',
-			'section' => 'vl',
-			'std'     => '', 
-			'title'   => '',
-			'desc'    => __( 'Use these settings to create a layer that processes and displays features from an Arc2Earth Sync instance.', 'lmm'),
-			'type'    => 'helptext'
-		);*/
-		
-		/*
-		* GeoIQ dataset settings
-		*/
-		/*$this->settings['vl_geoiq_heading'] = array(
-			'version' => '1.8',
-			'section' => 'vl',
-			'title'   => '', 
-			'desc'    => __( 'GeoIQ dataset settings', 'lmm'),
-			'type'    => 'heading'
-		);
-		$this->settings['vl_geoiq_helptext'] = array(
-			'version' => '1.8',
-			'section' => 'vl',
-			'std'     => '', 
-			'title'   => '',
-			'desc'    => __( 'Use these settings to create a layer that processes and displays features from a GeoIQ dataset.', 'lmm'),
-			'type'    => 'helptext'
-		);*/
-		
-		/*
-		* CartoDB table settings
-		*/
-		/*$this->settings['vl_cartodb_heading'] = array(
-			'version' => '1.8',
-			'section' => 'vl',
-			'title'   => '', 
-			'desc'    => __( 'CartoDB table settings', 'lmm'),
-			'type'    => 'heading'
-		);
-		$this->settings['vl_cartodb_helptext'] = array(
-			'version' => '1.8',
-			'section' => 'vl',
-			'std'     => '', 
-			'title'   => '',
-			'desc'    => __( 'Use these settings to create a layer that processes and displays features from a CartoDB table.', 'lmm'),
-			'type'    => 'helptext'
-		);*/				
-						
-		/*===========================================
-		*
-		*
 		* section marker defaults
 		*
 		*
@@ -6645,7 +6430,7 @@ class Leafletmapsmarker_options {
 		}
 		/* template for plugin updates 
 		//info:  set defaults for options introduced in v2.7
-		if (get_option('leafletmapsmarker_version') == '2.6' )
+		if (get_option('leafletmapsmarker_version') == '2.6.1' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting ) 
