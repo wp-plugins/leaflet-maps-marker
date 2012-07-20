@@ -1,0 +1,1 @@
+google.load("maps", "3",  {other_params:"sensor=false&libraries=places&language="+leafletmapsmarker_gmaps_L10n.lmm_googlemaps_language});
