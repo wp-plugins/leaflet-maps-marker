@@ -102,7 +102,7 @@ if (isset($_GET['layer'])) {
 	$lmm_out .= '<script type="text/javascript" src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.js" type="text/css" media="all"></script>'.PHP_EOL;
 	//info: google maps
 	if ( defined('WPLANG') ) { $lang = substr(WPLANG, 0, 2); } else { $lang =  'en'; }
-	if ( isset($lmm_options['google_maps_api_key']) && ($lmm_options['google_maps_api_key'] != NULL) ) { $google_maps_api_key = $lmm_options['google_maps_api_key']; } else { $google_maps_api_key == ''; }
+	if ( isset($lmm_options['google_maps_api_key']) && ($lmm_options['google_maps_api_key'] != NULL) ) { $google_maps_api_key = $lmm_options['google_maps_api_key']; } else { $google_maps_api_key = ''; }
 	$lmm_out .= '<script type="text/javascript" src="http://www.google.com/jsapi?key=' .$google_maps_api_key . '"></script>'.PHP_EOL;
 	$lmm_out .= '<script type="text/javascript">'.PHP_EOL;
 	$lmm_out .= '/* <![CDATA[ */'.PHP_EOL;
@@ -169,7 +169,7 @@ if (isset($_GET['layer'])) {
 	$lmm_out .= 'var markers = {};'.PHP_EOL;
 	$lmm_out .= 'var mapsmarker_'.$uid.' = {};'.PHP_EOL;
 	//info: define attribution links as variables to allow dynamic change through layer control box
-	$attrib_prefix = '<a href=\"http://mapsmarker.com/go\" target=\"_blank\" title=\"powered by \'Leaflet Maps Marker\'-Plugin for WordPress\ (using the fabulous leaflet library [http://leaflet.cloudmade.com] and icons from the \'Maps Icons Collection\' [http://mapicons.nicolasmollet.com])\">MapsMarker.com</a>'; 
+	$attrib_prefix = '<a href=\"http://mapsmarker.com/go\" target=\"_blank\" title=\"powered by \'Leaflet Maps Marker\'-Plugin for WordPress\">MapsMarker.com</a> (<a href=\"http://leaflet.cloudmade.com\" target=\"_blank\" title=\"\'Leaflet Maps Marker\' uses the JavaScript library \'Leaflet\' for interactive maps by CloudMade\">Leaflet</a>, <a href=\"http://mapicons.nicolasmollet.com\" target=\"_blank\" title=\"\'Leaflet Maps Marker\' uses icons from the \'Maps Icons Collection\'\">Icons</a>)';
 	$attrib_osm_mapnik = __("Map",'lmm').': &copy; ' . date("Y") . ' <a href=\"http://www.openstreetmap.org\" target=\"_blank\" style=\"\">OpenStreetMap contributors</a>, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\" target=\"_blank\">CC-BY-SA</a>';
 	$attrib_mapquest_osm = __("Map",'lmm').': Tiles Courtesy of <a href=\"http://www.mapquest.com/\" target=\"_blank\">MapQuest</a> <img src=\"' . LEAFLET_PLUGIN_URL . 'img/logo-mapquest.png\" style=\"\" />';
 	$attrib_mapquest_aerial = __("Map",'lmm').': <a href=\"http://www.mapquest.com/\" target=\"_blank\">MapQuest</a> <img src=\"' . LEAFLET_PLUGIN_URL . 'img/logo-mapquest.png\" />, Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency';
@@ -528,7 +528,7 @@ elseif (isset($_GET['marker'])) {
 	$lmm_out .= '<script type="text/javascript" src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.js" type="text/css" media="all"></script>'.PHP_EOL;
 	//info: google maps
 	if ( defined('WPLANG') ) { $lang = substr(WPLANG, 0, 2); } else { $lang =  'en'; }
-	if ( isset($lmm_options['google_maps_api_key']) && ($lmm_options['google_maps_api_key'] != NULL) ) { $google_maps_api_key = $lmm_options['google_maps_api_key']; } else { $google_maps_api_key == ''; }
+	if ( isset($lmm_options['google_maps_api_key']) && ($lmm_options['google_maps_api_key'] != NULL) ) { $google_maps_api_key = $lmm_options['google_maps_api_key']; } else { $google_maps_api_key = ''; }
 	$lmm_out .= '<script type="text/javascript" src="http://www.google.com/jsapi?key=' .$google_maps_api_key . '"></script>'.PHP_EOL;
 	$lmm_out .= '<script type="text/javascript">'.PHP_EOL;
 	$lmm_out .= '/* <![CDATA[ */'.PHP_EOL;
@@ -604,7 +604,7 @@ elseif (isset($_GET['marker'])) {
 	$lmm_out .= 'var markers = {};'.PHP_EOL;
 	$lmm_out .= 'var mapsmarker_'.$uid.' = {};'.PHP_EOL;
 	//info: define attribution links as variables to allow dynamic change through layer control box
-	$attrib_prefix = '<a href=\"http://mapsmarker.com/go\" target=\"_blank\" title=\"powered by \'Leaflet Maps Marker\'-Plugin for WordPress\ (using the fabulous leaflet library [http://leaflet.cloudmade.com] and icons from the \'Maps Icons Collection\' [http://mapicons.nicolasmollet.com])\">MapsMarker.com</a>'; 
+	$attrib_prefix = '<a href=\"http://mapsmarker.com/go\" target=\"_blank\" title=\"powered by \'Leaflet Maps Marker\'-Plugin for WordPress\">MapsMarker.com</a> (<a href=\"http://leaflet.cloudmade.com\" target=\"_blank\" title=\"\'Leaflet Maps Marker\' uses the JavaScript library \'Leaflet\' for interactive maps by CloudMade\">Leaflet</a>, <a href=\"http://mapicons.nicolasmollet.com\" target=\"_blank\" title=\"\'Leaflet Maps Marker\' uses icons from the \'Maps Icons Collection\'\">Icons</a>)';
 	$attrib_osm_mapnik = __("Map",'lmm').': &copy; ' . date("Y") . ' <a href=\"http://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap contributors</a>, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\" target=\"_blank\">CC-BY-SA</a>';
 	$attrib_mapquest_osm = __("Map",'lmm').': Tiles Courtesy of <a href=\"http://www.mapquest.com/\" target=\"_blank\">MapQuest</a> <img src=\"' . LEAFLET_PLUGIN_URL . 'img/logo-mapquest.png\" style=\"\" />';
 	$attrib_mapquest_aerial = __("Map",'lmm').': <a href=\"http://www.mapquest.com/\" target=\"_blank\">MapQuest</a> <img src=\"' . LEAFLET_PLUGIN_URL . 'img/logo-mapquest.png\" />, Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency';
