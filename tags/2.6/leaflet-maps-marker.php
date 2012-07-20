@@ -1253,11 +1253,6 @@ function __construct() {
 		$save_defaults_for_new_options = new Leafletmapsmarker_options();
 		$save_defaults_for_new_options->save_defaults_for_new_options();
 		update_option('leafletmapsmarker_version', '2.6');
-	}
-	if (get_option('leafletmapsmarker_version') == '2.6' ) {
-		$save_defaults_for_new_options = new Leafletmapsmarker_options();
-		$save_defaults_for_new_options->save_defaults_for_new_options();
-		update_option('leafletmapsmarker_version', '2.6');
 		update_option('leafletmapsmarker_update_info', 'show');
 		//info: redirect to settings page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 		if (get_option('leafletmapsmarker_redirect') == 'true') 
@@ -1269,12 +1264,12 @@ function __construct() {
 		}
 	}
 	/* template for plugin updates 
-	if (get_option('leafletmapsmarker_version') == '2.7' ) {
+	if (get_option('leafletmapsmarker_version') == '2.6' ) {
 		//optional: add code for sql ddl updates
 		//mandatory if new options in class-leaflet-options.php were added
 		$save_defaults_for_new_options = new Leafletmapsmarker_options();
 		$save_defaults_for_new_options->save_defaults_for_new_options();
-		update_option('leafletmapsmarker_version', '2.8');
+		update_option('leafletmapsmarker_version', '2.7');
 		//mandatory: remove update_option('leafletmapsmarker_update_info', 'show'); from last version
 		update_option('leafletmapsmarker_update_info', 'show');
 		//mandatory: move code for redirect-on-first-activation-check to here
