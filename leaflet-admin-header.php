@@ -33,8 +33,8 @@ if ( ($update_info_action == 'hide') && ($new_install == 'false') ) {
 	update_option('leafletmapsmarker_update_info', 'hide');
 }
 if (get_option('leafletmapsmarker_update_info') == 'show') {
-	$lmm_version_old = '2.5';
-	$lmm_version_new = '2.6';
+	$lmm_version_old = '2.6';
+	$lmm_version_new = '2.6.1';
 	$lmm_changelog_new_version = '<a href="http://www.mapsmarker.com/v' . $lmm_version_new . '" target="_blank">http://www.mapsmarker.com/v' . $lmm_version_new . '</a>';
 	$lmm_full_changelog = '<a href="http://www.mapsmarker.com/changelog" target="_blank">http://www.mapsmarker.com/changelog</a>';
 	echo '<div class="updated" style="padding:10px;"><p><strong>' . __('Leaflet Maps Marker has been updated successfully!','lmm') . '</strong></p>
@@ -42,84 +42,9 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 			' . sprintf(__('Changelog for version %s:','lmm'), $lmm_version_new) . '
 			<table>
 			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
-			</td><td>
-			support for bing maps as basemaps (<a href="http://www.mapsmarker.com/bing-maps" target="_blank">API key required</a>)
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
-			</td><td>
-			configure marker attributes to show in marker list below layer maps (icon, marker name, popuptext)
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
-			</td><td>
-			option to use Google Maps (Terrain) as basemap
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
-			</td><td>
-			option to add Google Maps API key (required for commercial usage) - see <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank">http://www.mapsmarker.com/google-maps-api-key</a> for more details
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
-			</td><td>
-			Hindi translation thanks to Outshine Solutions, <a href="http://outshinesolutions.com" target="_blank">http://outshinesolutions.com</a> and Guntupalli Karunakar, <a href="http://indlinux.org" target="_blank">http://indlinux.org</a>
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
-			</td><td>
-			Yiddish translation thanks to Raphael Finkel, <a href="http://www.cs.uky.edu/~raphael/yiddish.html" target="_blank">http://www.cs.uky.edu/~raphael/yiddish.html</a>
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
-			</td><td>
-			Catalan translation thanks to Vicent Cubells, <a href="http://vcubells.net" target="_blank">http://vcubells.net</a>
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
-			</td><td>
-			Added compatibility check for plugin <a href="http://wordpress.org/extend/plugins/bwp-minify/" target="_blank">WordPress Better Minify</a>
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
-			</td><td>
-			increased Google Maps maximal zoom level from 18 to 22
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
-			</td><td>
-			changed the way Google Maps API is called in order to prevent errors with unset sensor parameter when using certain proxy servers (thanks <a href="http://EdWeWo.com" target="_blank">Dragan</a>!)
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
-			</td><td>
-			updated Italian translation thanks to <a href="http://twitter.com/okibone" target="_blank">Luca Barbetti</a>
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
-			</td><td>
-			updated Chinese translation thanks to John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a>
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
-			</td><td>
-			updated Spanish translation thanks to Alvaro Lara, <a href="http://www.alvarolara.com" target="_blank">http://www.alvarolara.com</a>
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
-			</td><td>
-			updated French translation thanks to Vincèn Pujol, <a href="http://www.skivr.com" target="_blank">http://www.skivr.com</a>
-			</td></tr>
-			<tr><td>
 			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
 			</td><td>
-			maps using Google Maps Satellite as basemaps were broken
-			</td></tr>
-			<tr><td>
-			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
-			</td><td>
-			fixed vertical alignment of basemaps in layer control box in backend
+			bing maps should now work as designed - thank to Pavel Shramov!
 			</td></tr>
 			</table>
 			<p>' . sprintf(__('If you upgraded from a version <%s, please visit %s for a complete list of changes.','lmm'), $lmm_version_old, $lmm_full_changelog) . '</p>
