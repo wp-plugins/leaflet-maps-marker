@@ -4,7 +4,7 @@ Plugin Name: Leaflet Maps Marker
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, GeoRSS or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, google maps, googlemaps, gmaps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, layer, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice, widget, bing, bing maps, microsoft
-Version: 2.7
+Version: 2.6
 Author: Robert Harm
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
@@ -1253,11 +1253,6 @@ function __construct() {
 		$save_defaults_for_new_options = new Leafletmapsmarker_options();
 		$save_defaults_for_new_options->save_defaults_for_new_options();
 		update_option('leafletmapsmarker_version', '2.6');
-	}
-	if (get_option('leafletmapsmarker_version') == '2.6' ) {
-		$save_defaults_for_new_options = new Leafletmapsmarker_options();
-		$save_defaults_for_new_options->save_defaults_for_new_options();
-		update_option('leafletmapsmarker_version', '2.7');
 		update_option('leafletmapsmarker_update_info', 'show');
 		//info: redirect to settings page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 		if (get_option('leafletmapsmarker_redirect') == 'true') 
@@ -1269,12 +1264,12 @@ function __construct() {
 		}
 	}
 	/* template for plugin updates 
-	if (get_option('leafletmapsmarker_version') == '2.7' ) {
+	if (get_option('leafletmapsmarker_version') == '2.6' ) {
 		//optional: add code for sql ddl updates
 		//mandatory if new options in class-leaflet-options.php were added
 		$save_defaults_for_new_options = new Leafletmapsmarker_options();
 		$save_defaults_for_new_options->save_defaults_for_new_options();
-		update_option('leafletmapsmarker_version', '2.8');
+		update_option('leafletmapsmarker_version', '2.7');
 		//mandatory: remove update_option('leafletmapsmarker_update_info', 'show'); from last version
 		update_option('leafletmapsmarker_update_info', 'show');
 		//mandatory: move code for redirect-on-first-activation-check to here
