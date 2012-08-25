@@ -28,6 +28,11 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 	<p>
 		<?php _e('Good news, this plugin is free for everyone! Since it is released under the GPL2, you can use it free of charge on your personal or commercial blog.<br/>But if you enjoy this plugin, you can thank me and leave a small donation for the time I have spent writing and supporting this plugin.<br/>Please see <a href="http://www.mapsmarker.com/donations" target="_blank">http://www.mapsmarker.com/donations</a> for details.','lmm') ?>
 	</p>
+	<h3><?php _e('Trademarks and copyright','lmm') ?></h3>
+	<p>
+	MapsMarker<sup style="font-size:75%;">&reg;</sup> - registration pending<br/>
+	Copyright &copy; 2011-2012, Robert Harm, All Rights Reserved
+	</p>
 	<h3><?php _e('Licenses for used libraries, services and images','lmm') ?></h3>
 	<ul>
 		<li>- Leaflet by Cloudmade, <a href="http://leaflet.cloudmade.com" target="_blank">http://leaflet.cloudmade.com</a>, Copyright (c) 2010-2012, CloudMade, Vladimir Agafonkin</li>
@@ -53,7 +58,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 	<ul>
 		<li>- Bulgarian (bg_BG) thanks to Andon Ivanov, <a href="http://coffebreak.info" target="_blank">http://coffebreak.info</a></li>
 		<li>- Catalan (ca) by Vicent Cubells, <a href="http://vcubells.net" target="_blank">http://vcubells.net</a></li>
-		<li>- Chinese (zn_CH) by John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a></li>
+		<li>- Chinese (zh_CN) by John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a></li>
 		<li>- Dutch (nl_NL) by Marijke Metz, <a href="http://www.mergenmetz.nl" target="_blank">http://www.mergenmetz.nl</a></li>
 		<li>- English (en_US) by <a href="http://twitter.com/robertharm" target="_blank">@RobertHarm</a></li>
 		<li>- French (fr_FR) by Vincèn Pujol, <a href="http://www.skivr.com" target="_blank">http://www.skivr.com</a></li>
@@ -63,8 +68,10 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 		<li>- Japanese (ja) by Shu Higashi, <a href="http://twitter.com/higa4" target="_blank">@higa4</a></li>
 		<li>- Polish translation thanks to Pawel Wyszy&#324;ski, <a href="http://injit.pl" target="_blank">http://injit.pl</a></li>
 		<li>- Russian (ru_RU) thanks to Ekaterina Golubina, , supported by Teplitsa of Social Technologies - <a href="http://te-st.ru" target="_blank">http://te-st.ru</a></li>
+		<li>- Slovak (sk_SK) thanks to Zdenko Podobny</a></li>
 		<li>- Spanish (es_ES) by David Ramírez, <a href="http://www.hiperterminal.com" target="_blank">http://www.hiperterminal.com</a> &amp; Alvaro Lara, <a href="http://www.alvarolara.com" target="_blank">http://www.alvarolara.com</a></li>
 		<li>- Turkish (tr_TR) thanks to Emre Erkan, <a href="http://www.karalamalar.net" target="_blank">http://www.karalamalar.net</a></li>
+		<li>- Ukrainian (uk_UK) thanks to Andrexj, <a href="http://all3d.com.ua" target="_blank">http://all3d.com.ua</a></li>
 		<li>- Yiddish (yi) thanks to Raphael Finkel, <a href="http://www.cs.uky.edu/~raphael/yiddish.html" target="_blank">http://www.cs.uky.edu/~raphael/yiddish.html</a></li>
 	</ul>
 	<h3><?php _e('Credits & special thanks','lmm') ?></h3>
