@@ -23,7 +23,7 @@ class Leafletmapsmarker_options {
 		$this->sections['basemaps']      = 'Basemaps';
 		$this->sections['overlays']      = 'Overlays';
 		$this->sections['wms']      = 'WMS';
-		$this->sections['defaults_marker']   = 'Marker defaults';
+		$this->sections['defaults_marker']   = 'Marker/Icon/Popup defaults';
 		$this->sections['defaults_layer']   = 'Layer defaults';
 		$this->sections['google']   = 'Google';
 		$this->sections['directions']   = 'Directions';
@@ -79,18 +79,6 @@ class Leafletmapsmarker_options {
 	 */
 	public function display_page() {
 		echo '<div style="float:left;" class="icon32" id="icon-options-general"></div><h3>'.__('Settings','lmm').'</h3><div class="wrap lmmsettings">';
-		$install_note = (isset($_GET['display']) ? $_GET['display'] : '');
-		$settings_updated = isset($_GET['settings-updated']) ? $_GET['settings-updated'] : (isset($_GET['updated']) ? $_GET['updated'] : '');
-		if ( ( $install_note != NULL ) && ( $settings_updated == NULL ) ) {
-			$install_success_message = sprintf( __('You just successfully installed the "Leaflet Maps Marker" plugin. You can now optionally change the default settings below or <a href="%1$sadmin.php?page=leafletmapsmarker_marker">add your first marker</a>.<br/>For tutorials and help, please check the <a href="%1$sadmin.php?page=leafletmapsmarker_help">Help &amp; Credits page</a>!','lmm'), LEAFLET_WP_ADMIN_URL); 
-			echo '<div class="updated" style="padding:10px;"><p>' . $install_success_message . '</p></div>';
-		//info: check if custom icons could be unzipped
-		if ( ! file_exists(LEAFLET_PLUGIN_ICONS_DIR . DIRECTORY_SEPARATOR . 'information.png') ) {
-				echo '<div class="error" style="padding:10px;">'.__('Warning: the custom map icon directory at <code>/wp-contents/uploads/leaflet-maps-marker-icons</code> could not be created due to file permission settings on your webserver. Leaflet Maps Marker will work as designed, but only with one map icon available.<br/>You can add the included map icons manually by following the steps at <a href="http://www.mapsmarker.com/incomplete-installation" target="_blank">http://www.mapsmarker.com/incomplete-installation</a>', 'lmm').'</div>';
-			}
-			update_option('leafletmapsmarker_update_info', 'hide');
-		}
-	
 		if ( isset( $_GET['settings-updated'] ) )
 			echo '<div class="updated fade"><p>' . __( 'Plugin options updated.','lmm' ) . '</p></div>';
 		include('leaflet-admin-header.php');
@@ -180,6 +168,12 @@ class Leafletmapsmarker_options {
 			<li>' . __('Default basemap for new markers/layers','lmm') . '</li>
 			<li>' . __('Names for default basemaps','lmm') . '</li>
 			<li>' . __('Available basemaps in control box','lmm') . '</li>
+			<li>' . __('Interaction options','lmm') . '</li>
+			<li>' . __('Keyboard navigation options','lmm') . '</li>
+			<li>' . __('Panning inertia options','lmm') . '</li>
+			<li>' . __('Control options','lmm') . '</li>
+			<li>' . __('Scale control','lmm') . '</li>
+			<li>' . __('Retina display detection','lmm') . '</li>
 			<li>' . __('Bing Maps API key','lmm') . '</li>
 			<li>' . __('OGD Vienna Selector','lmm') . '</li>
 			<li>' . __('Cloudmade 1 settings','lmm') . '</li>
@@ -226,7 +220,9 @@ class Leafletmapsmarker_options {
 	 */
 	public function display_defaults_marker_section() {
 		echo '<span class="leafletmapsmarker-listings"><p><strong>' . __('Index','lmm') . '</strong></p><ul style="list-style-type:disc;margin-left:24px;">
-			<li>' . __('Default values for new markers','lmm') . '</li>
+			<li>' . __('Default values for new marker maps','lmm') . '</li>
+			<li>' . __('Default values for marker icons','lmm') . '</li>			
+			<li>' . __('Default values for marker popups','lmm') . '</li>			
 			<li>' . __('Default values for markers added directly','lmm') . '</li></ul></span>';
 	}	
 	/**
@@ -235,6 +231,8 @@ class Leafletmapsmarker_options {
 	public function display_google_section() {
 		echo '<span class="leafletmapsmarker-listings"><p><strong>' . __('Index','lmm') . '</strong></p><ul style="list-style-type:disc;margin-left:24px;">
 			<li>' . __('Google Maps API key','lmm') . '</li>
+			<li>' . __('Google language localization','lmm') . '</li>
+			<li>' . __('Google Maps base domain','lmm') . '</li>
 			<li>' . __('Google Places bounds','lmm') . '</li>
 			<li>' . __('Google Places search prefix','lmm') . '</li></ul></span>';
 	}	
@@ -246,6 +244,7 @@ class Leafletmapsmarker_options {
 			<li>' . __('General settings','lmm') . '</li>
 			<li>Google Maps</li>
 			<li>yournavigation.org</li>
+			<li>map.project-osrm.org</li>
 			<li>openrouteservice.org</li></ul></span>';
 	}		
 	/**
@@ -255,7 +254,6 @@ class Leafletmapsmarker_options {
 		echo '<span class="leafletmapsmarker-listings"><p><strong>' . __('Index','lmm') . '</strong></p><ul style="list-style-type:disc;margin-left:24px;">
 			<li>' . __('General settings','lmm') . '</li>
 			<li>' . __('KML settings','lmm') . '</li>
-			<li>' . __('General Map settings','lmm') . '</li>
 			<li>' . __('Available columns for marker listing page','lmm') . '</li>
 			<li>' . __('Sort order for marker listing page','lmm') . '</li>
 			<li>' . __('Available columns for layer listing page','lmm') . '</li>
@@ -287,28 +285,20 @@ class Leafletmapsmarker_options {
 			case 'helptext':
 				echo '</td></tr><tr valign="top"><td colspan="2">' . $desc . '';
 				break;
-			
 			case 'checkbox':
-				
 				echo '<input class="checkbox' . $field_class . '" type="checkbox" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" value="1" ' . checked( $options[$id], 1, false ) . ' /> <label for="' . $id . '">' . $desc . '</label>';
 				break;
 			case 'checkbox-readonly':
-				
 				echo '<input class="checkbox' . $field_class . '" type="checkbox" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" value="1" ' . checked( $options[$id], 1, false ) . ' disabled="disabled" /> <label for="' . $id . '">' . $desc . '</label>';
 				break;
-			
 			case 'select':
 				echo '<select class="select' . $field_class . '" name="leafletmapsmarker_options[' . $id . ']">';
-				
 				foreach ( $choices as $value => $label )
 					echo '<option value="' . esc_attr( $value ) . '"' . selected( $options[$id], $value, false ) . '>' . $label . '</option>';
-				
 				echo '</select>';
-				
 				if ( $desc != '' )
 					echo '<br /><span class="description">' . $desc . '</span>';
 				break;
-			
 			case 'radio':
 				$i = 0;
 				foreach ( $choices as $value => $label ) {
@@ -317,7 +307,6 @@ class Leafletmapsmarker_options {
 						echo '<br />';
 					$i++;
 				}
-				
 				if ( $desc != '' )
 					echo '<span class="description">' . $desc . '</span>';
 				break;
@@ -328,19 +317,27 @@ class Leafletmapsmarker_options {
 				if ( $desc != '' )
 					echo '<br /><span class="description">' . $desc . '</span>';
 				break;
-			
 			case 'password':
 				echo '<input class="regular-text' . $field_class . '" type="password" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" value="' . esc_attr( $options[$id] ) . '" />';
-				
 				if ( $desc != '' )
 					echo '<br /><span class="description">' . $desc . '</span>';
 				break;
-			
 			case 'text':
 			default:
 		 		echo '<input class="regular-text' . $field_class . '" style="width:30em;" type="text" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" placeholder="' . $std . '" value="' . esc_attr( $options[$id] ) . '" />';
-		 		
 		 		if ( $desc != '' )
+		 			echo '<br /><span class="description">' . $desc . '</span>';
+		 		break;
+			case 'text-readonly':
+			default:
+		 		echo '<input readonly="readonly" class="regular-text' . $field_class . '" style="width:60em;" type="text" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" placeholder="' . $std . '" value="' . esc_attr( $options[$id] ) . '" />';
+	 		if ( $desc != '' )
+		 			echo '<br /><span class="description">' . $desc . '</span>';
+		 		break;
+			case 'text-deletable':
+			default:
+		 		echo '<input class="regular-text' . $field_class . '" style="width:60em;" type="text" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" value="' . esc_attr( $options[$id] ) . '" />';
+	 		if ( $desc != '' )
 		 			echo '<br /><span class="description">' . $desc . '</span>';
 		 		break;
 		}
@@ -372,7 +369,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'basemaps',
 			'title'   => '',
-			'desc'    => __( 'Please select the basemap which should be pre-selected as default for new markers and layers. Can be changed afterwards on each marker/layer.', 'lmm').'<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-default-basemap.jpg />',
+			'desc'    => __( 'Please select the basemap which should be pre-selected as default for new markers and layers. Can be changed afterwards on each marker/layer.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['standard_basemap'] = array(
@@ -421,7 +418,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Optionally you can also change the name of the predefined basemaps in the controlbox.', 'lmm').'<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-default-basemap-names.jpg />',
+			'desc'    => __( 'Optionally you can also change the name of the predefined basemaps in the controlbox.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-names.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['default_basemap_name_osm_mapnik'] = array(
@@ -608,7 +605,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'    => '',
-			'desc'    => __( 'Please select the basemaps which should be available in the control box.', 'lmm').'<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-default-basemap-available-basemaps.jpg />',
+			'desc'    => __( 'Please select the basemaps which should be available in the control box.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-available-basemaps.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['controlbox_osm_mapnik'] = array(
@@ -780,6 +777,361 @@ class Leafletmapsmarker_options {
 			'std'     => 0 
 		);	
 		/*
+		* Interaction options 
+		* formerly "General map settings" and moved to "Basemaps" from "Misc" tab
+		*/
+		$this->settings['map_interaction_options_heading'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => '', 
+			'desc'    => __( 'Interaction options', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['map_interaction_options_helptext'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => __( 'The following settings will be used for all marker and layer maps', 'lmm'),
+			'type'    => 'helptext'
+		);
+		$this->settings['misc_map_dragging'] = array(
+			'version' => '2.2',
+			'section' => 'basemaps',
+			'title'   => 'dragging',
+			'desc'    => __('Whether the map be draggable with mouse/touch or not.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);			
+		$this->settings['misc_map_touchzoom'] = array(
+			'version' => '2.2',
+			'section' => 'basemaps',
+			'title'   => 'touchZoom',
+			'desc'    => __('Whether the map can be zoomed by touch-dragging with two fingers.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);			
+		$this->settings['misc_map_scrollwheelzoom'] = array(
+			'version' => '2.2',
+			'section' => 'basemaps',
+			'title'   => 'scrollWheelZoom',
+			'desc'    => __('Whether the map can be zoomed by using the mouse wheel.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);	
+		$this->settings['misc_map_doubleclickzoom'] = array(
+			'version' => '2.2',
+			'section' => 'basemaps',
+			'title'   => 'doubleClickZoom',
+			'desc'    => __('Whether the map can be zoomed in by double clicking on it.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);					
+		$this->settings['map_interaction_options_boxzoom'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => 'boxzoom',
+			'desc'    => __('Whether the map can be zoomed to a rectangular area specified by dragging the mouse while pressing shift.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);		
+		$this->settings['misc_map_trackresize'] = array(
+			'version' => '2.2',
+			'section' => 'basemaps',
+			'title'   => 'trackResize',
+			'desc'    => __('Whether the map automatically handles browser window resize to update itself.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);	
+		$this->settings['map_interaction_options_worldcopyjump'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => 'worldCopyJump',
+			'desc'    => __('With this option enabled, the map tracks when you pan to another "copy" of the world and moves all overlays like markers and vector layers there.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);		
+		$this->settings['misc_map_closepopuponclick'] = array(
+			'version' => '2.2',
+			'section' => 'basemaps',
+			'title'   => 'closePopupOnClick',
+			'desc'    => __('Set it to false if you do not want popups to close when user clicks the map.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);					
+		/*
+		* Keyboard navigation options 
+		*/
+		$this->settings['map_keyboard_navigation_options_heading'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => '', 
+			'desc'    => __( 'Keyboard navigation options', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['map_keyboard_navigation_options_helptext'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => __( 'The following settings will be used for all marker and layer maps', 'lmm'),
+			'type'    => 'helptext'
+		);		
+		$this->settings['map_keyboard_navigation_options_keyboard'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => 'keyboard',
+			'desc'    => __('Makes the map focusable and allows users to navigate the map with keyboard arrows and +/- keys','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);			
+		$this->settings['map_keyboard_navigation_options_keyboardpanoffset'] = array(
+			'version' => '2.7.1',
+			'title'   => 'keyboardPanOffset',
+			'desc'    => __('Amount of pixels to pan when pressing an arrow key','lmm'),
+			'std'     => '80',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);
+		$this->settings['map_keyboard_navigation_options_keyboardzoomoffset'] = array(
+			'version' => '2.7.1',
+			'title'   => 'keyboardZoomOffset',
+			'desc'    => __( 'Number of zoom levels to change when pressing + or - key.', 'lmm' ),
+			'std'     => '1',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);
+		/*
+		* Panning inertia options
+		*/
+		$this->settings['map_panning_inertia_options_heading'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => '', 
+			'desc'    => __( 'Panning inertia options', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['map_panning_inertia_options_helptext'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => __( 'The following settings will be used for all marker and layer maps', 'lmm'),
+			'type'    => 'helptext'
+		);		
+		$this->settings['map_panning_inertia_options_inertia'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => 'inertia',
+			'desc'    => __('If enabled, panning of the map will have an inertia effect where the map builds momentum while dragging and continues moving in the same direction for some time. Feels especially nice on touch devices.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);			
+		$this->settings['map_panning_inertia_options_inertiadeceleration'] = array(
+			'version' => '2.7.1',
+			'title'   => 'inertiaDeceleration',
+			'desc'    => __('The rate with which the inertial movement slows down, in pixels/second','lmm'),
+			'std'     => '3000',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);
+		$this->settings['map_panning_inertia_options_inertiamaxspeed'] = array(
+			'version' => '2.7.1',
+			'title'   => 'inertiaMaxSpeed',
+			'desc'    => __('Max speed of the inertial movement, in pixels/second.','lmm'),
+			'std'     => '1500',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);
+		/*
+		* Control options
+		*/
+		$this->settings['map_control_options_heading'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => '', 
+			'desc'    => __( 'Control options', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['map_control_options_helptext'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => __( 'The following settings will be used for all marker and layer maps', 'lmm'),
+			'type'    => 'helptext'
+		);	
+		$this->settings['misc_map_zoomcontrol'] = array(
+			'version' => '2.2',
+			'section' => 'basemaps',
+			'title'   => 'zoomControl',
+			'desc'    => __('Whether the zoom control is added to the map by default.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
+		/*
+		* Scale control options
+		*/
+		$this->settings['map_scale_control_heading'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => '', 
+			'desc'    => __( 'Scale control options', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['map_scale_control_helptext'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => __( 'A simple scale control that shows the scale of the current center of screen in metric (m/km) and/or imperial (mi/ft) systems. The following settings will be used for all marker and layer maps.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-basemap-scale-control.jpg" />',
+			'type'    => 'helptext'
+		);	
+		$this->settings['map_scale_control'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => __('Scale Control','lmm'),
+			'desc'    => __('Whether the scale control is added to the map by default.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'enabled',
+			'choices' => array(
+				'enabled' => __('enabled','lmm'),
+				'disabled' => __('disabled','lmm')
+			)
+		);
+		$this->settings['map_scale_control_position'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => __('Position','lmm'),
+			'desc'    => __('The position of the control (one of the map corners).','lmm'),
+			'type'    => 'radio',
+			'std'     => 'bottomleft',
+			'choices' => array(
+				'bottomleft' => __('Bottom left of the map','lmm'),
+				'bottomright' => __('Bottom right of the map','lmm'),
+				'topright' => __('Top right of the map','lmm'),
+				'topleft' => __('Top left of the map','lmm')
+			)
+		);
+		$this->settings['map_scale_control_maxwidth'] = array(
+			'version' => '2.7.1',
+			'title'   => 'maxWidth',
+			'desc'    => __('Maximum width of the control in pixels. The width is set dynamically to show round values (e.g. 100, 200, 500).','lmm'),
+			'std'     => '100',
+			'type'    => 'text',
+			'section' => 'basemaps'
+		);		
+		$this->settings['map_scale_control_metric'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => 'metric',
+			'desc'    => __('Whether to show the metric scale line (m/km).','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);		
+		$this->settings['map_scale_control_imperial'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => 'imperial',
+			'desc'    => __('Whether to show the imperial scale line (mi/ft).','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);			
+		$this->settings['map_scale_control_updatewhenidle'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => 'updateWhenIdle',
+			'desc'    => __('If true, the control is updated on moveend, otherwise it is always up-to-date (updated on move).','lmm'),
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);	
+		/*
+		* Retina display detection
+		*/
+		$this->settings['map_retina_detection_heading'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => '', 
+			'desc'    => __( 'Retina display detection', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['map_retina_detection_helptext'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => __( 'The following settings will be used for all marker and layer maps', 'lmm'),
+			'type'    => 'helptext'
+		);	
+		$this->settings['map_retina_detection'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => 'detectRetina',
+			'desc'    => __('If true and user is on a retina display (= iPhone 4/4S/5, iPad 3, MacBook Pro 3rd Generation), it will request four tiles of half the specified size and a bigger zoom level in place of one to utilize the high resolution.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);										
+		/*
 		* Bing Maps API Key
 		*/
 		$this->settings['bingmaps_api_key_heading'] = array(
@@ -820,7 +1172,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'If coordinates within boundaries of Vienna/Austria are selected for a marker or layer, the basemap automatically switches to OGD Vienna basemap and the overlay OGD Vienna addresses gets checked.', 'lmm').'<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-default-basemap-ogdvienna-selector.jpg />',
+			'desc'    => __( 'If coordinates within boundaries of Vienna/Austria are selected for a marker or layer, the basemap automatically switches to OGD Vienna basemap and the overlay OGD Vienna addresses gets checked.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-ogdvienna-selector.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['ogdvienna_selector'] = array(
@@ -859,7 +1211,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-default-basemap-cloudmade.jpg />',
+			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-cloudmade.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['cloudmade_api_key'] = array(
@@ -905,7 +1257,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-default-basemap-cloudmade.jpg />',
+			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-cloudmade.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['cloudmade2_api_key'] = array(
@@ -951,7 +1303,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-default-basemap-cloudmade.jpg />',
+			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-cloudmade.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['cloudmade3_api_key'] = array(
@@ -997,7 +1349,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => '<img src='. LEAFLET_PLUGIN_URL .'img/help-default-basemap-mapbox.jpg />',
+			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-mapbox.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['mapbox_user'] = array(
@@ -1055,7 +1407,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => '<img src='. LEAFLET_PLUGIN_URL .'img/help-default-basemap-mapbox.jpg />',
+			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-mapbox.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['mapbox2_user'] = array(
@@ -1113,7 +1465,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => '<img src='. LEAFLET_PLUGIN_URL .'img/help-default-basemap-mapbox.jpg />',
+			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-mapbox.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['mapbox3_user'] = array(
@@ -1171,7 +1523,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 1):<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-default-basemap-custom-basemaps.jpg />',
+			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 1):<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-custom-basemaps.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['custom_basemap_tileurl'] = array(
@@ -1206,6 +1558,18 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'basemaps'
 		);		
+		$this->settings['custom_basemap_tms'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => 'tms',
+			'desc'    => __('If true, inverses Y axis numbering for tiles (turn this on for TMS services).','lmm'),
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);	
 		$this->settings['custom_basemap_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'section' => 'basemaps',
@@ -1226,6 +1590,30 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'basemaps'
 		);		
+		$this->settings['custom_basemap_continuousworld_enabled'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => __('Enable continuousWorld?','lmm'),
+			'desc'    => __('If set to true, the tile coordinates will not be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that do not reflect the real world (e.g. game, indoor or photo maps).','lmm'),
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);
+		$this->settings['custom_basemap_nowrap_enabled'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => __('Enable nowrap?','lmm'),
+			'desc'    => __('If set to true, the tiles just will not load outside the world width (-180 to 180 longitude) instead of repeating.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);
 		/*
 		* Custom basemap 2 settings
 		*/
@@ -1241,7 +1629,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 2):<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-default-basemap-custom-basemaps.jpg />',
+			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 2):<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-custom-basemaps.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['custom_basemap2_tileurl'] = array(
@@ -1276,6 +1664,18 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'basemaps'
 		);		
+		$this->settings['custom_basemap2_tms'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => 'tms',
+			'desc'    => __('If true, inverses Y axis numbering for tiles (turn this on for TMS services).','lmm'),
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);			
 		$this->settings['custom_basemap2_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'section' => 'basemaps',
@@ -1296,6 +1696,30 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'basemaps'
 		);
+		$this->settings['custom_basemap2_continuousworld_enabled'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => __('Enable continuousWorld?','lmm'),
+			'desc'    => __('If set to true, the tile coordinates will not be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that do not reflect the real world (e.g. game, indoor or photo maps).','lmm'),
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);
+		$this->settings['custom_basemap2_nowrap_enabled'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => __('Enable nowrap?','lmm'),
+			'desc'    => __('If set to true, the tiles just will not load outside the world width (-180 to 180 longitude) instead of repeating.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);
 		/*
 		* Custom basemap 3 settings
 		*/
@@ -1311,7 +1735,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 3):<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-default-basemap-custom-basemaps.jpg />',
+			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 3):<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-custom-basemaps.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['custom_basemap3_tileurl'] = array(
@@ -1346,6 +1770,18 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'basemaps'
 		);		
+		$this->settings['custom_basemap3_tms'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => 'tms',
+			'desc'    => __('If true, inverses Y axis numbering for tiles (turn this on for TMS services).','lmm'),
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);			
 		$this->settings['custom_basemap3_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'section' => 'basemaps',
@@ -1366,7 +1802,30 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'basemaps'
 		);
-		
+		$this->settings['custom_basemap3_continuousworld_enabled'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => __('Enable continuousWorld?','lmm'),
+			'desc'    => __('If set to true, the tile coordinates will not be wrapped by world width (-180 to 180 longitude) or clamped to lie within world height (-90 to 90). Use this if you use Leaflet for maps that do not reflect the real world (e.g. game, indoor or photo maps).','lmm'),
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);
+		$this->settings['custom_basemap3_nowrap_enabled'] = array(
+			'version' => '2.7.1',
+			'section' => 'basemaps',
+			'title'   => __('Enable nowrap?','lmm'),
+			'desc'    => __('If set to true, the tiles just will not load outside the world width (-180 to 180 longitude) instead of repeating.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);		
 		/*===========================================
 		*
 		*
@@ -1389,7 +1848,7 @@ class Leafletmapsmarker_options {
 			'section' => 'overlays',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please select the overlays which should be available in the control box.', 'lmm').'<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-custom-overlays-available-overlays.jpg />',
+			'desc'    => __( 'Please select the overlays which should be available in the control box.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-custom-overlays-available-overlays.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['overlays_custom'] = array(
@@ -1442,7 +1901,7 @@ class Leafletmapsmarker_options {
 			'section' => 'overlays',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').':<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-overlays-custom.jpg />',
+			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').':<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-overlays-custom.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['overlays_custom_name'] = array(
@@ -1486,6 +1945,14 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'overlays'
 		);		
+		$this->settings['overlays_custom_opacity'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Opacity', 'lmm' ),
+			'desc'    => __('The opacity of the tile layer.','lmm'),
+			'std'     => '1.0',
+			'type'    => 'text',
+			'section' => 'overlays'
+		);		
 		$this->settings['overlays_custom_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'section' => 'overlays',
@@ -1521,7 +1988,7 @@ class Leafletmapsmarker_options {
 			'section' => 'overlays',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 2:<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-overlays-custom2.jpg />',
+			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 2:<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-overlays-custom2.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['overlays_custom2_name'] = array(
@@ -1565,6 +2032,14 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'overlays'
 		);		
+		$this->settings['overlays_custom2_opacity'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Opacity', 'lmm' ),
+			'desc'    => __('The opacity of the tile layer.','lmm'),
+			'std'     => '1.0',
+			'type'    => 'text',
+			'section' => 'overlays'
+		);		
 		$this->settings['overlays_custom2_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'section' => 'overlays',
@@ -1600,7 +2075,7 @@ class Leafletmapsmarker_options {
 			'section' => 'overlays',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 3:<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-overlays-custom3.jpg />',
+			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 3:<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-overlays-custom3.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['overlays_custom3_name'] = array(
@@ -1643,6 +2118,14 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'overlays'
 		);		
+		$this->settings['overlays_custom3_opacity'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Opacity', 'lmm' ),
+			'desc'    => __('The opacity of the tile layer.','lmm'),
+			'std'     => '1.0',
+			'type'    => 'text',
+			'section' => 'overlays'
+		);		
 		$this->settings['overlays_custom3_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'section' => 'overlays',
@@ -1678,7 +2161,7 @@ class Leafletmapsmarker_options {
 			'section' => 'overlays',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 4:<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-overlays-custom4.jpg />',
+			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 4:<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-overlays-custom4.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['overlays_custom4_name'] = array(
@@ -1719,6 +2202,14 @@ class Leafletmapsmarker_options {
 			'title'   => __( 'Maximum zoom level', 'lmm' ),
 			'desc'    => __('Note: maximum zoom level may vary on your basemap','lmm'),
 			'std'     => '17',
+			'type'    => 'text',
+			'section' => 'overlays'
+		);		
+		$this->settings['overlays_custom4_opacity'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Opacity', 'lmm' ),
+			'desc'    => __('The opacity of the tile layer.','lmm'),
+			'std'     => '1.0',
 			'type'    => 'text',
 			'section' => 'overlays'
 		);		
@@ -1765,7 +2256,7 @@ class Leafletmapsmarker_options {
 			'section' => 'wms',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please select the WMS layers which should be available when creating new markers/layers', 'lmm').'<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-wms-available-wms-layers.jpg />',
+			'desc'    => __( 'Please select the WMS layers which should be available when creating new markers/layers', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-wms-available-wms-layers.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['wms_wms_available'] = array(
@@ -3827,13 +4318,13 @@ class Leafletmapsmarker_options {
 		*
 		===========================================*/	
 		/*
-		* Default values for new markers
+		* Default values for new marker maps
 		*/
 		$this->settings['defaults_marker_heading'] = array(
 			'version' => '1.0',
 			'section' => 'defaults_marker',
 			'title'   => '', 
-			'desc'    => __( 'Default values for new markers', 'lmm'),
+			'desc'    => __( 'Default values for new marker maps', 'lmm'),
 			'type'    => 'heading'
 		);
 		$this->settings['defaults_marker_helptext1'] = array(
@@ -3841,7 +4332,7 @@ class Leafletmapsmarker_options {
 			'section' => 'defaults_marker',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Will be used when creating a new marker. All values can be changed afterwards on each marker.', 'lmm') . '<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-marker-defaults.jpg />',
+			'desc'    => __( 'Will be used when creating a new marker. All values can be changed afterwards on each marker.', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-marker-defaults.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['defaults_marker_lat'] = array(
@@ -3857,14 +4348,6 @@ class Leafletmapsmarker_options {
 			'title'   => __( 'Longitude', 'lmm' ),
 			'desc'    => __( 'Please use a dot instead of a coma as decimal delimiter!', 'lmm' ),
 			'std'     => '16.378984',
-			'type'    => 'text',
-			'section' => 'defaults_marker'
-		);
-		$this->settings['defaults_marker_icon'] = array(
-			'version' => '1.8',
-			'title'   => __( 'Icon', 'lmm' ),
-			'desc'    => sprintf(__( 'If you want to use another icon than the blue pin, please enter the file name of the icon (located in the directory %s) in the form field - e.g. smiley_happy.png', 'lmm' ),LEAFLET_PLUGIN_ICONS_URL),
-			'std'     => '',
 			'type'    => 'text',
 			'section' => 'defaults_marker'
 		);
@@ -4044,7 +4527,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'title'   => __( 'Panel text css', 'lmm' ),
 			'desc'    => '',
-			'std'     => 'font-weight:bold;',
+			'std'     => 'font-weight:bold;color:#373737;',
 			'type'    => 'text',
 			'section' => 'defaults_marker'
 		);
@@ -4129,7 +4612,254 @@ class Leafletmapsmarker_options {
 			'type'    => 'checkbox',
 			'std'     => 0 
 		);	
-	
+		/*
+		* Default values for marker icons
+		*/
+		$this->settings['defaults_marker_icon_heading'] = array(
+			'version' => '2.7.1',
+			'section' => 'defaults_marker',
+			'title'   => '', 
+			'desc'    => __( 'Default values for marker icons', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['defaults_marker_icon_helptext1'] = array(
+			'version' => '2.7.1',
+			'section' => 'defaults_marker',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => '',
+			'type'    => 'helptext'
+		);
+		$this->settings['defaults_marker_icon_url'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Icons URL', 'lmm' ),
+			'desc'    => __( 'Icons copied to this directory will automatically be available when creating or editing marker maps (cannot be changed)', 'lmm' ),
+			'std'     => LEAFLET_PLUGIN_ICONS_URL,
+			'type'    => 'text-readonly',
+			'section' => 'defaults_marker'
+		);		
+		$this->settings['defaults_marker_icon_dir'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Icons directory', 'lmm' ),
+			'desc'    => __( 'Directory on server where icons are stored - needed especially for WordPress Multisite blogs (cannot be changed)', 'lmm' ),
+			'std'     => LEAFLET_PLUGIN_ICONS_DIR,
+			'type'    => 'text-readonly',
+			'section' => 'defaults_marker'
+		);	
+		$this->settings['defaults_marker_icon'] = array(
+			'version' => '1.8',
+			'title'   => __( 'Default icon', 'lmm' ),
+			'desc'    => sprintf(__( 'If you want to use another icon than the blue pin (<img src="%sleaflet-dist/images/marker.png">), please enter the file name of the icon (located in the directory %s) in the form field - e.g. smiley_happy.png', 'lmm' ),LEAFLET_PLUGIN_URL,LEAFLET_PLUGIN_ICONS_URL),
+			'std'     => '',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_icon_title'] = array(
+			'version' => '2.7.1',
+			'section' => 'defaults_marker',
+			'title'   => 'title' . '<br/><img src="' . LEAFLET_PLUGIN_URL . 'img/help-marker-title.jpg">',
+			'desc'    => __('Show marker name for the browser tooltip that appear on marker hover (tooltip is always hidden if marker name is empty).','lmm'),
+			'type'    => 'radio',
+			'std'     => 'show',
+			'choices' => array(
+				'show' => __('show','lmm'),
+				'hide' => __('hide','lmm')
+			)
+		);
+		$this->settings['defaults_marker_icon_opacity'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Opacity', 'lmm' ),
+			'desc'    => __( 'The opacity of the markers.', 'lmm' ),
+			'std'     => '1.0',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_icon_helptext2'] = array(
+			'version' => '2.7.1',
+			'section' => 'defaults_marker',
+			'std'     => '', 
+			'title'   => '', 
+			'desc'    => '<strong>' . __('Only change the values below if you are not using marker or shadow icons from the <a href="http://mapicons.nicolasmollet.com" target="_blank">Map Icons Collection</a>!','lmm') . '</strong>',
+			'type'    => 'helptext'
+		);
+		$this->settings['defaults_marker_icon_iconsize_x'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Icon size', 'lmm' ) . ' (x)',
+			'desc'    => __( 'Width of the icons in pixel', 'lmm' ),
+			'std'     => '32',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_icon_iconsize_y'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Icon size', 'lmm' ) . ' (y)',
+			'desc'    => __( 'Height of the icons in pixel', 'lmm' ),
+			'std'     => '37',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_icon_iconanchor_x'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Icon anchor', 'lmm' ) . ' (x)',
+			'desc'    => __( 'The x-coordinates of the "tip" of the icons (relative to its top left corner).', 'lmm' ),
+			'std'     => '17',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_icon_iconanchor_y'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Icon anchor', 'lmm' ) . ' (y)',
+			'desc'    => __( 'The y-coordinates of the "tip" of the icons (relative to its top left corner).', 'lmm' ),
+			'std'     => '36',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_icon_popupanchor_x'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Popup anchor', 'lmm' ) . ' (x)',
+			'desc'    => __( 'The x-coordinates of the popup anchor (relative to its top left corner)', 'lmm' ),
+			'std'     => '-1',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_icon_popupanchor_y'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Popup anchor', 'lmm' ) . ' (y)',
+			'desc'    => __( 'The y-coordinates of the popup anchor (relative to its top left corner)', 'lmm' ),
+			'std'     => '-32',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);		
+		$this->settings['defaults_marker_icon_shadow_url'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Shadow URL', 'lmm' ),
+			'desc'    => __( 'The URL to the icons shadow image. If not specified, no shadow image will be created. Default shadow icon:', 'lmm' ) . '<img src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker-shadow.png">',
+			'std'     => LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker-shadow.png',
+			'type'    => 'text-deletable',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_icon_shadowsize_x'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Shadow size', 'lmm' ) . ' (x)',
+			'desc'    => __( 'Width of the shadow icon in pixel', 'lmm' ),
+			'std'     => '41',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_icon_shadowsize_y'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Shadow size', 'lmm' ) . ' (y)',
+			'desc'    => __( 'Height of the shadow icon in pixel', 'lmm' ),
+			'std'     => '41',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_icon_shadowanchor_x'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Shadow anchor', 'lmm' ) . ' (x)',
+			'desc'    => __( 'The x-coordinates of the "tip" of the shadow icon (relative to its top left corner)', 'lmm' ),
+			'std'     => '16',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_icon_shadowanchor_y'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Shadow anchor', 'lmm' ) . ' (y)',
+			'desc'    => __( 'The y-coordinates of the "tip" of the shadow icon (relative to its top left corner)', 'lmm' ),
+			'std'     => '43',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);
+		/*
+		* Default values for marker popups
+		*/
+		$this->settings['defaults_marker_popups_heading'] = array(
+			'version' => '2.7.1',
+			'section' => 'defaults_marker',
+			'title'   => '', 
+			'desc'    => __( 'Default values for marker popups', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['defaults_marker_popups_helptext1'] = array(
+			'version' => '2.7.1',
+			'section' => 'defaults_marker',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => '',
+			'type'    => 'helptext'
+		);
+		$this->settings['defaults_marker_popups_maxwidth'] = array(
+			'version' => '2.7.1',
+			'title'   => 'maxWidth (px)',
+			'desc'    => __( 'Maximum width of popups in pixel', 'lmm' ),
+			'std'     => '300',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_popups_minwidth'] = array(
+			'version' => '2.7.1',
+			'title'   => 'minWidth (px)',
+			'desc'    => __( 'Minimum width of popups in pixel', 'lmm' ),
+			'std'     => '250',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_popups_maxheight'] = array(
+			'version' => '2.7.1',
+			'title'   => 'maxHeight (px)',
+			'desc'    => __( 'If set, creates a scrollable container of the given height in pixel inside popups if its content exceeds it.', 'lmm' ),
+			'std'     => '160',
+			'type'    => 'text-deletable',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_popups_image_max_width'] = array(
+			'version' => '2.7.1',
+			'title'   => __('maximum image width (px)','lmm'),
+			'desc'    => __( 'Reduce image width in popups automatically to the given value in pixel (only if is wider). The height of the images gets reduced by the according ratio automatically (this feature only works if your theme supports the wp_head()-hook).', 'lmm' ),
+			'std'     => '230',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_popups_autopan'] = array(
+			'version' => '2.7.1',
+			'section' => 'defaults_marker',
+			'title'   => 'autoPan',
+			'desc'    => __('Set it to false if you do not want the map to do panning animation to fit the opened popup.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
+		$this->settings['defaults_marker_popups_closebutton'] = array(
+			'version' => '2.7.1',
+			'section' => 'defaults_marker',
+			'title'   => 'closeButton',
+			'desc'    => __('Controls the presence of a close button in popups.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
+		$this->settings['defaults_marker_popups_autopanpadding_x'] = array(
+			'version' => '2.7.1',
+			'title'   => 'autoPanPadding (x)',
+			'desc'    => __( 'The x-coordinates of the margin between popups and the edges of the map view after autopanning was performed.', 'lmm' ),
+			'std'     => '5',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);
+		$this->settings['defaults_marker_popups_autopanpadding_y'] = array(
+			'version' => '2.7.1',
+			'title'   => 'autoPanPadding (y)',
+			'desc'    => __( 'The y-coordinates of the margin between popups and the edges of the map view after autopanning was performed.', 'lmm' ),
+			'std'     => '5',
+			'type'    => 'text',
+			'section' => 'defaults_marker'
+		);		
 		/*
 		* Default values for markers added directly
 		*/
@@ -4145,7 +4875,7 @@ class Leafletmapsmarker_options {
 			'section' => 'defaults_marker',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'You can also add markers directly to posts or pages without having to save them to your database previously. You just have to use the shortcode with the attributes mlat and mlon (e.g. <strong>[mapsmarker mlat="48.216038" mlon="16.378984"]</strong>).', 'lmm') . '<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-marker-direct.jpg /><br/><br/>' . __('Defaults values for markers added directly:','lmm'),
+			'desc'    => __( 'You can also add markers directly to posts or pages without having to save them to your database previously. You just have to use the shortcode with the attributes mlat and mlon (e.g. <strong>[mapsmarker mlat="48.216038" mlon="16.378984"]</strong>).', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-marker-direct.jpg" /><br/><br/>' . __('Defaults values for markers added directly:','lmm'),
 			'type'    => 'helptext'
 		);
 		$this->settings['defaults_marker_shortcode_basemap'] = array(
@@ -4350,13 +5080,13 @@ class Leafletmapsmarker_options {
 		*
 		===========================================*/		
 		/*
-		* Default values for new layers
+		* Default values for new layer maps
 		*/
 		$this->settings['defaults_layer_heading'] = array(
 			'version' => '1.0',
 			'section' => 'defaults_layer',
 			'title'   => '', 
-			'desc'    => __( 'Default values for new layers', 'lmm'),
+			'desc'    => __( 'Default values for new layer maps', 'lmm'),
 			'type'    => 'heading'
 		);
 		$this->settings['defaults_layer_helptext1'] = array(
@@ -4364,7 +5094,7 @@ class Leafletmapsmarker_options {
 			'section' => 'defaults_layer',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Will be used when creating a new layer. All values can be changed afterwards on each layer.', 'lmm') . '<br/><br/><img src='. LEAFLET_PLUGIN_URL .'img/help-layer-defaults.jpg />',
+			'desc'    => __( 'Will be used when creating a new layer. All values can be changed afterwards on each layer.', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-layer-defaults.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['defaults_layer_lat'] = array(
@@ -4538,7 +5268,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'title'   => __( 'Panel text css', 'lmm' ),
 			'desc'    => '',
-			'std'     => 'font-weight:bold;',
+			'std'     => 'font-weight:bold;color:#373737;',
 			'type'    => 'text',
 			'section' => 'defaults_layer'
 		);		
@@ -4635,7 +5365,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.5',
 			'section' => 'defaults_layer',
 			'title'   => __('Display a list of markers under the map','lmm'),
-			'desc'    => __('(not available on multi layer maps)','lmm'),
+			'desc'    => '',
 			'type'    => 'radio',
 			'std'     => '1',
 			'choices' => array(
@@ -4671,7 +5401,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.5',
 			'section' => 'defaults_layer',
 			'title'   => __('Order list of markers by','lmm'),
-			'desc'    => '',
+			'desc'    =>  __('(not available on multi layer maps)','lmm'),
 			'type'    => 'radio',
 			'std'     => 'm.id',
 			'choices' => array(
@@ -4685,7 +5415,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.5',
 			'section' => 'defaults_layer',
 			'title'   => __('Sort order','lmm'),
-			'desc'    => '',
+			'desc'    =>  __('(not available on multi layer maps)','lmm'),
 			'type'    => 'radio',
 			'std'     => 'ASC',
 			'choices' => array(
@@ -4696,7 +5426,7 @@ class Leafletmapsmarker_options {
 		$this->settings['defaults_layer_listmarkers_limit'] = array(
 			'version' => '1.7',
 			'title'   => __( 'Limit', 'lmm' ),
-			'desc'    => __( 'maximum number of markers to display in the list', 'lmm' ),
+			'desc'    => __( 'maximum number of markers to display in the list', 'lmm' ) . ' ' .  __('(not available on multi layer maps)','lmm'),
 			'std'     => '100',
 			'type'    => 'text',
 			'section' => 'defaults_layer'
@@ -4792,6 +5522,153 @@ class Leafletmapsmarker_options {
 			'section' => 'google'
 		);
 		/*
+		* Google language localization
+		* https://spreadsheets.google.com/spreadsheet/pub?key=0Ah0xU81penP1cDlwZHdzYWkyaERNc0xrWHNvTTA1S1E&gid=1
+		*/
+		$this->settings['google_maps_language_localization_heading'] = array(
+			'version' => '2.7.1',
+			'section' => 'google',
+			'title'   => '', 
+			'desc'    => __( 'Google language localization', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['google_maps_language_localization_helptext'] = array(
+			'version' => '2.7.1',
+			'section' => 'google',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => __( 'Language used when displaying textual information such as the names for controls, copyright notices, driving directions and labels on Google maps, direction links and autocomplete for address search.', 'lmm'),
+			'type'    => 'helptext'
+		);
+		$this->settings['google_maps_language_localization'] = array(
+			'version' => '2.7.1',
+			'section' => 'google',
+			'title'   => __('Default language','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'browser_setting',
+			'choices' => array(
+				'browser_setting' => __('automatic 1 (distinct language for each user - detects the users browser language setting, preferred method by Google)','lmm'),
+				'wordpress_setting' => sprintf(__('automatic 2 (same language for each user - uses the first two letters from the constant WPLANG defined in wp-config.php = %s)','lmm'),substr(WPLANG,0,2)),
+				'ar' => __('Arabic','lmm') . ' (' . __('language code','lmm') . ': ar)',
+				'bg' => __('Bulgarian','lmm') . ' (' . __('language code','lmm') . ': bg)',
+				'ca' => __('Catalan','lmm') . ' (' . __('language code','lmm') . ': ca)',
+				'cs' => __('Czech','lmm') . ' (' . __('language code','lmm') . ': cs)',
+				'da' => __('Danish','lmm') . ' (' . __('language code','lmm') . ': da)',
+				'de' => __('German','lmm') . ' (' . __('language code','lmm') . ': de)',
+				'el' => __('Greek','lmm') . ' (' . __('language code','lmm') . ': el)',
+				'en' => __('English','lmm') . ' (' . __('language code','lmm') . ': en)',
+				'en-AU' => __('English (Australian)','lmm') . ' (' . __('language code','lmm') . ': en-AU)',
+				'en-GB' => __('English (Great Britain)','lmm') . ' (' . __('language code','lmm') . ': en-GB)',
+				'es' => __('Spanish','lmm') . ' (' . __('language code','lmm') . ': es)',
+				'eu' => __('Basque','lmm') . ' (' . __('language code','lmm') . ': eu)',
+				'fa' => __('Farsi','lmm') . ' (' . __('language code','lmm') . ': fa)',
+				'fi' => __('Finnish','lmm') . ' (' . __('language code','lmm') . ': fi)',
+				'fil' => __('Filipino','lmm') . ' (' . __('language code','lmm') . ': fil)',
+				'fr' => __('French','lmm') . ' (' . __('language code','lmm') . ': fr)',
+				'gl' => __('Galician','lmm') . ' (' . __('language code','lmm') . ': gl)',
+				'gu' => __('Gujarati','lmm') . ' (' . __('language code','lmm') . ': gu)',
+				'hi' => __('Hindi','lmm') . ' (' . __('language code','lmm') . ': hi)',
+				'hr' => __('Croatian','lmm') . ' (' . __('language code','lmm') . ': hr)',
+				'hu' => __('Hungarian','lmm') . ' (' . __('language code','lmm') . ': hu)',
+				'id' => __('Indonesian','lmm') . ' (' . __('language code','lmm') . ': id)',
+				'it' => __('Italian','lmm') . ' (' . __('language code','lmm') . ': it)',
+				'iw' => __('Hebrew','lmm') . ' (' . __('language code','lmm') . ': iw)',
+				'ja' => __('Japanese','lmm') . ' (' . __('language code','lmm') . ': ja)',
+				'kn' => __('Kannada','lmm') . ' (' . __('language code','lmm') . ': kn)',
+				'ko' => __('Korean','lmm') . ' (' . __('language code','lmm') . ': ko)',
+				'lt' => __('Lithuanian','lmm') . ' (' . __('language code','lmm') . ': lt)',
+				'lv' => __('Latvian','lmm') . ' (' . __('language code','lmm') . ': lv)',
+				'ml' => __('Malayalam','lmm') . ' (' . __('language code','lmm') . ': ml)',
+				'mr' => __('Marathi','lmm') . ' (' . __('language code','lmm') . ': mr)',
+				'nl' => __('Dutch','lmm') . ' (' . __('language code','lmm') . ': nl)',
+				'no' => __('Norwegian','lmm') . ' (' . __('language code','lmm') . ': no)',
+				'pl' => __('Polish','lmm') . ' (' . __('language code','lmm') . ': pl)',
+				'pt' => __('Portuguese','lmm') . ' (' . __('language code','lmm') . ': pt)',
+				'pt-BR' => __('Portuguese (Brazil)','lmm') . ' (' . __('language code','lmm') . ': pt-BR)',
+				'pt-PT' => __('Portuguese (Portugal)','lmm') . ' (' . __('language code','lmm') . ': pt-PT)',
+				'ro' => __('Romanian','lmm') . ' (' . __('language code','lmm') . ': ro)',
+				'ru' => __('Russian','lmm') . ' (' . __('language code','lmm') . ': ru)',
+				'sk' => __('Slovak','lmm') . ' (' . __('language code','lmm') . ': sk)',
+				'sl' => __('Slovenian','lmm') . ' (' . __('language code','lmm') . ': sl)',
+				'sr' => __('Serbian','lmm') . ' (' . __('language code','lmm') . ': sr)',
+				'sv' => __('Swedish','lmm') . ' (' . __('language code','lmm') . ': sv)',
+				'tl' => __('Tagalog','lmm') . ' (' . __('language code','lmm') . ': tl)',
+				'ta' => __('Tamil','lmm') . ' (' . __('language code','lmm') . ': ta)',
+				'te' => __('Telugu','lmm') . ' (' . __('language code','lmm') . ': te)',
+				'th' => __('Thai','lmm') . ' (' . __('language code','lmm') . ': th)',
+				'uk' => __('Ukrainian','lmm') . ' (' . __('language code','lmm') . ': uk)',
+				'vi' => __('Vietnamese','lmm') . ' (' . __('language code','lmm') . ': vi)',
+				'zh-CN' => __('Chinese (simplified)','lmm') . ' (' . __('language code','lmm') . ': zh-CN)',
+				'zh-TW' => __('Chinese (traditional)','lmm') . ' (' . __('language code','lmm') . ': zh-TW)',
+			)
+		);
+		/*
+		* Google Maps base domain
+		*/
+		$this->settings['google_maps_base_domain_heading'] = array(
+			'version' => '2.7.1',
+			'section' => 'google',
+			'title'   => '', 
+			'desc'    => __( 'Google Maps base domain', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['google_maps_base_domain_helptext'] = array(
+			'version' => '2.7.1',
+			'section' => 'google',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => __( 'The base domain from which to load the Google Maps API (used for geocoding for example). If you want to change the language of the Google Maps interface (buttons etc) only, please change the option "Google language localization" above.', 'lmm'),
+			'type'    => 'helptext'
+		);
+		$this->settings['google_maps_base_domain'] = array(
+			'version' => '2.7.1',
+			'section' => 'google',
+			'title'   => __('Google Maps base domain','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'maps.google.com',
+			'choices' => array(
+				'maps.google.com' => 'maps.google.com',
+				'maps.google.at' => 'maps.google.at',
+				'maps.google.com.au' => 'maps.google.com.au',
+				'maps.google.com.ba' => 'maps.google.com.ba',
+				'maps.google.be' => 'maps.google.be',
+				'maps.google.bg' => 'maps.google.bg',
+				'maps.google.com.br' => 'maps.google.com.br',
+				'maps.google.ca' => 'maps.google.ca',
+				'maps.google.ch' => 'maps.google.ch',
+				'maps.google.cm' => 'maps.google.cm',
+				'ditu.google.cn' => 'ditu.google.cn',
+				'maps.google.cz' => 'maps.google.cz',
+				'maps.google.de' => 'maps.google.de',
+				'maps.google.dk' => 'maps.google.dk',
+				'maps.google.es' => 'maps.google.es',
+				'maps.google.fi' => 'maps.google.fi',
+				'maps.google.fr' => 'maps.google.fr',
+				'maps.google.it' => 'maps.google.it',
+				'maps.google.lk' => 'maps.google.lk',
+				'maps.google.jp' => 'maps.google.jp',
+				'maps.google.nl' => 'maps.google.nl',
+				'maps.google.no' => 'maps.google.no',
+				'maps.google.co.nz' => 'maps.google.co.nz',
+				'maps.google.pl' => 'maps.google.pl',
+				'maps.google.ru' => 'maps.google.ru',
+				'maps.google.se' => 'maps.google.se',
+				'maps.google.tw' => 'maps.google.tw',
+				'maps.google.co.uk' => 'maps.google.co.uk',
+				'maps.google.co.ve' => 'maps.google.co.ve',
+			)
+		);
+		$this->settings['google_maps_base_domain_custom'] = array(
+			'version' => '2.7.1',
+			'title'   => __( 'Custom base domain', 'lmm'),
+			'desc'    => __( 'If your localized Google Maps basedomain is not available in the list above, please enter the domain name here (without http://, for example maps.google.com). If a domain name is entered, the setting "Google Maps base domain" from above gets overwritten.', 'lmm' ),
+			'std'     => '',
+			'type'    => 'text',
+			'section' => 'google'
+		);		
+		/*
 		* Google Places Bounds
 		*/
 		$this->settings['google_places_bounds_heading'] = array(
@@ -4806,7 +5683,7 @@ class Leafletmapsmarker_options {
 			'section' => 'google',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Leaflet Maps Marker uses the <a href="http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html" target="_blank">Google Places Autocomplete API</a> to easily find coordinates for places or addresses. This feature is enabled by default. Preview:', 'lmm') . '<br/><br/><img src='. LEAFLET_PLUGIN_URL .'/img/help-google-places-preview.png /><br/>' . __( 'You can get better search results if you enable the bounds feature. This allows you to specify the area in which to primarily search for places or addresses. Please note: the results are biased towards, but not restricted to places or addresses contained within these bounds.', 'lmm'),
+			'desc'    => __( 'Leaflet Maps Marker uses the <a href="http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html" target="_blank">Google Places Autocomplete API</a> to easily find coordinates for places or addresses. This feature is enabled by default. Preview:', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'/img/help-google-places-preview.png" /><br/>' . __( 'You can get better search results if you enable the bounds feature. This allows you to specify the area in which to primarily search for places or addresses. Please note: the results are biased towards, but not restricted to places or addresses contained within these bounds.', 'lmm'),
 			'type'    => 'helptext'
 		);
 		$this->settings['google_places_bounds_status'] = array(
@@ -4826,7 +5703,7 @@ class Leafletmapsmarker_options {
 			'section' => 'google',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'If enabled, please enter longitude and latitude values below for the corner points of the prefered search area. Below you find an example for Vienna/Austria:', 'lmm') . '<br/><br/><img src='. LEAFLET_PLUGIN_URL .'/img/help-google-places-bounds.jpg />',
+			'desc'    => __( 'If enabled, please enter longitude and latitude values below for the corner points of the prefered search area. Below you find an example for Vienna/Austria:', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'/img/help-google-places-bounds.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['google_places_bounds_lat1'] = array(
@@ -4873,7 +5750,7 @@ class Leafletmapsmarker_options {
 			'section' => 'google',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'You can also select a search prefix, which automatically gets added to search form when creating a new marker or layer.', 'lmm') . '<br/><br/><img src='. LEAFLET_PLUGIN_URL .'/img/help-google-places-prefix.png />',
+			'desc'    => __( 'You can also select a search prefix, which automatically gets added to search form when creating a new marker or layer.', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'/img/help-google-places-prefix.png" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['google_places_search_prefix_status'] = array(
@@ -4934,6 +5811,7 @@ class Leafletmapsmarker_options {
 			'choices' => array(
 				'googlemaps' => __('Google Maps (worldwide)','lmm') . ' - <a href="http://maps.google.com/maps?saddr=Vienna&daddr=Linz&hl=de&sll=37.0625,-95.677068&sspn=59.986788,135.263672&geocode=FS6Z3wIdO9j5ACmfyjZRngdtRzFGW6JRiuXC_Q%3BFfwa4QIdBvzZAClNhZn6lZVzRzHEdXlXLClTfA&vpsrc=0&mra=ls&t=m&z=9&layer=t" style="text-decoration:none;" target="_blank">Demo</a>',
 				'yours' => __('yournavigation.org (based on OpenStreetMap, worldwide)','lmm') . ' - <a href="http://www.yournavigation.org/?flat=52.215636&flon=6.963946&tlat=52.2573&tlon=6.1799&v=motorcar&fast=1&layer=mapnik" style="text-decoration:none;" target="_blank">Demo</a>',
+				'osrm' => __('map.project-osrm.org (based on OpenStreetMap, worldwide)','lmm') . ' - <a href="http://map.project-osrm.org/?hl=en&loc=48.242330,16.433030&loc=48.219069,16.380959" style="text-decoration:none;" target="_blank">Demo</a>',
 				'ors' => __('openrouteservice.org (based on OpenStreetMap, Europe only)','lmm') . ' - <a href="http://openrouteservice.org/index.php?start=7.0892567,50.7265543&end=7.0986258,50.7323634&lat=50.72905&lon=7.09574&zoom=15&pref=Fastest&lang=de" style="text-decoration:none;" target="_blank">Demo</a>'
 			)
 		);	
@@ -5044,27 +5922,6 @@ class Leafletmapsmarker_options {
 			'type'    => 'checkbox',
 			'std'     => 0 
 		);					
-		$this->settings['directions_googlemaps_host_language'] = array(
-			'version' => '1.4',
-			'section' => 'directions',
-			'title'   => __('Language','lmm'),
-			'desc'    => '',
-			'type'    => 'radio',
-			'std'     => 'en',
-			'choices' => array(
-				'en' => __('English','lmm'),
-				'de' => __('German','lmm'),
-				'it' => __('Italian','lmm'),
-				'fr' => __('French','lmm'),
-				'es' => __('Spanish','lmm'),
-				'cn' => __('Chinese (simplified)','lmm'),
-				'nl' => __('Dutch','lmm'),
-				'ja' => __('Japanese','lmm'),
-				'ca' => __('Catalan','lmm'),
-				'gl' => __('Galego','lmm'),
-				'eu' => __('Euskara','lmm')
-			)
-		);
 		$this->settings['directions_googlemaps_overview_map'] = array(
 			'version' => '1.4',
 			'section' => 'directions',
@@ -5205,6 +6062,56 @@ class Leafletmapsmarker_options {
 				'true' => __('true','lmm')							
 			)
 		);	
+		/*
+		* map.project-osrm.org
+		*/
+		$this->settings['directions_osrm_heading'] = array(
+			'version' => '2.7.1',
+			'section' => 'directions',
+			'title'   => '', 
+			'desc'    => __( 'map.project-osrm.org settings', 'lmm'),
+			'type'    => 'heading'
+		);
+		$this->settings['directions_osrm_helptext1'] = array(
+			'version' => '2.7.1',
+			'section' => 'directions',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => '',
+			'type'    => 'helptext'
+		);			
+		$this->settings['directions_osrm_language'] = array(
+			'version' => '2.7.1',
+			'section' => 'directions',
+			'title'   => __('Language of route instructions','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'en',
+			'choices' => array(
+				'en' => __('English','lmm'),
+				'de' => __('German','lmm'),
+				'dk' => __('Danish','lmm'),
+				'es' => __('Spanish','lmm'),
+				'fi' => __('Finnish','lmm'),
+				'fr' => __('French','lmm'),
+				'it' => __('Italian','lmm'),
+				'lv' => __('Latvian','lmm'),
+				'pl' => __('Polish','lmm'),
+				'ru' => __('Russian','lmm')								
+			)
+		);	
+		$this->settings['directions_osrm_units'] = array(
+			'version' => '2.7.1',
+			'section' => 'directions',
+			'title'   => __('Units','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => '0',
+			'choices' => array(
+				'0' => __('metric (kilometer)','lmm'),
+				'1' => __('imperial (miles)','lmm')
+			)
+		);	
 		/*===========================================
 		*
 		*
@@ -5220,7 +6127,7 @@ class Leafletmapsmarker_options {
 			'section' => 'ar',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Markers created with Leaflet Maps Marker can also be displayed via <a href="http://en.wikipedia.org/wiki/Augmented_reality" target="_blank">Augmented-Reality technology</a> on mobile devices. As a first steps, an API to <a href="http://www.wikitude.com" target="_blank">Wikitude</a> has been implemented. APIs to other Augmented-Reality-Providers (like <a href="http://www.layar.com" target="_blank">Layar</a> or <a href="http://www.junaio.de" target="_blank">Junaio</a>) will probably follow in one of the next versions. Sample screenshots:', 'lmm') . '<br/><br/><img src='. LEAFLET_PLUGIN_URL .'/img/help-augmented-reality-samples.jpg />',
+			'desc'    => __( 'Markers created with Leaflet Maps Marker can also be displayed via <a href="http://en.wikipedia.org/wiki/Augmented_reality" target="_blank">Augmented-Reality technology</a> on mobile devices. As a first steps, an API to <a href="http://www.wikitude.com" target="_blank">Wikitude</a> has been implemented. APIs to other Augmented-Reality-Providers (like <a href="http://www.layar.com" target="_blank">Layar</a> or <a href="http://www.junaio.de" target="_blank">Junaio</a>) will probably follow in one of the next versions. Sample screenshots:', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'/img/help-augmented-reality-samples.jpg" />',
 			'type'    => 'helptext'
 		);
 		/*
@@ -5450,6 +6357,19 @@ class Leafletmapsmarker_options {
 			'type'    => 'text',
 			'section' => 'misc'
 		);
+		$this->settings['misc_projections'] = array(
+			'version' => '1.0',
+			'section' => 'misc',
+			'title'   => __( 'Coordinate Reference System', 'lmm' ),
+			'desc'    => __( 'Used for created maps - do not change this if you are not sure what it means!', 'lmm'),
+			'type'    => 'radio',
+			'std'     => 'L.CRS.EPSG3857',
+			'choices' => array(
+				'L.CRS.EPSG3857' => __('EPSG:3857 (Spherical Mercator), used by most of commercial map providers (CloudMade, Google, Yahoo, Bing, etc.)', 'lmm'),
+				'L.CRS.EPSG4326' => __('EPSG:4326 (Plate Carree), very popular among GIS enthusiasts', 'lmm'),
+				'L.CRS.EPSG3395' => __('EPSG:4326 (Mercator), used by some map providers.', 'lmm')
+			)
+		);
 		/*
 		* Language Settings
 		*/
@@ -5465,7 +6385,7 @@ class Leafletmapsmarker_options {
 			'section' => 'misc',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => '',
+			'desc'    => __('The language used on plugin pages on backend and/or on maps on frontend. Please note that the language for Google Services can be set seperately via Settings / tab "Google", section "Google language localization".','lmm'),
 			'type'    => 'helptext'
 		);
 		$this->settings['misc_plugin_language'] = array(
@@ -5479,7 +6399,7 @@ class Leafletmapsmarker_options {
 				'automatic' => __('automatic (use WordPress default)','lmm'),
 				'bg_BG' => __('Bulgarian','lmm') . ' (bg_BG)',
 				'ca' => __('Catalan','lmm') . ' (ca)',
-				'zn_CH' => __('Chinese','lmm') . ' (zn_CH)',
+				'zh_CN' => __('Chinese','lmm') . ' (zh_CN)',
 				'nl_NL' => __('Dutch','lmm') . ' (nl_NL)',
 				'en_US' => __('English','lmm') . ' (en_US)',
 				'fr_FR' => __('French','lmm') . ' (fr_FR)',
@@ -5489,9 +6409,11 @@ class Leafletmapsmarker_options {
 				'ja' => __('Japanese','lmm') . ' (ja)',
 				'pl_PL' => __('Polish','lmm') . ' (pl_PL)',
 				'ru_RU' => __('Russian','lmm') . ' (ru_RU)',
+				'sk_SK' => __('Slovak','lmm') . ' (sk_SK)',
 				'es_ES' => __('Spanish','lmm') . ' (es_ES)',
-				'tr_TR' => __('Yiddish','lmm') . ' (yi)',
-				'tr_TR' => __('Turkish','lmm') . ' (tr_TR)'
+				'tr_TR' => __('Turkish','lmm') . ' (tr_TR)',
+				'uk_UK' => __('Ukrainian','lmm') . ' (uk_UK)',
+				'yi' => __('Yiddish','lmm') . ' (yi)'
 			)
 		);
 		$this->settings['misc_plugin_language_area'] = array(
@@ -5536,121 +6458,6 @@ class Leafletmapsmarker_options {
 				'show' => __('show', 'lmm'),
 				'hide' => __('hide', 'lmm'),
 				'popup' => __('put in front of popup-text', 'lmm')
-			)
-		);
-		/*
-		* General map settings
-		*/
-		$this->settings['misc_projections_heading'] = array(
-			'version' => '1.0',
-			'section' => 'misc',
-			'title'   => '', 
-			'desc'    => __( 'General Map settings', 'lmm'),
-			'type'    => 'heading'
-		);
-		$this->settings['misc_projections_helptext'] = array(
-			'version' => '1.0',
-			'section' => 'misc',
-			'std'     => '', 
-			'title'   => '',
-			'desc'    => __( 'The following settings will be used for all marker and layer maps', 'lmm'),
-			'type'    => 'helptext'
-		);
-		$this->settings['misc_map_dragging'] = array(
-			'version' => '2.2',
-			'section' => 'misc',
-			'title'   => 'dragging',
-			'desc'    => __('Whether the map be draggable with mouse/touch or not.','lmm'),
-			'type'    => 'radio',
-			'std'     => 'true',
-			'choices' => array(
-				'true' => __('true','lmm'),
-				'false' => 'false'
-			)
-		);			
-		$this->settings['misc_map_touchzoom'] = array(
-			'version' => '2.2',
-			'section' => 'misc',
-			'title'   => 'touchZoom',
-			'desc'    => __('Whether the map can be zoomed by touch-dragging with two fingers.','lmm'),
-			'type'    => 'radio',
-			'std'     => 'true',
-			'choices' => array(
-				'true' => __('true','lmm'),
-				'false' => 'false'
-			)
-		);			
-		$this->settings['misc_map_scrollwheelzoom'] = array(
-			'version' => '2.2',
-			'section' => 'misc',
-			'title'   => 'scrollWheelZoom',
-			'desc'    => __('Whether the map can be zoomed by using the mouse wheel.','lmm'),
-			'type'    => 'radio',
-			'std'     => 'true',
-			'choices' => array(
-				'true' => __('true','lmm'),
-				'false' => 'false'
-			)
-		);	
-		$this->settings['misc_map_doubleclickzoom'] = array(
-			'version' => '2.2',
-			'section' => 'misc',
-			'title'   => 'doubleClickZoom',
-			'desc'    => __('Whether the map can be zoomed in by double clicking on it.','lmm'),
-			'type'    => 'radio',
-			'std'     => 'true',
-			'choices' => array(
-				'true' => __('true','lmm'),
-				'false' => 'false'
-			)
-		);					
-		$this->settings['misc_map_zoomcontrol'] = array(
-			'version' => '2.2',
-			'section' => 'misc',
-			'title'   => 'zoomControl',
-			'desc'    => __('Whether the zoom control is added to the map by default.','lmm'),
-			'type'    => 'radio',
-			'std'     => 'true',
-			'choices' => array(
-				'true' => __('true','lmm'),
-				'false' => 'false'
-			)
-		);			
-		$this->settings['misc_map_trackresize'] = array(
-			'version' => '2.2',
-			'section' => 'misc',
-			'title'   => 'trackResize',
-			'desc'    => __('Whether the map automatically handles browser window resize to update itself.','lmm'),
-			'type'    => 'radio',
-			'std'     => 'true',
-			'choices' => array(
-				'true' => __('true','lmm'),
-				'false' => 'false'
-			)
-		);	
-		$this->settings['misc_map_closepopuponclick'] = array(
-			'version' => '2.2',
-			'section' => 'misc',
-			'title'   => 'closePopupOnClick',
-			'desc'    => __('Set it to false if you do not want popups to close when user clicks the map.','lmm'),
-			'type'    => 'radio',
-			'std'     => 'true',
-			'choices' => array(
-				'true' => __('true','lmm'),
-				'false' => 'false'
-			)
-		);					
-		$this->settings['misc_projections'] = array(
-			'version' => '1.0',
-			'section' => 'misc',
-			'title'   => __( 'Coordinate Reference System', 'lmm' ),
-			'desc'    => __( 'Used for created maps - do not change this if you are not sure what it means!', 'lmm'),
-			'type'    => 'radio',
-			'std'     => 'L.CRS.EPSG3857',
-			'choices' => array(
-				'L.CRS.EPSG3857' => __('EPSG:3857 (Spherical Mercator), used by most of commercial map providers (CloudMade, Google, Yahoo, Bing, etc.)', 'lmm'),
-				'L.CRS.EPSG4326' => __('EPSG:4326 (Plate Carree), very popular among GIS enthusiasts', 'lmm'),
-				'L.CRS.EPSG3395' => __('EPSG:4326 (Mercator), used by some map providers.', 'lmm')
 			)
 		);
 		/*
@@ -5702,7 +6509,15 @@ class Leafletmapsmarker_options {
 			'desc'    => __('Popup text','lmm'),
 			'type'    => 'checkbox',
 			'std'     => 1 
-		);		
+		);	
+		$this->settings['misc_marker_listing_columns_layername'] = array(
+			'version' => '2.7.1',
+			'section' => 'misc',
+			'title'    => '',
+			'desc'    => __('Layer name','lmm') . ' ' . __('(for marker listings below multi-layer maps only)','lmm'),
+			'type'    => 'checkbox',
+			'std'     => 1 
+		);			
 		$this->settings['misc_marker_listing_columns_basemap'] = array(
 			'version' => '1.0',
 			'section' => 'misc',
@@ -6428,14 +7243,29 @@ class Leafletmapsmarker_options {
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
-		/* template for plugin updates 
-		//info:  set defaults for options introduced in v2.7
-		if (get_option('leafletmapsmarker_version') == '2.6.1' )
+		//info:  set defaults for options introduced in v2.7.1
+		if (get_option('leafletmapsmarker_version') == '2.7' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting ) 
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.7')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.7.1')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}
+		/* template for plugin updates 
+		//info:  set defaults for options introduced in v2.8
+		if (get_option('leafletmapsmarker_version') == '2.7.1' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting ) 
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.8')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}

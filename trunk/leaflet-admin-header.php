@@ -9,11 +9,21 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-admin-header.php') { die (
 require_once(ABSPATH . "/wp-includes/pluggable.php");
 $lmm_options = get_option( 'leafletmapsmarker_options' ); //info: required for bing maps api key check
 $admin_quicklink_settings_buttons = ( current_user_can( "activate_plugins" ) ) ? "<a class='button-secondary' href='" . LEAFLET_WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_settings'>".__('Settings','lmm')."</a>" : "";
-?>
+//info: display info upon first activation
+$install_note = (isset($_GET['display']) ? $_GET['display'] : '');
+if ( $install_note != NULL ) {
+	$install_success_message = sprintf( __('You just successfully installed the "Leaflet Maps Marker" plugin. You can now add your first marker below or optionally <a href="%1$sadmin.php?page=leafletmapsmarker_settings">change the default settings</a>.<br/>For tutorials and help, please check the <a href="%1$sadmin.php?page=leafletmapsmarker_help">Help &amp; Credits page</a>!','lmm'), LEAFLET_WP_ADMIN_URL); 
+	echo '<div class="updated" style="padding:10px;"><p>' . $install_success_message . '</p></div>';
+	//info: check if custom icons could be unzipped
+	if ( ! file_exists(LEAFLET_PLUGIN_ICONS_DIR . DIRECTORY_SEPARATOR . 'information.png') ) {
+		echo '<div class="error" style="padding:10px;">'.__('Warning: the custom map icon directory at <code>/wp-contents/uploads/leaflet-maps-marker-icons</code> could not be created due to file permission settings on your webserver. Leaflet Maps Marker will work as designed, but only with one map icon available.<br/>You can add the included map icons manually by following the steps at <a href="http://www.mapsmarker.com/incomplete-installation" target="_blank">http://www.mapsmarker.com/incomplete-installation</a>', 'lmm').'</div>';
+	}
+	update_option('leafletmapsmarker_update_info', 'hide');
+} ?>
 <div style="float:right;">
   <div style="text-align:center;"><small><a href="http://www.mapsmarker.com" target="_blank" style="text-decoration:none;">MapsMarker.com</a> supports</small></div>
   <a href="http://www.open3.at" target="_blank" title="open3.at - network for the promotion of Open Society, OpenGov and OpenData in Austria"><img src="<?php echo LEAFLET_PLUGIN_URL ?>img/logo-open3-small.png" width="143" height="30" border="0"/></a></div>
-  <div style="font-size:1.5em;margin-bottom:5px;padding:10px 0 0 0;"><span style="font-weight:bold;">Leaflet Maps Marker v<?php echo get_option("leafletmapsmarker_version") ?></span> - "OGD Wien - Meine Platzl im Gr&auml;tzl"-Edition</div>
+  <div style="font-size:1.5em;margin-bottom:5px;padding:10px 0 0 0;"><span style="font-weight:bold;">Leaflet Maps Marker<sup style="font-size:75%;">&reg;</sup> v<?php echo get_option("leafletmapsmarker_version") ?></span> - "OGD Wien - Meine Platzl im Gr&auml;tzl"-Edition</div>
   <p style="margin:1.5em 0;">
   <a class="button-secondary" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_markers"><?php _e("List all markers", "lmm") ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a class="button-secondary" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_marker"><?php _e("Add new marker", "lmm") ?></a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
@@ -33,8 +43,8 @@ if ( ($update_info_action == 'hide') && ($new_install == 'false') ) {
 	update_option('leafletmapsmarker_update_info', 'hide');
 }
 if (get_option('leafletmapsmarker_update_info') == 'show') {
-	$lmm_version_old = '2.6';
-	$lmm_version_new = '2.6.1';
+	$lmm_version_old = '2.6.1';
+	$lmm_version_new = '2.7.1';
 	$lmm_changelog_new_version = '<a href="http://www.mapsmarker.com/v' . $lmm_version_new . '" target="_blank">http://www.mapsmarker.com/v' . $lmm_version_new . '</a>';
 	$lmm_full_changelog = '<a href="http://www.mapsmarker.com/changelog" target="_blank">http://www.mapsmarker.com/changelog</a>';
 	echo '<div class="updated" style="padding:10px;"><p><strong>' . __('Leaflet Maps Marker has been updated successfully!','lmm') . '</strong></p>
@@ -42,9 +52,234 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 			' . sprintf(__('Changelog for version %s:','lmm'), $lmm_version_new) . '
 			<table>
 			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			upgrade to leaflet.js v0.4.4 (<a href="http://leaflet.cloudmade.com/2012/07/30/leaflet-0-4-released.html" target=_blank">changelog</a>)
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			option to add an unobtrusive scale control to maps
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			support for Retina displays to display maps in a higher resolution
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			boxzoom option (whether the map can be zoomed to a rectangular area specified by dragging the mouse while pressing shift)
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			worldCopyJump option (the map tracks when you pan to another "copy" of the world and moves all overlays like markers and vector layers there)
+			</td></tr>
+    		<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			keyboard navigation support for maps
+			</td></tr>
+    		<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			options to customize marker popups (min/max width, scrollbar...)
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			add support for maps that do not reflect the real world (e.g. game, indoor or photo maps)
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			zoom level can now also be edited directly on marker/layer maps on backend
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			added bing/google/mapbox/cloudmad basemaps to mass actions on tools page
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			Ukrainian translation thanks to Andrexj, <a href="http://all3d.com.ua" target="_blank">http://all3d.com.ua</a>
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			Slovak translation thanks to Zdenko Podobny
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			added config options for marker icons and shadow image in settings (size, offset...)
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			show marker icons directory (especially needed for blogs on WordPress Multisite installations)
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			option to show marker name as icon tooltip (enabled by default)
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			add css-classes to each marker icon automatically
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			added routing provider OSRM (<a href="http://map.project-osrm.org" target="_blank">http://map.project-osrm.org</a>)
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			option to customize Google Maps base domain
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			marker/layer name gets added as &lt;title&gt; on fullscreen maps
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			list of markers can now also be displayed below multi-layer-maps
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			added option to set opacity for overlays
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-new.png">
+			</td><td>
+			support for TMS services for custom basemaps (inversed Y axis numbering for tiles)
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
+			</td><td>
+			secure loading of Google API via https instead of http
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
+			</td><td>
+			enhanced Google Maps language localization options (for maps, directions and autocomplete)
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
+			</td><td>
+			optimized usability for forms and marker icon selection on backend
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
+			</td><td>
+			removed translation .po files from plugin to reduce file size
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
+			</td><td>
+			merged &amp; compressed google-maps.js, bing.js &amp;  into leaflet.js to save http requests
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
+			</td><td>
+			changed default color for panel text to #373737 for new installations
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
+			</td><td>
+			moved "General Map settings" from tab "Misc" to "Basemaps"
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
+			</td><td>
+			GeoJSON AJAX calls for layer maps are not cached anymore to deliver more current results
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
+			</td><td>
+			optimized OGD Vienna selector (considers switch to other default basemaps)
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
+			</td><td>
+			updated German translation
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
+			</td><td>
+			updated French translation thanks to Vincèn Pujol, <a href="http://www.skivr.com" target="_blank">http://www.skivr.com</a> and Rodolphe Quiedeville, <a href="http://rodolphe.quiedeville.org/" target="_blank">http://rodolphe.quiedeville.org/</a>
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
+			</td><td>
+			updated Spanish translation thanks to Alvaro Lara, <a href="http://www.alvarolara.com" target="_blank">http://www.alvarolara.com</a>
+			</td></tr>			
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
+			</td><td>
+			updated Italian translation thanks to Luca Barbetti, <a href="http://twitter.com/okibone" target="_blank">http://twitter.com/okibone</a>
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-changed.png">
+			</td><td>
+			updated Catalan translation thanks to Vicent Cubells, <a href="http://vcubells.net" target="_blank">http://vcubells.net</a>
+			</td></tr>
+			<tr><td>
 			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
 			</td><td>
-			bing maps should now work as designed - thank to Pavel Shramov!
+			the selection of shortcodes via tinymce popup on posts/pages editor was broken on iOS devices
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
+			</td><td>
+			fixed broken links in multi-layer-maps-list and default state controlbox on layer maps on backend 
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
+			</td><td>
+			manual language selection for Chinese and Yiddish was broken
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
+			</td><td>
+			overwrite box-shadow attribute from style.css to remove border on some themes
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
+			</td><td>
+			linebreak was added to mapquest logo in attribution box on some templates
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
+			</td><td>
+			Google API key was not loaded on backend
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
+			</td><td>
+			attribution text for Google Maps provider was hidden
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
+			</td><td>
+			Marker/layer repositioning via Google address search did not changed basemap to Bing/Google
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
+			</td><td>
+			switching basemaps caused attribution text not to clear first
+			</td></tr>
+			<tr><td>
+			<img src="' . LEAFLET_PLUGIN_URL .'img/icon-changelog-fixed.png">
+			</td><td>
+			<html>-tags in geotags are now stripped as they caused 404 messages
 			</td></tr>
 			</table>
 			<p>' . sprintf(__('If you upgraded from a version <%s, please visit %s for a complete list of changes.','lmm'), $lmm_version_old, $lmm_full_changelog) . '</p>
@@ -146,6 +381,6 @@ if (is_plugin_active('bwp-minify/bwp-minify.php') ) {
         <!--End support table-->
       </div>
 	<p><strong><?php _e('A message from the plugin´s author','lmm') ?> <a href="http://www.harm.co.at" target="_blank" title="<?php esc_attr_e('Show website of plugin author','lmm') ?>" style="text-decoration:none;">Robert Harm</a>:</strong><br/>
-			<?php _e('It is hard to continue development and support for Leaflet Maps Marker-plugin without contributions from users like you.','lmm') ?> <?php _e('If you enjoy using the plugin - <strong>particularly within a commercial context</strong> - please consider making a donation.','lmm') ?> <?php _e('Your donation help keeping the plugin free for everyone and allow me to spend more time on developing, maintaining and support.','lmm') ?> <?php _e('I´d be happy to accept your donation! Thanks!','lmm') ?> <?php _e('For more information on how to donate, please visit','lmm') ?>  <a href="http://mapsmarker.com/donations" style="text-decoration:none;" target="_blank">http://mapsmarker.com/donations</a><br/><br/>Web: <a href="http://www.mapsmarker.com"  style="text-decoration:none;" target="_blank">MapsMarker.com</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://twitter.com/mapsmarker" style="text-decoration:none;" target="_blank">Twitter</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.facebook.com/mapsmarker" style="text-decoration:none;" target="_blank">Facebook</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://github.com/robertharm/Leaflet-Maps-Marker" style="text-decoration:none;" target="_blank">Github</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://translate.mapsmarker.com/projects/lmm"  style="text-decoration:none;" target="_blank" title="<?php esc_attr_e('please help translating this plugin','lmm') ?>"><?php _e('Translations','lmm') ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://wordpress.org/extend/plugins/leaflet-maps-marker/"  style="text-decoration:none;" target="_blank" title="<?php esc_attr_e('please rate this plugin on wordpress.org','lmm') ?>"><?php _e('Rate plugin','lmm') ?></a></p></td>
+			<?php _e('It is hard to continue development and support for Leaflet Maps Marker-plugin without contributions from users like you.','lmm') ?> <?php _e('If you enjoy using the plugin - <strong>particularly within a commercial context</strong> - please consider making a donation.','lmm') ?> <?php _e('Your donation help keeping the plugin free for everyone and allow me to spend more time on developing, maintaining and support.','lmm') ?> <?php _e('I´d be happy to accept your donation! Thanks!','lmm') ?> <?php _e('For more information on how to donate, please visit','lmm') ?>  <a href="http://mapsmarker.com/donations" style="text-decoration:none;" target="_blank">http://mapsmarker.com/donations</a><br/><br/>Web: <a href="http://www.mapsmarker.com"  style="text-decoration:none;" target="_blank">MapsMarker.com</a> (<a href="http://www.mapsmarker.com/legal"  style="text-decoration:none;" target="_blank"><?php _e('Legal','lmm'); ?></a>) &nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://twitter.com/mapsmarker" style="text-decoration:none;" target="_blank">Twitter</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.facebook.com/mapsmarker" style="text-decoration:none;" target="_blank">Facebook</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.mapsmarker.com/changelog" style="text-decoration:none;" target="_blank"><?php _e('Changelog','lmm') ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://github.com/robertharm/Leaflet-Maps-Marker" style="text-decoration:none;" target="_blank">Github</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://translate.mapsmarker.com/projects/lmm"  style="text-decoration:none;" target="_blank" title="<?php esc_attr_e('please help translating this plugin','lmm') ?>"><?php _e('Translations','lmm') ?></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://wordpress.org/extend/plugins/leaflet-maps-marker/"  style="text-decoration:none;" target="_blank" title="<?php esc_attr_e('please rate this plugin on wordpress.org','lmm') ?>"><?php _e('Rate plugin','lmm') ?></a></p></td>
   </tr>
 </table>

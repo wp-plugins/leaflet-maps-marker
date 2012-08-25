@@ -1,4 +1,5 @@
 <?php 
+header('Content-Type: text/javascript; charset=UTF-8');
 $adminurl = isset($_GET['adminurl']) ? $_GET['adminurl'] : ''; 
 $LEAFLET_PLUGIN_URL = isset($_GET['leafletpluginurl']) ? $_GET['leafletpluginurl'] : ''; 
 echo "

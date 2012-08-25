@@ -4,16 +4,13 @@ Hook into WordPress
 */
 //info prevent file from being accessed directly
 if (basename($_SERVER['SCRIPT_FILENAME']) == 'tinymce_plugin.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
-
 add_action('admin_print_styles-post.php', 'marker_select_box_css');
 add_action('admin_print_styles-post-new.php', 'marker_select_box_css');
-
 function marker_select_box_css() {
 	wp_register_style( 'lmm-tinymce-css', LEAFLET_PLUGIN_URL . 'css/marker_select_box.css', array(), NULL );
 	wp_enqueue_style( 'lmm-tinymce-css' );	
 }
 add_action('init', 'mm_shortcode_button');
-
 /**
 Create Our Initialization Function
 */
@@ -26,7 +23,6 @@ function mm_shortcode_button() {
      add_filter( 'mce_buttons', 'lmm_register_button' );
    }
 }
-
 /**
 Register Button
 */
@@ -34,7 +30,6 @@ function lmm_register_button( $buttons ) {
 	array_push( $buttons, "|", "mm_shortcode" );
 	return $buttons;
 }
-
 /**
 Register TinyMCE Plugin
 */
@@ -44,10 +39,8 @@ function lmm_add_plugin( $plugin_array ) {
 	return $plugin_array;
 }
 add_action('wp_ajax_get_mm_list',  'get_mm_list');
-
 function get_mm_list(){
     global $wpdb;
-
     $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
     $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
     
@@ -59,36 +52,44 @@ function get_mm_list(){
             UNION
             (SELECT m.id, m.markername as 'name', m.createdon, 'marker' as 'type' FROM $table_name_markers as m WHERE  m.id != '0' $m_condition)
             order by createdon DESC LIMIT 15", ARRAY_A);
-
     if(isset($_GET['q']) ){
         buildMarkersList($marklist);
         exit();
     }
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
 	<title><?php _e('Insert map','lmm') ?></title>
-		<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'js/jquery_for_tinymce_button.js' ?>'></script>
-		<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'js/tiny_mce_popup.js' ?>'></script>
+	<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js' ?>'></script>
+	<?php 
+	//info: load js if no internet connection available
+	if  (in_array  ('curl', get_loaded_extensions())) {
+		if (!$check = curl_init('http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js')) {
+			echo "<script type='text/javascript' src='" . LEAFLET_PLUGIN_URL . "js/jquery_for_tinymce_button.js' ?>'></script>";
+		} 
+	} ?>
+	<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'js/tiny_mce_popup.js' ?>'></script>
         <script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'js/lmm_tinymce_shortcode.php' ?>'></script>
         <link rel='stylesheet' href='<?php echo LEAFLET_PLUGIN_URL . 'css/marker_select_box.css' ?>' type='text/css' media='all' />
 </head>
 <body>
-<span id="msb_header_description"><?php _e('If no search term is entered, the latest 15 maps will be shown.','lmm'); ?></span>
+<table style="width:100%;"><tr>
+<td id="msb_header_description"><?php echo __('If no search term is entered, the latest 15 maps will be shown.','lmm'); ?></td></tr>
+<tr><td style="font-size:11px;">
 <div id="msb_serchContainer"><?php _e('Search','lmm'); ?> <input type="text" name="q" id="msb_serch"/></div>
+</td></tr>
+</table>
 <div id="msb_listContainer">
-	<div id="msb_listHint" ><?php _e('Please select the map you would like to add','lmm'); ?></div>
+	<div id="msb_listHint" style="font-size:11px;"><?php _e('Please select the map you would like to add','lmm'); ?></div>
 	<?php buildMarkersList($marklist); ?>
 </div>
-
 <input class="button-primary" type="button" href="#" id="msb_insertMarkerSC" value="<?php esc_attr_e('Add shortcode','lmm'); ?>" />       
-
-<a href="#" id="msb_cancel"><?php _e('Cancel','lmm'); ?></a>
-<br/><br/>
-<span id="msb_attribution">powered by <a href="http://www.mapsmarker.com" target"_blank">MapsMarker.com</a></span>
-
+<a href="#" class="button-secondary" id="msb_cancel"><?php _e('Cancel','lmm'); ?></a>
+<table style="width:100%;"><tr>
+<td style="font-size:11px;"><div id="msb_attribution">powered by <a href="http://www.mapsmarker.com" target"_blank">MapsMarker.com</a></div></td></tr>
+</table>
+<!--<br/><span style="font-size:11px;">powered by <a href="http://www.mapsmarker.com" target"_blank">MapsMarker.com</a></span>-->
 <script type="text/javascript">
 (function($){
     var selectMarkerBox = {
@@ -98,20 +99,20 @@ function get_mm_list(){
         init : function(){
             var self = selectMarkerBox;
             
-            $('.map_marker').live('click', function(){
+            /*$('.map_marker').on('click', function(){
                 e.preventDefault();
                 console.log( $(this).text() );
-            })
-	        $('#msb_insertMarkerSC').live('click', function(e){
+            })*/
+	        $('#msb_insertMarkerSC').on('click', function(e){
                 e.preventDefault();
                 self.insert();
                 self.close();
             })
-            $('#msb_cancel').live('click', function(e){
+            $('#msb_cancel').on('click', function(e){
                 e.preventDefault();
                 self.close();
             })
-            $('.list_item').live('click', function(e){
+            $('.list_item').live('click touchstart', function(e){
                 e.preventDefault();
                 var id = $(this).find('input[name="msb_id"]').val();
                 var type = $(this).find('input[name="msb_type"]').val(); 
@@ -120,7 +121,7 @@ function get_mm_list(){
                 self.setMarkerID(id)
                 self.setMarkerType(type);
             })
-            $('#msb_serch').live('keyup', function(){
+            $('#msb_serch').on('keyup', function(){
                 $.post('<?php if (!is_multisite()) { echo admin_url(); } else { echo get_admin_url(); } ?>admin-ajax.php?action=get_mm_list&q='+$(this).val(), function(data){
                         $('.list_item').remove();
                         $('#msb_listContainer').append(data);

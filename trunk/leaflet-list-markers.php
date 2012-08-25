@@ -300,10 +300,10 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 		<p><b><?php _e('Mass actions for selected markers','lmm') ?></b></p>
 		<?php wp_nonce_field('massaction-nonce'); ?>
 		<?php if (current_user_can( $lmm_options[ 'capabilities_delete' ])) { ?>
-		<input type="checkbox" id="deleteselected" name="deleteselected" /> <?php _e('delete','lmm') ?><br/>
+		<input type="checkbox" id="deleteselected" name="deleteselected" /> <label for="deleteselected"><?php _e('delete','lmm') ?></label><br/>
 		<?php } ?>
 		<?php $layerlist = $wpdb->get_results('SELECT * FROM '.$table_name_layers.' WHERE id>0 AND multi_layer_map = 0', ARRAY_A); ?>
-		<input type="checkbox" id="assignselected" name="assignselected" /> <?php _e('assign to the following layer:','lmm') ?>
+		<input type="checkbox" id="assignselected" name="assignselected" /> <label for="assignselected"><?php _e('assign to the following layer:','lmm') ?></label>
 		<select id="layer" name="layer">
 		<option value="0"><?php _e('unassigned','lmm') ?></option>		
 		<?php

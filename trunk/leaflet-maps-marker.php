@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: Leaflet Maps Marker
+Plugin Name: Leaflet Maps Marker &reg;
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, GeoRSS or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, google maps, googlemaps, gmaps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, layer, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice, widget, bing, bing maps, microsoft
-Version: 2.6.1
+Version: 2.7.1
 Author: Robert Harm
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
@@ -12,6 +12,7 @@ Requires at least: 3.0
 Tested up to: 3.5-alpha-21273
 Requires at least PHP 5.2
 Copyright 2011-2012 - @RobertHarm - All rights reserved
+MapsMarker &reg; - registration pending
 Parts of this plugin were originally based on the Leaflet Plugin by Hind (Copyright 2011)
 	
 This program is free software; you can redistribute it and/or modify
@@ -56,6 +57,7 @@ function __construct() {
 	add_action('wp_print_styles', array(&$this, 'lmm_frontend_enqueue_stylesheets'),4);
 	add_action('admin_menu', array(&$this, 'lmm_admin_menu'),5);
 	add_action('admin_init', array(&$this, 'lmm_plugin_meta_links'),6);
+	add_action('wp_head', array(&$this, 'lmm_image_css_override'),1000);
 	add_action('admin_bar_menu', array(&$this, 'lmm_add_admin_bar_menu'),149);
 	add_shortcode($lmm_options['shortcode'], array(&$this, 'lmm_showmap'));
 	if ($lmm_options['misc_add_georss_to_head'] == 'enabled') {
@@ -232,8 +234,9 @@ function __construct() {
 	  $wms9 = $row['wms9'];
 	  $wms10 = $row['wms10'];
 	  $listmarkers = $row['listmarkers'];
-	  $multi_layer_map = $row['multi_layer_map'];
+      $multi_layer_map = $row['multi_layer_map'];
 	  $multi_layer_map_list = $row['multi_layer_map_list'];
+      $multi_layer_map_list_exploded = explode(",", $multi_layer_map_list);
 	}
 	//info: prepare markers
     if (!empty($marker))  {
@@ -241,6 +244,7 @@ function __construct() {
 				$row = $wpdb->get_row('SELECT id,markername,basemap,layer,lat,lon,icon,popuptext,zoom,openpopup,mapwidth,mapwidthunit,mapheight,panel,controlbox,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10 FROM '.$table_name_markers.' WHERE id='.$marker, ARRAY_A);
 				if(!empty($row)) {
 					$id = $row['id'];
+					$markername = $row['markername'];
 					$basemap = $row['basemap'];
 					$lon = $row['lon'];
 					$lat = $row['lat'];
@@ -341,10 +345,20 @@ function __construct() {
 						$avoidtolls = (isset($lmm_options[ 'directions_googlemaps_route_type_tolls' ] ) == TRUE ) && ( $lmm_options[ 'directions_googlemaps_route_type_tolls' ] == 1 ) ? '&dirflg=t' : '';
 						$publictransport = (isset($lmm_options[ 'directions_googlemaps_route_type_public_transport' ] ) == TRUE ) && ( $lmm_options[ 'directions_googlemaps_route_type_public_transport' ] == 1 ) ? '&dirflg=r' : '';
 						$walking = (isset($lmm_options[ 'directions_googlemaps_route_type_walking' ] ) == TRUE ) && ( $lmm_options[ 'directions_googlemaps_route_type_walking' ] == 1 ) ? '&dirflg=w' : '';
-						$lmm_out .= '<a href="http://maps.google.com/maps?daddr=' . $lat . ',' . $lon . '&t=' . $lmm_options[ 'directions_googlemaps_map_type' ] . '&layer=' . $lmm_options[ 'directions_googlemaps_traffic' ] . '&doflg=' . $lmm_options[ 'directions_googlemaps_distance_units' ] . $avoidhighways . $avoidtolls . $publictransport . $walking . '&hl=' . $lmm_options[ 'directions_googlemaps_host_language' ] . '&om=' . $lmm_options[ 'directions_googlemaps_overview_map' ] . '" target="_blank" title="' . esc_attr__('Get directions','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/' . $yours_transport_type_icon . '" width="14" height="14" class="lmm-panel-api-images" /></a>';
+						//info: Google language localization (directions)
+						if ($lmm_options['google_maps_language_localization'] == 'browser_setting') {
+							$google_language = '';
+						} else if ($lmm_options['google_maps_language_localization'] == 'wordpress_setting') {
+							if ( defined('WPLANG') ) { $google_language = '&hl=' . substr(WPLANG, 0, 2); } else { $google_language =  '&hl=en'; }
+						} else {
+							$google_language = '&hl=' . $lmm_options['google_maps_language_localization'];
+						}
+						$lmm_out .= '<a href="http://maps.google.com/maps?daddr=' . $lat . ',' . $lon . '&t=' . $lmm_options[ 'directions_googlemaps_map_type' ] . '&layer=' . $lmm_options[ 'directions_googlemaps_traffic' ] . '&doflg=' . $lmm_options[ 'directions_googlemaps_distance_units' ] . $avoidhighways . $avoidtolls . $publictransport . $walking . $google_language . '&om=' . $lmm_options[ 'directions_googlemaps_overview_map' ] . '" target="_blank" title="' . esc_attr__('Get directions','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/' . $yours_transport_type_icon . '" width="14" height="14" class="lmm-panel-api-images" /></a>';
 					} else if ($lmm_options['directions_provider'] == 'yours') {
 						if ($lmm_options[ 'directions_yours_type_of_transport' ] == 'motorcar') { $yours_transport_type_icon = 'icon-car.png'; } else if ($lmm_options[ 'directions_yours_type_of_transport' ] == 'bicycle') { $yours_transport_type_icon = 'icon-bicycle.png'; } else if ($lmm_options[ 'directions_yours_type_of_transport' ] == 'foot') { $yours_transport_type_icon = 'icon-walk.png'; }
 						$lmm_out .= '<a href="http://www.yournavigation.org/?tlat=' . $lat . '&tlon=' . $lon . '&v=' . $lmm_options[ 'directions_yours_type_of_transport' ] . '&fast=' . $lmm_options[ 'directions_yours_route_type' ] . '&layer=' . $lmm_options[ 'directions_yours_layer' ] . '" target="_blank" title="' . esc_attr__('Get directions','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/' . $yours_transport_type_icon . '" width="14" height="14" class="lmm-panel-api-images" /></a>';
+					} else if ($lmm_options['directions_provider'] == 'osrm') {
+						$lmm_out .= '<a href="http://map.project-osrm.org/?hl=' . $lmm_options[ 'directions_osrm_language' ] . '&loc=' . $lat . ',' . $lon . '&df=' . $lmm_options[ 'directions_osrm_units' ] . '" target="_blank" title="' . esc_attr__('Get directions','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-car.png" width="14" height="14" class="lmm-panel-api-images" /></a>';
 					} else if ($lmm_options['directions_provider'] == 'ors') {
 						if ($lmm_options[ 'directions_ors_route_preferences' ] == 'Pedestrian') { $yours_transport_type_icon = 'icon-walk.png'; } else if ($lmm_options[ 'directions_ors_route_preferences' ] == 'Bicycle') { $yours_transport_type_icon = 'icon-bicycle.png'; } else { $yours_transport_type_icon = 'icon-car.png'; }
 						$lmm_out .= '<a href="http://openrouteservice.org/index.php?end=' . $lon . ',' . $lat . '&pref=' . $lmm_options[ 'directions_ors_route_preferences' ] . '&lang=' . $lmm_options[ 'directions_ors_language' ] . '&noMotorways=' . $lmm_options[ 'directions_ors_no_motorways' ] . '&noTollways=' . $lmm_options[ 'directions_ors_no_tollways' ] . '" target="_blank" title="' . esc_attr__('Get directions','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/' . $yours_transport_type_icon . '" width="14" height="14" class="lmm-panel-api-images" /></a>';
@@ -418,7 +432,7 @@ function __construct() {
 	$lmm_out .= '<div id="lmm_geo_tags_'.$uid.'" class="lmm-geo-tags geo">'.PHP_EOL;
 	$lmm_out .= '<span class="paneltext">' . $paneltext . '</span>'.PHP_EOL;
 	$lmm_out .= '<span class="latitude">' . $lat . '</span>, <span class="longitude">' . $lon . '</span>'.PHP_EOL;
-	$lmm_out .= '<span class="popuptext">' . $popuptext .'</span>'.PHP_EOL;
+	$lmm_out .= '<span class="popuptext">' . strip_tags($popuptext) .'</span>'.PHP_EOL;
 	$lmm_out .= '</div>'.PHP_EOL;
 	}
 	//info: add geo microformats for marker maps added directly via shortcode
@@ -430,12 +444,40 @@ function __construct() {
 	$lmm_out .= '</div>'.PHP_EOL;
 	}
 	//info: display a list of markers under the map
-	if (!empty($layer) && empty($marker) && ($listmarkers == 1) && ($multi_layer_map == 0))
+	if ( !empty($layer) && empty($marker) && ($listmarkers == 1) )
 	{
-	$layer_mark_list = $wpdb->get_results('SELECT l.id as lid, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid, m.createdon as mcreatedon, m.updatedon as mupdatedon FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$id.' ORDER BY ' . $lmm_options[ 'defaults_layer_listmarkers_order_by' ] . ' ' . $lmm_options[ 'defaults_layer_listmarkers_sort_order' ] . ' LIMIT ' . intval($lmm_options[ 'defaults_layer_listmarkers_limit' ]), ARRAY_A);
+	//info: sqls for singe and multi-layer-maps
+    if ($multi_layer_map == 0) {
+		$layer_marker_list = $wpdb->get_results('SELECT l.id as lid, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid, m.createdon as mcreatedon, m.updatedon as mupdatedon FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$id.' ORDER BY ' . $lmm_options[ 'defaults_layer_listmarkers_order_by' ] . ' ' . $lmm_options[ 'defaults_layer_listmarkers_sort_order' ] . ' LIMIT ' . intval($lmm_options[ 'defaults_layer_listmarkers_limit' ]), ARRAY_A);
+    } else if ($multi_layer_map == 1) {
+	if ( (count($multi_layer_map_list_exploded) == 1) && ($multi_layer_map_list != 'all') ) {
+		$mlm_query = "(SELECT l.id as lid,l.name as lname,l.mapwidth as lmapwidth,l.mapheight as lmapheight,l.mapwidthunit as lmapwidthunit,l.layerzoom as llayerzoom,l.layerviewlat as llayerviewlat,l.layerviewlon as llayerviewlon, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid,m.mapwidth as mmapwidth,m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight,m.zoom as mzoom,m.openpopup as mopenpopup, m.basemap as mbasemap, m.controlbox as mcontrolbox, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon FROM " . $table_name_layers . " as l INNER JOIN " . $table_name_markers . " AS m ON l.id=m.layer WHERE l.id='" . $multi_layer_map_list . "' ORDER BY " . $lmm_options[ 'defaults_layer_listmarkers_order_by' ] . " " . $lmm_options[ 'defaults_layer_listmarkers_sort_order' ] . " LIMIT " . intval($lmm_options[ 'defaults_layer_listmarkers_limit' ]) . ")";
+		$layer_marker_list = $wpdb->get_results($mlm_query, ARRAY_A);
+	} //info: end (count($multi_layer_map_list_exploded) == 1) && ($multi_layer_map_list != 'all')
+	else if ( (count($multi_layer_map_list_exploded) > 1 ) && ($multi_layer_map_list != 'all') ) {
+		$first_mlm_id = $multi_layer_map_list_exploded[0];
+		$other_mlm_ids = array_slice($multi_layer_map_list_exploded,1); 
+		$mlm_query = "(SELECT l.id as lid,l.name as lname,l.mapwidth as lmapwidth,l.mapheight as lmapheight,l.mapwidthunit as lmapwidthunit,l.layerzoom as llayerzoom,l.layerviewlat as llayerviewlat,l.layerviewlon as llayerviewlon, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid,m.mapwidth as mmapwidth,m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight,m.zoom as mzoom,m.openpopup as mopenpopup, m.basemap as mbasemap, m.controlbox as mcontrolbox, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon FROM " . $table_name_layers . " as l INNER JOIN " . $table_name_markers . " AS m ON l.id=m.layer WHERE l.id='" . $first_mlm_id . "')";
+		foreach ($other_mlm_ids as $row) {		
+			$mlm_query .= " UNION (SELECT l.id as lid,l.name as lname,l.mapwidth as lmapwidth,l.mapheight as lmapheight,l.mapwidthunit as lmapwidthunit,l.layerzoom as llayerzoom,l.layerviewlat as llayerviewlat,l.layerviewlon as llayerviewlon, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid,m.mapwidth as mmapwidth,m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight,m.zoom as mzoom,m.openpopup as mopenpopup, m.basemap as mbasemap, m.controlbox as mcontrolbox, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon FROM " . $table_name_layers . " as l INNER JOIN " . $table_name_markers . " AS m ON l.id=m.layer WHERE l.id='" . $row . "')";
+		}
+		$layer_marker_list = $wpdb->get_results($mlm_query, ARRAY_A);
+	} //info: end else if ( (count($multi_layer_map_list_exploded) > 1 ) && ($multi_layer_map_list != 'all'
+	else if ($multi_layer_map_list == 'all') {
+		$first_mlm_id = '0'; 
+		$mlm_all_layers = $wpdb->get_results( $wpdb->prepare( "SELECT id FROM $table_name_layers" ), ARRAY_A );
+		$other_mlm_ids = array_slice($mlm_all_layers,1);  
+		$mlm_query = "(SELECT l.id as lid,l.name as lname,l.mapwidth as lmapwidth,l.mapheight as lmapheight,l.mapwidthunit as lmapwidthunit,l.layerzoom as llayerzoom,l.layerviewlat as llayerviewlat,l.layerviewlon as llayerviewlon, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid,m.mapwidth as mmapwidth,m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight,m.zoom as mzoom,m.openpopup as mopenpopup, m.basemap as mbasemap, m.controlbox as mcontrolbox, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon FROM " . $table_name_layers . " as l INNER JOIN " . $table_name_markers . " AS m ON l.id=m.layer WHERE l.id='" . $first_mlm_id . "')";
+		foreach ($other_mlm_ids as $row) {		
+			$mlm_query .= " UNION (SELECT l.id as lid,l.name as lname,l.mapwidth as lmapwidth,l.mapheight as lmapheight,l.mapwidthunit as lmapwidthunit,l.layerzoom as llayerzoom,l.layerviewlat as llayerviewlat,l.layerviewlon as llayerviewlon, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid,m.mapwidth as mmapwidth,m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight,m.zoom as mzoom,m.openpopup as mopenpopup, m.basemap as mbasemap, m.controlbox as mcontrolbox, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon FROM " . $table_name_layers . " as l INNER JOIN " . $table_name_markers . " AS m ON l.id=m.layer WHERE l.id='" . $row['id'] . "')";
+		}
+		$layer_marker_list = $wpdb->get_results($mlm_query, ARRAY_A);
+	} //info: end else if ($multi_layer_map_list == 'all')
+    } //info: end main - else if ($multi_layer_map == 1)
+	
 	$lmm_out .= '<div id="lmm-listmarkers-'.$uid.'" class="lmm-listmarkers" style="width:' . $mapwidth.$mapwidthunit . ';">'.PHP_EOL;
 	$lmm_out .= '<table width="' . $mapwidth.$mapwidthunit . '">';
-	foreach ($layer_mark_list as $row){
+	foreach ($layer_marker_list as $row){
 		if ( (isset($lmm_options[ 'defaults_layer_listmarkers_show_icon' ]) == TRUE ) && ($lmm_options[ 'defaults_layer_listmarkers_show_icon' ] == 1 ) ) {
 			$lmm_out .= '<tr><td style="width:35px;vertical-align:top;text-align:center;">';
 			if ($row['micon'] != null) { 
@@ -454,10 +496,20 @@ function __construct() {
 				$avoidtolls = (isset($lmm_options[ 'directions_googlemaps_route_type_tolls' ] ) == TRUE ) && ( $lmm_options[ 'directions_googlemaps_route_type_tolls' ] == 1 ) ? '&dirflg=t' : '';
 				$publictransport = (isset($lmm_options[ 'directions_googlemaps_route_type_public_transport' ] ) == TRUE ) && ( $lmm_options[ 'directions_googlemaps_route_type_public_transport' ] == 1 ) ? '&dirflg=r' : '';
 				$walking = (isset($lmm_options[ 'directions_googlemaps_route_type_walking' ] ) == TRUE ) && ( $lmm_options[ 'directions_googlemaps_route_type_walking' ] == 1 ) ? '&dirflg=w' : '';
-				$lmm_out .= '<a href="http://maps.google.com/maps?daddr=' . $row['mlat'] . ',' . $row['mlon'] . '&t=' . $lmm_options[ 'directions_googlemaps_map_type' ] . '&layer=' . $lmm_options[ 'directions_googlemaps_traffic' ] . '&doflg=' . $lmm_options[ 'directions_googlemaps_distance_units' ] . $avoidhighways . $avoidtolls . $publictransport . $walking . '&hl=' . $lmm_options[ 'directions_googlemaps_host_language' ] . '&om=' . $lmm_options[ 'directions_googlemaps_overview_map' ] . '" target="_blank" title="' . esc_attr__('Get directions','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/' . $yours_transport_type_icon . '" width="14" height="14" class="lmm-panel-api-images" /></a>';
+				//info: Google language localization (directions)
+				if ($lmm_options['google_maps_language_localization'] == 'browser_setting') {
+					$google_language = '';
+				} else if ($lmm_options['google_maps_language_localization'] == 'wordpress_setting') {
+					if ( defined('WPLANG') ) { $google_language = '&hl=' . substr(WPLANG, 0, 2); } else { $google_language =  '&hl=en'; }
+				} else {
+					$google_language = '&hl=' . $lmm_options['google_maps_language_localization'];
+				}
+				$lmm_out .= '<a href="http://maps.google.com/maps?daddr=' . $row['mlat'] . ',' . $row['mlon'] . '&t=' . $lmm_options[ 'directions_googlemaps_map_type' ] . '&layer=' . $lmm_options[ 'directions_googlemaps_traffic' ] . '&doflg=' . $lmm_options[ 'directions_googlemaps_distance_units' ] . $avoidhighways . $avoidtolls . $publictransport . $walking . $google_language . '&om=' . $lmm_options[ 'directions_googlemaps_overview_map' ] . '" target="_blank" title="' . esc_attr__('Get directions','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/' . $yours_transport_type_icon . '" width="14" height="14" class="lmm-panel-api-images" /></a>';
 			} else if ($lmm_options['directions_provider'] == 'yours') {
 				if ($lmm_options[ 'directions_yours_type_of_transport' ] == 'motorcar') { $yours_transport_type_icon = 'icon-car.png'; } else if ($lmm_options[ 'directions_yours_type_of_transport' ] == 'bicycle') { $yours_transport_type_icon = 'icon-bicycle.png'; } else if ($lmm_options[ 'directions_yours_type_of_transport' ] == 'foot') { $yours_transport_type_icon = 'icon-walk.png'; }
 				$lmm_out .= '<a href="http://www.yournavigation.org/?tlat=' . $row['mlat'] . '&tlon=' . $row['mlon'] . '&v=' . $lmm_options[ 'directions_yours_type_of_transport' ] . '&fast=' . $lmm_options[ 'directions_yours_route_type' ] . '&layer=' . $lmm_options[ 'directions_yours_layer' ] . '" target="_blank" title="' . esc_attr__('Get directions','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/' . $yours_transport_type_icon . '" width="14" height="14" class="lmm-panel-api-images" /></a>';
+			} else if ($lmm_options['directions_provider'] == 'osrm') {
+				$lmm_out .= '<a href="http://map.project-osrm.org/?hl=' . $lmm_options[ 'directions_osrm_language' ] . '&loc=' . $row['mlat'] . ',' . $row['mlon'] . '&df=' . $lmm_options[ 'directions_osrm_units' ] . '" target="_blank" title="' . esc_attr__('Get directions','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/' . $yours_transport_type_icon . '" width="14" height="14" class="lmm-panel-api-images" /></a>';
 			} else if ($lmm_options['directions_provider'] == 'ors') {
 				if ($lmm_options[ 'directions_ors_route_preferences' ] == 'Pedestrian') { $yours_transport_type_icon = 'icon-walk.png'; } else if ($lmm_options[ 'directions_ors_route_preferences' ] == 'Bicycle') { $yours_transport_type_icon = 'icon-bicycle.png'; } else { $yours_transport_type_icon = 'icon-car.png'; }
 				$lmm_out .= '<a href="http://openrouteservice.org/index.php?end=' . $row['mlon'] . ',' . $row['mlat'] . '&pref=' . $lmm_options[ 'directions_ors_route_preferences' ] . '&lang=' . $lmm_options[ 'directions_ors_language' ] . '&noMotorways=' . $lmm_options[ 'directions_ors_no_motorways' ] . '&noTollways=' . $lmm_options[ 'directions_ors_no_tollways' ] . '" target="_blank" title="' . esc_attr__('Get directions','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'img/' . $yours_transport_type_icon . '" width="14" height="14" class="lmm-panel-api-images" /></a>';
@@ -495,15 +547,15 @@ function __construct() {
 	$plugin_version = get_option('leafletmapsmarker_version');
 	$lmm_out .= '<script type="text/javascript">'.PHP_EOL;
 	$lmm_out .= '/* <![CDATA[ */'.PHP_EOL;
-	$lmm_out .= '/* Maps created with MapsMarker.com (WordPress Plugin powered by Leaflet from Cloudmade) - version '.$plugin_version.' */'.PHP_EOL;
+	$lmm_out .= '/* Maps created with MapsMarker.com WordPress plugin - version '.$plugin_version.' */'.PHP_EOL;
 	$lmm_out .= 'var layers = {};'.PHP_EOL;
 	$lmm_out .= 'var markers = {};'.PHP_EOL;
 	$lmm_out .= 'var lmm_map_'.$uid.' = {};'.PHP_EOL;
 	//info: define attribution links as variables to allow dynamic change through layer control box
 	$attrib_prefix = '<a href=\"http://mapsmarker.com/go\" target=\"_blank\" title=\"powered by \'Leaflet Maps Marker\'-Plugin for WordPress\">MapsMarker.com</a> (<a href=\"http://leaflet.cloudmade.com\" target=\"_blank\" title=\"\'Leaflet Maps Marker\' uses the JavaScript library \'Leaflet\' for interactive maps by CloudMade\">Leaflet</a>, <a href=\"http://mapicons.nicolasmollet.com\" target=\"_blank\" title=\"\'Leaflet Maps Marker\' uses icons from the \'Maps Icons Collection\'\">Icons</a>)'; 
 	$attrib_osm_mapnik = __("Map",'lmm').': &copy; ' . date("Y") . ' <a href=\"http://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap contributors</a>, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\" target=\"_blank\">CC-BY-SA</a>';
-	$attrib_mapquest_osm = __("Map",'lmm').': Tiles Courtesy of <a href=\"http://www.mapquest.com/\" target=\"_blank\">MapQuest</a> <img src=\"' . LEAFLET_PLUGIN_URL . 'img/logo-mapquest.png\" style=\"\" />';
-	$attrib_mapquest_aerial = __("Map",'lmm').': <a href=\"http://www.mapquest.com/\" target=\"_blank\">MapQuest</a> <img src=\"' . LEAFLET_PLUGIN_URL . 'img/logo-mapquest.png\" />, Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency';
+	$attrib_mapquest_osm = __("Map",'lmm').': Tiles Courtesy of <a href=\"http://www.mapquest.com/\" target=\"_blank\">MapQuest</a> <img src=\"' . LEAFLET_PLUGIN_URL . 'img/logo-mapquest.png\" style=\"display:inline;\" /> (<a href=\"http://www.openstreetmap.org\" target=\"_blank\">OpenStreetMap</a>, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\" target=\"_blank\">CC-BY-SA</a>)';
+	$attrib_mapquest_aerial = __("Map",'lmm').': <a href=\"http://www.mapquest.com/\" target=\"_blank\">MapQuest</a> <img src=\"' . LEAFLET_PLUGIN_URL . 'img/logo-mapquest.png\" style=\"display:inline;\" />, Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency';
 	$attrib_ogdwien_basemap = __("Map",'lmm').': ' . __("City of Vienna","lmm") . ' (<a href=\"http://data.wien.gv.at\" target=\"_blank\" style=\"\">data.wien.gv.at</a>)';
 	$attrib_ogdwien_satellite = __("Map",'lmm').': ' . __("City of Vienna","lmm") . ' (<a href=\"http://data.wien.gv.at\" target=\"_blank\">data.wien.gv.at</a>)';
 	$attrib_cloudmade = __("Map",'lmm').': &copy; ' . date("Y") . ' <a href=\"http://www.openstreetmap.org\" target=\"_blank\" style=\"\">OpenStreetMap contributors</a>, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\" target=\"_blank\">CC-BY-SA</a>, Imagery &copy; <a href=\"http://cloudmade.com\" target=\"_blank\">CloudMade</a>';
@@ -511,25 +563,23 @@ function __construct() {
 	$attrib_custom_basemap2 = __("Map",'lmm').': ' . addslashes($lmm_options[ 'custom_basemap2_attribution' ]);
 	$attrib_custom_basemap3 = __("Map",'lmm').': ' . addslashes($lmm_options[ 'custom_basemap3_attribution' ]);
 	$lmm_out .= '(function($) {'.PHP_EOL;
-	$lmm_out .= $mapname.' = new L.Map("'.$mapname.'", { dragging: ' . $lmm_options['misc_map_dragging'] . ', touchZoom: ' . $lmm_options['misc_map_touchzoom'] . ', scrollWheelZoom: ' . $lmm_options['misc_map_scrollwheelzoom'] . ', doubleClickZoom: ' . $lmm_options['misc_map_doubleclickzoom'] . ', zoomControl: ' . $lmm_options['misc_map_zoomcontrol'] . ', trackResize: ' . $lmm_options['misc_map_trackresize'] . ', closePopupOnClick: ' . $lmm_options['misc_map_closepopuponclick'] . ', crs: ' . $lmm_options['misc_projections'] . ' });'.PHP_EOL;
+	$lmm_out .= $mapname.' = new L.Map("'.$mapname.'", { dragging: ' . $lmm_options['misc_map_dragging'] . ', touchZoom: ' . $lmm_options['misc_map_touchzoom'] . ', scrollWheelZoom: ' . $lmm_options['misc_map_scrollwheelzoom'] . ', doubleClickZoom: ' . $lmm_options['misc_map_doubleclickzoom'] . ', boxzoom: ' . $lmm_options['map_interaction_options_boxzoom'] . ', trackResize: ' . $lmm_options['misc_map_trackresize'] . ', worldCopyJump: ' . $lmm_options['map_interaction_options_worldcopyjump'] . ', closePopupOnClick: ' . $lmm_options['misc_map_closepopuponclick'] . ', keyboard: ' . $lmm_options['map_keyboard_navigation_options_keyboard'] . ', keyboardPanOffset: ' . intval($lmm_options['map_keyboard_navigation_options_keyboardpanoffset']) . ', keyboardZoomOffset: ' . intval($lmm_options['map_keyboard_navigation_options_keyboardzoomoffset']) . ', inertia: ' . $lmm_options['map_panning_inertia_options_inertia'] . ', inertiaDeceleration: ' . intval($lmm_options['map_panning_inertia_options_inertiadeceleration']) . ', inertiaMaxSpeed: ' . intval($lmm_options['map_panning_inertia_options_inertiamaxspeed']) . ', zoomControl: ' . $lmm_options['misc_map_zoomcontrol'] . ', crs: ' . $lmm_options['misc_projections'] . ' });'.PHP_EOL;
 	$lmm_out .= $mapname.'.attributionControl.setPrefix("' . $attrib_prefix . '");'.PHP_EOL;
-	//info: add with leaflet v0.4 - $lmm_out .= $mapname.'.attributionControl.setPosition("bottomleft");
-
 	//info: define basemaps
-	$lmm_out .= 'var osm_mapnik = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom: 18, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_osm_mapnik . '"});'.PHP_EOL;
-	$lmm_out .= 'var mapquest_osm = new L.TileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {maxZoom: 18, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_mapquest_osm . '", subdomains: ["otile1","otile2","otile3","otile4"]});'.PHP_EOL;
-	$lmm_out .= 'var mapquest_aerial = new L.TileLayer("http://{s}.mqcdn.com/naip/{z}/{x}/{y}.png", {maxZoom: 18, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_mapquest_aerial . '", subdomains: ["oatile1","oatile2","oatile3","oatile4"]});'.PHP_EOL;
-	$lmm_out .= 'var googleLayer_roadmap = new L.Google("ROADMAP");'.PHP_EOL;
-	$lmm_out .= 'var googleLayer_satellite = new L.Google("SATELLITE");'.PHP_EOL;
-	$lmm_out .= 'var googleLayer_hybrid = new L.Google("HYBRID");'.PHP_EOL;
-	$lmm_out .= 'var googleLayer_terrain = new L.Google("TERRAIN");'.PHP_EOL;
+	$lmm_out .= 'var osm_mapnik = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom: 18, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_osm_mapnik . '", detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
+	$lmm_out .= 'var mapquest_osm = new L.TileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {maxZoom: 18, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_mapquest_osm . '", subdomains: ["otile1","otile2","otile3","otile4"], detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
+	$lmm_out .= 'var mapquest_aerial = new L.TileLayer("http://{s}.mqcdn.com/naip/{z}/{x}/{y}.png", {maxZoom: 18, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_mapquest_aerial . '", subdomains: ["oatile1","oatile2","oatile3","oatile4"], detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
+	$lmm_out .= 'var googleLayer_roadmap = new L.Google("ROADMAP", {detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
+	$lmm_out .= 'var googleLayer_satellite = new L.Google("SATELLITE", {detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
+	$lmm_out .= 'var googleLayer_hybrid = new L.Google("HYBRID", {detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
+	$lmm_out .= 'var googleLayer_terrain = new L.Google("TERRAIN", {detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	if ( isset($lmm_options['bingmaps_api_key']) && ($lmm_options['bingmaps_api_key'] != NULL ) ) { 
-		$lmm_out .= 'var bingaerial = new L.BingLayer("' . $lmm_options[ 'bingmaps_api_key' ] . '", {type: "Aerial", maxZoom: 21, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png"});'.PHP_EOL;
-		$lmm_out .= 'var bingaerialwithlabels = new L.BingLayer("' . $lmm_options[ 'bingmaps_api_key' ] . '", {type: "AerialWithLabels", maxZoom: 21, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png"});'.PHP_EOL;
-		$lmm_out .= 'var bingroad = new L.BingLayer("' . $lmm_options[ 'bingmaps_api_key' ] . '", {type: "Road", maxZoom: 21, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png"});'.PHP_EOL;
+		$lmm_out .= 'var bingaerial = new L.BingLayer("' . $lmm_options[ 'bingmaps_api_key' ] . '", {type: "Aerial", maxZoom: 21, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
+		$lmm_out .= 'var bingaerialwithlabels = new L.BingLayer("' . $lmm_options[ 'bingmaps_api_key' ] . '", {type: "AerialWithLabels", maxZoom: 21, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
+		$lmm_out .= 'var bingroad = new L.BingLayer("' . $lmm_options[ 'bingmaps_api_key' ] . '", {type: "Road", maxZoom: 21, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	};
-	$lmm_out .= 'var ogdwien_basemap = new L.TileLayer("http://{s}.wien.gv.at/wmts/fmzk/pastell/google3857/{z}/{y}/{x}.jpeg", {maxZoom: 19, minZoom: 11, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_ogdwien_basemap . '", subdomains: ["maps","maps1", "maps2", "maps3"]});'.PHP_EOL;
-	$lmm_out .= 'var ogdwien_satellite = new L.TileLayer("http://{s}.wien.gv.at/wmts/lb/farbe/google3857/{z}/{y}/{x}.jpeg", {maxZoom: 19, minZoom: 11, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_ogdwien_satellite . '", subdomains: ["maps","maps1", "maps2", "maps3"]});'.PHP_EOL;
+	$lmm_out .= 'var ogdwien_basemap = new L.TileLayer("http://{s}.wien.gv.at/wmts/fmzk/pastell/google3857/{z}/{y}/{x}.jpeg", {maxZoom: 19, minZoom: 11, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_ogdwien_basemap . '", subdomains: ["maps","maps1", "maps2", "maps3"], detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
+	$lmm_out .= 'var ogdwien_satellite = new L.TileLayer("http://{s}.wien.gv.at/wmts/lb/farbe/google3857/{z}/{y}/{x}.jpeg", {maxZoom: 19, minZoom: 11, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_ogdwien_satellite . '", subdomains: ["maps","maps1", "maps2", "maps3"], detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	//info: create Cloudmade TileURLs
 	$cloudmade_double_resolution = ($lmm_options[ 'cloudmade_double_resolution' ] == 'enabled') ? "@2x" : "";
 	$cloudmade2_double_resolution = ($lmm_options[ 'cloudmade2_double_resolution' ] == 'enabled') ? "@2x" : "";
@@ -537,21 +587,21 @@ function __construct() {
 	$cloudmade_tileurl = "http://{s}.tile.cloudmade.com/" . $lmm_options[ 'cloudmade_api_key' ] . "/" . $lmm_options[ 'cloudmade_styleid' ] . $cloudmade_double_resolution . "/256/{z}/{x}/{y}.png"; 
 	$cloudmade2_tileurl = "http://{s}.tile.cloudmade.com/" . $lmm_options[ 'cloudmade2_api_key' ] . "/" . $lmm_options[ 'cloudmade2_styleid' ] . $cloudmade2_double_resolution . "/256/{z}/{x}/{y}.png"; 
 	$cloudmade3_tileurl = "http://{s}.tile.cloudmade.com/" . $lmm_options[ 'cloudmade3_api_key' ] . "/" . $lmm_options[ 'cloudmade3_styleid' ] . $cloudmade3_double_resolution . "/256/{z}/{x}/{y}.png"; 
-	$lmm_out .= 'var cloudmade = new L.TileLayer("' . $cloudmade_tileurl . '", {maxZoom: 19, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_cloudmade . '", subdomains: ["a","b","c"]});'.PHP_EOL;
-	$lmm_out .= 'var cloudmade2 = new L.TileLayer("' . $cloudmade2_tileurl . '", {maxZoom: 19, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_cloudmade . '", subdomains: ["a","b","c"]});'.PHP_EOL;
-	$lmm_out .= 'var cloudmade3 = new L.TileLayer("' . $cloudmade3_tileurl . '", {maxZoom: 19, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_cloudmade . '", subdomains: ["a","b","c"]});'.PHP_EOL;
+	$lmm_out .= 'var cloudmade = new L.TileLayer("' . $cloudmade_tileurl . '", {maxZoom: 19, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_cloudmade . '", subdomains: ["a","b","c"], detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
+	$lmm_out .= 'var cloudmade2 = new L.TileLayer("' . $cloudmade2_tileurl . '", {maxZoom: 19, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_cloudmade . '", subdomains: ["a","b","c"], detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
+	$lmm_out .= 'var cloudmade3 = new L.TileLayer("' . $cloudmade3_tileurl . '", {maxZoom: 19, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_cloudmade . '", subdomains: ["a","b","c"], detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	//info: MapBox basemaps
-	$lmm_out .= 'var mapbox = new L.TileLayer("http://{s}.tiles.mapbox.com/v3/' . $lmm_options[ 'mapbox_user' ] . '.' . $lmm_options[ 'mapbox_map' ] . '/{z}/{x}/{y}.png", {minZoom: ' . intval($lmm_options[ 'mapbox_minzoom' ]) . ', maxZoom: ' . intval($lmm_options[ 'mapbox_maxzoom' ]) . ', errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . addslashes($lmm_options[ 'mapbox_attribution' ]) . '", subdomains: ["a","b","c","d"]});'.PHP_EOL;
-	$lmm_out .= 'var mapbox2 = new L.TileLayer("http://{s}.tiles.mapbox.com/v3/' . $lmm_options[ 'mapbox2_user' ] . '.' . $lmm_options[ 'mapbox2_map' ] . '/{z}/{x}/{y}.png", {minZoom: ' . intval($lmm_options[ 'mapbox2_minzoom' ]) . ', maxZoom: ' . intval($lmm_options[ 'mapbox2_maxzoom' ]) . ', errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . addslashes($lmm_options[ 'mapbox2_attribution' ]) . '", subdomains: ["a","b","c","d"]});'.PHP_EOL;
-	$lmm_out .= 'var mapbox3 = new L.TileLayer("http://{s}.tiles.mapbox.com/v3/' . $lmm_options[ 'mapbox3_user' ] . '.' . $lmm_options[ 'mapbox3_map' ] . '/{z}/{x}/{y}.png", {minZoom: ' . intval($lmm_options[ 'mapbox3_minzoom' ]) . ', maxZoom: ' . intval($lmm_options[ 'mapbox3_maxzoom' ]) . ', errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . addslashes($lmm_options[ 'mapbox3_attribution' ]) . '", subdomains: ["a","b","c","d"]});'.PHP_EOL;
+	$lmm_out .= 'var mapbox = new L.TileLayer("http://{s}.tiles.mapbox.com/v3/' . $lmm_options[ 'mapbox_user' ] . '.' . $lmm_options[ 'mapbox_map' ] . '/{z}/{x}/{y}.png", {minZoom: ' . intval($lmm_options[ 'mapbox_minzoom' ]) . ', maxZoom: ' . intval($lmm_options[ 'mapbox_maxzoom' ]) . ', errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . addslashes($lmm_options[ 'mapbox_attribution' ]) . '", subdomains: ["a","b","c","d"], detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
+	$lmm_out .= 'var mapbox2 = new L.TileLayer("http://{s}.tiles.mapbox.com/v3/' . $lmm_options[ 'mapbox2_user' ] . '.' . $lmm_options[ 'mapbox2_map' ] . '/{z}/{x}/{y}.png", {minZoom: ' . intval($lmm_options[ 'mapbox2_minzoom' ]) . ', maxZoom: ' . intval($lmm_options[ 'mapbox2_maxzoom' ]) . ', errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . addslashes($lmm_options[ 'mapbox2_attribution' ]) . '", subdomains: ["a","b","c","d"], detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
+	$lmm_out .= 'var mapbox3 = new L.TileLayer("http://{s}.tiles.mapbox.com/v3/' . $lmm_options[ 'mapbox3_user' ] . '.' . $lmm_options[ 'mapbox3_map' ] . '/{z}/{x}/{y}.png", {minZoom: ' . intval($lmm_options[ 'mapbox3_minzoom' ]) . ', maxZoom: ' . intval($lmm_options[ 'mapbox3_maxzoom' ]) . ', errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . addslashes($lmm_options[ 'mapbox3_attribution' ]) . '", subdomains: ["a","b","c","d"], detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	//info: check if subdomains are set for custom basemaps
 	$custom_basemap_subdomains = ((isset($lmm_options[ 'custom_basemap_subdomains_enabled' ]) == TRUE ) && ($lmm_options[ 'custom_basemap_subdomains_enabled' ] == 'yes' )) ? ", subdomains: [" . htmlspecialchars_decode($lmm_options[ 'custom_basemap_subdomains_names' ], ENT_QUOTES) . "]" :  "";
 	$custom_basemap2_subdomains = ((isset($lmm_options[ 'custom_basemap2_subdomains_enabled' ]) == TRUE ) && ($lmm_options[ 'custom_basemap2_subdomains_enabled' ] == 'yes' )) ? ", subdomains: [" . htmlspecialchars_decode($lmm_options[ 'custom_basemap2_subdomains_names' ], ENT_QUOTES) . "]" :  "";
 	$custom_basemap3_subdomains = ((isset($lmm_options[ 'custom_basemap3_subdomains_enabled' ]) == TRUE ) && ($lmm_options[ 'custom_basemap3_subdomains_enabled' ] == 'yes' )) ? ", subdomains: [" . htmlspecialchars_decode($lmm_options[ 'custom_basemap3_subdomains_names' ], ENT_QUOTES) . "]" :  "";
 	//info: define custom basemaps
-	$lmm_out .= 'var custom_basemap = new L.TileLayer("' . $lmm_options[ 'custom_basemap_tileurl' ] . '", {maxZoom: ' . intval($lmm_options[ 'custom_basemap_maxzoom' ]) . ', minZoom: ' . intval($lmm_options[ 'custom_basemap_minzoom' ]) . ', errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_custom_basemap . '"' . $custom_basemap_subdomains . '});'.PHP_EOL;
-	$lmm_out .= 'var custom_basemap2 = new L.TileLayer("' . $lmm_options[ 'custom_basemap2_tileurl' ] . '", {maxZoom: ' . intval($lmm_options[ 'custom_basemap2_maxzoom' ]) . ', minZoom: ' . intval($lmm_options[ 'custom_basemap2_minzoom' ]) . ', errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_custom_basemap2 . '"' . $custom_basemap2_subdomains . '});'.PHP_EOL;
-	$lmm_out .= 'var custom_basemap3 = new L.TileLayer("' . $lmm_options[ 'custom_basemap3_tileurl' ] . '", {maxZoom: ' . intval($lmm_options[ 'custom_basemap3_maxzoom' ]) . ', minZoom: ' . intval($lmm_options[ 'custom_basemap3_minzoom' ]) . ', errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_custom_basemap3 . '"' . $custom_basemap3_subdomains . '});'.PHP_EOL;
+	$lmm_out .= 'var custom_basemap = new L.TileLayer("' . $lmm_options[ 'custom_basemap_tileurl' ] . '", {maxZoom: ' . intval($lmm_options[ 'custom_basemap_maxzoom' ]) . ', minZoom: ' . intval($lmm_options[ 'custom_basemap_minzoom' ]) . ', tms: ' . $lmm_options[ 'custom_basemap_tms' ] . ', errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_custom_basemap . '"' . $custom_basemap_subdomains . ', continuousWorld: ' . $lmm_options[ 'custom_basemap_continuousworld_enabled' ] . ', noWrap: ' . $lmm_options[ 'custom_basemap_nowrap_enabled' ] . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
+	$lmm_out .= 'var custom_basemap2 = new L.TileLayer("' . $lmm_options[ 'custom_basemap2_tileurl' ] . '", {maxZoom: ' . intval($lmm_options[ 'custom_basemap2_maxzoom' ]) . ', minZoom: ' . intval($lmm_options[ 'custom_basemap2_minzoom' ]) . ', tms: ' . $lmm_options[ 'custom_basemap2_tms' ] . ', errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_custom_basemap2 . '"' . $custom_basemap2_subdomains . ', continuousWorld: ' . $lmm_options[ 'custom_basemap2_continuousworld_enabled' ] . ', noWrap: ' . $lmm_options[ 'custom_basemap2_nowrap_enabled' ] . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
+	$lmm_out .= 'var custom_basemap3 = new L.TileLayer("' . $lmm_options[ 'custom_basemap3_tileurl' ] . '", {maxZoom: ' . intval($lmm_options[ 'custom_basemap3_maxzoom' ]) . ', minZoom: ' . intval($lmm_options[ 'custom_basemap3_minzoom' ]) . ', tms: ' . $lmm_options[ 'custom_basemap3_tms' ] . ', errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . $attrib_custom_basemap3 . '"' . $custom_basemap3_subdomains . ', continuousWorld: ' . $lmm_options[ 'custom_basemap3_continuousworld_enabled' ] . ', noWrap: ' . $lmm_options[ 'custom_basemap3_nowrap_enabled' ] . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	//info: check if subdomains are set for custom overlays
 	$overlays_custom_subdomains = ((isset($lmm_options[ 'overlays_custom_subdomains_enabled' ]) == TRUE ) && ($lmm_options[ 'overlays_custom_subdomains_enabled' ] == 'yes' )) ? ", subdomains: [" . htmlspecialchars_decode($lmm_options[ 'overlays_custom_subdomains_names' ], ENT_QUOTES) . "]" :  "";
 	$overlays_custom2_subdomains = ((isset($lmm_options[ 'overlays_custom2_subdomains_enabled' ]) == TRUE ) && ($lmm_options[ 'overlays_custom2_subdomains_enabled' ] == 'yes' )) ? ", subdomains: [" . htmlspecialchars_decode($lmm_options[ 'overlays_custom2_subdomains_names' ], ENT_QUOTES) . "]" :  "";
@@ -560,16 +610,16 @@ function __construct() {
 	
 	//info: define overlays
 	if ( $overlays_custom == 1 ) {
-	$lmm_out .= 'var overlays_custom = new L.TileLayer("' . $lmm_options[ 'overlays_custom_tileurl' ] . '", {errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . addslashes($lmm_options[ 'overlays_custom_attribution' ]) . '", maxZoom: ' . intval($lmm_options[ 'overlays_custom_maxzoom' ]) . ', minZoom: ' . intval($lmm_options[ 'overlays_custom_minzoom' ]) . $overlays_custom_subdomains . '});'.PHP_EOL;
+	$lmm_out .= 'var overlays_custom = new L.TileLayer("' . $lmm_options[ 'overlays_custom_tileurl' ] . '", {errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . addslashes($lmm_options[ 'overlays_custom_attribution' ]) . '", opacity: ' . floatval($lmm_options[ 'overlays_custom_opacity' ]) . ', maxZoom: ' . intval($lmm_options[ 'overlays_custom_maxzoom' ]) . ', minZoom: ' . intval($lmm_options[ 'overlays_custom_minzoom' ]) . $overlays_custom_subdomains . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	}
 	if ( $overlays_custom2 == 1 ) {
-	$lmm_out .= 'var overlays_custom2 = new L.TileLayer("' . $lmm_options[ 'overlays_custom2_tileurl' ] . '", {errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . addslashes($lmm_options[ 'overlays_custom2_attribution' ]) . '", maxZoom: ' . intval($lmm_options[ 'overlays_custom2_maxzoom' ]) . ', minZoom: ' . intval($lmm_options[ 'overlays_custom2_minzoom' ]) . $overlays_custom2_subdomains . '});'.PHP_EOL;
+	$lmm_out .= 'var overlays_custom2 = new L.TileLayer("' . $lmm_options[ 'overlays_custom2_tileurl' ] . '", {errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . addslashes($lmm_options[ 'overlays_custom2_attribution' ]) . '", opacity: ' . floatval($lmm_options[ 'overlays_custom2_opacity' ]) . ', maxZoom: ' . intval($lmm_options[ 'overlays_custom2_maxzoom' ]) . ', minZoom: ' . intval($lmm_options[ 'overlays_custom2_minzoom' ]) . $overlays_custom2_subdomains . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	}
 	if ( $overlays_custom3 == 1 ) {
-	$lmm_out .= 'var overlays_custom3 = new L.TileLayer("' . $lmm_options[ 'overlays_custom3_tileurl' ] . '", {errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . addslashes($lmm_options[ 'overlays_custom3_attribution' ]) . '", maxZoom: ' . intval($lmm_options[ 'overlays_custom3_maxzoom' ]) . ', minZoom: ' . intval($lmm_options[ 'overlays_custom3_minzoom' ]) . $overlays_custom3_subdomains . '});'.PHP_EOL;
+	$lmm_out .= 'var overlays_custom3 = new L.TileLayer("' . $lmm_options[ 'overlays_custom3_tileurl' ] . '", {errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . addslashes($lmm_options[ 'overlays_custom3_attribution' ]) . '", opacity: ' . floatval($lmm_options[ 'overlays_custom3_opacity' ]) . ', maxZoom: ' . intval($lmm_options[ 'overlays_custom3_maxzoom' ]) . ', minZoom: ' . intval($lmm_options[ 'overlays_custom3_minzoom' ]) . $overlays_custom3_subdomains . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	}
 	if ( $overlays_custom4 == 1 ) {
-	$lmm_out .= 'var overlays_custom4 = new L.TileLayer("' . $lmm_options[ 'overlays_custom4_tileurl' ] . '", {errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . addslashes($lmm_options[ 'overlays_custom4_attribution' ]) . '", maxZoom: ' . intval($lmm_options[ 'overlays_custom4_maxzoom' ]) . ', minZoom: ' . intval($lmm_options[ 'overlays_custom4_minzoom' ]) . $overlays_custom_subdomains . '});'.PHP_EOL;
+	$lmm_out .= 'var overlays_custom4 = new L.TileLayer("' . $lmm_options[ 'overlays_custom4_tileurl' ] . '", {errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'img/error-tile-image.png", attribution: "' . addslashes($lmm_options[ 'overlays_custom4_attribution' ]) . '", opacity: ' . floatval($lmm_options[ 'overlays_custom4_opacity' ]) . ', maxZoom: ' . intval($lmm_options[ 'overlays_custom4_maxzoom' ]) . ', minZoom: ' . intval($lmm_options[ 'overlays_custom4_minzoom' ]) . $overlays_custom_subdomains . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	}
 	//info: check if subdomains are set for wms layers
 	$wms_subdomains = ((isset($lmm_options[ 'wms_wms_subdomains_enabled' ]) == TRUE ) && ($lmm_options[ 'wms_wms_subdomains_enabled' ] == 'yes' )) ? ", subdomains: [" . htmlspecialchars_decode($lmm_options[ 'wms_wms_subdomains_names' ], ENT_QUOTES) . "]" :  "";
@@ -595,34 +645,34 @@ function __construct() {
 	$wms10_attribution = addslashes($lmm_options[ 'wms_wms10_attribution' ]) . ( ($lmm_options[ 'wms_wms10_legend_enabled' ] == 'yes' ) ? " (<a href=" . $lmm_options[ 'wms_wms10_legend' ] . " target='_blank'>" . __('Legend','lmm') . "</a>)" : '') .'';
 	//info: define wms layers
 	if ($wms == 1) {
-	$lmm_out .= 'var wms = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms_baseurl' ] . '", {wmsid: "wms", layers: "' . addslashes($lmm_options[ 'wms_wms_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms_format' ]) . '", attribution: "' . $wms_attribution . '", transparent: "' . $lmm_options[ 'wms_wms_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms_version' ]) . '"' . $wms_subdomains  . '});'.PHP_EOL;
+	$lmm_out .= 'var wms = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms_baseurl' ] . '", {wmsid: "wms", layers: "' . addslashes($lmm_options[ 'wms_wms_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms_format' ]) . '", attribution: "' . $wms_attribution . '", transparent: "' . $lmm_options[ 'wms_wms_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms_version' ]) . '"' . $wms_subdomains  . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	}
 	if ($wms2 == 1) {
-	$lmm_out .= 'var wms2 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms2_baseurl' ] . '", {wmsid: "wms2", layers: "' . addslashes($lmm_options[ 'wms_wms2_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms2_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms2_format' ]) . '", attribution: "' . $wms2_attribution . '", transparent: "' . $lmm_options[ 'wms_wms2_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms2_version' ]) . '"' . $wms2_subdomains  . '});'.PHP_EOL;
+	$lmm_out .= 'var wms2 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms2_baseurl' ] . '", {wmsid: "wms2", layers: "' . addslashes($lmm_options[ 'wms_wms2_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms2_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms2_format' ]) . '", attribution: "' . $wms2_attribution . '", transparent: "' . $lmm_options[ 'wms_wms2_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms2_version' ]) . '"' . $wms2_subdomains  . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	}
 	if ($wms3 == 1) {
-	$lmm_out .= 'var wms3 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms3_baseurl' ] . '", {wmsid: "wms3", layers: "' . addslashes($lmm_options[ 'wms_wms3_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms3_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms3_format' ]) . '", attribution: "' . $wms3_attribution . '", transparent: "' . $lmm_options[ 'wms_wms3_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms3_version' ]) . '"' . $wms3_subdomains  . '});'.PHP_EOL;
+	$lmm_out .= 'var wms3 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms3_baseurl' ] . '", {wmsid: "wms3", layers: "' . addslashes($lmm_options[ 'wms_wms3_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms3_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms3_format' ]) . '", attribution: "' . $wms3_attribution . '", transparent: "' . $lmm_options[ 'wms_wms3_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms3_version' ]) . '"' . $wms3_subdomains  . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	}
 	if ($wms4 == 1) {
-	$lmm_out .= 'var wms4 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms4_baseurl' ] . '", {wmsid: "wms4", layers: "' . addslashes($lmm_options[ 'wms_wms4_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms4_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms4_format' ]) . '", attribution: "' . $wms4_attribution . '", transparent: "' . $lmm_options[ 'wms_wms4_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms4_version' ]) . '"' . $wms4_subdomains  . '});'.PHP_EOL;
+	$lmm_out .= 'var wms4 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms4_baseurl' ] . '", {wmsid: "wms4", layers: "' . addslashes($lmm_options[ 'wms_wms4_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms4_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms4_format' ]) . '", attribution: "' . $wms4_attribution . '", transparent: "' . $lmm_options[ 'wms_wms4_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms4_version' ]) . '"' . $wms4_subdomains  . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	}
 	if ($wms5 == 1) {
-	$lmm_out .= 'var wms5 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms5_baseurl' ] . '", {wmsid: "wms5", layers: "' . addslashes($lmm_options[ 'wms_wms5_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms5_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms5_format' ]) . '", attribution: "' . $wms5_attribution . '", transparent: "' . $lmm_options[ 'wms_wms5_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms5_version' ]) . '"' . $wms5_subdomains  . '});'.PHP_EOL;
+	$lmm_out .= 'var wms5 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms5_baseurl' ] . '", {wmsid: "wms5", layers: "' . addslashes($lmm_options[ 'wms_wms5_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms5_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms5_format' ]) . '", attribution: "' . $wms5_attribution . '", transparent: "' . $lmm_options[ 'wms_wms5_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms5_version' ]) . '"' . $wms5_subdomains  . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	}
 	if ($wms6 == 1) {
-	$lmm_out .= 'var wms6 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms6_baseurl' ] . '", {wmsid: "wms6", layers: "' . addslashes($lmm_options[ 'wms_wms6_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms6_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms6_format' ]) . '", attribution: "' . $wms6_attribution . '", transparent: "' . $lmm_options[ 'wms_wms6_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms6_version' ]) . '"' . $wms6_subdomains  . '});'.PHP_EOL;
+	$lmm_out .= 'var wms6 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms6_baseurl' ] . '", {wmsid: "wms6", layers: "' . addslashes($lmm_options[ 'wms_wms6_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms6_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms6_format' ]) . '", attribution: "' . $wms6_attribution . '", transparent: "' . $lmm_options[ 'wms_wms6_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms6_version' ]) . '"' . $wms6_subdomains  . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	}
 	if ($wms7 == 1) {
-	$lmm_out .= 'var wms7 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms7_baseurl' ] . '", {wmsid: "wms7", layers: "' . addslashes($lmm_options[ 'wms_wms7_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms7_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms7_format' ]) . '", attribution: "' . $wms7_attribution . '", transparent: "' . $lmm_options[ 'wms_wms7_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms7_version' ]) . '"' . $wms7_subdomains  . '});'.PHP_EOL;
+	$lmm_out .= 'var wms7 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms7_baseurl' ] . '", {wmsid: "wms7", layers: "' . addslashes($lmm_options[ 'wms_wms7_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms7_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms7_format' ]) . '", attribution: "' . $wms7_attribution . '", transparent: "' . $lmm_options[ 'wms_wms7_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms7_version' ]) . '"' . $wms7_subdomains  . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	}
 	if ($wms8 == 1) {
-	$lmm_out .= 'var wms8 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms8_baseurl' ] . '", {wmsid: "wms8", layers: "' . addslashes($lmm_options[ 'wms_wms8_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms8_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms8_format' ]) . '", attribution: "' . $wms8_attribution . '", transparent: "' . $lmm_options[ 'wms_wms8_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms8_version' ]) . '"' . $wms8_subdomains  . '});'.PHP_EOL;
+	$lmm_out .= 'var wms8 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms8_baseurl' ] . '", {wmsid: "wms8", layers: "' . addslashes($lmm_options[ 'wms_wms8_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms8_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms8_format' ]) . '", attribution: "' . $wms8_attribution . '", transparent: "' . $lmm_options[ 'wms_wms8_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms8_version' ]) . '"' . $wms8_subdomains  . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	}
 	if ($wms9 == 1) {
-	$lmm_out .= 'var wms9 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms9_baseurl' ] . '", {wmsid: "wms9", layers: "' . addslashes($lmm_options[ 'wms_wms9_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms9_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms9_format' ]) . '", attribution: "' . $wms9_attribution . '", transparent: "' . $lmm_options[ 'wms_wms9_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms9_version' ]) . '"' . $wms9_subdomains  . '});'.PHP_EOL;
+	$lmm_out .= 'var wms9 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms9_baseurl' ] . '", {wmsid: "wms9", layers: "' . addslashes($lmm_options[ 'wms_wms9_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms9_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms9_format' ]) . '", attribution: "' . $wms9_attribution . '", transparent: "' . $lmm_options[ 'wms_wms9_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms9_version' ]) . '"' . $wms9_subdomains  . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	}
 	if ($wms10 == 1) {
-	$lmm_out .= 'var wms10 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms10_baseurl' ] . '", {wmsid: "wms10", layers: "' . addslashes($lmm_options[ 'wms_wms10_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms10_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms10_format' ]) . '", attribution: "' . $wms10_attribution . '", transparent: "' . $lmm_options[ 'wms_wms10_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms10_version' ]) . '"' . $wms10_subdomains  . '});'.PHP_EOL;
+	$lmm_out .= 'var wms10 = new L.TileLayer.WMS("' . $lmm_options[ 'wms_wms10_baseurl' ] . '", {wmsid: "wms10", layers: "' . addslashes($lmm_options[ 'wms_wms10_layers' ]) . '", styles: "' . addslashes($lmm_options[ 'wms_wms10_styles' ]) . '", format: "' . addslashes($lmm_options[ 'wms_wms10_format' ]) . '", attribution: "' . $wms10_attribution . '", transparent: "' . $lmm_options[ 'wms_wms10_transparent' ] . '", errorTileUrl: "' . LEAFLET_PLUGIN_URL  . 'img/error-tile-image.png", version: "' . addslashes($lmm_options[ 'wms_wms10_version' ]) . '"' . $wms10_subdomains  . ', detectRetina: ' . $lmm_options['map_retina_detection'] . '});'.PHP_EOL;
 	}
 	//info: controlbox - basemaps
 	$lmm_out .= 'var layersControl = new L.Control.Layers('.PHP_EOL;
@@ -731,10 +781,18 @@ function __construct() {
 	if ( $wms10 == 1 )
 		$lmm_out .= ".addLayer(wms10)";
 	$lmm_out .= ( (isset($controlbox) == TRUE) && ($controlbox != 0) ) ? ".addControl(layersControl);" : ";".PHP_EOL;
-	
+	//info: add scale control
+	if ( $lmm_options['map_scale_control'] == 'enabled' ) {
+	$lmm_out .= "L.control.scale({position:'" . $lmm_options['map_scale_control_position'] . "', maxWidth: " . intval($lmm_options['map_scale_control_maxwidth']) . ", metric: " . $lmm_options['map_scale_control_metric'] . ", imperial: " . $lmm_options['map_scale_control_imperial'] . ", updateWhenIdle: " . $lmm_options['map_scale_control_updatewhenidle'] . "}).addTo(" . $mapname . ");".PHP_EOL;
+	}
 	if (!(empty($mlat) or empty($mlon)) ) {
-	$lmm_out .= PHP_EOL . 'var marker = new L.Marker(new L.LatLng('.$mlat.', '.$mlon.'));'.PHP_EOL;
-	if (!empty($micon)) $lmm_out .= 'marker.options.icon = new L.Icon("' . LEAFLET_PLUGIN_ICONS_URL . '/'.$micon.'");'.PHP_EOL;
+	if ($lmm_options[ 'defaults_marker_icon_title' ] == 'show') { $defaults_marker_icon_title = "title: '" . htmlspecialchars($markername) . "', "; } else { $defaults_marker_icon_title = ""; };
+	$lmm_out .= 'var marker = new L.Marker(new L.LatLng('.$mlat.', '.$mlon.'),{ ' . $defaults_marker_icon_title . ' opacity: ' . floatval($lmm_options[ 'defaults_marker_icon_opacity' ]) . '});'.PHP_EOL;
+ 	if ($micon == NULL) { 
+  		$lmm_out .= "marker.options.icon = new L.Icon({iconUrl: '" . LEAFLET_PLUGIN_URL . "leaflet-dist/images/marker.png',iconSize: [" . intval($lmm_options[ 'defaults_marker_icon_iconsize_x' ]) . ", " . intval($lmm_options[ 'defaults_marker_icon_iconsize_y' ]) . "],iconAnchor: [" . intval($lmm_options[ 'defaults_marker_icon_iconanchor_x' ]) . ", " . intval($lmm_options[ 'defaults_marker_icon_iconanchor_y' ]) . "],popupAnchor: [" . intval($lmm_options[ 'defaults_marker_icon_popupanchor_x' ]) . ", " . intval($lmm_options[ 'defaults_marker_icon_popupanchor_y' ]) . "],shadowUrl: '" . htmlspecialchars($lmm_options[ 'defaults_marker_icon_shadow_url' ]) . "',shadowSize: [" . intval($lmm_options[ 'defaults_marker_icon_shadowsize_x' ]) . ", " . intval($lmm_options[ 'defaults_marker_icon_shadowsize_y' ]) . "],shadowAnchor: [" . intval($lmm_options[ 'defaults_marker_icon_shadowanchor_x' ]) . ", " . intval($lmm_options[ 'defaults_marker_icon_shadowanchor_y' ]) . "],className: 'lmm_marker_icon_default'});".PHP_EOL;
+  	} else {
+  		$lmm_out .= "marker.options.icon = new L.Icon({iconUrl: '" . LEAFLET_PLUGIN_ICONS_URL . "/" . $icon . "',iconSize: [" . intval($lmm_options[ 'defaults_marker_icon_iconsize_x' ]) . ", " . intval($lmm_options[ 'defaults_marker_icon_iconsize_y' ]) . "],iconAnchor: [" . intval($lmm_options[ 'defaults_marker_icon_iconanchor_x' ]) . ", " . intval($lmm_options[ 'defaults_marker_icon_iconanchor_y' ]) . "],popupAnchor: [" . intval($lmm_options[ 'defaults_marker_icon_popupanchor_x' ]) . ", " . intval($lmm_options[ 'defaults_marker_icon_popupanchor_y' ]) . "],shadowUrl: '" . htmlspecialchars($lmm_options[ 'defaults_marker_icon_shadow_url' ]) . "',shadowSize: [" . intval($lmm_options[ 'defaults_marker_icon_shadowsize_x' ]) . ", " . intval($lmm_options[ 'defaults_marker_icon_shadowsize_y' ]) . "],shadowAnchor: [" . intval($lmm_options[ 'defaults_marker_icon_shadowanchor_x' ]) . ", " . intval($lmm_options[ 'defaults_marker_icon_shadowanchor_y' ]) . "],className: 'lmm_marker_icon_" . substr($icon, 0, -4) . "'});".PHP_EOL;
+	};
 	if ( (empty($mpopuptext)) && ($lmm_options['directions_popuptext_panel'] == 'no') ) $lmm_out .= 'marker.options.clickable = false;'.PHP_EOL;
 	$lmm_out .= $mapname.'.addLayer(marker);'.PHP_EOL;
 	
@@ -744,50 +802,78 @@ function __construct() {
 	$publictransport = (isset($lmm_options[ 'directions_googlemaps_route_type_public_transport' ] ) == TRUE ) && ( $lmm_options[ 'directions_googlemaps_route_type_public_transport' ] == 1 ) ? '&dirflg=r' : '';
 	$walking = (isset($lmm_options[ 'directions_googlemaps_route_type_walking' ] ) == TRUE ) && ( $lmm_options[ 'directions_googlemaps_route_type_walking' ] == 1 ) ? '&dirflg=w' : '';
 	$mpopuptext_css = ($mpopuptext != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;" : "";
-	$mpopuptext = $mpopuptext . "<div style='" . $mpopuptext_css . "'><a href=http://maps.google.com/maps?daddr=" . $lat . "," . $lon . "&t=" . $lmm_options[ 'directions_googlemaps_map_type' ] . "&layer=" . $lmm_options[ 'directions_googlemaps_traffic' ] . "&doflg=" . $lmm_options[ 'directions_googlemaps_distance_units' ] . $avoidhighways . $avoidtolls . $publictransport . $walking . "&hl=" . $lmm_options[ 'directions_googlemaps_host_language' ] . "&om=" . $lmm_options[ 'directions_googlemaps_overview_map' ] . " target='_blank' title='" . esc_attr__('Get directions','lmm') . "'>" . __('Directions','lmm') . "</a></div>";
+	//info: Google language localization (directions)
+	if ($lmm_options['google_maps_language_localization'] == 'browser_setting') {
+		$google_language = '';
+	} else if ($lmm_options['google_maps_language_localization'] == 'wordpress_setting') {
+		if ( defined('WPLANG') ) { $google_language = '&hl=' . substr(WPLANG, 0, 2); } else { $google_language =  '&hl=en'; }
+	} else {
+		$google_language = '&hl=' . $lmm_options['google_maps_language_localization'];
+	}
+	$mpopuptext = $mpopuptext . "<div style='" . $mpopuptext_css . "'><a href=http://maps.google.com/maps?daddr=" . $lat . "," . $lon . "&t=" . $lmm_options[ 'directions_googlemaps_map_type' ] . "&layer=" . $lmm_options[ 'directions_googlemaps_traffic' ] . "&doflg=" . $lmm_options[ 'directions_googlemaps_distance_units' ] . $avoidhighways . $avoidtolls . $publictransport . $walking . $google_language . "&om=" . $lmm_options[ 'directions_googlemaps_overview_map' ] . " target='_blank' title='" . esc_attr__('Get directions','lmm') . "'>" . __('Directions','lmm') . "</a></div>";
 	} else if ( ($lmm_options['directions_popuptext_panel'] == 'yes') && ($lmm_options['directions_provider'] == 'yours') ) {
 	$mpopuptext_css = ($mpopuptext != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;" : "";
 	$mpopuptext = $mpopuptext . "<div style='" . $mpopuptext_css . "'><a href=http://www.yournavigation.org/?tlat=" . $lat . "&tlon=" . $lon . "&v=" . $lmm_options[ 'directions_yours_type_of_transport' ] . "&fast=" . $lmm_options[ 'directions_yours_route_type' ] . "&layer=" . $lmm_options[ 'directions_yours_layer' ] . " target='_blank' title='" . esc_attr__('Get directions','lmm') . "'>" . __('Directions','lmm') . "</a></div>"; 
+	} else if ( ($lmm_options['directions_popuptext_panel'] == 'yes') && ($lmm_options['directions_provider'] == 'osrm') ) {
+	$mpopuptext_css = ($mpopuptext != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;" : "";
+	$mpopuptext = $mpopuptext . "<div style='" . $mpopuptext_css . "'><a href=http://map.project-osrm.org/?hl=" . $lmm_options[ 'directions_osrm_language' ] . "&loc=" . $lat . "," . $lon . "&df=" . $lmm_options[ 'directions_osrm_units' ] . " target='_blank' title='" . esc_attr__('Get directions','lmm') . "'>" . __('Directions','lmm') . "</a></div>"; 
 	} else if ( ($lmm_options['directions_popuptext_panel'] == 'yes') && ($lmm_options['directions_provider'] == 'ors') ) {
 	$mpopuptext_css = ($mpopuptext != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;" : "";
 	$mpopuptext = $mpopuptext . "<div style='" . $mpopuptext_css . "'><a href=http://openrouteservice.org/index.php?end=" . $lon . "," . $lat . "&pref=" . $lmm_options[ 'directions_ors_route_preferences' ] . "&lang=" . $lmm_options[ 'directions_ors_language' ] . "&noMotorways=" . $lmm_options[ 'directions_ors_no_motorways' ] . "&noTollways=" . $lmm_options[ 'directions_ors_no_tollways' ] . " target='_blank' title='" . esc_attr__('Get directions','lmm') . "'>" . __('Directions','lmm') . "</a></div>"; 
 	}
-	if (!empty($mpopuptext)) $lmm_out .= 'marker.bindPopup("' . preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$mpopuptext) . '")'.$mopenpopup.';'.PHP_EOL;
+	if (!empty($mpopuptext)) $lmm_out .= 'marker.bindPopup("' . preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$mpopuptext) . '", {maxWidth: ' . intval($lmm_options['defaults_marker_popups_maxwidth']) . ', minWidth: ' . intval($lmm_options['defaults_marker_popups_minwidth']) . ', maxHeight: ' . intval($lmm_options['defaults_marker_popups_maxheight']) . ', autoPan: ' . $lmm_options['defaults_marker_popups_autopan'] . ', closeButton: ' . $lmm_options['defaults_marker_popups_closebutton'] . ', autoPanPadding: [' . intval($lmm_options['defaults_marker_popups_autopanpadding_x']) . ', ' . intval($lmm_options['defaults_marker_popups_autopanpadding_y']) . ']})'.$mopenpopup.';'.PHP_EOL;
 	} else if (!empty($geojson) or !empty($geojsonurl) or !empty($layer) ) {
-		$lmm_out .= 'var geojson = new L.GeoJSON();'.PHP_EOL;
-		$lmm_out .= 'geojson.on("featureparse",  function(e) {'.PHP_EOL;
-		$lmm_out .= 'if (e.properties.text != \'\') e.layer.bindPopup(e.properties.text);'.PHP_EOL;
-		$lmm_out .= 'if (e.properties.icon != \'\') e.layer.options.icon = new L.Icon("' . LEAFLET_PLUGIN_ICONS_URL . '/" + e.properties.icon);'.PHP_EOL;
-  		$lmm_out .= 'if (e.properties.icon == \'\') e.layer.options.icon = new L.Icon("' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png' . '");'.PHP_EOL;
-		$lmm_out .= 'if (e.properties.text == \'\') e.layer.options.clickable = false;'.PHP_EOL;
-		$lmm_out .= 'layers[e.properties.layer] = e.properties.layername;'.PHP_EOL;
-		$lmm_out .= 'if (typeof markers[e.properties.layer] == \'undefined\') markers[e.properties.layer] = [];'.PHP_EOL;
-		$lmm_out .= 'markers[e.properties.layer].push(e.layer);'.PHP_EOL;
-		$lmm_out .= '});'.PHP_EOL;
-		$lmm_out .= 'var geojsonObj;'.PHP_EOL;
-	if (!empty($geojson)) {
-	$lmm_out .= 'geojsonObj = eval("'.$geojson.'");'.PHP_EOL;
-	$lmm_out .= 'geojson.addGeoJSON(geojsonObj);'.PHP_EOL;
-	}
-	if (!empty($geojsonurl)) {
-	$lmm_out .= 'geojsonObj = eval("(" + jQuery.ajax({url: "'.$geojsonurl.'", async: false}).responseText + ")");'.PHP_EOL;
-	$lmm_out .= 'geojson.addGeoJSON(geojsonObj);'.PHP_EOL;
-	}
-	if (!empty($layer) && ($multi_layer_map == 0) ) {
-	$lmm_out .= 'geojsonObj = eval("(" + jQuery.ajax({url: "' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?layer='.$layer.'", async: false}).responseText + ")");'.PHP_EOL;
-	$lmm_out .= 'geojson.addGeoJSON(geojsonObj);'.PHP_EOL;
-	} else if (!empty($layer) && ($multi_layer_map == 1) ) {
-	$lmm_out .= 'geojsonObj = eval("(" + jQuery.ajax({url: "' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?layer='.$multi_layer_map_list.'", async: false}).responseText + ")");'.PHP_EOL;
-	$lmm_out .= 'geojson.addGeoJSON(geojsonObj);'.PHP_EOL;
-	}
-	//2do: check or delete 
-	/*
-	if ( !empty($marker) ) {
-	$lmm_out .= 'geojsonObj = eval("(" + jQuery.ajax({url: "' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?marker='.$marker.'", async: false}).responseText + ")");'.PHP_EOL;
-	$lmm_out .= 'geojson.addGeoJSON(geojsonObj);'.PHP_EOL;
-	} 
-	*/
-	$lmm_out .= $mapname.'.addLayer(geojson);'.PHP_EOL;
+		$lmm_out .= 'var geojsonObj, mapIcon, marker_clickable, marker_title;'.PHP_EOL;
+		//info: added for next versions
+		if (!empty($geojson)) {
+		$lmm_out .= 'geojsonObj = eval("'.$geojson.'");'.PHP_EOL;
+		}
+		if (!empty($geojsonurl)) {
+		$lmm_out .= 'geojsonObj = eval("(" + jQuery.ajax({url: "'.$geojsonurl.'", async: false, cache: false}).responseText + ")");'.PHP_EOL;
+		}
+		//2do: check if loading marker via GeoJSON has advantages 
+		/*
+		if ( !empty($marker) ) {
+		$lmm_out .= 'geojsonObj = eval("(" + jQuery.ajax({url: "' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?marker='.$marker.'", async: false, cache: false}).responseText + ")");'.PHP_EOL;
+		} 
+		*/		
+		//info: load GeoJSON for layer maps
+		if (!empty($layer) && ($multi_layer_map == 0) ) {
+			$lmm_out .= 'geojsonObj = eval("(" + jQuery.ajax({url: "' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?layer=' . $id . '", async: false, cache: false}).responseText + ")");'.PHP_EOL;
+		} else if (!empty($layer) && ($multi_layer_map == 1) ) {
+			$lmm_out .= 'geojsonObj = eval("(" + jQuery.ajax({url: "' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?layer=' . $multi_layer_map_list . '", async: false, cache: false}).responseText + ")");'.PHP_EOL;
+		}
+		$lmm_out .= 'L.geoJson(geojsonObj, {'.PHP_EOL;
+		$lmm_out .= '		onEachFeature: function(feature, marker) {'.PHP_EOL;
+		$lmm_out .= "			if (feature.properties.text != '') {".PHP_EOL;
+		$lmm_out .= '			marker.bindPopup(feature.properties.text, {'.PHP_EOL;
+		$lmm_out .= '			maxWidth: ' . intval($lmm_options['defaults_marker_popups_maxwidth']) . ', '.PHP_EOL;
+		$lmm_out .= '			minWidth: ' . intval($lmm_options['defaults_marker_popups_minwidth']) . ', '.PHP_EOL;
+		$lmm_out .= '			maxHeight: ' . intval($lmm_options['defaults_marker_popups_maxheight']) . ', '.PHP_EOL;
+		$lmm_out .= '			autoPan: ' . $lmm_options['defaults_marker_popups_autopan'] . ', '.PHP_EOL;
+		$lmm_out .= '			closeButton: ' . $lmm_options['defaults_marker_popups_closebutton'] . ', '.PHP_EOL;
+		$lmm_out .= '			autoPanPadding: [' . intval($lmm_options['defaults_marker_popups_autopanpadding_x']) . ', ' . intval($lmm_options['defaults_marker_popups_autopanpadding_y']) . ']'.PHP_EOL;
+		$lmm_out .= '			});'.PHP_EOL;
+		$lmm_out .= '			}'.PHP_EOL;
+		$lmm_out .= '		},'.PHP_EOL;
+		$lmm_out .= 'pointToLayer: function (feature, latlng) {'.PHP_EOL;
+		$lmm_out .= '	mapIcon = L.icon({ '.PHP_EOL;
+		$lmm_out .= "		iconUrl: (feature.properties.icon != '') ? '" . LEAFLET_PLUGIN_ICONS_URL . "/' + feature.properties.icon : '" . LEAFLET_PLUGIN_URL . "leaflet-dist/images/marker.png" . "',".PHP_EOL;
+		$lmm_out .= '		iconSize: [' . intval($lmm_options[ 'defaults_marker_icon_iconsize_x' ]) . ', ' . intval($lmm_options[ 'defaults_marker_icon_iconsize_y' ]) . '],'.PHP_EOL;
+		$lmm_out .= '		iconAnchor: [' . intval($lmm_options[ 'defaults_marker_icon_iconanchor_x' ]) . ', ' . intval($lmm_options[ 'defaults_marker_icon_iconanchor_y' ]) . '],'.PHP_EOL;
+		$lmm_out .= '		popupAnchor: [' . intval($lmm_options[ 'defaults_marker_icon_popupanchor_x' ]) . ', ' . intval($lmm_options[ 'defaults_marker_icon_popupanchor_y' ]) . '],'.PHP_EOL;
+		$lmm_out .= "		shadowUrl: '" . htmlspecialchars($lmm_options[ 'defaults_marker_icon_shadow_url' ]) . "',".PHP_EOL;
+		$lmm_out .= '		shadowSize: [' . intval($lmm_options[ 'defaults_marker_icon_shadowsize_x' ]) . ', ' . intval($lmm_options[ 'defaults_marker_icon_shadowsize_y' ]) . '],'.PHP_EOL;
+		$lmm_out .= '		shadowAnchor: [' . intval($lmm_options[ 'defaults_marker_icon_shadowanchor_x' ]) . ', ' . intval($lmm_options[ 'defaults_marker_icon_shadowanchor_y' ]) . '],'.PHP_EOL;
+		$lmm_out .= "		className: (feature.properties.icon == '') ? 'lmm_marker_icon_default' : 'lmm_marker_icon_'+ feature.properties.icon.slice(0,-4)".PHP_EOL;
+		$lmm_out .= '	});'.PHP_EOL;
+		$lmm_out .= "if (feature.properties.text == '') { marker_clickable = false } else { marker_clickable = true };".PHP_EOL;
+		if ($lmm_options[ 'defaults_marker_icon_title' ] == 'show') {
+		$lmm_out .= "if (feature.properties.markername == '') { marker_title = '' } else { marker_title = feature.properties.markername };".PHP_EOL;
+		}
+		$lmm_out .= 'return L.marker(latlng, {icon: mapIcon, clickable: marker_clickable, title: marker_title, opacity: ' . floatval($lmm_options[ 'defaults_marker_icon_opacity' ]) . '});'.PHP_EOL;
+		$lmm_out .= '}'.PHP_EOL;
+		$lmm_out .= '}).addTo(' . $mapname . ');'.PHP_EOL;
     }
   $lmm_out .= '})(jQuery);'.PHP_EOL;
   $lmm_out .= '/* ]] > */'.PHP_EOL;
@@ -833,6 +919,9 @@ function __construct() {
 	add_action('admin_print_scripts-'.$page8, array(&$this, 'lmm_add_contextual_help'));	
 	//info: add jquery datepicker on marker page
 	add_action('admin_print_scripts-'.$page3, array(&$this, 'lmm_admin_enqueue_scripts_jquerydatepicker'));	
+	//info: add image css override for marker+layer edit page
+	add_action( 'admin_head-'. $page3, array(&$this, 'lmm_image_css_override'),1000);
+	add_action( 'admin_head-'. $page5, array(&$this, 'lmm_image_css_override'),1000);
   }
   function lmm_add_admin_bar_menu() {
 	global $wp_version;
@@ -941,81 +1030,98 @@ function __construct() {
   function lmm_frontend_enqueue_scripts() {
 	$lmm_options = get_option( 'leafletmapsmarker_options' );
 	$plugin_version = get_option('leafletmapsmarker_version');
+	if ( is_admin() ) { $gmaps_libraries = '&libraries=places'; } else { $gmaps_libraries =  ''; }
+	//info: Google language localization (JSON API)
+	if ($lmm_options['google_maps_language_localization'] == 'browser_setting') {
+		$google_language = '';
+	} else if ($lmm_options['google_maps_language_localization'] == 'wordpress_setting') {
+		if ( defined('WPLANG') ) { $google_language = "&language=" . substr(WPLANG, 0, 2); } else { $google_language =  '&language=en'; }
+	} else {
+		$google_language = "&language=" . $lmm_options['google_maps_language_localization'];
+	}
+	if ($lmm_options['google_maps_base_domain_custom'] == '') {
+		$gmaps_base_domain = "&base_domain=" . $lmm_options['google_maps_base_domain'];
+	} else {
+		$gmaps_base_domain = "&base_domain=" . $lmm_options['google_maps_base_domain_custom'];
+	}
 	wp_enqueue_script( array ( 'jquery' ) );
-	wp_enqueue_script( 'leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.js', array(), $plugin_version); 
-	wp_localize_script ( 'leafletmapsmarker', 'leafletmapsmarker_L10n', array(
-		'lmm_zoom_in' => __( 'Zoom in', 'lmm' ),
-		'lmm_zoom_out' => __( 'Zoom out', 'lmm' )
-		) );
-    //info: google maps
-    if ( defined('WPLANG') ) { $lang = substr(WPLANG, 0, 2); } else { $lang =  'en'; }
+    //info: Google API key
     if ( isset($lmm_options['google_maps_api_key']) && ($lmm_options['google_maps_api_key'] != NULL) ) { $google_maps_api_key = $lmm_options['google_maps_api_key']; } else { $google_maps_api_key = ''; }
-    wp_enqueue_script( 'leafletmapsmarker-googlemaps-loader', 'http://www.google.com/jsapi?key='.$google_maps_api_key);
-    wp_enqueue_script( 'leafletmapsmarker-googlemaps-frontend', LEAFLET_PLUGIN_URL . 'js/gmaps-frontend.js', array('leafletmapsmarker','leafletmapsmarker-googlemaps-loader'), $plugin_version); 
-    wp_localize_script ( 'leafletmapsmarker-googlemaps-frontend', 'leafletmapsmarker_gmaps_L10n', array(
-    'lmm_googlemaps_language' => $lang
-    ) );
-    //info: bing maps
-    if (( (($lmm_options['standard_basemap'] == 'bingaerial') || ($lmm_options['standard_basemap'] == 'bingaerialwithlabels') || ($lmm_options['standard_basemap'] == 'bingroad')) 
-        || ((isset($lmm_options[ 'controlbox_bingaerial' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingaerial' ] == 1 )) 
-        || ((isset($lmm_options[ 'controlbox_bingaerialwithlabels' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingaerialwithlabels' ] == 1 )) 
-        || ((isset($lmm_options[ 'controlbox_bingroad' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingroad' ] == 1 )) 
-        ) && ( isset($lmm_options['bingmaps_api_key']) && ($lmm_options['bingmaps_api_key'] != NULL ) 
-        )) {
-        wp_enqueue_script( 'leafletmapsmarker-bingmaps', LEAFLET_PLUGIN_URL . 'js/bing.js', array('leafletmapsmarker'), $plugin_version); 
-    }
+    wp_enqueue_script( 'leafletmapsmarker-googlemaps-loader', 'https://www.google.com/jsapi?key='.$google_maps_api_key, array(), NULL);
+	//info: load leaflet.js + plugins
+	wp_enqueue_script( 'leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.js', array('leafletmapsmarker-googlemaps-loader'), $plugin_version); 
+	wp_localize_script('leafletmapsmarker', 'leafletmapsmarker_L10n', array(
+		'lmm_zoom_in' => __( 'Zoom in', 'lmm' ),
+		'lmm_zoom_out' => __( 'Zoom out', 'lmm' ),
+		'lmm_googlemaps_language' => $google_language,
+		'lmm_googlemaps_libraries' => $gmaps_libraries,
+		'lmm_googlemaps_base_domain' => $gmaps_base_domain
+		) );
   }
   function lmm_admin_enqueue_scripts() {
 	$lmm_options = get_option( 'leafletmapsmarker_options' );
 	$plugin_version = get_option('leafletmapsmarker_version');
+	if ( is_admin() ) { $gmaps_libraries = '&libraries=places'; } else { $gmaps_libraries =  ''; }	
+	if ( defined('WPLANG') ) { $lang = substr(WPLANG, 0, 2); } else { $lang =  'en'; }
+	//info: Google language localization (JSON API)
+	if ($lmm_options['google_maps_language_localization'] == 'browser_setting') {
+		$google_language = '';
+	} else if ($lmm_options['google_maps_language_localization'] == 'wordpress_setting') {
+		if ( defined('WPLANG') ) { $google_language = "&language=" . substr(WPLANG, 0, 2); } else { $google_language =  '&language=en'; }
+	} else {
+		$google_language = "&language=" . $lmm_options['google_maps_language_localization'];
+	}
+	if ($lmm_options['google_maps_base_domain_custom'] != '') {
+		$gmaps_base_domain = "&base_domain=" . $lmm_options['google_maps_base_domain'];
+	} else {
+		$gmaps_base_domain = "&base_domain=" . $lmm_options['google_maps_base_domain_custom'];
+	}
 	wp_enqueue_script( array ( 'jquery' ) );
-	wp_enqueue_script( 'leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.js', array(), $plugin_version); 
-	wp_localize_script ( 'leafletmapsmarker', 'leafletmapsmarker_L10n', array(
+    //info: Google API key
+	if ( isset($lmm_options['google_maps_api_key']) && ($lmm_options['google_maps_api_key'] != NULL) ) { $google_maps_api_key = $lmm_options['google_maps_api_key']; } else { $google_maps_api_key = ''; }
+	wp_enqueue_script( 'leafletmapsmarker-googlemaps-loader', 'https://www.google.com/jsapi?key='.$google_maps_api_key, array(), NULL);
+	//info: load leaflet.js + plugins
+	wp_enqueue_script( 'leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.js', array('leafletmapsmarker-googlemaps-loader'), $plugin_version); 
+	wp_localize_script('leafletmapsmarker', 'leafletmapsmarker_L10n', array(
 		'lmm_zoom_in' => __( 'Zoom in', 'lmm' ),
-		'lmm_zoom_out' => __( 'Zoom out', 'lmm' )
+		'lmm_zoom_out' => __( 'Zoom out', 'lmm' ),
+		'lmm_googlemaps_language' => $google_language,
+		'lmm_googlemaps_libraries' => $gmaps_libraries,
+		'lmm_googlemaps_base_domain' => $gmaps_base_domain
 		) );
-    //info: google maps
-    if ( defined('WPLANG') ) { $lang = substr(WPLANG, 0, 2); } else { $lang =  'en'; }
-    if ( isset($lmm_options['google_maps_api_key']) && ($lmm_options['google_maps_api_key'] != NULL) ) { $google_maps_api_key = $lmm_options['google_maps_api_key']; } else { $google_maps_api_key = ''; }
-    wp_enqueue_script( 'leafletmapsmarker-googlemaps-loader', 'http://www.google.com/jsapi?key='.$google_maps_api_key);
-    wp_enqueue_script( 'leafletmapsmarker-googlemaps-backend', LEAFLET_PLUGIN_URL . 'js/gmaps-backend.js', array('leafletmapsmarker','leafletmapsmarker-googlemaps-loader'), $plugin_version); 
-    wp_localize_script ( 'leafletmapsmarker-googlemaps-backend', 'leafletmapsmarker_gmaps_L10n', array(
-    'lmm_googlemaps_language' => $lang
-    ) );
-    //info: bing maps
-    if (( (($lmm_options['standard_basemap'] == 'bingaerial') || ($lmm_options['standard_basemap'] == 'bingaerialwithlabels') || ($lmm_options['standard_basemap'] == 'bingroad')) 
-        || ((isset($lmm_options[ 'controlbox_bingaerial' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingaerial' ] == 1 )) 
-        || ((isset($lmm_options[ 'controlbox_bingaerialwithlabels' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingaerialwithlabels' ] == 1 )) 
-        || ((isset($lmm_options[ 'controlbox_bingroad' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingroad' ] == 1 )) 
-        ) && ( isset($lmm_options['bingmaps_api_key']) && ($lmm_options['bingmaps_api_key'] != NULL ) 
-        )) {
-        wp_enqueue_script( 'leafletmapsmarker-bingmaps', LEAFLET_PLUGIN_URL . 'js/bing.js', array('leafletmapsmarker'), $plugin_version); 
-    }
+  }
+  function lmm_image_css_override() {
+	$lmm_options = get_option( 'leafletmapsmarker_options' );
+	echo '<style type="text/css" id="leafletmapsmarker-image-css-override">.leaflet-popup-content img { max-width:' . intval($lmm_options['defaults_marker_popups_image_max_width']) . 'px !important; height:auto; margin: 0px !important; padding: 0px !important; box-shadow:none !important; }</style>';
   }
   function lmm_admin_enqueue_scripts_jquerydatepicker() {
+	$plugin_version = get_option('leafletmapsmarker_version');
 	wp_enqueue_script( array ( 'jquery', 'jquery-ui-tabs','jquery-ui-datepicker','jquery-ui-slider' ) );
-	wp_enqueue_script( 'jquery-ui-timepicker-addon', LEAFLET_PLUGIN_URL . 'js/jquery-ui-timepicker-addon.js', array('jquery', 'jquery-ui-tabs','jquery-ui-datepicker'), NULL); 
+	wp_enqueue_script( 'jquery-ui-timepicker-addon', LEAFLET_PLUGIN_URL . 'js/jquery-ui-timepicker-addon.js', array('jquery', 'jquery-ui-tabs','jquery-ui-datepicker'), $plugin_version); 
   }
   function lmm_frontend_enqueue_stylesheets() {
 	global $wp_styles;
-	wp_register_style('leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.css', array(), NULL);
+	$plugin_version = get_option('leafletmapsmarker_version');
+	wp_register_style('leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.css', array(), $plugin_version);
 	wp_enqueue_style('leafletmapsmarker');
-	wp_register_style('leafletmapsmarker-ie-only', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.ie.css', array(), NULL);
+	wp_register_style('leafletmapsmarker-ie-only', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.ie.css', array(), $plugin_version);
 	wp_enqueue_style('leafletmapsmarker-ie-only');
 	$wp_styles->add_data('leafletmapsmarker-ie-only', 'conditional', 'lt IE 9');
   }
   function lmm_admin_enqueue_stylesheets() {
 	global $wp_styles;
-	wp_register_style( 'leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.css', array(), NULL );
+	$plugin_version = get_option('leafletmapsmarker_version');
+	wp_register_style( 'leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.css', array(), $plugin_version);
 	wp_enqueue_style( 'leafletmapsmarker' );
-	wp_register_style( 'leafletmapsmarker-admin', LEAFLET_PLUGIN_URL . 'css/leafletmapsmarker-admin.css', array(), NULL );
+	wp_register_style( 'leafletmapsmarker-admin', LEAFLET_PLUGIN_URL . 'css/leafletmapsmarker-admin.css', array(), $plugin_version);
 	wp_enqueue_style('leafletmapsmarker-admin' );
-	wp_register_style('leafletmapsmarker-ie-only', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.ie.css', array(), NULL);
+	wp_register_style('leafletmapsmarker-ie-only', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.ie.css', array(), $plugin_version);
 	wp_enqueue_style('leafletmapsmarker-ie-only');
 	$wp_styles->add_data('leafletmapsmarker-ie-only', 'conditional', 'lt IE 9');
    }
   function lmm_admin_enqueue_stylesheets_datepicker() {
-	wp_register_style( 'jquery-ui-all', LEAFLET_PLUGIN_URL . 'css/jquery-datepicker-theme/jquery-ui-1.8.16.custom.css', array(), NULL );
+	$plugin_version = get_option('leafletmapsmarker_version');
+	wp_register_style( 'jquery-ui-all', LEAFLET_PLUGIN_URL . 'css/jquery-datepicker-theme/jquery-ui-1.8.16.custom.css', array(), $plugin_version);
 	wp_enqueue_style( 'jquery-ui-all' );
 	wp_register_style( 'jquery-ui-timepicker-addon', LEAFLET_PLUGIN_URL . 'css/jquery-datepicker-theme/jquery-ui-timepicker-addon.css', array('jquery-ui-all'), NULL );
 	wp_enqueue_style( 'jquery-ui-timepicker-addon' );	
@@ -1024,7 +1130,7 @@ function __construct() {
 	global $wpdb;
 	//info: 2 options not managed by Settings API (class-leaflet-options.php) 
 	add_option('leafletmapsmarker_version', 'init');
-	add_option('leafletmapsmarker_redirect', 'true'); //redirect to plugin settings page after first activation only
+	add_option('leafletmapsmarker_redirect', 'true'); //redirect to marker creation page page after first activation only
 	if (get_option('leafletmapsmarker_version') == 'init') {
 		//info: copy map icons to wp-content/uploads
 		WP_Filesystem();
@@ -1258,23 +1364,31 @@ function __construct() {
 	}
 	if (get_option('leafletmapsmarker_version') == '2.6' ) {
 		update_option('leafletmapsmarker_version', '2.6.1');
+	}
+	if (get_option('leafletmapsmarker_version') == '2.6.1' ) {
+		update_option('leafletmapsmarker_version', '2.7');
+	}
+	if (get_option('leafletmapsmarker_version') == '2.7' ) {
+		$save_defaults_for_new_options = new Leafletmapsmarker_options();
+		$save_defaults_for_new_options->save_defaults_for_new_options();
+		update_option('leafletmapsmarker_version', '2.7.1');
 		update_option('leafletmapsmarker_update_info', 'show');
 		//info: redirect to settings page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 		if (get_option('leafletmapsmarker_redirect') == 'true') 
 		{
 			update_option('leafletmapsmarker_redirect', 'false');
-			wp_redirect(LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings&display=install_note');
+			wp_redirect(LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&display=install_note');
 		} else {
 			update_option('leafletmapsmarker_update_info', 'show');
 		}
 	}
 	/* template for plugin updates 
-	if (get_option('leafletmapsmarker_version') == '2.6.1' ) {
+	if (get_option('leafletmapsmarker_version') == '2.7.1' ) {
 		//optional: add code for sql ddl updates
 		//mandatory if new options in class-leaflet-options.php were added
 		$save_defaults_for_new_options = new Leafletmapsmarker_options();
 		$save_defaults_for_new_options->save_defaults_for_new_options();
-		update_option('leafletmapsmarker_version', '2.7');
+		update_option('leafletmapsmarker_version', '2.8');
 		//mandatory: remove update_option('leafletmapsmarker_update_info', 'show'); from last version
 		update_option('leafletmapsmarker_update_info', 'show');
 		//mandatory: move code for redirect-on-first-activation-check to here
