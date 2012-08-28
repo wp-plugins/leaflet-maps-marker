@@ -1,4 +1,4 @@
-=== Leaflet Maps Marker<br>OpenStreetMap + Google Maps + Bing & more! ===
+=== Leaflet Maps Marker - OpenStreetMap, Google Maps, Bing Maps - easy mapping for everyone! ===
 Contributors:      harmr
 Plugin Name:       Leaflet Maps Marker
 Plugin URI:        http://www.mapsmarker.com
