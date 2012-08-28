@@ -1,6 +1,6 @@
-=== Leaflet Maps Marker (OpenStreetMap, Google Maps, Bing Maps & more) ===
+=== Leaflet Maps Marker<br>OpenStreetMap + Google Maps + Bing & more! ===
 Contributors:      harmr
-Plugin Name:       Leaflet Maps Marker (OpenStreetMap, Google Maps, Bing Maps & more)
+Plugin Name:       Leaflet Maps Marker
 Plugin URI:        http://www.mapsmarker.com
 Tags:              map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, google maps, googlemaps, gmaps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, layer, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice, widget, bing, bing maps, microsoft
 Author URI:        http://www.harm.co.at
