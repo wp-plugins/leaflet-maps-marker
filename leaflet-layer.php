@@ -977,7 +977,7 @@ var markers = {};
 					maxHeight: <?php echo intval($lmm_options['defaults_marker_popups_maxheight']) ?>, 
 					autoPan: <?php echo $lmm_options['defaults_marker_popups_autopan'] ?>, 
 					closeButton: <?php echo $lmm_options['defaults_marker_popups_closebutton'] ?>, 
-					autoPanPadding: [<?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_x']) ?>, <?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_y']) ?>]
+					autoPanPadding: new L.Point(<?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_x']) ?>, <?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_y']) ?>)
 				});
 			}
 		},
