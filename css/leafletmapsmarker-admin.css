@@ -82,3 +82,13 @@ img#preview { margin-top: -50%; }
 .lmmsettings h3, .lmmsettings table, .leafletmapsmarker-listings {
 	display: none;
 }
+.leafletmapsmarker-listings ul {
+	line-height: 1em;
+}
+.leafletmapsmarker-listings a {
+	text-decoration:none;
+}
+.lmm-index-links {
+	display: block;
+	padding-bottom:30px;
+}
