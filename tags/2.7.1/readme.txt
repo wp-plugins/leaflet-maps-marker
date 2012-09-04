@@ -2,7 +2,7 @@
 Contributors:      harmr
 Plugin Name:       Leaflet Maps Marker
 Plugin URI:        http://www.mapsmarker.com
-Tags:              map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, google maps, googlemaps, gmaps, WMTS, geoRSS, location, geo, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, layer, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice, widget, bing, bing maps, microsoft
+Tags:              Google Maps, OpenStreetMap, OSM, bing maps, googlemaps, google earth, map, maps, kml, travel, location, karte, augmented-reality
 Author URI:        http://www.harm.co.at
 Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
@@ -107,23 +107,23 @@ Please let me know which feature you think is missing by adding your ideas at [h
 
 = Available translations =
 
-* Bulgarian (bg_BG) thanks to Andon Ivanov, [http://coffebreak.info](http://coffebreak.info)
-* Catalan (ca) thanks to Vicent Cubells, [http://vcubells.net](http://vcubells.net)
-* Chinese (zh_CN) thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
-* Dutch (nl_NL) thanks to Marijke Metz, [http://www.mergenmetz.nl](http://www.mergenmetz.nl)
+* Bulgarian (bg_BG) thanks to Andon Ivanov
+* Catalan (ca) thanks to Vicent Cubells
+* Chinese (zh_CN) thanks to John Shen
+* Dutch (nl_NL) thanks to Marijke Metz
 * English (en_US)
-* French (fr_FR) thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com) and Rodolphe Quiedeville, [http://rodolphe.quiedeville.org/](http://rodolphe.quiedeville.org/)
+* French (fr_FR) thanks to Vincèn Pujol and Rodolphe Quiedeville
 * German (de_DE)
-* Hindi (hi_IN) thanks to by Outshine Solutions, [http://outshinesolutions.com](http://outshinesolutions.com) and Guntupalli Karunakar, [http://indlinux.org](http://indlinux.org)
-* Italian (it_IT) thanks to [Luca Barbetti](http://twitter.com/okibone)
-* Japanese (ja) thanks to [Shu Higashi](http://twitter.com/higa4)
-* Polish (pl_PL) translation thanks to Pawel Wyszynski, [http://injit.pl](http://injit.pl)
-* Russian (ru_RU) thanks to Ekaterina Golubina, supported by Teplitsa of Social Technologies - [http://te-st.ru](http://te-st.ru)
+* Hindi (hi_IN) thanks to by Outshine Solutions and Guntupalli Karunakar
+* Italian (it_IT) thanks to Luca Barbetti
+* Japanese (ja) thanks to Shu Higashi
+* Polish (pl_PL) translation thanks to Pawel Wyszynski
+* Russian (ru_RU) thanks to Ekaterina Golubina, supported by Teplitsa of Social Technologies
 * Slovak (sk_SK) thanks to Zdenko Podobny
-* Spanish (es_ES) thanks to David Ramirez, [http://www.hiperterminal.com](http://www.hiperterminal.com) and Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
-* Turkish (tr_TR) thanks to Emre Erkan, [http://www.karalamalar.net](http://www.karalamalar.net)
-* Ukrainian (uk_UK) thanks to Andrexj, [http://all3d.com.ua](http://all3d.com.ua)
-* Yiddish (yi) thanks to Raphael Finkel, [http://www.cs.uky.edu/~raphael/yiddish.html](http://www.cs.uky.edu/~raphael/yiddish.html)
+* Spanish (es_ES) thanks to David Ramirez and Alvaro Lara
+* Turkish (tr_TR) thanks to Emre Erkan
+* Ukrainian (uk_UK) thanks to Andrexj
+* Yiddish (yi) thanks to Raphael Finkel
 
 Leaflet Maps Marker also supports easy switching between translations through a specific plugin setting.
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
