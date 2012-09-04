@@ -1,4 +1,4 @@
-=== Leaflet Maps Marker ===
+=== Leaflet Maps Marker (Google Maps, OpenStreetMap, Bing Maps) ===
 Contributors:      harmr
 Plugin Name:       Leaflet Maps Marker
 Plugin URI:        http://www.mapsmarker.com
