@@ -3,6 +3,7 @@
 if ( !defined( 'WP_UNINSTALL_PLUGIN' ) )
 	exit ();
 /* Remove settings */
+$current_version = "v281"; //info: change on each update!
 if (is_multisite()) {
 	global $wpdb;
 	$blogs = $wpdb->get_results("SELECT blog_id FROM {$wpdb->blogs}", ARRAY_A);
@@ -12,7 +13,7 @@ if (is_multisite()) {
 		delete_option('leafletmapsmarker_redirect');
 		delete_option('leafletmapsmarker_update_info');
 		//info: delete transients (needed for reinstalls within validity of transients)
-		$schedule_transient = 'leafletmapsmarker_install_update_cache_' . date('d');
+		$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version . '_' . date('d');
 		$install_update_schedule = get_transient( $schedule_transient );
 		if ( $install_update_schedule != FALSE ) {
 			delete_transient( $schedule_transient );
@@ -42,7 +43,7 @@ if (is_multisite()) {
 			delete_option('leafletmapsmarker_redirect');
 			delete_option('leafletmapsmarker_update_info');
 			//info: delete transients (needed for reinstalls within validity of transients)
-			$schedule_transient = 'leafletmapsmarker_install_update_cache_' . date('d');
+			$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version . '_' . date('d');
 			$install_update_schedule = get_transient( $schedule_transient );
 			if ( $install_update_schedule != FALSE ) {
 				delete_transient( $schedule_transient );
@@ -81,7 +82,7 @@ else
 	delete_option('leafletmapsmarker_redirect');
 	delete_option('leafletmapsmarker_update_info');
 	//info: delete transients (needed for reinstalls within validity of transients)
-	$schedule_transient = 'leafletmapsmarker_install_update_cache_' . date('d');
+	$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version . '_' . date('d');
 	$install_update_schedule = get_transient( $schedule_transient );
 	if ( $install_update_schedule != FALSE ) {
 		delete_transient( $schedule_transient );

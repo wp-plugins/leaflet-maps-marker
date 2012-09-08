@@ -194,6 +194,8 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
+= v2.8.1 =
+images and links in layer maps were broken
 = v2.8 =
 focus on improvements "under-the-hood" (dynamic changelog, bugfixes etc) - see http://www.mapsmarker.com/v2.8 for more details
 = v2.7.1 =
@@ -248,6 +250,11 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v2.8.1 - 09.09.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v2.8.1)
+* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* BUGFIX: images and links in layer maps were broken
+
 = v2.8 - 08.09.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.8)
 * NEW: added dynamic changelog to show all changes since your last plugin update
