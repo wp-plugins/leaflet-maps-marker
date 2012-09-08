@@ -2,10 +2,10 @@
 /**
  * Leaflet Maps Marker Plugin - settings class
  * based on class by Alison Barrett, http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/
- */
+*/
 //info prevent file from being accessed directly
 if (basename($_SERVER['SCRIPT_FILENAME']) == 'class-leaflet-options.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
-class Leafletmapsmarker_options {
+class Class_leaflet_options {
 	private $sections;
 	private $checkboxes;
 	private $settings;
@@ -81,7 +81,8 @@ class Leafletmapsmarker_options {
 		echo '<div style="float:left;" class="icon32" id="icon-options-general"></div><h3>'.__('Settings','lmm').'</h3><div class="wrap lmmsettings">';
 		if ( isset( $_GET['settings-updated'] ) )
 			echo '<div class="updated fade"><p>' . __( 'Plugin options updated.','lmm' ) . '</p></div>';
-		include('leaflet-admin-header.php');
+		include(LEAFLET_PLUGIN_DIR . 'inc' . DIRECTORY_SEPARATOR . 'admin-header.php');
+
 		echo '<form action="options.php" method="post">';
 		settings_fields( 'leafletmapsmarker_options' );
 		echo '<div class="ui-tabs">
@@ -371,14 +372,14 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps1" class="lmm-index-links"></a>' . __( 'Default basemap for new markers/layers', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps1" class="lmm-index-links"></a>' . __( 'Default basemap for new markers/layers', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['default_basemap_helptext1'] = array(
 			'version' => '1.0',
 			'section' => 'basemaps',
 			'title'   => '',
-			'desc'    => __( 'Please select the basemap which should be pre-selected as default for new markers and layers. Can be changed afterwards on each marker/layer.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap.jpg" />',
+			'desc'    => __( 'Please select the basemap which should be pre-selected as default for new markers and layers. Can be changed afterwards on each marker/layer.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['standard_basemap'] = array(
@@ -392,13 +393,13 @@ class Leafletmapsmarker_options {
 				'osm_mapnik' => __('OpenStreetMap (Mapnik, max zoom 18)','lmm'),
 				'mapquest_osm' => __('MapQuest (OSM, max zoom 18)','lmm'),
 				'mapquest_aerial' => __('MapQuest (Aerial, max zoom 12 globally, 12+ in the United States)','lmm'),
-				'googleLayer_roadmap' => __('Google Maps (Roadmap)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'googleLayer_satellite' => __('Google Maps (Satellite)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'googleLayer_hybrid' => __('Google Maps (Hybrid)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'googleLayer_terrain' => __('Google Maps (Terrain)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'bingaerial' => __('Bing Maps (Aerial)','lmm') . ' - <strong>' . __('API key required!','lmm') . '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'bingaerialwithlabels' => __('Bing Maps (Aerial+Labels)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'bingroad' => __('Bing Maps (Road)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'googleLayer_roadmap' => __('Google Maps (Roadmap)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'googleLayer_satellite' => __('Google Maps (Satellite)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'googleLayer_hybrid' => __('Google Maps (Hybrid)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'googleLayer_terrain' => __('Google Maps (Terrain)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'bingaerial' => __('Bing Maps (Aerial)','lmm') . ' - <strong>' . __('API key required!','lmm') . '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'bingaerialwithlabels' => __('Bing Maps (Aerial+Labels)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'bingroad' => __('Bing Maps (Road)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 				'ogdwien_basemap' => __('OGD Vienna basemap (max zoom 19)','lmm'),
 				'ogdwien_satellite' => __('OGD Vienna satellite (max zoom 19)','lmm'),
 				'cloudmade' => 'Cloudmade',
@@ -419,7 +420,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps2" class="lmm-index-links"></a>' . __( 'Names for default basemaps', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps2" class="lmm-index-links"></a>' . __( 'Names for default basemaps', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['default_basemap_helptext2'] = array(
@@ -427,7 +428,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Optionally you can also change the name of the predefined basemaps in the controlbox.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-names.jpg" />',
+			'desc'    => __( 'Optionally you can also change the name of the predefined basemaps in the controlbox.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-names.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['default_basemap_name_osm_mapnik'] = array(
@@ -606,7 +607,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps3" class="lmm-index-links"></a>' . __( 'Available basemaps in control box', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps3" class="lmm-index-links"></a>' . __( 'Available basemaps in control box', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['default_basemap_helptext3'] = array(
@@ -614,7 +615,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'    => '',
-			'desc'    => __( 'Please select the basemaps which should be available in the control box.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-available-basemaps.jpg" />',
+			'desc'    => __( 'Please select the basemaps which should be available in the control box.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-available-basemaps.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['controlbox_osm_mapnik'] = array(
@@ -645,7 +646,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.5',
 			'section' => 'basemaps',
 			'title'   => '',
-			'desc'    => __('Google Maps (Roadmap)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __('Google Maps (Roadmap)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -653,7 +654,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.5',
 			'section' => 'basemaps',
 			'title'   => '',
-			'desc'    => __('Google Maps (Satellite)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __('Google Maps (Satellite)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -661,7 +662,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.5',
 			'section' => 'basemaps',
 			'title'   => '',
-			'desc'    => __('Google Maps (Hybrid)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __('Google Maps (Hybrid)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -669,7 +670,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.6',
 			'section' => 'basemaps',
 			'title'   => '',
-			'desc'    => __('Google Maps (Terrain)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __('Google Maps (Terrain)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -677,7 +678,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.6',
 			'section' => 'basemaps',
 			'title'   => '',
-			'desc'    => __('Bing Maps (Aerial)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __('Bing Maps (Aerial)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
 			'std'     => 0 
 		);
@@ -685,7 +686,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.6',
 			'section' => 'basemaps',
 			'title'   => '',
-			'desc'    => __('Bing Maps (Aerial+Labels)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __('Bing Maps (Aerial+Labels)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
 			'std'     => 0 
 		);
@@ -693,7 +694,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.6',
 			'section' => 'basemaps',
 			'title'   => '',
-			'desc'    => __('Bing Maps (Road)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __('Bing Maps (Road)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
 			'std'     => 0 
 		);
@@ -701,7 +702,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'basemaps',
 			'title'   => '',
-			'desc'    => __('OGD Vienna basemap','lmm'),
+			'desc'    => __('OGD Vienna basemap','lmm') . '<br/><span class="description">' . __('Info: gets removed from control box automatically if location of marker or layer is outside Vienna','lmm') . '</span>',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -709,7 +710,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'basemaps',
 			'title'   => '',
-			'desc'    => __('OGD Vienna satellite','lmm'),
+			'desc'    => __('OGD Vienna satellite','lmm') . '<br/><span class="description">' . __('Info: gets removed from control box automatically if location of marker or layer is outside Vienna','lmm') . '</span>',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -793,7 +794,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.7.1',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps4" class="lmm-index-links"></a>' . __( 'Interaction options', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps4" class="lmm-index-links"></a>' . __( 'Interaction options', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['map_interaction_options_helptext'] = array(
@@ -907,7 +908,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.7.1',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps5" class="lmm-index-links"></a>' . __( 'Keyboard navigation options', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps5" class="lmm-index-links"></a>' . __( 'Keyboard navigation options', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['map_keyboard_navigation_options_helptext'] = array(
@@ -953,7 +954,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.7.1',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps6" class="lmm-index-links"></a>' . __( 'Panning inertia options', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps6" class="lmm-index-links"></a>' . __( 'Panning inertia options', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['map_panning_inertia_options_helptext'] = array(
@@ -999,7 +1000,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.7.1',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps7" class="lmm-index-links"></a>' . __( 'Control options', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps7" class="lmm-index-links"></a>' . __( 'Control options', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['map_control_options_helptext'] = array(
@@ -1029,7 +1030,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.7.1',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps8" class="lmm-index-links"></a>' . __( 'Scale control options', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps8" class="lmm-index-links"></a>' . __( 'Scale control options', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['map_scale_control_helptext'] = array(
@@ -1037,7 +1038,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'A simple scale control that shows the scale of the current center of screen in metric (m/km) and/or imperial (mi/ft) systems. The following settings will be used for all marker and layer maps.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-basemap-scale-control.jpg" />',
+			'desc'    => __( 'A simple scale control that shows the scale of the current center of screen in metric (m/km) and/or imperial (mi/ft) systems. The following settings will be used for all marker and layer maps.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-basemap-scale-control.jpg" />',
 			'type'    => 'helptext'
 		);	
 		$this->settings['map_scale_control'] = array(
@@ -1117,7 +1118,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.7.1',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps9" class="lmm-index-links"></a>' . __( 'Retina display detection', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps9" class="lmm-index-links"></a>' . __( 'Retina display detection', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['map_retina_detection_helptext'] = array(
@@ -1147,7 +1148,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.6',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps10" class="lmm-index-links"></a>' . __( 'Bing Maps API Key', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps10" class="lmm-index-links"></a>' . __( 'Bing Maps API Key', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['bingmaps_api_key_helptext'] = array(
@@ -1155,7 +1156,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'An API key is required if you want to use Bing Maps as basemap for marker or layer maps. Please click on the question mark for more info on how to get your API key.', 'lmm') . ' <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __( 'An API key is required if you want to use Bing Maps as basemap for marker or layer maps. Please click on the question mark for more info on how to get your API key.', 'lmm') . ' <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'helptext'
 		);		
 		$this->settings['bingmaps_api_key'] = array(
@@ -1173,7 +1174,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps11" class="lmm-index-links"></a>' . __( 'OGD Vienna Selector', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps11" class="lmm-index-links"></a>' . __( 'OGD Vienna Selector', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['ogdvienna_selector_helptext'] = array(
@@ -1181,7 +1182,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'If coordinates within boundaries of Vienna/Austria are selected for a marker or layer, the basemap automatically switches to OGD Vienna basemap and the overlay OGD Vienna addresses gets checked.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-ogdvienna-selector.jpg" />',
+			'desc'    => __( 'If coordinates within boundaries of Vienna/Austria are selected for a marker or layer, the basemap automatically switches to OGD Vienna basemap and the overlay OGD Vienna addresses gets checked.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-ogdvienna-selector.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['ogdvienna_selector'] = array(
@@ -1212,7 +1213,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.6',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps12" class="lmm-index-links"></a>' . __( 'Cloudmade settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps12" class="lmm-index-links"></a>' . __( 'Cloudmade settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['cloudmade_helptext'] = array(
@@ -1220,7 +1221,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-cloudmade.jpg" />',
+			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-cloudmade.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['cloudmade_api_key'] = array(
@@ -1258,7 +1259,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.6',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps13" class="lmm-index-links"></a>' . __( 'Cloudmade 2 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps13" class="lmm-index-links"></a>' . __( 'Cloudmade 2 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['cloudmade2_helptext'] = array(
@@ -1266,7 +1267,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-cloudmade.jpg" />',
+			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-cloudmade.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['cloudmade2_api_key'] = array(
@@ -1304,7 +1305,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.6',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps14" class="lmm-index-links"></a>' . __( 'Cloudmade 3 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps14" class="lmm-index-links"></a>' . __( 'Cloudmade 3 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['cloudmade3_helptext'] = array(
@@ -1312,7 +1313,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-cloudmade.jpg" />',
+			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-cloudmade.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['cloudmade3_api_key'] = array(
@@ -1350,7 +1351,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.1',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps15" class="lmm-index-links"></a>' . __( 'MapBox settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps15" class="lmm-index-links"></a>' . __( 'MapBox settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['mapbox_helptext'] = array(
@@ -1358,7 +1359,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-mapbox.jpg" />',
+			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-mapbox.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['mapbox_user'] = array(
@@ -1408,7 +1409,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.1',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps16" class="lmm-index-links"></a>' . __( 'MapBox 2 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps16" class="lmm-index-links"></a>' . __( 'MapBox 2 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['mapbox2_helptext'] = array(
@@ -1416,7 +1417,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-mapbox.jpg" />',
+			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-mapbox.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['mapbox2_user'] = array(
@@ -1466,7 +1467,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.1',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps17" class="lmm-index-links"></a>' . __( 'MapBox 3 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps17" class="lmm-index-links"></a>' . __( 'MapBox 3 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['mapbox3_helptext'] = array(
@@ -1474,7 +1475,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-mapbox.jpg" />',
+			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-mapbox.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['mapbox3_user'] = array(
@@ -1524,7 +1525,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps18" class="lmm-index-links"></a>' . __( 'Custom basemap 1 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps18" class="lmm-index-links"></a>' . __( 'Custom basemap 1 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['custom_basemap_helptext'] = array(
@@ -1532,7 +1533,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 1):<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-custom-basemaps.jpg" />',
+			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 1):<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-custom-basemaps.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['custom_basemap_tileurl'] = array(
@@ -1630,7 +1631,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps19" class="lmm-index-links"></a>' . __( 'Custom basemap 2 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps19" class="lmm-index-links"></a>' . __( 'Custom basemap 2 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['custom_basemap2_helptext'] = array(
@@ -1638,7 +1639,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 2):<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-custom-basemaps.jpg" />',
+			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 2):<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-custom-basemaps.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['custom_basemap2_tileurl'] = array(
@@ -1736,7 +1737,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'basemaps',
 			'title'   => '', 
-			'desc'    => '<a name="basemaps20" class="lmm-index-links"></a>' . __( 'Custom basemap 3 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="basemaps20" class="lmm-index-links"></a>' . __( 'Custom basemap 3 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['custom_basemap3_helptext'] = array(
@@ -1744,7 +1745,7 @@ class Leafletmapsmarker_options {
 			'section' => 'basemaps',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 3):<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-default-basemap-custom-basemaps.jpg" />',
+			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 3):<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-custom-basemaps.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['custom_basemap3_tileurl'] = array(
@@ -1849,7 +1850,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'overlays',
 			'title'   => '', 
-			'desc'    => '<a name="overlays1" class="lmm-index-links"></a>' . __( 'Available overlays for new markers/layers', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="overlays1" class="lmm-index-links"></a>' . __( 'Available overlays for new markers/layers', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['overlays_available_helptext'] = array(
@@ -1857,7 +1858,7 @@ class Leafletmapsmarker_options {
 			'section' => 'overlays',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please select the overlays which should be available in the control box.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-custom-overlays-available-overlays.jpg" />',
+			'desc'    => __( 'Please select the overlays which should be available in the control box.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-custom-overlays-available-overlays.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['overlays_custom'] = array(
@@ -1902,7 +1903,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'overlays',
 			'title'   => '', 
-			'desc'    => '<a name="overlays2" class="lmm-index-links"></a>' . __( 'Custom overlay settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="overlays2" class="lmm-index-links"></a>' . __( 'Custom overlay settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['overlays_custom_helptext'] = array(
@@ -1910,7 +1911,7 @@ class Leafletmapsmarker_options {
 			'section' => 'overlays',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').':<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-overlays-custom.jpg" />',
+			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').':<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-overlays-custom.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['overlays_custom_name'] = array(
@@ -1989,7 +1990,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'overlays',
 			'title'   => '', 
-			'desc'    => '<a name="overlays3" class="lmm-index-links"></a>' . __( 'Custom overlay 2 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="overlays3" class="lmm-index-links"></a>' . __( 'Custom overlay 2 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['overlays_custom2_helptext'] = array(
@@ -1997,7 +1998,7 @@ class Leafletmapsmarker_options {
 			'section' => 'overlays',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 2:<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-overlays-custom2.jpg" />',
+			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 2:<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-overlays-custom2.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['overlays_custom2_name'] = array(
@@ -2076,7 +2077,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'overlays',
 			'title'   => '', 
-			'desc'    => '<a name="overlays4" class="lmm-index-links"></a>' . __( 'Custom overlay 3 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="overlays4" class="lmm-index-links"></a>' . __( 'Custom overlay 3 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['overlays_custom3_helptext'] = array(
@@ -2084,7 +2085,7 @@ class Leafletmapsmarker_options {
 			'section' => 'overlays',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 3:<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-overlays-custom3.jpg" />',
+			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 3:<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-overlays-custom3.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['overlays_custom3_name'] = array(
@@ -2162,7 +2163,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'overlays',
 			'title'   => '', 
-			'desc'    => '<a name="overlays5" class="lmm-index-links"></a>' . __( 'Custom overlay 4 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="overlays5" class="lmm-index-links"></a>' . __( 'Custom overlay 4 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['overlays_custom4_helptext'] = array(
@@ -2170,7 +2171,7 @@ class Leafletmapsmarker_options {
 			'section' => 'overlays',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 4:<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-overlays-custom4.jpg" />',
+			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 4:<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-overlays-custom4.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['overlays_custom4_name'] = array(
@@ -2257,7 +2258,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'wms',
 			'title'   => '', 
-			'desc'    => '<a name="wms1" class="lmm-index-links"></a>' . __( 'Available WMS layers for new markers/layers', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="wms1" class="lmm-index-links"></a>' . __( 'Available WMS layers for new markers/layers', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['wms_available_helptext'] = array(
@@ -2265,7 +2266,7 @@ class Leafletmapsmarker_options {
 			'section' => 'wms',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Please select the WMS layers which should be available when creating new markers/layers', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-wms-available-wms-layers.jpg" />',
+			'desc'    => __( 'Please select the WMS layers which should be available when creating new markers/layers', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-wms-available-wms-layers.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['wms_wms_available'] = array(
@@ -2355,7 +2356,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'wms',
 			'title'   => '', 
-			'desc'    => '<a name="wms2" class="lmm-index-links"></a>' . __( 'WMS layer 1 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="wms2" class="lmm-index-links"></a>' . __( 'WMS layer 1 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['wms_wms_helptext'] = array(
@@ -2553,7 +2554,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'wms',
 			'title'   => '', 
-			'desc'    => '<a name="wms3" class="lmm-index-links"></a>' . __( 'WMS layer 2 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="wms3" class="lmm-index-links"></a>' . __( 'WMS layer 2 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['wms_wms2_helptext'] = array(
@@ -2750,7 +2751,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'wms',
 			'title'   => '', 
-			'desc'    => '<a name="wms4" class="lmm-index-links"></a>' . __( 'WMS layer 3 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="wms4" class="lmm-index-links"></a>' . __( 'WMS layer 3 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['wms_wms3_helptext'] = array(
@@ -2947,7 +2948,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'wms',
 			'title'   => '', 
-			'desc'    => '<a name="wms5" class="lmm-index-links"></a>' . __( 'WMS layer 4 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="wms5" class="lmm-index-links"></a>' . __( 'WMS layer 4 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['wms_wms4_helptext'] = array(
@@ -3144,7 +3145,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'wms',
 			'title'   => '', 
-			'desc'    => '<a name="wms6" class="lmm-index-links"></a>' . __( 'WMS layer 5 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="wms6" class="lmm-index-links"></a>' . __( 'WMS layer 5 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['wms_wms5_helptext'] = array(
@@ -3341,7 +3342,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'wms',
 			'title'   => '', 
-			'desc'    => '<a name="wms7" class="lmm-index-links"></a>' . __( 'WMS layer 6 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="wms7" class="lmm-index-links"></a>' . __( 'WMS layer 6 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['wms_wms6_helptext'] = array(
@@ -3538,7 +3539,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'wms',
 			'title'   => '', 
-			'desc'    => '<a name="wms8" class="lmm-index-links"></a>' . __( 'WMS layer 7 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="wms8" class="lmm-index-links"></a>' . __( 'WMS layer 7 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['wms_wms7_helptext'] = array(
@@ -3735,7 +3736,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'wms',
 			'title'   => '', 
-			'desc'    => '<a name="wms9" class="lmm-index-links"></a>' . __( 'WMS layer 8 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="wms9" class="lmm-index-links"></a>' . __( 'WMS layer 8 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['wms_wms8_helptext'] = array(
@@ -3932,7 +3933,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'wms',
 			'title'   => '', 
-			'desc'    => '<a name="wms10" class="lmm-index-links"></a>' . __( 'WMS layer 9 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="wms10" class="lmm-index-links"></a>' . __( 'WMS layer 9 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['wms_wms9_helptext'] = array(
@@ -4129,7 +4130,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'wms',
 			'title'   => '', 
-			'desc'    => '<a name="wms11" class="lmm-index-links"></a>' . __( 'WMS layer 10 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="wms11" class="lmm-index-links"></a>' . __( 'WMS layer 10 settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['wms_wms10_helptext'] = array(
@@ -4333,7 +4334,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'defaults_marker',
 			'title'   => '', 
-			'desc'    =>  '<a name="defaults_marker1" class="lmm-index-links"></a>' . __( 'Default values for new marker maps', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    =>  '<a name="defaults_marker1" class="lmm-index-links"></a>' . __( 'Default values for new marker maps', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['defaults_marker_helptext1'] = array(
@@ -4341,7 +4342,7 @@ class Leafletmapsmarker_options {
 			'section' => 'defaults_marker',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Will be used when creating a new marker. All values can be changed afterwards on each marker.', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-marker-defaults.jpg" />',
+			'desc'    => __( 'Will be used when creating a new marker. All values can be changed afterwards on each marker.', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-marker-defaults.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['defaults_marker_lat'] = array(
@@ -4472,7 +4473,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.4',
 			'section' => 'defaults_marker',
 			'title'    => __('Visible API links in panel','lmm'),
-			'desc'    => __('Directions','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-car.png">',
+			'desc'    => __('Directions','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-car.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -4480,7 +4481,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'defaults_marker',
 			'title'    => '',
-			'desc'    => 'KML <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-kml.png">',
+			'desc'    => 'KML <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-kml.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -4488,7 +4489,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.1',
 			'section' => 'defaults_marker',
 			'title'    => '',
-			'desc'    => __('Fullscreen','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-fullscreen.png">',
+			'desc'    => __('Fullscreen','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-fullscreen.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);		
@@ -4496,7 +4497,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.1',
 			'section' => 'defaults_marker',
 			'title'    => '',
-			'desc'    => __('QR code','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-qr-code.png">',
+			'desc'    => __('QR code','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-qr-code.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);		
@@ -4504,7 +4505,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'defaults_marker',
 			'title'   => '',
-			'desc'    => 'GeoJSON <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-json.png">',
+			'desc'    => 'GeoJSON <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-json.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -4512,7 +4513,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.2',
 			'section' => 'defaults_marker',
 			'title'   => '',
-			'desc'    => 'GeoRSS <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-georss.png">',
+			'desc'    => 'GeoRSS <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-georss.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -4520,7 +4521,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'defaults_marker',
 			'title'   => '',
-			'desc'    => 'Wikitude <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-wikitude.png">',
+			'desc'    => 'Wikitude <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-wikitude.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);		
@@ -4628,7 +4629,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.7.1',
 			'section' => 'defaults_marker',
 			'title'   => '', 
-			'desc'    => '<a name="defaults_marker2" class="lmm-index-links"></a>' . __( 'Default values for marker icons', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="defaults_marker2" class="lmm-index-links"></a>' . __( 'Default values for marker icons', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['defaults_marker_icon_helptext1'] = array(
@@ -4666,7 +4667,7 @@ class Leafletmapsmarker_options {
 		$this->settings['defaults_marker_icon_title'] = array(
 			'version' => '2.7.1',
 			'section' => 'defaults_marker',
-			'title'   => 'title' . '<br/><img src="' . LEAFLET_PLUGIN_URL . 'img/help-marker-title.jpg">',
+			'title'   => 'title' . '<br/><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/help-marker-title.jpg">',
 			'desc'    => __('Show marker name for the browser tooltip that appear on marker hover (tooltip is always hidden if marker name is empty).','lmm'),
 			'type'    => 'radio',
 			'std'     => 'show',
@@ -4786,7 +4787,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.7.1',
 			'section' => 'defaults_marker',
 			'title'   => '', 
-			'desc'    => '<a name="defaults_marker3" class="lmm-index-links"></a>' . __( 'Default values for marker popups', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="defaults_marker3" class="lmm-index-links"></a>' . __( 'Default values for marker popups', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['defaults_marker_popups_helptext1'] = array(
@@ -4876,7 +4877,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'defaults_marker',
 			'title'   => '', 
-			'desc'    => '<a name="defaults_marker4" class="lmm-index-links"></a>' . __( 'Default values for markers added directly', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="defaults_marker4" class="lmm-index-links"></a>' . __( 'Default values for markers added directly', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['defaults_marker_shortcode_helptext'] = array(
@@ -4884,7 +4885,7 @@ class Leafletmapsmarker_options {
 			'section' => 'defaults_marker',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'You can also add markers directly to posts or pages without having to save them to your database previously. You just have to use the shortcode with the attributes mlat and mlon (e.g. <strong>[mapsmarker mlat="48.216038" mlon="16.378984"]</strong>).', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-marker-direct.jpg" /><br/><br/>' . __('Defaults values for markers added directly:','lmm'),
+			'desc'    => __( 'You can also add markers directly to posts or pages without having to save them to your database previously. You just have to use the shortcode with the attributes mlat and mlon (e.g. <strong>[mapsmarker mlat="48.216038" mlon="16.378984"]</strong>).', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-marker-direct.jpg" /><br/><br/>' . __('Defaults values for markers added directly:','lmm'),
 			'type'    => 'helptext'
 		);
 		$this->settings['defaults_marker_shortcode_basemap'] = array(
@@ -4902,9 +4903,9 @@ class Leafletmapsmarker_options {
 				'googleLayer_satellite' => __('Google Maps (Satellite)','lmm'),
 				'googleLayer_hybrid' => __('Google Maps (Hybrid)','lmm'),
 				'googleLayer_terrain' => __('Google Maps (Terrain)','lmm'),
-				'bingaerial' => __('Bing Maps (Aerial)','lmm') . ' - <strong>' . __('API key required!','lmm') . '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'bingaerialwithlabels' => __('Bing Maps (Aerial+Labels)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'bingroad' => __('Bing Maps (Road)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'bingaerial' => __('Bing Maps (Aerial)','lmm') . ' - <strong>' . __('API key required!','lmm') . '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'bingaerialwithlabels' => __('Bing Maps (Aerial+Labels)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'bingroad' => __('Bing Maps (Road)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 				'ogdwien_basemap' => __('OGD Vienna basemap (max zoom 19)','lmm'),
 				'ogdwien_satellite' => __('OGD Vienna satellite (max zoom 19)','lmm'),
 				'cloudmade' => 'Cloudmade',
@@ -5095,7 +5096,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'defaults_layer',
 			'title'   => '', 
-			'desc'    => '<a name="defaults_layer1" class="lmm-index-links"></a>' . __( 'Default values for new layer maps', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="defaults_layer1" class="lmm-index-links"></a>' . __( 'Default values for new layer maps', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['defaults_layer_helptext1'] = array(
@@ -5103,7 +5104,7 @@ class Leafletmapsmarker_options {
 			'section' => 'defaults_layer',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Will be used when creating a new layer. All values can be changed afterwards on each layer.', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'img/help-layer-defaults.jpg" />',
+			'desc'    => __( 'Will be used when creating a new layer. All values can be changed afterwards on each layer.', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-layer-defaults.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['defaults_layer_lat'] = array(
@@ -5221,7 +5222,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'defaults_layer',
 			'title'    => __('Visible API links in panel','lmm'),
-			'desc'    => 'KML <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-kml.png">',
+			'desc'    => 'KML <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-kml.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -5229,7 +5230,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.1',
 			'section' => 'defaults_layer',
 			'title'    => '',
-			'desc'    => __('Fullscreen','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-fullscreen.png">',
+			'desc'    => __('Fullscreen','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-fullscreen.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);		
@@ -5237,7 +5238,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.1',
 			'section' => 'defaults_layer',
 			'title'    => '',
-			'desc'    => __('QR code','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-qr-code.png">',
+			'desc'    => __('QR code','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-qr-code.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);		
@@ -5245,7 +5246,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'defaults_layer',
 			'title'   => '',
-			'desc'    => 'GeoJSON <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-json.png"> (' . __('not available on multi layer maps','lmm') . ')',
+			'desc'    => 'GeoJSON <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-json.png"> (' . __('not available on multi layer maps','lmm') . ')',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -5253,7 +5254,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.2',
 			'section' => 'defaults_layer',
 			'title'   => '',
-			'desc'    => 'GeoRSS <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-georss.png">',
+			'desc'    => 'GeoRSS <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-georss.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -5261,7 +5262,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'defaults_layer',
 			'title'   => '',
-			'desc'    => 'Wikitude <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-wikitude.png">',
+			'desc'    => 'Wikitude <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-wikitude.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);		
@@ -5369,7 +5370,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.5',
 			'section' => 'defaults_layer',
 			'std'     => '', 
-			'title'   => '<a name="defaults_layer2" class="lmm-index-links"></a>' . '<strong>' . __('List marker settings','lmm') . '</strong>' . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'title'   => '<a name="defaults_layer2" class="lmm-index-links"></a>' . '<strong>' . __('List marker settings','lmm') . '</strong>' . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'desc'    => '',
 			'type'    => 'helptext'
 		);
@@ -5448,7 +5449,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.1',
 			'section' => 'defaults_layer',
 			'title'    => __('Visible API links for each marker','lmm'),
-			'desc'    => __('Directions','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-car.png">',
+			'desc'    => __('Directions','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-car.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -5456,7 +5457,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.1',
 			'section' => 'defaults_layer',
 			'title'    => '',
-			'desc'    => 'KML <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-kml.png">',
+			'desc'    => 'KML <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-kml.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);
@@ -5464,7 +5465,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.1',
 			'section' => 'defaults_layer',
 			'title'    => '',
-			'desc'    => __('Fullscreen','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-fullscreen.png">',
+			'desc'    => __('Fullscreen','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-fullscreen.png">',
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);		
@@ -5472,7 +5473,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.1',
 			'section' => 'defaults_layer',
 			'title'    => '',
-			'desc'    => __('QR code','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-qr-code.png">',
+			'desc'    => __('QR code','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-qr-code.png">',
 			'type'    => 'checkbox',
 			'std'     => 0 
 		);		
@@ -5480,7 +5481,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.1',
 			'section' => 'defaults_layer',
 			'title'   => '',
-			'desc'    => 'GeoJSON <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-json.png">',
+			'desc'    => 'GeoJSON <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-json.png">',
 			'type'    => 'checkbox',
 			'std'     => 0 
 		);
@@ -5488,7 +5489,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.1',
 			'section' => 'defaults_layer',
 			'title'   => '',
-			'desc'    => 'GeoRSS <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-georss.png">',
+			'desc'    => 'GeoRSS <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-georss.png">',
 			'type'    => 'checkbox',
 			'std'     => 0 
 		);
@@ -5496,7 +5497,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.1',
 			'section' => 'defaults_layer',
 			'title'   => '',
-			'desc'    => 'Wikitude <img src="' . LEAFLET_PLUGIN_URL . 'img/icon-wikitude.png">',
+			'desc'    => 'Wikitude <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-wikitude.png">',
 			'type'    => 'checkbox',
 			'std'     => 0 
 		);		
@@ -5514,7 +5515,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.6',
 			'section' => 'google',
 			'title'   => '', 
-			'desc'    => '<a name="google1" class="lmm-index-links"></a>' . __( 'Google Maps API key', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="google1" class="lmm-index-links"></a>' . __( 'Google Maps API key', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['google_maps_api_key_helptext'] = array(
@@ -5541,7 +5542,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.7.1',
 			'section' => 'google',
 			'title'   => '', 
-			'desc'    => '<a name="google2" class="lmm-index-links"></a>' . __( 'Google language localization', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="google2" class="lmm-index-links"></a>' . __( 'Google language localization', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['google_maps_language_localization_helptext'] = array(
@@ -5622,7 +5623,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.7.1',
 			'section' => 'google',
 			'title'   => '', 
-			'desc'    => '<a name="google3" class="lmm-index-links"></a>' . __( 'Google Maps base domain', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="google3" class="lmm-index-links"></a>' . __( 'Google Maps base domain', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['google_maps_base_domain_helptext'] = array(
@@ -5687,7 +5688,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'google',
 			'title'   => '', 
-			'desc'    => '<a name="google4" class="lmm-index-links"></a>' . __( 'Google Places bounds', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="google4" class="lmm-index-links"></a>' . __( 'Google Places bounds', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['google_places_bounds_helptext2'] = array(
@@ -5695,7 +5696,7 @@ class Leafletmapsmarker_options {
 			'section' => 'google',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Leaflet Maps Marker uses the <a href="http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html" target="_blank">Google Places Autocomplete API</a> to easily find coordinates for places or addresses. This feature is enabled by default. Preview:', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'/img/help-google-places-preview.png" /><br/>' . __( 'You can get better search results if you enable the bounds feature. This allows you to specify the area in which to primarily search for places or addresses. Please note: the results are biased towards, but not restricted to places or addresses contained within these bounds.', 'lmm'),
+			'desc'    => __( 'Leaflet Maps Marker uses the <a href="http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html" target="_blank">Google Places Autocomplete API</a> to easily find coordinates for places or addresses. This feature is enabled by default. Preview:', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-google-places-preview.png" /><br/>' . __( 'You can get better search results if you enable the bounds feature. This allows you to specify the area in which to primarily search for places or addresses. Please note: the results are biased towards, but not restricted to places or addresses contained within these bounds.', 'lmm'),
 			'type'    => 'helptext'
 		);
 		$this->settings['google_places_bounds_status'] = array(
@@ -5715,7 +5716,7 @@ class Leafletmapsmarker_options {
 			'section' => 'google',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'If enabled, please enter longitude and latitude values below for the corner points of the prefered search area. Below you find an example for Vienna/Austria:', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'/img/help-google-places-bounds.jpg" />',
+			'desc'    => __( 'If enabled, please enter longitude and latitude values below for the corner points of the prefered search area. Below you find an example for Vienna/Austria:', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-google-places-bounds.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['google_places_bounds_lat1'] = array(
@@ -5757,7 +5758,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'google',
 			'title'   => '', 
-			'desc'    => '<a name="google5" class="lmm-index-links"></a>' . __( 'Google Places search prefix', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="google5" class="lmm-index-links"></a>' . __( 'Google Places search prefix', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['google_places_search_prefix_helptext1'] = array(
@@ -5765,7 +5766,7 @@ class Leafletmapsmarker_options {
 			'section' => 'google',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'You can also select a search prefix, which automatically gets added to search form when creating a new marker or layer.', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'/img/help-google-places-prefix.png" />',
+			'desc'    => __( 'You can also select a search prefix, which automatically gets added to search form when creating a new marker or layer.', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-google-places-prefix.png" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['google_places_search_prefix_status'] = array(
@@ -5802,7 +5803,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.4',
 			'section' => 'directions',
 			'title'   => '', 
-			'desc'    => '<a name="directions1" class="lmm-index-links"></a>' . __( 'General settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="directions1" class="lmm-index-links"></a>' . __( 'General settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);		
 		$this->settings['directions_general_helptext1'] = array(
@@ -5843,7 +5844,7 @@ class Leafletmapsmarker_options {
 			'section' => 'directions',
 			'std'     => '', 
 			'title'   => '',	
-			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'/img/help-directions-popuptext-panel.jpg" />',
+			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-directions-popuptext-panel.jpg" />',
 			'type'    => 'helptext'
 		);
 		/*
@@ -5853,7 +5854,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.4',
 			'section' => 'directions',
 			'title'   => '', 
-			'desc'    => '<a name="directions2" class="lmm-index-links"></a>' . __( 'Google Maps directions settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="directions2" class="lmm-index-links"></a>' . __( 'Google Maps directions settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['directions_googlemaps_helptext1'] = array(
@@ -5954,7 +5955,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.4',
 			'section' => 'directions',
 			'title'   => '', 
-			'desc'    => '<a name="directions3" class="lmm-index-links"></a>' . __( 'yournavigation.org settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="directions3" class="lmm-index-links"></a>' . __( 'yournavigation.org settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['directions_yours_helptext1'] = array(
@@ -6009,7 +6010,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.7.1',
 			'section' => 'directions',
 			'title'   => '', 
-			'desc'    => '<a name="directions4" class="lmm-index-links"></a>' . __( 'map.project-osrm.org settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="directions4" class="lmm-index-links"></a>' . __( 'map.project-osrm.org settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['directions_osrm_helptext1'] = array(
@@ -6059,7 +6060,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.4',
 			'section' => 'directions',
 			'title'   => '', 
-			'desc'    => '<a name="directions5" class="lmm-index-links"></a>' . __( 'openrouteservice.org settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="directions5" class="lmm-index-links"></a>' . __( 'openrouteservice.org settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['directions_ors_helptext1'] = array(
@@ -6148,7 +6149,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'ar',
 			'title'   => '', 
-			'desc'    => '<a name="ar1" class="lmm-index-links"></a>' . __( 'Wikitude settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="ar1" class="lmm-index-links"></a>' . __( 'Wikitude settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['ar_wikitude_helptext'] = array(
@@ -6179,7 +6180,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'title'   => __( 'Logo', 'lmm' ),
 			'desc'    => __( 'The logo is displayed on the left bottom corner on Wikitude when an icon is selected - 96x96 pixel, transparent PNG', 'lmm' ),
-			'std'     => LEAFLET_PLUGIN_URL . 'img/wikitude-logo-96x96.png',
+			'std'     => LEAFLET_PLUGIN_URL . 'inc/img/wikitude-logo-96x96.png',
 			'type'    => 'text',
 			'section' => 'ar'
 		);
@@ -6187,7 +6188,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'title'   => __( 'Icon', 'lmm' ),
 			'desc'    => __( 'The icon is displayed in the cam view of Wikitude to indicate a marker - 32x32 pixel, transparent PNG', 'lmm' ),
-			'std'     => LEAFLET_PLUGIN_URL . 'img/wikitude-icon-32x32.png',
+			'std'     => LEAFLET_PLUGIN_URL . 'inc/img/wikitude-icon-32x32.png',
 			'type'    => 'text',
 			'section' => 'ar'
 		);		
@@ -6243,7 +6244,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'misc',
 			'title'   => '', 
-			'desc'    => '<a name="misc1" class="lmm-index-links"></a>' . __( 'General settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="misc1" class="lmm-index-links"></a>' . __( 'General settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['misc_general_helptext'] = array(
@@ -6348,18 +6349,18 @@ class Leafletmapsmarker_options {
 				'disabled' => __('disabled','lmm')
 			)
 		);
-		$this->settings['misc_global_stats'] = array(
-			'version' => '1.1',
+		$this->settings['misc_pointers'] = array(
+			'version' => '2.8',
 			'section' => 'misc',
-			'title'   => __('Global statistics','lmm'),
-			'desc'    => __('Anonymous marker/layer hit counter','lmm') . ' <a href="http://www.mapsmarker.com/legal#global-stats" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'title'   => __('WordPress Pointers','lmm'),
+			'desc'    => __('display WordPress pointers on plugin updates','lmm'),
 			'type'    => 'radio',
 			'std'     => 'enabled',
 			'choices' => array(
 				'enabled' => __('enabled','lmm'),
 				'disabled' => __('disabled','lmm')
 			)
-		);		
+		);
 		$this->settings['misc_qrcode_size'] = array(
 			'version' => '1.1',
 			'title'   => __( 'QR code image size', 'lmm' ),
@@ -6388,7 +6389,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.4',
 			'section' => 'misc',
 			'title'   => '', 
-			'desc'    => '<a name="misc2" class="lmm-index-links"></a>' . __( 'Language settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="misc2" class="lmm-index-links"></a>' . __( 'Language settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['misc_language_helptext'] = array(
@@ -6447,7 +6448,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.8',
 			'section' => 'misc',
 			'title'   => '', 
-			'desc'    => '<a name="misc3" class="lmm-index-links"></a>' . __( 'KML settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="misc3" class="lmm-index-links"></a>' . __( 'KML settings', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['misc_kml_helptext'] = array(
@@ -6455,7 +6456,7 @@ class Leafletmapsmarker_options {
 			'section' => 'misc',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Choose how marker names should be displayed in KML files', 'lmm') . ' <a href="http://www.mapsmarker.com/kml-names" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __( 'Choose how marker names should be displayed in KML files', 'lmm') . ' <a href="http://www.mapsmarker.com/kml-names" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'helptext'
 		);
 		$this->settings['misc_kml'] = array(
@@ -6478,7 +6479,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'misc',
 			'title'   => '', 
-			'desc'    => '<a name="misc4" class="lmm-index-links"></a>' . __( 'Available columns for marker listing page', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="misc4" class="lmm-index-links"></a>' . __( 'Available columns for marker listing page', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['misc_marker_listing_columns_helptext'] = array(
@@ -6688,7 +6689,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.3',
 			'section' => 'misc',
 			'title'   => '', 
-			'desc'    => '<a name="misc5" class="lmm-index-links"></a>' . __( 'Sort order for marker listing page', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="misc5" class="lmm-index-links"></a>' . __( 'Sort order for marker listing page', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['misc_marker_listing_sort_helptext'] = array(
@@ -6735,7 +6736,7 @@ class Leafletmapsmarker_options {
 			'version' => '1.0',
 			'section' => 'misc',
 			'title'   => '', 
-			'desc'    => '<a name="misc6" class="lmm-index-links"></a>' . __( 'Available columns for layer listing page', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="misc6" class="lmm-index-links"></a>' . __( 'Available columns for layer listing page', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['misc_layer_listing_columns_helptext'] = array(
@@ -6921,7 +6922,7 @@ class Leafletmapsmarker_options {
 			'version' => '2.3',
 			'section' => 'misc',
 			'title'   => '', 
-			'desc'    => '<a name="misc7" class="lmm-index-links"></a>' . __( 'Sort order for layer listing page', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'img/icon-scroll-to-top.png" /></a>',
+			'desc'    => '<a name="misc7" class="lmm-index-links"></a>' . __( 'Sort order for layer listing page', 'lmm') . ' <a href="#" title="' . esc_attr__('Scroll to top','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/icon-scroll-to-top.png" /></a>',
 			'type'    => 'heading'
 		);
 		$this->settings['misc_layer_listing_sort_helptext'] = array(
@@ -7269,7 +7270,6 @@ class Leafletmapsmarker_options {
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
-		/* template for plugin updates 
 		//info:  set defaults for options introduced in v2.8
 		if (get_option('leafletmapsmarker_version') == '2.7.1' )
 		{
@@ -7277,6 +7277,22 @@ class Leafletmapsmarker_options {
 			foreach ( $this->settings as $id => $setting ) 
 			{
 				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.8')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}
+		/* template for plugin updates 
+		//info:  set defaults for options introduced in v2.9
+		if (get_option('leafletmapsmarker_version') == '2.8' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting ) 
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.9')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7306,7 +7322,7 @@ class Leafletmapsmarker_options {
 		return false;
 	}
 }
-$leafletmapsmarker_options = new Leafletmapsmarker_options();
+$leafletmapsmarker_options = new Class_leaflet_options();
 function lmm_option( $option ) {
 	$options = get_option( 'leafletmapsmarker_options' );
 	if ( isset( $options[$option] ) )

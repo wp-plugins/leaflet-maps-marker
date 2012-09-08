@@ -178,7 +178,7 @@ if (isset($_GET['layer'])) {
   echo PHP_EOL . '<ScreenOverlay>'.PHP_EOL;
   echo '<name><![CDATA[powered by WordPress & MapsMarker.com]]></name>'.PHP_EOL;
   echo '<Icon>'.PHP_EOL;
-  echo '<href>' . LEAFLET_PLUGIN_URL . 'img/kml-overlay-powered-by.png</href>'.PHP_EOL;
+  echo '<href>' . LEAFLET_PLUGIN_URL . 'inc/img/kml-overlay-powered-by.png</href>'.PHP_EOL;
   echo '</Icon>'.PHP_EOL;
   echo '<overlayXY x="0" y="1" xunits="fraction" yunits="fraction"/>'.PHP_EOL;
   echo '<screenXY x="0" y="1" xunits="fraction" yunits="fraction"/>'.PHP_EOL;
@@ -294,7 +294,7 @@ elseif (isset($_GET['marker'])) {
   echo PHP_EOL.'<ScreenOverlay>'.PHP_EOL;
   echo '<name><![CDATA[powered by WordPress & MapsMarker.com]]></name>'.PHP_EOL;
   echo '<Icon>'.PHP_EOL;
-  echo '<href>' . LEAFLET_PLUGIN_URL . 'img/kml-overlay-powered-by.png</href>'.PHP_EOL;
+  echo '<href>' . LEAFLET_PLUGIN_URL . 'inc/img/kml-overlay-powered-by.png</href>'.PHP_EOL;
   echo '</Icon>'.PHP_EOL;
   echo '<overlayXY x="0" y="1" xunits="fraction" yunits="fraction"/>'.PHP_EOL;
   echo '<screenXY x="0" y="1" xunits="fraction" yunits="fraction"/>'.PHP_EOL;
