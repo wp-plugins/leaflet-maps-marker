@@ -4,7 +4,7 @@ Plugin Name: Leaflet Maps Marker &reg;
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, GeoRSS or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, WMTS, geoRSS, location, geo, geo-mashup, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, googlemaps, gmaps, google map, google map short code, google map widget, google maps v3, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, marker icons, layer, multiple markers, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice, widget, bing, bing maps, microsoft, map short code, map widget, kml, cross-browser, fully documented, traffic, bike lanes, map short code, custom marker text, custom marker icons and text
-Version: 2.8
+Version: 2.8.1
 Author: Robert Harm
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
@@ -103,14 +103,10 @@ function __construct() {
 	$version_without_dots = "lmmv" . str_replace('.', '', $lmm_version_new);
 	$install_note = (isset($_GET['display']) ? $_GET['display'] : '');
 	if ( $install_note == NULL) {
-		$pointer_content = '<h3>' . sprintf(__('Update to v%1s was successful','lmm'), $lmm_version_new) . '</h3>'; 
-		if ( !is_multisite() ) {
-			$changelog_url = '<a href="' . admin_url('/admin.php?page=leafletmapsmarker_markers') .'" style="text-decoration:none;">' . __('changelog','lmm') . '</a>';
-		} else {
-			$changelog_url = '<a href="' . network_admin_url('/admin.php?page=leafletmapsmarker_markers') .'" style="text-decoration:none;">' . __('changelog','lmm') . '</a>';
-		}
+		$pointer_content = '<h3>' . sprintf(__('Leaflet Maps Marker plugin update to v%1s was successful','lmm'), $lmm_version_new) . '</h3>'; 
+		$changelog_url = '<a href="' . admin_url('/admin.php?page=leafletmapsmarker_markers') .'" style="text-decoration:none;">' . __('changelog','lmm') . '</a>';
 	} else {
-		$pointer_content = '<h3>' . __('Plugin was successfully installed','lmm') . '</h3>'; 
+		$pointer_content = '<h3>' . __('Leaflet Maps Marker plugin was successfully installed','lmm') . '</h3>'; 
 		$changelog_url = '<a href="http://www.mapsmarker.com/changelog" target="_blank" style="text-decoration:none;">' . __('changelog','lmm') . '</a>';
 	}
 	$blogpost_url = '<a href="http://www.mapsmarker.com/v' . $lmm_version_new . '" target="_blank" style="text-decoration:none;">mapsmarker.com</a>';
@@ -1218,10 +1214,11 @@ function __construct() {
    }   
   function lmm_install_and_updates() {
 	//info: set transient to execute install & update-routine only once a day
-	$schedule_transient = 'leafletmapsmarker_install_update_cache_' . date('d');
+	$current_version = "v281"; //2do - mandatory: change on each update!
+	$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version . '_' . date('d');
 	$install_update_schedule = get_transient( $schedule_transient );
 	if ( $install_update_schedule === FALSE ) {
-		$schedule_transient = 'leafletmapsmarker_install_update_cache_' . date('d');
+		$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version . '_' . date('d');
 		set_transient( $schedule_transient, 'execute install and update-routine only once a day', 60*60*24 );
 		include('inc' . DIRECTORY_SEPARATOR . 'install-and-updates.php');
 	}

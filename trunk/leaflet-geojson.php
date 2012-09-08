@@ -85,11 +85,10 @@ if (isset($_GET['layer'])) {
 		echo '},'.PHP_EOL;
 		echo '"properties":'.PHP_EOL;
 		echo '{'.PHP_EOL;
-		$sanitize_json = array('"' => '\'', "\\" => "/");
 		if ($full == 1) {
 			echo '"markerid":"'.$marker['mid'].'",'.PHP_EOL;
 		}
-			echo '"markername":"' . strtr(stripslashes($marker['mmarkername']), $sanitize_json) . '",'.PHP_EOL;
+			echo '"markername":"' . stripslashes($marker['mmarkername']) . '",'.PHP_EOL;
 		if ($full == 1) {
 			echo '"basemap":"'.$marker['mbasemap'].'",'.PHP_EOL;
 			echo '"lat":"'.$marker['mlat'].'",'.PHP_EOL;
@@ -98,7 +97,7 @@ if (isset($_GET['layer'])) {
 		echo '"icon":"'.$marker['micon'].'",'.PHP_EOL;
 	
 		$mpopuptext_css = ($marker['mpopuptext'] != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;" : "";
-		$mpopuptext = stripslashes(strtr(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext']), $sanitize_json));
+		$mpopuptext = stripslashes(str_replace('"', '\'', preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])));
 
 		if ( ($lmm_options['directions_popuptext_panel'] == 'yes') && ($lmm_options['directions_provider'] == 'googlemaps') ) { 
 		$avoidhighways = (isset($lmm_options[ 'directions_googlemaps_route_type_highways' ] ) == TRUE ) && ( $lmm_options[ 'directions_googlemaps_route_type_highways' ] == 1 ) ? '&dirflg=h' : '';
@@ -195,17 +194,17 @@ elseif (isset($_GET['marker'])) {
 	echo '},'.PHP_EOL;
 	echo '"properties":'.PHP_EOL;
 	echo '{'.PHP_EOL;
-	$sanitize_json = array('"' => '\'', "\\" => "/");
 	if ($full == 1) {
 		echo '"markerid":"'.$marker['mid'].'",'.PHP_EOL;
-		echo '"markername":"' . strtr(stripslashes($marker['mmarkername']), $sanitize_json) . '",'.PHP_EOL;
+		echo '"markername":"' . stripslashes($marker['mmarkername']) . '",'.PHP_EOL;
 		echo '"basemap":"'.$marker['mbasemap'].'",'.PHP_EOL;
 		echo '"lat":"'.$marker['mlat'].'",'.PHP_EOL;
 		echo '"lon":"'.$marker['mlon'].'",'.PHP_EOL;
 	}
 	echo '"icon":"'.$marker['micon'].'",'.PHP_EOL;
 	$mpopuptext_css = ($marker['mpopuptext'] != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;" : "";
-	$mpopuptext = stripslashes(strtr(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext']), $sanitize_json));
+	$mpopuptext = stripslashes(str_replace('"', '\'', preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])));
+
 	if ( ($lmm_options['directions_popuptext_panel'] == 'yes') && ($lmm_options['directions_provider'] == 'googlemaps') ) { 
 	$avoidhighways = (isset($lmm_options[ 'directions_googlemaps_route_type_highways' ] ) == TRUE ) && ( $lmm_options[ 'directions_googlemaps_route_type_highways' ] == 1 ) ? '&dirflg=h' : '';
 	$avoidtolls = (isset($lmm_options[ 'directions_googlemaps_route_type_tolls' ] ) == TRUE ) && ( $lmm_options[ 'directions_googlemaps_route_type_tolls' ] == 1 ) ? '&dirflg=t' : '';
