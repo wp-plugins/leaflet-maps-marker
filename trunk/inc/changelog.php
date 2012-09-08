@@ -74,7 +74,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		images and links in layer maps were broken
 		</td></tr>
 		</table>'.PHP_EOL;
-	if ( ($lmm_version_old < '2.7.1' ) ){
+	if ( ($lmm_version_old < '2.8' ) ){
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '2.8') . '</strong> - ' . __('released on','lmm') . ' 08.09.2012 (<a href="http://www.mapsmarker.com/v2.8" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
