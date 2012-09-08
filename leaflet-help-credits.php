@@ -7,7 +7,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 ?>
 <div class="wrap">
 	<?php $lmm_options = get_option( 'leafletmapsmarker_options' ); ?>
-	<?php include('leaflet-admin-header.php'); ?>
+	<?php include('inc' . DIRECTORY_SEPARATOR . 'admin-header.php'); ?>
 	<p>
 	<h3><?php _e('Help','lmm') ?></h3>
 	<p>

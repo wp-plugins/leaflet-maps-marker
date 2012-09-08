@@ -3,11 +3,11 @@
 Hook into WordPress
 */
 //info prevent file from being accessed directly
-if (basename($_SERVER['SCRIPT_FILENAME']) == 'tinymce_plugin.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
+if (basename($_SERVER['SCRIPT_FILENAME']) == 'tinymce-plugin.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
 add_action('admin_print_styles-post.php', 'marker_select_box_css');
 add_action('admin_print_styles-post-new.php', 'marker_select_box_css');
 function marker_select_box_css() {
-	wp_register_style( 'lmm-tinymce-css', LEAFLET_PLUGIN_URL . 'css/marker_select_box.css', array(), NULL );
+	wp_register_style( 'lmm-tinymce-css', LEAFLET_PLUGIN_URL . 'inc/css/marker_select_box.css', array(), NULL );
 	wp_enqueue_style( 'lmm-tinymce-css' );	
 }
 add_action('init', 'mm_shortcode_button');
@@ -35,7 +35,7 @@ Register TinyMCE Plugin
 */
 function lmm_add_plugin( $plugin_array ) {
 	if (!is_multisite()) { $adminurl = admin_url(); } else { $adminurl = get_admin_url(); }
-	$plugin_array['mm_shortcode'] = LEAFLET_PLUGIN_URL . 'js/lmm_tinymce_shortcode.php?adminurl='.$adminurl.'&leafletpluginurl='.LEAFLET_PLUGIN_URL;
+	$plugin_array['mm_shortcode'] = LEAFLET_PLUGIN_URL . 'inc/js/lmm_tinymce_shortcode.php?adminurl='.$adminurl.'&leafletpluginurl='.LEAFLET_PLUGIN_URL;
 	return $plugin_array;
 }
 add_action('wp_ajax_get_mm_list',  'get_mm_list');
@@ -66,12 +66,12 @@ function get_mm_list(){
 	//info: load js if no internet connection available
 	if  (in_array  ('curl', get_loaded_extensions())) {
 		if (!$check = curl_init('http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js')) {
-			echo "<script type='text/javascript' src='" . LEAFLET_PLUGIN_URL . "js/jquery_for_tinymce_button.js' ?>'></script>";
+			echo "<script type='text/javascript' src='" . LEAFLET_PLUGIN_URL . "inc/js/jquery_for_tinymce_button.js' ?>'></script>";
 		} 
 	} ?>
-	<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'js/tiny_mce_popup.js' ?>'></script>
-        <script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'js/lmm_tinymce_shortcode.php' ?>'></script>
-        <link rel='stylesheet' href='<?php echo LEAFLET_PLUGIN_URL . 'css/marker_select_box.css' ?>' type='text/css' media='all' />
+	<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/tiny_mce_popup.js' ?>'></script>
+        <script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/lmm_tinymce_shortcode.php' ?>'></script>
+        <link rel='stylesheet' href='<?php echo LEAFLET_PLUGIN_URL . 'inc/css/marker_select_box.css' ?>' type='text/css' media='all' />
 </head>
 <body>
 <table style="width:100%;"><tr>

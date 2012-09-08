@@ -15,7 +15,7 @@ echo "
                                         inline: 1
 				})
 			});
-			ed.addButton('mm_shortcode', {title : 'Insert Map', cmd : 'mm_shortcode', image: '".$LEAFLET_PLUGIN_URL."img/icon-menu-page.png' });
+			ed.addButton('mm_shortcode', {title : 'Insert Map', cmd : 'mm_shortcode', image: '".$LEAFLET_PLUGIN_URL."inc/img/icon-menu-page.png' });
         },
         createControl : function(n, cm) {
             return null;

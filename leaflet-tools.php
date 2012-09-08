@@ -6,7 +6,7 @@
 if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-tools.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
 ?>
 <div class="wrap">
-<?php include('leaflet-admin-header.php'); ?>
+<?php include('inc' . DIRECTORY_SEPARATOR . 'admin-header.php'); ?>
 <?php
 global $wpdb;
 $lmm_options = get_option( 'leafletmapsmarker_options' );
@@ -465,7 +465,7 @@ $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE 
 						'theme_advanced_buttons1' => 'bold,italic,underline,strikethrough,|,fontselect,fontsizeselect,forecolor,backcolor,|,justifyleft,justifycenter,justifyright,justifyfull,|,outdent,indent,blockquote,|,link,unlink,|,ltr,rtl',
 						'theme' => 'advanced',
 						'height' => '300',
-						'content_css' => LEAFLET_PLUGIN_URL . 'css/leafletmapsmarker-admin-tinymce.css',
+						'content_css' => LEAFLET_PLUGIN_URL . 'inc/css/leafletmapsmarker-admin-tinymce.css',
 						'theme_advanced_statusbar_location' => 'bottom',
 						'setup' => 'function(ed) {
 								ed.onKeyDown.add(function(ed, e) {
