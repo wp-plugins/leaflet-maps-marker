@@ -417,7 +417,7 @@
 	background: #ddd;
 	}
 .leaflet-container a {
-	color: #0078A8;
+	color: #0078A8 !important;
 	border: none;
 	}
 .leaflet-container a.leaflet-active {
