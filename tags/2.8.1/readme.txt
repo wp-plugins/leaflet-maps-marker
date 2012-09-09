@@ -127,14 +127,48 @@ For more information on translations of the plugin and how to contribute a new t
 It is hard to continue development and support for this plugin without contributions from users like you. If you enjoy using Leaflet Maps Marker - particularly within a commercial context - please consider [__making a donation__](http://www.mapsmarker.com/donations). Your donation will help keeping the plugin free for everyone and allow me to spend more time on developing, maintaining and support. I´d be happy to accept your donation! Thanks! [Robert Harm](http://www.harm.co.at)
 
 == Installation ==
-Note: plugin requires at least PHP 5.2 and Wordpress 3.0!
 
-1. Upload leaflet-maps-marker folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Optional: change default settings (you are getting redirected to plugin settings page automatically on first activation)
+= The Famous 3-Minute Installation =
 
-After installation you will find a 'Leaflet Maps Marker' menu in your WordPress admin panel and in WordPress Admin Bar.
+1. Login on your WordPress site with your user account (needs to have admin rights!)
+2. Select "Add New" from the "Plugins" menu
+3. Search for **maps** or **Leaflet Maps Marker** 
+4. Click on "Install now" below the entry "Leaflet Maps Marker (Google Maps, OpenStreetMap, Bing Maps)"
+5. Click on "OK" on the popup "Are you sure you want to install this plugin?"
+6. Click "Activate Plugin"
+
+Done. You can create your first marker map (you are getting redirected after first plugin activation automatically)
+
+After installation you will also find a 'Leaflet Maps Marker' menu in your WordPress admin panel and in WordPress Admin Bar.
 For basic usage and tutorials, you can also have a look at [http://www.mapsmarker.com/docs](http://www.mapsmarker.com/docs "Docs").
+
+= Detailed Installation Instructions =
+
+If you do not want to use the built-in plugin installation procedure from WordPress, you can also install the plugin manually:
+
+1. Navigate to [http://wordpress.org/extend/plugins/leaflet-maps-marker/](http://wordpress.org/extend/plugins/leaflet-maps-marker/)
+2. Click on red button "Download Version X.X" and download the plugin as ZIP-file
+3. Login on your WordPress site with your user account (needs to have admin rights!)
+4. Select "Add New" from the "Plugins" menu
+5. Select "Upload" from the "Install Plugins"-submenu
+6. Click on the button and select the previously downloaded ZIP-file
+7. Click "Install now"
+8. Click "Activate Plugin"
+
+Done. You can create your first marker map (you are getting redirected after first plugin activation automatically)
+
+= Detailed Installation Instructions (via FTP) =
+
+1. Navigate to [http://wordpress.org/extend/plugins/leaflet-maps-marker/](http://wordpress.org/extend/plugins/leaflet-maps-marker/)
+2. Click on red button "Download Version X.X" and download the plugin as ZIP-file
+3. Login on your WordPress site with your user account (needs to have admin rights!)
+4. unzip and upload the leaflet-maps-marker folder to the `/wp-content/plugins/` directory
+5. Login on your WordPress site with your user account (needs to have admin rights!)
+6. Activate the plugin "Leaflet Maps Marker" through the "Plugins" menu in WordPress
+
+Done. You can create your first marker map (you are getting redirected after first plugin activation automatically)
+
+Note: plugin requires at least PHP 5.2 and Wordpress 3.0!
 
 == Frequently Asked Questions ==
 Do you have questions or issues with Leaflet Maps Marker? Please use these support channels appropriately:
