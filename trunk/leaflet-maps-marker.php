@@ -83,6 +83,24 @@ function __construct() {
 	if ( isset($lmm_options['misc_pointers'] ) && ($lmm_options['misc_pointers'] == 'enabled') ) {
 		add_action( 'admin_enqueue_scripts', array( $this, 'lmm_pointer_admin_scripts' ),1001);
 	}
+	if ( is_multisite() ) {
+		add_action('delete_blog', array( &$this,'lmm_delete_multisite_blog' ));
+	} 
+  }
+  function lmm_delete_multisite_blog($blog_id) {
+	switch_to_blog($blog_id);
+	/* Remove tables */
+	$GLOBALS['wpdb']->query("DROP TABLE `".$GLOBALS['wpdb']->prefix."leafletmapsmarker_layers`");
+	$GLOBALS['wpdb']->query("DROP TABLE `".$GLOBALS['wpdb']->prefix."leafletmapsmarker_markers`");
+	/*remove map icons directory for subsite*/
+	$lmm_upload_dir = wp_upload_dir();
+	$icons_directory = $lmm_upload_dir['basedir'] . DIRECTORY_SEPARATOR . "leaflet-maps-marker-icons" . DIRECTORY_SEPARATOR;
+	if (is_dir($icons_directory)) {
+		foreach(glob($icons_directory.'*.*') as $v) {
+			unlink($v);
+		}
+		rmdir($icons_directory);
+	}
   }
   function lmm_pointer_admin_scripts() {
 	$lmm_version_new = get_option( 'leafletmapsmarker_version' );
