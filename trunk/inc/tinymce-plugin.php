@@ -21,8 +21,17 @@ function mm_shortcode_button() {
    if ( get_user_option('rich_editing') == 'true' ) {
      add_filter( 'mce_external_plugins', 'lmm_add_plugin' );
      add_filter( 'mce_buttons', 'lmm_register_button' );
+     add_filter( 'mce_external_plugins', 'mm_qt' ); 
+   } else{
+     add_action('admin_footer', 'mm_qt');  
    }
 }
+function mm_qt($plugin_array) {
+    $link = LEAFLET_PLUGIN_URL . 'inc/js/lmm_html_shortcode.php?leafletpluginurl='.LEAFLET_PLUGIN_URL; 
+    wp_register_script('html-dialog', $link);
+    wp_enqueue_script('html-dialog');  
+    return $plugin_array;
+} 
 /**
 Register Button
 */
@@ -34,8 +43,7 @@ function lmm_register_button( $buttons ) {
 Register TinyMCE Plugin
 */
 function lmm_add_plugin( $plugin_array ) {
-	if (!is_multisite()) { $adminurl = admin_url(); } else { $adminurl = get_admin_url(); }
-	$plugin_array['mm_shortcode'] = LEAFLET_PLUGIN_URL . 'inc/js/lmm_tinymce_shortcode.php?adminurl='.$adminurl.'&leafletpluginurl='.LEAFLET_PLUGIN_URL;
+	$plugin_array['mm_shortcode'] = LEAFLET_PLUGIN_URL . 'inc/js/lmm_tinymce_shortcode.php?leafletpluginurl='.LEAFLET_PLUGIN_URL;
 	return $plugin_array;
 }
 add_action('wp_ajax_get_mm_list',  'get_mm_list');
@@ -69,9 +77,12 @@ function get_mm_list(){
 			echo "<script type='text/javascript' src='" . LEAFLET_PLUGIN_URL . "inc/js/jquery_for_tinymce_button.js' ?>'></script>";
 		} 
 	} ?>
-	<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/tiny_mce_popup.js' ?>'></script>
-        <script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/lmm_tinymce_shortcode.php' ?>'></script>
-        <link rel='stylesheet' href='<?php echo LEAFLET_PLUGIN_URL . 'inc/css/marker_select_box.css' ?>' type='text/css' media='all' />
+	<?php if(!isset($_GET['mode'])): ?>
+		<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/tinymce_popup.js' ?>'></script>
+		<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/lmm_tinymce_shortcode.php' ?>'></script>
+	<?php endif;?>
+	<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/jquery_caret.js' ?>'></script>   
+	<link rel='stylesheet' href='<?php echo LEAFLET_PLUGIN_URL . 'inc/css/marker_select_box.css' ?>' type='text/css' media='all' />
 </head>
 <body>
 <table style="width:100%;"><tr>
@@ -89,7 +100,6 @@ function get_mm_list(){
 <table style="width:100%;"><tr>
 <td style="font-size:11px;"><div id="msb_attribution">powered by <a href="http://www.mapsmarker.com" target"_blank">MapsMarker.com</a></div></td></tr>
 </table>
-<!--<br/><span style="font-size:11px;">powered by <a href="http://www.mapsmarker.com" target"_blank">MapsMarker.com</a></span>-->
 <script type="text/javascript">
 (function($){
     var selectMarkerBox = {
@@ -98,11 +108,6 @@ function get_mm_list(){
         
         init : function(){
             var self = selectMarkerBox;
-            
-            /*$('.map_marker').on('click', function(){
-                e.preventDefault();
-                console.log( $(this).text() );
-            })*/
 	        $('#msb_insertMarkerSC').on('click', function(e){
                 e.preventDefault();
                 self.insert();
@@ -146,21 +151,23 @@ function get_mm_list(){
           return '[mapsmarker '+ selectMarkerBox.mapsmarkerType +'="'+ selectMarkerBox.markerID +'"]';  
         },
         insert : function() {
+            if(typeof(tinyMCEPopup) !== 'undefined')
             tinyMCEPopup.editor.execCommand('mceInsertContent', false, selectMarkerBox.getShortCode());
-        },
-        
+            else
+            $('#content', parent.document.body).insertAtCaret(selectMarkerBox.getShortCode());
+        },        
         insertMarker : function() {
             return;
         },
-        
         insertList : function() {
             return;
         },
-        
         close : function() {
-            tinyMCEPopup.close();        
+            if(typeof(tinyMCEPopup) !== 'undefined')
+            tinyMCEPopup.close();
+            else 
+            window.parent.jQuery('#modal-content').wpdialog('close');
         }
-        
     }
     selectMarkerBox.init();
 })(jQuery)

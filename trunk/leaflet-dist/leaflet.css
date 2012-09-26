@@ -126,7 +126,7 @@
 	max-width: none !important; 
 	border:none !important; /*added by RH*/
 	background:no-repeat !important; /*added by RH*/
-	padding:0px; /*added by RH*/
+	padding:0px !important; /*added by RH*/
 	margin:0px; /*added by RH*/
 	box-shadow:none !important; /*added by RH*/
 	}

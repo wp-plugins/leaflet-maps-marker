@@ -4,7 +4,7 @@ Plugin Name: Leaflet Maps Marker &reg;
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, GeoRSS or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, WMTS, geoRSS, location, geo, geo-mashup, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, googlemaps, gmaps, google map, google map short code, google map widget, google maps v3, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, marker icons, layer, multiple markers, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice, widget, bing, bing maps, microsoft, map short code, map widget, kml, cross-browser, fully documented, traffic, bike lanes, map short code, custom marker text, custom marker icons and text
-Version: 2.8.1
+Version: 2.8.2
 Author: Robert Harm
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
@@ -285,6 +285,13 @@ function __construct() {
 	echo $georss_to_head;
   }
   function lmm_showmap($atts) {
+	//info: remove filter from SEO Friendly Images for compatibility reasons
+	include_once( ABSPATH . 'wp-admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'plugin.php' );
+	if (is_plugin_active('seo-image/seo-friendly-images.php') ) {
+		if ( function_exists( 'seo_friendly_images_install' ) ) {
+			remove_filter('the_content', 'seo_friendly_images', 100);
+		}
+	}
     global $wpdb;
     $lmm_options = get_option( 'leafletmapsmarker_options' );
     $uid = substr(md5(''.rand()), 0, 8);
@@ -985,7 +992,7 @@ function __construct() {
   $lmm_out .= '</div>'; //info: end leaflet_maps_marker_$uid
   } //info: end (!is_feed())
   return $lmm_out;
-  	} //info: end check if marker/layer exists
+	} //info: end check if marker/layer exists
   } //info: end lmm_showmap()
   function lmm_admin_menu() {
 	$lmm_options = get_option( 'leafletmapsmarker_options' );
@@ -1232,7 +1239,7 @@ function __construct() {
    }   
   function lmm_install_and_updates() {
 	//info: set transient to execute install & update-routine only once a day
-	$current_version = "v281"; //2do - mandatory: change on each update!
+	$current_version = "v282"; //2do - mandatory: change on each update!
 	$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version . '_' . date('d');
 	$install_update_schedule = get_transient( $schedule_transient );
 	if ( $install_update_schedule === FALSE ) {
