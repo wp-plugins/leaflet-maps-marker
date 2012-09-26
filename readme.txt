@@ -228,8 +228,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
+= v2.8.2 =
+better integration of the TinyMCE button, bugfixes for KML and multisite blogs - see http://www.mapsmarker.com/v2.8.2 for more details
 = v2.8.1 =
-images and links in layer maps were broken
+images and links in layer maps were broken - see http://www.mapsmarker.com/v2.8.1 for more details
 = v2.8 =
 focus on improvements "under-the-hood" (dynamic changelog, bugfixes etc) - see http://www.mapsmarker.com/v2.8 for more details
 = v2.7.1 =
@@ -284,6 +286,17 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v2.8.2 - 26.09.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v2.8.2)
+* NEW: added media button to TinyMCE editor and support for HTML editing mode
+* CHANGED: updated Spanish translation thanks to Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
+* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* CHANGED: updated Catalan translation thanks to Vicent Cubells, [http://vcubells.net](http://vcubells.net)
+* BUGFIX: database tables &amp; marker icon directory did not get removed on multisite blogs when blog was deleted through network admin
+* BUGFIX: KML output was broken if marker or layer name contained &amp;-characters
+* BUGFIX: plugin incompatibility with "SEO Friendly Images" plugin
+* BUGFIX: padding was added to map tiles on some templates
+
 = v2.8.1 - 09.09.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.8.1)
 * CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)

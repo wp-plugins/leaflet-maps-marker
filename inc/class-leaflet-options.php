@@ -6305,7 +6305,7 @@ class Class_leaflet_options {
 			'version' => '1.9',
 			'section' => 'misc',
 			'title'   => __('TinyMCE button','lmm'),
-			'desc'    => __('if enabled, a button on post/page edit screen gets added for easily searching and inserting maps','lmm'),
+			'desc'    => __('if enabled, an "Insert map" button gets added to the TinyMCE toolbar and the media bar on post and page edit screens for easily searching and inserting maps','lmm'),
 			'type'    => 'radio',
 			'std'     => 'enabled',
 			'choices' => array(
@@ -7287,7 +7287,7 @@ class Class_leaflet_options {
 		}
 		/* template for plugin updates 
 		//info:  set defaults for options introduced in v2.9
-		if (get_option('leafletmapsmarker_version') == '2.8' )
+		if (get_option('leafletmapsmarker_version') == '2.8.2' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting ) 

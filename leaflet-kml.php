@@ -109,21 +109,21 @@ if (isset($_GET['layer'])) {
   $layername = $wpdb->get_var('SELECT name FROM '.$table_name_layers.' WHERE id = '.intval($_GET['layer']).'');
 	if ($_GET['layer'] != 'all') {
 	  echo '<Folder>'.PHP_EOL;
-	  echo '<name>' . $layername . '</name>'.PHP_EOL;
+	  echo '<name>' . htmlspecialchars($layername) . '</name>'.PHP_EOL;
 	}
 	
   foreach ($markers as $marker) {
     if ( isset($_GET['name']) && ($_GET['name'] == 'show') ) {
-	$name = stripslashes($marker['mmarkername']);
+	$name = stripslashes(htmlspecialchars($marker['mmarkername']));
 	$name_popup = '';
     } else if ( isset($_GET['name']) && ($_GET['name'] == 'hide') ) {
 	$name = '';
 	$name_popup = '';
     } else if ( isset($_GET['name']) && ($_GET['name'] == 'popup') ) {
 	$name = '';
-	$name_popup = '<strong>' . stripslashes($marker['mmarkername']) . '</strong><br/><br/>';
+	$name_popup = '<strong>' . stripslashes(htmlspecialchars($marker['mmarkername'])) . '</strong><br/><br/>';
     } else {
-	$name = stripslashes($marker['mmarkername']);
+	$name = stripslashes(htmlspecialchars($marker['mmarkername']));
 	$name_popup = '';
     }
     if ($marker['micon'] == NULL) {
@@ -236,16 +236,16 @@ elseif (isset($_GET['marker'])) {
   echo '<name>' . get_bloginfo('name') . '</name>'.PHP_EOL;  
   foreach ($markers as $marker) {
 	if ( isset($_GET['name']) && ($_GET['name'] == 'show') ) {
-		$name = stripslashes($marker['mmarkername']);
+		$name = stripslashes(htmlspecialchars($marker['mmarkername']));
 		$name_popup = '';
 	} else if ( isset($_GET['name']) && ($_GET['name'] == 'hide') ) {
 		$name = '';
 		$name_popup = '';
 	} else if ( isset($_GET['name']) && ($_GET['name'] == 'popup') ) {
 		$name = '';
-		$name_popup = '<strong>' . stripslashes($marker['mmarkername']) . '</strong><br/><br/>';
+		$name_popup = '<strong>' . stripslashes(htmlspecialchars($marker['mmarkername'])) . '</strong><br/><br/>';
 	} else {
-		$name = stripslashes($marker['mmarkername']);
+		$name = stripslashes(htmlspecialchars($marker['mmarkername']));
 		$name_popup = '';
 	}
 	if ($marker['micon'] == null) {
