@@ -27,7 +27,7 @@ function mm_shortcode_button() {
    }
 }
 function mm_qt($plugin_array) {
-    $link = LEAFLET_PLUGIN_URL . 'inc/js/lmm_html_shortcode.php?leafletpluginurl='.LEAFLET_PLUGIN_URL; 
+    $link = LEAFLET_PLUGIN_URL . 'inc/js/lmm_html_shortcode.php?leafletpluginurl='.base64_encode(LEAFLET_PLUGIN_URL); 
     wp_register_script('html-dialog', $link);
     wp_enqueue_script('html-dialog');  
     return $plugin_array;
@@ -43,7 +43,7 @@ function lmm_register_button( $buttons ) {
 Register TinyMCE Plugin
 */
 function lmm_add_plugin( $plugin_array ) {
-	$plugin_array['mm_shortcode'] = LEAFLET_PLUGIN_URL . 'inc/js/lmm_tinymce_shortcode.php?leafletpluginurl='.LEAFLET_PLUGIN_URL;
+	$plugin_array['mm_shortcode'] = LEAFLET_PLUGIN_URL . 'inc/js/lmm_tinymce_shortcode.php?leafletpluginurl='.base64_encode(LEAFLET_PLUGIN_URL);
 	return $plugin_array;
 }
 add_action('wp_ajax_get_mm_list',  'get_mm_list');

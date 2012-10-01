@@ -7,7 +7,7 @@ Author URI:        http://www.harm.co.at
 Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
-Tested up to:      3.4.2
+Tested up to:      3.5beta1
 Stable tag:        2.8.2
 License:           GPLv2
 
