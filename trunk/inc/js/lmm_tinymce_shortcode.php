@@ -8,7 +8,7 @@ while(!is_file('wp-load.php')){
 include( 'wp-load.php' );
 $lmm_options = get_option( 'leafletmapsmarker_options' );
 if (!is_multisite()) { $adminurl = admin_url(); } else { $adminurl = get_admin_url(); }
-$LEAFLET_PLUGIN_URL = isset($_GET['leafletpluginurl']) ? $_GET['leafletpluginurl'] : ''; 
+$LEAFLET_PLUGIN_URL = isset($_GET['leafletpluginurl']) ? base64_decode($_GET['leafletpluginurl']) : ''; 
 
 if ( isset($lmm_options['misc_tinymce_button']) && ($lmm_options['misc_tinymce_button'] == 'enabled') ) {
 	echo "
