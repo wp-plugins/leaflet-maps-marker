@@ -115,9 +115,15 @@ if (isset($_GET['layer'])) {
 		$gmaps_base_domain = "&base_domain=" . $lmm_options['google_maps_base_domain_custom'];
 	}
 	if ( is_admin() ) { $gmaps_libraries = '&libraries=places'; } else { $gmaps_libraries =  ''; }
+  	//info: Bing culture code
+	if ($lmm_options['bingmaps_culture'] == 'automatic') {
+		if ( defined('WPLANG') ) { $bing_culture = WPLANG; } else { $bing_culture =  'en_us'; }
+	} else {
+		$bing_culture = $lmm_options['bingmaps_culture'];
+	}
 	$lmm_out .= '<script type="text/javascript">'.PHP_EOL;
 	$lmm_out .= '/* <![CDATA[ */'.PHP_EOL;
-	$lmm_out .= 'var leafletmapsmarker_L10n = {"lmm_zoom_in":"' . __('Zoom in','lmm') . '","lmm_zoom_out":"' . __('Zoom out','lmm') . '","lmm_googlemaps_language":"' . $google_language . '","lmm_googlemaps_libraries":"' . $gmaps_libraries . '","lmm_googlemaps_base_domain":"' . $gmaps_base_domain . '"};'.PHP_EOL;
+	$lmm_out .= 'var leafletmapsmarker_L10n = {"lmm_zoom_in":"' . __('Zoom in','lmm') . '","lmm_zoom_out":"' . __('Zoom out','lmm') . '","lmm_googlemaps_language":"' . $google_language . '","lmm_googlemaps_libraries":"' . $gmaps_libraries . '","lmm_googlemaps_base_domain":"' . $gmaps_base_domain . '","lmm_bing_culture":"' . $bing_culture . '"};'.PHP_EOL;
 	$lmm_out .= '/* ]]> */'.PHP_EOL;
 	$lmm_out .= '</script>'.PHP_EOL;
 	$lmm_out .= '<style>form { margin: 0 ; } </style>'.PHP_EOL; //info: for layer controlbox
@@ -576,9 +582,15 @@ elseif (isset($_GET['marker'])) {
 		$gmaps_base_domain = "&base_domain=" . $lmm_options['google_maps_base_domain_custom'];
 	}
 	if ( is_admin() ) { $gmaps_libraries = '&libraries=places'; } else { $gmaps_libraries =  ''; }
+	//info: Bing culture code
+	if ($lmm_options['bingmaps_culture'] == 'automatic') {
+		if ( defined('WPLANG') ) { $bing_culture = WPLANG; } else { $bing_culture =  'en_us'; }
+	} else {
+		$bing_culture = $lmm_options['bingmaps_culture'];
+	}
 	$lmm_out .= '<script type="text/javascript">'.PHP_EOL;
 	$lmm_out .= '/* <![CDATA[ */'.PHP_EOL;
-	$lmm_out .= 'var leafletmapsmarker_L10n = {"lmm_zoom_in":"' . __('Zoom in','lmm') . '","lmm_zoom_out":"' . __('Zoom out','lmm') . '","lmm_googlemaps_language":"' . $google_language . '","lmm_googlemaps_libraries":"' . $gmaps_libraries . '","lmm_googlemaps_base_domain":"' . $gmaps_base_domain . '"};'.PHP_EOL;
+	$lmm_out .= 'var leafletmapsmarker_L10n = {"lmm_zoom_in":"' . __('Zoom in','lmm') . '","lmm_zoom_out":"' . __('Zoom out','lmm') . '","lmm_googlemaps_language":"' . $google_language . '","lmm_googlemaps_libraries":"' . $gmaps_libraries . '","lmm_googlemaps_base_domain":"' . $gmaps_base_domain . '","lmm_bing_culture":"' . $bing_culture . '"};'.PHP_EOL;
 	$lmm_out .= '/* ]]> */'.PHP_EOL;
 	$lmm_out .= '</script>'.PHP_EOL;
 	$lmm_out .= '<style>form { margin: 0 ; } </style>'.PHP_EOL; //info: for layer controlbox

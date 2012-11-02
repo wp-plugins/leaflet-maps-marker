@@ -17,7 +17,7 @@ jQuery(function($) {
         $('#ed_insertMap, #globe').remove(); 
         var html_active = true;
         if($('#wp-content-wrap').is('.html-active')){
-        $('#wp-content-media-buttons').append('<a title=\'<?php esc_attr_e('Insert map','lmm'); ?>\' id = globe href=#><img src="<?=$LEAFLET_PLUGIN_URL?>inc/img/icon-menu-page.png"></a>');
+        $('#wp-content-media-buttons').append('<a title=\'<?php esc_attr_e('Insert map','lmm'); ?>\' id = globe href=#><img src="<?=$LEAFLET_PLUGIN_URL?>inc/img/icon-tinymce.png"></a>');
         $('#ed_toolbar').append('<input type=button value=\'<?php esc_attr_e('Insert map','lmm'); ?>\' id=ed_insertMap class=ed_button title=\'<?php esc_attr_e('Insert map','lmm'); ?>\' />');
         
         var info = $("<div id=modal-content style='overflow: hidden' />");

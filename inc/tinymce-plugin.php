@@ -69,11 +69,11 @@ function get_mm_list(){
 <html>
 <head>
 	<title><?php _e('Insert map','lmm') ?></title>
-	<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js' ?>'></script>
+	<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js' ?>'></script>
 	<?php 
 	//info: load js if no internet connection available
 	if  (in_array  ('curl', get_loaded_extensions())) {
-		if (!$check = curl_init('http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js')) {
+		if (!$check = curl_init('http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js')) {
 			echo "<script type='text/javascript' src='" . LEAFLET_PLUGIN_URL . "inc/js/jquery_for_tinymce_button.js' ?>'></script>";
 		} 
 	} ?>
@@ -92,8 +92,14 @@ function get_mm_list(){
 </td></tr>
 </table>
 <div id="msb_listContainer">
-	<div id="msb_listHint" style="font-size:11px;"><?php _e('Please select the map you would like to add','lmm'); ?></div>
-	<?php buildMarkersList($marklist); ?>
+	<?php 
+	if ($marklist != NULL) {
+		echo '<div id="msb_listHint">' . __('Please select the map you would like to add','lmm') . '</div>';
+		buildMarkersList($marklist);
+	} else {
+		$no_marker_created_yet = sprintf(__('No map has been created yet. Please <a href="%s" target="_top">click here</a> to add your first one!','lmm'), LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker');
+		echo '<table style="width:100%;border-top: 1px solid #CCCCCC;"><tr><td style="width:55px;">' . $no_marker_created_yet . '</td></tr></table>';
+	} ?>
 </div>
 <input class="button-primary" type="button" href="#" id="msb_insertMarkerSC" value="<?php esc_attr_e('Add shortcode','lmm'); ?>" />       
 <a href="#" class="button-secondary" id="msb_cancel"><?php _e('Cancel','lmm'); ?></a>
