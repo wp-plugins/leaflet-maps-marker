@@ -6,6 +6,90 @@ global $wpdb;
 add_option('leafletmapsmarker_version', 'init');
 add_option('leafletmapsmarker_version_before_update', '0');
 add_option('leafletmapsmarker_redirect', 'true'); //redirect to marker creation page page after first activation only
+
+//info: check and update db-structure for markers and layers table - not done in 'init' as needed for switches between free and pro edition
+	require_once(ABSPATH . 'wp-admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'upgrade.php');
+	//info: create/update marker table
+	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
+	$sql_markers_table = "CREATE TABLE " . $table_name_markers . " (
+		id int(6) unsigned NOT NULL AUTO_INCREMENT,
+		markername varchar(255) NOT NULL,
+		basemap varchar(25) NOT NULL,
+		layer int(6) unsigned NOT NULL,
+		lat decimal(9,6) NOT NULL,
+		lon decimal(9,6) NOT NULL,
+		icon varchar(255) NOT NULL,
+		popuptext text NOT NULL,
+		zoom int(2) NOT NULL,
+		openpopup tinyint(1) NOT NULL,
+		mapwidth int(4) NOT NULL,
+		mapwidthunit varchar(2) NOT NULL,
+		mapheight int(4) NOT NULL,
+		panel tinyint(1) NOT NULL,
+		createdby varchar(30) NOT NULL,
+		createdon datetime NOT NULL,
+		updatedby varchar(30) DEFAULT NULL,
+		updatedon datetime DEFAULT NULL,
+		controlbox int(1) NOT NULL,
+		overlays_custom int(1) NOT NULL,
+		overlays_custom2 int(1) NOT NULL,
+		overlays_custom3 int(1) NOT NULL,
+		overlays_custom4 int(1) NOT NULL,
+		wms tinyint(1) NOT NULL,
+		wms2 tinyint(1) NOT NULL,
+		wms3 tinyint(1) NOT NULL,
+		wms4 tinyint(1) NOT NULL,
+		wms5 tinyint(1) NOT NULL,
+		wms6 tinyint(1) NOT NULL,
+		wms7 tinyint(1) NOT NULL,
+		wms8 tinyint(1) NOT NULL,
+		wms9 tinyint(1) NOT NULL,
+		wms10 tinyint(1) NOT NULL,
+		kml_timestamp datetime DEFAULT NULL,
+		PRIMARY KEY  (id)
+	) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+	dbDelta($sql_markers_table);
+	
+	//info: create/update layer table
+	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
+	$sql_layers_table = "CREATE TABLE " . $table_name_layers . " (
+		id int(6) unsigned NOT NULL AUTO_INCREMENT,
+		name varchar(255) NOT NULL,
+		basemap varchar(25) NOT NULL,
+		layerzoom int(2) NOT NULL,
+		mapwidth int(4) NOT NULL,
+		mapwidthunit varchar(2) NOT NULL,
+		mapheight int(4) NOT NULL,
+		panel tinyint(1) NOT NULL,
+		layerviewlat decimal(9,6) NOT NULL,
+		layerviewlon decimal(9,6) NOT NULL,
+		createdby varchar(30) NOT NULL,
+		createdon datetime NOT NULL,
+		updatedby varchar(30) DEFAULT NULL,
+		updatedon datetime DEFAULT NULL,
+		controlbox int(1) NOT NULL,
+		overlays_custom int(1) NOT NULL,
+		overlays_custom2 int(1) NOT NULL,
+		overlays_custom3 int(1) NOT NULL,
+		overlays_custom4 int(1) NOT NULL,
+		wms tinyint(1) NOT NULL,
+		wms2 tinyint(1) NOT NULL,
+		wms3 tinyint(1) NOT NULL,
+		wms4 tinyint(1) NOT NULL,
+		wms5 tinyint(1) NOT NULL,
+		wms6 tinyint(1) NOT NULL,
+		wms7 tinyint(1) NOT NULL,
+		wms8 tinyint(1) NOT NULL,
+		wms9 tinyint(1) NOT NULL,
+		wms10 tinyint(1) NOT NULL,
+		listmarkers tinyint(1) NOT NULL,
+		multi_layer_map tinyint(1) NOT NULL,
+		multi_layer_map_list varchar(255) DEFAULT NULL,
+		PRIMARY KEY  (id)
+	) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+	dbDelta($sql_layers_table);
+
+//info: begin update routine based on plugin version
 if (get_option('leafletmapsmarker_version') == 'init') {
 	//info: copy map icons to wp-content/uploads
 	WP_Filesystem();
@@ -17,81 +101,20 @@ if (get_option('leafletmapsmarker_version') == 'init') {
 		copy_dir($source, $target, $skip_list = array() );
 		$zipfile = LEAFLET_PLUGIN_ICONS_DIR . DIRECTORY_SEPARATOR . 'mapicons.zip';
 		unzip_file( $zipfile, $target );
+		//info: fallback for hosts where copying zipfile to LEAFLET_PLUGIN_ICON_DIR doesnt work
+		if ( !file_exists(LEAFLET_PLUGIN_ICONS_DIR . DIRECTORY_SEPARATOR . 'information.png') ) {
+			if (class_exists('ZipArchive')) {
+				$zip = new ZipArchive;
+				$res = $zip->open( LEAFLET_PLUGIN_DIR . 'inc' . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR . 'mapicons' . DIRECTORY_SEPARATOR . 'mapicons.zip');
+			    if ($res === TRUE) {
+					$zip->extractTo(LEAFLET_PLUGIN_ICONS_DIR);
+					$zip->close();
+				}		
+			}
+		}
 	}
-	//info: create tables for markers & layers
-	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
-	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-	$sql_create_marker_table = "CREATE TABLE IF NOT EXISTS `" . $table_name_markers . "` (
-		`id` int(6) unsigned NOT NULL auto_increment,
-		`markername` varchar(255) CHARACTER SET utf8 NOT NULL,
-		`basemap` varchar(20) NOT NULL,
-		`layer` int(6) unsigned NOT NULL,
-		`lat` decimal(9,6) NOT NULL,
-		`lon` decimal(9,6) NOT NULL,
-		`icon` varchar(255) CHARACTER SET utf8 NOT NULL,
-		`popuptext` text CHARACTER SET utf8 NOT NULL,
-		`zoom` int(2) NOT NULL,
-		`openpopup` tinyint(1) NOT NULL,
-		`mapwidth` int(4) NOT NULL,
-		`mapwidthunit` varchar(2) NOT NULL,
-		`mapheight` int(4) NOT NULL,
-		`panel` tinyint(1) NOT NULL,
-		`createdby` varchar(30) CHARACTER SET utf8 NOT NULL,
-		`createdon` datetime NOT NULL,
-		`updatedby` varchar(30) CHARACTER SET utf8 NOT NULL,
-		`updatedon` datetime NOT NULL,
-		`controlbox` int(1) NOT NULL,
-		`overlays_custom` int(1) NOT NULL,
-		`overlays_custom2` int(1) NOT NULL,
-		`overlays_custom3` int(1) NOT NULL,
-		`overlays_custom4` int(1) NOT NULL,
-		`wms` int(1) NOT NULL,
-		`wms2` int(1) NOT NULL,
-		`wms3` int(1) NOT NULL,
-		`wms4` int(1) NOT NULL,
-		`wms5` int(1) NOT NULL,
-		`wms6` int(1) NOT NULL,
-		`wms7` int(1) NOT NULL,
-		`wms8` int(1) NOT NULL,
-		`wms9` int(1) NOT NULL,
-		`wms10` int(1) NOT NULL,
-		PRIMARY KEY  (`id`)
-	)  ENGINE=MyISAM  DEFAULT CHARSET=utf8;";
-	$wpdb->query($sql_create_marker_table);
-	$sql_create_layer_table = "CREATE TABLE IF NOT EXISTS `".$table_name_layers."` (
-		`id` int(6) unsigned NOT NULL auto_increment,
-		`name` varchar(255) CHARACTER SET utf8 NOT NULL,
-		`basemap` varchar(20) NOT NULL,
-		`layerzoom` int(2) NOT NULL,
-		`mapwidth` int(4) NOT NULL,
-		`mapwidthunit` varchar(2) NOT NULL,
-		`mapheight` int(4) NOT NULL,
-		`panel` tinyint(1) NOT NULL,
-		`layerviewlat` decimal(9,6) NOT NULL,
-		`layerviewlon` decimal(9,6) NOT NULL,
-		`createdby` varchar(30) CHARACTER SET utf8 NOT NULL,
-		`createdon` datetime NOT NULL,
-		`updatedby` varchar(30) CHARACTER SET utf8 NOT NULL,
-		`updatedon` datetime NOT NULL,
-		`controlbox` int(1) NOT NULL,
-		`overlays_custom` int(1) NOT NULL,
-		`overlays_custom2` int(1) NOT NULL,
-		`overlays_custom3` int(1) NOT NULL,
-		`overlays_custom4` int(1) NOT NULL,
-		`wms` int(1) NOT NULL,
-		`wms2` int(1) NOT NULL,
-		`wms3` int(1) NOT NULL,
-		`wms4` int(1) NOT NULL,
-		`wms5` int(1) NOT NULL,
-		`wms6` int(1) NOT NULL,
-		`wms7` int(1) NOT NULL,
-		`wms8` int(1) NOT NULL,
-		`wms9` int(1) NOT NULL,
-		`wms10` int(1) NOT NULL,
-		PRIMARY KEY  (`id`)
-	) ENGINE=MyISAM  DEFAULT CHARSET=utf8;";
-	$wpdb->query($sql_create_layer_table);
 	//info: insert layer row 0 for markers without assigned layer
+	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 	$sql = "SET SESSION sql_mode=NO_AUTO_VALUE_ON_ZERO;";
 	$wpdb->query($sql);
 	$sql2 = "INSERT INTO `".$table_name_layers."` ( `id`, `name`, `basemap`, `layerzoom`, `mapwidth`, `mapwidthunit`, `mapheight`, `layerviewlat`, `layerviewlon` ) VALUES (0, 'markers not assigned to a layer', 'osm_mapnik', '11', '640', 'px', '480', '', '');";
@@ -160,16 +183,6 @@ if (get_option('leafletmapsmarker_version') == '1.3' ) {
 	update_option('leafletmapsmarker_version', '1.4');
 }
 if (get_option('leafletmapsmarker_version') == '1.4' ) {
-	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
-	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-	$update141_1 = "ALTER TABLE `" . $table_name_markers . "` CHANGE `updatedby` `updatedby` VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL;";
-	$wpdb->query($update141_1);
-	$update141_2 = "ALTER TABLE `" . $table_name_markers . "` CHANGE `updatedon` `updatedon` DATETIME NULL;";
-	$wpdb->query($update141_2);
-	$update141_3 = "ALTER TABLE `" . $table_name_layers . "` CHANGE `updatedby` `updatedby` VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL;";
-	$wpdb->query($update141_3);
-	$update141_4 = "ALTER TABLE `" . $table_name_layers . "` CHANGE `updatedon` `updatedon` DATETIME NULL;";
-	$wpdb->query($update141_4);
 	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
 	if ( $version_before_update === FALSE ) {
 		set_transient( 'leafletmapsmarker_version_before_update', 'deleted-in-1-hour', 60*3 );
@@ -196,14 +209,6 @@ if (get_option('leafletmapsmarker_version') == '1.4.2' ) {
 	update_option('leafletmapsmarker_version', '1.4.3');
 }
 if (get_option('leafletmapsmarker_version') == '1.4.3' ) {
-	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
-	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-	$update15_1 = "ALTER TABLE `" . $table_name_markers . "` CHANGE `wms` `wms` TINYINT( 1 ) NOT NULL, CHANGE `wms2` `wms2` TINYINT( 1 ) NOT NULL, CHANGE `wms3` `wms3` TINYINT( 1 ) NOT NULL, CHANGE `wms4` `wms4` TINYINT( 1 ) NOT NULL, CHANGE `wms5` `wms5` TINYINT( 1 ) NOT NULL, CHANGE `wms6` `wms6` TINYINT( 1 ) NOT NULL, CHANGE `wms7` `wms7` TINYINT( 1 ) NOT NULL, CHANGE `wms8` `wms8` TINYINT( 1 ) NOT NULL, CHANGE `wms9` `wms9` TINYINT( 1 ) NOT NULL, CHANGE `wms10` `wms10` TINYINT( 1 ) NOT NULL;";
-	$wpdb->query($update15_1);
-	$update15_2 = "ALTER TABLE `" . $table_name_layers . "` CHANGE `panel` `panel` TINYINT( 1 ) NOT NULL, CHANGE `wms` `wms` TINYINT( 1 ) NOT NULL, CHANGE `wms2` `wms2` TINYINT( 1 ) NOT NULL, CHANGE `wms3` `wms3` TINYINT( 1 ) NOT NULL, CHANGE `wms4` `wms4` TINYINT( 1 ) NOT NULL, CHANGE `wms5` `wms5` TINYINT( 1 ) NOT NULL, CHANGE `wms6` `wms6` TINYINT( 1 ) NOT NULL, CHANGE `wms7` `wms7` TINYINT( 1 ) NOT NULL, CHANGE `wms8` `wms8` TINYINT( 1 ) NOT NULL, CHANGE `wms9` `wms9` TINYINT( 1 ) NOT NULL, CHANGE `wms10` `wms10` TINYINT( 1 ) NOT NULL;";
-	$wpdb->query($update15_2);
-	$update15_3 = "ALTER TABLE `" . $table_name_layers . "` ADD `listmarkers` TINYINT(1) NOT NULL AFTER `wms10`;";
-	$wpdb->query($update15_3);
 	$save_defaults_for_new_options = new Class_leaflet_options();
 	$save_defaults_for_new_options->save_defaults_for_new_options();
 	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
@@ -232,9 +237,6 @@ if (get_option('leafletmapsmarker_version') == '1.5.1' ) {
 	update_option('leafletmapsmarker_version', '1.6');
 }
 if (get_option('leafletmapsmarker_version') == '1.6' ) {
-	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-	$update17_1 = "ALTER TABLE `" . $table_name_layers . "` ADD `multi_layer_map` TINYINT(1) NOT NULL AFTER `listmarkers`, ADD `multi_layer_map_list` VARCHAR(255) CHARACTER SET utf8 NULL AFTER `multi_layer_map`;";
-	$wpdb->query($update17_1);
 	$save_defaults_for_new_options = new Class_leaflet_options();
 	$save_defaults_for_new_options->save_defaults_for_new_options();
 	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
@@ -245,9 +247,6 @@ if (get_option('leafletmapsmarker_version') == '1.6' ) {
 	update_option('leafletmapsmarker_version', '1.7');
 }
 if (get_option('leafletmapsmarker_version') == '1.7' ) {
-	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
-	$update18_1 = "ALTER TABLE `" . $table_name_markers . "` ADD `kml_timestamp` DATETIME NULL AFTER `wms10`;";
-	$wpdb->query($update18_1);
 	$save_defaults_for_new_options = new Class_leaflet_options();
 	$save_defaults_for_new_options->save_defaults_for_new_options();
 	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
@@ -335,14 +334,10 @@ if (get_option('leafletmapsmarker_version') == '2.4' ) {
 if (get_option('leafletmapsmarker_version') == '2.5' ) {
 	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-	$update26_1 = "ALTER TABLE `" . $table_name_markers . "` CHANGE `basemap` `basemap` VARCHAR( 25 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;";
+	$update26_1 = "UPDATE `" . $table_name_markers . "` SET basemap = 'googleLayer_satellite' WHERE basemap = 'googleLayer_satellit';";
 	$wpdb->query($update26_1);
-	$update26_2 = "ALTER TABLE `" . $table_name_layers . "` CHANGE `basemap` `basemap` VARCHAR( 25 ) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;";
+	$update26_2 = "UPDATE `" . $table_name_layers . "` SET basemap = 'googleLayer_satellite' WHERE basemap = 'googleLayer_satellit';";
 	$wpdb->query($update26_2);
-	$update26_3 = "UPDATE `" . $table_name_markers . "` SET basemap = 'googleLayer_satellite' WHERE basemap = 'googleLayer_satellit';";
-	$wpdb->query($update26_3);
-	$update26_4 = "UPDATE `" . $table_name_layers . "` SET basemap = 'googleLayer_satellite' WHERE basemap = 'googleLayer_satellit';";
-	$wpdb->query($update26_4);
 	$save_defaults_for_new_options = new Class_leaflet_options();
 	$save_defaults_for_new_options->save_defaults_for_new_options();
 	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
@@ -403,6 +398,16 @@ if (get_option('leafletmapsmarker_version') == '2.8.1' ) {
 		update_option('leafletmapsmarker_version_before_update', '2.8.1');
 	}
 	update_option('leafletmapsmarker_version', '2.8.2');
+}
+if (get_option('leafletmapsmarker_version') == '2.8.2' ) {
+	$save_defaults_for_new_options = new Class_leaflet_options();
+	$save_defaults_for_new_options->save_defaults_for_new_options();
+	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
+	if ( $version_before_update === FALSE ) {
+		set_transient( 'leafletmapsmarker_version_before_update', 'deleted-in-1-hour', 60*3 );
+		update_option('leafletmapsmarker_version_before_update', '2.8.2');
+	}
+	update_option('leafletmapsmarker_version', '2.9');
 	update_option('leafletmapsmarker_update_info', 'show');
 	//info: redirect to settings page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 	if (get_option('leafletmapsmarker_redirect') == 'true') 
@@ -414,23 +419,22 @@ if (get_option('leafletmapsmarker_version') == '2.8.1' ) {
 	}
 }
 /* template for plugin updates 
-if (get_option('leafletmapsmarker_version') == '2.8.2' ) {
-	//2do - optional: add code for sql ddl updates
-	//2do - mandatory: if new options in class-leaflet-options.php were added
+if (get_option('leafletmapsmarker_version') == '2.9' ) {
+	//2do - optional: add code for sql updates (no ddl - done by dbdelta!)
+	//2do - mandatory if new options in class-leaflet-options.php were added & update /inc/class-leaflet-options.php update routine
 	$save_defaults_for_new_options = new Class_leaflet_options();
 	$save_defaults_for_new_options->save_defaults_for_new_options();
 	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
 	if ( $version_before_update === FALSE ) {
 		set_transient( 'leafletmapsmarker_version_before_update', 'deleted-in-1-hour', 60*3 );
-		update_option('leafletmapsmarker_version_before_update', '2.8.2');
+		update_option('leafletmapsmarker_version_before_update', '2.9'); //2do - update to version before update
 	}
-	update_option('leafletmapsmarker_version', '2.9');
+	update_option('leafletmapsmarker_version', '3.0');
 	//2do - mandatory: remove update_option('leafletmapsmarker_update_info', 'show'); from last version
 	update_option('leafletmapsmarker_update_info', 'show');
 	//mandatory: move code for redirect-on-first-activation-check to here
 	//2do - mandatory: set $current_version in leaflet-maps-marker.php/install-uninstall-transient & uninstall.php!
 	//2do - mandatory: set current version in leaflet-maps-marker.php / function lmm_install_and_updates()
-	
 }
 */
 ?>

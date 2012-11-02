@@ -371,7 +371,13 @@ echo '<p><a class=\'button-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.
 					//info: display a list of markers
 					$listmarkers_state = ($llistmarkers == 0) ? 'none' : 'block';
 					echo '<div id="lmm-listmarkers" class="lmm-listmarkers" style="display:' . $listmarkers_state . ';">'.PHP_EOL;
-					echo '<table style="width:' . $mapwidth.$mapwidthunit . ';">';
+					//info: set list markers width to be 100% of maps width
+					if ($mapwidthunit == '%') {
+						$layer_marker_list_width = '100%';
+					} else {
+						$layer_marker_list_width = $mapwidth.$mapwidthunit;
+					}
+					echo '<table style="width:' . $layer_marker_list_width . ';">';
 					if (!$isedit) {
 					echo '<tr><td style="border-style:none;width:35px;"><img src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png" /></td>';
 					echo '<td style="border-style:none;"><div style="float:right;"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-car.png" width="14" height="14" class="lmm-panel-api-images" />&nbsp;<img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-fullscreen.png" width="14" height="14" class="lmm-panel-api-images" />&nbsp;<img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-kml.png" width="14" height="14" class="lmm-panel-api-images" /></div><strong>'.__('Markers assigned to this layer will be listed here', 'lmm').'</strong></td></tr>';

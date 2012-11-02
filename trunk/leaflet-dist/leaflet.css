@@ -252,6 +252,7 @@
 	display: none;
 	text-align:left;
 	line-height:normal;
+	margin-bottom:0px; /*RH*/
 	}
 .leaflet-control-layers-expanded .leaflet-control-layers-list {
 	display: block;
