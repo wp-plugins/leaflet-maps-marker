@@ -48,8 +48,4 @@ if (is_plugin_active('bwp-minify/bwp-minify.php') ) {
 		}
 	}
 }
-//info: plugin Contact Form 7 Map Field
-if (is_plugin_active('contact-form-7-map-field/contact-form-7-map-field.php') ) {
-	echo '<p><div class="error" style="padding:10px;"><strong>' . __('Warning: you are using the plugin "Contact Form 7 Map Field" which is incompatible with Leaflet Maps Marker. Please deactivate this plugin if you want to use maps from Leaflet Maps Marker.') . '</strong></div></p>';
-}
 ?>

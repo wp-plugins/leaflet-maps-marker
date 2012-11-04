@@ -101,11 +101,6 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
 		</td><td>
-		added compatibility check for incompatible plugin <a href="http://wordpress.org/extend/plugins/contact-form-7-map-field/" target="_blank">Contact Form 7 Map Field</a>
-		</td></tr>
-		<tr><td>
-		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
-		</td><td>
 		added fallback for installation on hosts where unzip of default marker icons did not work with default method
 		</td></tr>
 		<tr><td>
