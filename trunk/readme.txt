@@ -297,6 +297,7 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
 = v2.9.1 - 05.11.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v2.9.1)
 * CHANGED: improved backend usability
 * CHANGED: refreshed backend design
 * CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
@@ -306,6 +307,7 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 * CHANGED: updated German translation
 
 = v2.9 - 02.11.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v2.9)
 * NEW: new logo and updated [mapsmarker.com](http://www.mapsmarker.com) website
 * NEW: update to [leaflet.js](http://www.leafletjs.com) v0.45 (fixing issues with Internet Explorer 10 and Chrome 23)
 * NEW: revamped settings panel for better usability
