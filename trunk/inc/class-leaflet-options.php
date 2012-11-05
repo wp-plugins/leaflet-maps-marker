@@ -154,11 +154,10 @@ class Class_leaflet_options {
 	 */
 	public function display_page() {
         
-		echo '<div style="float:left;" class="icon32" id="icon-options-general"></div><h3>'.__('Settings','lmm').'</h3><div class="wrap lmmsettings">';
 		if ( isset( $_GET['settings-updated'] ) )
 			echo '<div class="updated fade"><p>' . __( 'Plugin options updated.','lmm' ) . '</p></div>';
 		include(LEAFLET_PLUGIN_DIR . 'inc' . DIRECTORY_SEPARATOR . 'admin-header.php');
-        
+		echo '<h3 style="font-size:23px;margin:0.83em 0 0 0;">'.__('Settings','lmm').'</h3><div class="wrap lmmsettings">';
 		echo '<form action="options.php" method="post">';
 		settings_fields( 'leafletmapsmarker_options' );
 		echo '<div class="ui-tabs tabs-top">
@@ -200,8 +199,9 @@ class Class_leaflet_options {
 		echo '<p class="submit"><input name="Submit" type="submit" class="button-primary" value="' . __( 'Save Changes','lmm' ) . '" /></p>
 		
 	</form>';
-    
-	
+
+	include(LEAFLET_PLUGIN_DIR . 'inc' . DIRECTORY_SEPARATOR . 'admin-footer.php');
+    	
 	echo '<script type="text/javascript">
 		jQuery(document).ready(function($) {
 			var panes = [];';
@@ -7714,7 +7714,7 @@ class Class_leaflet_options {
 		}
 		/* template for plugin updates 
 		//info:  set defaults for options introduced in v3.0
-		if (get_option('leafletmapsmarker_version') == '2.9' )
+		if (get_option('leafletmapsmarker_version') == '2.9.1' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting ) 

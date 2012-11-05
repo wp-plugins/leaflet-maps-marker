@@ -110,7 +110,7 @@ Please let me know which feature you think is missing by adding your ideas at [h
 * Bulgarian (bg_BG) thanks to Andon Ivanov, [http://coffebreak.info](http://coffebreak.info)
 * Catalan (ca) thanks to Vicent Cubells, [http://vcubells.net](http://vcubells.net)
 * Chinese (zh_CN) thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
-* Dutch (nl_NL) thanks to Marijke Metz, [http://www.mergenmetz.nl](http://www.mergenmetz.nl)
+* Dutch (nl_NL) thanks to Marijke Metz, [http://www.mergenmetz.nl](http://www.mergenmetz.nl) and Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
 * English (en_US)
 * French (fr_FR) thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com) and Rodolphe Quiedeville, [http://rodolphe.quiedeville.org/](http://rodolphe.quiedeville.org/)
 * German (de_DE)
@@ -234,6 +234,8 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
+= v2.9.1 =
+improved backend usability and refreshed backend design
 = v2.9 =
 revamped settings panel, new logo and design, WordPress 3.5 compatiblity fixes - see http://www.mapsmarker.com/v2.9 for more details
 = v2.8.2 =
@@ -294,6 +296,15 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v2.9.1 - 05.11.2012 =
+* CHANGED: improved backend usability
+* CHANGED: refreshed backend design
+* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* CHANGED: updated Catalan translation thanks to Vicent Cubells, [http://vcubells.net](http://vcubells.net)
+* CHANGED: updated Polish transation thanks to Tomasz Rudnicki, [http://www.kochambieszczady.pl](http://www.kochambieszczady.pl)
+* CHANGED: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
+* CHANGED: updated German translation
+
 = v2.9 - 02.11.2012 =
 * NEW: new logo and updated [mapsmarker.com](http://www.mapsmarker.com) website
 * NEW: update to [leaflet.js](http://www.leafletjs.com) v0.45 (fixing issues with Internet Explorer 10 and Chrome 23)
@@ -301,7 +312,6 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 * NEW: add support for bing map localization (cultures)
 * NEW: compatibilty check notices are now shown globally on each admin page
 * NEW: added compatibility check for incompatible plugin [Lazy Load]([http://wordpress.org/extend/plugins/lazy-load/)
-* NEW: added compatibility check for incompatible plugin [Contact Form 7 Map Field]([http://wordpress.org/extend/plugins/contact-form-7-map-field/)
 * NEW: added fallback for installation on hosts where unzip of default marker icons did not work with default method
 * CHANGED: show link "add new map" in TinyMCE popup if no maps have been created yet
 * CHANGED: updated Spanish translation thanks to Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)

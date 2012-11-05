@@ -9,7 +9,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 	<?php $lmm_options = get_option( 'leafletmapsmarker_options' ); ?>
 	<?php include('inc' . DIRECTORY_SEPARATOR . 'admin-header.php'); ?>
 	<p>
-	<h3><?php _e('Help','lmm') ?></h3>
+	<h3 style="font-size:23px;"><?php _e('Help','lmm') ?></h3>
 	<p>
 		<?php _e('Do you have questions or issues with Leaflet Maps Marker? Please use the following support channels appropriately.','lmm') ?>
 	</p>
@@ -17,23 +17,22 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 		<li>- <a href="http://www.mapsmarker.com/faq/" target="_blank"><?php _e('FAQ','lmm') ?></a>	<?php _e('(frequently asked questions)','lmm') ?></li>
 		<li>- <a href="http://www.mapsmarker.com/docs/" target="_blank"><?php _e('Documentation','lmm') ?></a></li>
 		<li>- <a href="http://www.mapsmarker.com/docs/changelog/" target="_blank"><?php _e('Changelog','lmm') ?></a></li>
-		<li>- <a href="http://www.mapsmarker.com/ideas/" target="_blank"><?php _e('Ideas','lmm') ?></a> <?php _e('(feature requests)','lmm') ?></li>
 		<li>- <a href="http://wordpress.org/support/plugin/leaflet-maps-marker" target="_blank">WordPress Support Forum</a> <?php _e('(free community support)','lmm') ?></li>
 		<li>- <a href="http://wpquestions.com/affiliates/register/name/robertharm" target="_blank">WP Questions</a>	<?php _e('(paid community support)','lmm') ?></li>
 		<li>- <a href="http://wphelpcenter.com/" target="_blank">WordPress HelpCenter</a> <?php _e('(paid professional support)','lmm') ?></li>
 	</ul>
 	<p>
 		<?php _e('More information on support','lmm') ?>: <a href="http://www.mapsmarker.com/support/" target="_blank">http://www.mapsmarker.com/support</a></p>
-	<h3><?php _e('Licence','lmm') ?></h3>
+	<h3 style="font-size:23px;"><?php _e('Licence','lmm') ?></h3>
 	<p>
 		<?php _e('Good news, this plugin is free for everyone! Since it is released under the GPL2, you can use it free of charge on your personal or commercial blog.<br/>But if you enjoy this plugin, you can thank me and leave a small donation for the time I have spent writing and supporting this plugin.<br/>Please see <a href="http://www.mapsmarker.com/donations" target="_blank">http://www.mapsmarker.com/donations</a> for details.','lmm') ?>
 	</p>
-	<h3><?php _e('Trademarks and copyright','lmm') ?></h3>
+	<h3 style="font-size:23px;"><?php _e('Trademarks and copyright','lmm') ?></h3>
 	<p>
 	MapsMarker<sup style="font-size:75%;">&reg;</sup> - registration pending<br/>
 	Copyright &copy; 2011-2012, Robert Harm, All Rights Reserved
 	</p>
-	<h3><?php _e('Licenses for used libraries, services and images','lmm') ?></h3>
+	<h3 style="font-size:23px;"><?php _e('Licenses for used libraries, services and images','lmm') ?></h3>
 	<ul>
 		<li>- Leaflet by Cloudmade, <a href="http://www.leafletjs.com" target="_blank">http://www.leafletjs.com</a>, Copyright (c) 2010-2012, CloudMade, Vladimir Agafonkin</li>
 		<li>- OpenStreetMap: <a href="http://wiki.openstreetmap.org/wiki/OpenStreetMap_License" target="_blank">OpenStreetMap License</a></li>
@@ -48,7 +47,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 		<li>- Plus-, json-, language- &amp; csv-export-icon from <a href="http://p.yusukekamiyamane.com/" target="_blank">Yusuke Kamiyamane</a>, licence: Creative Commons Attribution (by)</li>
 		<li>- Home-Icon from <a href="http://prothemedesign.com/" target="_blank">Pro Theme Design</a>, licence: Creative Commons Attribution (by)</li>
 	</ul>
-	<h3><?php _e('Translations','lmm') ?></h3>
+	<h3 style="font-size:23px;"><?php _e('Translations','lmm') ?></h3>
 	<p>
 	<?php 
 	$translation_website = '<a href="http://translate.mapsmarker.com/projects/lmm" target="_blank">http://translate.mapsmarker.com/projects/lmm</a>';
@@ -60,7 +59,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 		<li>- Bulgarian (bg_BG) thanks to Andon Ivanov, <a href="http://coffebreak.info" target="_blank">http://coffebreak.info</a></li>
 		<li>- Catalan (ca) by Vicent Cubells, <a href="http://vcubells.net" target="_blank">http://vcubells.net</a></li>
 		<li>- Chinese (zh_CN) by John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a></li>
-		<li>- Dutch (nl_NL) by Marijke Metz, <a href="http://www.mergenmetz.nl" target="_blank">http://www.mergenmetz.nl</a></li>
+		<li>- Dutch (nl_NL) by Marijke Metz, <a href="http://www.mergenmetz.nl" target="_blank">http://www.mergenmetz.nl</a> and Patrick Ruers, <a href="http://www.stationskwartiersittard.nl" target="_blank">http://www.stationskwartiersittard.nl</a></li>
 		<li>- English (en_US) by <a href="http://twitter.com/robertharm" target="_blank">@RobertHarm</a></li>
 		<li>- French (fr_FR) by Vincèn Pujol, <a href="http://www.skivr.com" target="_blank">http://www.skivr.com</a></li>
 		<li>- German (de_DE) by <a href="http://twitter.com/robertharm" target="_blank">@RobertHarm</a></li>
@@ -75,7 +74,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 		<li>- Ukrainian (uk_UK) thanks to Andrexj, <a href="http://all3d.com.ua" target="_blank">http://all3d.com.ua</a></li>
 		<li>- Yiddish (yi) thanks to Raphael Finkel, <a href="http://www.cs.uky.edu/~raphael/yiddish.html" target="_blank">http://www.cs.uky.edu/~raphael/yiddish.html</a></li>
 	</ul>
-	<h3><?php _e('Credits & special thanks','lmm') ?></h3>
+	<h3 style="font-size:23px;"><?php _e('Credits & special thanks','lmm') ?></h3>
 	<ul>
 		<li>- Sindre Wimberger (<a href="http://www.sindre.at" target="_blank">http://www.sindre.at</a>) - bugfixing &amp; geo-consulting</li>
 		<li>- Julia Loew (<a href="http://www.weiderand.net" target="_blank">http://www.weiderand.net</a>) - logo &amp; corporate design</li>
@@ -85,3 +84,4 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 	</ul>
 	</p>
 </div>
+<?php include('inc' . DIRECTORY_SEPARATOR . 'admin-footer.php'); ?>
