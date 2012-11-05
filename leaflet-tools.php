@@ -178,7 +178,7 @@ if (!empty($action)) {
 } else {
 $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE id>0', ARRAY_A);
 ?>
-<h3>Tools</h3>
+<h3 style="font-size:23px;">Tools</h3>
 <?php $nonce= wp_create_nonce('tool-nonce'); ?>
 <form method="post">
 <input type="hidden" name="action" value="mass_assign" />
@@ -708,4 +708,6 @@ $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE 
 	
 </div>
 <!--wrap--> 
-<?php } ?>
+<?php } 
+include('inc' . DIRECTORY_SEPARATOR . 'admin-footer.php');
+?>

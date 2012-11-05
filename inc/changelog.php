@@ -66,6 +66,46 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</td></tr>
 		</table>'.PHP_EOL;
 */
+		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '2.9.1') . '</strong> - ' . __('released on','lmm') . ' 05.11.2012 (<a href="http://www.mapsmarker.com/v2.9.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
+		<table>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		improved backend usability
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		refreshed backend design
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		updated Chinese translation thanks to John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		updated Catalan translation thanks to Vicent Cubells, <a href="http://vcubells.net" target="_blank">http://vcubells.net</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		updated Polish translation thanks to Tomasz Rudnicki, <a href="http://www.kochambieszczady.pl" target="_blank">http://www.kochambieszczady.pl</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		updated Dutch translation thanks to Patrick Ruers, <a href="http://www.stationskwartiersittard.nl" target="_blank">http://www.stationskwartiersittard.nl</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		updated German translation
+		</td></tr>
+		</table>'.PHP_EOL;
+
+	if ( ($lmm_version_old < '2.9' ) ){
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '2.9') . '</strong> - ' . __('released on','lmm') . ' 02.11.2012 (<a href="http://www.mapsmarker.com/v2.9" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -97,11 +137,6 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
 		</td><td>
 		added compatibility check for incompatible plugin <a href="http://wordpress.org/extend/plugins/lazy-load/" target="_blank">Lazy Load</a>
-		</td></tr>
-		<tr><td>
-		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
-		</td><td>
-		added compatibility check for incompatible plugin <a href="http://wordpress.org/extend/plugins/contact-form-7-map-field/" target="_blank">Contact Form 7 Map Field</a>
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
@@ -194,6 +229,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		Compatibility with WordPress 3.5beta2
 		</td></tr>
 		</table>'.PHP_EOL;
+	}
 	if ( ($lmm_version_old < '2.8.2' ) ){
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '2.8.2') . '</strong> - ' . __('released on','lmm') . ' 26.09.2012 (<a href="http://www.mapsmarker.com/v2.8.2" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>

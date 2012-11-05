@@ -4,7 +4,7 @@ Plugin Name: Leaflet Maps Marker &reg;
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, GeoRSS or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, WMTS, geoRSS, location, geo, geo-mashup, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, googlemaps, gmaps, google map, google map short code, google map widget, google maps v3, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, marker icons, layer, multiple markers, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice, widget, bing, bing maps, microsoft, map short code, map widget, kml, cross-browser, fully documented, traffic, bike lanes, map short code, custom marker text, custom marker icons and text
-Version: 2.9
+Version: 2.9.1
 Author: Robert Harm
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
@@ -82,7 +82,11 @@ function __construct() {
 		}
 	}
 	if ( isset($lmm_options['misc_pointers'] ) && ($lmm_options['misc_pointers'] == 'enabled') ) {
-		add_action( 'admin_enqueue_scripts', array( $this, 'lmm_pointer_admin_scripts' ),1001);
+		//info: dont show pointers on new installs
+		$version_before_update = get_option('leafletmapsmarker_version_before_update');
+		if ($version_before_update != '0') {
+			add_action( 'admin_enqueue_scripts', array( $this, 'lmm_pointer_admin_scripts' ),1001);
+		}
 	}
 	if ( is_multisite() ) {
 		add_action('delete_blog', array( &$this,'lmm_delete_multisite_blog' ));
@@ -120,14 +124,8 @@ function __construct() {
   function lmm_pointer_footer_script() {
 	$lmm_version_new = get_option( 'leafletmapsmarker_version' );
 	$version_without_dots = "lmmv" . str_replace('.', '', $lmm_version_new);
-	$install_note = (isset($_GET['display']) ? $_GET['display'] : '');
-	if ( $install_note == NULL) {
-		$pointer_content = '<h3>' . sprintf(__('Leaflet Maps Marker plugin update to v%1s was successful','lmm'), $lmm_version_new) . '</h3>'; 
-		$changelog_url = '<a href="' . admin_url('/admin.php?page=leafletmapsmarker_markers') .'" style="text-decoration:none;">' . __('changelog','lmm') . '</a>';
-	} else {
-		$pointer_content = '<h3>' . __('Leaflet Maps Marker plugin was successfully installed','lmm') . '</h3>'; 
-		$changelog_url = '<a href="http://www.mapsmarker.com/changelog" target="_blank" style="text-decoration:none;">' . __('changelog','lmm') . '</a>';
-	}
+	$pointer_content = '<h3>' . sprintf(__('Leaflet Maps Marker plugin update to v%1s was successful','lmm'), $lmm_version_new) . '</h3>'; 
+	$changelog_url = '<a href="' . admin_url('/admin.php?page=leafletmapsmarker_markers') .'" style="text-decoration:none;">' . __('changelog','lmm') . '</a>';
 	$blogpost_url = '<a href="http://www.mapsmarker.com/v' . $lmm_version_new . '" target="_blank" style="text-decoration:none;">mapsmarker.com</a>';
 	$pointer_content .= '<p>' . sprintf(__('Please see the %1s for new features or the blog post on %2s for more details','lmm'), $changelog_url, $blogpost_url) . '</p>';
   ?>
@@ -423,7 +421,6 @@ function __construct() {
 	$helptext .= '<ul>';
 	$helptext .= '<li><a href="http://www.mapsmarker.com/faq/" target="_blank">' . __('FAQ','lmm') . '</a> (' . __('frequently asked questions','lmm') . ')</li>';
 	$helptext .= '<li><a href="http://www.mapsmarker.com/docs/" target="_blank">' . __('Documentation','lmm') . '</a></li>';
-	$helptext .= '<li><a href="http://www.mapsmarker.com/ideas/" target="_blank">' . __('Ideas','lmm') . '</a> (' . __('feature requests','lmm') . ')</li>';
 	$helptext .= '<li><a href="http://wordpress.org/support/plugin/leaflet-maps-marker" target="_blank">WordPress Support Forum</a> (' . __('free community support','lmm') . ')</li>';
 	$helptext .= '<li><a href="http://wpquestions.com/affiliates/register/name/robertharm" target="_blank">WP Questions</a> (' . __('paid community support','lmm') . ')</li>';
 	$helptext .= '<li><a href="http://wphelpcenter.com/" target="_blank">WordPress HelpCenter</a> (' . __('paid professional support','lmm') . ')</li>';
@@ -558,7 +555,7 @@ function __construct() {
    }   
   function lmm_install_and_updates() {
 	//info: set transient to execute install & update-routine only once a day
-	$current_version = "v29"; //2do - mandatory: change on each update!
+	$current_version = "v291"; //2do - mandatory: change on each update!
 	$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version . '_' . date('d');
 	$install_update_schedule = get_transient( $schedule_transient );
 	if ( $install_update_schedule === FALSE ) {
