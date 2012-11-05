@@ -8,7 +8,7 @@ Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
 Tested up to:      3.5beta2
-Stable tag:        2.9
+Stable tag:        2.9.1
 License:           GPLv2
 
 We are working hard on delivering the best mapping solution available for WordPress - helping you to share your favorite spots
