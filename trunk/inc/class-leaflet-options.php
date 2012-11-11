@@ -22,88 +22,88 @@ class Class_leaflet_options {
 		$this->settings = array();
 		$this->get_settings();
 
-		$this->panes['mapdefaults'] 	= __('Map Defaults','lmm');
-		$this->panes['basemaps'] 		= __('Basemaps','lmm');
-		$this->panes['overlays']		= __('Overlays','lmm');
-		$this->panes['wms']				= __('WMS','lmm');
-		$this->panes['google']			= __('Google Maps','lmm');
-		$this->panes['bing']			= __('Bing Maps','lmm');
-		$this->panes['directions']		= __('Directions','lmm');
-		$this->panes['ar']				= __('Augmented-Reality','lmm');
-		$this->panes['misc']			= __('Misc','lmm');
-		$this->panes['reset']			= __('Reset','lmm');
+		$this->panes['mapdefaults'] 	= esc_attr__('Map Defaults','lmm');
+		$this->panes['basemaps'] 		= esc_attr__('Basemaps','lmm');
+		$this->panes['overlays']		= esc_attr__('Overlays','lmm');
+		$this->panes['wms']				= esc_attr__('WMS','lmm');
+		$this->panes['google']			= esc_attr__('Google Maps','lmm');
+		$this->panes['bing']			= esc_attr__('Bing Maps','lmm');
+		$this->panes['directions']		= esc_attr__('Directions','lmm');
+		$this->panes['ar']				= esc_attr__('Augmented-Reality','lmm');
+		$this->panes['misc']			= esc_attr__('Misc','lmm');
+		$this->panes['reset']			= esc_attr__('Reset','lmm');
 
-		$this->sections['mapdefaults-section1']		= __('Default basemap for new markers/layers','lmm');
-		$this->sections['mapdefaults-section2']		= __('Names for default basemaps','lmm');
-		$this->sections['mapdefaults-section3']		= __('Available basemaps in control box','lmm');
-		$this->sections['mapdefaults-section4']		= __('Default values for new marker maps','lmm');
-		$this->sections['mapdefaults-section5']		= __('Default values for marker icons','lmm');
-		$this->sections['mapdefaults-section6']		= __('Default values for marker popups','lmm');
-		$this->sections['mapdefaults-section7']		= __('Default values for markers added directly','lmm');
-		$this->sections['mapdefaults-section8']		= __('Default values for new layer maps','lmm');
-		$this->sections['mapdefaults-section9']		= __('List marker settings','lmm');
-		$this->sections['mapdefaults-section10']	= __('Interaction options','lmm');
-		$this->sections['mapdefaults-section11']	= __('Keyboard navigation options','lmm');
-		$this->sections['mapdefaults-section12']	= __('Panning inertia options','lmm');
-		$this->sections['mapdefaults-section13']	= __('Control options','lmm');
-		$this->sections['mapdefaults-section14']	= __('Scale control','lmm');
-		$this->sections['mapdefaults-section15']	= __('Retina display detection','lmm');
+		$this->sections['mapdefaults-section1']		= esc_attr__('Default basemap for new markers/layers','lmm');
+		$this->sections['mapdefaults-section2']		= esc_attr__('Names for default basemaps','lmm');
+		$this->sections['mapdefaults-section3']		= esc_attr__('Available basemaps in control box','lmm');
+		$this->sections['mapdefaults-section4']		= esc_attr__('Default values for new marker maps','lmm');
+		$this->sections['mapdefaults-section5']		= esc_attr__('Default values for marker icons','lmm');
+		$this->sections['mapdefaults-section6']		= esc_attr__('Default values for marker popups','lmm');
+		$this->sections['mapdefaults-section7']		= esc_attr__('Default values for markers added directly','lmm');
+		$this->sections['mapdefaults-section8']		= esc_attr__('Default values for new layer maps','lmm');
+		$this->sections['mapdefaults-section9']		= esc_attr__('List marker settings','lmm');
+		$this->sections['mapdefaults-section10']	= esc_attr__('Interaction options','lmm');
+		$this->sections['mapdefaults-section11']	= esc_attr__('Keyboard navigation options','lmm');
+		$this->sections['mapdefaults-section12']	= esc_attr__('Panning inertia options','lmm');
+		$this->sections['mapdefaults-section13']	= esc_attr__('Control options','lmm');
+		$this->sections['mapdefaults-section14']	= esc_attr__('Scale control','lmm');
+		$this->sections['mapdefaults-section15']	= esc_attr__('Retina display detection','lmm');
 	
-		$this->sections['basemaps-section1']		= __('Cloudmade 1 settings','lmm');
-		$this->sections['basemaps-section2']		= __('Cloudmade 2 settings','lmm');
-		$this->sections['basemaps-section3']		= __('Cloudmade 3 settings','lmm');
-		$this->sections['basemaps-section4']		= __('MapBox 1 settings','lmm');
-		$this->sections['basemaps-section5']		= __('MapBox 2 settings','lmm');
-		$this->sections['basemaps-section6']		= __('MapBox 3 settings','lmm');
-		$this->sections['basemaps-section7']		= __('Custom basemap 1 settings','lmm');
-		$this->sections['basemaps-section8']		= __('Custom basemap 2 settings','lmm');
-		$this->sections['basemaps-section9']		= __('Custom basemap 3 settings','lmm');
-		$this->sections['basemaps-section10']		= __('OGD Vienna Selector','lmm');
+		$this->sections['basemaps-section1']		= esc_attr__('Cloudmade 1 settings','lmm');
+		$this->sections['basemaps-section2']		= esc_attr__('Cloudmade 2 settings','lmm');
+		$this->sections['basemaps-section3']		= esc_attr__('Cloudmade 3 settings','lmm');
+		$this->sections['basemaps-section4']		= esc_attr__('MapBox 1 settings','lmm');
+		$this->sections['basemaps-section5']		= esc_attr__('MapBox 2 settings','lmm');
+		$this->sections['basemaps-section6']		= esc_attr__('MapBox 3 settings','lmm');
+		$this->sections['basemaps-section7']		= esc_attr__('Custom basemap 1 settings','lmm');
+		$this->sections['basemaps-section8']		= esc_attr__('Custom basemap 2 settings','lmm');
+		$this->sections['basemaps-section9']		= esc_attr__('Custom basemap 3 settings','lmm');
+		$this->sections['basemaps-section10']		= esc_attr__('OGD Vienna Selector','lmm');
 
-		$this->sections['overlays-section1']		= __('Available overlays for new markers/layers','lmm');
-		$this->sections['overlays-section2']		= __('Custom overlay settings','lmm');
-		$this->sections['overlays-section3']		= __('Custom overlay 2 settings','lmm');
-		$this->sections['overlays-section4']		= __('Custom overlay 3 settings','lmm');
-		$this->sections['overlays-section5']		= __('Custom overlay 4 settings','lmm');
+		$this->sections['overlays-section1']		= esc_attr__('Available overlays for new markers/layers','lmm');
+		$this->sections['overlays-section2']		= esc_attr__('Custom overlay settings','lmm');
+		$this->sections['overlays-section3']		= esc_attr__('Custom overlay 2 settings','lmm');
+		$this->sections['overlays-section4']		= esc_attr__('Custom overlay 3 settings','lmm');
+		$this->sections['overlays-section5']		= esc_attr__('Custom overlay 4 settings','lmm');
 
-		$this->sections['wms-sections1']			= __('Available WMS layers for new markers/layers','lmm');
-		$this->sections['wms-sections2']			= __('WMS layer 1 settings','lmm');
-		$this->sections['wms-sections3']			= __('WMS layer 2 settings','lmm');
-		$this->sections['wms-sections4']			= __('WMS layer 3 settings','lmm');
-		$this->sections['wms-sections5']			= __('WMS layer 4 settings','lmm');
-		$this->sections['wms-sections6']			= __('WMS layer 5 settings','lmm');
-		$this->sections['wms-sections7']			= __('WMS layer 6 settings','lmm');
-		$this->sections['wms-sections8']			= __('WMS layer 7 settings','lmm');
-		$this->sections['wms-sections9']			= __('WMS layer 8 settings','lmm');
-		$this->sections['wms-sections10']			= __('WMS layer 9 settings','lmm');
-		$this->sections['wms-sections11']			= __('WMS layer 10 settings','lmm');
+		$this->sections['wms-sections1']			= esc_attr__('Available WMS layers for new markers/layers','lmm');
+		$this->sections['wms-sections2']			= esc_attr__('WMS layer 1 settings','lmm');
+		$this->sections['wms-sections3']			= esc_attr__('WMS layer 2 settings','lmm');
+		$this->sections['wms-sections4']			= esc_attr__('WMS layer 3 settings','lmm');
+		$this->sections['wms-sections5']			= esc_attr__('WMS layer 4 settings','lmm');
+		$this->sections['wms-sections6']			= esc_attr__('WMS layer 5 settings','lmm');
+		$this->sections['wms-sections7']			= esc_attr__('WMS layer 6 settings','lmm');
+		$this->sections['wms-sections8']			= esc_attr__('WMS layer 7 settings','lmm');
+		$this->sections['wms-sections9']			= esc_attr__('WMS layer 8 settings','lmm');
+		$this->sections['wms-sections10']			= esc_attr__('WMS layer 9 settings','lmm');
+		$this->sections['wms-sections11']			= esc_attr__('WMS layer 10 settings','lmm');
 
-		$this->sections['google-section1']			= __('Google Maps API key','lmm');
-		$this->sections['google-section2']			= __('Google language localization','lmm');
-		$this->sections['google-section3']			= __('Google Maps base domain','lmm');
-		$this->sections['google-section4']			= __('Google Places bounds','lmm');
-		$this->sections['google-section5']			= __('Google Places search prefix','lmm');
+		$this->sections['google-section1']			= esc_attr__('Google Maps API key','lmm');
+		$this->sections['google-section2']			= esc_attr__('Google language localization','lmm');
+		$this->sections['google-section3']			= esc_attr__('Google Maps base domain','lmm');
+		$this->sections['google-section4']			= esc_attr__('Google Places bounds','lmm');
+		$this->sections['google-section5']			= esc_attr__('Google Places search prefix','lmm');
 
-		$this->sections['bing-section1']			= __('Bing Maps API Key','lmm');
-		$this->sections['bing-section2']			= __('Bing Culture Parameter','lmm');
+		$this->sections['bing-section1']			= esc_attr__('Bing Maps API Key','lmm');
+		$this->sections['bing-section2']			= esc_attr__('Bing Culture Parameter','lmm');
 
-		$this->sections['directions-section1']		= __('General directions settings','lmm');
-		$this->sections['directions-section2']		= __('Google Maps directions','lmm');
+		$this->sections['directions-section1']		= esc_attr__('General directions settings','lmm');
+		$this->sections['directions-section2']		= esc_attr__('Google Maps directions','lmm');
 		$this->sections['directions-section3']		= 'yournavigation.org';
 		$this->sections['directions-section4']		= 'map.project-osrm.org';
 		$this->sections['directions-section5']		= 'openrouteservice.org';
 
-		$this->sections['ar-section1']				= __('Wikitude settings','lmm');
+		$this->sections['ar-section1']				= esc_attr__('Wikitude settings','lmm');
 
-		$this->sections['misc-section1']			= __('General settings','lmm');
-		$this->sections['misc-section2']			= __('Language Settings','lmm');
-		$this->sections['misc-section3']			= __('KML settings','lmm');
-		$this->sections['misc-section4']			= __('Available columns for marker listing page','lmm');
-		$this->sections['misc-section5']			= __('Sort order for marker listing page','lmm');
-		$this->sections['misc-section6']			= __('Available columns for layer listing page','lmm');
-		$this->sections['misc-section7']			= __('Sort order for layer listing page','lmm');
+		$this->sections['misc-section1']			= esc_attr__('General settings','lmm');
+		$this->sections['misc-section2']			= esc_attr__('Language Settings','lmm');
+		$this->sections['misc-section3']			= esc_attr__('KML settings','lmm');
+		$this->sections['misc-section4']			= esc_attr__('Available columns for marker listing page','lmm');
+		$this->sections['misc-section5']			= esc_attr__('Sort order for marker listing page','lmm');
+		$this->sections['misc-section6']			= esc_attr__('Available columns for layer listing page','lmm');
+		$this->sections['misc-section7']			= esc_attr__('Sort order for layer listing page','lmm');
 
-		$this->sections['reset-section1']			= __('Reset Settings','lmm');
+		$this->sections['reset-section1']			= esc_attr__('Reset Settings','lmm');
 
 		add_action( 'admin_init', array( &$this, 'register_settings' ) );
 		if ( ! get_option( 'leafletmapsmarker_options' ) )
@@ -2418,7 +2418,7 @@ class Class_leaflet_options {
 			'section' => 'mapdefaults-section15',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => '<div style="height:410px;"></div>',
+			'desc'    => '<div style="height:430px;"></div>',
 			'type'    => 'helptext'
 		);			
 		
@@ -5766,6 +5766,15 @@ class Class_leaflet_options {
 			'std'     => '',
 			'type'    => 'text'
 		);
+		$this->settings['google_maps_api_key_helptext2'] = array(
+			'version' => '2.6',
+			'pane'    => 'google',
+			'section' => 'google-section1',
+			'std'     => '', 
+			'title'   => '',
+			'desc'    => '<div style="height:10px;"></div>',
+			'type'    => 'helptext'
+		);
 		/*
 		* Google language localization
 		* https://spreadsheets.google.com/spreadsheet/pub?key=0Ah0xU81penP1cDlwZHdzYWkyaERNc0xrWHNvTTA1S1E&gid=1
@@ -7714,7 +7723,7 @@ class Class_leaflet_options {
 		}
 		/* template for plugin updates 
 		//info:  set defaults for options introduced in v3.0
-		if (get_option('leafletmapsmarker_version') == '2.9.1' )
+		if (get_option('leafletmapsmarker_version') == '2.9.2' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting ) 
