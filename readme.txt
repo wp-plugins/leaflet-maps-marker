@@ -7,13 +7,15 @@ Author URI:        http://www.harm.co.at
 Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
-Tested up to:      3.5beta2
+Tested up to:      3.5beta3
 Stable tag:        2.9.2
 License:           GPLv2
 
-We are working hard on delivering the best mapping solution available for WordPress - helping you to share your favorite spots
+Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, GeoRSS or Augmented-Reality browsers
 
 == Description ==
+We are working hard on delivering the best mapping solution available for WordPress - helping you to share your favorite spots
+
 Maps Marker allows you to pin, organize and share your favorite spots through your WordPress powered site easily. You can use maps from OpenStreetMap, Google Maps, Google Earth, Bing Maps or custom maps and additionally display your spots in innovative ways like through augmented-reality browsers.
 
 = Mission Statement =
