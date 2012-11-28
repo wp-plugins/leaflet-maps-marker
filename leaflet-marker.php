@@ -14,7 +14,7 @@ $current_editor = $lmm_options['misc_map_editor'];
 $new_editor = isset($_GET['new_editor']) ? $_GET['new_editor'] : '';
 $current_editor_css = ($current_editor == 'simplified') ? 'display:none;' : '';
 //info: needed for backlink on edit switch
-function curPageURL() {
+function lmm_curPageURL() {
 	$pageURL = 'http';
 	if ( ( isset($_SERVER["HTTPS"]) && ($_SERVER["HTTPS"] == "on") ) || ($_SERVER["SERVER_PORT"] == '443') ) { $pageURL .= "s"; }
 		$pageURL .= "://";
@@ -249,10 +249,10 @@ echo '<p><a class=\'button-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.
 		$noncelink = wp_create_nonce('marker-nonce');
 		if ($current_editor == 'simplified') {
 			echo '<div id="editmodeswitch" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<div style="float:right;"><a style="text-decoration:none;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&action=switcheditor&new_editor=advanced&_wpnonce=' . $noncelink . '&back_reload_url=' . curPageURL() . '"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-editorswitch.png" width="24" height="24" alt="Editor-Switch-Icon" style="margin:-2px 0 0 5px;" /></div>' . __('switch to advanced editor','lmm') . '</a></div>';
+			<div style="float:right;"><a style="text-decoration:none;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&action=switcheditor&new_editor=advanced&_wpnonce=' . $noncelink . '&back_reload_url=' . lmm_curPageURL() . '"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-editorswitch.png" width="24" height="24" alt="Editor-Switch-Icon" style="margin:-2px 0 0 5px;" /></div>' . __('switch to advanced editor','lmm') . '</a></div>';
 		} else if ($current_editor == 'advanced') {
 			echo '<div id="editmodeswitch" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<div style="float:right;"><a style="text-decoration:none;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&action=switcheditor&new_editor=simplified&_wpnonce=' . $noncelink . '&back_reload_url=' . curPageURL() . '"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-editorswitch.png" width="24" height="24" alt="Editor-Switch-Icon" style="margin:-2px 0 0 5px;" /></div>' . __('switch to simplified editor','lmm') . '</a></div>';
+			<div style="float:right;"><a style="text-decoration:none;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&action=switcheditor&new_editor=simplified&_wpnonce=' . $noncelink . '&back_reload_url=' . lmm_curPageURL() . '"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-editorswitch.png" width="24" height="24" alt="Editor-Switch-Icon" style="margin:-2px 0 0 5px;" /></div>' . __('switch to simplified editor','lmm') . '</a></div>';
 		} 
 		?>
          <h3 style="font-size:23px;"><?php ($isedit === true) ? _e('Edit marker','lmm') : _e('Add new marker','lmm') ?>
@@ -516,14 +516,17 @@ echo '<p><a class=\'button-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.
 							echo '<div style="text-align:center;float:left;line-height:0px;margin-bottom:3px;"><label for="' . $icon . '"><img src="' . LEAFLET_PLUGIN_ICONS_URL . '/' . $icon . '" width="' . $lmm_options['defaults_marker_icon_iconsize_x'] . '" height="' . $lmm_options['defaults_marker_icon_iconsize_y'] . '" title="' . esc_attr__('filename','lmm') . ': ' . $icon . ', ' . esc_attr__('CSS classname','lmm') . ': lmm_marker_icon_' . $icon .'" alt="' . $icon . '" /></label><br/><input id="' . $icon . '" style="margin:1px 0 0 1px;" onchange="updateicon(this.value);" type="radio" name="icon" value="' . $icon . '" checked="" /></div>';
 							echo '<div id="moreiconslink" style="display:block;margin:15px 0 0 45px;"><a href="javascript:();">' . __('show more icons','lmm') . '</a></div>';
 							echo '<div id="moreicons" style="display:none;">';
-							foreach ($iconlist as $row)
-								echo '<div style="text-align:center;float:left;line-height:0px;margin-bottom:3px;"><label for="'.$row.'"><img src="' . LEAFLET_PLUGIN_ICONS_URL . '/' . $row . '" title="' . esc_attr__('filename','lmm') . ': ' . $row . ', ' . esc_attr__('CSS classname','lmm') . ': lmm_marker_icon_' . substr($row, 0, -4) . '" alt="' . $row . '" width="' . $lmm_options['defaults_marker_icon_iconsize_x'] . '" height="' . $lmm_options['defaults_marker_icon_iconsize_y'] . '" /></label><br/><input id="'.$row.'" style="margin:1px 0 0 1px;" onchange="updateicon(this.value);" type="radio" name="icon" value="'.$row.'"/></div>'; 
+							foreach ($iconlist as $row) {
+								echo '<div style="text-align:center;float:left;line-height:0px;margin-bottom:3px;"><label for="'.$row.'"><img src="' . LEAFLET_PLUGIN_ICONS_URL . '/' . $row . '" title="' . esc_attr__('filename','lmm') . ': ' . $row . ', ' . esc_attr__('CSS classname','lmm') . ': lmm_marker_icon_' . substr($row, 0, -4) . '" alt="' . $row . '" width="' . $lmm_options['defaults_marker_icon_iconsize_x'] . '" height="' . $lmm_options['defaults_marker_icon_iconsize_y'] . '" /></label><br/><input id="'.$row.'" style="margin:1px 0 0 1px;" onchange="updateicon(this.value);" type="radio" name="icon" value="'.$row.'"/></div>';
+							} 
 						} else {
 							echo '<div id="moreiconslink" style="display:block;margin:15px 0 0 45px;"><a href="javascript:();">' . __('show more icons','lmm') . '</a></div>';
 							echo '<div id="moreicons" style="display:none;">';
 							foreach ($iconlist as $row)
 							echo '<div style="text-align:center;float:left;line-height:0px;margin-bottom:3px;"><label for="'.$row.'"><img src="' . LEAFLET_PLUGIN_ICONS_URL . '/' . $row . '" title="' . esc_attr__('filename','lmm') . ': ' . $row . ', ' . esc_attr__('CSS classname','lmm') . ': lmm_marker_icon_' . substr($row, 0, -4) . '" alt="' . $row . '" width="' . $lmm_options['defaults_marker_icon_iconsize_x'] . '" height="' . $lmm_options['defaults_marker_icon_iconsize_y'] . '" /></label><br/><input id="'.$row.'" style="margin:1px 0 0 1px;" onchange="updateicon(this.value);" type="radio" name="icon" value="'.$row.'"'.($row == $icon ? ' checked' : '').'/></div>'; 
 							}
+							echo '<div style="text-align:center;float:left;line-height:0px;margin:23px 10px;" id="showlessicons"><a href="javascript:();">' . __('show less icons','lmm') . '</a></div>';
+
 						echo '</div>';							
 					} else if ($current_editor == 'advanced') {
 							echo '<div style="text-align:center;float:left;line-height:0px;margin-bottom:3px;"><label for="default_icon"><img src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png' . '" width="' . $lmm_options['defaults_marker_icon_iconsize_x'] . '" height="' . $lmm_options['defaults_marker_icon_iconsize_y'] . '" title="' . esc_attr__('filename','lmm') . ': marker.png, ' . esc_attr__('CSS classname','lmm') . ': lmm_marker_icon_default" alt="default.png" /></label><br/><input id="default_icon" style="margin:1px 0 0 1px;" onchange="updateicon(this.value);" type="radio" name="icon" value="" ' . ($icon == NULL ? ' checked' : '') . '/></div>';
@@ -1036,6 +1039,12 @@ var marker,selectlayer,googleLayer_roadmap,googleLayer_satellite,googleLayer_hyb
 			$('#moreiconslink').hide();
 			$('#moreicons').show('fast');
 			$('#mapiconscollection').show('fast');
+	});
+	//info: show less icons on click on simplified editor
+	$('#showlessicons').click(function(e) {
+			$('#moreicons').hide();
+			$('#mapiconscollection').hide();
+			$('#moreiconslink').show('fast');
 	});
 	//info: sets map center to new marker position when entering lat/lon manually
 	$('input:text[name=lat],input:text[name=lon]').blur(function(e) {
