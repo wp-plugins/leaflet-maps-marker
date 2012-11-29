@@ -98,9 +98,12 @@
 .leaflet-popup-pane,
 .leaflet-overlay-pane svg,
 .leaflet-zoom-box,
-.leaflet-image-layer { /* TODO optimize classes */
+.leaflet-image-layer, 
+.leaflet-layer { /* TODO optimize classes */
 	position: absolute;
+	left: 0;
 	}
+	
 .leaflet-container {
 	overflow: hidden;
 	outline: 0;
@@ -253,7 +256,7 @@
 	display: none;
 	text-align:left;
 	line-height:normal;
-	margin-bottom:0px; /*RH*/
+	margin:0px; /*RH*/
 	}
 .leaflet-control-layers-expanded .leaflet-control-layers-list {
 	display: block;
