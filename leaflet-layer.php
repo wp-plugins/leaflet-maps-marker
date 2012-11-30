@@ -147,13 +147,26 @@ if (!empty($action)) {
 			$options_current = get_option( 'leafletmapsmarker_options' );
 			$options_new = array_merge($options_current, $new_options_defaults);
 			update_option( 'leafletmapsmarker_options', $options_new );
-			echo '<p><div class="updated" style="padding:10px;">' . __('You successfully switched to the advanced editor.','lmm') . '</div><a class="button-primary" href="' . $back_reload_url . '">' . __('back to editor','lmm') . '</a></p>';
-		} else if ($new_editor == 'simplified') {//javascript:history.back();
+			//info: fallback to check if editor was changed
+			$current_editor = $lmm_options['misc_map_editor'];
+			$options_new_editor_check = get_option( 'leafletmapsmarker_options' );
+			if ( $options_new_editor_check['misc_map_editor'] == 'advanced') {
+				echo '<p><div class="updated" style="padding:10px;">' . __('You successfully switched to the advanced editor.','lmm') . '</div><a class="button-primary" href="' . $back_reload_url . '">' . __('back to editor','lmm') . '</a></p>';
+			} else {
+				echo '<p><div class="error" style="padding:10px;">' . __('Error: editor could not be changed!<br/>Please navigate to <strong>Settings / Misc / General settings</strong> and change the option <strong>"Map editor to use on backend"</strong> there','lmm') . '</div><a class="button-primary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings">' . __('go to settings','lmm') . '</a></p>';
+			} 
+		} else if ($new_editor == 'simplified') {
 			$new_options_defaults = array('misc_map_editor' => 'simplified');
 			$options_current = get_option( 'leafletmapsmarker_options' );
 			$options_new = array_merge($options_current, $new_options_defaults);
 			update_option( 'leafletmapsmarker_options', $options_new );
-			echo '<p><div class="updated" style="padding:10px;">' . __('You successfully switched to the simplified editor.','lmm') . '</div><a class="button-primary" href="' . $back_reload_url . '">' . __('back to editor','lmm') . '</a></p>';
+			//info: fallback to check if editor was changed
+			$options_new_editor_check = get_option( 'leafletmapsmarker_options' );
+			if ( $options_new_editor_check['misc_map_editor'] == 'simplified') {
+				echo '<p><div class="updated" style="padding:10px;">' . __('You successfully switched to the simplified editor.','lmm') . '</div><a class="button-primary" href="' . $back_reload_url . '">' . __('back to editor','lmm') . '</a></p>';
+			} else {
+				echo '<p><div class="error" style="padding:10px;">' . __('Error: editor could not be changed!<br/>Please navigate to <strong>Settings / Misc / General settings</strong> and change the option <strong>"Map editor to use on backend"</strong> there','lmm') . '</div><a class="button-primary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings">' . __('go to settings','lmm') . '</a></p>';
+			} 
 		}
   }  
 }
