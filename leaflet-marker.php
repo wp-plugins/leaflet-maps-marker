@@ -884,7 +884,7 @@ var marker,selectlayer,googleLayer_roadmap,googleLayer_satellite,googleLayer_hyb
  if ($lmm_options['directions_popuptext_panel'] == 'yes') {
 
 	 $directions_settings_link = ( (current_user_can('activate_plugins')) && ($current_editor == 'advanced') ) ? ' (<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#directions" title="' . esc_attr__('change directions settings','lmm') . '">' . __('Settings','lmm') . '</a>)' : '';
-	 $address = (($address == NULL) ? __('if set, address will be displayed here','lmm') : $address);
+	 $address = (($address == NULL) ? esc_attr__('if set, address will be displayed here','lmm') : $address);
 	 $popuptext_css = ($popuptext != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;" : "";
 	 $popuptext = $popuptext . '<div style="' . $popuptext_css . '">' . $address . ' ';
 
