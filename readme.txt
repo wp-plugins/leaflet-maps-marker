@@ -197,18 +197,18 @@ For demo maps please visit [http://www.mapsmarker.com/demo](http://www.mapsmarke
 01. Frontend: marker map (with open popup and image, basemap: OGD Vienna satellite, overlay: OGD Vienna addresses, controlbox: expanded)
 02. Frontend: layer map (5 marker, different icons, basemap: OpenStreetMap, controlbox: collapsed)
 03. Frontend: map with WMS layer enabled and additional marker
-04. [youtube http://www.youtube.com/watch?v=LXliLaZ4u-E]
-05. Frontend: layer map in Google Earth (via KML export)
-06. Frontend: layer map in Google Maps (via KML export)
-07. Frontend: showing marker in Wikitude (via Augmented-Reality API)
-08. Backend: simplified editor - create maps with an intuitive interface
-09. Backend: advanced editor (optional) - allows you to set all available options
-10. Backend: add/edit layer - allows you to fully customize the layer map (used basemap & overlays, set center, map size, zoom, controlbox status etc).
-11. Backend: markerlist - for easy administration of all your markers
-12. Backend: layerlist - for easy administration of all your layers
-13. Backend: plugin settings page allows you to easily set all necessary settings & restore the defaults if you messed something up
-14. Backend: csv-export of all markers - just copy and paste into your favorite spreadsheet application for use in other applications
-15. Backend: tools section - allows mass-actions more markers (assignements, deletions)
+04. Frontend: layer map in Google Earth (via KML export)
+05. Frontend: layer map in Google Maps (via KML export)
+06. Frontend: showing marker in Wikitude (via Augmented-Reality API)
+07. Backend: simplified editor - create maps with an intuitive interface
+08. Backend: advanced editor (optional) - allows you to set all available options
+09. Backend: add/edit layer - allows you to fully customize the layer map (used basemap & overlays, set center, map size, zoom, controlbox status etc).
+10. Backend: markerlist - for easy administration of all your markers
+11. Backend: layerlist - for easy administration of all your layers
+12. Backend: plugin settings page allows you to easily set all necessary settings & restore the defaults if you messed something up
+13. Backend: csv-export of all markers - just copy and paste into your favorite spreadsheet application for use in other applications
+14. Backend: tools section - allows mass-actions more markers (assignements, deletions)
+15. [youtube http://www.youtube.com/watch?v=LXliLaZ4u-E]
 
 == Other Notes ==
 = Licence =
