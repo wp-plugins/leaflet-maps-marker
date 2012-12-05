@@ -236,7 +236,7 @@
         }
     $lmm_out .= '</div>'.PHP_EOL; //info: <!--end lmm-panel-->
     }
-    $lmm_out .= '<div id="'.$mapname.'"  data-marker="'.$marker.'" style="background:#f6f6f6;border-right:1px solid #ccc;border-left:1px solid #ccc;border-bottom:1px solid #ccc;height:'.$mapheight.'px; overflow:hidden;padding:0;"><p style="font-size:80%;color:#9f9e9e;margin-left:5px;">' . __('loading map - please wait...','lmm') . '</p></div>'. PHP_EOL;
+    $lmm_out .= '<div id="'.$mapname.'"  data-marker="'.$marker.'" style="background:#f6f6f6;border-right:1px solid #ccc;border-left:1px solid #ccc;border-bottom:1px solid #ccc;height:'.$mapheight.'px; overflow:hidden;padding:0;"><p style="font-size:80%;color:#9f9e9e;margin-left:5px;">' . __('loading map - please wait...','lmm') . '<noscript><br/><strong>' . __('Map could not be loaded - please enable Javascript!','lmm') . '</strong><br/><a style="text-decoration:none;" href="http://www.mapsmarker.com/js-disabled" target="_blank">&rarr; ' . __('more information','lmm') . '</a></noscript></p></div>'. PHP_EOL;
     //info: add geo microformats for layer maps
     if (!empty($layer) && empty($marker))
     {
