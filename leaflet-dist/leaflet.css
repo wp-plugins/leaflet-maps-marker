@@ -28,7 +28,10 @@
 .lmm-listmarkers td {
 	vertical-align:middle;
 	margin: 0px !important;
-	padding: 2px !important;
+	padding-top: 5px !important;
+	padding-right: 2px !important;
+	padding-bottom: 5px !important;
+	padding-left: 2px !important;
 	border-bottom: 1px solid #DDDDDD !important;
 	border-top:none !important;
 	border-left:none !important;
@@ -128,11 +131,11 @@
 .leaflet-container img {
 	/* map is broken in FF if you have max-width: 100% on tiles */
 	max-width: none !important; 
-	border:none !important; /*added by RH*/
-	background:no-repeat !important; /*added by RH*/
-	padding:0px !important; /*added by RH*/
-	margin:0px; /*added by RH*/
-	box-shadow:none !important; /*added by RH*/
+	border:none !important; /*added RH*/
+	background:no-repeat !important; /*added RH*/
+	padding:0px !important; /*added RH*/
+	margin:0px; /*added RH*/
+	box-shadow:none !important; /*added RH*/
 	}
 .leaflet-container img.leaflet-image-layer {
     /* stupid Android 2 doesn't understand "max-width: none" properly */
@@ -141,11 +144,12 @@
 .leaflet-objects-pane { z-index: 3; }
 .leaflet-overlay-pane { z-index: 4; }
 .leaflet-shadow-pane { z-index: 5; }
-.leaflet-marker-pane { z-index: 6; }
-.leaflet-popup-pane { z-index: 7; }	
+.leaflet-marker-pane { z-index: 19; } /*changed RH*/
+.leaflet-popup-pane { z-index: 20; } /*changed RH*/	
 .leaflet-tile {
 	filter: inherit;
 	visibility: hidden;
+	z-index: 18; /*added RH*/
 	}
 .leaflet-tile-loaded {
 	visibility: inherit;
@@ -256,7 +260,7 @@
 	display: none;
 	text-align:left;
 	line-height:normal;
-	margin:0px; /*RH*/
+	margin:0px; /*added RH*/
 	}
 .leaflet-control-layers-expanded .leaflet-control-layers-list {
 	display: block;

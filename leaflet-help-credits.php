@@ -59,6 +59,8 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 		<li>- Bulgarian (bg_BG) thanks to Andon Ivanov, <a href="http://coffebreak.info" target="_blank">http://coffebreak.info</a></li>
 		<li>- Catalan (ca) by Vicent Cubells, <a href="http://vcubells.net" target="_blank">http://vcubells.net</a></li>
 		<li>- Chinese (zh_CN) by John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a></li>
+		<li>- Croatian (hr) by Neven Pausic, <a href="http://www.airsoft-hrvatska.com" target="_blank">http://www.airsoft-hrvatska.com</a> and Alan Benic</li>
+		<li>- Danish (da_DK) by Mads Dyrmann Larsen</li>
 		<li>- Dutch (nl_NL) by Marijke Metz, <a href="http://www.mergenmetz.nl" target="_blank">http://www.mergenmetz.nl</a> and Patrick Ruers, <a href="http://www.stationskwartiersittard.nl" target="_blank">http://www.stationskwartiersittard.nl</a></li>
 		<li>- English (en_US) by <a href="http://twitter.com/robertharm" target="_blank">@RobertHarm</a></li>
 		<li>- French (fr_FR) by Vincèn Pujol, <a href="http://www.skivr.com" target="_blank">http://www.skivr.com</a></li>

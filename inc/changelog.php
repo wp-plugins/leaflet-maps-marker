@@ -42,7 +42,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 	$lmm_version_old = get_option( 'leafletmapsmarker_version_before_update' );
 	$lmm_version_new = get_option( 'leafletmapsmarker_version' );
 /*2do: change verion numbers and date in first line on each update and add if ( ($lmm_version_old < 'x.x' ) ){ to old changelog
-		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), 'x.x') . '</strong> - ' . __('released on','lmm') . ' xx.xx.2012 (<a href="http://www.mapsmarker.com/vx.x" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
+		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.1') . '</strong> - ' . __('released on','lmm') . ' xx.12.2012 (<a href="http://www.mapsmarker.com/v3.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
@@ -66,6 +66,121 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</td></tr>
 		</table>'.PHP_EOL;
 */
+		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.1') . '</strong> - ' . __('released on','lmm') . ' 05.12.2012 (<a href="http://www.mapsmarker.com/v3.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
+		<table>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		better performance by loading javascripts in footer and only if shortcode is used
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		changed default custom basemaps for new installs to <a href="http://www.opencyclemap.org/" target="_blank">OpenCycleMaps</a>, <a href="http://maps.stamen.com/#watercolor" target="_blank">Stamen Watercolor</a> and <a href="http://www.thunderforest.com/transport/" target="_blank">Transport Map</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		added option to disable errorTile-images for custom basemaps to better support tools like <a href="http://www.maptiler.org/" target="_blank">maptiler</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		added TMS option to custom overlays to support overlays from tools like <a href="http://www.maptiler.org/" target="_blank">maptiler</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		Croatian translation thanks to Neven Pausic, <a href="http://www.airsoft-hrvatska.com" target="_blank">http://www.airsoft-hrvatska.com</a> and Alan Benic
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		Danish translation thanks to Mads Dyrmann Larsen
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		option to add extra css for list of markers table (to customize the padding for example)
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		added "show less icons" link for simplified editor on marker maps
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		added compatibility check for incompatible plugin <a href="http://wordpress.org/extend/plugins/footer-javascript/" target="_blank">JavaScript to Footer</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		added fallback for installations where editor switch link above tables did not work
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		changed default basemap to OpenStreetMap and removed OGD Vienna selector for usability reasons
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		unchecked custom overlay 1 in setting "Available overlays in control box" - <a href="http://mapsmarker.com/v3.1" target="_blank">action is needed if you changed this!</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		updated Chinese translation thanks to John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		updated Hungarian translation thanks to István Pintér, <a href="http://www.logicit.hu" target="_blank">http://www.logicit.hu</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		updated Italian translation thanks to Luca Barbetti, <a href="http://twitter.com/okibone" target="_blank">http://twitter.com/okibone</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		updated German translation
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		display of markers was broken on RTL (right to left) WordPress sites
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		editor broke with error "Cannot redeclare curpageurl()" on some installations
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		warning messages on WordPress 3.5 when debug is enabled
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		unchecked but active overlays were not shown in layer controlbox on frontend
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		maps on backend were broken when certain translation like Italian were active
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		if all basemaps were available in control box, markers+popups could be hidden
+		</td></tr>
+		</table>'.PHP_EOL;
+
+	if ( ($lmm_version_old < '3.0' ) ){
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.0') . '</strong> - ' . __('released on','lmm') . ' 28.11.2012 (<a href="http://www.mapsmarker.com/v3.0" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -209,6 +324,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		zooming on layer maps on backend was broken on WordPress < v3.3
 		</td></tr>
 		</table>'.PHP_EOL;
+	}
 
 	if ( ($lmm_version_old < '2.9.2' ) ){
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '2.9.2') . '</strong> - ' . __('released on','lmm') . ' 11.11.2012 (<a href="http://www.mapsmarker.com/v2.9.2" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>

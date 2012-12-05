@@ -41,7 +41,7 @@ class Class_leaflet_options {
 		$this->sections['mapdefaults-section6']		= esc_attr__('Default values for marker popups','lmm');
 		$this->sections['mapdefaults-section7']		= esc_attr__('Default values for markers added directly','lmm');
 		$this->sections['mapdefaults-section8']		= esc_attr__('Default values for new layer maps','lmm');
-		$this->sections['mapdefaults-section9']		= esc_attr__('List marker settings','lmm');
+		$this->sections['mapdefaults-section9']		= esc_attr__('List of markers settings','lmm');
 		$this->sections['mapdefaults-section10']	= esc_attr__('Interaction options','lmm');
 		$this->sections['mapdefaults-section11']	= esc_attr__('Keyboard navigation options','lmm');
 		$this->sections['mapdefaults-section12']	= esc_attr__('Panning inertia options','lmm');
@@ -58,7 +58,6 @@ class Class_leaflet_options {
 		$this->sections['basemaps-section7']		= esc_attr__('Custom basemap 1 settings','lmm');
 		$this->sections['basemaps-section8']		= esc_attr__('Custom basemap 2 settings','lmm');
 		$this->sections['basemaps-section9']		= esc_attr__('Custom basemap 3 settings','lmm');
-		$this->sections['basemaps-section10']		= esc_attr__('OGD Vienna Selector','lmm');
 
 		$this->sections['overlays-section1']		= esc_attr__('Available overlays for new markers/layers','lmm');
 		$this->sections['overlays-section2']		= esc_attr__('Custom overlay settings','lmm');
@@ -362,13 +361,13 @@ class Class_leaflet_options {
 			'type'    => 'helptext'
 		);
 		$this->settings['standard_basemap'] = array(
-			'version' => '1.9',
+			'version' => '3.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section1',
 			'title'   => __('Default basemap','lmm'),
 			'desc'    => '',
 			'type'    => 'radio',
-			'std'     => 'ogdwien_basemap',
+			'std'     => 'osm_mapnik',
 			'choices' => array(
 				'osm_mapnik' => __('OpenStreetMap (Mapnik, max zoom 18)','lmm'),
 				'mapquest_osm' => __('MapQuest (OSM, max zoom 18)','lmm'),
@@ -382,9 +381,9 @@ class Class_leaflet_options {
 				'bingroad' => __('Bing Maps (Road)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 				'ogdwien_basemap' => __('OGD Vienna basemap (max zoom 19)','lmm'),
 				'ogdwien_satellite' => __('OGD Vienna satellite (max zoom 19)','lmm'),
-				'cloudmade' => 'Cloudmade',
-				'cloudmade2' => 'Cloudmade 2',
-				'cloudmade3' => 'Cloudmade 3',
+				'cloudmade' => 'Cloudmade - <strong>' . __('API key required!','lmm') . '</strong> <a href="http://www.mapsmarker.com/cloudmade-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'cloudmade2' => 'Cloudmade 2 - <strong>' . __('API key required!','lmm') . '</strong> <a href="http://www.mapsmarker.com/cloudmade-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'cloudmade3' => 'Cloudmade 3 - <strong>' . __('API key required!','lmm') . '</strong> <a href="http://www.mapsmarker.com/cloudmade-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 				'mapbox' => 'MapBox 1',
 				'mapbox2' => 'MapBox 2',
 				'mapbox3' => 'MapBox 3',
@@ -406,21 +405,21 @@ class Class_leaflet_options {
 			'type'    => 'helptext'
 		);
 		$this->settings['default_basemap_name_osm_mapnik'] = array(
-			'version' => '1.0',
+			'version' => '3.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section2',
 			'title'   => 'OpenStreetMap (Mapnik)',
 			'desc'    => '',
-			'std'     => 'OSM Mapnik',
+			'std'     => 'OpenStreetMap',
 			'type'    => 'text'
 		);
 		$this->settings['default_basemap_name_mapquest_osm'] = array(
-			'version' => '1.0',
+			'version' => '3.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section2',
 			'title'   => 'Mapquest',
 			'desc'    => '',
-			'std'     => 'Mapquest OSM',
+			'std'     => 'Mapquest (OSM)',
 			'type'    => 'text'
 		);
 		$this->settings['default_basemap_name_mapquest_aerial'] = array(
@@ -573,7 +572,7 @@ class Class_leaflet_options {
 			'section' => 'mapdefaults-section2',
 			'title'   => __( 'Custom Basemap', 'lmm' ),
 			'desc'    => '',
-			'std'     => 'Custom1',
+			'std'     => 'Open Cycle Map',
 			'type'    => 'text'
 		);		
 		$this->settings['custom_basemap2_name'] = array(
@@ -582,7 +581,7 @@ class Class_leaflet_options {
 			'section' => 'mapdefaults-section2',
 			'title'   => __( 'Custom Basemap 2', 'lmm' ),
 			'desc'    => '',
-			'std'     => 'Custom2',
+			'std'     => 'Stamen Watercolor',
 			'type'    => 'text'
 		);		
 		$this->settings['custom_basemap3_name'] = array(
@@ -591,7 +590,7 @@ class Class_leaflet_options {
 			'section' => 'mapdefaults-section2',
 			'title'   => __( 'Custom Basemap 3', 'lmm' ),
 			'desc'    => '',
-			'std'     => 'Custom3',
+			'std'     => 'Transport Map',
 			'type'    => 'text'
 		);		
 		/*
@@ -697,22 +696,22 @@ class Class_leaflet_options {
 			'std'     => 0 
 		);
 		$this->settings['controlbox_ogdwien_basemap'] = array(
-			'version' => '1.0',
+			'version' => '3.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section3',
 			'title'   => '',
-			'desc'    => __('OGD Vienna basemap','lmm') . '<br/><span class="description">' . __('Info: gets removed from control box automatically if location of marker or layer is outside Vienna','lmm') . '</span>',
+			'desc'    => __('OGD Vienna basemap','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 0 
 		);
 		$this->settings['controlbox_ogdwien_satellite'] = array(
-			'version' => '1.0',
+			'version' => '3.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section3',
 			'title'   => '',
-			'desc'    => __('OGD Vienna satellite','lmm') . '<br/><span class="description">' . __('Info: gets removed from control box automatically if location of marker or layer is outside Vienna','lmm') . '</span>',
+			'desc'    => __('OGD Vienna satellite','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 0 
 		);
 		$this->settings['controlbox_cloudmade'] = array(
 			'version' => '1.6',
@@ -775,7 +774,7 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom basemap','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 1 
 		);	
 		$this->settings['controlbox_custom_basemap2'] = array(
 			'version' => '1.0',
@@ -784,7 +783,7 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom basemap 2','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 1 
 		);	
 		$this->settings['controlbox_custom_basemap3'] = array(
 			'version' => '1.0',
@@ -793,7 +792,7 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom basemap 3','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 1 
 		);	
 		/*
 		* Default values for new marker maps
@@ -888,7 +887,7 @@ class Class_leaflet_options {
 			'std'     => '1',
 			'choices' => array(
 				'0' => __('hidden','lmm'),
-				'1' => __('collapsed (except on mobiles)','lmm'),
+				'1' => __('collapsed','lmm'),
 				'2' => __('expanded','lmm')
 			)
 		);		
@@ -1294,7 +1293,7 @@ class Class_leaflet_options {
 			'section' => 'mapdefaults-section6',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'/inc/img/help-popup.jpg" />',
+			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-popup.jpg" />',
 			'type'    => 'helptext'
 		);
 		$this->settings['defaults_marker_popups_maxwidth'] = array(
@@ -1468,7 +1467,7 @@ class Class_leaflet_options {
 			'std'     => '1',
 			'choices' => array(
 				'0' => __('hidden','lmm'),
-				'1' => __('collapsed (except on mobiles)','lmm'),
+				'1' => __('collapsed','lmm'),
 				'2' => __('expanded','lmm')
 			)
 		);		
@@ -1682,7 +1681,7 @@ class Class_leaflet_options {
 			'std'     => '1',
 			'choices' => array(
 				'0' => __('hidden','lmm'),
-				'1' => __('collapsed (except on mobiles)','lmm'),
+				'1' => __('collapsed','lmm'),
 				'2' => __('expanded','lmm')
 			)
 		);		
@@ -1901,7 +1900,7 @@ class Class_leaflet_options {
 			'std'     => 0 
 		);	
 		/*
-		* List marker settings
+		* List of markers settings
 		*/
 		$this->settings['defaults_layer_listmarkers_helptext'] = array(
 			'version' => '3.0',
@@ -2062,6 +2061,15 @@ class Class_leaflet_options {
 			'type'    => 'checkbox',
 			'std'     => 0 
 		);	
+		$this->settings['defaults_layer_listmarkers_extracss'] = array(
+			'version' => '3.1',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section9',
+			'title'   => __( 'Extra CSS for table cells', 'lmm' ),
+			'desc'    => __( 'example: <strong>padding:20px 0 !important;</strong> increases the default padding between list entries', 'lmm' ),
+			'std'     => '',
+			'type'    => 'text'
+		);
 		/*
 		* Interaction options 
 		* formerly "General map settings" and moved to "Basemaps" from "Misc" tab
@@ -2764,8 +2772,8 @@ class Class_leaflet_options {
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section7',
 			'title'   => __( 'Tiles URL', 'lmm' ),
-			'desc'    => __("For example","lmm"). ": http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png",
-			'std'     => 'http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
+			'desc'    => __("For example","lmm"). ": http://tile.opencyclemap.org/cycle/{z}/{x}/{y}.png",
+			'std'     => 'http://tile.opencyclemap.org/cycle/{z}/{x}/{y}.png',
 			'type'    => 'text'
 		);
 		$this->settings['custom_basemap_attribution'] = array(
@@ -2773,8 +2781,8 @@ class Class_leaflet_options {
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section7',
 			'title'   => __( 'Attribution', 'lmm' ),
-			'desc'    => __("For example","lmm"). ": Copyright ".date('Y')." &lt;a href=&quot;http://xy.com&quot;&gt;Provider X&lt;/a&gt;",
-			'std'     => "Copyright ".date('Y')." <a href=&quot;http://xy.com&quot;>Provider X</a>",
+			'desc'    => __("For example","lmm"). ": &copy; &lt;a href=&quot;http://openstreetmap.org/&quot;&gt;OpenStreetMap contributors&lt;/a&gt; CC-BY-SA",
+			'std'	  => "&copy; <a href=&quot;http://openstreetmap.org/&quot; target=&quot;_blank&quot;>OpenStreetMap contributors</a>, <a href=&quot;http://creativecommons.org/licenses/by-sa/2.0/&quot; target=&quot;_blank&quot;>CC-BY-SA</a>",
 			'type'    => 'text'
 		);
 		$this->settings['custom_basemap_minzoom'] = array(
@@ -2792,7 +2800,7 @@ class Class_leaflet_options {
 			'section' => 'basemaps-section7',
 			'title'   => __( 'Maximum zoom level', 'lmm' ),
 			'desc'    => __('Note: maximum zoom level may vary on your basemap','lmm'),
-			'std'     => '18',
+			'std'     => '17',
 			'type'    => 'text'
 		);		
 		$this->settings['custom_basemap_tms'] = array(
@@ -2815,7 +2823,7 @@ class Class_leaflet_options {
 			'title'   => __('Support for subdomains?','lmm'),
 			'desc'    => __('Will replace {s} from tiles url if available','lmm'),
 			'type'    => 'radio',
-			'std'     => 'yes',
+			'std'     => 'no',
 			'choices' => array(
 				'yes' => __('Yes (please enter subdomains in next form field)','lmm'),
 				'no' => __('No','lmm')
@@ -2826,8 +2834,8 @@ class Class_leaflet_options {
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section7',
 			'title'   => __( 'Subdomain names', 'lmm' ),
-			'desc'    => __('For example','lmm'). ": &quot;otile1&quot;, &quot;otile2&quot;, &quot;otile3&quot;, &quot;otile4&quot;",
-			'std'     => '&quot;otile1&quot;, &quot;otile2&quot;, &quot;otile3&quot;, &quot;otile4&quot;',
+			'desc'    => __('For example','lmm'). ": &quot;a&quot;, &quot;b&quot;, &quot;c&quot;",
+			'std'     => '&quot;a&quot;, &quot;b&quot;, &quot;c&quot;',
 			'type'    => 'text'
 		);		
 		$this->settings['custom_basemap_continuousworld_enabled'] = array(
@@ -2856,6 +2864,19 @@ class Class_leaflet_options {
 				'true' => __('true','lmm')
 			)
 		);
+		$this->settings['custom_basemap_errortileurl'] = array(
+			'version' => '3.1',
+			'pane'    => 'basemaps',
+			'section' => 'basemaps-section7',
+			'title'   => __('Show errorTile-images if map could not be loaded?','lmm'),
+			'desc'    => __('Set to false if you want to use basemaps produced with maptiler for example','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
 		/*
 		* Custom basemap 2 settings
 		*/
@@ -2873,8 +2894,8 @@ class Class_leaflet_options {
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section8',
 			'title'   => __( 'Tiles URL', 'lmm' ),
-			'desc'    => __("For example","lmm"). ": http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png",
-			'std'     => 'http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
+			'desc'    => __("For example","lmm"). ": http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg",
+			'std'     => 'http://tile.stamen.com/watercolor/{z}/{x}/{y}.jpg',
 			'type'    => 'text'
 		);
 		$this->settings['custom_basemap2_attribution'] = array(
@@ -2882,8 +2903,8 @@ class Class_leaflet_options {
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section8',
 			'title'   => __( 'Attribution', 'lmm' ),
-			'desc'    => __("For example","lmm"). ": Copyright ".date('Y')." &lt;a href=&quot;http://xy.com&quot;&gt;Provider X&lt;/a&gt;",
-			'std'     => "Copyright ".date('Y')." <a href=&quot;http://xy.com&quot;>Provider Y</a>",
+			'desc'    => __("For example","lmm"). ":  Map tiles: &lt;a href=&quot;http://stamen.com&quot;&gt;Stamen Design&lt;/a&gt;, &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0&quot;&gt;CC BY 3.0&lt;/a&gt;. Data: &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt;, &lt;a href=&quot;http://creativecommons.org/licenses/by-sa/3.0&quot;&gt;CC BY SA&lt;/a&gt;",
+			'std'     => "Map tiles: <a href=&quot;http://stamen.com&quot; target=&quot;_blank&quot;>Stamen Design</a>, <a href=&quot;http://creativecommons.org/licenses/by/3.0&quot; target=&quot;_blank&quot;>CC BY 3.0</a>. Data: <a href=&quot;http://openstreetmap.org&quot; target=&quot;_blank&quot;>OpenStreetMap</a>, <a href=&quot;http://creativecommons.org/licenses/by-sa/3.0&quot; target=&quot;_blank&quot;>CC BY SA</a>",
 			'type'    => 'text'
 		);
 		$this->settings['custom_basemap2_minzoom'] = array(
@@ -2901,7 +2922,7 @@ class Class_leaflet_options {
 			'section' => 'basemaps-section8',
 			'title'   => __( 'Maximum zoom level', 'lmm' ),
 			'desc'    => __('Note: maximum zoom level may vary on your basemap','lmm'),
-			'std'     => '18',
+			'std'     => '17',
 			'type'    => 'text'
 		);		
 		$this->settings['custom_basemap2_tms'] = array(
@@ -2924,7 +2945,7 @@ class Class_leaflet_options {
 			'title'   => __('Support for subdomains?','lmm'),
 			'desc'    => __('Will replace {s} from tiles url if available','lmm'),
 			'type'    => 'radio',
-			'std'     => 'yes',
+			'std'     => 'no',
 			'choices' => array(
 				'yes' => __('Yes (please enter subdomains in next form field)','lmm'),
 				'no' => __('No','lmm')
@@ -2935,8 +2956,8 @@ class Class_leaflet_options {
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section8',
 			'title'   => __( 'Subdomain names', 'lmm' ),
-			'desc'    => __('For example','lmm'). ": &quot;otile1&quot;, &quot;otile2&quot;, &quot;otile3&quot;, &quot;otile4&quot;",
-			'std'     => '&quot;otile1&quot;, &quot;otile2&quot;, &quot;otile3&quot;, &quot;otile4&quot;',
+			'desc'    => __('For example','lmm'). ": &quot;a&quot;, &quot;b&quot;, &quot;c&quot;",
+			'std'     => '&quot;a&quot;, &quot;b&quot;, &quot;c&quot;',
 			'type'    => 'text'
 		);
 		$this->settings['custom_basemap2_continuousworld_enabled'] = array(
@@ -2965,6 +2986,19 @@ class Class_leaflet_options {
 				'true' => __('true','lmm')
 			)
 		);
+		$this->settings['custom_basemap2_errortileurl'] = array(
+			'version' => '3.1',
+			'pane'    => 'basemaps',
+			'section' => 'basemaps-section8',
+			'title'   => __('Show errorTile-images if map could not be loaded?','lmm'),
+			'desc'    => __('Set to false if you want to use basemaps produced with maptiler for example','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
 		/*
 		* Custom basemap 3 settings
 		*/
@@ -2982,8 +3016,8 @@ class Class_leaflet_options {
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section9',
 			'title'   => __( 'Tiles URL', 'lmm' ),
-			'desc'    => __("For example","lmm"). ": http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png",
-			'std'     => 'http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png',
+			'desc'    => __("For example","lmm"). ": http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png",
+			'std'     => 'http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png',
 			'type'    => 'text'
 		);
 		$this->settings['custom_basemap3_attribution'] = array(
@@ -2991,8 +3025,8 @@ class Class_leaflet_options {
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section9',
 			'title'   => __( 'Attribution', 'lmm' ),
-			'desc'    => __("For example","lmm"). ": Copyright ".date('Y')." &lt;a href=&quot;http://xy.com&quot;&gt;Provider XY&lt;/a&gt;",
-			'std'     => "Copyright ".date('Y')." <a href=&quot;http://xy.com&quot;>Provider Z</a>",
+			'desc'    => __("For example","lmm"). ": &copy Gravitystorm Ltd. &lt;a href=&quot;http://www.thunderforest.com&quot;&gt;Thunderforest&lt;/a&gt;",
+			'std'     => "&copy; Gravitystorm Ltd. <a href=&quot;http://www.thunderforest.com&quot; target=&quot;_blank&quot;>Thunderforest</a>",
 			'type'    => 'text'
 		);
 		$this->settings['custom_basemap3_minzoom'] = array(
@@ -3044,8 +3078,8 @@ class Class_leaflet_options {
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section9',
 			'title'   => __( 'Subdomain names', 'lmm' ),
-			'desc'    => __('For example','lmm'). ": &quot;otile1&quot;, &quot;otile2&quot;, &quot;otile3&quot;, &quot;otile4&quot;",
-			'std'     => '&quot;otile1&quot;, &quot;otile2&quot;, &quot;otile3&quot;, &quot;otile4&quot;',
+			'desc'    => __('For example','lmm'). ": &quot;a&quot;, &quot;b&quot;, &quot;c&quot;",
+			'std'     => '&quot;a&quot;, &quot;b&quot;, &quot;c&quot;',
 			'type'    => 'text'
 		);
 		$this->settings['custom_basemap3_continuousworld_enabled'] = array(
@@ -3073,41 +3107,19 @@ class Class_leaflet_options {
 				'false' => __('false','lmm'),
 				'true' => __('true','lmm')
 			)
-		);		
-		/*
-		* OGD Vienna Selector
-		*/
-		$this->settings['ogdvienna_selector_helptext'] = array(
-			'version' => '1.0',
+		);	
+		$this->settings['custom_basemap3_errortileurl'] = array(
+			'version' => '3.1',
 			'pane'    => 'basemaps',
-			'section' => 'basemaps-section10',
-			'std'     => '', 
-			'title'   => '',
-			'desc'    => __( 'If coordinates within boundaries of Vienna/Austria are selected for a marker or layer, the basemap automatically switches to OGD Vienna basemap and the overlay OGD Vienna addresses gets checked.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-ogdvienna-selector.jpg" />',
-			'type'    => 'helptext'
-		);
-		$this->settings['ogdvienna_selector'] = array(
-			'version' => '1.0',
-			'pane'    => 'basemaps',
-			'section' => 'basemaps-section10',
-			'title'   => __('OGD Vienna Selector','lmm'),
-			'desc'    => '',
+			'section' => 'basemaps-section9',
+			'title'   => __('Show errorTile-images if map could not be loaded?','lmm'),
+			'desc'    => __('Set to false if you want to use basemaps produced with maptiler for example','lmm'),
 			'type'    => 'radio',
-			'std'     => 'ogdwien_basemap',
+			'std'     => 'true',
 			'choices' => array(
-				'ogdwien_basemap' => __('enabled (use OGD Vienna basemap)','lmm'),
-				'ogdwien_satellite' => __('enabled (use OGD Vienna satellite)','lmm'),
-				'disabled' => __('disabled (use default basemap)','lmm')
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
 			)
-		);
-		$this->settings['ogdvienna_selector_addresses'] = array(
-			'version' => '1.0',
-			'pane'    => 'basemaps',
-			'section' => 'basemaps-section10',
-			'title'   => '',
-			'desc'    => __( 'enable OGD Vienna addresses overlay', 'lmm' ),
-			'type'    => 'checkbox',
-			'std'     => 1 
 		);
 			
 		/*===========================================
@@ -3130,13 +3142,13 @@ class Class_leaflet_options {
 			'type'    => 'helptext'
 		);
 		$this->settings['overlays_custom'] = array(
-			'version' => '1.0',
+			'version' => '3.1',
 			'pane'    => 'overlays',
 			'section' => 'overlays-section1',
 			'title'    => __('Available overlays in control box','lmm'),
 			'desc'    => __('Custom overlay','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 0
 		);
 		$this->settings['overlays_custom2'] = array(
 			'version' => '1.0',
@@ -3234,6 +3246,19 @@ class Class_leaflet_options {
 			'std'     => '1.0',
 			'type'    => 'text'
 		);		
+		$this->settings['overlays_custom_tms'] = array(
+			'version' => '3.1',
+			'pane'    => 'overlays',
+			'section' => 'overlays-section2',
+			'title'   => 'tms',
+			'desc'    => __('If true, inverses Y axis numbering for tiles (turn this on for TMS services).','lmm'),
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);		
 		$this->settings['overlays_custom_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'overlays',
@@ -3323,6 +3348,19 @@ class Class_leaflet_options {
 			'std'     => '1.0',
 			'type'    => 'text'
 		);		
+		$this->settings['overlays_custom2_tms'] = array(
+			'version' => '3.1',
+			'pane'    => 'overlays',
+			'section' => 'overlays-section3',
+			'title'   => 'tms',
+			'desc'    => __('If true, inverses Y axis numbering for tiles (turn this on for TMS services).','lmm'),
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);		
 		$this->settings['overlays_custom2_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'overlays',
@@ -3372,7 +3410,7 @@ class Class_leaflet_options {
 			'section' => 'overlays-section4',
 			'title'   => __( 'Tiles URL', 'lmm' ),
 			'desc'    => __("For example","lmm"). ": http://maps.wien.gv.at/wmts/beschriftung/normal/google3857/{z}/{y}/{x}.png",
-			'std'     => 'http://maps.wien.gv.at/wmts/beschriftung/normal/google3857/{z}/{y}/{x}.png',
+			'std'     => 'http://{s}.wien.gv.at/wmts/beschriftung/normal/google3857/{z}/{y}/{x}.png',
 			'type'    => 'text'
 		);
 		$this->settings['overlays_custom3_attribution'] = array(
@@ -3410,6 +3448,19 @@ class Class_leaflet_options {
 			'desc'    => __('The opacity of the tile layer.','lmm'),
 			'std'     => '1.0',
 			'type'    => 'text'
+		);		
+		$this->settings['overlays_custom3_tms'] = array(
+			'version' => '3.1',
+			'pane'    => 'overlays',
+			'section' => 'overlays-section4',
+			'title'   => 'tms',
+			'desc'    => __('If true, inverses Y axis numbering for tiles (turn this on for TMS services).','lmm'),
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
 		);		
 		$this->settings['overlays_custom3_subdomains_enabled'] = array(
 			'version' => '1.0',
@@ -3461,7 +3512,7 @@ class Class_leaflet_options {
 			'section' => 'overlays-section5',
 			'title'   => __( 'Tiles URL', 'lmm' ),
 			'desc'    => __("For example","lmm"). ": http://maps.wien.gv.at/wmts/beschriftung/normal/google3857/{z}/{y}/{x}.png",
-			'std'     => 'http://maps.wien.gv.at/wmts/beschriftung/normal/google3857/{z}/{y}/{x}.png',
+			'std'     => 'http://{s}.wien.gv.at/wmts/beschriftung/normal/google3857/{z}/{y}/{x}.png',
 			'type'    => 'text'
 		);
 		$this->settings['overlays_custom4_attribution'] = array(
@@ -3499,6 +3550,19 @@ class Class_leaflet_options {
 			'desc'    => __('The opacity of the tile layer.','lmm'),
 			'std'     => '1.0',
 			'type'    => 'text'
+		);		
+		$this->settings['overlays_custom4_tms'] = array(
+			'version' => '3.1',
+			'pane'    => 'overlays',
+			'section' => 'overlays-section5',
+			'title'   => 'tms',
+			'desc'    => __('If true, inverses Y axis numbering for tiles (turn this on for TMS services).','lmm'),
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
 		);		
 		$this->settings['overlays_custom4_subdomains_enabled'] = array(
 			'version' => '1.0',
@@ -6545,7 +6609,7 @@ class Class_leaflet_options {
 			'section' => 'ar-section1',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'Markers created with Leaflet Maps Marker can also be displayed via <a href="http://en.wikipedia.org/wiki/Augmented_reality" target="_blank">Augmented-Reality technology</a> on mobile devices. As a first steps, an API to <a href="http://www.wikitude.com" target="_blank">Wikitude</a> has been implemented. APIs to other Augmented-Reality-Providers (like <a href="http://www.layar.com" target="_blank">Layar</a> or <a href="http://www.junaio.de" target="_blank">Junaio</a>) will probably follow in one of the next versions. Sample screenshots:', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'/inc/img/help-wikitude.jpg" />',
+			'desc'    => __( 'Markers created with Leaflet Maps Marker can also be displayed via <a href="http://en.wikipedia.org/wiki/Augmented_reality" target="_blank">Augmented-Reality technology</a> on mobile devices. As a first steps, an API to <a href="http://www.wikitude.com" target="_blank">Wikitude</a> has been implemented. APIs to other Augmented-Reality-Providers (like <a href="http://www.layar.com" target="_blank">Layar</a> or <a href="http://www.junaio.de" target="_blank">Junaio</a>) will probably follow in one of the next versions. Sample screenshots:', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-wikitude.jpg" />',
 			'type'    => 'helptext'
 		);
 		/*
@@ -6809,6 +6873,19 @@ class Class_leaflet_options {
 				'L.CRS.EPSG3395' => __('EPSG:4326 (Mercator), used by some map providers.', 'lmm')
 			)
 		);
+		$this->settings['misc_javascript_header_footer'] = array(
+			'version' => '3.1',
+			'pane'    => 'misc',
+			'section' => 'misc-section1',
+			'title'   => __('Where to insert Javascript files on frontend?','lmm'),
+			'desc'    => __('Footer is recommended for better performance. If you are using WordPress lesser than v3.3, Javascript files automatically get inserted into the header of your site and the javascript needed for each maps inline within the content.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'footer',
+			'choices' => array(
+				'header' => __('header (+ inline javascript)','lmm'),
+				'footer' => __('footer','lmm')
+			)
+		);
 		/*
 		* Language Settings
 		*/
@@ -6834,6 +6911,8 @@ class Class_leaflet_options {
 				'bg_BG' => __('Bulgarian','lmm') . ' (bg_BG)',
 				'ca' => __('Catalan','lmm') . ' (ca)',
 				'zh_CN' => __('Chinese','lmm') . ' (zh_CN)',
+				'hr' => __('Croatian','lmm') . ' (hr)',
+				'da_DK' => __('Danish','lmm') . ' (da_DK)',
 				'nl_NL' => __('Dutch','lmm') . ' (nl_NL)',
 				'en_US' => __('English','lmm') . ' (en_US)',
 				'fr_FR' => __('French','lmm') . ' (fr_FR)',
@@ -7786,7 +7865,6 @@ class Class_leaflet_options {
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
-		/* template for plugin updates 
 		//info:  set defaults for options introduced in v3.1
 		if (get_option('leafletmapsmarker_version') == '3.0' )
 		{
@@ -7794,6 +7872,22 @@ class Class_leaflet_options {
 			foreach ( $this->settings as $id => $setting ) 
 			{
 				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.1')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}
+		/* template for plugin updates 
+		//info:  set defaults for options introduced in v3.2
+		if (get_option('leafletmapsmarker_version') == '3.1' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting ) 
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.2')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}

@@ -147,7 +147,7 @@ if (! wp_verify_nonce($markernonce, 'marker-nonce') ) die('<br/>'.__('Security c
 				echo '<p><div class="error" style="padding:10px;">' . __('Error: editor could not be changed!<br/>Please navigate to <strong>Settings / Misc / General settings</strong> and change the option <strong>"Map editor to use on backend"</strong> there','lmm') . '</div><a class="button-primary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings">' . __('go to settings','lmm') . '</a></p>';
 			} 
 		}
-  }
+  } 
 }
 else {
   //info: get icons list
@@ -628,7 +628,7 @@ echo '<p><a class=\'button-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.
 		</table>
 		
 	<table><tr><td>
-	<input style="font-weight:bold;" type="submit" name="marker" class="submit button-primary" value="<?php ($isedit === true) ? _e('update marker','lmm') : _e('add marker','lmm') ?> &raquo;" />
+	<input style="font-weight:bold;<?php echo $margin_top = ($isedit === false) ? 'margin-top:17px;' : '' ?>" type="submit" name="marker" class="submit button-primary" value="<?php ($isedit === true) ? _e('update marker','lmm') : _e('add marker','lmm') ?> &raquo;" />
 	</form>
 	</td>
 	<?php if ( ($isedit) && (current_user_can( $lmm_options[ 'capabilities_delete' ]) )) { ?>
@@ -700,10 +700,13 @@ var marker,selectlayer,googleLayer_roadmap,googleLayer_satellite,googleLayer_hyb
 	$custom_basemap_subdomains = ((isset($lmm_options[ 'custom_basemap_subdomains_enabled' ]) == TRUE ) && ($lmm_options[ 'custom_basemap_subdomains_enabled' ] == 'yes' )) ? ", subdomains: [" . htmlspecialchars_decode($lmm_options[ 'custom_basemap_subdomains_names' ], ENT_QUOTES) . "]" :  "";
 	$custom_basemap2_subdomains = ((isset($lmm_options[ 'custom_basemap2_subdomains_enabled' ]) == TRUE ) && ($lmm_options[ 'custom_basemap2_subdomains_enabled' ] == 'yes' )) ? ", subdomains: [" . htmlspecialchars_decode($lmm_options[ 'custom_basemap2_subdomains_names' ], ENT_QUOTES) . "]" :  "";
 	$custom_basemap3_subdomains = ((isset($lmm_options[ 'custom_basemap3_subdomains_enabled' ]) == TRUE ) && ($lmm_options[ 'custom_basemap3_subdomains_enabled' ] == 'yes' )) ? ", subdomains: [" . htmlspecialchars_decode($lmm_options[ 'custom_basemap3_subdomains_names' ], ENT_QUOTES) . "]" :  "";
+	$error_tile_url_custom_basemap = ($lmm_options['custom_basemap_errortileurl'] == 'true') ? 'errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'inc/img/error-tile-image.png", ' : '';
+	$error_tile_url_custom_basemap2 = ($lmm_options['custom_basemap2_errortileurl'] == 'true') ? 'errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'inc/img/error-tile-image.png", ' : '';
+	$error_tile_url_custom_basemap3 = ($lmm_options['custom_basemap3_errortileurl'] == 'true') ? 'errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'inc/img/error-tile-image.png", ' : '';
 	?>
-	var custom_basemap = new L.TileLayer("<?php echo $lmm_options[ 'custom_basemap_tileurl' ] ?>", {mmid: 'custom_basemap', maxZoom: <?php echo intval($lmm_options[ 'custom_basemap_maxzoom' ]) ?>, minZoom: <?php echo intval($lmm_options[ 'custom_basemap_minzoom' ]) ?>, tms: <?php echo $lmm_options[ 'custom_basemap_tms' ] ?>, errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>inc/img/error-tile-image.png", attribution: "<?php echo $attrib_custom_basemap; ?>"<?php echo $custom_basemap_subdomains ?>, continuousWorld: <?php echo $lmm_options[ 'custom_basemap_continuousworld_enabled' ] ?>, noWrap: <?php echo $lmm_options[ 'custom_basemap_nowrap_enabled' ] ?>, detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
-	var custom_basemap2 = new L.TileLayer("<?php echo $lmm_options[ 'custom_basemap2_tileurl' ] ?>", {mmid: 'custom_basemap2', maxZoom: <?php echo intval($lmm_options[ 'custom_basemap2_maxzoom' ]) ?>, minZoom: <?php echo intval($lmm_options[ 'custom_basemap2_minzoom' ]) ?>, tms: <?php echo $lmm_options[ 'custom_basemap2_tms' ] ?>, errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>inc/img/error-tile-image.png", attribution: "<?php echo $attrib_custom_basemap2; ?>"<?php echo $custom_basemap2_subdomains ?>, continuousWorld: <?php echo $lmm_options[ 'custom_basemap2_continuousworld_enabled' ] ?>, noWrap: <?php echo $lmm_options[ 'custom_basemap2_nowrap_enabled' ] ?>, detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
-	var custom_basemap3 = new L.TileLayer("<?php echo $lmm_options[ 'custom_basemap3_tileurl' ] ?>", {mmid: 'custom_basemap3', maxZoom: <?php echo intval($lmm_options[ 'custom_basemap3_maxzoom' ]) ?>, minZoom: <?php echo intval($lmm_options[ 'custom_basemap3_minzoom' ]) ?>, tms: <?php echo $lmm_options[ 'custom_basemap3_tms' ] ?>, errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>inc/img/error-tile-image.png", attribution: "<?php echo $attrib_custom_basemap3; ?>"<?php echo $custom_basemap3_subdomains ?>, continuousWorld: <?php echo $lmm_options[ 'custom_basemap3_continuousworld_enabled' ] ?>, noWrap: <?php echo $lmm_options[ 'custom_basemap3_nowrap_enabled' ] ?>, detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
+	var custom_basemap = new L.TileLayer("<?php echo $lmm_options[ 'custom_basemap_tileurl' ] ?>", {mmid: 'custom_basemap', maxZoom: <?php echo intval($lmm_options[ 'custom_basemap_maxzoom' ]) ?>, minZoom: <?php echo intval($lmm_options[ 'custom_basemap_minzoom' ]) ?>, tms: <?php echo $lmm_options[ 'custom_basemap_tms' ] ?>, <?php echo $error_tile_url_custom_basemap; ?>attribution: "<?php echo $attrib_custom_basemap; ?>"<?php echo $custom_basemap_subdomains ?>, continuousWorld: <?php echo $lmm_options[ 'custom_basemap_continuousworld_enabled' ] ?>, noWrap: <?php echo $lmm_options[ 'custom_basemap_nowrap_enabled' ] ?>, detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
+	var custom_basemap2 = new L.TileLayer("<?php echo $lmm_options[ 'custom_basemap2_tileurl' ] ?>", {mmid: 'custom_basemap2', maxZoom: <?php echo intval($lmm_options[ 'custom_basemap2_maxzoom' ]) ?>, minZoom: <?php echo intval($lmm_options[ 'custom_basemap2_minzoom' ]) ?>, tms: <?php echo $lmm_options[ 'custom_basemap2_tms' ] ?>, <?php echo $error_tile_url_custom_basemap; ?>attribution: "<?php echo $attrib_custom_basemap2; ?>"<?php echo $custom_basemap2_subdomains ?>, continuousWorld: <?php echo $lmm_options[ 'custom_basemap2_continuousworld_enabled' ] ?>, noWrap: <?php echo $lmm_options[ 'custom_basemap2_nowrap_enabled' ] ?>, detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
+	var custom_basemap3 = new L.TileLayer("<?php echo $lmm_options[ 'custom_basemap3_tileurl' ] ?>", {mmid: 'custom_basemap3', maxZoom: <?php echo intval($lmm_options[ 'custom_basemap3_maxzoom' ]) ?>, minZoom: <?php echo intval($lmm_options[ 'custom_basemap3_minzoom' ]) ?>, tms: <?php echo $lmm_options[ 'custom_basemap3_tms' ] ?>, <?php echo $error_tile_url_custom_basemap; ?>attribution: "<?php echo $attrib_custom_basemap3; ?>"<?php echo $custom_basemap3_subdomains ?>, continuousWorld: <?php echo $lmm_options[ 'custom_basemap3_continuousworld_enabled' ] ?>, noWrap: <?php echo $lmm_options[ 'custom_basemap3_nowrap_enabled' ] ?>, detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
 	//info: check if subdomains are set for custom overlays
 	<?php 
 	$overlays_custom_subdomains = ((isset($lmm_options[ 'overlays_custom_subdomains_enabled' ]) == TRUE ) && ($lmm_options[ 'overlays_custom_subdomains_enabled' ] == 'yes' )) ? ", subdomains: [" . htmlspecialchars_decode($lmm_options[ 'overlays_custom_subdomains_names' ], ENT_QUOTES) . "]" :  "";
@@ -712,10 +715,10 @@ var marker,selectlayer,googleLayer_roadmap,googleLayer_satellite,googleLayer_hyb
 	$overlays_custom4_subdomains = ((isset($lmm_options[ 'overlays_custom4_subdomains_enabled' ]) == TRUE ) && ($lmm_options[ 'overlays_custom4_subdomains_enabled' ] == 'yes' )) ? ", subdomains: [" . htmlspecialchars_decode($lmm_options[ 'overlays_custom4_subdomains_names' ], ENT_QUOTES) . "]" :  "";
 	?>
 	
-	overlays_custom = new L.TileLayer("<?php echo $lmm_options[ 'overlays_custom_tileurl' ] ?>", {olid: 'overlays_custom', errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>inc/img/error-tile-image.png", attribution: "<?php echo addslashes($lmm_options[ 'overlays_custom_attribution' ]) ?>", opacity: <?php echo floatval($lmm_options[ 'overlays_custom_opacity' ]) ?>, maxZoom: <?php echo intval($lmm_options[ 'overlays_custom_maxzoom' ]) ?>, minZoom: <?php echo intval($lmm_options[ 'overlays_custom_minzoom' ]) ?><?php echo $overlays_custom_subdomains ?>, detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
-	overlays_custom2 = new L.TileLayer("<?php echo $lmm_options[ 'overlays_custom2_tileurl' ] ?>", {olid: 'overlays_custom2', errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>inc/img/error-tile-image.png", attribution: "<?php echo addslashes($lmm_options[ 'overlays_custom2_attribution' ]) ?>", opacity: <?php echo floatval($lmm_options[ 'overlays_custom2_opacity' ]) ?>, maxZoom: <?php echo intval($lmm_options[ 'overlays_custom2_maxzoom' ]) ?>, minZoom: <?php echo intval($lmm_options[ 'overlays_custom2_minzoom' ]) ?><?php echo $overlays_custom2_subdomains ?>, detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
-	overlays_custom3 = new L.TileLayer("<?php echo $lmm_options[ 'overlays_custom3_tileurl' ] ?>", {olid: 'overlays_custom3', errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>inc/img/error-tile-image.png", attribution: "<?php echo addslashes($lmm_options[ 'overlays_custom3_attribution' ]) ?>", opacity: <?php echo floatval($lmm_options[ 'overlays_custom3_opacity' ]) ?>, maxZoom: <?php echo intval($lmm_options[ 'overlays_custom3_maxzoom' ]) ?>, minZoom: <?php echo intval($lmm_options[ 'overlays_custom3_minzoom' ]) ?><?php echo $overlays_custom3_subdomains ?>, detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
-	overlays_custom4 = new L.TileLayer("<?php echo $lmm_options[ 'overlays_custom4_tileurl' ] ?>", {olid: 'overlays_custom4', errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>inc/img/error-tile-image.png", attribution: "<?php echo addslashes($lmm_options[ 'overlays_custom4_attribution' ]) ?>", opacity: <?php echo floatval($lmm_options[ 'overlays_custom4_opacity' ]) ?>, maxZoom: <?php echo intval($lmm_options[ 'overlays_custom4_maxzoom' ]) ?>, minZoom: <?php echo intval($lmm_options[ 'overlays_custom4_minzoom' ]) ?><?php echo $overlays_custom4_subdomains ?>, detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
+	overlays_custom = new L.TileLayer("<?php echo $lmm_options[ 'overlays_custom_tileurl' ] ?>", {olid: 'overlays_custom', tms: <?php echo $lmm_options[ 'overlays_custom_tms' ] ?>, errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>inc/img/error-tile-image.png", attribution: "<?php echo addslashes($lmm_options[ 'overlays_custom_attribution' ]) ?>", opacity: <?php echo floatval($lmm_options[ 'overlays_custom_opacity' ]) ?>, maxZoom: <?php echo intval($lmm_options[ 'overlays_custom_maxzoom' ]) ?>, minZoom: <?php echo intval($lmm_options[ 'overlays_custom_minzoom' ]) ?><?php echo $overlays_custom_subdomains ?>, detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
+	overlays_custom2 = new L.TileLayer("<?php echo $lmm_options[ 'overlays_custom2_tileurl' ] ?>", {olid: 'overlays_custom2', tms: <?php echo $lmm_options[ 'overlays_custom2_tms' ] ?>, errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>inc/img/error-tile-image.png", attribution: "<?php echo addslashes($lmm_options[ 'overlays_custom2_attribution' ]) ?>", opacity: <?php echo floatval($lmm_options[ 'overlays_custom2_opacity' ]) ?>, maxZoom: <?php echo intval($lmm_options[ 'overlays_custom2_maxzoom' ]) ?>, minZoom: <?php echo intval($lmm_options[ 'overlays_custom2_minzoom' ]) ?><?php echo $overlays_custom2_subdomains ?>, detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
+	overlays_custom3 = new L.TileLayer("<?php echo $lmm_options[ 'overlays_custom3_tileurl' ] ?>", {olid: 'overlays_custom3', tms: <?php echo $lmm_options[ 'overlays_custom3_tms' ] ?>, errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>inc/img/error-tile-image.png", attribution: "<?php echo addslashes($lmm_options[ 'overlays_custom3_attribution' ]) ?>", opacity: <?php echo floatval($lmm_options[ 'overlays_custom3_opacity' ]) ?>, maxZoom: <?php echo intval($lmm_options[ 'overlays_custom3_maxzoom' ]) ?>, minZoom: <?php echo intval($lmm_options[ 'overlays_custom3_minzoom' ]) ?><?php echo $overlays_custom3_subdomains ?>, detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
+	overlays_custom4 = new L.TileLayer("<?php echo $lmm_options[ 'overlays_custom4_tileurl' ] ?>", {olid: 'overlays_custom4', tms: <?php echo $lmm_options[ 'overlays_custom4_tms' ] ?>, errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>inc/img/error-tile-image.png", attribution: "<?php echo addslashes($lmm_options[ 'overlays_custom4_attribution' ]) ?>", opacity: <?php echo floatval($lmm_options[ 'overlays_custom4_opacity' ]) ?>, maxZoom: <?php echo intval($lmm_options[ 'overlays_custom4_maxzoom' ]) ?>, minZoom: <?php echo intval($lmm_options[ 'overlays_custom4_minzoom' ]) ?><?php echo $overlays_custom4_subdomains ?>, detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
 	//info: check if subdomains are set for wms layers
 	<?php 
 	$wms_subdomains = ((isset($lmm_options[ 'wms_wms_subdomains_enabled' ]) == TRUE ) && ($lmm_options[ 'wms_wms_subdomains_enabled' ] == 'yes' )) ? ", subdomains: [" . htmlspecialchars_decode($lmm_options[ 'wms_wms_subdomains_names' ], ENT_QUOTES) . "]" :  "";
@@ -781,9 +784,9 @@ var marker,selectlayer,googleLayer_roadmap,googleLayer_satellite,googleLayer_hyb
 			if ( (isset($lmm_options[ 'controlbox_bingroad' ]) == TRUE ) && ($lmm_options[ 'controlbox_bingroad' ] == 1 ) )
 				$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_bingroad' ]) . "': bingroad,";
 		};
-		if (((isset($lmm_options[ 'controlbox_ogdwien_basemap' ]) == TRUE ) && ($lmm_options[ 'controlbox_ogdwien_basemap' ] == 1 )) && ((($lat <= '48.326583')  && ($lat >= '48.114308')) && (($lon <= '16.55056')  && ($lon >= '16.187325')) ))
+		if ( (((isset($lmm_options[ 'controlbox_ogdwien_basemap' ]) == TRUE ) && ($lmm_options[ 'controlbox_ogdwien_basemap' ] == 1 )) && ((($lat <= '48.326583')  && ($lat >= '48.114308')) && (($lon <= '16.55056')  && ($lon >= '16.187325')) )) || ($basemap == 'ogdwien_basemap') )
 			$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_ogdwien_basemap' ]) . "': ogdwien_basemap,";
-		if (((isset($lmm_options[ 'controlbox_ogdwien_satellite' ]) == TRUE ) && ($lmm_options[ 'controlbox_ogdwien_satellite' ] == 1 )) && ((($lat <= '48.326583')  && ($lat >= '48.114308')) && (($lon <= '16.55056')  && ($lon >= '16.187325')) ))
+		if ( (((isset($lmm_options[ 'controlbox_ogdwien_satellite' ]) == TRUE ) && ($lmm_options[ 'controlbox_ogdwien_satellite' ] == 1 )) && ((($lat <= '48.326583')  && ($lat >= '48.114308')) && (($lon <= '16.55056')  && ($lon >= '16.187325')) )) || ($basemap == 'ogdwien_satellite') )
 			$basemaps_available .= "'" . addslashes($lmm_options[ 'default_basemap_name_ogdwien_satellite' ]) . "': ogdwien_satellite,";
 		if ( (isset($lmm_options[ 'controlbox_cloudmade' ]) == TRUE ) && ($lmm_options[ 'controlbox_cloudmade' ] == 1 ) )
 			$basemaps_available .= "'".addslashes($lmm_options[ 'cloudmade_name' ])."': cloudmade,";
@@ -808,17 +811,17 @@ var marker,selectlayer,googleLayer_roadmap,googleLayer_satellite,googleLayer_hyb
 	?>
 	},
 	
-	//info: controlbox - define custom overlays 
+	//info: controlbox - add available overlays
 	{
 	<?php 
-		$overlays_custom_available = "";
-		if ( (isset($lmm_options[ 'overlays_custom' ] ) == TRUE ) && ( $lmm_options[ 'overlays_custom' ] == 1 ) )
+		$overlays_custom_available = '';
+		if ( ((isset($lmm_options[ 'overlays_custom' ] ) == TRUE ) && ( $lmm_options[ 'overlays_custom' ] == 1 )) || ($overlays_custom == 1) )
 			$overlays_custom_available .= "'".addslashes($lmm_options[ 'overlays_custom_name' ])."': overlays_custom,";
-		if ( (isset($lmm_options[ 'overlays_custom2' ] ) == TRUE ) && ( $lmm_options[ 'overlays_custom2' ] == 1 ) )
+		if ( ((isset($lmm_options[ 'overlays_custom2' ] ) == TRUE ) && ( $lmm_options[ 'overlays_custom2' ] == 1 )) || ($overlays_custom2 == 1) )
 			$overlays_custom_available .= "'".addslashes($lmm_options[ 'overlays_custom2_name' ])."': overlays_custom2,";
-		if ( (isset($lmm_options[ 'overlays_custom3' ] ) == TRUE ) && ( $lmm_options[ 'overlays_custom3' ] == 1 ) )
+		if ( ((isset($lmm_options[ 'overlays_custom3' ] ) == TRUE ) && ( $lmm_options[ 'overlays_custom3' ] == 1 )) || ($overlays_custom3 == 1) )
 			$overlays_custom_available .= "'".addslashes($lmm_options[ 'overlays_custom3_name' ])."': overlays_custom3,";
-		if ( (isset($lmm_options[ 'overlays_custom4' ] ) == TRUE ) && ( $lmm_options[ 'overlays_custom4' ] == 1 ) )
+		if ( ((isset($lmm_options[ 'overlays_custom4' ] ) == TRUE ) && ( $lmm_options[ 'overlays_custom4' ] == 1 )) || ($overlays_custom4 == 1) )
 			$overlays_custom_available .= "'".addslashes($lmm_options[ 'overlays_custom4_name' ])."': overlays_custom4,";
 		//info: needed for IE7 compatibility
 		echo substr($overlays_custom_available, 0, -1);
@@ -864,7 +867,6 @@ var marker,selectlayer,googleLayer_roadmap,googleLayer_satellite,googleLayer_hyb
 			echo ".addLayer(wms10)";
 	?>
   .addControl(layersControl);
- 
   //info: add scale control
   <?php if ( $lmm_options['map_scale_control'] == 'enabled' ) { ?>
   L.control.scale({position:'<?php echo $lmm_options['map_scale_control_position'] ?>', maxWidth: <?php echo intval($lmm_options['map_scale_control_maxwidth']) ?>, metric: <?php echo $lmm_options['map_scale_control_metric'] ?>, imperial: <?php echo $lmm_options['map_scale_control_imperial'] ?>, updateWhenIdle: <?php echo $lmm_options['map_scale_control_updatewhenidle'] ?>}).addTo(selectlayer);
@@ -879,12 +881,11 @@ var marker,selectlayer,googleLayer_roadmap,googleLayer_satellite,googleLayer_hyb
   marker.options.clickable = false;
   <?php }?>
   selectlayer.addLayer(marker);
-  
  <?php 
  if ($lmm_options['directions_popuptext_panel'] == 'yes') {
 
 	 $directions_settings_link = ( (current_user_can('activate_plugins')) && ($current_editor == 'advanced') ) ? ' (<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#directions" title="' . esc_attr__('change directions settings','lmm') . '">' . __('Settings','lmm') . '</a>)' : '';
-	 $address = (($address == NULL) ? __('if set, address will be displayed here','lmm') : $address);
+	 $address = (($address == NULL) ? esc_attr__('if set, address will be displayed here','lmm') : $address);
 	 $popuptext_css = ($popuptext != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;" : "";
 	 $popuptext = $popuptext . '<div style="' . $popuptext_css . '">' . $address . ' ';
 
@@ -913,34 +914,6 @@ var marker,selectlayer,googleLayer_roadmap,googleLayer_satellite,googleLayer_hyb
  }
  ?>
   marker.bindPopup('<?php echo preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$popuptext) ?>',{maxWidth: <?php echo intval($lmm_options['defaults_marker_popups_maxwidth']) ?>, minWidth: <?php echo intval($lmm_options['defaults_marker_popups_minwidth']) ?>, maxHeight: <?php echo intval($lmm_options['defaults_marker_popups_maxheight']) ?>, autoPan: <?php echo $lmm_options['defaults_marker_popups_autopan'] ?>, closeButton: <?php echo $lmm_options['defaults_marker_popups_closebutton'] ?>, autoPanPadding: new L.Point(<?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_x']) ?>, <?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_y']) ?>)})<?php  if ($openpopup == 1) { echo '.openPopup()'; } ?>;
-  <?php if ($lmm_options[ 'ogdvienna_selector' ] != 'disabled') { ?>
-  //info: set OGD Vienna basemap if position between 48.321560/16.182175 and 48.116142/16.579056
-  selectlayer.on('click', function(e) 
-  {
-		if( ('<?php echo $basemap ?>' != 'ogdwien_basemap') && ('<?php echo $basemap ?>' != 'ogdwien_satellite') && (e.latlng.lat.toFixed(6) <= 48.321560) && (e.latlng.lat.toFixed(6) >= 48.116142) && (e.latlng.lng.toFixed(6) >= 16.182175) && (e.latlng.lng.toFixed(6) <= 16.579056) ) 
-		{
-			selectlayer.attributionControl._attributions = [];
-			selectlayer.removeControl(layersControl).addLayer(<?php echo $lmm_options[ 'ogdvienna_selector' ] ?>);
-				<?php if ( (isset($lmm_options[ 'ogdvienna_selector_addresses' ]) == TRUE) && ($lmm_options[ 'ogdvienna_selector_addresses' ] == 1) ) { ?>
-				selectlayer.addLayer(overlays_custom);
-				<?php }?>
-			selectlayer.addControl(layersControl);
-		}
-  });
-  //info: set basemap back to OSM if marker outside of Vienna boundaries
-  selectlayer.on('click', function(e) 
-  {
-		if( ((e.latlng.lat.toFixed(6) > 48.321560) || (e.latlng.lat.toFixed(6) < 48.116142) || (e.latlng.lng.toFixed(6) < 16.182175) || (e.latlng.lng.toFixed(6) > 16.579056)) && (('<?php echo $basemap ?>' == 'ogdwien_basemap') || ('<?php echo $basemap ?>' == 'ogdwien_satellite')) ) 
-		{
-			selectlayer.attributionControl._attributions = [];
-			selectlayer.removeLayer(<?php if ($lmm_options[ 'ogdvienna_selector' ] == 'ogdwien_basemap') { echo 'ogdwien_basemap'; } else { echo 'ogdwien_satellite'; }?>);
-			selectlayer.removeControl(layersControl);
-			selectlayer.addLayer(<?php if ( ($lmm_options[ 'standard_basemap' ] == 'ogdwien_basemap') || ($lmm_options[ 'standard_basemap' ] == 'ogdwien_satellite') ) { echo 'osm_mapnik'; } else { echo $lmm_options[ 'standard_basemap' ]; } ?>);
-			selectlayer.removeLayer(overlays_custom);
-			selectlayer.addControl(layersControl);
-		}
-  });
-  <?php } ?>
   //info: load wms layer when checkbox gets checked
 	$('#wmscheckboxes input:checkbox').click(function(el) {
 		if(el.target.checked) {
@@ -1104,27 +1077,6 @@ gLoader = function(){
 			document.getElementById('lon').value = place.geometry.location.lng().toFixed(6);
 			<?php if ($popuptext != NULL) { ?>
 			marker.bindPopup('<?php echo preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$popuptext) ?>',{maxWidth: <?php echo intval($lmm_options['defaults_marker_popups_maxwidth']) ?>, minWidth: <?php echo intval($lmm_options['defaults_marker_popups_minwidth']) ?>, maxHeight: <?php echo intval($lmm_options['defaults_marker_popups_maxheight']) ?>, autoPan: <?php echo $lmm_options['defaults_marker_popups_autopan'] ?>, closeButton: <?php echo $lmm_options['defaults_marker_popups_closebutton'] ?>, autoPanPadding: new L.Point(<?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_x']) ?>, <?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_y']) ?>)})<?php  if ($openpopup == 1) { echo '.openPopup()'; } ?>;
-			<?php }?>
-			<?php if ($lmm_options[ 'ogdvienna_selector' ] != 'disabled') { ?>
-			//info: set OGD Vienna basemap if position between 48.321560/16.182175 and 48.116142/16.579056
-			if ( ('<?php echo $basemap ?>' != 'ogdwien_basemap') && ('<?php echo $basemap ?>' != 'ogdwien_satellite') && (place.geometry.location.lat().toFixed(6) <= 48.321560) && (place.geometry.location.lat().toFixed(6) >= 48.116142) && (place.geometry.location.lng().toFixed(6) >= 16.182175) && (place.geometry.location.lng().toFixed(6) <= 16.579056) ) {
-			selectlayer.attributionControl._attributions = [];
-			selectlayer.removeControl(layersControl).addLayer(<?php echo $lmm_options[ 'ogdvienna_selector' ] ?>);
-			<?php if ( (isset($lmm_options[ 'ogdvienna_selector_addresses' ]) == TRUE) && ($lmm_options[ 'ogdvienna_selector_addresses' ] == 1) ) { ?>
-				selectlayer.addLayer(overlays_custom);
-			<?php }?>
-			selectlayer.addControl(layersControl);
-			}
-			//info: set basemap back to OSM if marker outside of Vienna boundaries (Google autocomplete)
-			if( ((place.geometry.location.lat().toFixed(6) > 48.321560) || (place.geometry.location.lat().toFixed(6) < 48.116142) || (place.geometry.location.lng().toFixed(6) < 16.182175) || (place.geometry.location.lng().toFixed(6) > 16.579056)) && (('<?php echo $basemap ?>' == 'ogdwien_basemap') || ('<?php echo $basemap ?>' == 'ogdwien_satellite')) ) 
-			{
-				selectlayer.attributionControl._attributions = [];
-				selectlayer.removeLayer(<?php if ($lmm_options[ 'ogdvienna_selector' ] == 'ogdwien_basemap') { echo 'ogdwien_basemap'; } else { echo 'ogdwien_satellite'; }?>);
-				selectlayer.removeControl(layersControl);
-				selectlayer.addLayer(<?php if ( ($lmm_options[ 'standard_basemap' ] == 'ogdwien_basemap') || ($lmm_options[ 'standard_basemap' ] == 'ogdwien_satellite') ) { echo 'osm_mapnik'; } else { echo $lmm_options[ 'standard_basemap' ]; } ?>);
-				selectlayer.removeLayer(overlays_custom);
-				selectlayer.addControl(layersControl);					
-			}
 			<?php }?>
 		 });
 		var input = document.getElementById('address');

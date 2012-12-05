@@ -93,6 +93,7 @@ to the visitors of your website.
 
 = Technical details =
 * Wordpress Multisite compatibility
+* Full RTL (Right-to-Left) Language Support
 * plugin was successfully tested to ÖNORM 7700 and OWASP TOP 10 for security issues
 * full UTF8-support for cyrillic, chinese or other alphabets on marker/layername and marker popup text
 * integrated check for known incompatible plugins (and instructions on how to fix)
@@ -115,6 +116,8 @@ to the visitors of your website.
 * Bulgarian (bg_BG) thanks to Andon Ivanov, [http://coffebreak.info](http://coffebreak.info)
 * Catalan (ca) thanks to Vicent Cubells, [http://vcubells.net](http://vcubells.net)
 * Chinese (zh_CN) thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* Croatian (hr) thanks to Neven Pausic, [http://www.airsoft-hrvatska.com](http://www.airsoft-hrvatska.com) and Alan Benic
+* Danish (da_DK) thanks to Mads Dyrmann Larsen
 * Dutch (nl_NL) thanks to Marijke Metz, [http://www.mergenmetz.nl](http://www.mergenmetz.nl) and Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
 * English (en_US)
 * French (fr_FR) thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com) and Rodolphe Quiedeville, [http://rodolphe.quiedeville.org/](http://rodolphe.quiedeville.org/)
@@ -244,6 +247,8 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
+= v3.1 =
+highlight: better performance by loading javascripts in footer and only if shortcode is used - see http://www.mapsmarker.com/v3.1 for more details
 = v3.0 =
 new option to switch between simplified and advanced map editor, Hungarian translation and lots of usability improvements
 = v2.9.2 =
@@ -310,6 +315,31 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v3.1 - 05.12.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v3.1)
+* NEW: better performance by loading javascripts in footer and only if shortcode is used
+* NEW: changed default custom basemaps for new installs to [OpenCycleMaps](http://www.opencyclemap.org/), [Stamen Watercolor](http://maps.stamen.com/#watercolor) and [Transport Map](http://www.thunderforest.com/transport/)
+* NEW: added option to disable errorTile-images for custom basemaps to better support tools like [maptiler](http://www.maptiler.org/)
+* NEW: added TMS option to custom overlays to support overlays from tools like [maptiler](http://www.maptiler.org/)
+* NEW: Croatian translation thanks to Neven Pausic, [http://www.airsoft-hrvatska.com](http://www.airsoft-hrvatska.com) and Alan Benic
+* NEW: Danish translation thanks to Mads Dyrmann Larsen
+* NEW: option to add extra css for list of markers table (to customize the padding for example)
+* NEW: added "show less icons" link for simplified editor on marker maps
+* NEW: added compatibility check for incompatible plugin [JavaScript to Footer](http://wordpress.org/extend/plugins/footer-javascript/)
+* NEW: added fallback for installations where editor switch link above tables did not work
+* CHANGED: changed default basemap to OpenStreetMap and removed OGD Vienna selector for usability reasons
+* CHANGED: unchecked custom overlay 1 in setting "Available overlays in control box" - [action is needed if you changed this!](http://mapsmarker.com/v3.1)
+* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* CHANGED: updated Hungarian translation thanks to István Pintér, [http://www.logicit.hu](http://www.logicit.hu)
+* CHANGED: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
+* CHANGED: updated German translation
+* BUGFIX: display of markers was broken on RTL (right to left) WordPress sites
+* BUGFIX: editor broke with error "Cannot redeclare curpageurl()" on some installations
+* BUGFIX: warning messages on WordPress 3.5 when debug is enabled
+* BUGFIX: unchecked but active overlays were not shown in layer controlbox on frontend
+* BUGFIX: maps on backend were broken when certain translation like Italian were active (thx Elisa Cucco!)
+* BUGFIX: if all basemaps were available in control box, markers+popups could be hidden
+
 = v3.0 - 28.11.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v3.0)
 * NEW: option to switch between simplified and advanced editor
