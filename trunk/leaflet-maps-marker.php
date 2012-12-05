@@ -4,7 +4,7 @@ Plugin Name: Leaflet Maps Marker &reg;
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, GeoRSS or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, WMTS, geoRSS, location, geo, geo-mashup, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, googlemaps, gmaps, google map, google map short code, google map widget, google maps v3, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, marker icons, layer, multiple markers, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice, widget, bing, bing maps, microsoft, map short code, map widget, kml, cross-browser, fully documented, traffic, bike lanes, map short code, custom marker text, custom marker icons and text
-Version: 3.0
+Version: 3.1
 Author: Robert Harm
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
@@ -14,7 +14,7 @@ Requires at least PHP 5.2
 Copyright 2011-2012 - @RobertHarm - All rights reserved
 MapsMarker &reg; - registration pending
 Parts of this plugin were originally based on the Leaflet Plugin by Hind (Copyright 2011)
-	
+
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License v2 as published by
 the Free Software Foundation.
@@ -55,7 +55,7 @@ function __construct() {
 	$lmm_options = get_option( 'leafletmapsmarker_options' );
 	add_action('init', array(&$this, 'lmm_load_translation_files'),1);
 	add_action('admin_init', array(&$this, 'lmm_install_and_updates'),2); //info: register_action_hook not used as otherwise Wordpress Network installs break
-	add_action('wp_enqueue_scripts', array(&$this, 'lmm_frontend_enqueue_scripts'),3);
+	add_action('wp_enqueue_scripts', array(&$this, 'lmm_frontend_enqueue_scripts') );
 	add_action('wp_print_styles', array(&$this, 'lmm_frontend_enqueue_stylesheets'),4);
 	add_action('admin_menu', array(&$this, 'lmm_admin_menu'),5);
 	add_action('admin_init', array(&$this, 'lmm_plugin_meta_links'),6);
@@ -93,7 +93,7 @@ function __construct() {
 	//info: multisite only - delete tables+options+files if blog deleted from network admin
 	if ( is_multisite() ) {
 		add_action('delete_blog', array( &$this,'lmm_delete_multisite_blog' ));
-	} 
+	}
   }
   function lmm_delete_multisite_blog($blog_id) {
 	switch_to_blog($blog_id);
@@ -117,7 +117,7 @@ function __construct() {
 	$lmm_version_new = get_option( 'leafletmapsmarker_version' );
 	$version_without_dots = "lmmv" . str_replace('.', '', $lmm_version_new);
 
-	if ( !isset($dismissed_pointers[$version_without_dots]) ) { 
+	if ( !isset($dismissed_pointers[$version_without_dots]) ) {
 		$do_add_script = true;
 		add_action( 'admin_print_footer_scripts', array( $this, 'lmm_update_pointer_footer_script' ) );
 	}
@@ -129,7 +129,7 @@ function __construct() {
   function lmm_update_pointer_footer_script() {
 	$lmm_version_new = get_option( 'leafletmapsmarker_version' );
 	$version_without_dots = "lmmv" . str_replace('.', '', $lmm_version_new);
-	$pointer_content = '<h3>' . sprintf(__('Leaflet Maps Marker plugin update to v%1s was successful','lmm'), $lmm_version_new) . '</h3>'; 
+	$pointer_content = '<h3>' . sprintf(__('Leaflet Maps Marker plugin update to v%1s was successful','lmm'), $lmm_version_new) . '</h3>';
 	$changelog_url = '<a href="' . admin_url('/admin.php?page=leafletmapsmarker_markers') .'" style="text-decoration:none;">' . __('changelog','lmm') . '</a>';
 	$blogpost_url = '<a href="http://www.mapsmarker.com/v' . $lmm_version_new . '" target="_blank" style="text-decoration:none;">mapsmarker.com</a>';
 	$pointer_content .= '<p>' . sprintf(__('Please see the %1s for new features or the blog post on %2s for more details','lmm'), $changelog_url, $blogpost_url) . '</p>';
@@ -160,7 +160,7 @@ function __construct() {
 	$dismissed_pointers = array_flip($dismissed_pointers);
 	$do_add_script = false;
 	//info: add new feature pointer IDs below
-	if ( !isset($dismissed_pointers["lmmesw"]) ) { 
+	if ( !isset($dismissed_pointers["lmmesw"]) ) {
 		$do_add_script = true;
 		add_action( 'admin_print_footer_scripts', array( $this, 'lmm_feature_pointer_footer_script' ) );
 	}
@@ -170,7 +170,7 @@ function __construct() {
 	}
   }
   function lmm_feature_pointer_footer_script() {
-    include('inc' . DIRECTORY_SEPARATOR . 'feature-pointers.php'); 
+    include('inc' . DIRECTORY_SEPARATOR . 'feature-pointers.php');
   }
   function lmm_register_widgets(){
 	wp_add_dashboard_widget( 'lmm-admin-dashboard-widget', __('Leaflet Maps Marker - recent markers','lmm'), array( &$this,'lmm_dashboard_widget'), array( &$this,'lmm_dashboard_widget_control'));
@@ -179,7 +179,7 @@ function __construct() {
 	global $wpdb;
 	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 	$widgets = get_option( 'dashboard_widget_options' );
-	$widget_id = 'lmm-admin-dashboard-widget'; 
+	$widget_id = 'lmm-admin-dashboard-widget';
 	$number_of_markers =  isset( $widgets[$widget_id] ) && isset( $widgets[$widget_id]['items'] ) ? absint( $widgets[$widget_id]['items'] ) : 4;
 	$result = $wpdb->get_results($wpdb->prepare("SELECT ID,markername,icon,createdon,createdby FROM $table_name_markers ORDER BY createdon desc LIMIT %d", $number_of_markers), ARRAY_A);
 	if ($result != NULL) {
@@ -191,10 +191,10 @@ function __construct() {
 			echo '<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['ID'] . '" title="' . esc_attr__('edit marker','lmm') . '">'.htmlspecialchars(stripslashes($row['markername'])).'</a><br/>' . __('created on','lmm') . ' ' . date("Y-m-d - h:m", strtotime($row['createdon'])) . ', ' . __('created by','lmm') . ' ' . $row['createdby'];
 			echo '</td></tr>';
 		}
-		echo '</table>';	
+		echo '</table>';
 	} else {
 		echo '<p style="margin-bottom:5px;">' . __('No marker created yet','lmm') . '</p>';
-	}  
+	}
 	if  ( !isset($widgets[$widget_id]['blogposts']) ) {
 		$show_rss = 1;
 	} else if ( isset($widgets[$widget_id]['blogposts']) && ($widgets[$widget_id]['blogposts'] == 1) ) {
@@ -204,11 +204,11 @@ function __construct() {
 	}
 	if ($show_rss == 1)
 	{
-			require_once(ABSPATH . WPINC . DIRECTORY_SEPARATOR . 'class-simplepie.php');  
+			require_once(ABSPATH . WPINC . DIRECTORY_SEPARATOR . 'class-simplepie.php');
 			$feed = new SimplePie();
 			if ( file_exists(LEAFLET_PLUGIN_ICONS_DIR . DIRECTORY_SEPARATOR . 'information.png') ) {
 				$feed->enable_cache(true);
-				$feed->set_cache_location($location = LEAFLET_PLUGIN_ICONS_DIR); 
+				$feed->set_cache_location($location = LEAFLET_PLUGIN_ICONS_DIR);
 				$feed->set_cache_duration(86400);
 			} else {
 				$feed->enable_cache(false);
@@ -219,15 +219,15 @@ function __construct() {
 			$feed->init();
 			$feed->handle_content_type();
 			echo '<hr style="border:0;height:1px;background-color:#d8d8d8;"><strong><p>' . __('Latest blog posts from www.mapsmarker.com','lmm') . '</p></strong>';
-			if ($feed->get_items() == NULL) { 
+			if ($feed->get_items() == NULL) {
 				$blogpost_url = '<a href="http://www.mapsmarker.com/news" target="_blank">http://www.mapsmarker.com/news</a>';
-				echo sprintf(__('Feed could not be retrieved, please try again later or read the latest blog posts at %s','lmm'),$blogpost_url); 
+				echo sprintf(__('Feed could not be retrieved, please try again later or read the latest blog posts at %s','lmm'),$blogpost_url);
 			}
 			foreach ($feed->get_items(0,3) as $item) {
 				echo '<p>' . $item->get_date('j F Y') . ': <strong><a href="' . $item->get_permalink() . '">' . $item->get_title() . '</a></strong><br/>' . $item->get_description() . '</p>'.PHP_EOL;
 			}
 			echo '<p><a style="text-decoration:none;" href="http://www.mapsmarker.com" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-website-home.png" width="16" height="16" alt="mapsmarker.com"> MapsMarker.com</a>&nbsp;&nbsp;&nbsp;
-			<a href="http://www.mapsmarker.com/donations" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-donations.png" width="16" height="16" alt="donations"> ' . __('donations','lmm') . '</a>&nbsp;&nbsp;&nbsp;<a style="text-decoration:none;" href="http://wordpress.org/support/view/plugin-reviews/leaflet-maps-marker" target="_blank" title="' . esc_attr__('please rate this plugin on wordpress.org','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-star.png" width="16" height="16" alt="ratings"> ' . __('rate plugin','lmm') . '</a>&nbsp;&nbsp;&nbsp;<a href="http://translate.mapsmarker.com/projects/lmm" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-translations.png" width="16" height="16" alt="translations"> ' . __('translations','lmm') . '</a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/robertharm/Leaflet-Maps-Marker" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-github.png" width="16" height="16" alt="github"> github</a>&nbsp;&nbsp;&nbsp;<a href="http://twitter.com/mapsmarker" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-twitter.png" width="16" height="16" alt="twitter"> Twitter</a>&nbsp;&nbsp;&nbsp;<a href="http://facebook.com/mapsmarker" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-facebook.png" width="16" height="16" alt="facebook"> Facebook</a>&nbsp;&nbsp;&nbsp;<a style="text-decoration:none;" href="http://www.mapsmarker.com/changelog" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-changelog-header.png" width="16" height="16" alt="changelog"> ' . __('Changelog','lmm') . '</a>&nbsp;&nbsp;&nbsp;<a href="http://feeds.feedburner.com/MapsMarker" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-rss.png" width="16" height="16" alt="rss"> RSS</a>&nbsp;&nbsp;&nbsp;<a href="http://feedburner.google.com/fb/a/mailverify?uri=MapsMarker" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-rss-email.png" width="16" height="16" alt="rss-email"> ' . __('E-Mail','lmm') . '</a>&nbsp;&nbsp;&nbsp;</p>';		
+			<a href="http://www.mapsmarker.com/donations" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-donations.png" width="16" height="16" alt="donations"> ' . __('donations','lmm') . '</a>&nbsp;&nbsp;&nbsp;<a style="text-decoration:none;" href="http://wordpress.org/support/view/plugin-reviews/leaflet-maps-marker" target="_blank" title="' . esc_attr__('please rate this plugin on wordpress.org','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-star.png" width="16" height="16" alt="ratings"> ' . __('rate plugin','lmm') . '</a>&nbsp;&nbsp;&nbsp;<a href="http://translate.mapsmarker.com/projects/lmm" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-translations.png" width="16" height="16" alt="translations"> ' . __('translations','lmm') . '</a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/robertharm/Leaflet-Maps-Marker" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-github.png" width="16" height="16" alt="github"> github</a>&nbsp;&nbsp;&nbsp;<a href="http://twitter.com/mapsmarker" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-twitter.png" width="16" height="16" alt="twitter"> Twitter</a>&nbsp;&nbsp;&nbsp;<a href="http://facebook.com/mapsmarker" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-facebook.png" width="16" height="16" alt="facebook"> Facebook</a>&nbsp;&nbsp;&nbsp;<a style="text-decoration:none;" href="http://www.mapsmarker.com/changelog" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-changelog-header.png" width="16" height="16" alt="changelog"> ' . __('Changelog','lmm') . '</a>&nbsp;&nbsp;&nbsp;<a href="http://feeds.feedburner.com/MapsMarker" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-rss.png" width="16" height="16" alt="rss"> RSS</a>&nbsp;&nbsp;&nbsp;<a href="http://feedburner.google.com/fb/a/mailverify?uri=MapsMarker" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-rss-email.png" width="16" height="16" alt="rss-email"> ' . __('E-Mail','lmm') . '</a>&nbsp;&nbsp;&nbsp;</p>';
 	}
   }
   function lmm_dashboard_widget_control(){
@@ -235,24 +235,24 @@ function __construct() {
 	$form_id = 'lmm-admin-dashboard-widget-control';
 	$update = false;
     if ( !$widget_options = get_option( 'dashboard_widget_options' ) )
-      $widget_options = array(); 
+      $widget_options = array();
     if ( !isset($widget_options[$widget_id]) ) {
 	//info: set default value
       $widget_options[$widget_id] = array(
 			'blogposts' => 0,
 			'items' => 5
-	  ); 
+	  );
 	  $update = true;
 	}
     if ( 'POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST[$form_id]) ) {
 	  $number = ($_POST[$form_id]['items'] == NULL) ? '3' : absint( $_POST[$form_id]['items'] );
       //$number = absint( $_POST[$form_id]['items'] );
 	  $blogposts = isset($_POST[$form_id]['blogposts']) ? '1' : '0';
-      $widget_options[$widget_id]['items'] = $number; 
-      $widget_options[$widget_id]['blogposts'] = $blogposts; 
+      $widget_options[$widget_id]['items'] = $number;
+      $widget_options[$widget_id]['blogposts'] = $blogposts;
       $update = true;
     }
-	if($update) update_option( 'dashboard_widget_options', $widget_options ); 
+	if($update) update_option( 'dashboard_widget_options', $widget_options );
     $number = isset( $widget_options[$widget_id]['items'] ) ? (int) $widget_options[$widget_id]['items'] : '';
     echo '<p><label for="lmm-admin-dashboard-widget-number">' . __('Number of markers to show:') . ' </label>';
     echo '<input id="lmm-admin-dashboard-widget-number" name="'.$form_id.'[items]" type="text" value="' . $number . '" size="2" /></p>';
@@ -311,7 +311,7 @@ function __construct() {
 	echo $georss_to_head;
   }
   function lmm_showmap($atts) {
-    include('inc' . DIRECTORY_SEPARATOR . 'showmap.php'); 
+    include('inc' . DIRECTORY_SEPARATOR . 'showmap.php');
     return $lmm_out;
   }
   function lmm_admin_menu() {
@@ -329,7 +329,7 @@ function __construct() {
 	//info: add javascript - leaflet.js - for admin area
 	add_action('admin_print_scripts-'.$page3, array(&$this, 'lmm_admin_enqueue_scripts'),7);
 	add_action('admin_print_scripts-'.$page5, array(&$this, 'lmm_admin_enqueue_scripts'),8);
-	add_action('admin_print_scripts-'.$page7, array(&$this, 'lmm_admin_jquery_ui'),9); 
+	add_action('admin_print_scripts-'.$page7, array(&$this, 'lmm_admin_jquery_ui'),9);
 	//info: add css styles for admin area
 	add_action('admin_print_styles-'.$page, array(&$this, 'lmm_admin_enqueue_stylesheets'),17);
 	add_action('admin_print_styles-'.$page2, array(&$this, 'lmm_admin_enqueue_stylesheets'),18);
@@ -338,8 +338,8 @@ function __construct() {
 	add_action('admin_print_styles-'.$page5, array(&$this, 'lmm_admin_enqueue_stylesheets'),21);
 	add_action('admin_print_styles-'.$page6, array(&$this, 'lmm_admin_enqueue_stylesheets'),22);
 	add_action('admin_print_styles-'.$page7, array(&$this, 'lmm_admin_enqueue_stylesheets'),23);
-	add_action('admin_print_styles-'.$page8, array(&$this, 'lmm_admin_enqueue_stylesheets'),23);	
-	//info: add css styles for datepicker	
+	add_action('admin_print_styles-'.$page8, array(&$this, 'lmm_admin_enqueue_stylesheets'),23);
+	//info: add css styles for datepicker
 	add_action('admin_print_styles-'.$page3, array(&$this, 'lmm_admin_enqueue_stylesheets_datepicker'),24);
 	//info: add contextual help on all pages
 	add_action('admin_print_scripts-'.$page, array(&$this, 'lmm_add_contextual_help'));
@@ -349,9 +349,9 @@ function __construct() {
 	add_action('admin_print_scripts-'.$page5, array(&$this, 'lmm_add_contextual_help'));
 	add_action('admin_print_scripts-'.$page6, array(&$this, 'lmm_add_contextual_help'));
 	add_action('admin_print_scripts-'.$page7, array(&$this, 'lmm_add_contextual_help'));
-	add_action('admin_print_scripts-'.$page8, array(&$this, 'lmm_add_contextual_help'));	
+	add_action('admin_print_scripts-'.$page8, array(&$this, 'lmm_add_contextual_help'));
 	//info: add jquery datepicker on marker page
-	add_action('admin_print_scripts-'.$page3, array(&$this, 'lmm_admin_enqueue_scripts_jquerydatepicker'));	
+	add_action('admin_print_scripts-'.$page3, array(&$this, 'lmm_admin_enqueue_scripts_jquerydatepicker'));
 	//info: add image css override for marker+layer edit page
 	add_action( 'admin_head-'. $page3, array(&$this, 'lmm_image_css_override'),1000);
 	add_action( 'admin_head-'. $page5, array(&$this, 'lmm_image_css_override'),1000);
@@ -361,10 +361,10 @@ function __construct() {
   }
   function lmm_add_admin_bar_menu() {
 	global $wp_version;
-	if ( version_compare( $wp_version, '3.1', '>=' ) ) 
+	if ( version_compare( $wp_version, '3.1', '>=' ) )
 	{
 		$lmm_options = get_option( 'leafletmapsmarker_options' );
-		if ( $lmm_options[ 'admin_bar_integration' ] == 'enabled' && current_user_can($lmm_options[ 'capabilities_edit' ]) ) 
+		if ( $lmm_options[ 'admin_bar_integration' ] == 'enabled' && current_user_can($lmm_options[ 'capabilities_edit' ]) )
 		{
 		global $wp_admin_bar;
 			$menu_items = array(
@@ -397,7 +397,7 @@ function __construct() {
 					'parent' => 'lmm',
 					'title' => __('Add new layer','lmm'),
 					'href' => admin_url('admin.php?page=leafletmapsmarker_layer')
-				)			
+				)
 			);
 			if ( current_user_can( 'activate_plugins' ) ) {
 				$menu_items = array_merge($menu_items, array(
@@ -428,9 +428,9 @@ function __construct() {
 						'title' => 'www.mapsmarker.com',
 						'href' => 'http://www.mapsmarker.com',
 						'meta' => array( 'target' => '_blank', 'title' => __('Open plugin website','lmm') )
-					)	
+					)
 				));
-			
+
 			foreach ($menu_items as $menu_item) {
 				$wp_admin_bar->add_menu($menu_item);
 			}
@@ -448,21 +448,22 @@ function __construct() {
 	$helptext .= '<li><a href="http://wphelpcenter.com/" target="_blank">WordPress HelpCenter</a> (' . __('paid professional support','lmm') . ')</li>';
 	$helptext .= '</ul>';
 	$helptext .= '<p>' . __('More information on support','lmm') . ': <a href="http://www.mapsmarker.com/support/" target="_blank">http://www.mapsmarker.com/support</a></p>';
-	if ( version_compare( $wp_version, '3.3', '<' ) ) 
+	if ( version_compare( $wp_version, '3.3', '<' ) )
 	{
 		global $current_screen;
 		add_contextual_help( $current_screen, $helptext );
-	} 
-	else if ( version_compare( $wp_version, '3.3', '>=' ) ) 
+	}
+	else if ( version_compare( $wp_version, '3.3', '>=' ) )
 	{
         $screen = get_current_screen();
 		$screen->add_help_tab( array( 'id' => 'lmm_help_tab', 'title' => __('Help & Support','lmm'), 'content' => $helptext ));
-	}	
+	}
   }
   function lmm_admin_jquery_ui() {
     wp_enqueue_script( array ( 'jquery', 'jquery-ui-tabs' ) );
   }
   function lmm_frontend_enqueue_scripts() {
+	global $wp_version;
 	$lmm_options = get_option( 'leafletmapsmarker_options' );
 	$plugin_version = get_option('leafletmapsmarker_version');
 	if ( is_admin() ) { $gmaps_libraries = '&libraries=places'; } else { $gmaps_libraries =  ''; }
@@ -479,10 +480,15 @@ function __construct() {
 	} else {
 		$gmaps_base_domain = "&base_domain=" . $lmm_options['google_maps_base_domain_custom'];
 	}
-	wp_enqueue_script( array ( 'jquery' ) );
 	//info: Google API key
 	if ( isset($lmm_options['google_maps_api_key']) && ($lmm_options['google_maps_api_key'] != NULL) ) { $google_maps_api_key = $lmm_options['google_maps_api_key']; } else { $google_maps_api_key = ''; }
-	wp_enqueue_script( 'leafletmapsmarker-googlemaps-loader', 'https://www.google.com/jsapi?key='.$google_maps_api_key, array(), NULL);
+	//info: fallback for adding js to footer 1
+	if ( (version_compare( $wp_version, '3.3', '>=' )) && ($lmm_options['misc_javascript_header_footer'] == 'footer')) {
+		wp_register_script( 'leafletmapsmarker-googlemaps-loader', 'https://www.google.com/jsapi?key='.$google_maps_api_key, array(), 3.7, true);		
+	} else if ( (version_compare( $wp_version, '3.3', '<' )) || ((version_compare( $wp_version, '3.3', '>=' )) && ($lmm_options['misc_javascript_header_footer'] == 'header')) ) {
+		wp_enqueue_script( array ( 'jquery' ) );
+		wp_enqueue_script( 'leafletmapsmarker-googlemaps-loader', 'https://www.google.com/jsapi?key='.$google_maps_api_key, array(), NULL);
+	}
 	//info: Bing culture code
 	if ($lmm_options['bingmaps_culture'] == 'automatic') {
 		if ( defined('WPLANG') ) { $bing_culture = WPLANG; } else { $bing_culture =  'en_us'; }
@@ -490,7 +496,13 @@ function __construct() {
 		$bing_culture = $lmm_options['bingmaps_culture'];
 	}
 	//info: load leaflet.js + plugins
-	wp_enqueue_script( 'leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.js', array('leafletmapsmarker-googlemaps-loader'), $plugin_version); 
+	//info: fallback for adding js to footer 2
+	if ( (version_compare( $wp_version, '3.3', '>=' )) && ($lmm_options['misc_javascript_header_footer'] == 'footer')) {
+		wp_register_script( 'leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.js', array('leafletmapsmarker-googlemaps-loader', 'jquery' ), $plugin_version, true);
+		wp_register_script( 'show_map', LEAFLET_PLUGIN_URL . 'inc/js/show_map.js', array('leafletmapsmarker' ), $plugin_version, true);
+	} else if ( (version_compare( $wp_version, '3.3', '<' )) || ((version_compare( $wp_version, '3.3', '>=' )) && ($lmm_options['misc_javascript_header_footer'] == 'header')) ) {
+		wp_enqueue_script( 'leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.js', array('leafletmapsmarker-googlemaps-loader'), $plugin_version); 
+	}
 	wp_localize_script('leafletmapsmarker', 'leafletmapsmarker_L10n', array(
 		'lmm_zoom_in' => __( 'Zoom in', 'lmm' ),
 		'lmm_zoom_out' => __( 'Zoom out', 'lmm' ),
@@ -503,7 +515,7 @@ function __construct() {
   function lmm_admin_enqueue_scripts() {
 	$lmm_options = get_option( 'leafletmapsmarker_options' );
 	$plugin_version = get_option('leafletmapsmarker_version');
-	if ( is_admin() ) { $gmaps_libraries = '&libraries=places'; } else { $gmaps_libraries =  ''; }	
+	if ( is_admin() ) { $gmaps_libraries = '&libraries=places'; } else { $gmaps_libraries =  ''; }
 	if ( defined('WPLANG') ) { $lang = substr(WPLANG, 0, 2); } else { $lang =  'en'; }
 	//info: Google language localization (JSON API)
 	if ($lmm_options['google_maps_language_localization'] == 'browser_setting') {
@@ -529,7 +541,7 @@ function __construct() {
 		$bing_culture = $lmm_options['bingmaps_culture'];
 	}
 	//info: load leaflet.js + plugins
-	wp_enqueue_script( 'leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.js', array('leafletmapsmarker-googlemaps-loader'), $plugin_version); 
+	wp_enqueue_script( 'leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.js', array('leafletmapsmarker-googlemaps-loader'), $plugin_version);
 	wp_localize_script('leafletmapsmarker', 'leafletmapsmarker_L10n', array(
 		'lmm_zoom_in' => __( 'Zoom in', 'lmm' ),
 		'lmm_zoom_out' => __( 'Zoom out', 'lmm' ),
@@ -546,7 +558,7 @@ function __construct() {
   function lmm_admin_enqueue_scripts_jquerydatepicker() {
 	$plugin_version = get_option('leafletmapsmarker_version');
 	wp_enqueue_script( array ( 'jquery', 'jquery-ui-tabs','jquery-ui-datepicker','jquery-ui-slider' ) );
-	wp_enqueue_script( 'jquery-ui-timepicker-addon', LEAFLET_PLUGIN_URL . 'inc/js/jquery-ui-timepicker-addon.js', array('jquery', 'jquery-ui-tabs','jquery-ui-datepicker'), $plugin_version); 
+	wp_enqueue_script( 'jquery-ui-timepicker-addon', LEAFLET_PLUGIN_URL . 'inc/js/jquery-ui-timepicker-addon.js', array('jquery', 'jquery-ui-tabs','jquery-ui-datepicker'), $plugin_version);
   }
   function lmm_frontend_enqueue_stylesheets() {
 	global $wp_styles;
@@ -573,11 +585,11 @@ function __construct() {
 	wp_register_style( 'jquery-ui-all', LEAFLET_PLUGIN_URL . 'inc/css/jquery-datepicker-theme/jquery-ui-1.8.16.custom.css', array(), $plugin_version);
 	wp_enqueue_style( 'jquery-ui-all' );
 	wp_register_style( 'jquery-ui-timepicker-addon', LEAFLET_PLUGIN_URL . 'inc/css/jquery-datepicker-theme/jquery-ui-timepicker-addon.css', array('jquery-ui-all'), NULL );
-	wp_enqueue_style( 'jquery-ui-timepicker-addon' );	
-   }   
+	wp_enqueue_style( 'jquery-ui-timepicker-addon' );
+   }
   function lmm_install_and_updates() {
 	//info: set transient to execute install & update-routine only once a day
-	$current_version = "v30"; //2do - mandatory: change on each update to new version!
+	$current_version = "v31"; //2do - mandatory: change on each update to new version!
 	$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version;
 	$install_update_schedule = get_transient( $schedule_transient );
 	if ( $install_update_schedule === FALSE ) {
@@ -587,7 +599,7 @@ function __construct() {
 	}
   }
   function lmm_plugin_meta_links() {
-	define( 'FB_BASENAME', plugin_basename( __FILE__ ) ); 
+	define( 'FB_BASENAME', plugin_basename( __FILE__ ) );
 	define( 'FB_BASEFOLDER', plugin_basename( dirname( __FILE__ ) ) );
 	define( 'FB_FILENAME', str_replace( FB_BASEFOLDER.'/', '', plugin_basename(__FILE__) ) );
 	function leafletmapsmarker_filter_plugin_meta($links, $file) {
