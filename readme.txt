@@ -92,6 +92,7 @@ to the visitors of your website.
 * integrated [donation links](http://www.mapsmarker.com/donations) to show your support for this plugin :-)
 
 = Technical details =
+* full support for responsive designs (= automatic resizing of maps if viewport is wider than map width)
 * Wordpress Multisite compatibility
 * Full RTL (Right-to-Left) Language Support
 * plugin was successfully tested to ÖNORM 7700 and OWASP TOP 10 for security issues
@@ -247,6 +248,8 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
+= v3.2 =
+support for responsive templates, conditional css loading and more - see http://www.mapsmarker.com/v3.2 for more details
 = v3.1 =
 highlight: better performance by loading javascripts in footer and only if shortcode is used - see http://www.mapsmarker.com/v3.1 for more details
 = v3.0 =
@@ -315,6 +318,29 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v3.2 - 12.12.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v3.2)
+* NEW: support for responsive designs (map gets resized automatically to width=100% if parent element is smaller)
+* NEW: conditional css loading (css files now also get loaded only if a shortcode for a map is used)
+* NEW: list of markers below multi-layer-map can now also be sorted 
+* NEW: sort order "layer ID" for list of markers below (multi-)layer-maps
+* NEW: added <noscript>-infotext for browsers with Javascript disabled
+* NEW: line breaks in popup texts are now also shown in the list of markers below layer maps (thanks Felix!)
+* NEW: added css class "mapsmarker" to main map div on frontend for better styling
+* NEW: allow bing map tiles to be served over SSL
+* NEW: added option to disable errorTile-images for custom overlays to better support tools like [maptiler](http://www.maptiler.org/)
+* CHANGED: function for editor switch link (should now work on all installs)
+* CHANGED: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
+* CHANGED: updated Japanese translations thanks to [Shu Higashi](http://twitter.com/higa4)
+* CHANGED: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
+* CHANGED: updated German translation
+* BUGFIX: list of markers and table of assigned markers to a layer in backend partly showed wrong markers (thanks Coen!)
+* BUGFIX: QR-Code, GeoRSS, Wikitude-links in list of markers under layer maps pointed to layer-API links (thanks Felix!)
+* BUGFIX: Available API links for list of markers on backend didnt reflect the set options from settings
+* BUGFIX: list of markers below layer maps did not have the same width as map if map width was <100%
+* BUGFIX: TMS options for custom overlays were not loaded on frontend
+* BUGFIX: bulk actions on list of markers were broken since v3.0 (thanks Maik!)
+
 = v3.1 - 05.12.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v3.1)
 * NEW: better performance by loading javascripts in footer and only if shortcode is used

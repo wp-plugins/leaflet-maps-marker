@@ -38,7 +38,9 @@
 	border-right:none !important;
 }
 .lmm-panel {
-	border:1px solid #ccc;
+	border-top: 1px solid #CCCCCC;
+	border-left: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
 }
 .lmm-panel a {
 	border:none;

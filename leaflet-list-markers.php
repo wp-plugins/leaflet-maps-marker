@@ -54,7 +54,7 @@ if ($mcount > intval($lmm_options[ 'markers_per_page' ])) {
     if ($pagenum > (2 + $radius * 2)) {
       foreach (range(1, 1 + $radius) as $num)
         $pager .= '<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_markers&paged='.$num.'&order='.$getorder.'" class="first-page">'.$num.'</a>';
-      $pager .= ' … ';
+      $pager .= '...';
       foreach (range($pagenum - $radius, $pagenum - 1) as $num)
         $pager .= '<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_markers&paged='.$num.'&order='.$getorder.'" class="first-page">'.$num.'</a>';
     }
@@ -66,7 +66,7 @@ if ($mcount > intval($lmm_options[ 'markers_per_page' ])) {
     if (($maxpage - $pagenum) >= (2 + $radius * 2)) {
       foreach (range($pagenum + 1, $pagenum + $radius) as $num)
         $pager .= '<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_markers&paged='.$num.'&order='.$getorder.'" class="first-page">'.$num.'</a>';
-      $pager .= ' … ';
+      $pager .= '...';
       foreach (range($maxpage - $radius, $maxpage) as $num)
         $pager .= '<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_markers&paged='.$num.'&order='.$getorder.'" class="first-page">'.$num.'</a>';
     }
@@ -324,9 +324,8 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 	?>
 			</tbody>
 		</table>
-		<div class="tablenav bottom"><div class="tablenav-pages"><?php echo $pager; ?></div></div>
 		
-		<table cellspacing="0" style="width:auto;" class="wp-list-table widefat fixed bookmarks">
+		<table cellspacing="0" style="width:auto;margin-top:20px;" class="wp-list-table widefat fixed bookmarks">
 		<tr><td>
 		<p><b><?php _e('Bulk actions for selected markers','lmm') ?></b></p>
 		<?php wp_nonce_field('massaction-nonce'); ?>
@@ -347,6 +346,9 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 	
 	</form>
 <?php } //info: end delete/assign selected markers ?>
+
+<div class="tablenav bottom"><div class="tablenav-pages"><?php echo $pager; ?></div></div>
+
 <script type="text/javascript">
 //info: show all API links on click on simplified editor
 (function($) {

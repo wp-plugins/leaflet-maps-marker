@@ -1965,14 +1965,15 @@ class Class_leaflet_options {
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section9',
 			'title'   => __('Order list of markers by','lmm'),
-			'desc'    =>  __('(not available on multi layer maps)','lmm'),
+			'desc'    =>  '',
 			'type'    => 'radio',
 			'std'     => 'm.id',
 			'choices' => array(
 				'm.id' => 'ID',
 				'm.markername' => __('marker name','lmm'),
 				'm.createdon' => __('created on','lmm'),
-				'm.updatedon' => __('updated on','lmm')
+				'm.updatedon' => __('updated on','lmm'),
+				'm.layer' => __('layer ID','lmm')
 			)
 		);
 		$this->settings['defaults_layer_listmarkers_sort_order'] = array(
@@ -1980,7 +1981,7 @@ class Class_leaflet_options {
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section9',
 			'title'   => __('Sort order','lmm'),
-			'desc'    =>  __('(not available on multi layer maps)','lmm'),
+			'desc'    => '',
 			'type'    => 'radio',
 			'std'     => 'ASC',
 			'choices' => array(
@@ -1993,7 +1994,7 @@ class Class_leaflet_options {
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section9',
 			'title'   => __( 'Limit', 'lmm' ),
-			'desc'    => __( 'maximum number of markers to display in the list', 'lmm' ) . ' ' .  __('(not available on multi layer maps)','lmm'),
+			'desc'    => __( 'maximum number of markers to display in the list', 'lmm' ),
 			'std'     => '100',
 			'type'    => 'text'
 		);
@@ -3281,6 +3282,19 @@ class Class_leaflet_options {
 			'std'     => '&quot;maps&quot;, &quot;maps1&quot;, &quot;maps2&quot;, &quot;maps3&quot;',
 			'type'    => 'text'
 		);
+		$this->settings['overlays_custom_errortileurl'] = array(
+			'version' => '3.2',
+			'pane'    => 'overlays',
+			'section' => 'overlays-section2',
+			'title'   => __('Show errorTile-images if map could not be loaded?','lmm'),
+			'desc'    => __('Set to false if you want to use overlays produced with maptiler for example','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
 		/*
 		* Custom overlay 2 settings
 		*/
@@ -3383,6 +3397,19 @@ class Class_leaflet_options {
 			'std'     => '&quot;maps&quot;, &quot;maps1&quot;, &quot;maps2&quot;, &quot;maps3&quot;',
 			'type'    => 'text'
 		);
+		$this->settings['overlays_custom2_errortileurl'] = array(
+			'version' => '3.2',
+			'pane'    => 'overlays',
+			'section' => 'overlays-section3',
+			'title'   => __('Show errorTile-images if map could not be loaded?','lmm'),
+			'desc'    => __('Set to false if you want to use overlays produced with maptiler for example','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
 		/*
 		* Custom overlay 3 settings
 		*/
@@ -3483,6 +3510,19 @@ class Class_leaflet_options {
 			'desc'    => __('For example','lmm'). ": &quot;maps&quot;, &quot;maps1&quot;, &quot;maps2&quot;, &quot;maps3&quot;",
 			'std'     => '&quot;maps&quot;, &quot;maps1&quot;, &quot;maps2&quot;, &quot;maps3&quot;',
 			'type'    => 'text'
+		);
+		$this->settings['overlays_custom3_errortileurl'] = array(
+			'version' => '3.2',
+			'pane'    => 'overlays',
+			'section' => 'overlays-section4',
+			'title'   => __('Show errorTile-images if map could not be loaded?','lmm'),
+			'desc'    => __('Set to false if you want to use overlays produced with maptiler for example','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
 		);
 		/*
 		* Custom overlay 4 settings
@@ -3585,6 +3625,19 @@ class Class_leaflet_options {
 			'desc'    => __('For example','lmm'). ": &quot;maps&quot;, &quot;maps1&quot;, &quot;maps2&quot;, &quot;maps3&quot;",
 			'std'     => '&quot;maps&quot;, &quot;maps1&quot;, &quot;maps2&quot;, &quot;maps3&quot;',
 			'type'    => 'text'
+		);
+		$this->settings['overlays_custom4_errortileurl'] = array(
+			'version' => '3.2',
+			'pane'    => 'overlays',
+			'section' => 'overlays-section5',
+			'title'   => __('Show errorTile-images if map could not be loaded?','lmm'),
+			'desc'    => __('Set to false if you want to use overlays produced with maptiler for example','lmm'),
+			'type'    => 'radio',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
 		);
 		
 		/*===========================================
@@ -6722,19 +6775,6 @@ class Class_leaflet_options {
 			'desc'    => '', //empty for not breaking settings layout
 			'type'    => 'helptext'
 		);
-		$this->settings['misc_map_editor'] = array(
-			'version' => '3.0',
-			'pane'    => 'misc',
-			'section' => 'misc-section1',
-			'title'   => __('Map editor to use on backend','lmm'),
-			'desc'    => __('The advanced editor allows you to set all available options on marker and layer maps while the simplified editor only shows the most common options.','lmm'),
-			'type'    => 'radio',
-			'std'     => 'simplified',
-			'choices' => array(
-				'simplified' => __('simplified editor','lmm'),
-				'advanced' => __('advanced editor','lmm')
-			)
-		);
 		$this->settings['capabilities_edit'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -6878,12 +6918,25 @@ class Class_leaflet_options {
 			'pane'    => 'misc',
 			'section' => 'misc-section1',
 			'title'   => __('Where to insert Javascript files on frontend?','lmm'),
-			'desc'    => __('Footer is recommended for better performance. If you are using WordPress lesser than v3.3, Javascript files automatically get inserted into the header of your site and the javascript needed for each maps inline within the content.','lmm'),
+			'desc'    => __('Footer is recommended for better performance. If you are using WordPress lesser than v3.3, Javascript files automatically get inserted into the header of your site and the javascript needed for each maps inline within the content.','lmm') . ' ' . __('If you choose footer, javascripts will also only be loaded when a shortcode is used and not on all pages.','lmm'),
 			'type'    => 'radio',
 			'std'     => 'footer',
 			'choices' => array(
 				'header' => __('header (+ inline javascript)','lmm'),
 				'footer' => __('footer','lmm')
+			)
+		);
+		$this->settings['misc_responsive_support'] = array(
+			'version' => '3.2',
+			'pane'    => 'misc',
+			'section' => 'misc-section1',
+			'title'   => __('Support for responsive designs?','lmm'),
+			'desc'    => __('If enabled, maps will automatically be resized to width=100% if map width unit is set to px and the div parent element is smaller than the width of the map.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'enabled',
+			'choices' => array(
+				'enabled' => __('enabled','lmm'),
+				'disabled' => __('disabled','lmm')
 			)
 		);
 		/*
@@ -7880,7 +7933,6 @@ class Class_leaflet_options {
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
-		/* template for plugin updates 
 		//info:  set defaults for options introduced in v3.2
 		if (get_option('leafletmapsmarker_version') == '3.1' )
 		{
@@ -7888,6 +7940,22 @@ class Class_leaflet_options {
 			foreach ( $this->settings as $id => $setting ) 
 			{
 				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.2')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}
+		/* template for plugin updates 
+		//info:  set defaults for options introduced in v3.3
+		if (get_option('leafletmapsmarker_version') == '3.2' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting ) 
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.3')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}

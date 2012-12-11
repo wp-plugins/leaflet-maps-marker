@@ -452,6 +452,20 @@ if (get_option('leafletmapsmarker_version') == '3.0' ) {
 		update_option('leafletmapsmarker_version_before_update', '3.0'); //2do - update to version before update
 	}
 	update_option('leafletmapsmarker_version', '3.1');
+}
+if (get_option('leafletmapsmarker_version') == '3.1' ) {
+	delete_transient( 'leafletmapsmarker_install_update_cache_v31'); //2do: update to version before update
+	$lmm_options = get_option( 'leafletmapsmarker_options' );
+	$editor_to_use = ( isset($lmm_options['misc_map_editor']) && ($lmm_options['misc_map_editor'] == 'advanced') ) ? 'advanced' : 'simplified';
+	update_option('leafletmapsmarker_editor', $editor_to_use);
+	$save_defaults_for_new_options = new Class_leaflet_options();
+	$save_defaults_for_new_options->save_defaults_for_new_options();
+	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
+	if ( $version_before_update === FALSE ) {
+		set_transient( 'leafletmapsmarker_version_before_update', 'deleted-in-1-hour', 60*3 );
+		update_option('leafletmapsmarker_version_before_update', '3.1'); //2do - update to version before update
+	}
+	update_option('leafletmapsmarker_version', '3.2');
 	update_option('leafletmapsmarker_update_info', 'show');
 	//info: redirect to settings page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 	if (get_option('leafletmapsmarker_redirect') == 'true') 
@@ -463,8 +477,8 @@ if (get_option('leafletmapsmarker_version') == '3.0' ) {
 	}
 }
 /* template for plugin updates 
-if (get_option('leafletmapsmarker_version') == '3.1' ) {
-	delete_transient( 'leafletmapsmarker_install_update_cache_v31'); //2do: update to version before update
+if (get_option('leafletmapsmarker_version') == '3.2' ) {
+	delete_transient( 'leafletmapsmarker_install_update_cache_v32'); //2do: update to version before update
 	//2do - optional: add code for sql updates (no ddl - done by dbdelta!)
 	//2do - mandatory if new options in class-leaflet-options.php were added & update /inc/class-leaflet-options.php update routine
 	$save_defaults_for_new_options = new Class_leaflet_options();
@@ -472,9 +486,9 @@ if (get_option('leafletmapsmarker_version') == '3.1' ) {
 	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
 	if ( $version_before_update === FALSE ) {
 		set_transient( 'leafletmapsmarker_version_before_update', 'deleted-in-1-hour', 60*3 );
-		update_option('leafletmapsmarker_version_before_update', '3.1'); //2do - update to version before update
+		update_option('leafletmapsmarker_version_before_update', '3.2'); //2do - update to version before update
 	}
-	update_option('leafletmapsmarker_version', '3.2');
+	update_option('leafletmapsmarker_version', '3.3');
 	//2do - mandatory: remove update_option('leafletmapsmarker_update_info', 'show'); from last version
 	update_option('leafletmapsmarker_update_info', 'show');
 	//mandatory: move code for redirect-on-first-activation-check to here
