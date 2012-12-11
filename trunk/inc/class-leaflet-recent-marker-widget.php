@@ -138,12 +138,12 @@ class Class_leaflet_recent_marker_widget extends WP_Widget {
 				if (!empty($instance['lmm-widget-showicons'])) {
 					$icon = ($row['icon'] == NULL) ? LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png' : LEAFLET_PLUGIN_ICONS_URL.'/'.$row['icon'];
 						if ($instance['lmm-widget-linktarget'] != 'none') {
-							echo '<td style="vertical-align:top;line-height:1.2em;padding-top:1px;min-width:30px;"><a href="' . LEAFLET_PLUGIN_URL . 'leaflet-' . $instance['lmm-widget-linktarget'] . '.php?marker='.$row['ID'].'" title="' . esc_attr__('show map','lmm') . ' (' . $instance['lmm-widget-linktarget'] . ')" target="_blank"><img src="'.$icon.'" style="width:' . $instance['lmm-widget-iconsize'] . '%;"></a>';
+							echo '<td style="vertical-align:top;line-height:1.2em;padding-top:1px;min-width:30px;border:none;"><a href="' . LEAFLET_PLUGIN_URL . 'leaflet-' . $instance['lmm-widget-linktarget'] . '.php?marker='.$row['ID'].'" title="' . esc_attr__('show map','lmm') . ' (' . $instance['lmm-widget-linktarget'] . ')" target="_blank"><img src="'.$icon.'" style="width:' . $instance['lmm-widget-iconsize'] . '%;"></a>';
 							} else {
-							echo '<td style="vertical-align:top;line-height:1.2em;padding-top:1px;"><img src="'.$icon.'" style="width:' . $instance['lmm-widget-iconsize'] . '%;border:none;"></td>';
+							echo '<td style="vertical-align:top;line-height:1.2em;padding-top:1px;border:none;"><img src="'.$icon.'" style="width:' . $instance['lmm-widget-iconsize'] . '%;border:none;"></td>';
 						}
 				}
-				echo '<td style="vertical-align:top;line-height:1.2em;padding-top:1px;width:100%;">';
+				echo '<td style="vertical-align:top;line-height:1.2em;padding-top:1px;width:100%;border:none;">';
 				if ($instance['lmm-widget-linktarget'] != 'none') {
 					echo '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-' . $instance['lmm-widget-linktarget'] . '.php?marker='.$row['ID'].'" title="' . esc_attr__('show map','lmm') . ' (' . $instance['lmm-widget-linktarget'] . ')" target="_blank">'.htmlspecialchars(stripslashes($row['markername'])).'</a>';
 					} else {
