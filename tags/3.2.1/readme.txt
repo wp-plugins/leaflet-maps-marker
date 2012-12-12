@@ -7,8 +7,8 @@ Author URI:        http://www.harm.co.at
 Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
-Tested up to:      3.5
-Stable tag:        3.2
+Tested up to:      3.6-alpha
+Stable tag:        3.2.1
 License:           GPLv2
 
 Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, GeoRSS or Augmented-Reality browsers
