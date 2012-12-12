@@ -124,7 +124,7 @@ class Class_leaflet_recent_marker_widget extends WP_Widget {
 		}
 		$orderby = ($instance['lmm-widget-orderby'] == 'createdon') ? 'createdon' : 'updatedon';
 		$orderbysortorder = ($instance['lmm-widget-orderby-sortorder'] == 'desc') ? 'desc' : 'asc';
-		$result = $wpdb->get_results($wpdb->prepare("SELECT ID,markername,icon,popuptext,createdon FROM $table_name_markers ORDER BY $orderby $orderbysortorder LIMIT $limiter"), ARRAY_A);
+		$result = $wpdb->get_results("SELECT ID,markername,icon,popuptext,createdon FROM $table_name_markers ORDER BY $orderby $orderbysortorder LIMIT $limiter", ARRAY_A);
 		$title = (empty($instance['lmm-widget-title'])) ? '' : $instance['lmm-widget-title'];
 		if (!empty($title)) { 
 			echo $before_title . $title . $after_title; 

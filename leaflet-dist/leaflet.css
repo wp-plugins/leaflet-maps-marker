@@ -90,7 +90,9 @@
 	font-size:1em !important;
 	font-weight:normal !important;
 }
-		
+.leaflet-control-layers-overlays, .leaflet-control-layers-base {
+	margin:0 !important;
+}		
 /* original leaflet.css styles (check on updates!) */
 .leaflet-map-pane,
 .leaflet-tile,
