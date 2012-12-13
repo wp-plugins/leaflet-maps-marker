@@ -81,6 +81,24 @@ $admin_quicklink_tools_buttons = ( current_user_can( "activate_plugins" ) ) ? "<
 $admin_quicklink_settings_buttons = ( current_user_can( "activate_plugins" ) ) ? "<a class='" . $buttonclass6 ."' href='" . LEAFLET_WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_settings'>".__('Settings','lmm')."</a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;" : "";
 
 //info: admin notices which only show on LMM pages
+
+//info: check if footer.php or index.php includes wp_footer()
+global $wp_version;
+if ( (version_compare( $wp_version, '3.3', '>=' )) && ($lmm_options['misc_javascript_header_footer'] == 'footer') ) {
+	$searchterm = 'wp_footer()';
+	$files = array( get_stylesheet_directory() . DIRECTORY_SEPARATOR . 'index.php', get_stylesheet_directory() . DIRECTORY_SEPARATOR . 'footer.php' );
+	$contents_all = '';
+	foreach( $files as $file ) {
+		if( file_exists($file) ) {
+			$contents = file_get_contents($file);
+			$contents_all .= $contents;
+		}
+	}
+	if( !strpos( $contents, $searchterm )) {
+		echo '<p><div class="error" style="padding:10px;"><strong>' . __('Warning: your theme seems to be missing the template tag wp_footer();</strong><br/>This could cause maps to break on frontend! If this is true for you, please add <span style="color:red;font-weight:bold;">&lt;?php wp_footer(); ?&gt;</span> to your template file <span style="color:red;">footer.php</span> (or index.php if not exists) right before the <span style="color:red;">&lt;/body&gt;</span>-tag.<br/>Alternatively you can go to Settings / Misc / General settings and change the option "Where to insert Javascript files on frontend?" to "header (+ inline javascript)<br/>Please also see <a href="http://mapsmarker.com/wp_footer" target="_blank">http://mapsmarker.com/wp_footer</a> for more details.','lmm') . '</div></p>';
+	}
+}
+
 //info: check if newer plugin version is available
 $plugin_updates = get_site_transient( 'update_plugins' );
 if (isset($plugin_updates->response['leaflet-maps-marker/leaflet-maps-marker.php']->new_version)) { 
