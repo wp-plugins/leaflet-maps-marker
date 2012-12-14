@@ -6926,11 +6926,24 @@ class Class_leaflet_options {
 				'footer' => __('footer','lmm')
 			)
 		);
+		$this->settings['misc_conditional_css_loading'] = array(
+			'version' => '3.2.2',
+			'pane'    => 'misc',
+			'section' => 'misc-section1',
+			'title'   => __('Support for conditional css loading','lmm'),
+			'desc'    => __('If enabled, css files will only be loaded if a shortcode is used.','lmm'),
+			'type'    => 'radio',
+			'std'     => 'enabled',
+			'choices' => array(
+				'enabled' => __('enabled','lmm'),
+				'disabled' => __('disabled','lmm')
+			)
+		);
 		$this->settings['misc_responsive_support'] = array(
 			'version' => '3.2',
 			'pane'    => 'misc',
 			'section' => 'misc-section1',
-			'title'   => __('Support for responsive designs?','lmm'),
+			'title'   => __('Support for responsive designs','lmm'),
 			'desc'    => __('If enabled, maps will automatically be resized to width=100% if map width unit is set to px and the div parent element is smaller than the width of the map.','lmm'),
 			'type'    => 'radio',
 			'std'     => 'enabled',
@@ -7948,9 +7961,24 @@ class Class_leaflet_options {
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
+		//info:  set defaults for options introduced in v3.2.2
+		if (get_option('leafletmapsmarker_version') == '3.2.1' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting ) 
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.2.2')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}
 		/* template for plugin updates 
 		//info:  set defaults for options introduced in v3.3
-		if (get_option('leafletmapsmarker_version') == '3.2.1' )
+		if (get_option('leafletmapsmarker_version') == '3.2.2' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting ) 

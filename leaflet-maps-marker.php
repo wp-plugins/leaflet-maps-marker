@@ -4,7 +4,7 @@ Plugin Name: Leaflet Maps Marker &reg;
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, GeoRSS or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, WMTS, geoRSS, location, geo, geo-mashup, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, googlemaps, gmaps, google map, google map short code, google map widget, google maps v3, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, marker icons, layer, multiple markers, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice, widget, bing, bing maps, microsoft, map short code, map widget, kml, cross-browser, fully documented, traffic, bike lanes, map short code, custom marker text, custom marker icons and text
-Version: 3.2.1
+Version: 3.2.2
 Author: Robert Harm
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
@@ -62,6 +62,7 @@ function __construct() {
 	add_action('wp_head', array(&$this, 'lmm_image_css_override'),1000);
 	add_action('admin_bar_menu', array(&$this, 'lmm_add_admin_bar_menu'),149);
 	add_shortcode($lmm_options['shortcode'], array(&$this, 'lmm_showmap'));
+	add_filter('widget_text', 'do_shortcode'); //info: needed for widgets
 	add_action('admin_notices', array(&$this, 'lmm_compatibility_checks'));
 	if ($lmm_options['misc_add_georss_to_head'] == 'enabled') {
 		add_action( 'wp_head', array( &$this, 'lmm_add_georss_to_head' ) );
@@ -81,7 +82,7 @@ function __construct() {
 			add_action('wp_dashboard_setup', array( &$this,'lmm_register_widgets' ));
 		}
 	}
-	if ( isset($lmm_options['misc_pointers'] ) && ($lmm_options['misc_pointers'] == 'enabled') ) {
+	if ( (isset($lmm_options['misc_pointers'])) && ($lmm_options['misc_pointers'] == 'enabled') ) {
 		//info: dont show update pointers on new installs
 		$version_before_update = get_option('leafletmapsmarker_version_before_update');
 		if ($version_before_update != '0') {
@@ -95,7 +96,9 @@ function __construct() {
 		add_action('delete_blog', array( &$this,'lmm_delete_multisite_blog' ));
 	}
 	//info: check template files for do_shortcode()-action
-	add_action('template_include', array( &$this,'lmm_template_check_shortcode' ));
+	if ( (isset($lmm_options['misc_conditional_css_loading'])) && ($lmm_options['misc_conditional_css_loading'] == 'enabled') ){
+		add_action('template_include', array( &$this,'lmm_template_check_shortcode' ));
+	}
   }
   function lmm_delete_multisite_blog($blog_id) {
 	switch_to_blog($blog_id);
@@ -565,25 +568,35 @@ function __construct() {
   function lmm_frontend_enqueue_stylesheets() {
 	//info: conditional loading of css files
 	$lmm_options = get_option( 'leafletmapsmarker_options' );
-	global $wp_query;	
-	$posts = $wp_query->posts;
-	$pattern = get_shortcode_regex();
-
-	$plugin_version = get_option('leafletmapsmarker_version');
-	global $wp_styles;
-	wp_register_style('leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.css', array(), $plugin_version);
-	wp_register_style('leafletmapsmarker-ie-only', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.ie.css', array(), $plugin_version);
-
-	if (is_array($posts)) {
-		foreach ($posts as $post) {
-			if ( preg_match_all( '/'. $pattern .'/s', $post->post_content, $matches ) && array_key_exists( 2, $matches ) && in_array( $lmm_options['shortcode'], $matches[2] ) ) {
-				wp_enqueue_style('leafletmapsmarker');
-				wp_enqueue_style('leafletmapsmarker-ie-only');
-				$wp_styles->add_data('leafletmapsmarker-ie-only', 'conditional', 'lt IE 9');
-				break;	
-			}    
-		}
-	}
+	if ( (isset($lmm_options['misc_conditional_css_loading'])) && ($lmm_options['misc_conditional_css_loading'] == 'enabled') ){
+			global $wp_query;	
+			$posts = $wp_query->posts;
+			$pattern = get_shortcode_regex();
+		
+			$plugin_version = get_option('leafletmapsmarker_version');
+			global $wp_styles;
+			wp_register_style('leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.css', array(), $plugin_version);
+			wp_register_style('leafletmapsmarker-ie-only', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.ie.css', array(), $plugin_version);
+		
+			if (is_array($posts)) {
+				foreach ($posts as $post) {
+					if ( preg_match_all( '/'. $pattern .'/s', $post->post_content, $matches ) && array_key_exists( 2, $matches ) && in_array( $lmm_options['shortcode'], $matches[2] ) ) {
+						wp_enqueue_style('leafletmapsmarker');
+						wp_enqueue_style('leafletmapsmarker-ie-only');
+						$wp_styles->add_data('leafletmapsmarker-ie-only', 'conditional', 'lt IE 9');
+						break;	
+					}    
+				}
+			}
+	} else {
+			global $wp_styles;
+			$plugin_version = get_option('leafletmapsmarker_version');
+			wp_register_style('leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.css', array(), $plugin_version);
+			wp_enqueue_style('leafletmapsmarker');
+			wp_register_style('leafletmapsmarker-ie-only', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.ie.css', array(), $plugin_version);
+			wp_enqueue_style('leafletmapsmarker-ie-only');
+			$wp_styles->add_data('leafletmapsmarker-ie-only', 'conditional', 'lt IE 9');
+ 	}	
   }
   function lmm_template_check_shortcode( $template ) {
 	$lmm_options = get_option( 'leafletmapsmarker_options' );
@@ -626,7 +639,7 @@ function __construct() {
    }
   function lmm_install_and_updates() {
 	//info: set transient to execute install & update-routine only once a day
-	$current_version = "v321"; //2do - mandatory: change on each update to new version!
+	$current_version = "v322"; //2do - mandatory: change on each update to new version!
 	$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version;
 	$install_update_schedule = get_transient( $schedule_transient );
 	if ( $install_update_schedule === FALSE ) {

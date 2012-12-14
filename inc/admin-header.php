@@ -95,7 +95,7 @@ if ( (version_compare( $wp_version, '3.3', '>=' )) && ($lmm_options['misc_javasc
 		}
 	}
 	if( !strpos( $contents, $searchterm )) {
-		echo '<p><div class="error" style="padding:10px;"><strong>' . __('Warning: your theme seems to be missing the template tag wp_footer();</strong><br/>This could cause maps to break on frontend! If this is true for you, please add <span style="color:red;font-weight:bold;">&lt;?php wp_footer(); ?&gt;</span> to your template file <span style="color:red;">footer.php</span> (or index.php if not exists) right before the <span style="color:red;">&lt;/body&gt;</span>-tag.<br/>Alternatively you can go to Settings / Misc / General settings and change the option "Where to insert Javascript files on frontend?" to "header (+ inline javascript)<br/>Please also see <a href="http://mapsmarker.com/wp_footer" target="_blank">http://mapsmarker.com/wp_footer</a> for more details.','lmm') . '</div></p>';
+		echo '<p><div class="error" style="padding:10px;">' . __('<strong>Warning: your theme seems to be missing the template tag wp_footer();</strong><br/>This could cause maps to break on frontend! If this is true for you, please add <span style="color:red;font-weight:bold;">&lt;?php wp_footer(); ?&gt;</span> to your template file <span style="color:red;">footer.php</span> (or index.php if not exists) right before the <span style="color:red;">&lt;/body&gt;</span>-tag.<br/>Alternatively you can go to Settings / Misc / General settings and change the option "Where to insert Javascript files on frontend?" to "header (+ inline javascript)<br/>Please also see <a href="http://mapsmarker.com/wp_footer" target="_blank">http://mapsmarker.com/wp_footer</a> for more details.','lmm') . '</div></p>';
 	}
 }
 

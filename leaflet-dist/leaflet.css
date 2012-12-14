@@ -65,10 +65,12 @@
 	padding-top:8px;
 }
 .lmm-panel-api-images {
-	background:no-repeat!important;
-	margin:0px 5px 0 0!important;
-	padding:0px!important;
-	border:none!important;
+	background:no-repeat !important;
+	margin:0px 5px 0 0 !important;
+	padding:0px !important;
+	border:none !important;
+	border-radius:0 !important;
+	box-shadow:none !important;
 }
 .lmm-geo-tags { display:none!important; } 
 .leaflet-container {
