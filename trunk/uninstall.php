@@ -3,7 +3,7 @@
 if ( !defined( 'WP_UNINSTALL_PLUGIN' ) )
 	exit ();
 /* Remove settings */
-$current_version = "v321"; //2do: change on each update!
+$current_version = "v322"; //2do: change on each update!
 if (is_multisite()) {
 	global $wpdb;
 	$blogs = $wpdb->get_results("SELECT blog_id FROM {$wpdb->blogs}", ARRAY_A);
