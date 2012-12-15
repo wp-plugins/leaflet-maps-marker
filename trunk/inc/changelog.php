@@ -66,7 +66,36 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</td></tr>
 		</table>'.PHP_EOL;
 */
+		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.2.3') . '</strong> - ' . __('released on','lmm') . ' 16.12.2012 (<a href="http://www.mapsmarker.com/v3.2.3" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
+		<table>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		updated Dutch translation thanks to Patrick Ruers, <a href="http://www.stationskwartiersittard.nl" target="_blank">http://www.stationskwartiersittard.nl</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		updated Chinese translation thanks to John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		updated German translation
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		compatibility fix with flickr gallery plugin (settings page was broken)
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		editor switch link did not work on some installations
+		</td></tr>
+		</table>'.PHP_EOL;
 
+	if ( ( $lmm_version_old < '3.2.2' ) && ( $lmm_version_old > '0' ) ){
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.2.2') . '</strong> - ' . __('released on','lmm') . ' 15.12.2012 (<a href="http://www.mapsmarker.com/v3.2.2" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -105,7 +134,8 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		W3C validator errors for marker maps, layer maps and recent marker widget
 		</td></tr>
 		</table>'.PHP_EOL;
-
+	}
+	
 	if ( ( $lmm_version_old < '3.2.1' ) && ( $lmm_version_old > '0' ) ){
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.2.1') . '</strong> - ' . __('released on','lmm') . ' 13.12.2012 (<a href="http://www.mapsmarker.com/v3.2.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
