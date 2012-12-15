@@ -248,6 +248,8 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
+= v3.2.3 =
+compatibility fix for flickr gallery plugin (settings page was broken) - see http://www.mapsmarker.com/v3.2.3 for more details
 = v3.2.2 =
 add compatibility checks for footer and condition css loading - see http://www.mapsmarker.com/v3.2.2 for more details
 = v3.2.1 =
@@ -322,6 +324,14 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v3.2.3 - 17.12.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v3.2.3)
+* CHANGED: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
+* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* CHANGED: updated German translation
+* FIXED: compatibility fix with flickr gallery plugin (settings page was broken)
+* FIXED: editor switch link did not work on some installations
+
 = v3.2.2 - 15.12.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v3.2.2)
 * NEW: map shortcode can now also be used in widgets out of the box
@@ -412,7 +422,7 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 * BUGFIX: warning messages for WordPress 3.5beta3 when debug was enabled
 * BUGFIX: layout of the preview of list markers on layer maps in backend was broken
 * BUGFIX: some links to the new settings panel from backend were broken
-* BUGFIX: layout of map panel was broken on preview if empty marker or layer name was entered
+* BUGFIX: layout of map panel was broken on preview if empty marker/layer name was entered
 * BUGFIX: shortcode form field could not be focused on iOS
 * BUGFIX: list of assigned markers to multi-layer-maps was broken when more than 1 layer was checked
 * BUGFIX: zooming on layer maps on backend was broken on WordPress < v3.3
