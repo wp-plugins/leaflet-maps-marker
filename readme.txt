@@ -249,7 +249,7 @@ Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
 = v3.2.4 =
-removed check for wp_footer(); in backend (did not work on child themes) - see http://www.mapsmarker.com/v3.3 for more details
+removed check for wp_footer(); in backend (did not work on child themes) - see http://www.mapsmarker.com/v3.2.4 for more details
 = v3.2.3 =
 compatibility fix for flickr gallery plugin (settings page was broken) - see http://www.mapsmarker.com/v3.2.3 for more details
 = v3.2.2 =
