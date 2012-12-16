@@ -1011,7 +1011,7 @@ class Class_leaflet_options {
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section4',
 			'title'   => __( 'Panel background color', 'lmm' ),
-			'desc'    => 'Please use hexadecimal color values',
+			'desc'    => __('Please use hexadecimal color values','lmm'),
 			'std'     => '#efefef',
 			'type'    => 'text'
 		);		
@@ -1795,7 +1795,7 @@ class Class_leaflet_options {
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section8',
 			'title'   => __( 'Panel background color', 'lmm' ),
-			'desc'    => 'Please use hexadecimal color values',
+			'desc'    => __('Please use hexadecimal color values','lmm'),
 			'std'     => '#efefef',
 			'type'    => 'text'
 		);		
@@ -7978,7 +7978,7 @@ class Class_leaflet_options {
 		}
 		/* template for plugin updates 
 		//info:  set defaults for options introduced in v3.3
-		if (get_option('leafletmapsmarker_version') == '3.2.3' )
+		if (get_option('leafletmapsmarker_version') == '3.2.4' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting ) 
