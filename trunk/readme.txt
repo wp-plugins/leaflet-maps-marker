@@ -2,7 +2,7 @@
 Contributors:      harmr
 Plugin Name:       Leaflet Maps Marker
 Plugin URI:        http://www.mapsmarker.com
-Tags:              Google Maps, OpenStreetMap, OSM, bing maps, googlemaps, google earth, map, maps, kml, travel, location, augmented-reality
+Tags:              map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, WMTS, geoRSS, location, geo, geo-mashup, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, googlemaps, gmaps, google map, google map short code, google map widget, google maps v3, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, marker icons, layer, multiple markers, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice, widget, bing, bing maps, microsoft, map short code, map widget, kml, cross-browser, fully documented, traffic, bike lanes, map short code, custom marker text, custom marker icons and text
 Author URI:        http://www.harm.co.at
 Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
@@ -128,6 +128,7 @@ to the visitors of your website.
 * Italian (it_IT) thanks to [Luca Barbetti](http://twitter.com/okibone)
 * Japanese (ja) thanks to [Shu Higashi](http://twitter.com/higa4)
 * Polish (pl_PL) translation thanks to Pawel Wyszynski, [http://injit.pl](http://injit.pl) and Tomasz Rudnicki, [http://www.kochambieszczady.pl](http://www.kochambieszczady.pl)
+* Portuguese (pt_PT) translation thanks to Joao Campos, [http://www.all-about-portugal.com](http://www.all-about-portugal.com)
 * Russian (ru_RU) thanks to Ekaterina Golubina, supported by Teplitsa of Social Technologies - [http://te-st.ru](http://te-st.ru)
 * Slovak (sk_SK) thanks to Zdenko Podobny
 * Spanish (es_ES) thanks to David Ramirez, [http://www.hiperterminal.com](http://www.hiperterminal.com) and Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
@@ -248,6 +249,8 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
+= v3.2.5 =
+compatibility fix for Jetpack plugin, Portuguese (pt_PT) translation thanks to Joao Campos, [http://www.all-about-portugal.com](http://www.all-about-portugal.com) - see http://www.mapsmarker.com/v3.2.5 for more details
 = v3.2.4 =
 removed check for wp_footer(); in backend (did not work on child themes) - see http://www.mapsmarker.com/v3.2.4 for more details
 = v3.2.3 =
@@ -326,6 +329,15 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v3.2.5 - 18.12.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v3.2.5)
+* NEW: Portuguese (pt_PT) translation thanks to Joao Campos, [http://www.all-about-portugal.com](http://www.all-about-portugal.com)
+* NEW: custom Google base domain setting is now also considered on directions link (thanks Pepperbase!)
+* CHANGED: updated German translation
+* FIXED: plugin conflict with [Jetpack plugin](http://wordpress.org/extend/plugins/jetpack/) which caused maps not to break (thanks John, Norman and Evan!)
+* FIXED: warning message for multi-layer-maps with all layers ($wpdb->prepare issue)
+* FIXED: warning message in tools when deleting all markers ($wpdb->prepare issue)
+
 = v3.2.4 - 17.12.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v3.2.4)
 * CHANGED: removed check for wp_footer(); in backend (did not work on child themes)

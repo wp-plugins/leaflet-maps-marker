@@ -13,7 +13,7 @@ $lmm_options = get_option( 'leafletmapsmarker_options' );
 $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 $markercount_all = $wpdb->get_var('SELECT count(*) FROM '.$table_name_markers.''); 
-$layercount_all = $wpdb->get_var('SELECT count(*) FROM '.$table_name_layers.''); 
+$layercount_all = $wpdb->get_var('SELECT count(*) FROM '.$table_name_layers.'') - 1; 
 $action = isset($_POST['action']) ? $_POST['action'] : '';
 if (!empty($action)) {
 	$toolnonce = isset($_POST['_wpnonce']) ? $_POST['_wpnonce'] : (isset($_GET['_wpnonce']) ? $_GET['_wpnonce'] : '');
@@ -32,7 +32,7 @@ if (!empty($action)) {
 		echo '<p><div class="updated" style="padding:10px;">' . sprintf( esc_attr__('All markers from layer ID %1$s have been successfully deleted','lmm'), htmlspecialchars($_POST['delete_from_layer'])) . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';  
   }
   elseif ($action == 'mass_delete_all_markers') {
-		$result = $wpdb->prepare( "DELETE FROM $table_name_markers");
+		$result = "DELETE FROM $table_name_markers";
 		$wpdb->query( $result );
   		$delete_confirm_checkbox = isset($_POST['delete_confirm_checkbox']) ? '1' : '0';
 	  	if ($delete_confirm_checkbox == 1) {

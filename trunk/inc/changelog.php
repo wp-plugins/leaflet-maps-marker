@@ -67,6 +67,41 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</table>'.PHP_EOL;
 */
 
+		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.2.5') . '</strong> - ' . __('released on','lmm') . ' 18.12.2012 (<a href="http://www.mapsmarker.com/v3.2.5" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
+		<table>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		Portuguese (pt_PT) translation thanks to Joao Campos, <a href="http://www.all-about-portugal.com" target="_blank">http://www.all-about-portugal.com</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		custom Google base domain setting is now also considered on directions link (thanks Pepperbase!)
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		updated German translation
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		plugin conflict with <a href="http://wordpress.org/extend/plugins/jetpack/" target="_blank">Jetpack plugin</a> which caused maps not to break (thanks John, Norman and Evan!)
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		warning message for multi-layer-maps with all layers ($wpdb->prepare issue)
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		warning message in tools when deleting all markers ($wpdb->prepare issue)
+		</td></tr>
+		</table>'.PHP_EOL;
+
+	if ( ( $lmm_version_old < '3.2.4' ) && ( $lmm_version_old > '0' ) ){
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.2.4') . '</strong> - ' . __('released on','lmm') . ' 17.12.2012 (<a href="http://www.mapsmarker.com/v3.2.4" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -90,6 +125,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		missing translation strings on settings page (thanks Patrick!)
 		</td></tr>
 		</table>'.PHP_EOL;
+	}
 
 	if ( ( $lmm_version_old < '3.2.3' ) && ( $lmm_version_old > '0' ) ){
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.2.3') . '</strong> - ' . __('released on','lmm') . ' 16.12.2012 (<a href="http://www.mapsmarker.com/v3.2.3" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
