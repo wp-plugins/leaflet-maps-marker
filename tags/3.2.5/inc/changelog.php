@@ -87,7 +87,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
-		plugin conflict with <a href="http://wordpress.org/extend/plugins/jetpack/" target="_blank">Jetpack plugin</a> which caused maps not to break (thanks John, Norman and Evan!)
+		plugin conflict with <a href="http://wordpress.org/extend/plugins/jetpack/" target="_blank">Jetpack plugin</a> which caused maps to break (thanks John, Norman and Evan!)
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
