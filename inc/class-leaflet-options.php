@@ -5996,7 +5996,7 @@ class Class_leaflet_options {
 			'section' => 'google-section3',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __( 'The base domain from which to load the Google Maps API (used for geocoding for example). If you want to change the language of the Google Maps interface (buttons etc) only, please change the option "Google language localization" above.', 'lmm'),
+			'desc'    => __( 'The base domain from which to load the Google Maps API (used for geocoding for example). If you want to change the language of the Google Maps interface (buttons etc) only, please change the option "Google language localization" above.', 'lmm') . ' ' . __('This base domain is also used for Google Maps Directions.','lmm'),
 			'type'    => 'helptext'
 		);
 		$this->settings['google_maps_base_domain'] = array(
@@ -6988,6 +6988,7 @@ class Class_leaflet_options {
 				'it_IT' => __('Italian','lmm') . ' (it_IT)',
 				'ja' => __('Japanese','lmm') . ' (ja)',
 				'pl_PL' => __('Polish','lmm') . ' (pl_PL)',
+				'pt_PT' => __('Portuguese','lmm') . ' (pt_PT)',
 				'ru_RU' => __('Russian','lmm') . ' (ru_RU)',
 				'sk_SK' => __('Slovak','lmm') . ' (sk_SK)',
 				'es_ES' => __('Spanish','lmm') . ' (es_ES)',
@@ -7978,7 +7979,7 @@ class Class_leaflet_options {
 		}
 		/* template for plugin updates 
 		//info:  set defaults for options introduced in v3.3
-		if (get_option('leafletmapsmarker_version') == '3.2.4' )
+		if (get_option('leafletmapsmarker_version') == '3.2.5' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting ) 
