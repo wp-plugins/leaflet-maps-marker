@@ -389,7 +389,8 @@ class Class_leaflet_options {
 				'mapbox3' => 'MapBox 3',
 				'custom_basemap' => __('Custom basemap','lmm'),
 				'custom_basemap2' => __('Custom basemap 2','lmm'),
-				'custom_basemap3' => __('Custom basemap 3','lmm')
+				'custom_basemap3' => __('Custom basemap 3','lmm'),
+				'empty_basemap' => __('empty basemap','lmm')
 			)
 		);  
 		/*
@@ -591,6 +592,15 @@ class Class_leaflet_options {
 			'title'   => __( 'Custom Basemap 3', 'lmm' ),
 			'desc'    => '',
 			'std'     => 'Transport Map',
+			'type'    => 'text'
+		);
+		$this->settings['empty_basemap_name'] = array(
+			'version' => '3.3',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section2',
+			'title'   => __( 'empty basemap', 'lmm' ),
+			'desc'    => '',
+			'std'     => 'empty basemap',
 			'type'    => 'text'
 		);		
 		/*
@@ -794,6 +804,15 @@ class Class_leaflet_options {
 			'type'    => 'checkbox',
 			'std'     => 1 
 		);	
+		$this->settings['controlbox_empty_basemap'] = array(
+			'version' => '3.3',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section3',
+			'title'   => '',
+			'desc'    => __('empty basemap','lmm'),
+			'type'    => 'checkbox',
+			'std'     => 0 
+		);	
 		/*
 		* Default values for new marker maps
 		*/
@@ -881,7 +900,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section4',
-			'title'   => __('Basemap/layer controlbox on frontend','lmm'),
+			'title'   => __('Controlbox for basemaps/overlays','lmm'),
 			'desc'    => '',
 			'type'    => 'radio',
 			'std'     => '1',
@@ -1461,7 +1480,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section7',
-			'title'   => __('Basemap/layer controlbox on frontend','lmm'),
+			'title'   => __('Controlbox for basemaps/overlays','lmm'),
 			'desc'    => '',
 			'type'    => 'radio',
 			'std'     => '1',
@@ -1675,7 +1694,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section8',
-			'title'   => __('Basemap/layer controlbox on frontend','lmm'),
+			'title'   => __('Controlbox for basemaps/overlays','lmm'),
 			'desc'    => '',
 			'type'    => 'radio',
 			'std'     => '1',
@@ -2186,6 +2205,19 @@ class Class_leaflet_options {
 			'choices' => array(
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
+			)
+		);			
+		$this->settings['misc_map_osm_editlink'] = array(
+			'version' => '3.3',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section10',
+			'title'   => __('OpenStreetMap edit link','lmm'),
+			'desc'    => __('Appends an edit link to the OpenStreetMap and Mapquest (OSM) attribution text which allows direct edits on www.openstreetmap.org (free account required)','lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-osmeditlink.jpg" />',
+			'type'    => 'radio',
+			'std'     => 'show',
+			'choices' => array(
+				'show' => __('show','lmm'),
+				'hide' => __('hide','lmm')
 			)
 		);			
 		/*
@@ -6686,6 +6718,55 @@ class Class_leaflet_options {
 			'std'     => 'www_mapsmarker_com',
 			'type'    => 'text'
 		);
+		$this->settings['ar_wikitude_shortname'] = array(
+			'version' => '3.3',
+			'pane'    => 'ar',
+			'section' => 'ar-section1',
+			'title'   => __( 'Short name', 'lmm' ),
+			'desc'    => __( 'A short name for your World, should only be up to 20 characters, to be used when there is not enough space.', 'lmm' ),
+			'std'     => 'www.mapsmarker.com',
+			'type'    => 'text'
+		);
+		$this->settings['ar_wikitude_promotiontext'] = array(
+			'version' => '3.3',
+			'pane'    => 'ar',
+			'section' => 'ar-section1',
+			'title'   => __( 'Promotion text', 'lmm' ),
+			'desc'    => __( 'A promotion text describing your World in more details.', 'lmm' ),
+			'std'     => 'Wikitude API powered by www.mapsmarker.com',
+			'type'    => 'text'
+		);
+		$this->settings['ar_wikitude_promotiongraphic'] = array(
+			'version' => '3.3',
+			'pane'    => 'ar',
+			'section' => 'ar-section1',
+			'title'   => __( 'Promotion graphic', 'lmm' ),
+			'desc'    => __( 'A graphic advertising your World. Format: 180x120 pixel, transparent PNG', 'lmm' ),
+			'std'     => LEAFLET_PLUGIN_URL . 'inc/img/wikitude-promotiongraphic-180x200.png',
+			'type'    => 'text'
+		);
+		$this->settings['ar_wikitude_optout'] = array(
+			'version' => '3.3',
+			'pane'    => 'ar',
+			'section' => 'ar-section1',
+			'title'   => __( 'No promotion', 'lmm' ),
+			'desc'    => __( 'Opt-out from being promoted by Wikitude.', 'lmm' ),
+			'type'    => 'radio',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false', 'lmm'),
+				'true' => __('true', 'lmm')		
+			)
+		);
+		$this->settings['ar_wikitude_featuregraphic'] = array(
+			'version' => '3.3',
+			'pane'    => 'ar',
+			'section' => 'ar-section1',
+			'title'   => __( 'Feature graphic', 'lmm' ),
+			'desc'    => __( 'A graphic spotlighting your World in promotions. Format: 1024x500 pixel, transparent PNG', 'lmm' ),
+			'std'     => LEAFLET_PLUGIN_URL . 'inc/img/wikitude-featuregraphic-180x200.png',
+			'type'    => 'text'
+		);
 		$this->settings['ar_wikitude_provider_url'] = array(
 			'version' => '1.0',
 			'pane'    => 'ar',
@@ -6696,7 +6777,7 @@ class Class_leaflet_options {
 			'type'    => 'text'
 		);
 		$this->settings['ar_wikitude_logo'] = array(
-			'version' => '1.0',
+			'version' => '3.3',
 			'pane'    => 'ar',
 			'section' => 'ar-section1',
 			'title'   => __( 'Logo', 'lmm' ),
@@ -6705,12 +6786,30 @@ class Class_leaflet_options {
 			'type'    => 'text'
 		);
 		$this->settings['ar_wikitude_icon'] = array(
-			'version' => '1.0',
+			'version' => '3.3',
 			'pane'    => 'ar',
 			'section' => 'ar-section1',
 			'title'   => __( 'Icon', 'lmm' ),
 			'desc'    => __( 'The icon is displayed in the cam view of Wikitude to indicate a marker - 32x32 pixel, transparent PNG', 'lmm' ),
 			'std'     => LEAFLET_PLUGIN_URL . 'inc/img/wikitude-icon-32x32.png',
+			'type'    => 'text'
+		);		
+		$this->settings['ar_wikitude_hiresicon'] = array(
+			'version' => '3.3',
+			'pane'    => 'ar',
+			'section' => 'ar-section1',
+			'title'   => __( 'High Resolution Icon', 'lmm' ),
+			'desc'    => __( 'A high resolution icon for your World which can be included in features. Format: 512x512 pixel, transparent PNG', 'lmm' ),
+			'std'     => '',
+			'type'    => 'text'
+		);		
+		$this->settings['ar_wikitude_tags'] = array(
+			'version' => '3.3',
+			'pane'    => 'ar',
+			'section' => 'ar-section1',
+			'title'   => __( 'Tags', 'lmm' ),
+			'desc'    => __( 'Comma separated list of keywords that characterize the content provider. When users search for content in Wikitude the tags will be searched as well. A match in the tags is higher ranked than in the description.', 'lmm' ),
+			'std'     => 'mapsmarker',
 			'type'    => 'text'
 		);		
 		$this->settings['ar_wikitude_email'] = array(
@@ -6757,7 +6856,7 @@ class Class_leaflet_options {
 			'desc'    => __( 'Used if Wikitude does not pass the variable maxNumberofPois - 50 is the maximum recommended', 'lmm' ),
 			'std'     => '50',
 			'type'    => 'text'
-		);		
+		);	
 		
 		/*===========================================
 		*
@@ -7977,7 +8076,6 @@ class Class_leaflet_options {
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
-		/* template for plugin updates 
 		//info:  set defaults for options introduced in v3.3
 		if (get_option('leafletmapsmarker_version') == '3.2.5' )
 		{
@@ -7985,6 +8083,22 @@ class Class_leaflet_options {
 			foreach ( $this->settings as $id => $setting ) 
 			{
 				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.3')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}
+		/* template for plugin updates 
+		//info:  set defaults for options introduced in v3.4
+		if (get_option('leafletmapsmarker_version') == '3.3' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting ) 
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.4')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}

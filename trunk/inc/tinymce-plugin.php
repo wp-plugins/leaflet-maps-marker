@@ -88,9 +88,9 @@ function get_mm_list(){
 <table style="width:100%;"><tr>
 <td id="msb_header_description" colspan="3"><?php echo __('If no search term is entered, the latest 15 maps will be shown.','lmm'); ?></td></tr>
 <tr>
-<td style="width:40%;"><div id="msb_serchContainer"><?php _e('Search','lmm'); ?> <input type="text" name="q" id="msb_serch"/></div></td>
-<td><a href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_marker" target="_blank" title="<?php esc_attr_e('create a new marker map','lmm'); ?>"><?php _e("Add new marker", "lmm") ?></a></td>
-<td><a href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_layer" target="_blank" title="<?php esc_attr_e('create a new layer map','lmm'); ?>"><?php _e("Add new layer", "lmm") ?></a></td>
+<td style="width:50%;"><div id="msb_searchContainer" style="color:#666666;"><?php _e('Search','lmm'); ?> <input type="text" name="q" id="msb_serch"/></div></td>
+<td><a style="font-size: 10px;Verdana,Arial,Helvetica,sans-serif; color:#666666;" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_marker" target="_blank" title="<?php esc_attr_e('create a new marker map','lmm'); ?>"><?php _e("Add new marker", "lmm") ?></a></td>
+<td><a style="font-size: 10px;Verdana,Arial,Helvetica,sans-serif; color:#666666;" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_layer" target="_blank" title="<?php esc_attr_e('create a new layer map','lmm'); ?>"><?php _e("Add new layer", "lmm") ?></a></td>
 </tr>
 </table>
 <div id="msb_listContainer">
@@ -104,7 +104,7 @@ function get_mm_list(){
 	} ?>
 </div>
 <table style="width:100%;"><tr>
-<td style="padding-top:13px;"><div id="msb_attribution">powered by <a href="http://www.mapsmarker.com" target"_blank">MapsMarker.com</a></div></td>
+<td style="padding-top:13px;"><div id="msb_attribution">powered by <a style="text-decoration:none;" href="http://www.mapsmarker.com" target"_blank">MapsMarker.com</a></div></td>
 <td><input class="button-primary" type="button" href="#" id="msb_insertMarkerSC" value="<?php esc_attr_e('Add shortcode','lmm'); ?>" /></td></tr>
 </table>
 <script type="text/javascript">
