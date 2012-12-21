@@ -215,12 +215,11 @@ For demo maps please visit [http://www.mapsmarker.com/demo](http://www.mapsmarke
 14. Backend: tools section - allows mass-actions more markers (assignements, deletions)
 15. [youtube http://www.youtube.com/watch?v=LXliLaZ4u-E]
 
-== Other Notes ==
-= Licence =
+== Licence ==
 Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a small donation for the time I've spent writing and supporting this plugin. Please see [http://www.mapsmarker.com/donations](http://www.mapsmarker.com/donations) for details.
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License included with this plugin for more details. 
 
-= Licenses for used libraries, services and images =
+== Licenses for used libraries, services and images ==
 * Leaflet - Copyright (c) 2010-2012, CloudMade, Vladimir Agafonkin [http://www.leafletjs.com](http://www.leafletjs.com)
 * OpenStreetMap - The Free Wiki World Map: [OpenStreetMap License](http://wiki.openstreetmap.org/wiki/OpenStreetMap_License) 
 * Map Icons Collection by Nicolas Mollet - [http://mapicons.nicolasmollet.com](http://mapicons.nicolasmollet.com)
@@ -236,7 +235,7 @@ This program is free software; you can redistribute it and/or modify it under th
 * Editor-Switch-Icon by AMAZIGH Aneglus, license: GNU/GPL
 * Submenu icons from [Bijou](http://bijou.im) and [Iconic](http://somerandomdude.com/work/iconic/) icon sets (GPL)
 
-= Credits & special thanks to =
+== Credits & special thanks to ==
 * Sindre Wimberger ([http://www.sindre.at](http://www.sindre.at)) for help with bugfixing & geo-consulting
 * Julia Loew ([http://www.weiderand.net](http://www.weiderand.net)) for logo and corporate design
 * Wordpress-Settings-API-Class by Aliso the geek ([http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/](http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/))
@@ -245,7 +244,7 @@ This program is free software; you can redistribute it and/or modify it under th
 
 For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
 
-= Trademark and copyright =
+== Trademark and copyright ==
 MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
