@@ -145,7 +145,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</td></tr>
 		</table>'.PHP_EOL;
 
-	if ( ( $lmm_version_old < '3.2.4' ) && ( $lmm_version_old > '0' ) ) {
+	if ( ( $lmm_version_old < '3.2.5' ) && ( $lmm_version_old > '0' ) ) {
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.2.5') . '</strong> - ' . __('released on','lmm') . ' 18.12.2012 (<a href="http://www.mapsmarker.com/v3.2.5" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
