@@ -110,9 +110,14 @@ if (isset($_GET['layer'])) {
 		echo '<ar:name><![CDATA[' . $layername . ']]></ar:name>'.PHP_EOL;
 		echo '<ar:description>' . __('Wikitude API powered by www.mapsmarker.com','lmm') . '</ar:description>'.PHP_EOL;
 		echo '<wikitude:providerUrl><![CDATA[' . $lmm_options[ 'ar_wikitude_provider_url' ] . ']]></wikitude:providerUrl>'.PHP_EOL;
-		//echo '<wikitude:tags><![CDATA[]]></wikitude:tags>'.PHP_EOL;
+		echo '<wikitude:tags><![CDATA[' . $lmm_options[ 'ar_wikitude_tags' ] . ']]></wikitude:tags>'.PHP_EOL;
+		echo '<wikitude:shortName><![CDATA[' . $lmm_options[ 'ar_wikitude_shortname' ] . ']]></wikitude:shortName>'.PHP_EOL;
+		echo '<wikitude:promotionText><![CDATA[' . $lmm_options[ 'ar_wikitude_promotiontext' ] . ']]></wikitude:promotionText>'.PHP_EOL;
+		echo '<wikitude:promotionGraphic><![CDATA[' . $lmm_options[ 'ar_wikitude_promotiongraphic' ] . ']]></wikitude:promotionGraphic>'.PHP_EOL;
+		echo '<wikitude:featureGraphic><![CDATA[' . $lmm_options[ 'ar_wikitude_featuregraphic' ] . ']]></wikitude:featureGraphic>'.PHP_EOL;
 		echo '<wikitude:logo><![CDATA[' . $lmm_options[ 'ar_wikitude_logo' ] . ']]></wikitude:logo>'.PHP_EOL;
 		echo '<wikitude:icon><![CDATA[' . $lmm_options[ 'ar_wikitude_icon' ] . ']]></wikitude:icon>'.PHP_EOL;
+		echo '<wikitude:hiResIcon><![CDATA[' . $lmm_options[ 'ar_wikitude_hiresicon' ] . ']]></wikitude:hiResIcon>'.PHP_EOL;
 		echo '</ar:provider>'.PHP_EOL;
 		
 		foreach ($markers as $marker) {
@@ -189,9 +194,14 @@ if (isset($_GET['layer'])) {
 		echo '<ar:name><![CDATA[' . $layername . ']]></ar:name>'.PHP_EOL;
 		echo '<ar:description>' . __('Wikitude API powered by www.mapsmarker.com','lmm') . '</ar:description>'.PHP_EOL;
 		echo '<wikitude:providerUrl><![CDATA[' . $lmm_options[ 'ar_wikitude_provider_url' ] . ']]></wikitude:providerUrl>'.PHP_EOL;
-		//echo '<wikitude:tags><![CDATA[]]></wikitude:tags>'.PHP_EOL;
+		echo '<wikitude:tags><![CDATA[' . $lmm_options[ 'ar_wikitude_tags' ] . ']]></wikitude:tags>'.PHP_EOL;
+		echo '<wikitude:shortName><![CDATA[' . $lmm_options[ 'ar_wikitude_shortname' ] . ']]></wikitude:shortName>'.PHP_EOL;
+		echo '<wikitude:promotionText><![CDATA[' . $lmm_options[ 'ar_wikitude_promotiontext' ] . ']]></wikitude:promotionText>'.PHP_EOL;
+		echo '<wikitude:promotionGraphic><![CDATA[' . $lmm_options[ 'ar_wikitude_promotiongraphic' ] . ']]></wikitude:promotionGraphic>'.PHP_EOL;
+		echo '<wikitude:featureGraphic><![CDATA[' . $lmm_options[ 'ar_wikitude_featuregraphic' ] . ']]></wikitude:featureGraphic>'.PHP_EOL;
 		echo '<wikitude:logo><![CDATA[' . $lmm_options[ 'ar_wikitude_logo' ] . ']]></wikitude:logo>'.PHP_EOL;
 		echo '<wikitude:icon><![CDATA[' . $lmm_options[ 'ar_wikitude_icon' ] . ']]></wikitude:icon>'.PHP_EOL;
+		echo '<wikitude:hiResIcon><![CDATA[' . $lmm_options[ 'ar_wikitude_hiresicon' ] . ']]></wikitude:hiResIcon>'.PHP_EOL;
 		echo '</ar:provider>'.PHP_EOL;
 		
 		foreach ($markers as $marker) {
@@ -268,9 +278,14 @@ elseif (isset($_GET['marker'])) {
 		  }
 		  echo '<ar:description>' . __('Wikitude API powered by www.mapsmarker.com','lmm') . '</ar:description>'.PHP_EOL;
 		  echo '<wikitude:providerUrl><![CDATA[' . $lmm_options[ 'ar_wikitude_provider_url' ] . ']]></wikitude:providerUrl>'.PHP_EOL;
-		  //echo '<wikitude:tags><![CDATA[]]></wikitude:tags>'.PHP_EOL;
+		  echo '<wikitude:tags><![CDATA[' . $lmm_options[ 'ar_wikitude_tags' ] . ']]></wikitude:tags>'.PHP_EOL;
+		  echo '<wikitude:shortName><![CDATA[' . $lmm_options[ 'ar_wikitude_shortname' ] . ']]></wikitude:shortName>'.PHP_EOL;
+		  echo '<wikitude:promotionText><![CDATA[' . $lmm_options[ 'ar_wikitude_promotiontext' ] . ']]></wikitude:promotionText>'.PHP_EOL;
+		  echo '<wikitude:promotionGraphic><![CDATA[' . $lmm_options[ 'ar_wikitude_promotiongraphic' ] . ']]></wikitude:promotionGraphic>'.PHP_EOL;
+		  echo '<wikitude:featureGraphic><![CDATA[' . $lmm_options[ 'ar_wikitude_featuregraphic' ] . ']]></wikitude:featureGraphic>'.PHP_EOL;
 		  echo '<wikitude:logo><![CDATA[' . $lmm_options[ 'ar_wikitude_logo' ] . ']]></wikitude:logo>'.PHP_EOL;
 		  echo '<wikitude:icon><![CDATA[' . $lmm_options[ 'ar_wikitude_icon' ] . ']]></wikitude:icon>'.PHP_EOL;
+		  echo '<wikitude:hiResIcon><![CDATA[' . $lmm_options[ 'ar_wikitude_hiresicon' ] . ']]></wikitude:hiResIcon>'.PHP_EOL;
 		  echo '</ar:provider>'.PHP_EOL;
 		
 		  foreach ($markers as $marker) {
@@ -338,9 +353,14 @@ elseif (isset($_GET['marker'])) {
 		  }
 		  echo '<ar:description>' . __('Wikitude API powered by www.mapsmarker.com','lmm') . '</ar:description>'.PHP_EOL;
 		  echo '<wikitude:providerUrl><![CDATA[' . $lmm_options[ 'ar_wikitude_provider_url' ] . ']]></wikitude:providerUrl>'.PHP_EOL;
-		  //echo '<wikitude:tags><![CDATA[]]></wikitude:tags>'.PHP_EOL;
+		  echo '<wikitude:tags><![CDATA[' . $lmm_options[ 'ar_wikitude_tags' ] . ']]></wikitude:tags>'.PHP_EOL;
+		  echo '<wikitude:shortName><![CDATA[' . $lmm_options[ 'ar_wikitude_shortname' ] . ']]></wikitude:shortName>'.PHP_EOL;
+		  echo '<wikitude:promotionText><![CDATA[' . $lmm_options[ 'ar_wikitude_promotiontext' ] . ']]></wikitude:promotionText>'.PHP_EOL;
+		  echo '<wikitude:promotionGraphic><![CDATA[' . $lmm_options[ 'ar_wikitude_promotiongraphic' ] . ']]></wikitude:promotionGraphic>'.PHP_EOL;
+		  echo '<wikitude:featureGraphic><![CDATA[' . $lmm_options[ 'ar_wikitude_featuregraphic' ] . ']]></wikitude:featureGraphic>'.PHP_EOL;
 		  echo '<wikitude:logo><![CDATA[' . $lmm_options[ 'ar_wikitude_logo' ] . ']]></wikitude:logo>'.PHP_EOL;
 		  echo '<wikitude:icon><![CDATA[' . $lmm_options[ 'ar_wikitude_icon' ] . ']]></wikitude:icon>'.PHP_EOL;
+		  echo '<wikitude:hiResIcon><![CDATA[' . $lmm_options[ 'ar_wikitude_hiresicon' ] . ']]></wikitude:hiResIcon>'.PHP_EOL;
 		  echo '</ar:provider>'.PHP_EOL;
 		
 		  foreach ($markers as $marker) {

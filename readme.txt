@@ -11,7 +11,7 @@ Tested up to:      3.6-alpha
 Stable tag:        3.2.5
 License:           GPLv2
 
-Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, GeoRSS or Augmented-Reality browsers
+Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, APIs or Augmented-Reality browsers
 
 == Description ==
 Maps Marker allows you to pin, organize and share your favorite spots through your WordPress powered site easily. You can use maps from OpenStreetMap, Google Maps, Google Earth, Bing Maps or custom maps and additionally display your spots in innovative ways like through augmented-reality browsers.
@@ -234,6 +234,7 @@ This program is free software; you can redistribute it and/or modify it under th
 * Images for changelog from [Firefox release notes](http://www.mozilla.org/en-US/firefox/11.0/releasenotes/), licence: Creative Commons Attribution ShareAlike (CC BY-SA 3.0)
 * Home-Icon from [Pro Theme Design](http://prothemedesign.com), licence: Creative Commons Attribution (by)
 * Editor-Switch-Icon by AMAZIGH Aneglus, license: GNU/GPL
+* Submenu icons from [Bijou](http://bijou.im) and [Iconic](http://somerandomdude.com/work/iconic/) icon sets (GPL)
 
 = Credits & special thanks to =
 * Sindre Wimberger ([http://www.sindre.at](http://www.sindre.at)) for help with bugfixing & geo-consulting
@@ -249,6 +250,8 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
+= v3.3 =
+added OSM edit link, enhance Wikitude Augmented-Reality API, usability optimizations - see http://www.mapsmarker.com/v3.3 for more details
 = v3.2.5 =
 compatibility fix for Jetpack plugin, Portuguese (pt_PT) translation thanks to Joao Campos, [http://www.all-about-portugal.com](http://www.all-about-portugal.com) - see http://www.mapsmarker.com/v3.2.5 for more details
 = v3.2.4 =
@@ -329,11 +332,29 @@ Added new features and bugfixes - see http://www.mapsmarker.com/v1.1 for more de
 Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 == Changelog ==
+= v3.3 - 21.12.2012 =
+* [Blog post with more details about this release](http://www.mapsmarker.com/v3.3)
+* NEW: edit map-link for OpenStreetMap and Mapbox (OSM) maps (can be disabled)
+* NEW: address (if set) is now used for Google directions links instead of latitude/longitude (thanks Pepperbase!)
+* NEW: show info under list of markers below layer maps if more markers are available
+* NEW: added new Wikitude fields enabling you to better promote your Augmented-Reality world
+* NEW: dynamic preview of control box status (hidden/collapsed/expanded) in backend
+* NEW: option to use an empty basemap (in case you just want to work with overlays only)
+* NEW: added menu icons on backend and translations image on changelog
+* NEW: added warning message if plugin "WordPress Ultra Simple Paypal Shopping Cart" which breaks settings page is active
+* NEW: autofocus marker/layer name input field on backend (HTML5)
+* CHANGED: improved tab order of input fields on marker and layer edit pages on backend
+* FIXED: reset Wikitude world logo and icon to default values (please update if you changed them!)
+* FIXED: warning message with WordPress 3.5 on layer edit pages on backend ($wpdb->prepare issue)
+* TRANSLATIONS: updated Portuguese (pt_PT) translation thanks to Joao Campos, [http://www.all-about-portugal.com](http://www.all-about-portugal.com)
+* TRANSLATIONS: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
+* TRANSLATIONS: updated German translation
+
 = v3.2.5 - 18.12.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v3.2.5)
 * NEW: Portuguese (pt_PT) translation thanks to Joao Campos, [http://www.all-about-portugal.com](http://www.all-about-portugal.com)
 * NEW: custom Google base domain setting is now also considered on directions link (thanks Pepperbase!)
-* CHANGED: updated German translation
+* TRANSLATIONS: updated German translation
 * FIXED: plugin conflict with [Jetpack plugin](http://wordpress.org/extend/plugins/jetpack/) which caused maps to break (thanks John, Norman and Evan!)
 * FIXED: warning message for multi-layer-maps with all layers ($wpdb->prepare issue)
 * FIXED: warning message in tools when deleting all markers ($wpdb->prepare issue)
@@ -341,17 +362,17 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 = v3.2.4 - 17.12.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v3.2.4)
 * CHANGED: removed check for wp_footer(); in backend (did not work on child themes)
-* CHANGED: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
-* CHANGED: updated German translation
+* TRANSLATIONS: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
+* TRANSLATIONS: updated German translation
 * FIXED: missing translation strings on settings page (thanks Patrick!)
 
 = v3.2.3 - 16.12.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v3.2.3)
-* CHANGED: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
-* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
-* CHANGED: updated German translation
+* TRANSLATIONS: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
+* TRANSLATIONS: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* TRANSLATIONS: updated German translation
 * FIXED: compatibility fix with flickr gallery plugin (settings page was broken)
-* FIXED: editor switch link did not work on some installations
+* FIXED: editor switch link did not work on some installations 
 
 = v3.2.2 - 15.12.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v3.2.2)
@@ -359,13 +380,13 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 * NEW: added check for wp_footer() in template files (footer.php or index.php)
 * NEW: added troubleshooting link on frontpage if map could not be loaded
 * NEW: option to disable conditional css loading
-* CHANGED: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
+* TRANSLATIONS: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
 * FIXED: W3C validator errors for marker maps, layer maps and recent marker widget
 
 = v3.2.1 - 13.12.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v3.2.1)
 * CHANGED: no more manual template edits needed if you use do_shortcode() to display maps
-* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* TRANSLATIONS: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
 * BUGFIX: recent marker widget showed error message with WordPress 3.5
 * BUGFIX: margin was added within basemap control box on some templates
 
@@ -381,10 +402,10 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 * NEW: allow bing map tiles to be served over SSL
 * NEW: added option to disable errorTile-images for custom overlays to better support tools like [maptiler](http://www.maptiler.org/)
 * CHANGED: function for editor switch link (should now work on all installs)
-* CHANGED: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
-* CHANGED: updated Japanese translations thanks to [Shu Higashi](http://twitter.com/higa4)
-* CHANGED: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
-* CHANGED: updated German translation
+* TRANSLATIONS: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
+* TRANSLATIONS: updated Japanese translations thanks to [Shu Higashi](http://twitter.com/higa4)
+* TRANSLATIONS: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
+* TRANSLATIONS: updated German translation
 * BUGFIX: list of markers and table of assigned markers to a layer in backend partly showed wrong markers (thanks Coen!)
 * BUGFIX: QR-Code, GeoRSS, Wikitude-links in list of markers under layer maps pointed to layer-API links (thanks Felix!)
 * BUGFIX: Available API links for list of markers on backend didnt reflect the set options from settings
@@ -406,10 +427,10 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 * NEW: added fallback for installations where editor switch link above tables did not work
 * CHANGED: changed default basemap to OpenStreetMap and removed OGD Vienna selector for usability reasons
 * CHANGED: unchecked custom overlay 1 in setting "Available overlays in control box" - [action is needed if you changed this!](http://mapsmarker.com/v3.1)
-* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
-* CHANGED: updated Hungarian translation thanks to István Pintér, [http://www.logicit.hu](http://www.logicit.hu)
-* CHANGED: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
-* CHANGED: updated German translation
+* TRANSLATIONS: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* TRANSLATIONS: updated Hungarian translation thanks to István Pintér, [http://www.logicit.hu](http://www.logicit.hu)
+* TRANSLATIONS: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
+* TRANSLATIONS: updated German translation
 * BUGFIX: display of markers was broken on RTL (right to left) WordPress sites
 * BUGFIX: editor broke with error "Cannot redeclare curpageurl()" on some installations
 * BUGFIX: warning messages on WordPress 3.5 when debug is enabled
@@ -426,10 +447,10 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 * CHANGED: layer control box is not opened by default on mobile devices anymore
 * CHANGED: optimized TinyMCE popup (new with links to add new marker and layer maps)
 * CHANGED: changed position of delete marker and layer buttons
-* CHANGED: updated Polish transation thanks to Tomasz Rudnicki, [http://www.kochambieszczady.pl](http://www.kochambieszczady.pl)
-* CHANGED: updated Japanese translations thanks to [Shu Higashi](http://twitter.com/higa4)
-* CHANGED: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
-* CHANGED: updated German translation
+* TRANSLATIONS: updated Polish transation thanks to Tomasz Rudnicki, [http://www.kochambieszczady.pl](http://www.kochambieszczady.pl)
+* TRANSLATIONS: updated Japanese translations thanks to [Shu Higashi](http://twitter.com/higa4)
+* TRANSLATIONS: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
+* TRANSLATIONS: updated German translation
 * CHANGED: optimized use of WordPress Transients API (saving less rows to wp_options-table)
 * CHANGED: optimized plugin active check for higher performance (use of isset() instead of in_array())
 * CHANGED: set jQuery cache for layers to true again for higher performance
@@ -451,21 +472,21 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 = v2.9.2 - 11.11.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.9.2)
 * NEW: compatibility with 1st WordPress NFC plugin from pingeb.org - [read more](http://www.mapsmarker.com/pingeb)
-* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
-* CHANGED: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
-* CHANGED: updated French translation thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com) and Rodolphe Quiedeville, [http://rodolphe.quiedeville.org/](http://rodolphe.quiedeville.org/)
-* CHANGED: updated Ukrainian translation thanks to Andrexj, [http://all3d.com.ua](http://all3d.com.ua)
+* TRANSLATIONS: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* TRANSLATIONS: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
+* TRANSLATIONS: updated French translation thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com) and Rodolphe Quiedeville, [http://rodolphe.quiedeville.org/](http://rodolphe.quiedeville.org/)
+* TRANSLATIONS: updated Ukrainian translation thanks to Andrexj, [http://all3d.com.ua](http://all3d.com.ua)
 * BUGFIX: new settings panel was broken when certain translations were loaded
 
 = v2.9.1 - 05.11.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.9.1)
 * CHANGED: improved backend usability
 * CHANGED: refreshed backend design
-* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
-* CHANGED: updated Catalan translation thanks to Vicent Cubells, [http://vcubells.net](http://vcubells.net)
-* CHANGED: updated Polish transation thanks to Tomasz Rudnicki, [http://www.kochambieszczady.pl](http://www.kochambieszczady.pl)
-* CHANGED: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
-* CHANGED: updated German translation
+* TRANSLATIONS: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* TRANSLATIONS: updated Catalan translation thanks to Vicent Cubells, [http://vcubells.net](http://vcubells.net)
+* TRANSLATIONS: updated Polish transation thanks to Tomasz Rudnicki, [http://www.kochambieszczady.pl](http://www.kochambieszczady.pl)
+* TRANSLATIONS: updated Dutch translation thanks to Patrick Ruers, [http://www.stationskwartiersittard.nl](http://www.stationskwartiersittard.nl)
+* TRANSLATIONS: updated German translation
 
 = v2.9 - 02.11.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.9)
@@ -477,16 +498,16 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 * NEW: added compatibility check for incompatible plugin [Lazy Load]([http://wordpress.org/extend/plugins/lazy-load/)
 * NEW: added fallback for installation on hosts where unzip of default marker icons did not work with default method
 * CHANGED: show link "add new map" in TinyMCE popup if no maps have been created yet
-* CHANGED: updated Spanish translation thanks to Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
-* CHANGED: updated Slovak translation thanks to Zdenko Podobny
-* CHANGED: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
-* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
-* CHANGED: updated Polish transation thanks to Tomasz Rudnicki, [http://www.kochambieszczady.pl](http://www.kochambieszczady.pl)
-* CHANGED: updated French translation thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com) and Rodolphe Quiedeville, [http://rodolphe.quiedeville.org/](http://rodolphe.quiedeville.org/)
-* CHANGED: updated Japanese translations thanks to [Shu Higashi](http://twitter.com/higa4)
-* CHANGED: updated Turkish translation thanks to Emre Erkan, [http://www.karalamalar.net](http://www.karalamalar.net)
-* CHANGED: updated Catalan translation thanks to Vicent Cubells, [http://vcubells.net](http://vcubells.net)
-* CHANGED: updated German translation
+* TRANSLATIONS: updated Spanish translation thanks to Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
+* TRANSLATIONS: updated Slovak translation thanks to Zdenko Podobny
+* TRANSLATIONS: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
+* TRANSLATIONS: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* TRANSLATIONS: updated Polish transation thanks to Tomasz Rudnicki, [http://www.kochambieszczady.pl](http://www.kochambieszczady.pl)
+* TRANSLATIONS: updated French translation thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com) and Rodolphe Quiedeville, [http://rodolphe.quiedeville.org/](http://rodolphe.quiedeville.org/)
+* TRANSLATIONS: updated Japanese translations thanks to [Shu Higashi](http://twitter.com/higa4)
+* TRANSLATIONS: updated Turkish translation thanks to Emre Erkan, [http://www.karalamalar.net](http://www.karalamalar.net)
+* TRANSLATIONS: updated Catalan translation thanks to Vicent Cubells, [http://vcubells.net](http://vcubells.net)
+* TRANSLATIONS: updated German translation
 * CHANGED: optimized internal code structure (moved some functions to /inc/-directory)
 * CHANGED: optimized database install- and update routine (use of dbdelta()-function)
 * BUGFIX: table for list of markers below layer maps was not as wide as map if map with was set in %
@@ -497,9 +518,9 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 = v2.8.2 - 26.09.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.8.2)
 * NEW: added media button to TinyMCE editor and support for HTML editing mode
-* CHANGED: updated Spanish translation thanks to Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
-* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
-* CHANGED: updated Catalan translation thanks to Vicent Cubells, [http://vcubells.net](http://vcubells.net)
+* TRANSLATIONS: updated Spanish translation thanks to Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
+* TRANSLATIONS: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* TRANSLATIONS: updated Catalan translation thanks to Vicent Cubells, [http://vcubells.net](http://vcubells.net)
 * BUGFIX: database tables &amp; marker icon directory did not get removed on multisite blogs when blog was deleted through network admin
 * BUGFIX: KML output was broken if marker or layer name contained &amp;-characters
 * BUGFIX: plugin incompatibility with "SEO Friendly Images" plugin
@@ -507,7 +528,7 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 
 = v2.8.1 - 09.09.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.8.1)
-* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* TRANSLATIONS: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
 * BUGFIX: images and links in layer maps were broken
 
 = v2.8 - 08.09.2012 =
@@ -520,9 +541,9 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 * CHANGED: optimized install & update routine (now executed only once a day)
 * CHANGED: updated jQuery-Timepicker-Addon by Trent Richardson to v1.0.1
 * CHANGED: started code refactoring for better readability and extensability
-* CHANGED: updated Slovak translation thanks to Zdenko Podobny
-* CHANGED: updated Catalan translation thanks to Vicent Cubells, [http://vcubells.net](http://vcubells.net)
-* CHANGED: updated Spanish translation thanks to Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
+* TRANSLATIONS: updated Slovak translation thanks to Zdenko Podobny
+* TRANSLATIONS: updated Catalan translation thanks to Vicent Cubells, [http://vcubells.net](http://vcubells.net)
+* TRANSLATIONS: updated Spanish translation thanks to Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
 * CHANGED: removed global stats to comply with WordPress plugin repository policies
 * BUGFIX: AJAX GeoJSON-calls from other (sub)domains were not allowed (same origin policy)
 * BUGFIX: maximum popup width and popup image width were ignored on TinyMCE editor
@@ -567,11 +588,11 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 * CHANGED: moved "General Map settings" from tab "Misc" to "Basemaps"
 * CHANGED: GeoJSON AJAX calls for layer maps are not cached anymore to deliver more current results
 * CHANGED: optimized OGD Vienna selector (considers switch to other default basemaps)
-* CHANGED: updated German translation
-* CHANGED: updated French translation thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com) and Rodolphe Quiedeville, [http://rodolphe.quiedeville.org/](http://rodolphe.quiedeville.org/)
-* CHANGED: updated Spanish translation thanks to Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
-* CHANGED: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
-* CHANGED: updated Catalan translation thanks to Vicent Cubells, [http://vcubells.net](http://vcubells.net)
+* TRANSLATIONS: updated German translation
+* TRANSLATIONS: updated French translation thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com) and Rodolphe Quiedeville, [http://rodolphe.quiedeville.org/](http://rodolphe.quiedeville.org/)
+* TRANSLATIONS: updated Spanish translation thanks to Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
+* TRANSLATIONS: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
+* TRANSLATIONS: updated Catalan translation thanks to Vicent Cubells, [http://vcubells.net](http://vcubells.net)
 * BUGFIX: the selection of shortcodes via tinymce popup on posts/pages editor was broken on iOS devices
 * BUGFIX: fixed broken links in multi-layer-maps-list and default state controlbox on layer maps on backend 
 * BUGFIX: manual language selection for Chinese and Yiddish was broken
@@ -602,10 +623,10 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 * NEW: Added compatibility check for plugin [WordPress Better Minify](http://wordpress.org/extend/plugins/bwp-minify/)
 * CHANGED: increased Google Maps maximal zoom level from 18 to 22
 * CHANGED: changed the way Google Maps API is called in order to prevent errors with unset sensor parameter when using certain proxy servers (thanks to Dragan, [http://EdWeWo.com](http://EdWeWo.com)
-* CHANGED: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
-* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
-* CHANGED: updated Spanish translation thanks to Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
-* CHANGED: updated French translation thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com)
+* TRANSLATIONS: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
+* TRANSLATIONS: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* TRANSLATIONS: updated Spanish translation thanks to Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
+* TRANSLATIONS: updated French translation thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com)
 * BUGFIX: maps using Google Maps Satellite as basemaps were broken
 * BUGFIX: fixed vertical alignment of basemaps in layer control box in backend
 
@@ -618,12 +639,12 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 * NEW: Turkish (tr_TR) thanks to Emre Erkan, [http://www.karalamalar.net](http://www.karalamalar.net)
 * NEW: Polish (pl_PL) translation thanks to Pawel Wyszynski, [http://injit.pl](http://injit.pl)
 * NEW: new collaborative translation site [http://translate.mapsmarker.com](http://translate.mapsmarker.com)- contributing new translations is now more easier than ever :-)
-* CHANGED: updated Japanese translations thanks to [Shu Higashi](http://twitter.com/higa4)
-* CHANGED: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
-* CHANGED: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
-* CHANGED: updated Spanish translation thanks to Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
-* CHANGED: updated French translation thanks to Rodolphe Quiedeville, [http://rodolphe.quiedeville.org/](http://rodolphe.quiedeville.org/)
-* CHANGED: updated Dutch translation thanks to [Marijke](http://www.mergenmetz.nl)
+* TRANSLATIONS: updated Japanese translations thanks to [Shu Higashi](http://twitter.com/higa4)
+* TRANSLATIONS: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
+* TRANSLATIONS: updated Chinese translation thanks to John Shen, [http://www.synyan.net](http://www.synyan.net)
+* TRANSLATIONS: updated Spanish translation thanks to Alvaro Lara, [http://www.alvarolara.com](http://www.alvarolara.com)
+* TRANSLATIONS: updated French translation thanks to Rodolphe Quiedeville, [http://rodolphe.quiedeville.org/](http://rodolphe.quiedeville.org/)
+* TRANSLATIONS: updated Dutch translation thanks to [Marijke](http://www.mergenmetz.nl)
 * CHANGED: show "no markers created yet" on sidebar widget, if no markers are available
 * CHANGED: added translations strings for plugin update notice
 * BUGFIX: v2.4 was broken on Wordpress 3.0-3.1.3
@@ -644,8 +665,8 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.3)
 * NEW: added sort options for marker and layer listing pages in backend
 * NEW: localized paypal check out pages for donations :-)
-* CHANGED: updated French translation thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com)
-* CHANGED: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
+* TRANSLATIONS: updated French translation thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com)
+* TRANSLATIONS: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
 * BUGFIX: TinyMCE button error on certain installations (function redeclaration, different wp-admin-directory)
 * BUGFIX: list of markers below layer maps was not as wide as the map on some templates
 * BUGFIX: changed constant WP_ADMIN_URL to LEAFLET_WP_ADMIN_URL due to problems on some blogs
@@ -653,7 +674,7 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 = v2.2 - 24.03.2012 =
 * [Blog post with more details about this release](http://www.mapsmarker.com/v2.2)
 * NEW: support for new map options (dragging, touchzoom, scrollWheelZoom...)
-* CHANGED: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
+* TRANSLATIONS: updated Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
 * BUGFIX: TinyMCE button did not work when WordPress was installed in custom directory
 
 = v2.1 - 18.03.2012 =
@@ -664,9 +685,9 @@ Initial release - see http://www.mapsmarker.com/v1.0 for more details
 * NEW: added check for incompatible plugins
 * NEW: Italian translation thanks to [Luca Barbetti](http://twitter.com/okibone)
 * CHANGED: optimized search results table for maps (started with TinyMCE button on post/page edit screen)
-* CHANGED: updated French translation thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com)
-* CHANGED: updated Dutch translation thanks to [Marijke](http://www.mergenmetz.nl)
-* CHANGED: updated Japanese translations thanks to [Shu Higashi](http://twitter.com/higa4)
+* TRANSLATIONS: updated French translation thanks to Vincèn Pujol, [http://www.skivr.com](http://www.skivr.com)
+* TRANSLATIONS: updated Dutch translation thanks to [Marijke](http://www.mergenmetz.nl)
+* TRANSLATIONS: updated Japanese translations thanks to [Shu Higashi](http://twitter.com/higa4)
 * BUGFIX: attribution text is not cleared on backend maps if basemap is changed
 * BUGFIX: removed double slashes from image urls in settings
 

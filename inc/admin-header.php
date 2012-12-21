@@ -6,17 +6,13 @@
 if (basename($_SERVER['SCRIPT_FILENAME']) == 'admin-header.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
 require_once(ABSPATH . WPINC . DIRECTORY_SEPARATOR . "pluggable.php");
 $lmm_options = get_option( 'leafletmapsmarker_options' ); //info: required for bing maps api key check
-//info: display info upon first activation
-$install_note = (isset($_GET['display']) ? $_GET['display'] : '');
-if ( $install_note != NULL ) {
-	$install_success_message = sprintf( __('You just successfully installed the "Leaflet Maps Marker" plugin. You can now add your first marker below or optionally <a href="%1$sadmin.php?page=leafletmapsmarker_settings">change the default settings</a>.<br/>For tutorials and help, please check the <a href="%1$sadmin.php?page=leafletmapsmarker_help">Help &amp; Credits page</a>!','lmm'), LEAFLET_WP_ADMIN_URL); 
-	echo '<div class="updated" style="padding:10px;"><p>' . $install_success_message . '</p></div>';
-	//info: check if custom icons could be unzipped
-	if ( ! file_exists(LEAFLET_PLUGIN_ICONS_DIR . DIRECTORY_SEPARATOR . 'information.png') ) {
-		echo '<div class="error" style="padding:10px;">'.__('Warning: the custom map icon directory at <code>/wp-contents/uploads/leaflet-maps-marker-icons</code> could not be created due to file permission settings on your webserver. Leaflet Maps Marker will work as designed, but only with one map icon available.<br/>You can add the included map icons manually by following the steps at <a href="http://www.mapsmarker.com/incomplete-installation" target="_blank">http://www.mapsmarker.com/incomplete-installation</a>', 'lmm').'</div>';
-	}
-	update_option('leafletmapsmarker_update_info', 'hide');
-} 
+
+//info: hide update info on new installs
+$version_before_update = get_option('leafletmapsmarker_version_before_update');
+if ($version_before_update == '0') {
+		update_option('leafletmapsmarker_update_info', 'hide');
+}
+
 //info: make to menu buttons active depended on page you´re on
 $page = (isset($_GET['page']) ? $_GET['page'] : '');
 $oid = isset($_POST['id']) ? intval($_POST['id']) : (isset($_GET['id']) ? intval($_GET['id']) : '');
@@ -77,10 +73,19 @@ if ($page == 'leafletmapsmarker_markers') {
 	$buttonclass6 = 'button-secondary';
 	$buttonclass7 = 'button-primary';
 }
-$admin_quicklink_tools_buttons = ( current_user_can( "activate_plugins" ) ) ? "<a class='" . $buttonclass5 ."' href='" . LEAFLET_WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_tools'>".__('Tools','lmm')."</a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;" : "";
-$admin_quicklink_settings_buttons = ( current_user_can( "activate_plugins" ) ) ? "<a class='" . $buttonclass6 ."' href='" . LEAFLET_WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_settings'>".__('Settings','lmm')."</a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;" : "";
+$admin_quicklink_tools_buttons = ( current_user_can( "activate_plugins" ) ) ? "<a class='" . $buttonclass5 ."' href='" . LEAFLET_WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_tools'><img src='" . LEAFLET_PLUGIN_URL . "inc/img/icon-menu-tools.png'> ".__('Tools','lmm')."</a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;" : "";
+$admin_quicklink_settings_buttons = ( current_user_can( "activate_plugins" ) ) ? "<a class='" . $buttonclass6 ."' href='" . LEAFLET_WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_settings'><img src='" . LEAFLET_PLUGIN_URL . "inc/img/icon-menu-settings.png'> ".__('Settings','lmm')."</a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;" : "";
 
 //info: admin notices which only show on LMM pages
+//info: check if custom icons could be unzipped
+if ( ! file_exists(LEAFLET_PLUGIN_ICONS_DIR . DIRECTORY_SEPARATOR . 'readme-icons.txt') ) {
+	echo '<div class="error" style="padding:10px;">'.__('Warning: the custom map icon directory at <code>/wp-contents/uploads/leaflet-maps-marker-icons</code> could not be created due to file permission settings on your webserver. Leaflet Maps Marker will work as designed, but only with one map icon available.<br/>You can add the included map icons manually by following the steps at <a href="http://www.mapsmarker.com/incomplete-installation" target="_blank">http://www.mapsmarker.com/incomplete-installation</a>', 'lmm').'</div>';
+}
+
+//info: plugin WordPress Ultra Simple Paypal Shopping Cart
+if (is_plugin_active('wp-ultra-simple-paypal-shopping-cart/wp_ultra_simple_shopping_cart.php') ) {
+	echo '<p><div class="error" style="padding:10px;"><strong>' . __('Warning: you are using the plugin WordPress Ultra Simple Paypal Shopping Cart which is causing the Leaflet Maps Marker settings page to break! Please temporarily deactivate this plugin if you want change the settings. The plugin developer has already been contacted and will hopefully release a fix soon.','lmm') . '</strong></div></p>';
+}
 //info: check if newer plugin version is available
 $plugin_updates = get_site_transient( 'update_plugins' );
 if (isset($plugin_updates->response['leaflet-maps-marker/leaflet-maps-marker.php']->new_version)) { 
@@ -100,8 +105,8 @@ if (isset($plugin_updates->response['leaflet-maps-marker/leaflet-maps-marker.php
 
 <div style="font-size:1.5em;margin-bottom:5px;padding:2px 0 0 0;"><span style="font-weight:bold;">Maps Marker<sup style="font-size:75%;">&reg;</sup> v<?php echo get_option("leafletmapsmarker_version") ?> - <?php _e('Free Edition','lmm'); ?></span></div>
   <p style="margin:1.4em 0 0 0;">
-  <a class="<?php echo $buttonclass1; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_markers"><?php _e("List all markers", "lmm") ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a class="<?php echo $buttonclass2; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_marker">
+  <a class="<?php echo $buttonclass1; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_markers"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-menu-list.png"> <?php _e("List all markers", "lmm") ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a class="<?php echo $buttonclass2; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_marker"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-menu-add.png"> 
     <?php 
   if ( ($oid == NULL) && ($page == 'leafletmapsmarker_marker') ) { 
   		_e("Add new marker", "lmm"); 
@@ -111,8 +116,8 @@ if (isset($plugin_updates->response['leaflet-maps-marker/leaflet-maps-marker.php
   		_e("Add new marker", "lmm"); 
   }?>
   </a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-  <a class="<?php echo $buttonclass3; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_layers"><?php _e("List all layers", "lmm") ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a class="<?php echo $buttonclass4; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_layer">
+  <a class="<?php echo $buttonclass3; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_layers"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-menu-list.png"> <?php _e("List all layers", "lmm") ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a class="<?php echo $buttonclass4; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_layer"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-menu-add.png"> 
   <?php 
   if ( ($oid == NULL) && ($page == 'leafletmapsmarker_layer') ) { 
   		_e("Add new layer", "lmm"); 
@@ -124,7 +129,7 @@ if (isset($plugin_updates->response['leaflet-maps-marker/leaflet-maps-marker.php
   </a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
   <?php echo $admin_quicklink_tools_buttons ?>
   <?php echo $admin_quicklink_settings_buttons ?>
-  <a class="<?php echo $buttonclass7; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_help"><?php _e("Help", "lmm") ?></a>
+  <a class="<?php echo $buttonclass7; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_help"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-menu-help.png"> <?php _e("Help", "lmm") ?></a>
   </p>
 </td></tr></table>
 

@@ -116,7 +116,7 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 			<?php wp_nonce_field('markersearch-nonce'); ?>
 			<input type="hidden" name="action" value="search" />
 			<input type="text" id="searchtext" name="searchtext" value="<?php echo (isset($_POST['searchtext']) != NULL) ? htmlspecialchars(stripslashes($_POST['searchtext'])) : "" ?>"/>
-			<input type="submit" class="button" name="searchsubmit" value="<?php _e('Search Markers', 'lmm') ?>"/>
+			<input type="submit" class="button" name="searchsubmit" value="<?php _e('Search markers', 'lmm') ?>"/>
 		</form>
 		<?php echo $showall = (isset($_POST['searchtext']) != NULL) ? "<a style=\"text-decoration:none;\" href=\"" . LEAFLET_WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_markers\">" . __('show all markers','lmm') . "</a>" : ""; ?>
 	</div>
