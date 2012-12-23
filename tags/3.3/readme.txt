@@ -114,29 +114,29 @@ to the visitors of your website.
 * uninstall function to completely remove the plugin and its data (also on WordPress Multisite installations)
 
 = Available translations =
-* Bulgarian (bg_BG)
-* Catalan (ca)
-* Chinese (zh_CN)
-* Croatian (hr)
-* Danish (da_DK)
-* Dutch (nl_NL)
+* Bulgarian (bg_BG) thanks to Andon Ivanov
+* Catalan (ca) thanks to Vicent Cubells
+* Chinese (zh_CN) thanks to John Shen
+* Croatian (hr) thanks to Neven Pausic and Alan Benic
+* Danish (da_DK) thanks to Mads Dyrmann Larsen
+* Dutch (nl_NL) thanks to Marijke Metz and Patrick Ruers
 * English (en_US)
-* French (fr_FR)
+* French (fr_FR) thanks to Vincèn Pujol and Rodolphe Quiedeville
 * German (de_DE)
-* Hindi (hi_IN)
-* Hungarian (hu_HU)
-* Italian (it_IT)
-* Japanese (ja)
-* Polish (pl_PL)
-* Portuguese (pt_PT)
-* Russian (ru_RU)
-* Slovak (sk_SK)
-* Spanish (es_ES)
-* Turkish (tr_TR)
-* Ukrainian (uk_UK)
-* Yiddish (yi)
+* Hindi (hi_IN) thanks to by Outshine Solutions and Guntupalli Karunakar
+* Hungarian (hu_HU) thanks to István Pintér
+* Italian (it_IT) thanks to Luca Barbetti
+* Japanese (ja) thanks to Shu Higashi
+* Polish (pl_PL) translation thanks to Pawel Wyszynski and Tomasz Rudnicki
+* Portuguese (pt_PT) translation thanks to Joao Campos
+* Russian (ru_RU) thanks to Ekaterina Golubina, supported by Teplitsa of Social Technologies
+* Slovak (sk_SK) thanks to Zdenko Podobny
+* Spanish (es_ES) thanks to David Ramirez and Alvaro Lara
+* Turkish (tr_TR) thanks to Emre Erkan
+* Ukrainian (uk_UK) thanks to Andrexj
+* Yiddish (yi) thanks to Raphael Finkel
 
-For full credits of each translations please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages) (had to remove backlinks from readme-file)
+For full credits of each translations please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages) (had to remove backlinks from readme-file as it is considered as spam by WordPress :-/ )
 
 Leaflet Maps Marker also supports easy switching between translations through a specific plugin setting.
 For more information on translations and how to contribute a new translation, please visit [http://translate.mapsmarker.com](http://translate.mapsmarker.com/projects/lmm).
