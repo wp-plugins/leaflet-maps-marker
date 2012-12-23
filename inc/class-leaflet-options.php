@@ -6764,7 +6764,7 @@ class Class_leaflet_options {
 			'section' => 'ar-section1',
 			'title'   => __( 'Feature graphic', 'lmm' ),
 			'desc'    => __( 'A graphic spotlighting your World in promotions. Format: 1024x500 pixel, transparent PNG', 'lmm' ),
-			'std'     => LEAFLET_PLUGIN_URL . 'inc/img/wikitude-featuregraphic-180x200.png',
+			'std'     => LEAFLET_PLUGIN_URL . 'inc/img/wikitude-featuregraphic-1024x500.png',
 			'type'    => 'text'
 		);
 		$this->settings['ar_wikitude_provider_url'] = array(
