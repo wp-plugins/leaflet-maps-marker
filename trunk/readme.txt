@@ -7,7 +7,7 @@ Author URI:        http://www.harm.co.at
 Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
-Tested up to:      3.6-alpha
+Tested up to:      3.6-alpha-23288
 Stable tag:        3.3
 License:           GPLv2
 
@@ -114,6 +114,7 @@ to the visitors of your website.
 * uninstall function to completely remove the plugin and its data (also on WordPress Multisite installations)
 
 = Available translations =
+* Bosnian (bs_BA) thanks to Kenan Dervišević
 * Bulgarian (bg_BG) thanks to Andon Ivanov
 * Catalan (ca) thanks to Vicent Cubells
 * Chinese (zh_CN) thanks to John Shen
@@ -131,7 +132,7 @@ to the visitors of your website.
 * Portuguese (pt_PT) translation thanks to Joao Campos
 * Russian (ru_RU) thanks to Ekaterina Golubina, supported by Teplitsa of Social Technologies
 * Slovak (sk_SK) thanks to Zdenko Podobny
-* Spanish (es_ES) thanks to David Ramirez and Alvaro Lara
+* Spanish (es_ES) thanks to David Ramirez, Alvaro Lara, Ricardo Viteri and Victor Guevara
 * Turkish (tr_TR) thanks to Emre Erkan
 * Ukrainian (uk_UK) thanks to Andrexj
 * Yiddish (yi) thanks to Raphael Finkel
@@ -255,8 +256,8 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.3 =
-added OSM edit link, enhance Wikitude Augmented-Reality API, usability optimizations - see http://www.mapsmarker.com/v3.3 for more details
+= v3.4 =
+added Bosnian translation, backend usability fixes - see http://www.mapsmarker.com/v3.4 for more details
 
 == Changelog ==
 

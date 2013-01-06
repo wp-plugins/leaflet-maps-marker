@@ -7,12 +7,6 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'admin-header.php') { die ("Please 
 require_once(ABSPATH . WPINC . DIRECTORY_SEPARATOR . "pluggable.php");
 $lmm_options = get_option( 'leafletmapsmarker_options' ); //info: required for bing maps api key check
 
-//info: hide update info on new installs
-$version_before_update = get_option('leafletmapsmarker_version_before_update');
-if ($version_before_update == '0') {
-		update_option('leafletmapsmarker_update_info', 'hide');
-}
-
 //info: make to menu buttons active depended on page you´re on
 $page = (isset($_GET['page']) ? $_GET['page'] : '');
 $oid = isset($_POST['id']) ? intval($_POST['id']) : (isset($_GET['id']) ? intval($_GET['id']) : '');
