@@ -3,16 +3,11 @@
 if ( !defined( 'WP_UNINSTALL_PLUGIN' ) )
 	exit ();
 /* Remove settings */
-$current_version = "v33"; //2do: change on each update!
+$current_version = "v34"; //2do: change on each update!
 if (is_multisite()) {
 	global $wpdb;
 	$blogs = $wpdb->get_results("SELECT blog_id FROM {$wpdb->blogs}", ARRAY_A);
 	$lmm_pro_readme = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'leaflet-maps-marker-pro' . DIRECTORY_SEPARATOR . 'readme.txt';
-		delete_option('leafletmapsmarker_version');
-		delete_option('leafletmapsmarker_version_before_update');
-		delete_option('leafletmapsmarker_redirect');
-		delete_option('leafletmapsmarker_update_info');
-		delete_option('leafletmapsmarker_editor');
 		//info: delete transients (needed for reinstalls within validity of transients)
 		$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version;
 		$install_update_schedule = get_transient( $schedule_transient );
@@ -26,6 +21,11 @@ if (is_multisite()) {
 		//info: dont remove files if pro version exists
 		if (!file_exists($lmm_pro_readme)) {
 			delete_option('leafletmapsmarker_options');
+			delete_option('leafletmapsmarker_version');
+			delete_option('leafletmapsmarker_version_before_update');
+			delete_option('leafletmapsmarker_redirect');
+			delete_option('leafletmapsmarker_update_info');
+			delete_option('leafletmapsmarker_editor');
 			/*remove map icons directory for main site */
 			$lmm_upload_dir = wp_upload_dir();
 			$icons_directory = $lmm_upload_dir['basedir'] . DIRECTORY_SEPARATOR . "leaflet-maps-marker-icons" . DIRECTORY_SEPARATOR;
@@ -39,11 +39,6 @@ if (is_multisite()) {
 	if ($blogs) {
 		foreach($blogs as $blog) {
 			switch_to_blog($blog['blog_id']);
-			delete_option('leafletmapsmarker_version');
-			delete_option('leafletmapsmarker_version_before_update');
-			delete_option('leafletmapsmarker_redirect');
-			delete_option('leafletmapsmarker_update_info');
-			delete_option('leafletmapsmarker_editor');
 			//info: delete transients (needed for reinstalls within validity of transients)
 			$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version;
 			$install_update_schedule = get_transient( $schedule_transient );
@@ -57,6 +52,11 @@ if (is_multisite()) {
 			//info: dont remove files if pro version exists
 			if (!file_exists($lmm_pro_readme)) {
 				delete_option('leafletmapsmarker_options');
+				delete_option('leafletmapsmarker_version');
+				delete_option('leafletmapsmarker_version_before_update');
+				delete_option('leafletmapsmarker_redirect');
+				delete_option('leafletmapsmarker_update_info');
+				delete_option('leafletmapsmarker_editor');
 				/* Remove and clean tables */
 				$GLOBALS['wpdb']->query("DROP TABLE `".$GLOBALS['wpdb']->prefix."leafletmapsmarker_layers`");
 				$GLOBALS['wpdb']->query("DROP TABLE `".$GLOBALS['wpdb']->prefix."leafletmapsmarker_markers`");
@@ -79,11 +79,6 @@ if (is_multisite()) {
 } 
 else
 {
-	delete_option('leafletmapsmarker_version');
-	delete_option('leafletmapsmarker_version_before_update');
-	delete_option('leafletmapsmarker_redirect');
-	delete_option('leafletmapsmarker_update_info');
-	delete_option('leafletmapsmarker_editor');
 	//info: delete transients (needed for reinstalls within validity of transients)
 	$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version;
 	$install_update_schedule = get_transient( $schedule_transient );
@@ -98,6 +93,11 @@ else
 	$lmm_pro_readme = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'leaflet-maps-marker-pro' . DIRECTORY_SEPARATOR . 'readme.txt';
 	if (!file_exists($lmm_pro_readme)) {
 		delete_option('leafletmapsmarker_options');
+		delete_option('leafletmapsmarker_version');
+		delete_option('leafletmapsmarker_version_before_update');
+		delete_option('leafletmapsmarker_redirect');
+		delete_option('leafletmapsmarker_update_info');
+		delete_option('leafletmapsmarker_editor');
 		/* Remove and clean tables */
 		$GLOBALS['wpdb']->query("DROP TABLE `".$GLOBALS['wpdb']->prefix."leafletmapsmarker_layers`");
 		$GLOBALS['wpdb']->query("DROP TABLE `".$GLOBALS['wpdb']->prefix."leafletmapsmarker_markers`");

@@ -883,6 +883,15 @@ class Class_leaflet_options {
 			'std'     => '480',
 			'type'    => 'text'
 		);
+		$this->settings['defaults_marker_default_layer'] = array(
+			'version' => '3.4',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section4',
+			'title'   => __( 'Default layer ID', 'lmm' ),
+			'desc'    => __('Set to 0 if you do not want to assign new markers to a layer','lmm'),
+			'std'     => '0',
+			'type'    => 'text'
+		);		
 		$this->settings['defaults_marker_openpopup'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -6759,7 +6768,7 @@ class Class_leaflet_options {
 			)
 		);
 		$this->settings['ar_wikitude_featuregraphic'] = array(
-			'version' => '3.3',
+			'version' => '3.4',
 			'pane'    => 'ar',
 			'section' => 'ar-section1',
 			'title'   => __( 'Feature graphic', 'lmm' ),
@@ -7073,6 +7082,7 @@ class Class_leaflet_options {
 			'std'     => 'automatic',
 			'choices' => array(
 				'automatic' => __('automatic (use WordPress default)','lmm'),
+				'bs_BA' => __('Bosnian','lmm') . ' (bs_BA)',
 				'bg_BG' => __('Bulgarian','lmm') . ' (bg_BG)',
 				'ca' => __('Catalan','lmm') . ' (ca)',
 				'zh_CN' => __('Chinese','lmm') . ' (zh_CN)',
@@ -8091,7 +8101,6 @@ class Class_leaflet_options {
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
-		/* template for plugin updates 
 		//info:  set defaults for options introduced in v3.4
 		if (get_option('leafletmapsmarker_version') == '3.3' )
 		{
@@ -8099,6 +8108,22 @@ class Class_leaflet_options {
 			foreach ( $this->settings as $id => $setting ) 
 			{
 				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.4')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}
+		/* template for plugin updates 
+		//info:  set defaults for options introduced in v3.5
+		if (get_option('leafletmapsmarker_version') == '3.4' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting ) 
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.5')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
