@@ -1,9 +1,8 @@
 <?php
-/*die if uninstall not called from Wordpress exit*/
+//info: die if uninstall not called from Wordpress exit
 if ( !defined( 'WP_UNINSTALL_PLUGIN' ) )
 	exit ();
-/* Remove settings */
-$current_version = "v34"; //2do: change on each update!
+$current_version = "v341"; //2do: change on each update to current version!
 if (is_multisite()) {
 	global $wpdb;
 	$blogs = $wpdb->get_results("SELECT blog_id FROM {$wpdb->blogs}", ARRAY_A);

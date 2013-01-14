@@ -256,9 +256,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.4 =
-added Bosnian translation, backend usability fixes - see http://www.mapsmarker.com/v3.4 for more details
+= v3.4.1 =
+popup image resize bugfix for IE < 9 - see http://www.mapsmarker.com/v3.4.1 for more details
 
 == Changelog ==
+[blog post with details about v3.4.1](http://www.mapsmarker.com/v3.4.1)
 
-please visit [http://www.mapsmarker.com/changelog](http://www.mapsmarker.com/changelog) for a full list of changes
+[changelog for all versions](http://www.mapsmarker.com/changelog)

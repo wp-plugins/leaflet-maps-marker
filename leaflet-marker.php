@@ -879,7 +879,7 @@ var marker,selectlayer,googleLayer_roadmap,googleLayer_satellite,googleLayer_hyb
 		$google_from = urlencode($address);
 	}	
 	 $address = (($address == NULL) ? esc_attr__('if set, address will be displayed here','lmm') : $address);
-	 $popuptext_css = ($popuptext != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;" : "";
+	 $popuptext_css = ($popuptext != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;clear:both;" : "";
 	 $popuptext = $popuptext . '<div style="' . $popuptext_css . '">' . $address . ' ';
 
 	 if ($lmm_options['directions_provider'] == 'googlemaps') { 

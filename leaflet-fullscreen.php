@@ -47,7 +47,7 @@ if (isset($_GET['layer'])) {
 	$mapheight = $row['mapheight'];
 	$mapwidthunit = $row['mapwidthunit'];
 	$panel = $row['panel'];
-	$paneltext = ($row['name'] == NULL) ? '&nbsp;' : htmlspecialchars($row['name']);
+	$paneltext = ($row['name'] == NULL) ? '&nbsp;' : htmlspecialchars(stripslashes($row['name']));
 	$controlbox = $row['controlbox'];
 	$overlays_custom = $row['overlays_custom'];
 	$overlays_custom2 = $row['overlays_custom2'];
@@ -88,7 +88,7 @@ if (isset($_GET['layer'])) {
 	$lmm_out .= '<html dir="ltr" lang="de-DE">'.PHP_EOL;
 	$lmm_out .= '<!--<![endif]-->'.PHP_EOL;
 	$lmm_out .= '<head>'.PHP_EOL;
-	if ($layername == '') { $title_layername = get_bloginfo('name'); } else { $title_layername = htmlspecialchars($layername); }
+	if ($layername == '') { $title_layername = get_bloginfo('name'); } else { $title_layername = htmlspecialchars(stripslashes($layername)); }
 	$lmm_out .= '<title>' . $title_layername . ' (' . __('fullscreen map','lmm') . ') - ' . __('powered by','lmm') . ' MapsMarker.com</title>'.PHP_EOL;
 	$lmm_out .= '<meta charset="UTF-8" />'.PHP_EOL;
 	$lmm_out .= '<meta name="geo.position" content="' . $lat . ';' . $lon . '" />'.PHP_EOL;
@@ -98,7 +98,7 @@ if (isset($_GET['layer'])) {
 	$lmm_out .= '<!--[if lt IE 9]>'.PHP_EOL;
 	$lmm_out .= '<link rel="stylesheet" id="leafletmapsmarker-ie-only-css" href="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.ie.css?ver=' . $plugin_version . '" type="text/css" media="all" / >'.PHP_EOL;
 	$lmm_out .= '<![endif]-->'.PHP_EOL;
-	$lmm_out .= '<style type="text/css" id="leafletmapsmarker-image-css-override">.leaflet-popup-content img { max-width:' . intval($lmm_options['defaults_marker_popups_image_max_width']) . 'px !important; height:auto; margin: 0px !important; padding: 0px !important; box-shadow:none !important; }</style>'.PHP_EOL;
+	$lmm_out .= '<style type="text/css" id="leafletmapsmarker-image-css-override">.leaflet-popup-content img { max-width:' . intval($lmm_options['defaults_marker_popups_image_max_width']) . 'px !important; height:auto !important; margin: 0px !important; padding: 0px !important; box-shadow:none !important; width:auto !important; }</style>'.PHP_EOL;
 	$lmm_out .= '<script type="text/javascript" src="' . site_url() . '/wp-includes/js/jquery/jquery.js"></script>'.PHP_EOL;
 	//info: Google API key
 	if ( isset($lmm_options['google_maps_api_key']) && ($lmm_options['google_maps_api_key'] != NULL) ) { $google_maps_api_key = $lmm_options['google_maps_api_key']; } else { $google_maps_api_key = ''; }
@@ -530,7 +530,7 @@ elseif (isset($_GET['marker'])) {
 			$mapwidthunit = $row['mapwidthunit'];
 			$mapheight = $row['mapheight'];
 			$panel = $row['panel'];
-			$paneltext = ($row['markername'] == NULL) ? '&nbsp;' : htmlspecialchars($row['markername']);
+			$paneltext = ($row['markername'] == NULL) ? '&nbsp;' : htmlspecialchars(stripslashes($row['markername']));
 			$controlbox = $row['controlbox'];
 			$overlays_custom = $row['overlays_custom'];
 			$overlays_custom2 = $row['overlays_custom2'];
@@ -571,7 +571,7 @@ elseif (isset($_GET['marker'])) {
 	$lmm_out .= '<html dir="ltr" lang="de-DE">'.PHP_EOL;
 	$lmm_out .= '<!--<![endif]-->'.PHP_EOL;
 	$lmm_out .= '<head>'.PHP_EOL;
-	if ($markername == '') { $title_markername = get_bloginfo('name'); } else { $title_markername = htmlspecialchars($markername); }
+	if ($markername == '') { $title_markername = get_bloginfo('name'); } else { $title_markername = htmlspecialchars(stripslashes($markername)); }
 	$lmm_out .= '<title>' . $title_markername . ' (' . __('fullscreen map','lmm') . ') - ' . __('powered by','lmm') . ' MapsMarker.com</title>'.PHP_EOL;
 	$lmm_out .= '<meta charset="UTF-8" />'.PHP_EOL;
 	$lmm_out .= '<meta name="geo.position" content="' . $lat . ';' . $lon . '" />'.PHP_EOL;
@@ -581,7 +581,8 @@ elseif (isset($_GET['marker'])) {
 	$lmm_out .= '<!--[if lt IE 9]>'.PHP_EOL;
 	$lmm_out .= '<link rel="stylesheet" id="leafletmapsmarker-ie-only-css" href="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.ie.css?ver=' . $plugin_version . '" type="text/css" media="all" / >'.PHP_EOL;
 	$lmm_out .= '<![endif]-->'.PHP_EOL;
-	$lmm_out .= '<style type="text/css" id="leafletmapsmarker-image-css-override">.leaflet-popup-content img { max-width:' . intval($lmm_options['defaults_marker_popups_image_max_width']) . 'px !important; height:auto; margin: 0px !important; padding: 0px !important; box-shadow:none !important; }</style>'.PHP_EOL;
+ 
+	$lmm_out .= '<style type="text/css" id="leafletmapsmarker-image-css-override">.leaflet-popup-content img { max-width:' . intval($lmm_options['defaults_marker_popups_image_max_width']) . 'px !important; height: auto !important; margin: 0px !important; padding: 0px !important; box-shadow:none !important; width:auto !important; }</style>'.PHP_EOL;
 	$lmm_out .= '<script type="text/javascript" src="' . site_url() . '/wp-includes/js/jquery/jquery.js"></script>'.PHP_EOL;
 	//info: Google API key
 	if ( isset($lmm_options['google_maps_api_key']) && ($lmm_options['google_maps_api_key'] != NULL) ) { $google_maps_api_key = $lmm_options['google_maps_api_key']; } else { $google_maps_api_key = ''; }
