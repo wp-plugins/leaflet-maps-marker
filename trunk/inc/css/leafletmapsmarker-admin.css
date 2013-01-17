@@ -1,6 +1,6 @@
 /*Marker-Tabelle*/
-.fixed .column-id { width: 3%; }
-.fixed .column-type { width: 4%; } 
+.fixed .column-id { width: 4%; }
+.fixed .column-type { width: 5%; } 
 .fixed .column-markername { width: 20%; }
 .fixed .column-layername { width: 240px; }
 .fixed .column-address { width: 20%; } 

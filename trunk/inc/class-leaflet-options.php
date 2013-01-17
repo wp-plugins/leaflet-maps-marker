@@ -1160,18 +1160,18 @@ class Class_leaflet_options {
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section5',
 			'title'   => __( 'Icons URL', 'lmm' ),
-			'desc'    => __( 'Icons copied to this directory will automatically be available when creating or editing marker maps (cannot be changed)', 'lmm' ),
+			'desc'    => __( 'Icons copied to this directory will automatically be available when creating or editing marker maps', 'lmm' ),
 			'std'     => LEAFLET_PLUGIN_ICONS_URL,
-			'type'    => 'text-readonly'
+			'type'    => 'text'
 		);		
 		$this->settings['defaults_marker_icon_dir'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section5',
 			'title'   => __( 'Icons directory', 'lmm' ),
-			'desc'    => __( 'Directory on server where icons are stored - needed especially for WordPress Multisite blogs (cannot be changed)', 'lmm' ),
+			'desc'    => __( 'Directory on server where icons are stored - needed especially for WordPress Multisite blogs', 'lmm' ),
 			'std'     => LEAFLET_PLUGIN_ICONS_DIR,
-			'type'    => 'text-readonly'
+			'type'    => 'text'
 		);	
 		$this->settings['defaults_marker_icon'] = array(
 			'version' => '1.8',
@@ -8118,7 +8118,7 @@ class Class_leaflet_options {
 		}
 		/* template for plugin updates 
 		//info:  set defaults for options introduced in v3.5
-		if (get_option('leafletmapsmarker_version') == '3.4.1' )
+		if (get_option('leafletmapsmarker_version') == '3.4.2' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting ) 

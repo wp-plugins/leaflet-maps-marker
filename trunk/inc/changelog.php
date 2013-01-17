@@ -42,7 +42,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 	$lmm_version_old = get_option( 'leafletmapsmarker_version_before_update' );
 	$lmm_version_new = get_option( 'leafletmapsmarker_version' );
 /*2do: change verion numbers and date in first line on each update and add if ( ($lmm_version_old < 'x.x' ) ){ to old changelog
-		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.4') . '</strong> - ' . __('released on','lmm') . ' xx.12.2012 (<a href="http://www.mapsmarker.com/v3.4" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
+		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.4') . '</strong> - ' . __('released on','lmm') . ' xx.01.2013 (<a href="http://www.mapsmarker.com/v3.4" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
@@ -65,6 +65,21 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</td></tr>
 		</table>'.PHP_EOL;
 */
+		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.4.2') . '</strong> - ' . __('released on','lmm') . ' 17.01.2013 (<a href="http://www.mapsmarker.com/v3.4.2" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
+		<table>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		checks if marker icons url, directory and shadow image are valid (can be broken when your installation was moved to another server)
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated German translation
+		</td></tr>
+		</table>'.PHP_EOL;
+
+	if ( ( $lmm_version_old < '3.4.1' ) && ( $lmm_version_old > '0' ) ) {
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.4.1') . '</strong> - ' . __('released on','lmm') . ' 14.01.2013 (<a href="http://www.mapsmarker.com/v3.4.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -108,6 +123,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		updated German translation
 		</td></tr>
 		</table>'.PHP_EOL;
+	}
 
 	if ( ( $lmm_version_old < '3.4' ) && ( $lmm_version_old > '0' ) ) {
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.4') . '</strong> - ' . __('released on','lmm') . ' 06.01.2013 (<a href="http://www.mapsmarker.com/v3.4" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
