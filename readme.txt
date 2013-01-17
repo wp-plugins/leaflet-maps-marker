@@ -256,10 +256,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.4.1 =
-popup image resize bugfix for IE < 9 - see http://www.mapsmarker.com/v3.4.1 for more details
+= v3.4.2 =
+checks if marker icons url, directory and shadow image are valid - see http://www.mapsmarker.com/v3.4.2 for more details
 
 == Changelog ==
-[blog post with details about v3.4.1](http://www.mapsmarker.com/v3.4.1)
+[blog post with details about v3.4.2](http://www.mapsmarker.com/v3.4.2)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)
