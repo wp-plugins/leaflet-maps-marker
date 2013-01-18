@@ -23,6 +23,8 @@ function remoteFileExists($url) {
 	$loaded_extensions = array_flip($loaded_extensions);
 	if ( isset($loaded_extensions['curl']) ) {
 		$curl = curl_init($url);
+		$agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
+		curl_setopt($curl, CURLOPT_USERAGENT, $agent);
 		curl_setopt($curl, CURLOPT_NOBODY, true);
 		$result = curl_exec($curl);
 		$ret = false;
@@ -37,7 +39,7 @@ function remoteFileExists($url) {
 	}
 }
 $shadow_icon_url_exists = remoteFileExists($shadow_icon_url);
-if (!$shadow_icon_url_exists) {
+if ( ($shadow_icon_url != NULL) && (!$shadow_icon_url_exists) ) {
     echo '<div class="error" style="padding:10px;"><strong>' . sprintf(__('Leaflet Maps Marker Warning: the setting for the marker shadow url (%1s) seems to be invalid. This can happen when you moved your WordPress installation from one server to another one.<br/>Please navigate to <a href="%2s">Settings / Map Defaults / "Default values for marker icons"</a> and update the option "Shadow URL". If you do not know which values to enter, please <a href="%3s">reset all plugins options to their defaults</a>', 'lmm'), $defaults_marker_icon_url, LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#mapdefaults-section5', LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#reset') . '</strong></div>';
 } 
 //info: check marker icon url + dir
