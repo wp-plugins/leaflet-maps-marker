@@ -256,10 +256,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.4.2 =
-checks if marker icons url, directory and shadow image are valid - see http://www.mapsmarker.com/v3.4.2 for more details
+= v3.4.3 =
+bugfix with map freezing after zoom on Android 4.1 - see http://www.mapsmarker.com/v3.4.3 for more details
 
 == Changelog ==
-[blog post with more details about v3.4.2](http://www.mapsmarker.com/v3.4.2)
+[blog post with details about v3.4.3](http://www.mapsmarker.com/v3.4.3)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)
