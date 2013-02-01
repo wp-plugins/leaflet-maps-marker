@@ -44,7 +44,8 @@ if ($lmm_options['google_maps_language_localization'] == 'browser_setting') {
 	$google_language = "&hl=" . $lmm_options['google_maps_language_localization'];
 }
 if (isset($_GET['layer'])) {
-  $layer = mysql_real_escape_string($_GET['layer']); //info: not intval() cause otherwise $layer=0 when creating new layer and showing all markers with layer id = 0
+  $layer_prepared = mysql_real_escape_string(strtolower($_GET['layer'])); 
+  $layer = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"), "", $layer_prepared); //info: not intval() cause otherwise $layer=0 when creating new layer and showing all markers with layer id = 0
   $q = ''; //info: removed limit 5000
   if ($layer == '*' or $layer == 'all')
     $q = ''; //info: removed limit 5000
@@ -168,7 +169,8 @@ if (isset($_GET['layer'])) {
   if ($callback != NULL) { echo ');'; }
 }
 elseif (isset($_GET['marker'])) {
-  $markerid = mysql_real_escape_string($_GET['marker']);
+  $markerid_prepared = mysql_real_escape_string(strtolower($_GET['marker'])); 
+  $markerid = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"), "", $markerid_prepared);
   $markers = explode(',', $markerid);
   $checkedmarkers = array();
   foreach ($markers as $cmarker) {

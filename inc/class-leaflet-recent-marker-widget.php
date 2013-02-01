@@ -27,7 +27,9 @@ class Class_leaflet_recent_marker_widget extends WP_Widget {
 			'lmm-widget-orderby' => 'createdon',
 			'lmm-widget-orderby-sortorder' => 'desc',
 			'lmm-widget-georss' => 'on',
-			'lmm-widget-attributionlink' => 'on'
+			'lmm-widget-attributionlink' => 'on',
+			'lmm-widget-textbeforelist' => '',
+			'lmm-widget-textafterlist' => ''			
 		));
 		echo '<p><label for="lmm-widget-title">' . __('Title', 'lmm') . ':</label>';
 		echo '<input type="text" value="' . $instance['lmm-widget-title'] . '" name="' . $this->get_field_name('lmm-widget-title') . '" id="' . $this->get_field_id('lmm-widget-title') . '" class="widefat" /></p>';
