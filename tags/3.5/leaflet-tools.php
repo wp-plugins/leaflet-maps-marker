@@ -415,7 +415,7 @@ $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE 
 		</div>
 		<?php
 		  $iconlist = array();
-		  $dir = opendir(LEAFLET_PLUGIN_ICONS_DIR);
+		  $dir = opendir($defaults_marker_icon_dir);
 		  while ($file = readdir($dir)) {
 		    if ($file === false)
 		      break;
