@@ -10,6 +10,8 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-tools.php') { die ("Please
 <?php
 global $wpdb;
 $lmm_options = get_option( 'leafletmapsmarker_options' );
+$defaults_marker_icon_dir = $lmm_options['defaults_marker_icon_dir'];
+$defaults_marker_icon_url = $lmm_options['defaults_marker_icon_url'];
 $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 $markercount_all = $wpdb->get_var('SELECT count(*) FROM '.$table_name_markers.''); 
@@ -424,7 +426,7 @@ $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE 
 		  closedir($dir);
 		  sort($iconlist);
 		foreach ($iconlist as $row)
-		  echo '<div style="text-align:center;float:left;line-height:0px;margin-bottom:3px;"><label for="' . $row . '"><img id="iconpreview" src="' . LEAFLET_PLUGIN_ICONS_URL . '/' . $row . '" title="' . $row . '" alt="' . $row . '" width="32" height="37" /></label><br/><input id="' . $row . '" type="radio" name="icon" value="' . $row . '" /></div>';
+		  echo '<div style="text-align:center;float:left;line-height:0px;margin-bottom:3px;"><label for="' . $row . '"><img id="iconpreview" src="' . $defaults_marker_icon_url . '/' . $row . '" title="' . $row . '" alt="' . $row . '" width="32" height="37" /></label><br/><input id="' . $row . '" type="radio" name="icon" value="' . $row . '" /></div>';
 		?>
 		</td>
 		<td style="vertical-align:middle;">

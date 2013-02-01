@@ -188,6 +188,9 @@ function __construct() {
   }
   function lmm_dashboard_widget(){
 	global $wpdb;
+	$lmm_options = get_option( 'leafletmapsmarker_options' );
+	$defaults_marker_icon_dir = $lmm_options['defaults_marker_icon_dir'];
+	$defaults_marker_icon_url = $lmm_options['defaults_marker_icon_url'];
 	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 	$widgets = get_option( 'dashboard_widget_options' );
 	$widget_id = 'lmm-admin-dashboard-widget';
@@ -196,7 +199,7 @@ function __construct() {
 	if ($result != NULL) {
 		echo '<table style="margin-bottom:5px;"><tr>';
 		foreach ($result as $row ) {
-			$icon = ($row['icon'] == NULL) ? LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png' : LEAFLET_PLUGIN_ICONS_URL.'/' . $row['icon'];
+			$icon = ($row['icon'] == NULL) ? LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png' : $defaults_marker_icon_url . '/' . $row['icon'];
 			echo '<td><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['ID'] . '" title="' . esc_attr__('edit marker','lmm') . '"><img src="' . $icon . '" style="width:80%;"></a>';
 			echo '<td style="vertical-align:top;line-height:1.2em;">';
 			echo '<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['ID'] . '" title="' . esc_attr__('edit marker','lmm') . '">'.htmlspecialchars(stripslashes($row['markername'])).'</a><br/>' . __('created on','lmm') . ' ' . date("Y-m-d - h:m", strtotime($row['createdon'])) . ', ' . __('created by','lmm') . ' ' . $row['createdby'];
@@ -217,9 +220,9 @@ function __construct() {
 	{
 			require_once(ABSPATH . WPINC . DIRECTORY_SEPARATOR . 'class-simplepie.php');
 			$feed = new SimplePie();
-			if ( file_exists(LEAFLET_PLUGIN_ICONS_DIR . DIRECTORY_SEPARATOR . 'information.png') ) {
+			if ( file_exists($defaults_marker_icon_dir . DIRECTORY_SEPARATOR . 'readme-icons.txt') ) {
 				$feed->enable_cache(true);
-				$feed->set_cache_location($location = LEAFLET_PLUGIN_ICONS_DIR);
+				$feed->set_cache_location($location = $defaults_marker_icon_dir);
 				$feed->set_cache_duration(86400);
 			} else {
 				$feed->enable_cache(false);
