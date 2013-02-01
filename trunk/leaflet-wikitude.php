@@ -32,8 +32,9 @@ $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 $ar_wikitude_provider_name_sanitized = strtolower(preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $lmm_options[ 'ar_wikitude_provider_name' ]));
 if (isset($_GET['layer'])) {
-  $layer = mysql_real_escape_string($_GET['layer']); 
-  
+  $layer_prepared = mysql_real_escape_string(strtolower($_GET['layer'])); 
+  $layer = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"), "", $layer_prepared);
+   
   $maxNumberOfPois = isset($_GET['maxNumberOfPois']) ? intval($_GET['maxNumberOfPois']) : $lmm_options[ 'ar_wikitude_maxnumberpois' ];
   
   if ($layer == '*' or $layer == 'all') {
@@ -235,7 +236,8 @@ if (isset($_GET['layer'])) {
 	}
 }
 elseif (isset($_GET['marker'])) {
-  $markerid = mysql_real_escape_string($_GET['marker']);
+  $markerid_prepared = mysql_real_escape_string(strtolower($_GET['marker'])); 
+  $markerid = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"), "", $markerid_prepared);
   $markers = explode(',', $markerid);
   $maxNumberOfPois = isset($_GET['maxNumberOfPois']) ? intval($_GET['maxNumberOfPois']) : $lmm_options[ 'ar_wikitude_maxnumberpois' ];
   $markerlat = $wpdb->get_var('SELECT lat FROM '.$table_name_markers.' WHERE id IN ('.$markerid.')');

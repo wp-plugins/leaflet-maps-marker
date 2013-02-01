@@ -256,10 +256,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.4.3 =
-bugfix with map freezing after zoom on Android 4.1 - see http://www.mapsmarker.com/v3.4.3 for more details
+= v3.5 =
+security hardening for APIs, option to disable global admin notices - see http://www.mapsmarker.com/v3.5 for more details
 
 == Changelog ==
-[blog post with details about v3.4.3](http://www.mapsmarker.com/v3.4.3)
+[blog post with details about v3.5](http://www.mapsmarker.com/v3.5)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

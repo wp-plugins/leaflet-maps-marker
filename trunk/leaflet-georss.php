@@ -32,7 +32,8 @@ $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 $lmm_options = get_option( 'leafletmapsmarker_options' );
 if (isset($_GET['layer'])) {
-  $layer = mysql_real_escape_string($_GET['layer']); 
+  $layer_prepared = mysql_real_escape_string(strtolower($_GET['layer'])); 
+  $layer = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"), "", $layer_prepared);
   
   $q = ''; //info: removed limit 5000
   if ($layer == '*' or $layer == 'all')
@@ -195,7 +196,8 @@ if (isset($_GET['layer'])) {
   } //info: end output as RSS 2.0
 } //info: end isset($_GET['layer'])
 elseif (isset($_GET['marker'])) {
-  $markerid = mysql_real_escape_string($_GET['marker']);
+  $markerid_prepared = mysql_real_escape_string(strtolower($_GET['marker'])); 
+  $markerid = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"), "", $markerid_prepared);
   $markers = explode(',', $markerid);
   $checkedmarkers = array();
   foreach ($markers as $cmarker) {

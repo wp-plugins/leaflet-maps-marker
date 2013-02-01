@@ -153,7 +153,7 @@ if (isset($_GET['layer'])) {
 	$home_url = home_url();
 	echo '<atom:link href="' . $home_url . '" />'.PHP_EOL;
 	echo '<description><![CDATA[' .  $name_popup . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
-	echo '<address>' . $marker['maddress'] . '</address>'.PHP_EOL;
+	echo '<address><![CDATA[' . $marker['maddress'] . ']]></address>'.PHP_EOL;
 	echo '<Point>'.PHP_EOL;
 	echo '<coordinates>' . $marker['mlon'] . ',' . $marker['mlat'] . '</coordinates>'.PHP_EOL;
 	echo '</Point>'.PHP_EOL;
@@ -276,7 +276,7 @@ elseif (isset($_GET['marker'])) {
 	$home_url = home_url();
 	echo '<atom:link href="' . $home_url . '" />'.PHP_EOL;
 	echo '<description><![CDATA[' .  $name_popup . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
-	echo '<address>' . $marker['maddress'] . '</address>'.PHP_EOL;
+	echo '<address><![CDATA[' . $marker['maddress'] . ']]></address>'.PHP_EOL;
 	echo '<Point>'.PHP_EOL;
 	echo '<coordinates>' . $marker['mlon'] . ',' . $marker['mlat'] . '</coordinates>'.PHP_EOL;
 	echo '</Point>'.PHP_EOL;
