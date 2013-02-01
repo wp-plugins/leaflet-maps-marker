@@ -18,6 +18,9 @@ if (( (($lmm_options['standard_basemap'] == 'bingaerial') || ($lmm_options['stan
 }
 //info: check if shadow image exists (for issues from moving dev to prod instances)
 $shadow_icon_url = $lmm_options['defaults_marker_icon_shadow_url'];
+$defaults_marker_icon_url = $lmm_options['defaults_marker_icon_url'];
+$defaults_marker_icon_dir = $lmm_options['defaults_marker_icon_dir'];
+
 function remoteFileExists($url) {
 	$loaded_extensions = get_loaded_extensions();
 	$loaded_extensions = array_flip($loaded_extensions);
@@ -41,17 +44,16 @@ function remoteFileExists($url) {
 	return $ret;
 }
 $shadow_icon_url_exists = remoteFileExists($shadow_icon_url);
-$defaults_marker_icon_url = $lmm_options['defaults_marker_icon_url'];
-$defaults_marker_icon_dir = $lmm_options['defaults_marker_icon_dir'];
 if ( ($shadow_icon_url != NULL) && (!$shadow_icon_url_exists) ) {
     echo '<div class="error" style="padding:10px;"><strong>' . sprintf(__('Leaflet Maps Marker Warning: the setting for the marker shadow url (%1s) seems to be invalid. This can happen when you moved your WordPress installation from one server to another one.<br/>Please navigate to <a href="%2s">Settings / Map Defaults / "Default values for marker icons"</a> and update the option "Shadow URL". If you do not know which values to enter, please <a href="%3s">reset all plugins options to their defaults</a>', 'lmm'), $defaults_marker_icon_url, LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#mapdefaults-section5', LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#reset') . '</strong></div>';
 } 
 //info: check marker icon url + dir
-if (LEAFLET_PLUGIN_ICONS_URL != $defaults_marker_icon_url) {
-    echo '<div class="error" style="padding:10px;"><strong>' . sprintf(__('Leaflet Maps Marker Warning: the setting for your marker icon url (%1s) seems to be invalid. This can happen when you moved your WordPress installation from one server to another one.<br/>Please navigate to <a href="%2s">Settings / Map Defaults / "Default values for marker icons"</a> and update the option "Icons URL". If you do not know which values to enter, please <a href="%3s">reset all plugins options to their defaults</a>', 'lmm'), $defaults_marker_icon_url, LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#mapdefaults-section5', LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#reset') . '</strong></div>';
+$defaults_marker_icon_url_exists = remoteFileExists($defaults_marker_icon_url . '/readme-icons.txt');
+if ( ! $defaults_marker_icon_url_exists ) {
+    echo '<div class="error" style="padding:10px;"><strong>' . sprintf(__('Leaflet Maps Marker Warning: the setting for your marker icon url (%1s) seems to be invalid. This can happen when you moved your WordPress installation from one server to another one.<br/>Please navigate to <a href="%2s">Settings / Map Defaults / "Default values for marker icons"</a> and update the option "Icons URL". If you do not know which values to enter, please <a href="%3s">reset all plugins options to their defaults</a>', 'lmm'), $defaults_marker_icon_url, LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#mapdefaults-section5', LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#reset') . '<br/>' . __('Please note that the file readme-icons.txt within this directory is used for this check, so please make sure, that this file is available!','lmm') . '</strong></div>';
 }
-if (LEAFLET_PLUGIN_ICONS_DIR != $defaults_marker_icon_dir ) {
-    echo '<div class="error" style="padding:10px;"><strong>' . sprintf(__('Leaflet Maps Marker Warning: the setting for your the marker icon directory (%1s) seems to be invalid. This can happen when you moved your WordPress installation from one server to another one.<br/>Please navigate to <a href="%2s">Settings / Map Defaults / "Default values for marker icons"</a> and update the option "Icons directory". If you do not know which values to enter, please <a href="%3s">reset all plugins options to their defaults</a>', 'lmm'), $defaults_marker_icon_url, LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#mapdefaults-section5', LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#reset') . '</strong></div>';
+if ( ! file_exists($defaults_marker_icon_dir . DIRECTORY_SEPARATOR . 'readme-icons.txt') ) {
+    echo '<div class="error" style="padding:10px;"><strong>' . sprintf(__('Leaflet Maps Marker Warning: the setting for your the marker icon directory (%1s) seems to be invalid. This can happen when you moved your WordPress installation from one server to another one.<br/>Please navigate to <a href="%2s">Settings / Map Defaults / "Default values for marker icons"</a> and update the option "Icons directory". If you do not know which values to enter, please <a href="%3s">reset all plugins options to their defaults</a>', 'lmm'), $defaults_marker_icon_dir, LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#mapdefaults-section5', LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#reset') . '<br/>' . __('Please note that the file readme-icons.txt within this directory is used for this check, so please make sure, that this file is available!','lmm') . '</strong></div>';
 }
 //info: plugin JavaScript to Footer
 if (is_plugin_active('footer-javascript/footer-javascript.php') ) {

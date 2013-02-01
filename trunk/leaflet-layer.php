@@ -139,6 +139,7 @@ if (!empty($action)) {
   }  
 }
 else {
+  $defaults_marker_icon_url = $lmm_options['defaults_marker_icon_url'];
   global $current_user;
   get_currentuserinfo();		
   $id = '';
@@ -461,9 +462,9 @@ echo '<p><a class=\'button-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.
 						if ( (isset($lmm_options[ 'defaults_layer_listmarkers_show_icon' ]) == TRUE ) && ($lmm_options[ 'defaults_layer_listmarkers_show_icon' ] == 1 ) ) {
 							echo '<tr><td style="width:35px;vertical-align:top;text-align:center;' . $lmm_options[ 'defaults_layer_listmarkers_extracss' ] . '">';
 							if ($row['micon'] != null) { 
-								echo '<img src="' . LEAFLET_PLUGIN_ICONS_URL . '/'.$row['micon'].'" title="' . stripslashes(htmlspecialchars($row['markername'])) . '" />'; 
+								echo '<img src="' . $defaults_marker_icon_url . '/'.$row['micon'].'" title="' . stripslashes(htmlspecialchars($row['markername'])) . '" />'; 
 							} else { 
-								echo '<img src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png" title="' . stripslashes(htmlspecialchars($row['markername'])) . '" />';
+								echo '<img src="' . $defaults_marker_icon_url . 'leaflet-dist/images/marker.png" title="' . stripslashes(htmlspecialchars($row['markername'])) . '" />';
 							};
 					} else {
 							echo '<tr><td style="' . $lmm_options[ 'defaults_layer_listmarkers_extracss' ] . '">';
@@ -842,7 +843,7 @@ $markernonce = wp_create_nonce('marker-nonce'); //info: for delete-links
       <td>'.$row['markerid'].'</td>
       <td>';
       if ($row['micon'] != null) { 
-         echo '<img src="' . LEAFLET_PLUGIN_ICONS_URL . '/'.$row['micon'].'" title="'.$row['micon'].'" />'; 
+         echo '<img src="' . $defaults_marker_icon_url . '/'.$row['micon'].'" title="'.$row['micon'].'" />'; 
          } else { 
          echo '<img src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png" title="' . esc_attr__('standard icon','lmm') . '" />';};
       echo '</td>
@@ -1144,7 +1145,7 @@ var markers = {};
 		},
 		pointToLayer: function (feature, latlng) {
 			mapIcon = L.icon({ 
-				iconUrl: (feature.properties.icon != '') ? "<?php echo LEAFLET_PLUGIN_ICONS_URL ?>/" + feature.properties.icon : "<?php echo LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png' ?>",
+				iconUrl: (feature.properties.icon != '') ? "<?php echo $defaults_marker_icon_url ?>/" + feature.properties.icon : "<?php echo LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png' ?>",
 				iconSize: [<?php echo intval($lmm_options[ 'defaults_marker_icon_iconsize_x' ]); ?>, <?php echo intval($lmm_options[ 'defaults_marker_icon_iconsize_y' ]); ?>],
 				iconAnchor: [<?php echo intval($lmm_options[ 'defaults_marker_icon_iconanchor_x' ]); ?>, <?php echo intval($lmm_options[ 'defaults_marker_icon_iconanchor_y' ]); ?>],
 				popupAnchor: [<?php echo intval($lmm_options[ 'defaults_marker_icon_popupanchor_x' ]); ?>, <?php echo intval($lmm_options[ 'defaults_marker_icon_popupanchor_y' ]); ?>],
