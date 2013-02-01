@@ -28,6 +28,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 } else {
 global $wpdb;
 $lmm_options = get_option( 'leafletmapsmarker_options' );
+$defaults_marker_icon_url = $lmm_options['defaults_marker_icon_url'];
 $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 $ar_wikitude_provider_name_sanitized = strtolower(preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $lmm_options[ 'ar_wikitude_provider_name' ]));
@@ -126,7 +127,7 @@ if (isset($_GET['layer'])) {
 			if ($marker['micon'] == null) {
 				$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 			} else {
-				$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
+				$micon_url = $defaults_marker_icon_url . '/' . $marker['micon']; 
 			}
 		
 		echo '<Placemark id=\'' . $marker['mid'] . '\'>'.PHP_EOL;
@@ -210,7 +211,7 @@ if (isset($_GET['layer'])) {
 			if ($marker['micon'] == null) {
 				$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 			} else {
-				$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
+				$micon_url = $defaults_marker_icon_url . '/' . $marker['micon']; 
 			}
 			
 		echo '<Placemark id=\'' . $marker['mid'] . '\'>'.PHP_EOL;
@@ -295,7 +296,7 @@ elseif (isset($_GET['marker'])) {
 				if ($marker['micon'] == null) {
 					$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 				} else {
-					$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
+					$micon_url = $defaults_marker_icon_url . '/' . $marker['micon']; 
 				}
 			
 			  echo '<Placemark id=\'' . $marker['mid'] . '\'>'.PHP_EOL;
@@ -309,7 +310,7 @@ elseif (isset($_GET['marker'])) {
 					if ($marker['micon'] == null) {
 						$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 					} else {
-						$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
+						$micon_url = $defaults_marker_icon_url . '/' . $marker['micon']; 
 					}
 			  echo '<wikitude:markerIconUrl><![CDATA[' . $micon_url . ']]></wikitude:markerIconUrl>'.PHP_EOL;
 			  echo '<wikitude:thumbnail><![CDATA[' . $micon_url . ']]></wikitude:thumbnail>'.PHP_EOL;
@@ -370,7 +371,7 @@ elseif (isset($_GET['marker'])) {
 				if ($marker['micon'] == null) {
 					$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 				} else {
-					$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
+					$micon_url = $defaults_marker_icon_url . '/' . $marker['micon']; 
 				}
 			
 			  echo '<Placemark id=\'' . $marker['mid'] . '\'>'.PHP_EOL;
@@ -384,7 +385,7 @@ elseif (isset($_GET['marker'])) {
 					if ($marker['micon'] == null) {
 						$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 					} else {
-						$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
+						$micon_url = $defaults_marker_icon_url . '/' . $marker['micon']; 
 					}
 			  echo '<wikitude:markerIconUrl><![CDATA[' . $micon_url . ']]></wikitude:markerIconUrl>'.PHP_EOL;
 			  echo '<wikitude:thumbnail><![CDATA[' . $micon_url . ']]></wikitude:thumbnail>'.PHP_EOL;
