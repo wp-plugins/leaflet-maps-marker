@@ -136,11 +136,11 @@ class Class_leaflet_recent_marker_widget extends WP_Widget {
 		} 
 		if ($result != NULL) {
 			echo '<table style="border:none;">';
+			$lmm_options = get_option( 'leafletmapsmarker_options' );
+			$defaults_marker_icon_url = $lmm_options['defaults_marker_icon_url'];
 			foreach ($result as $row ) {
 				echo '<tr>';
 				if (!empty($instance['lmm-widget-showicons'])) {
-					$lmm_options = get_option( 'leafletmapsmarker_options' );
-					$defaults_marker_icon_url = $lmm_options['defaults_marker_icon_url'];
 					$icon = ($row['icon'] == NULL) ? LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png' : $defaults_marker_icon_url . '/'.$row['icon'];
 						if ($instance['lmm-widget-linktarget'] != 'none') {
 							echo '<td style="vertical-align:top;line-height:1.2em;padding-top:1px;min-width:30px;border:none;"><a href="' . LEAFLET_PLUGIN_URL . 'leaflet-' . $instance['lmm-widget-linktarget'] . '.php?marker='.$row['ID'].'" title="' . esc_attr__('show map','lmm') . ' (' . $instance['lmm-widget-linktarget'] . ')" target="_blank"><img alt="' . esc_attr__('show map','lmm') . '" src="'.$icon.'" style="width:' . $instance['lmm-widget-iconsize'] . '%;box-shadow:none;border-radius:0;"></a></td>';
