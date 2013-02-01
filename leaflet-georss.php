@@ -31,6 +31,8 @@ global $wpdb;
 $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 $lmm_options = get_option( 'leafletmapsmarker_options' );
+$defaults_marker_icon_url = $lmm_options['defaults_marker_icon_url'];
+
 if (isset($_GET['layer'])) {
   $layer_prepared = mysql_real_escape_string(strtolower($_GET['layer'])); 
   $layer = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"), "", $layer_prepared);
@@ -108,7 +110,7 @@ if (isset($_GET['layer'])) {
 		if ($marker['micon'] == null) {
 			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 		} else {
-			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
+			$micon_url = $defaults_marker_icon_url . '/' . $marker['micon']; 
 		}
 		echo '<entry>'.PHP_EOL;
 		echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
@@ -172,7 +174,7 @@ if (isset($_GET['layer'])) {
 		if ($marker['micon'] == null) {
 			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 		} else {
-			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
+			$micon_url = $defaults_marker_icon_url . '/' . $marker['micon']; 
 		}
 		echo '<item>'.PHP_EOL;
 		echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
@@ -244,7 +246,7 @@ elseif (isset($_GET['marker'])) {
 		if ($marker['micon'] == null) {
 			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 		} else {
-			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
+			$micon_url = $defaults_marker_icon_url . '/' . $marker['micon']; 
 		}
 		echo '<entry>'.PHP_EOL;
 		echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
@@ -298,7 +300,7 @@ elseif (isset($_GET['marker'])) {
 		if ($marker['micon'] == null) {
 			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 		} else {
-			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
+			$micon_url = $defaults_marker_icon_url . '/' . $marker['micon']; 
 		}
 		echo '<item>'.PHP_EOL;
 		echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
