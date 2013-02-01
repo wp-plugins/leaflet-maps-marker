@@ -70,7 +70,6 @@ function __construct() {
 	if ( isset($lmm_options['misc_global_admin_notices']) && ($lmm_options['misc_global_admin_notices'] == 'show') ){
 		add_action('admin_notices', array(&$this, 'lmm_compatibility_checks'));
 	}
-	add_action('admin_notices', array(&$this, 'lmm_compatibility_checks'));
 	if ($lmm_options['misc_add_georss_to_head'] == 'enabled') {
 		add_action( 'wp_head', array( &$this, 'lmm_add_georss_to_head' ) );
 	}
