@@ -260,6 +260,6 @@ Copyright 2011-2012, Robert Harm, All Rights Reserved
 security hardening for APIs, option to disable global admin notices - see http://www.mapsmarker.com/v3.5 for more details
 
 == Changelog ==
-[blog post with details about v3.5](http://www.mapsmarker.com/v3.5)
+[see blog post with details about v3.5](http://www.mapsmarker.com/v3.5)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)
