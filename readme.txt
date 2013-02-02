@@ -257,9 +257,11 @@ Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
 = v3.5 =
-security hardening for APIs, option to disable global admin notices - see http://www.mapsmarker.com/v3.5 for more details
+upgrade strongly advised! security hardening for APIs, option to disable global admin notices - see http://www.mapsmarker.com/v3.5 for more details
 
 == Changelog ==
+due to security fixes upgrade to v3.5 is strongly advised! 
+
 [see blog post with details about v3.5](http://www.mapsmarker.com/v3.5)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)
