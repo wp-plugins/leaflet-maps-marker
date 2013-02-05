@@ -54,6 +54,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</td><td>
 		
 		</td></tr>
+		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
 		
@@ -65,8 +66,47 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</td></tr>
 		</table>'.PHP_EOL;
 */
+		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.5.1') . '</strong> - ' . __('released on','lmm') . ' 05.02.2013 (<a href="http://www.mapsmarker.com/v3.4" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
+		<table>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		optimized frontend PHP memory usage and reduced plugin load time by 30%
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		Portuguese - Brazil (pt_BR) translation thanks to Andre Santos, <a href="http://pelaeuropa.com.br" target="_blank">http://pelaeuropa.com.br</a> and Antonio Hammerl
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		show marker icon and shadow image checks on plugins pages only
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		update jQuery-Timepicker-Addon to v1.2 and compress file with jscompress.com
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		custom icon directory could not be set (thanks burgerdev for reporting!)
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Chinese translation thanks to John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Danish translation thanks to Mads Dyrmann Larsen
+		</td></tr>
+		</table>'.PHP_EOL;
 
-		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.5') . '</strong> - ' . __('released on','lmm') . ' 01.02.2013 (<a href="http://www.mapsmarker.com/v3.5" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
+	if ( ( $lmm_version_old < '3.5' ) && ( $lmm_version_old > '0' ) ) {
+		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.5.1') . '</strong> - ' . __('released on','lmm') . ' 01.02.2013 (<a href="http://www.mapsmarker.com/v3.5.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
@@ -119,7 +159,8 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		updated German translation
 		</td></tr>
 		</table>'.PHP_EOL;
-
+	}
+	
 	if ( ( $lmm_version_old < '3.4.3' ) && ( $lmm_version_old > '0' ) ) {
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.4.3') . '</strong> - ' . __('released on','lmm') . ' 19.01.2013 (<a href="http://www.mapsmarker.com/v3.4.3" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
