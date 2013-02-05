@@ -7110,7 +7110,8 @@ class Class_leaflet_options {
 				'it_IT' => __('Italian','lmm') . ' (it_IT)',
 				'ja' => __('Japanese','lmm') . ' (ja)',
 				'pl_PL' => __('Polish','lmm') . ' (pl_PL)',
-				'pt_PT' => __('Portuguese','lmm') . ' (pt_PT)',
+				'pt_BR' => __('Portuguese','lmm') . ' - ' . __('Brazil','lmm') . ' (pt_BR)',
+				'pt_PT' => __('Portuguese','lmm') . ' - ' . __('Portugal','lmm') . ' (pt_PT)',
 				'ru_RU' => __('Russian','lmm') . ' (ru_RU)',
 				'sk_SK' => __('Slovak','lmm') . ' (sk_SK)',
 				'es_ES' => __('Spanish','lmm') . ' (es_ES)',
@@ -8146,7 +8147,7 @@ class Class_leaflet_options {
 		}
 		/* template for plugin updates 
 		//info:  set defaults for options introduced in v3.6
-		if (get_option('leafletmapsmarker_version') == '3.5' )
+		if (get_option('leafletmapsmarker_version') == '3.5.1' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting ) 

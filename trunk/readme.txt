@@ -129,6 +129,7 @@ to the visitors of your website.
 * Italian (it_IT) thanks to Luca Barbetti
 * Japanese (ja) thanks to Shu Higashi
 * Polish (pl_PL) translation thanks to Pawel Wyszynski and Tomasz Rudnicki
+* Portuguese (pt_BR) thanks to Andre Santos and Antonio Hammerl
 * Portuguese (pt_PT) translation thanks to Joao Campos
 * Russian (ru_RU) thanks to Ekaterina Golubina, supported by Teplitsa of Social Technologies
 * Slovak (sk_SK) thanks to Zdenko Podobny
@@ -256,12 +257,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.5 =
-upgrade strongly advised! security hardening for APIs, option to disable global admin notices - see http://www.mapsmarker.com/v3.5 for more details
+= v3.5.1 =
+minimized PHP memory usage and plugin load time on frontend - see http://www.mapsmarker.com/v3.5.1 for more details
 
 == Changelog ==
-due to security fixes upgrade to v3.5 is strongly advised! 
-
-[see blog post with details about v3.5](http://www.mapsmarker.com/v3.5)
+[see blog post with details about v3.5.1](http://www.mapsmarker.com/v3.5.1)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

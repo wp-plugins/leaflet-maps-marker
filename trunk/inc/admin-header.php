@@ -73,10 +73,50 @@ $admin_quicklink_settings_buttons = ( current_user_can( "activate_plugins" ) ) ?
 //////////////////////////////////////////////////////
 // info: admin notices which only show on LMM pages //
 //////////////////////////////////////////////////////
-//info: plugin WordPress Ultra Simple Paypal Shopping Cart
-if (is_plugin_active('wp-ultra-simple-paypal-shopping-cart/wp_ultra_simple_shopping_cart.php') ) {
-	echo '<p><div class="error" style="padding:10px;"><strong>' . __('Warning: you are using the plugin WordPress Ultra Simple Paypal Shopping Cart which is causing the Leaflet Maps Marker settings page to break! Please temporarily deactivate this plugin if you want change the settings. The plugin developer has already been contacted and will hopefully release a fix soon.','lmm') . '</strong></div></p>';
-}
+if ( isset($lmm_options['misc_global_admin_notices']) && ($lmm_options['misc_global_admin_notices'] == 'show') ){
+	//info: check if shadow image exists (for issues from moving dev to prod instances)
+	$shadow_icon_url = $lmm_options['defaults_marker_icon_shadow_url'];
+	$defaults_marker_icon_url = $lmm_options['defaults_marker_icon_url'];
+	$defaults_marker_icon_dir = $lmm_options['defaults_marker_icon_dir'];
+	
+	function checkUrlExists($url) {
+		$loaded_extensions = get_loaded_extensions();
+		$loaded_extensions = array_flip($loaded_extensions);
+		$ret = false;
+		if ( isset($loaded_extensions['curl']) ) {
+			$curl = curl_init($url);
+			$agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
+			curl_setopt($curl, CURLOPT_USERAGENT, $agent);
+			curl_setopt($curl, CURLOPT_NOBODY, true);
+			$result = curl_exec($curl);
+			if ($result !== false) {
+				$statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);  
+				if ($statusCode == 200) {
+					$ret = true;   
+				}
+			}
+			curl_close($curl);
+		} else {
+			$ret = true;
+		}
+		return $ret;
+	}
+	$shadow_icon_url_exists = checkUrlExists($shadow_icon_url);
+	if ( ($shadow_icon_url != NULL) && (!$shadow_icon_url_exists) ) {
+		echo '<div class="error" style="padding:10px;"><strong>' . sprintf(__('Leaflet Maps Marker Warning: the setting for the marker shadow url (%1s) seems to be invalid. This can happen when you moved your WordPress installation from one server to another one.<br/>Please navigate to <a href="%2s">Settings / Map Defaults / "Default values for marker icons"</a> and update the option "Shadow URL". If you do not know which values to enter, please <a href="%3s">reset all plugins options to their defaults</a>', 'lmm'), $shadow_icon_url, LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#mapdefaults-section5', LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#reset') . '</strong></div>';
+	} 
+	$defaults_marker_icon_url_exists = checkUrlExists($defaults_marker_icon_url . '/readme-icons.txt');
+	if ( ! $defaults_marker_icon_url_exists ) {
+		echo '<div class="error" style="padding:10px;"><strong>' . sprintf(__('Leaflet Maps Marker Warning: the setting for your marker icon url (%1s) seems to be invalid. This can happen when you moved your WordPress installation from one server to another one.<br/>Please navigate to <a href="%2s">Settings / Map Defaults / "Default values for marker icons"</a> and update the option "Icons URL". If you do not know which values to enter, please <a href="%3s">reset all plugins options to their defaults</a>', 'lmm'), $defaults_marker_icon_url, LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#mapdefaults-section5', LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#reset') . '<br/>' . __('Please note that the file readme-icons.txt within this directory is used for this check, so please make sure, that this file is available!','lmm') . '</strong></div>';
+	}
+	if ( ! file_exists($defaults_marker_icon_dir . DIRECTORY_SEPARATOR . 'readme-icons.txt') ) {
+		echo '<div class="error" style="padding:10px;"><strong>' . sprintf(__('Leaflet Maps Marker Warning: the setting for your the marker icon directory (%1s) seems to be invalid. This can happen when you moved your WordPress installation from one server to another one.<br/>Please navigate to <a href="%2s">Settings / Map Defaults / "Default values for marker icons"</a> and update the option "Icons directory". If you do not know which values to enter, please <a href="%3s">reset all plugins options to their defaults</a>', 'lmm'), $defaults_marker_icon_dir, LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#mapdefaults-section5', LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#reset') . '<br/>' . __('Please note that the file readme-icons.txt within this directory is used for this check, so please make sure, that this file is available!','lmm') . '</strong></div>';
+	}
+	//info: plugin WordPress Ultra Simple Paypal Shopping Cart
+	if (is_plugin_active('wp-ultra-simple-paypal-shopping-cart/wp_ultra_simple_shopping_cart.php') ) {
+		echo '<p><div class="error" style="padding:10px;"><strong>' . __('Warning: you are using the plugin WordPress Ultra Simple Paypal Shopping Cart which is causing the Leaflet Maps Marker settings page to break! Please temporarily deactivate this plugin if you want change the settings. The plugin developer has already been contacted and will hopefully release a fix soon.','lmm') . '</strong></div></p>';
+	}
+}//info: end misc_global_admin_notices check
 //info: check if newer plugin version is available
 $plugin_updates = get_site_transient( 'update_plugins' );
 if (isset($plugin_updates->response['leaflet-maps-marker/leaflet-maps-marker.php']->new_version)) { 
