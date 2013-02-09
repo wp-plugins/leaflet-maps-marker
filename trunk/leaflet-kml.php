@@ -30,7 +30,6 @@ global $wpdb;
 $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 $lmm_options = get_option( 'leafletmapsmarker_options' );
-$defaults_marker_icon_url = $lmm_options['defaults_marker_icon_url'];
 if ($lmm_options[ 'wms_wms_kml_support' ] == 'yes') { $wms_kml_output = '<NetworkLink id="mapsmarker_wms1"><name><![CDATA[' . $lmm_options[ 'wms_wms_name' ] . ']]></name><visibility>1</visibility><open>0</open><atom:author><![CDATA[' . $lmm_options[ 'wms_wms_attribution' ] . ']]></atom:author><Snippet maxLines="2"><![CDATA[' . $lmm_options[ 'wms_wms_attribution' ] . ']]></Snippet><Link><href><![CDATA[' . $lmm_options[ 'wms_wms_kml_href' ] . ']]></href><refreshMode>' . $lmm_options[ 'wms_wms_kml_refreshMode' ] . '</refreshMode><refreshInterval>' . $lmm_options[ 'wms_wms_kml_refreshInterval' ] . '</refreshInterval><viewRefreshMode>' . $lmm_options[ 'wms_wms_kml_viewRefreshMode' ] . '</viewRefreshMode><viewRefreshTime>' . $lmm_options[ 'wms_wms_kml_viewRefreshTime' ] . '</viewRefreshTime></Link></NetworkLink>'; };
 if ($lmm_options[ 'wms_wms2_kml_support' ] == 'yes') { $wms2_kml_output = '<NetworkLink id="mapsmarker_wms2"><name><![CDATA[' . $lmm_options[ 'wms_wms2_name' ] . ']]></name><visibility>1</visibility><open>0</open><atom:author><![CDATA[' . $lmm_options[ 'wms_wms2_attribution' ] . ']]></atom:author><Snippet maxLines="2"><![CDATA[' . $lmm_options[ 'wms_wms2_attribution' ] . ']]></Snippet><Link><href><![CDATA[' . $lmm_options[ 'wms_wms2_kml_href' ] . ']]></href><refreshMode>' . $lmm_options[ 'wms_wms2_kml_refreshMode' ] . '</refreshMode><refreshInterval>' . $lmm_options[ 'wms_wms2_kml_refreshInterval' ] . '</refreshInterval><viewRefreshMode>' . $lmm_options[ 'wms_wms2_kml_viewRefreshMode' ] . '</viewRefreshMode><viewRefreshTime>' . $lmm_options[ 'wms_wms2_kml_viewRefreshTime' ] . '</viewRefreshTime></Link></NetworkLink>'; };
 if ($lmm_options[ 'wms_wms3_kml_support' ] == 'yes') { $wms3_kml_output = '<NetworkLink id="mapsmarker_wms3"><name><![CDATA[' . $lmm_options[ 'wms_wms3_name' ] . ']]></name><visibility>1</visibility><open>0</open><atom:author><![CDATA[' . $lmm_options[ 'wms_wms3_attribution' ] . ']]></atom:author><Snippet maxLines="2"><![CDATA[' . $lmm_options[ 'wms_wms3_attribution' ] . ']]></Snippet><Link><href><![CDATA[' . $lmm_options[ 'wms_wms3_kml_href' ] . ']]></href><refreshMode>' . $lmm_options[ 'wms_wms3_kml_refreshMode' ] . '</refreshMode><refreshInterval>' . $lmm_options[ 'wms_wms3_kml_refreshInterval' ] . '</refreshInterval><viewRefreshMode>' . $lmm_options[ 'wms_wms3_kml_viewRefreshMode' ] . '</viewRefreshMode><viewRefreshTime>' . $lmm_options[ 'wms_wms3_kml_viewRefreshTime' ] . '</viewRefreshTime></Link></NetworkLink>'; };
@@ -103,7 +102,7 @@ if (isset($_GET['layer'])) {
         $micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 		$micon_name = 'default';
     } else {
-        $micon_url = $defaults_marker_icon_url . '/' . $marker_icon['micon']; 
+        $micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker_icon['micon']; 
 		$micon_name = substr($marker_icon['micon'],0,-4);		
     }
 	echo '<Style id="' . $micon_name . '"><IconStyle><Icon><href>' . $micon_url . '</href></Icon></IconStyle></Style>'.PHP_EOL;
@@ -231,7 +230,7 @@ elseif (isset($_GET['marker'])) {
         $micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 		$micon_name = 'default';
     } else {
-        $micon_url = $defaults_marker_icon_url . '/' . $marker_icon['micon']; 
+        $micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker_icon['micon']; 
 		$micon_name = substr($marker_icon['micon'],0,-4);		
     }
 	echo '<Style id="' . $micon_name . '"><IconStyle><Icon><href>' . $micon_url . '</href></Icon></IconStyle></Style>'.PHP_EOL;

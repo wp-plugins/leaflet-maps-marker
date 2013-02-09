@@ -34,8 +34,6 @@ global $wpdb;
 $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 $lmm_options = get_option( 'leafletmapsmarker_options' );
-$defaults_marker_icon_dir = $lmm_options['defaults_marker_icon_dir'];
-$defaults_marker_icon_url = $lmm_options['defaults_marker_icon_url'];
 $full = ( isset($_GET['full']) && ($_GET['full'] == 'yes') ) ? '1' : '0'; 
 //info: Google language localization (JSON API)
 if ($lmm_options['google_maps_language_localization'] == 'browser_setting') {
