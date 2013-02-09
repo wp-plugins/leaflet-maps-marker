@@ -31,7 +31,6 @@ global $wpdb;
 $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 $lmm_options = get_option( 'leafletmapsmarker_options' );
-$defaults_marker_icon_url = $lmm_options['defaults_marker_icon_url'];
 
 if (isset($_GET['layer'])) {
   $layer_prepared = mysql_real_escape_string(strtolower($_GET['layer'])); 
@@ -110,7 +109,7 @@ if (isset($_GET['layer'])) {
 		if ($marker['micon'] == null) {
 			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 		} else {
-			$micon_url = $defaults_marker_icon_url . '/' . $marker['micon']; 
+			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
 		}
 		echo '<entry>'.PHP_EOL;
 		echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
@@ -174,7 +173,7 @@ if (isset($_GET['layer'])) {
 		if ($marker['micon'] == null) {
 			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 		} else {
-			$micon_url = $defaults_marker_icon_url . '/' . $marker['micon']; 
+			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
 		}
 		echo '<item>'.PHP_EOL;
 		echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
@@ -246,7 +245,7 @@ elseif (isset($_GET['marker'])) {
 		if ($marker['micon'] == null) {
 			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 		} else {
-			$micon_url = $defaults_marker_icon_url . '/' . $marker['micon']; 
+			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
 		}
 		echo '<entry>'.PHP_EOL;
 		echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
@@ -300,7 +299,7 @@ elseif (isset($_GET['marker'])) {
 		if ($marker['micon'] == null) {
 			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
 		} else {
-			$micon_url = $defaults_marker_icon_url . '/' . $marker['micon']; 
+			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
 		}
 		echo '<item>'.PHP_EOL;
 		echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;

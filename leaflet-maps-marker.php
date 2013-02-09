@@ -4,7 +4,7 @@ Plugin Name: Leaflet Maps Marker &reg;
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, APIs or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, WMTS, geoRSS, location, geo, geo-mashup, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, googlemaps, gmaps, google map, google map short code, google map widget, google maps v3, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, marker icons, layer, multiple markers, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice, widget, bing, bing maps, microsoft, map short code, map widget, kml, cross-browser, fully documented, traffic, bike lanes, map short code, custom marker text, custom marker icons and text
-Version: 3.5.1
+Version: 3.5.2
 Author: Robert Harm
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
@@ -191,8 +191,6 @@ function __construct() {
   function lmm_dashboard_widget(){
 	global $wpdb;
 	$lmm_options = get_option( 'leafletmapsmarker_options' );
-	$defaults_marker_icon_dir = $lmm_options['defaults_marker_icon_dir'];
-	$defaults_marker_icon_url = $lmm_options['defaults_marker_icon_url'];
 	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 	$widgets = get_option( 'dashboard_widget_options' );
 	$widget_id = 'lmm-admin-dashboard-widget';
@@ -201,7 +199,7 @@ function __construct() {
 	if ($result != NULL) {
 		echo '<table style="margin-bottom:5px;"><tr>';
 		foreach ($result as $row ) {
-			$icon = ($row['icon'] == NULL) ? LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png' : $defaults_marker_icon_url . '/' . $row['icon'];
+			$icon = ($row['icon'] == NULL) ? LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png' : LEAFLET_PLUGIN_ICONS_URL . '/' . $row['icon'];
 			echo '<td><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['ID'] . '" title="' . esc_attr__('edit marker','lmm') . '"><img src="' . $icon . '" style="width:80%;"></a>';
 			echo '<td style="vertical-align:top;line-height:1.2em;">';
 			echo '<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['ID'] . '" title="' . esc_attr__('edit marker','lmm') . '">'.htmlspecialchars(stripslashes($row['markername'])).'</a><br/>' . __('created on','lmm') . ' ' . date("Y-m-d - h:m", strtotime($row['createdon'])) . ', ' . __('created by','lmm') . ' ' . $row['createdby'];
@@ -222,9 +220,9 @@ function __construct() {
 	{
 			require_once(ABSPATH . WPINC . DIRECTORY_SEPARATOR . 'class-simplepie.php');
 			$feed = new SimplePie();
-			if ( file_exists($defaults_marker_icon_dir . DIRECTORY_SEPARATOR . 'readme-icons.txt') ) {
+			if ( file_exists(LEAFLET_PLUGIN_ICONS_DIR . DIRECTORY_SEPARATOR . 'readme-icons.txt') ) {
 				$feed->enable_cache(true);
-				$feed->set_cache_location($location = $defaults_marker_icon_dir);
+				$feed->set_cache_location($location = LEAFLET_PLUGIN_ICONS_DIR);
 				$feed->set_cache_duration(86400);
 			} else {
 				$feed->enable_cache(false);
@@ -681,7 +679,7 @@ function __construct() {
    }
   function lmm_install_and_updates() {
 	//info: set transient to execute install & update-routine only once a day
-	$current_version = "v351"; //2do - mandatory: change on each update to new version!
+	$current_version = "v352"; //2do - mandatory: change on each update to new version!
 	$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version;
 	$install_update_schedule = get_transient( $schedule_transient );
 	if ( $install_update_schedule === FALSE ) {

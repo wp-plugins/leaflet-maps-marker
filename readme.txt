@@ -114,6 +114,7 @@ to the visitors of your website.
 * uninstall function to completely remove the plugin and its data (also on WordPress Multisite installations)
 
 = Available translations =
+* Bengali (ba_BD) thanks to Nur Hasan
 * Bosnian (bs_BA) thanks to Kenan Dervišević
 * Bulgarian (bg_BG) thanks to Andon Ivanov
 * Catalan (ca) thanks to Vicent Cubells
@@ -257,10 +258,12 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2012, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.5.1 =
-minimized PHP memory usage and plugin load time on frontend - see http://www.mapsmarker.com/v3.5.1 for more details
+= v3.5.2 =
+removed option for custom marker icon directory and added Bengali translation - see http://www.mapsmarker.com/v3.5.1 for more details
 
 == Changelog ==
-[see blog post with details about v3.5.1](http://www.mapsmarker.com/v3.5.1)
+removed option for custom marker icon directory - please see blog post for more details, especially if you use a custom marker icon directory!!!
+
+[see blog post with details about v3.5.2](http://www.mapsmarker.com/v3.5.2)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

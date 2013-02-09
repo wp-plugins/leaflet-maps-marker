@@ -8,7 +8,6 @@ global $wpdb;
 $lmm_options = get_option( 'leafletmapsmarker_options' );
 $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-$defaults_marker_icon_url = $lmm_options['defaults_marker_icon_url'];
 $radius = 1;
 $pagenum = isset($_POST['paged']) ? intval($_POST['paged']) : (isset($_GET['paged']) ? intval($_GET['paged']) : 1);
 //info: security check if input variable is valid
@@ -294,7 +293,7 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
       <td>' . $row['id'] . '</td>
       <td>';
       if ($row['icon'] != null) { 
-         echo '<img src="' . $defaults_marker_icon_url . '/' . $row['icon'] . '" title="' . $row['icon'] . '" />'; 
+         echo '<img src="' . LEAFLET_PLUGIN_ICONS_URL . '/' . $row['icon'] . '" title="' . $row['icon'] . '" />'; 
          } else { 
          echo '<img src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png" title="' . esc_attr__('standard icon','lmm') . '" />';};
       echo '</td>
