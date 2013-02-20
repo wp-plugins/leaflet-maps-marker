@@ -7,7 +7,7 @@ Author URI:        http://www.harm.co.at
 Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
-Tested up to:      3.6-alpha-23288
+Tested up to:      3.6-alpha-23451
 Stable tag:        3.5.2
 License:           GPLv2
 
@@ -119,6 +119,7 @@ to the visitors of your website.
 * Bulgarian (bg_BG) thanks to Andon Ivanov
 * Catalan (ca) thanks to Vicent Cubells
 * Chinese (zh_CN) thanks to John Shen
+* Chinese (zh_TW) thanks to jamesho Ho
 * Croatian (hr) thanks to Neven Pausic and Alan Benic
 * Danish (da_DK) thanks to Mads Dyrmann Larsen
 * Dutch (nl_NL) thanks to Marijke Metz and Patrick Ruers
