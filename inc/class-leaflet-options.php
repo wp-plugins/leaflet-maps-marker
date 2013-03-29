@@ -3857,7 +3857,7 @@ class Class_leaflet_options {
 			'title'    => __('Layers','lmm'),
 			'desc'    => __('(required) Comma-separated list of WMS layers to show','lmm'),
 			'type'    => 'text',
-			'std'     => 'OEFFWCOGD' 
+			'std'     => 'WCANLAGEOGD' 
 		);
 		$this->settings['wms_wms_styles'] = array(
 			'version' => '1.0',
