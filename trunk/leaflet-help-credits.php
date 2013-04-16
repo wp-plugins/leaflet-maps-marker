@@ -65,6 +65,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 		<li>- Bulgarian (bg_BG) thanks to Andon Ivanov, <a href="http://coffebreak.info" target="_blank">http://coffebreak.info</a></li>
 		<li>- Catalan (ca) by Vicent Cubells, <a href="http://vcubells.net" target="_blank">http://vcubells.net</a></li>
 		<li>- Chinese (zh_CN) by John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a></li>
+		<li>- Chinese (zh_TW) by jamesho Ho, <a href="http://outdooraccident.org" target="_blank">http://outdooraccident.org</a></li>
 		<li>- Croatian (hr) by Neven Pausic, <a href="http://www.airsoft-hrvatska.com" target="_blank">http://www.airsoft-hrvatska.com</a> and Alan Benic</li>
 		<li>- Danish (da_DK) by Mads Dyrmann Larsen</li>
 		<li>- Dutch (nl_NL) by Marijke Metz, <a href="http://www.mergenmetz.nl" target="_blank">http://www.mergenmetz.nl</a> and Patrick Ruers, <a href="http://www.stationskwartiersittard.nl" target="_blank">http://www.stationskwartiersittard.nl</a></li>
@@ -78,6 +79,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 		<li>- Polish (pl_PL) thanks to Pawel Wyszy&#324;ski, <a href="http://injit.pl" target="_blank">http://injit.pl</a></li>
 		<li>- Portuguese (pt_BR) thanks to Andre Santos, <a href="http://pelaeuropa.com.br" target="_blank">http://pelaeuropa.com.br</a> and Antonio Hammerl</li>
 		<li>- Portuguese (pt_PT) thanks to Joao Campos, <a href="http://www.all-about-portugal.com" target="_blank">http://www.all-about-portugal.com</a></li>
+		<li>- Romanian (ro) thanks to Daniel Codrea, <a href="http://www.inadcod.com" target="_blank">http://www.inadcod.com</a></li>
 		<li>- Russian (ru_RU) thanks to Ekaterina Golubina, , supported by Teplitsa of Social Technologies - <a href="http://te-st.ru" target="_blank">http://te-st.ru</a></li>
 		<li>- Slovak (sk_SK) thanks to Zdenko Podobny</a></li>
 		<li>- Spanish (es_ES) by David Ramírez, <a href="http://www.hiperterminal.com" target="_blank">http://www.hiperterminal.com</a> &amp; Alvaro Lara, <a href="http://www.alvarolara.com" target="_blank">http://www.alvarolara.com</a>, Ricardo Viteri, <a href="http://www.labviteri.com" target="_blank">http://www.labviteri.com</a> and Victor Guevara, <a href="http://1sistemas.net" target="_blank">http://1sistemas.net</a></li>
