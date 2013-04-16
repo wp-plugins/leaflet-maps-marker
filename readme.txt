@@ -119,6 +119,7 @@ to the visitors of your website.
 * Bulgarian (bg_BG) thanks to Andon Ivanov
 * Catalan (ca) thanks to Vicent Cubells
 * Chinese (zh_CN) thanks to John Shen
+* Chinese (zh_TW) thanks to jamesho Ho
 * Croatian (hr) thanks to Neven Pausic and Alan Benic
 * Danish (da_DK) thanks to Mads Dyrmann Larsen
 * Dutch (nl_NL) thanks to Marijke Metz and Patrick Ruers
@@ -132,6 +133,7 @@ to the visitors of your website.
 * Polish (pl_PL) translation thanks to Pawel Wyszynski and Tomasz Rudnicki
 * Portuguese (pt_BR) thanks to Andre Santos and Antonio Hammerl
 * Portuguese (pt_PT) translation thanks to Joao Campos
+* Romanian (ro_RO) thanks to Daniel Codrea
 * Russian (ru_RU) thanks to Ekaterina Golubina, supported by Teplitsa of Social Technologies
 * Slovak (sk_SK) thanks to Zdenko Podobny
 * Spanish (es_ES) thanks to David Ramirez, Alvaro Lara, Ricardo Viteri and Victor Guevara
@@ -255,15 +257,13 @@ For more information on translations of the plugin and how to contribute a new t
 
 = Trademark and copyright =
 MapsMarker &reg; - registration pending
-Copyright 2011-2012, Robert Harm, All Rights Reserved
+Copyright 2011-2013, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.5.2 =
-removed option for custom marker icon directory and added Bengali translation - see http://www.mapsmarker.com/v3.5.1 for more details
+= v3.5.3 =
+drastically reduced memory usage, usability improvements and 2 new translations - see http://www.mapsmarker.com/v3.5.3 for more details
 
 == Changelog ==
-removed option for custom marker icon directory - please see blog post for more details, especially if you use a custom marker icon directory!!!
-
-[see blog post with details about v3.5.2](http://www.mapsmarker.com/v3.5.2)
+[see blog post with details about v3.5.3](http://www.mapsmarker.com/v3.5.3)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)
