@@ -271,6 +271,7 @@ if ( $edit_status == 'updated') {
 		<h3 style="font-size:23px;"><?php ($isedit === true) ? _e('Edit marker','lmm') : _e('Add new marker','lmm') ?>
 		<?php echo ($isedit === true) ? '"' . stripslashes($markername) . '" (ID '.$id.')' : '' ?>
 		<input style="font-weight:bold;margin-left:10px;" type="submit" name="marker" class="submit button-primary" value="<?php ($isedit === true) ? _e('update','lmm') : _e('publish','lmm') ?>" />
+		<?php if ($isedit === true) { echo '<a class="button-primary" style="margin-left:20px;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker">' . __('add new marker','lmm') . '</a>'; } ?>		
 		</h3>       
         
 		<table class="widefat fixed">
