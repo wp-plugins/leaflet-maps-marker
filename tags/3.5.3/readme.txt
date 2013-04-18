@@ -121,6 +121,7 @@ to the visitors of your website.
 * Chinese (zh_CN) thanks to John Shen
 * Chinese (zh_TW) thanks to jamesho Ho
 * Croatian (hr) thanks to Neven Pausic and Alan Benic
+* Czech (cs_CZ) thanks to Viktor Kleiner
 * Danish (da_DK) thanks to Mads Dyrmann Larsen
 * Dutch (nl_NL) thanks to Marijke Metz and Patrick Ruers
 * English (en_US)
@@ -128,6 +129,7 @@ to the visitors of your website.
 * German (de_DE)
 * Hindi (hi_IN) thanks to by Outshine Solutions and Guntupalli Karunakar
 * Hungarian (hu_HU) thanks to István Pintér
+* Indonesian (id_ID) thanks to Emir Hartato
 * Italian (it_IT) thanks to Luca Barbetti
 * Japanese (ja) thanks to Shu Higashi
 * Polish (pl_PL) translation thanks to Pawel Wyszynski and Tomasz Rudnicki
