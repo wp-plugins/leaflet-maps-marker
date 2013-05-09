@@ -51,4 +51,11 @@ if (is_plugin_active('bwp-minify/bwp-minify.php') ) {
 		}
 	}
 }
+//info: plugin WP Minify
+if (is_plugin_active('wp-minify/wp-minify.php') ) {
+	$lmm_bwpminify_options = get_option( 'wp_minify' );
+	if ($lmm_bwpminify_options['enable_html'] == '1') {
+			echo '<p><div class="error" style="padding:10px;"><strong>' . __('Warning: you are using the plugin "WP Minify" which is causing Leaflet Maps Marker layer maps to break as the option "Enable HTML Minification" is active. Please disable this option under Settings / WP Minify.','lmm') . '</strong></div></p>';
+	}
+}
 ?>
