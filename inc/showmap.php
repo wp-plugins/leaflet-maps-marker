@@ -42,7 +42,7 @@
     //info: prepare layers
     if (!empty($layer)) {
         $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-        $row = $wpdb->get_row('SELECT id,name,basemap,mapwidth,mapheight,mapwidthunit,panel,layerzoom,layerviewlat,layerviewlon,controlbox,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10,listmarkers,multi_layer_map,multi_layer_map_list FROM '.$table_name_layers.' WHERE id='.$layer, ARRAY_A);
+        $row = $wpdb->get_row('SELECT id,name,basemap,mapwidth,mapheight,mapwidthunit,panel,layerzoom,layerviewlat,layerviewlon,controlbox,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10,listmarkers,multi_layer_map,multi_layer_map_list FROM '.$table_name_layers.' WHERE id='.intval($layer), ARRAY_A);
         $id = $row['id'];
         $basemap = $row['basemap'];
         $lat = $row['layerviewlat'];
@@ -76,7 +76,7 @@
     //info: prepare markers
     if (!empty($marker))  {
             $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
-                $row = $wpdb->get_row('SELECT id,markername,basemap,layer,lat,lon,icon,popuptext,zoom,openpopup,mapwidth,mapwidthunit,mapheight,panel,controlbox,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10,address FROM '.$table_name_markers.' WHERE id='.$marker, ARRAY_A);
+                $row = $wpdb->get_row('SELECT id,markername,basemap,layer,lat,lon,icon,popuptext,zoom,openpopup,mapwidth,mapwidthunit,mapheight,panel,controlbox,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10,address FROM '.$table_name_markers.' WHERE id='.intval($marker), ARRAY_A);
                 if(!empty($row)) {
                     $id = $row['id'];
                     $markername = $row['markername'];
@@ -257,7 +257,7 @@
     {
     $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
     $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-    $layer_mark_list_microformats = $wpdb->get_results('SELECT l.id as lid,l.name as lname, m.lon as mlon, m.lat as mlat, m.markername as markername,m.id as markerid FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$layer, ARRAY_A);
+    $layer_mark_list_microformats = $wpdb->get_results('SELECT l.id as lid,l.name as lname, m.lon as mlon, m.lat as mlat, m.markername as markername,m.id as markerid FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.intval($layer), ARRAY_A);
         if (count($layer_mark_list_microformats) < 1) {
             $lmm_out .= '<div id="lmm_geo_tags_'.$uid.'" class="lmm-geo-tags geo">' . $paneltext . ': <span class="latitude">' . $lat . '</span>, <span class="longitude">' . $lon . '</span></div>'.PHP_EOL;
         } else {
