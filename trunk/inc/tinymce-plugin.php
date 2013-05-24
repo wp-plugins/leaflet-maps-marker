@@ -69,14 +69,7 @@ function get_mm_list(){
 <html>
 <head>
 	<title><?php _e('Insert map','lmm') ?></title>
-	<script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js' ?>'></script>
-	<?php 
-	//info: load js if no internet connection available
-	if  (in_array  ('curl', get_loaded_extensions())) {
-		if (!$check = curl_init('http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js')) {
-			echo "<script type='text/javascript' src='" . LEAFLET_PLUGIN_URL . "inc/js/jquery_for_tinymce_button.js' ?>'></script>";
-		} 
-	} ?>
+	<?php echo '<script type="text/javascript" src="' . site_url() . '/wp-includes/js/jquery/jquery.js"></script>'.PHP_EOL; ?>
 	<?php if(!isset($_GET['mode'])): ?>
 		<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/tinymce_popup.js' ?>'></script>
 		<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/lmm_tinymce_shortcode.php' ?>'></script>

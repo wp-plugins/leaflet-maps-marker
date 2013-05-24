@@ -7,7 +7,7 @@ Author URI:        http://www.harm.co.at
 Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0 
-Tested up to:      3.6-beta2
+Tested up to:      3.6-beta3
 Stable tag:        3.5.3
 License:           GPLv2
 
@@ -121,6 +121,7 @@ to the visitors of your website.
 * Chinese (zh_CN) thanks to John Shen
 * Chinese (zh_TW) thanks to jamesho Ho
 * Croatian (hr) thanks to Neven Pausic and Alan Benic
+* Czech (cs_CZ) thanks to Viktor Kleiner
 * Danish (da_DK) thanks to Mads Dyrmann Larsen
 * Dutch (nl_NL) thanks to Marijke Metz and Patrick Ruers
 * English (en_US)
@@ -128,6 +129,7 @@ to the visitors of your website.
 * German (de_DE)
 * Hindi (hi_IN) thanks to by Outshine Solutions and Guntupalli Karunakar
 * Hungarian (hu_HU) thanks to István Pintér
+* Indonesian (id_ID) thanks to Emir Hartato
 * Italian (it_IT) thanks to Luca Barbetti
 * Japanese (ja) thanks to Shu Higashi
 * Polish (pl_PL) translation thanks to Pawel Wyszynski and Tomasz Rudnicki
@@ -137,6 +139,7 @@ to the visitors of your website.
 * Russian (ru_RU) thanks to Ekaterina Golubina, supported by Teplitsa of Social Technologies
 * Slovak (sk_SK) thanks to Zdenko Podobny
 * Spanish (es_ES) thanks to David Ramirez, Alvaro Lara, Ricardo Viteri and Victor Guevara
+* Swedish (sv_SE) thanks to Swedish translation thanks to Olof Odier, Tedy Warsitha and Dan Paulsson
 * Turkish (tr_TR) thanks to Emre Erkan
 * Ukrainian (uk_UK) thanks to Andrexj
 * Yiddish (yi) thanks to Raphael Finkel
@@ -260,10 +263,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2013, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.5.3 =
-drastically reduced memory usage, usability improvements and 2 new translations - see http://www.mapsmarker.com/v3.5.3 for more details
+= v3.5.4 =
+security hardening on backend, translations updates and bugfixes - see http://www.mapsmarker.com/v3.5.4 for more details
 
 == Changelog ==
-[see blog post with details about v3.5.3](http://www.mapsmarker.com/v3.5.3)
+[blog post with details about v3.5.4](http://www.mapsmarker.com/v3.5.4)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)
