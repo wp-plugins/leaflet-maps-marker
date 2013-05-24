@@ -2556,19 +2556,6 @@ class Class_leaflet_options {
 			'std'     => '',
 			'type'    => 'text'
 		);
-		$this->_settings['cloudmade_double_resolution'] = array(
-			'version' => '1.6',
-			'pane'    => 'basemaps',
-			'section' => 'basemaps-section1',
-			'title'   => __('Double resolution','lmm'),
-			'desc'    => __('This will improve map look for iPhone 4, Motorola Milestone, etc.','lmm'),
-			'type'    => 'radio',
-			'std'     => 'enabled',
-			'choices' => array(
-				'enabled' => __('enabled','lmm'),
-				'disabled' => __('disabled','lmm')
-			)
-		);	
 		/*
 		* Cloudmade 2 settings
 		*/
@@ -2598,19 +2585,6 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => '',
 			'type'    => 'text'
-		);		
-		$this->_settings['cloudmade2_double_resolution'] = array(
-			'version' => '1.6',
-			'pane'    => 'basemaps',
-			'section' => 'basemaps-section2',
-			'title'   => __('Double resolution','lmm'),
-			'desc'    => __('This will improve map look for iPhone 4, Motorola Milestone, etc.','lmm'),
-			'type'    => 'radio',
-			'std'     => 'enabled',
-			'choices' => array(
-				'enabled' => __('enabled','lmm'),
-				'disabled' => __('disabled','lmm')
-			)
 		);		
 		/*
 		* Cloudmade 3 settings
@@ -2642,19 +2616,6 @@ class Class_leaflet_options {
 			'std'     => '',
 			'type'    => 'text'
 		);		
-		$this->_settings['cloudmade3_double_resolution'] = array(
-			'version' => '1.6',
-			'pane'    => 'basemaps',
-			'section' => 'basemaps-section3',
-			'title'   => __('Double resolution','lmm'),
-			'desc'    => __('This will improve map look for iPhone 4, Motorola Milestone, etc.','lmm'),
-			'type'    => 'radio',
-			'std'     => 'enabled',
-			'choices' => array(
-				'enabled' => __('enabled','lmm'),
-				'disabled' => __('disabled','lmm')
-			)
-		);	
 		/*
 		* MapBox settings
 		*/
@@ -7111,7 +7072,7 @@ class Class_leaflet_options {
 			'section' => 'misc-section2',
 			'std'     => '', 
 			'title'   => '',
-			'desc'    => __('The language used on plugin pages on backend and/or on maps on frontend. Please note that the language for Google and Bing Services can be set seperately via Settings / tab "Google Maps" / "Google language localization" respectively tab "Bing Maps" / "Cultures"','lmm'),
+			'desc'    => __('The language used on plugin pages on backend and/or on maps on frontend. Please note that the language for Google and Bing Services can be set seperately via Settings / tab "Google Maps" / "Google language localization" respectively tab "Bing Maps" / "Cultures"','lmm') . '<br/><br/>' . sprintf(__('If your language is missing or not fully translated yet, you are invited to help on the <a href="%1s" target="_blank">web-based translation plattform</a>.','lmm'), 'http://translate.mapsmarker.com/projects/lmm'),
 			'type'    => 'helptext'
 		);
 		$this->_settings['misc_plugin_language'] = array(
@@ -7131,6 +7092,7 @@ class Class_leaflet_options {
 				'zh_CN' => __('Chinese','lmm') . ' (zh_CN)',
 				'zh_TW' => __('Chinese','lmm') . ' (zh_TW)',
 				'hr' => __('Croatian','lmm') . ' (hr)',
+				'cs_CZ' => __('Czech','lmm') . ' (cs_CZ)',
 				'da_DK' => __('Danish','lmm') . ' (da_DK)',
 				'nl_NL' => __('Dutch','lmm') . ' (nl_NL)',
 				'en_US' => __('English','lmm') . ' (en_US)',
@@ -7138,6 +7100,7 @@ class Class_leaflet_options {
 				'de_DE' => __('German','lmm') . ' (de_DE)',
 				'hi_IN' => __('Hindi','lmm') . ' (hi_IN)',
 				'hu_HU' => __('Hungarian','lmm') . ' (hu_HU)',
+				'id_ID' => __('Indonesian','lmm') . ' (id_ID)',
 				'it_IT' => __('Italian','lmm') . ' (it_IT)',
 				'ja' => __('Japanese','lmm') . ' (ja)',
 				'pl_PL' => __('Polish','lmm') . ' (pl_PL)',
@@ -7147,6 +7110,7 @@ class Class_leaflet_options {
 				'ru_RU' => __('Russian','lmm') . ' (ru_RU)',
 				'sk_SK' => __('Slovak','lmm') . ' (sk_SK)',
 				'es_ES' => __('Spanish','lmm') . ' (es_ES)',
+				'sv_SE' => __('Swedish','lmm') . ' (sv_SE)',
 				'tr_TR' => __('Turkish','lmm') . ' (tr_TR)',
 				'uk_UK' => __('Ukrainian','lmm') . ' (uk_UK)',
 				'yi' => __('Yiddish','lmm') . ' (yi)'
@@ -8198,7 +8162,7 @@ class Class_leaflet_options {
 		}
 		/* template for plugin updates 
 		//info:  set defaults for options introduced in v3.6
-		if (get_option('leafletmapsmarker_version') == '3.5.3' )
+		if (get_option('leafletmapsmarker_version') == '3.5.4' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting ) 
