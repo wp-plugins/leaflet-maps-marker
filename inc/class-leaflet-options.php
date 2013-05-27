@@ -198,7 +198,9 @@ class Class_leaflet_options {
                 foreach($sections as $slug => $section){ 
                     echo '<div class="section">';
                     echo "<h3 class='titl'>".$this->sections[$section]."</h3>";
-                    @call_user_func(array(&$this, 'display_'.$pane_slug.'_section'), array());
+                    if (function_exists('display_'.$pane_slug.'_section')) { //info: Phalanger fix
+                    	@call_user_func(array(&$this, 'display_'.$pane_slug.'_section'), array());
+                    }
                     echo '<table class="form-table">'; 
                         do_settings_fields( $_GET['page'], $section );
                     echo '</table>';
