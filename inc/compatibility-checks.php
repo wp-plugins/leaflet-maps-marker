@@ -62,15 +62,21 @@ if (is_plugin_active('wp-minify/wp-minify.php') ) {
 if (is_plugin_active('w3-total-cache/w3-total-cache.php') ) {
 	$w3tc_config = w3_instance('W3_Config');
 	$w3tc_minify = $w3tc_config->get_boolean('minify.enabled');
-	$w3tc_js = $w3tc_config->get_boolean('minify.js.enable');
-	$w3tc_js_exclude = $w3tc_config->get_array('minify.reject.files.js');
-	if ( ($w3tc_minify == true) && ($w3tc_js == true) && (!in_array('wp-content/plugins/leaflet-maps-marker/leaflet-dist/leaflet.js', $w3tc_js_exclude) == true) ){
-		echo '<p><div class="error" style="padding:10px;"><strong>' . sprintf(__('Warning: you are using the plugin "W3 Total Cache" with the feature "JS Minify" enabled which is causing maps to break.<br/>To fix this, please navigate to <a href="%1s">Performance / Minify / Advanced</a> and add <strong>%2s</strong> to "Never minify the following JS files:"','lmm'), LEAFLET_WP_ADMIN_URL . 'admin.php?page=w3tc_minify', 'wp-content/plugins/leaflet-maps-marker/leaflet-dist/leaflet.js') . '</strong></div></p>';
+	if ($w3tc_minify == true) {
+		$w3tc_js = $w3tc_config->get_boolean('minify.js.enable');
+		if ($w3tc_js == true) {
+				$w3tc_js_exclude = $w3tc_config->get_array('minify.reject.files.js');
+				if (in_array('wp-content/plugins/leaflet-maps-marker/leaflet-dist/leaflet.js', $w3tc_js_exclude) == false) {
+					echo '<p><div class="error" style="padding:10px;"><strong>' . sprintf(__('Warning: you are using the plugin "W3 Total Cache" with the feature "JS Minify" enabled which is causing maps to break.<br/>To fix this, please navigate to <a href="%1s">Performance / Minify / Advanced</a> and add <strong>%2s</strong> to "Never minify the following JS files:"','lmm'), LEAFLET_WP_ADMIN_URL . 'admin.php?page=w3tc_minify', 'wp-content/plugins/leaflet-maps-marker/leaflet-dist/leaflet.js') . '</strong></div></p>';
+				}
+		}
 	}
 	$w3tc_cdn = $w3tc_config->get_boolean('cdn.enabled');
-	$w3tc_cdn_exclude = $w3tc_config->get_array('cdn.reject.files');
-	if ( ($w3tc_cdn == true) && (!in_array('wp-content/uploads/leaflet-maps-marker-icons/*', $w3tc_cdn_exclude) == true) ){
-		echo '<p><div class="error" style="padding:10px;"><strong>' . sprintf(__('Warning: you are using the plugin "W3 Total Cache" with the feature "CDN" enabled which is causing layer maps to break.<br/>To fix this, please navigate to <a href="%1s">Performance / CDN / Advanced</a> and add <strong>%2s</strong> to "Rejected files:"','lmm'), LEAFLET_WP_ADMIN_URL . 'admin.php?page=w3tc_cdn', 'wp-content/uploads/leaflet-maps-marker-icons/*') . '</strong></div></p>';
-	}	
+	if ($w3tc_cdn == true) {
+		$w3tc_cdn_exclude = $w3tc_config->get_array('cdn.reject.files');
+		if (in_array('wp-content/uploads/leaflet-maps-marker-icons/*', $w3tc_cdn_exclude) == false) {
+			echo '<p><div class="error" style="padding:10px;"><strong>' . sprintf(__('Warning: you are using the plugin "W3 Total Cache" with the feature "CDN" enabled which is causing layer maps to break.<br/>To fix this, please navigate to <a href="%1s">Performance / CDN / Advanced</a> and add <strong>%2s</strong> to "Rejected files:"','lmm'), LEAFLET_WP_ADMIN_URL . 'admin.php?page=w3tc_cdn', 'wp-content/uploads/leaflet-maps-marker-icons/*') . '</strong></div></p>';
+		}
+	}
 }
 ?>
