@@ -47,12 +47,6 @@ if ( ! defined( 'LEAFLET_PLUGIN_ICONS_URL' ) )
 	define ("LEAFLET_PLUGIN_ICONS_URL", $lmm_upload_dir['baseurl'] . "/leaflet-maps-marker-icons");
 if ( ! defined( 'LEAFLET_PLUGIN_ICONS_DIR' ) )
 	define ("LEAFLET_PLUGIN_ICONS_DIR", $lmm_upload_dir['basedir'] . DIRECTORY_SEPARATOR . "leaflet-maps-marker-icons");
-//info: not in class Leafletmapsmarker as otherwise warnings on resetting defaults options & is_admin() for reduced memory usage
-if ( is_admin() ) {
-	require_once( plugin_dir_path( __FILE__ ) . 'inc' . DIRECTORY_SEPARATOR . 'class-leaflet-options.php' );
-	global $lmm_options_class;
-	$lmm_options_class = new Class_leaflet_options();
-}
 class Leafletmapsmarker
 {
 function __construct() {
