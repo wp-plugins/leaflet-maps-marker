@@ -9,7 +9,7 @@ Author: Robert Harm
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
 Requires at least: 3.0
-Tested up to: 3.6-beta3
+Tested up to: 3.6-RC1
 Requires at least PHP 5.2
 Copyright 2011-2013 - @RobertHarm - All rights reserved
 MapsMarker &reg; - registration pending
