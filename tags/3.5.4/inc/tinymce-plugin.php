@@ -8,7 +8,7 @@ add_action('admin_print_styles-post.php', 'marker_select_box_css');
 add_action('admin_print_styles-post-new.php', 'marker_select_box_css');
 function marker_select_box_css() {
 	wp_register_style( 'lmm-tinymce-css', LEAFLET_PLUGIN_URL . 'inc/css/marker_select_box.css', array(), NULL );
-	wp_enqueue_style( 'lmm-tinymce-css' );	
+	wp_enqueue_style( 'lmm-tinymce-css' );
 }
 add_action('init', 'mm_shortcode_button');
 /**
@@ -21,17 +21,17 @@ function mm_shortcode_button() {
    if ( get_user_option('rich_editing') == 'true' ) {
      add_filter( 'mce_external_plugins', 'lmm_add_plugin' );
      add_filter( 'mce_buttons', 'lmm_register_button' );
-     add_filter( 'mce_external_plugins', 'mm_qt' ); 
+     add_filter( 'mce_external_plugins', 'mm_qt' );
    } else{
-     add_action('admin_footer', 'mm_qt');  
+     add_action('admin_footer', 'mm_qt');
    }
 }
 function mm_qt($plugin_array) {
-    $link = LEAFLET_PLUGIN_URL . 'inc/js/lmm_html_shortcode.php?leafletpluginurl='.base64_encode(LEAFLET_PLUGIN_URL); 
+    $link = LEAFLET_PLUGIN_URL . 'inc/js/lmm_html_shortcode.php?leafletpluginurl='.base64_encode(LEAFLET_PLUGIN_URL);
     wp_register_script('html-dialog', $link);
-    wp_enqueue_script('html-dialog');  
+    wp_enqueue_script('html-dialog');
     return $plugin_array;
-} 
+}
 /**
 Register Button
 */
@@ -51,10 +51,10 @@ function get_mm_list(){
     global $wpdb;
     $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
     $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-    
+
     $l_condition = isset($_GET['q']) ? "AND l.name LIKE '%" . mysql_real_escape_string($_GET['q']) . "%'" : '';
     $m_condition = isset($_GET['q']) ? "AND m.markername LIKE '%" . mysql_real_escape_string($_GET['q']) . "%'" : '';
-    
+
     $marklist = $wpdb->get_results("
             (SELECT l.id, l.name as 'name', l.createdon, 'layer' as 'type' FROM $table_name_layers as l WHERE l.id != '0' $l_condition)
             UNION
@@ -74,7 +74,7 @@ function get_mm_list(){
 		<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/tinymce_popup.js' ?>'></script>
 		<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/lmm_tinymce_shortcode.php' ?>'></script>
 	<?php endif;?>
-	<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/jquery_caret.js' ?>'></script>   
+	<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/jquery_caret.js' ?>'></script>
 	<link rel='stylesheet' href='<?php echo LEAFLET_PLUGIN_URL . 'inc/css/marker_select_box.css' ?>' type='text/css' media='all' />
 </head>
 <body>
@@ -87,7 +87,7 @@ function get_mm_list(){
 </tr>
 </table>
 <div id="msb_listContainer">
-	<?php 
+	<?php
 	if ($marklist != NULL) {
 		echo '<div id="msb_listHint">' . __('Please select the map you would like to add','lmm') . '</div>';
 		buildMarkersList($marklist);
@@ -105,7 +105,7 @@ function get_mm_list(){
     var selectMarkerBox = {
         markerID : '',
         mapsmarkerType : '',
-        
+
         init : function(){
             var self = selectMarkerBox;
 	        $('#msb_insertMarkerSC').on('click', function(e){
@@ -117,10 +117,10 @@ function get_mm_list(){
                 e.preventDefault();
                 self.close();
             })
-            $('.list_item').live('click touchstart', function(e){
+            $(document).on('click touchstart', '.list_item', function(e){
                 e.preventDefault();
                 var id = $(this).find('input[name="msb_id"]').val();
-                var type = $(this).find('input[name="msb_type"]').val(); 
+                var type = $(this).find('input[name="msb_type"]').val();
                 $('.list_item.active').removeClass('active');
                 $(this).addClass('active');
                 self.setMarkerID(id)
@@ -132,30 +132,30 @@ function get_mm_list(){
                         $('#msb_listContainer').append(data);
                 })
             })
-        },        
+        },
         setMarkerID : function(id) {
             selectMarkerBox.markerID = id;
         },
         setMarkerType : function(type) {
             switch (type)
             {
-                case 'layer': 
+                case 'layer':
                     selectMarkerBox.mapsmarkerType = 'layer';
                     break;
-                case 'marker': 
+                case 'marker':
                     selectMarkerBox.mapsmarkerType = 'marker';
                     break;
             }
         },
         getShortCode : function(){
-          return '[mapsmarker '+ selectMarkerBox.mapsmarkerType +'="'+ selectMarkerBox.markerID +'"]';  
+          return '[mapsmarker '+ selectMarkerBox.mapsmarkerType +'="'+ selectMarkerBox.markerID +'"]';
         },
         insert : function() {
             if(typeof(tinyMCEPopup) !== 'undefined')
             tinyMCEPopup.editor.execCommand('mceInsertContent', false, selectMarkerBox.getShortCode());
             else
             $('#content', parent.document.body).insertAtCaret(selectMarkerBox.getShortCode());
-        },        
+        },
         insertMarker : function() {
             return;
         },
@@ -165,7 +165,7 @@ function get_mm_list(){
         close : function() {
             if(typeof(tinyMCEPopup) !== 'undefined')
             tinyMCEPopup.close();
-            else 
+            else
             window.parent.jQuery('#modal-content').wpdialog('close');
         }
     }
@@ -174,11 +174,11 @@ function get_mm_list(){
 </script>
 </body>
 </html>
-<?php    
+<?php
 exit;
 }
 function buildMarkersList($array){
-?>    
+?>
     <?php foreach($array as $one):
 		$date_prepare = strtotime($one['createdon']);
 		$date = date("Y/m/d", $date_prepare);
@@ -187,7 +187,7 @@ function buildMarkersList($array){
 		} else {
 			$name = $one['name'] . ' (ID '. $one['id'].')';
 		}
-		
+
 		if ($one['type'] == 'marker') {
 			$maptype = __('Marker','lmm'). '<br/>ID '. $one['id'];
 		} else {
@@ -208,7 +208,7 @@ function buildMarkersList($array){
         <input type="hidden" value="<?php echo $one['id']?>" name="msb_id">
 	</td></tr></table>
     </div>
-    <?php endforeach; ?>  
+    <?php endforeach; ?>
 <?php
 }
 ?>
