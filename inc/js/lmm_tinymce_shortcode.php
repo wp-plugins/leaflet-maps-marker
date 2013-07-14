@@ -1,14 +1,14 @@
-<?php 
+<?php
 header('Content-Type: text/javascript; charset=UTF-8');
 //info: construct path to wp-load.php and get $wp_path
-while(!is_file('wp-load.php')){
-  if(is_dir('../')) chdir('../');
-  else die('Error: Could not construct path to wp-load.php - please check <a href="http://mapsmarker.com/path-error">http://mapsmarker.com/path-error</a> for more details');
+while(!is_file('wp-load.php')) {
+	if(is_dir('..' . DIRECTORY_SEPARATOR)) chdir('..' . DIRECTORY_SEPARATOR);
+	else die('Error: Could not construct path to wp-load.php - please check <a href="http://mapsmarker.com/path-error">http://mapsmarker.com/path-error</a> for more details');
 }
 include( 'wp-load.php' );
 $lmm_options = get_option( 'leafletmapsmarker_options' );
 if (!is_multisite()) { $adminurl = admin_url(); } else { $adminurl = get_admin_url(); }
-$LEAFLET_PLUGIN_URL = isset($_GET['leafletpluginurl']) ? base64_decode($_GET['leafletpluginurl']) : ''; 
+$LEAFLET_PLUGIN_URL = isset($_GET['leafletpluginurl']) ? base64_decode($_GET['leafletpluginurl']) : '';
 
 if ( isset($lmm_options['misc_tinymce_button']) && ($lmm_options['misc_tinymce_button'] == 'enabled') ) {
 	echo "
@@ -27,7 +27,7 @@ if ( isset($lmm_options['misc_tinymce_button']) && ($lmm_options['misc_tinymce_b
 						inline: 1
 					});
 				}
-				$('#globe, #ed_insertMap').live('click', function(){
+				$(document).on('click', '#globe, #ed_insertMap', function(){
 				    open_map();
 				    return false;
 				});
@@ -40,10 +40,10 @@ if ( isset($lmm_options['misc_tinymce_button']) && ($lmm_options['misc_tinymce_b
 				return null;
 			}
 		});
-		tinymce.PluginManager.add('mm_shortcode', tinymce.plugins.mm_shortcode); 
+		tinymce.PluginManager.add('mm_shortcode', tinymce.plugins.mm_shortcode);
 		$('#wp-content-media-buttons').append('<a title=\'" . esc_attr__('Insert map','lmm') . "\' id = globe href=#><img src=".$LEAFLET_PLUGIN_URL."inc/img/icon-tinymce.png></a>');
-	    $('#ed_toolbar').append('<input type=button value=\'" . esc_attr__('Insert map','lmm') . "\' id=ed_insertMap class=ed_button title=\'" . esc_attr__('Insert map','lmm') . "\' />');	
+	    $('#ed_toolbar').append('<input type=button value=\'" . esc_attr__('Insert map','lmm') . "\' id=ed_insertMap class=ed_button title=\'" . esc_attr__('Insert map','lmm') . "\' />');
 		}})(jQuery);
-	"; 
+	";
 }
 ?>
