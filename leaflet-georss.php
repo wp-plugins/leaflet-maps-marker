@@ -3,9 +3,9 @@
     GeoRSS generator - Leaflet Maps Marker Plugin
 */
 //info: construct path to wp-load.php
-while(!is_file('wp-load.php')){
-  if(is_dir('../')) chdir('../');
-  else die('Error: Could not construct path to wp-load.php - please check <a href="http://mapsmarker.com/path-error">http://mapsmarker.com/path-error</a> for more details');
+while(!is_file('wp-load.php')) {
+	if(is_dir('..' . DIRECTORY_SEPARATOR)) chdir('..' . DIRECTORY_SEPARATOR);
+	else die('Error: Could not construct path to wp-load.php - please check <a href="http://mapsmarker.com/path-error">http://mapsmarker.com/path-error</a> for more details');
 }
 include( 'wp-load.php' );
 $format = (isset($_GET['format']) == TRUE ) ? $_GET['format'] : '';
@@ -25,17 +25,16 @@ function lmm_is_plugin_active_for_network( $plugin ) {
 	return false;
 }
 if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
-	echo 'The WordPress plugin <a href="http://www.mapsmarker.com" target="_blank">Leaflet Maps Marker</a> is inactive on this site and therefore this API link is not working.<br/><br/>Please contact the site owner (' . hide_email(get_bloginfo('admin_email')) . ') who can activate this plugin again.';
+	echo sprintf(__('The plugin "Leaflet Maps Marker" is inactive on this site and therefore this API link is not working.<br/><br/>Please contact the site owner (%1s) who can activate this plugin again.','lmm'), hide_email(get_bloginfo('admin_email')) );
 } else {
 global $wpdb;
 $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 $table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 $lmm_options = get_option( 'leafletmapsmarker_options' );
-
 if (isset($_GET['layer'])) {
-  $layer_prepared = mysql_real_escape_string(strtolower($_GET['layer'])); 
+  $layer_prepared = mysql_real_escape_string(strtolower($_GET['layer']));
   $layer = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"), "", $layer_prepared);
-  
+
   $q = ''; //info: removed limit 5000
   if ($layer == '*' or $layer == 'all')
     $q = ''; //info: removed limit 5000
@@ -70,12 +69,12 @@ if (isset($_GET['layer'])) {
   $sql = 'SELECT m.id as mid, m.markername as mmarkername, m.layer as mlayer, CONCAT(m.lon,\',\',m.lat) AS mcoords, m.icon as micon, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext, m.address as maddress, l.id as lid, l.createdby as lcreatedby, l.createdon as lcreatedon, l.updatedby as lupdatedby, l.updatedon as lupdatedon, l.name AS lname FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
   $markers = $wpdb->get_results($sql, ARRAY_A);
   //info: output as atom - part 1
-  if ($format == 'atom') { 
+  if ($format == 'atom') {
 	  $offset_kml = date('H:i',get_option('gmt_offset')*3600);
 	  if ($offset_kml >= 0) { $plus_minus = '+'; } else { $plus_minus = '-'; };
 	  /*info: not used yet, as don´t know which are right srsnames
-	  if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG3857' ) { $srsname = 'EPSG3857'; } 
-		else if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG4326' ) { $srsname = 'EPSG4326'; } 
+	  if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG3857' ) { $srsname = 'EPSG3857'; }
+		else if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG4326' ) { $srsname = 'EPSG4326'; }
 		else if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG3395' ) { $srsname = 'EPSG3395'; }
 	  */
 	  $layername = $wpdb->get_var('SELECT name FROM '.$table_name_layers.' WHERE id = '.intval($_GET['layer']).'');
@@ -103,13 +102,13 @@ if (isset($_GET['layer'])) {
 			}
 	  echo '<generator>www.mapsmarker.com</generator>'.PHP_EOL;
 	  echo '<subtitle>GeoRSS-feed created with MapsMarker.com WordPress Plugin</subtitle>'.PHP_EOL;
-	  
+
 	  foreach ($markers as $marker) {
-		//info: get icon urls for each marker	
+		//info: get icon urls for each marker
 		if ($marker['micon'] == null) {
-			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
+			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';
 		} else {
-			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
+			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon'];
 		}
 		echo '<entry>'.PHP_EOL;
 		echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
@@ -133,12 +132,12 @@ if (isset($_GET['layer'])) {
 	  echo '</feed>';
   } //info: end output as atom
   //info: output as RSS 2.0
-  if ($format != 'atom') { 
+  if ($format != 'atom') {
 	  $offset_kml = date('H:i',get_option('gmt_offset')*3600);
 	  if ($offset_kml >= 0) { $plus_minus = '+'; } else { $plus_minus = '-'; };
 	  /*info: not used yet, as don´t know which are right srsnames
-	  if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG3857' ) { $srsname = 'EPSG3857'; } 
-		else if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG4326' ) { $srsname = 'EPSG4326'; } 
+	  if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG3857' ) { $srsname = 'EPSG3857'; }
+		else if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG4326' ) { $srsname = 'EPSG4326'; }
 		else if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG3395' ) { $srsname = 'EPSG3395'; }
 	  */
 	  $layername = $wpdb->get_var('SELECT name FROM '.$table_name_layers.' WHERE id = '.intval($_GET['layer']).'');
@@ -169,11 +168,11 @@ if (isset($_GET['layer'])) {
 	  foreach ($markers as $marker) {
 		$date_kml_marker =  strtotime($marker['mcreatedon']);
 		$time_kml_marker =  strtotime($marker['mcreatedon']);
-	    //info: get icon urls for each marker	
+	    //info: get icon urls for each marker
 		if ($marker['micon'] == null) {
-			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
+			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';
 		} else {
-			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
+			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon'];
 		}
 		echo '<item>'.PHP_EOL;
 		echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
@@ -197,8 +196,9 @@ if (isset($_GET['layer'])) {
   } //info: end output as RSS 2.0
 } //info: end isset($_GET['layer'])
 elseif (isset($_GET['marker'])) {
-  $markerid_prepared = mysql_real_escape_string(strtolower($_GET['marker'])); 
+  $markerid_prepared = mysql_real_escape_string(strtolower($_GET['marker']));
   $markerid = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"), "", $markerid_prepared);
+
   $markers = explode(',', $markerid);
   $checkedmarkers = array();
   foreach ($markers as $cmarker) {
@@ -213,11 +213,11 @@ elseif (isset($_GET['marker'])) {
   $sql = 'SELECT m.layer as mlayer,m.icon as micon,m.popuptext as mpopuptext,m.id as mid,m.markername as mmarkername,m.createdby as mcreatedby, m.createdon as mcreatedon, m.lat as mlat, m.lon as mlon, m.address as maddress FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
   $markers = $wpdb->get_results($sql, ARRAY_A);
   //info: output as atom - part 1
-  if ($format == 'atom') { 
+  if ($format == 'atom') {
 	  $offset_kml = date('H:i',get_option('gmt_offset')*3600);
 	  if ($offset_kml >= 0) { $plus_minus = '+'; } else { $plus_minus = '-'; };
 	  /*info: not used yet, as don´t know which are right srsnames
-	  if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG3857' ) { $srsname = 'EPSG3857'; } 
+	  if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG3857' ) { $srsname = 'EPSG3857'; }
 		else if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG4326' ) { $srsname = 'EPSG4326'; }
 		else if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG3395' ) {	$srsname = 'EPSG3395';
 	  }*/
@@ -239,13 +239,13 @@ elseif (isset($_GET['marker'])) {
 	  echo '<subtitle>GeoRSS-feed created with MapsMarker.com WordPress Plugin</subtitle>'.PHP_EOL;
 	  echo '<link href="' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?marker=' . intval($_GET['marker']) . '"/>'.PHP_EOL;
 	  echo '<id>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-marker-' . intval($_GET['marker']) . '</id>'.PHP_EOL;
-	  
+
 	  foreach ($markers as $marker) {
-		//info: get icon urls for each marker	
+		//info: get icon urls for each marker
 		if ($marker['micon'] == null) {
-			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
+			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';
 		} else {
-			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
+			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon'];
 		}
 		echo '<entry>'.PHP_EOL;
 		echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
@@ -268,11 +268,11 @@ elseif (isset($_GET['marker'])) {
 	  echo '</feed>';
   } //info: end output as atom
   //info: output as RSS 2.0
-  if ($format != 'atom') { 
+  if ($format != 'atom') {
 	  $offset_kml = date('H:i',get_option('gmt_offset')*3600);
 	  if ($offset_kml >= 0) { $plus_minus = '+'; } else { $plus_minus = '-'; };
 	  /*info: not used yet, as don´t know which are right srsnames
-	  if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG3857' ) { $srsname = 'EPSG3857'; } 
+	  if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG3857' ) { $srsname = 'EPSG3857'; }
 		else if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG4326' ) { $srsname = 'EPSG4326'; }
 		else if ($lmm_options[ 'misc_projections' ] == 'L.CRS.EPSG3395' ) {	$srsname = 'EPSG3395';
 	  }*/
@@ -291,15 +291,15 @@ elseif (isset($_GET['marker'])) {
 	  echo '<generator>www.mapsmarker.com</generator>'.PHP_EOL;
 	  echo '<description>GeoRSS-feed created with MapsMarker.com WordPress Plugin</description>'.PHP_EOL;
 	  echo '<guid>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-marker-' . intval($_GET['marker']) . '-channel</guid>'.PHP_EOL;
-	  
+
 	  foreach ($markers as $marker) {
 		$date_kml_marker =  strtotime($marker['mcreatedon']);
 		$time_kml_marker =  strtotime($marker['mcreatedon']);
-	    //info: get icon urls for each marker	
+	    //info: get icon urls for each marker
 		if ($marker['micon'] == null) {
-			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
+			$micon_url = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';
 		} else {
-			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon']; 
+			$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon'];
 		}
 		echo '<item>'.PHP_EOL;
 		echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;

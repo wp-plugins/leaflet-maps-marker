@@ -22,8 +22,8 @@ jQuery(document).ready(function($) {
 					action: 'dismiss-wp-pointer'
 				});
 			}
-		}).pointer('open');	
-	<?php } ?>		
+		}).pointer('open');
+	<?php } ?>
 
 	}
 });

@@ -1,4 +1,4 @@
-<?php  
+<?php
 /**
  * Leaflet Maps Marker Plugin - settings class
  * based on class by Alison Barrett, http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/
@@ -10,7 +10,7 @@ class Class_leaflet_options {
 	private $sections;
 	private $checkboxes;
 	private $_settings = array();
-	
+
 	public function __get( $name ) {
 		if ( 'settings' === $name ) {
 			$this->get_settings();
@@ -26,7 +26,7 @@ class Class_leaflet_options {
 		}
 		return false;
 	}
-	
+
 	 /**
 	 *
 	 * Construct
@@ -62,7 +62,10 @@ class Class_leaflet_options {
 		$this->sections['mapdefaults-section13']	= esc_attr__('Control options','lmm');
 		$this->sections['mapdefaults-section14']	= esc_attr__('Scale control','lmm');
 		$this->sections['mapdefaults-section15']	= esc_attr__('Retina display detection','lmm');
-	
+		$this->sections['mapdefaults-section16']	= esc_attr__('Mobile web app settings','lmm');
+		$this->sections['mapdefaults-section17']	= esc_attr__('Minimap settings','lmm');
+		$this->sections['mapdefaults-section18']	= esc_attr__('Marker clustering settings','lmm');
+
 		$this->sections['basemaps-section1']		= esc_attr__('Cloudmade 1 settings','lmm');
 		$this->sections['basemaps-section2']		= esc_attr__('Cloudmade 2 settings','lmm');
 		$this->sections['basemaps-section3']		= esc_attr__('Cloudmade 3 settings','lmm');
@@ -96,6 +99,8 @@ class Class_leaflet_options {
 		$this->sections['google-section3']			= esc_attr__('Google Maps base domain','lmm');
 		$this->sections['google-section4']			= esc_attr__('Google Places bounds','lmm');
 		$this->sections['google-section5']			= esc_attr__('Google Places search prefix','lmm');
+		$this->sections['google-section6']			= esc_attr__('Google Adsense settings','lmm');
+		$this->sections['google-section7']			= esc_attr__('Google Maps styling','lmm');
 
 		$this->sections['bing-section1']			= esc_attr__('Bing Maps API Key','lmm');
 		$this->sections['bing-section2']			= esc_attr__('Bing Culture Parameter','lmm');
@@ -115,10 +120,13 @@ class Class_leaflet_options {
 		$this->sections['misc-section5']			= esc_attr__('Sort order for marker listing page','lmm');
 		$this->sections['misc-section6']			= esc_attr__('Available columns for layer listing page','lmm');
 		$this->sections['misc-section7']			= esc_attr__('Sort order for layer listing page','lmm');
+		$this->sections['misc-section8']			= esc_attr__('QR code settings','lmm');
+		$this->sections['misc-section9']			= esc_attr__('MapsMarker API settings','lmm');
 
 		$this->sections['reset-section1']			= esc_attr__('Reset Settings','lmm');
 
 		add_action( 'admin_init', array( &$this, 'register_settings' ) );
+
 		if ( ! get_option( 'leafletmapsmarker_options' ) )
 			$this->initialize_settings();
 	}
@@ -128,7 +136,7 @@ class Class_leaflet_options {
 	 * @since 1.0
 	 */
 	public function create_setting( $args = array() ) {
-		
+
 		$defaults = array(
 			'id'      => 'default_field',
 			'version' => '',
@@ -141,9 +149,9 @@ class Class_leaflet_options {
 			'choices' => array(),
 			'class'   => ''
 		);
-			
+
 		extract( wp_parse_args( $args, $defaults ) );
-		
+
 		$field_args = array(
 			'type'      => $type,
 			'id'        => $id,
@@ -153,20 +161,20 @@ class Class_leaflet_options {
 			'label_for' => $id,
 			'class'     => $class
 		);
-		
+
 		if ( $type == 'checkbox' )
 			$this->checkboxes[] = $id;
-		
+
 		add_settings_field( $id, $title, array( $this, 'display_setting' ), 'leafletmapsmarker_settings', $section, $field_args );
 	}
-	
+
 	/**
 	 * Display options page
 	 *
 	 * @since 1.0
 	 */
 	public function display_page() {
-        
+
 		include(LEAFLET_PLUGIN_DIR . 'inc' . DIRECTORY_SEPARATOR . 'admin-header.php');
 		if ( isset( $_GET['settings-updated'] ) )
 			echo '<div style="margin:15px 0 0 0;" class="updated"><p>' . __( 'Plugin options updated.','lmm' ) . '</p></div>';
@@ -175,50 +183,52 @@ class Class_leaflet_options {
 		settings_fields( 'leafletmapsmarker_options' );
 		echo '<div class="ui-tabs tabs-top">
 			<ul class="ui-tabs-nav-top">';
-		
+
 		foreach ( $this->panes as $pane_slug => $pane )
 			echo '<li><a href="#' . $pane_slug . '">' . $pane . '</a></li>';
-		  
+
 		echo '</ul>';
-          
+
         foreach($this->panes as $pane_slug => $pane){
             echo '<div id = '.$pane_slug.' class="ui-tabs tabs-left">';
-            echo '<ul class="ui-tabs-nav ui-tabs-navleft">'; 
-            $sections = array(); 
+            echo '<ul class="ui-tabs-nav ui-tabs-navleft">';
+            $sections = array();
             foreach ( $this->sections as $key => $row ){
-                
+
                 $k = explode("-",$key);
                 if($k[0]==$pane_slug){
                 echo '<li><a href="#' . $key . '">' . $row . '</a></li>';
                 $sections[] = $key;
-                }    
+                }
             }
-            echo '</ul>';    
+            echo '</ul>';
 
-                foreach($sections as $slug => $section){ 
+                foreach($sections as $slug => $section){
                     echo '<div class="section">';
                     echo "<h3 class='titl'>".$this->sections[$section]."</h3>";
-                    @call_user_func(array(&$this, 'display_'.$pane_slug.'_section'), array());
-                    echo '<table class="form-table">'; 
+                    if (function_exists('display_'.$pane_slug.'_section')) { //info: Phalanger fix
+                    	@call_user_func(array(&$this, 'display_'.$pane_slug.'_section'), array());
+                    }
+                    echo '<table class="form-table">';
                         do_settings_fields( $_GET['page'], $section );
                     echo '</table>';
                     echo '</div>';
                 }
-                
-            echo '</div>';  
+
+            echo '</div>';
         }
-   	
-		echo '</div>'; 
+
+		echo '</div>';
 		echo '<p class="submit"><input name="Submit" type="submit" class="button-primary" value="' . __( 'Save Changes','lmm' ) . '" /></p>
-		
+
 	</form>';
 
 	include(LEAFLET_PLUGIN_DIR . 'inc' . DIRECTORY_SEPARATOR . 'admin-footer.php');
-    	
+
 	echo '<script type="text/javascript">
 		jQuery(document).ready(function($) {
 			var panes = [];';
-			
+
 			foreach ( $this->sections as $pane_slug => $pane )
 				echo "panes['$pane'] = '$pane_slug';";
 			echo 'var wrapped = $(".wrap h3").wrap("<div class=\"ui-tabs-panel\">");
@@ -228,7 +238,7 @@ class Class_leaflet_options {
 			$(".ui-tabs-panel").each(function(index) {
 				$(this).attr("id", panes[$(this).children("h3").text()]);
 				if (index > 0)
-					$(this).addClass("ui-tabs-hide"); 
+					$(this).addClass("ui-tabs-hide");
 			});
 			$(".ui-tabs").tabs({
 				//fx: { opacity: "toogle", duration: "fast"}
@@ -237,7 +247,7 @@ class Class_leaflet_options {
 				if ($(this).val() == $(this).attr("placeholder") || $(this).val() == "")
 					$(this).css("color", "#999");
 			});
-			
+
 			$("input[type=text], textarea").focus(function() {
 				if ($(this).val() == $(this).attr("placeholder") || $(this).val() == "") {
 					//$(this).val("");
@@ -249,9 +259,9 @@ class Class_leaflet_options {
 					$(this).css("color", "#999");
 				}
 			});
-			
+
 			$(".lmmsettings h3, .lmmsettings table, .leafletmapsmarker-listings").show();
-			
+
 			//info:  This will make the "warning" checkbox class really stand out when checked.
 			$(".warning").change(function() {
 				if ($(this).is(":checked"))
@@ -259,11 +269,11 @@ class Class_leaflet_options {
 				else
 					$(this).parent().css("background", "none").css("color", "inherit").css("fontWeight", "normal");
 			});
-			
+
 			//info:  Browser compatibility
-			if ($.browser.mozilla) 
+			if ($.browser.mozilla)
 			         $("form").attr("autocomplete", "off");
-		});  
+		});
 	</script></div>';
 	}
 
@@ -271,34 +281,46 @@ class Class_leaflet_options {
 	 * HTML output for text field
 	 */
 	public function display_setting( $args = array() ) {
-		
+
 		extract( $args );
-		
+
 		$options = get_option( 'leafletmapsmarker_options' );
-		
+
 		if ( ! isset( $options[$id] ) && $type != 'checkbox' )
 			$options[$id] = $std;
 		elseif ( ! isset( $options[$id] ) )
 			$options[$id] = 0;
-		
+
 		$field_class = '';
 		if ( $class != '' )
 			$field_class = ' ' . $class;
-		
+
 		switch ( $type ) {
-			
+
 			case 'heading':
 				echo '</td></tr><tr valign="top"><td colspan="2" rowspan="2"><h4>' . $desc . '</h4>';
 				break;
+
 			case 'helptext':
 				echo '</td></tr><tr valign="top"><td colspan="2">' . $desc . '';
 				break;
+
+			case 'helptext-twocolumn':
+				echo $desc;
+				break;				
+
 			case 'checkbox':
 				echo '<input class="checkbox' . $field_class . '" type="checkbox" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" value="1" ' . checked( $options[$id], 1, false ) . ' /> <label for="' . $id . '">' . $desc . '</label>';
 				break;
+
+			case 'checkbox-pro':
+				echo '<input class="checkbox' . $field_class . '" type="checkbox" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" value="1" ' . checked( $options[$id], 1, false ) . ' disabled="disabled" /> <label for="' . $id . '">' . $desc . '</label>';
+				break;
+
 			case 'checkbox-readonly':
 				echo '<input class="checkbox' . $field_class . '" type="checkbox" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" value="1" ' . checked( $options[$id], 1, false ) . ' disabled="disabled" /> <label for="' . $id . '">' . $desc . '</label>';
 				break;
+
 			case 'select':
 				echo '<select class="select' . $field_class . '" name="leafletmapsmarker_options[' . $id . ']">';
 				foreach ( $choices as $value => $label )
@@ -307,6 +329,16 @@ class Class_leaflet_options {
 				if ( $desc != '' )
 					echo '<br /><span class="description">' . $desc . '</span>';
 				break;
+
+			case 'select-pro':
+				echo '<select class="select' . $field_class . '" name="leafletmapsmarker_options[' . $id . ']">';
+				foreach ( $choices as $value => $label )
+					echo '<option value="' . esc_attr( $value ) . '"' . selected( $options[$id], $value, false ) . ' disabled="disabled">' . $label . '</option>';
+				echo '</select>';
+				if ( $desc != '' )
+					echo '<br /><span class="description">' . $desc . '</span>';
+				break;
+
 			case 'radio':
 				$i = 0;
 				foreach ( $choices as $value => $label ) {
@@ -318,46 +350,114 @@ class Class_leaflet_options {
 				if ( $desc != '' )
 					echo '<span class="description">' . $desc . '</span>';
 				break;
-			
+
+			case 'radio-reverse':
+				if ( $desc != '' )
+					echo '<span class="description">' . $desc . '</span><br/>';
+				$i = 0;
+				foreach ( $choices as $value => $label ) {
+					echo '<input class="radio' . $field_class . '" type="radio" name="leafletmapsmarker_options[' . $id . ']" id="' . $id . $i . '" value="' . esc_attr( $value ) . '" ' . checked( $options[$id], $value, false ) . '> <label for="' . $id . $i . '">' . $label . '</label>';
+					if ( $i < count( $options ) - 1 )
+						echo '<br />';
+					$i++;
+				}
+				break;
+
+			case 'radio-pro':
+				$i = 0;
+				foreach ( $choices as $value => $label ) {
+					echo '<input class="radio' . $field_class . '" type="radio" name="leafletmapsmarker_options[' . $id . ']" id="' . $id . $i . '" value="' . esc_attr( $value ) . '" ' . checked( $options[$id], $value, false ) . ' disabled="disabled"> <label for="' . $id . $i . '">' . $label . '</label>';
+					if ( $i < count( $options ) - 1 )
+						echo '<br />';
+					$i++;
+				}
+				if ( $desc != '' )
+					echo '<span class="description">' . $desc . '</span>';
+				break;
+
+			case 'radio-reverse-pro':
+				if ( $desc != '' )
+					echo '<span class="description">' . $desc . '</span><br/>';
+				$i = 0;
+				foreach ( $choices as $value => $label ) {
+					echo '<input class="radio' . $field_class . '" type="radio" name="leafletmapsmarker_options[' . $id . ']" id="' . $id . $i . '" value="' . esc_attr( $value ) . '" ' . checked( $options[$id], $value, false ) . ' disabled="disabled"> <label for="' . $id . $i . '">' . $label . '</label>';
+					if ( $i < count( $options ) - 1 )
+						echo '<br />';
+					$i++;
+				}
+				break;
+
 			case 'textarea':
 				echo '<textarea class="' . $field_class . '" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" placeholder="' . $std . '" rows="5" cols="30">' . wp_htmledit_pre( $options[$id] ) . '</textarea>';
-				
+
 				if ( $desc != '' )
 					echo '<br /><span class="description">' . $desc . '</span>';
 				break;
+
+			case 'textarea-pro':
+				echo '<textarea class="' . $field_class . '" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" placeholder="' . $std . '" rows="5" cols="30" disabled="disabled">' . wp_htmledit_pre( $options[$id] ) . '</textarea>';
+
+				if ( $desc != '' )
+					echo '<br /><span class="description">' . $desc . '</span>';
+				break;
+
 			case 'password':
 				echo '<input class="regular-text' . $field_class . '" type="password" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" value="' . esc_attr( $options[$id] ) . '" />';
 				if ( $desc != '' )
 					echo '<br /><span class="description">' . $desc . '</span>';
 				break;
+
 			case 'text':
 			default:
 		 		echo '<input class="regular-text' . $field_class . '" style="width:30em;" type="text" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" placeholder="' . $std . '" value="' . esc_attr( $options[$id] ) . '" />';
 		 		if ( $desc != '' )
 		 			echo '<br /><span class="description">' . $desc . '</span>';
 		 		break;
+
+			case 'text-reverse':
+			default:
+		 		if ( $desc != '' )
+		 			echo '<span class="description">' . $desc . '</span><br />';
+				echo '<input class="regular-text' . $field_class . '" style="width:30em;" type="text" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" placeholder="' . $std . '" value="' . esc_attr( $options[$id] ) . '" />';
+		 		break;
+
+			case 'text-pro':
+			default:
+		 		echo '<input class="regular-text' . $field_class . '" style="width:30em;" type="text" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" placeholder="' . $std . '" value="' . esc_attr( $options[$id] ) . '" disabled="disabled" />';
+		 		if ( $desc != '' )
+		 			echo '<br /><span class="description">' . $desc . '</span>';
+		 		break;
+
+			case 'text-reverse-pro':
+			default:
+		 		if ( $desc != '' )
+		 			echo '<span class="description">' . $desc . '</span><br/>';
+		 		echo '<input class="regular-text' . $field_class . '" style="width:30em;" type="text" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" placeholder="' . $std . '" value="' . esc_attr( $options[$id] ) . '" disabled="disabled" />';
+		 		break;
+
 			case 'text-readonly':
 			default:
 		 		echo '<input readonly="readonly" class="regular-text' . $field_class . '" style="width:60em;" type="text" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" placeholder="' . $std . '" value="' . esc_attr( $options[$id] ) . '" />';
 	 		if ( $desc != '' )
 		 			echo '<br /><span class="description">' . $desc . '</span>';
 		 		break;
+
 			case 'text-deletable':
 			default:
 		 		echo '<input class="regular-text' . $field_class . '" style="width:60em;" type="text" id="' . $id . '" name="leafletmapsmarker_options[' . $id . ']" value="' . esc_attr( $options[$id] ) . '" />';
 	 		if ( $desc != '' )
 		 			echo '<br /><span class="description">' . $desc . '</span>';
 		 		break;
-		}              
+		}
 	}
-	
+
 	/**
 	 * Settings and defaults
 	 */
 	public function get_settings() {
 		if ( ! empty( $this->_settings ) )
 			return;
-		     
+
 		/*===========================================
 		*
 		*
@@ -367,13 +467,13 @@ class Class_leaflet_options {
 		===========================================*/
 		/*
 		* Default basemap for new markers/layers
-		*/   
+		*/
 		$this->_settings['default_basemap_helptext1'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section1',
 			'title'   => '',
-			'desc'    => __( 'Please select the basemap which should be pre-selected as default for new markers and layers. Can be changed afterwards on each marker/layer.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap.jpg" />',
+			'desc'    => __( 'Please select the basemap which should be pre-selected as default for new markers and layers. Can be changed afterwards on each marker/layer.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap.jpg" width="386" height="290" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['standard_basemap'] = array(
@@ -408,7 +508,7 @@ class Class_leaflet_options {
 				'custom_basemap3' => __('Custom basemap 3','lmm'),
 				'empty_basemap' => __('empty basemap','lmm')
 			)
-		);  
+		);
 		/*
 		* Names for default basemaps
 		*/
@@ -416,9 +516,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section2',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Optionally you can also change the name of the predefined basemaps in the controlbox.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-names.jpg" />',
+			'desc'    => __( 'Optionally you can also change the name of the predefined basemaps in the controlbox.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-names.jpg" width="386" height="290" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['default_basemap_name_osm_mapnik'] = array(
@@ -478,7 +578,7 @@ class Class_leaflet_options {
 		$this->_settings['default_basemap_name_googleLayer_terrain'] = array(
 			'version' => '2.6',
 			'pane'    => 'mapdefaults',
-			'section' => 'mapdefaults-section2',			
+			'section' => 'mapdefaults-section2',
 			'title'   => __('Google Maps (Terrain)','lmm'),
 			'desc'    => '',
 			'std'   => __('Google Maps (Terrain)','lmm'),
@@ -537,7 +637,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => 'Cloudmade',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['cloudmade2_name'] = array(
 			'version' => '1.6',
 			'pane'    => 'mapdefaults',
@@ -546,7 +646,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => 'Cloudmade 2',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['cloudmade3_name'] = array(
 			'version' => '1.6',
 			'pane'    => 'mapdefaults',
@@ -555,7 +655,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => 'Cloudmade 3',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['mapbox_name'] = array(
 			'version' => '2.1',
 			'pane'    => 'mapdefaults',
@@ -564,7 +664,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => 'Blue Marble Topography',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['mapbox2_name'] = array(
 			'version' => '2.1',
 			'pane'    => 'mapdefaults',
@@ -573,7 +673,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => 'Geography Class',
 			'type'    => 'text',
-		);		
+		);
 		$this->_settings['mapbox3_name'] = array(
 			'version' => '2.1',
 			'pane'    => 'mapdefaults',
@@ -582,7 +682,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => 'MapBox Streets',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['custom_basemap_name'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -591,7 +691,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => 'Open Cycle Map',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['custom_basemap2_name'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -600,7 +700,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => 'Stamen Watercolor',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['custom_basemap3_name'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -618,7 +718,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => 'empty basemap',
 			'type'    => 'text'
-		);		
+		);
 		/*
 		* Available basemaps in control box
 		*/
@@ -626,9 +726,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section3',
-			'std'     => '', 
+			'std'     => '',
 			'title'    => '',
-			'desc'    => __( 'Please select the basemaps which should be available in the control box.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-available-basemaps.jpg" />',
+			'desc'    => __( 'Please select the basemaps which should be available in the control box.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-available-basemaps.jpg" width="386" height="290" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['controlbox_osm_mapnik'] = array(
@@ -638,7 +738,7 @@ class Class_leaflet_options {
 			'title'   => __( 'Basemaps available in control box', 'lmm' ),
 			'desc'    => __( 'OpenStreetMap (Mapnik)', 'lmm' ),
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['controlbox_mapquest_osm'] = array(
 			'version' => '1.0',
@@ -647,7 +747,7 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('MapQuest (OSM)','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['controlbox_mapquest_aerial'] = array(
 			'version' => '1.0',
@@ -656,7 +756,7 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('MapQuest (Aerial)','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['controlbox_googleLayer_roadmap'] = array(
 			'version' => '2.5',
@@ -665,7 +765,7 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Google Maps (Roadmap)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['controlbox_googleLayer_satellite'] = array(
 			'version' => '2.5',
@@ -674,7 +774,7 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Google Maps (Satellite)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['controlbox_googleLayer_hybrid'] = array(
 			'version' => '2.5',
@@ -683,7 +783,7 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Google Maps (Hybrid)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['controlbox_googleLayer_terrain'] = array(
 			'version' => '2.6',
@@ -692,7 +792,7 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Google Maps (Terrain)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['controlbox_bingaerial'] = array(
 			'version' => '2.6',
@@ -701,7 +801,7 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Bing Maps (Aerial)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['controlbox_bingaerialwithlabels'] = array(
 			'version' => '2.6',
@@ -710,7 +810,7 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Bing Maps (Aerial+Labels)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['controlbox_bingroad'] = array(
 			'version' => '2.6',
@@ -719,7 +819,7 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Bing Maps (Road)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['controlbox_ogdwien_basemap'] = array(
 			'version' => '3.1',
@@ -728,7 +828,7 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('OGD Vienna basemap','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['controlbox_ogdwien_satellite'] = array(
 			'version' => '3.1',
@@ -737,7 +837,7 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('OGD Vienna satellite','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['controlbox_cloudmade'] = array(
 			'version' => '1.6',
@@ -746,8 +846,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => 'Cloudmade',
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['controlbox_cloudmade2'] = array(
 			'version' => '1.6',
 			'pane'    => 'mapdefaults',
@@ -755,8 +855,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => 'Cloudmade 2',
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['controlbox_cloudmade3'] = array(
 			'version' => '1.6',
 			'pane'    => 'mapdefaults',
@@ -764,8 +864,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => 'Cloudmade 3',
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['controlbox_mapbox'] = array(
 			'version' => '2.1',
 			'pane'    => 'mapdefaults',
@@ -773,8 +873,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => 'MapBox',
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['controlbox_mapbox2'] = array(
 			'version' => '2.1',
 			'pane'    => 'mapdefaults',
@@ -782,8 +882,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => 'MapBox 2',
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['controlbox_mapbox3'] = array(
 			'version' => '2.1',
 			'pane'    => 'mapdefaults',
@@ -791,7 +891,7 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => 'MapBox 3',
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['controlbox_custom_basemap'] = array(
 			'version' => '1.0',
@@ -800,8 +900,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom basemap','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);	
+			'std'     => 1
+		);
 		$this->_settings['controlbox_custom_basemap2'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -809,8 +909,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom basemap 2','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);	
+			'std'     => 1
+		);
 		$this->_settings['controlbox_custom_basemap3'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -818,8 +918,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom basemap 3','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);	
+			'std'     => 1
+		);
 		$this->_settings['controlbox_empty_basemap'] = array(
 			'version' => '3.3',
 			'pane'    => 'mapdefaults',
@@ -827,8 +927,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('empty basemap','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		/*
 		* Default values for new marker maps
 		*/
@@ -836,9 +936,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section4',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Will be used when creating a new marker. All values can be changed afterwards on each marker.', 'lmm') . '<br/>' . __('The following screenshot was taken with the advanced editor enabled:','lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-marker-defaults.jpg" />',
+			'desc'    => __( 'Will be used when creating a new marker. All values can be changed afterwards on each marker.', 'lmm') . '<br/>' . __('The following screenshot was taken with the advanced editor enabled:','lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-marker-defaults.jpg" width="650" height="593" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['defaults_marker_lat'] = array(
@@ -907,7 +1007,7 @@ class Class_leaflet_options {
 			'desc'    => __('Set to 0 if you do not want to assign new markers to a layer','lmm'),
 			'std'     => '0',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['defaults_marker_openpopup'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -934,7 +1034,7 @@ class Class_leaflet_options {
 				'1' => __('collapsed','lmm'),
 				'2' => __('expanded','lmm')
 			)
-		);		
+		);
 		// defaults_marker - which overlays are active by default?
 		$this->_settings['defaults_marker_overlays_custom_active'] = array(
 			'version' => '1.0',
@@ -943,7 +1043,7 @@ class Class_leaflet_options {
 			'title'    => __('Checked overlays in control box','lmm'),
 			'desc'    => __('Custom overlay','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['defaults_marker_overlays_custom2_active'] = array(
 			'version' => '1.0',
@@ -952,9 +1052,9 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom overlay 2','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
-		
+			'std'     => 0
+		);
+
 		$this->_settings['defaults_marker_overlays_custom3_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -962,8 +1062,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom overlay 3','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_overlays_custom4_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -971,8 +1071,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom overlay 4','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_panel'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -985,71 +1085,71 @@ class Class_leaflet_options {
 				'1' => __('show','lmm'),
 				'0' => __('hide','lmm'),
 			)
-		);	
+		);
 		// defaults_marker - active API links in panel
 		$this->_settings['defaults_marker_panel_directions'] = array(
 			'version' => '1.4',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section4',
 			'title'    => __('Visible API links in panel','lmm'),
-			'desc'    => __('Directions','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-car.png">',
+			'desc'    => __('Directions','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-car.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['defaults_marker_panel_kml'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section4',
 			'title'    => '',
-			'desc'    => 'KML <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-kml.png">',
+			'desc'    => 'KML <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-kml.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['defaults_marker_panel_fullscreen'] = array(
 			'version' => '1.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section4',
 			'title'    => '',
-			'desc'    => __('Fullscreen','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-fullscreen.png">',
+			'desc'    => __('Fullscreen','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-fullscreen.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);		
+			'std'     => 1
+		);
 		$this->_settings['defaults_marker_panel_qr_code'] = array(
 			'version' => '1.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section4',
 			'title'    => '',
-			'desc'    => __('QR code','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-qr-code.png">',
+			'desc'    => __('QR code','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-qr-code.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);		
+			'std'     => 1
+		);
 		$this->_settings['defaults_marker_panel_geojson'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section4',
 			'title'   => '',
-			'desc'    => 'GeoJSON <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-json.png">',
+			'desc'    => 'GeoJSON <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-json.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['defaults_marker_panel_georss'] = array(
 			'version' => '1.2',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section4',
 			'title'   => '',
-			'desc'    => 'GeoRSS <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-georss.png">',
+			'desc'    => 'GeoRSS <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-georss.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['defaults_marker_panel_wikitude'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section4',
 			'title'   => '',
-			'desc'    => 'Wikitude <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-wikitude.png">',
+			'desc'    => 'Wikitude <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-wikitude.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);		
+			'std'     => 1
+		);
 		$this->_settings['defaults_marker_panel_background_color'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1058,7 +1158,7 @@ class Class_leaflet_options {
 			'desc'    => __('Please use hexadecimal color values','lmm'),
 			'std'     => '#efefef',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['defaults_marker_panel_paneltext_css'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1076,7 +1176,7 @@ class Class_leaflet_options {
 			'title'    => __('Checked WMS layers','lmm'),
 			'desc'    => __('WMS 1','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['defaults_marker_wms2_active'] = array(
 			'version' => '1.0',
@@ -1085,8 +1185,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 2','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_wms3_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1094,8 +1194,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 3','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_wms4_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1103,8 +1203,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 4','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_wms5_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1112,8 +1212,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 5','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_wms6_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1121,8 +1221,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 6','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_wms7_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1130,8 +1230,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 7','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_wms8_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1139,8 +1239,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 8','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_wms9_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1148,8 +1248,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 9','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_wms10_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1157,8 +1257,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 10','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		/*
 		* Default values for marker icons
 		*/
@@ -1166,35 +1266,48 @@ class Class_leaflet_options {
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section5',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => '',
 			'type'    => 'helptext'
 		);
+		$this->_settings['defaults_marker_custom_icon_url_dir'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section5',
+			'title'   => __('Use custom icon URL and directory','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('If set to yes, please be aware that the pro settings below have to be changed when you move your WordPress installation to another server for example!','lmm') . '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
+			'type'    => 'radio-pro',
+			'std'     => 'no',
+			'choices' => array(
+				'no' => __('no','lmm'),
+				'yes' => __('yes','lmm'),
+			)
+		);
 		$this->_settings['defaults_marker_icon_url'] = array(
-			'version' => '2.7.1',
+			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section5',
-			'title'   => __( 'Icons URL', 'lmm' ),
-			'desc'    => __( 'Icons copied to this directory will automatically be available when creating or editing marker maps', 'lmm' ),
-			'std'     => LEAFLET_PLUGIN_ICONS_URL,
-			'type'    => 'text-readonly'
-		);		
+			'title'   => __( 'Custom icons URL', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __( 'If the option above is set to yes, icons will automatically be loaded from this URL. If the option above is set to no, the following marker icons url will be used:','lmm') . '<br/><strong>' . LEAFLET_PLUGIN_ICONS_URL . '</strong>',
+			'std'     => __('Custom directories can be set in the pro version only!','lmm'),
+			'type'    => 'text-pro'
+		);
 		$this->_settings['defaults_marker_icon_dir'] = array(
-			'version' => '2.7.1',
+			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section5',
-			'title'   => __( 'Icons directory', 'lmm' ),
-			'desc'    => __( 'Directory on server where icons are stored - needed especially for WordPress Multisite blogs', 'lmm' ),
-			'std'     => LEAFLET_PLUGIN_ICONS_DIR,
-			'type'    => 'text-readonly'
-		);	
+			'title'   => __( 'Custom icons directory', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __( 'If option above is set to yes, the directory on server where icons are stored will be used (needed for backend only). If the option above is set to no, the following marker icons directory will be used:','lmm') . '<br/><strong>' . LEAFLET_PLUGIN_ICONS_DIR . '</strong>',
+			'std'     => __('Custom directories can be set in the pro version only!','lmm'),
+			'type'    => 'text-pro'
+		);
 		$this->_settings['defaults_marker_icon'] = array(
 			'version' => '1.8',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section5',
 			'title'   => __( 'Default icon', 'lmm' ),
-			'desc'    => sprintf(__( 'If you want to use another icon than the blue pin (<img src="%sleaflet-dist/images/marker.png">), please enter the file name of the icon (located in the directory %s) in the form field - e.g. smiley_happy.png', 'lmm' ),LEAFLET_PLUGIN_URL,LEAFLET_PLUGIN_ICONS_URL),
+			'desc'    => sprintf(__( 'If you want to use another icon than the blue pin (%s), please enter the file name of the icon in the form field - e.g. smiley_happy.png', 'lmm' ),'<img src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png" width="32" height="37" />'),
 			'std'     => '',
 			'type'    => 'text'
 		);
@@ -1207,10 +1320,10 @@ class Class_leaflet_options {
 			'type'    => 'radio',
 			'std'     => 'default',
 			'choices' => array(
-				'default' => __('use default shadow','lmm') . ' (' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker-shadow.png, ' . __('preview','lmm') . ': <img src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker-shadow.png">)',
+				'default' => __('use default shadow','lmm') . ' (' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker-shadow.png, ' . __('preview','lmm') . ': <img src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker-shadow.png" width="51" height="37" />)',
 				'custom' => __('use custom shadow (please enter URL below)','lmm')
 			)
-		);		
+		);
 		$this->_settings['defaults_marker_icon_shadow_url'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
@@ -1224,8 +1337,8 @@ class Class_leaflet_options {
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section5',
-			'title'   => __('Marker tooltip','lmm') . '<br/><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/help-marker-title.jpg">',
-			'desc'    => __('Show marker name for the browser tooltip that appear on marker hover (tooltip is always hidden if marker name is empty).','lmm'),
+			'title'   => __('Marker tooltip','lmm') . '<br/><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/help-marker-title.jpg" width="79" height="40" />',
+			'desc'    => __('Show marker name for the browser tooltip that appear on marker hover (tooltip is always hidden if marker name is empty). Please be aware that this settings has to be changed when you move your WordPress installation to another server for example!','lmm'),
 			'type'    => 'radio',
 			'std'     => 'show',
 			'choices' => array(
@@ -1246,8 +1359,8 @@ class Class_leaflet_options {
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section5',
-			'std'     => '', 
-			'title'   => '', 
+			'std'     => '',
+			'title'   => '',
 			'desc'    => '<strong>' . __('Only change the values below if you are not using marker or shadow icons from the <a href="http://mapicons.nicolasmollet.com" target="_blank">Map Icons Collection</a>!','lmm') . '</strong>',
 			'type'    => 'helptext'
 		);
@@ -1304,7 +1417,7 @@ class Class_leaflet_options {
 			'desc'    => __( 'The y-coordinates of the popup anchor (relative to its top left corner)', 'lmm' ),
 			'std'     => '-32',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['defaults_marker_icon_shadowsize_x'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
@@ -1348,9 +1461,9 @@ class Class_leaflet_options {
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section6',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-popup.jpg" />',
+			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-popup.jpg" width="342" height="168" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['defaults_marker_popups_maxwidth'] = array(
@@ -1432,7 +1545,7 @@ class Class_leaflet_options {
 			'desc'    => __( 'The y-coordinates of the margin between popups and the edges of the map view after autopanning was performed.', 'lmm' ),
 			'std'     => '5',
 			'type'    => 'text'
-		);		
+		);
 		/*
 		* Default values for markers added directly
 		*/
@@ -1440,9 +1553,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section7',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'You can also add markers directly to posts or pages without having to save them to your database previously. You just have to use the shortcode with the attributes mlat and mlon (e.g. <strong>[mapsmarker mlat="48.216038" mlon="16.378984"]</strong>).', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-marker-direct.jpg" /><br/><br/>' . __('Defaults values for markers added directly:','lmm'),
+			'desc'    => __( 'You can also add markers directly to posts or pages without having to save them to your database previously. You just have to use the shortcode with the attributes mlat and mlon (e.g. <strong>[mapsmarker mlat="48.216038" mlon="16.378984"]</strong>).', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-marker-direct.jpg" width="408" height="80" /><br/><br/>' . __('Defaults values for markers added directly:','lmm'),
 			'type'    => 'helptext'
 		);
 		$this->_settings['defaults_marker_shortcode_basemap'] = array(
@@ -1527,7 +1640,7 @@ class Class_leaflet_options {
 				'1' => __('collapsed','lmm'),
 				'2' => __('expanded','lmm')
 			)
-		);		
+		);
 		// defaults_marker - which overlays are active by default?
 		$this->_settings['defaults_marker_shortcode_overlays_custom_active'] = array(
 			'version' => '1.0',
@@ -1536,7 +1649,7 @@ class Class_leaflet_options {
 			'title'    => __('Checked overlays in control box','lmm'),
 			'desc'    => __('Custom overlay','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['defaults_marker_shortcode_overlays_custom2_active'] = array(
 			'version' => '1.0',
@@ -1545,9 +1658,9 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom overlay 2','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
-		
+			'std'     => 0
+		);
+
 		$this->_settings['defaults_marker_shortcode_overlays_custom3_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1555,9 +1668,9 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom overlay 3','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
-		
+			'std'     => 0
+		);
+
 		$this->_settings['defaults_marker_shortcode_overlays_custom4_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1565,8 +1678,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom overlay 4','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
+			'std'     => 0
+		);
 		// defaults_marker shortcode - which WMS layers are active by default?
 		$this->_settings['defaults_marker_shortcode_wms_active'] = array(
 			'version' => '1.0',
@@ -1575,7 +1688,7 @@ class Class_leaflet_options {
 			'title'    => __('Checked WMS layers','lmm'),
 			'desc'    => __('WMS 1','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['defaults_marker_shortcode_wms2_active'] = array(
 			'version' => '1.0',
@@ -1584,8 +1697,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 2','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_shortcode_wms3_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1593,8 +1706,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 3','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_shortcode_wms4_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1602,8 +1715,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 4','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_shortcode_wms5_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1611,8 +1724,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 5','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_shortcode_wms6_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1620,8 +1733,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 6','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_shortcode_wms7_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1629,8 +1742,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 7','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_shortcode_wms8_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1638,8 +1751,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 8','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_shortcode_wms9_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1647,8 +1760,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 9','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_marker_shortcode_wms10_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1656,8 +1769,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 10','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		/*
 		* Default values for new layer maps
 		*/
@@ -1665,9 +1778,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section8',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Will be used when creating a new layer. All values can be changed afterwards on each layer.', 'lmm') . '<br/>' . __('The following screenshot was taken with the advanced editor enabled:','lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-layer-defaults.jpg" />',
+			'desc'    => __( 'Will be used when creating a new layer. All values can be changed afterwards on each layer.', 'lmm') . '<br/>' . __('The following screenshot was taken with the advanced editor enabled:','lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-layer-defaults.jpg" width="650" height="466" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['defaults_layer_lat'] = array(
@@ -1741,7 +1854,7 @@ class Class_leaflet_options {
 				'1' => __('collapsed','lmm'),
 				'2' => __('expanded','lmm')
 			)
-		);		
+		);
 		// defaults_layer - which overlays are active by default?
 		$this->_settings['defaults_layer_overlays_custom_active'] = array(
 			'version' => '1.0',
@@ -1750,7 +1863,7 @@ class Class_leaflet_options {
 			'title'    => __('Checked overlays in control box','lmm'),
 			'desc'    => __('Custom overlay','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['defaults_layer_overlays_custom2_active'] = array(
 			'version' => '1.0',
@@ -1759,8 +1872,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom overlay 2','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
+			'std'     => 0
+		);
 		$this->_settings['defaults_layer_overlays_custom3_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1768,8 +1881,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom overlay 3','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
+			'std'     => 0
+		);
 		$this->_settings['defaults_layer_overlays_custom4_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1777,8 +1890,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom overlay 4','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
+			'std'     => 0
+		);
 		$this->_settings['defaults_layer_panel'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1791,62 +1904,76 @@ class Class_leaflet_options {
 				'1' => __('show','lmm'),
 				'0' => __('hide','lmm'),
 			)
-		);	
+		);
+		// defaults_layer_clustering
+		$this->_settings['defaults_layer_clustering'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section8',
+			'title'   => __('Marker clustering','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => '',
+			'type'    => 'radio-pro',
+			'std'     => 'disabled',
+			'choices' => array(
+				'enabled' => __('enabled','lmm'),
+				'disabled' => __('disabled','lmm'),
+			)
+		);
 		// defaults_layer - active API links in panel
 		$this->_settings['defaults_layer_panel_kml'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section8',
 			'title'    => __('Visible API links in panel','lmm'),
-			'desc'    => 'KML <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-kml.png">',
+			'desc'    => 'KML <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-kml.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['defaults_layer_panel_fullscreen'] = array(
 			'version' => '1.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section8',
 			'title'    => '',
-			'desc'    => __('Fullscreen','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-fullscreen.png">',
+			'desc'    => __('Fullscreen','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-fullscreen.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);		
+			'std'     => 1
+		);
 		$this->_settings['defaults_layer_panel_qr_code'] = array(
 			'version' => '1.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section8',
 			'title'    => '',
-			'desc'    => __('QR code','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-qr-code.png">',
+			'desc'    => __('QR code','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-qr-code.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);		
+			'std'     => 1
+		);
 		$this->_settings['defaults_layer_panel_geojson'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section8',
 			'title'   => '',
-			'desc'    => 'GeoJSON <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-json.png"> (' . __('not available on multi layer maps','lmm') . ')',
+			'desc'    => 'GeoJSON <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-json.png" width="14" height="14" /> (' . __('not available on multi layer maps','lmm') . ')',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['defaults_layer_panel_georss'] = array(
 			'version' => '1.2',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section8',
 			'title'   => '',
-			'desc'    => 'GeoRSS <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-georss.png">',
+			'desc'    => 'GeoRSS <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-georss.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['defaults_layer_panel_wikitude'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section8',
 			'title'   => '',
-			'desc'    => 'Wikitude <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-wikitude.png">',
+			'desc'    => 'Wikitude <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-wikitude.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);		
+			'std'     => 1
+		);
 		$this->_settings['defaults_layer_panel_background_color'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1855,7 +1982,7 @@ class Class_leaflet_options {
 			'desc'    => __('Please use hexadecimal color values','lmm'),
 			'std'     => '#efefef',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['defaults_layer_panel_paneltext_css'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1864,7 +1991,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => 'font-weight:bold;color:#373737;',
 			'type'    => 'text'
-		);		
+		);
 		// defaults_layer - which WMS layers are active by default?
 		$this->_settings['defaults_layer_wms_active'] = array(
 			'version' => '1.0',
@@ -1873,7 +2000,7 @@ class Class_leaflet_options {
 			'title'    => __('Checked WMS layers','lmm'),
 			'desc'    => __('WMS 1','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['defaults_layer_wms2_active'] = array(
 			'version' => '1.0',
@@ -1882,8 +2009,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 2','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
+			'std'     => 0
+		);
 		$this->_settings['defaults_layer_wms3_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1891,8 +2018,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 3','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_layer_wms4_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1900,8 +2027,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 4','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_layer_wms5_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1909,8 +2036,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 5','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_layer_wms6_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1918,8 +2045,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 6','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_layer_wms7_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1927,8 +2054,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 7','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_layer_wms8_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1936,8 +2063,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 8','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_layer_wms9_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1945,8 +2072,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 9','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_layer_wms10_active'] = array(
 			'version' => '1.0',
 			'pane'    => 'mapdefaults',
@@ -1954,8 +2081,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('WMS 10','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		/*
 		* List of markers settings
 		*/
@@ -1963,11 +2090,11 @@ class Class_leaflet_options {
 			'version' => '3.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section9',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-list-markers.jpg" />',
+			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-list-markers.jpg" width="400" height="199" />',
 			'type'    => 'helptext'
-		);	
+		);
 		$this->_settings['defaults_layer_listmarkers'] = array(
 			'version' => '1.5',
 			'pane'    => 'mapdefaults',
@@ -1980,7 +2107,7 @@ class Class_leaflet_options {
 				'0' => __('no','lmm'),
 				'1' => __('yes','lmm')
 			)
-		);			
+		);
 		$this->_settings['defaults_layer_listmarkers_show_icon'] = array(
 			'version' => '2.6',
 			'pane'    => 'mapdefaults',
@@ -1988,7 +2115,7 @@ class Class_leaflet_options {
 			'title'    => __('Marker attributes to display in list','lmm'),
 			'desc'    => __('Icon','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['defaults_layer_listmarkers_show_markername'] = array(
 			'version' => '2.6',
@@ -1997,7 +2124,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Marker name','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['defaults_layer_listmarkers_show_popuptext'] = array(
 			'version' => '2.6',
@@ -2006,7 +2133,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Popup text','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['defaults_layer_listmarkers_show_address'] = array(
 			'version' => '3.0',
@@ -2015,8 +2142,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Address','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);		
+			'std'     => 1
+		);
 		$this->_settings['defaults_layer_listmarkers_order_by'] = array(
 			'version' => '1.5',
 			'pane'    => 'mapdefaults',
@@ -2061,64 +2188,64 @@ class Class_leaflet_options {
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section9',
 			'title'    => __('Visible API links for each marker','lmm'),
-			'desc'    => __('Directions','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-car.png">',
+			'desc'    => __('Directions','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-car.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['defaults_layer_listmarkers_api_kml'] = array(
 			'version' => '2.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section9',
 			'title'    => '',
-			'desc'    => 'KML <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-kml.png">',
+			'desc'    => 'KML <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-kml.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['defaults_layer_listmarkers_api_fullscreen'] = array(
 			'version' => '2.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section9',
 			'title'    => '',
-			'desc'    => __('Fullscreen','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-fullscreen.png">',
+			'desc'    => __('Fullscreen','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-fullscreen.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);		
+			'std'     => 1
+		);
 		$this->_settings['defaults_layer_listmarkers_api_qr_code'] = array(
 			'version' => '2.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section9',
 			'title'    => '',
-			'desc'    => __('QR code','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-qr-code.png">',
+			'desc'    => __('QR code','lmm') .  ' <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-qr-code.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
+			'std'     => 0
+		);
 		$this->_settings['defaults_layer_listmarkers_api_geojson'] = array(
 			'version' => '2.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section9',
 			'title'   => '',
-			'desc'    => 'GeoJSON <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-json.png">',
+			'desc'    => 'GeoJSON <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-json.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['defaults_layer_listmarkers_api_georss'] = array(
 			'version' => '2.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section9',
 			'title'   => '',
-			'desc'    => 'GeoRSS <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-georss.png">',
+			'desc'    => 'GeoRSS <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-georss.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['defaults_layer_listmarkers_api_wikitude'] = array(
 			'version' => '2.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section9',
 			'title'   => '',
-			'desc'    => 'Wikitude <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-wikitude.png">',
+			'desc'    => 'Wikitude <img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-wikitude.png" width="14" height="14" />',
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['defaults_layer_listmarkers_extracss'] = array(
 			'version' => '3.1',
 			'pane'    => 'mapdefaults',
@@ -2129,14 +2256,14 @@ class Class_leaflet_options {
 			'type'    => 'text'
 		);
 		/*
-		* Interaction options 
+		* Interaction options
 		* formerly "General map settings" and moved to "Basemaps" from "Misc" tab
 		*/
 		$this->_settings['map_interaction_options_helptext'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section10',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'The following settings will be used for all marker and layer maps', 'lmm'),
 			'type'    => 'helptext'
@@ -2153,7 +2280,7 @@ class Class_leaflet_options {
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
 			)
-		);			
+		);
 		$this->_settings['misc_map_touchzoom'] = array(
 			'version' => '2.2',
 			'pane'    => 'mapdefaults',
@@ -2166,7 +2293,7 @@ class Class_leaflet_options {
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
 			)
-		);			
+		);
 		$this->_settings['misc_map_scrollwheelzoom'] = array(
 			'version' => '2.2',
 			'pane'    => 'mapdefaults',
@@ -2179,7 +2306,7 @@ class Class_leaflet_options {
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
 			)
-		);	
+		);
 		$this->_settings['misc_map_doubleclickzoom'] = array(
 			'version' => '2.2',
 			'pane'    => 'mapdefaults',
@@ -2192,7 +2319,7 @@ class Class_leaflet_options {
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
 			)
-		);					
+		);
 		$this->_settings['map_interaction_options_boxzoom'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
@@ -2205,7 +2332,7 @@ class Class_leaflet_options {
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
 			)
-		);		
+		);
 		$this->_settings['misc_map_trackresize'] = array(
 			'version' => '2.2',
 			'pane'    => 'mapdefaults',
@@ -2218,7 +2345,7 @@ class Class_leaflet_options {
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
 			)
-		);	
+		);
 		$this->_settings['map_interaction_options_worldcopyjump'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
@@ -2231,7 +2358,7 @@ class Class_leaflet_options {
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
 			)
-		);		
+		);
 		$this->_settings['misc_map_closepopuponclick'] = array(
 			'version' => '2.2',
 			'pane'    => 'mapdefaults',
@@ -2244,32 +2371,46 @@ class Class_leaflet_options {
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
 			)
-		);			
+		);
 		$this->_settings['misc_map_osm_editlink'] = array(
 			'version' => '3.3',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section10',
 			'title'   => __('OpenStreetMap edit link','lmm'),
-			'desc'    => __('Appends an edit link to the OpenStreetMap and Mapquest (OSM) attribution text which allows direct edits on www.openstreetmap.org (free account required)','lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-osmeditlink.jpg" />',
+			'desc'    => __('Appends an edit link to the OpenStreetMap and Mapquest (OSM) attribution text which allows direct edits on www.openstreetmap.org (free account required)','lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-osmeditlink.jpg" width="521" height="78" />',
 			'type'    => 'radio',
 			'std'     => 'show',
 			'choices' => array(
 				'show' => __('show','lmm'),
 				'hide' => __('hide','lmm')
 			)
-		);			
+		);
+		$this->_settings['misc_map_osm_editlink_editor'] = array(
+			'version' => '3.6',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section10',
+			'title'   => __('OpenStreetMap edit link editor','lmm'),
+			'desc'    => __('Editor used to edit maps','lmm'),
+			'type'    => 'radio',
+			'std'     => 'id',
+			'choices' => array(
+				'id' => '<a href="http://ideditor.com/" target="_blank">iD</a>',
+				'potlatch2' => '<a href="http://wiki.openstreetmap.org/wiki/Potlatch_2" target="_blank">Potlatch 2</a>',
+				'remote' => __('remote editor','lmm') . ' (<a href="http://wiki.openstreetmap.org/wiki/JOSM" target="_blank">JOSM</a> / <a href="http://wiki.openstreetmap.org/wiki/Merkaartor" target="_blank">Merkaartor</a>)'
+			)
+		);
 		/*
-		* Keyboard navigation options 
+		* Keyboard navigation options
 		*/
 		$this->_settings['map_keyboard_navigation_options_helptext'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section11',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'The following settings will be used for all marker and layer maps', 'lmm'),
 			'type'    => 'helptext'
-		);		
+		);
 		$this->_settings['map_keyboard_navigation_options_keyboard'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
@@ -2282,7 +2423,7 @@ class Class_leaflet_options {
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
 			)
-		);			
+		);
 		$this->_settings['map_keyboard_navigation_options_keyboardpanoffset'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
@@ -2305,11 +2446,11 @@ class Class_leaflet_options {
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section11',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => '<div style="height:305px;"></div>',
+			'desc'    => '<div style="height:380px;"></div>',
 			'type'    => 'helptext'
-		);			
+		);
 		/*
 		* Panning inertia options
 		*/
@@ -2317,11 +2458,11 @@ class Class_leaflet_options {
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section12',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'The following settings will be used for all marker and layer maps', 'lmm'),
 			'type'    => 'helptext'
-		);		
+		);
 		$this->_settings['map_panning_inertia_options_inertia'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
@@ -2334,7 +2475,7 @@ class Class_leaflet_options {
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
 			)
-		);			
+		);
 		$this->_settings['map_panning_inertia_options_inertiadeceleration'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
@@ -2357,11 +2498,11 @@ class Class_leaflet_options {
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section12',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => '<div style="height:305px;"></div>',
+			'desc'    => '<div style="height:380px;"></div>',
 			'type'    => 'helptext'
-		);			
+		);
 		/*
 		* Control options
 		*/
@@ -2371,20 +2512,48 @@ class Class_leaflet_options {
 			'section' => 'mapdefaults-section13',
 			'title'   => '',
 			'desc'    => __( 'The following settings will be used for all marker and layer maps', 'lmm'),
-			'std'     => '', 
+			'std'     => '',
 			'type'    => 'helptext'
-		);	
+		);
 		$this->_settings['misc_map_zoomcontrol'] = array(
 			'version' => '2.2',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section13',
 			'title'   => 'zoomControl',
-			'desc'    => __('Whether the zoom control is added to the map by default.','lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-zoomcontrol.jpg" />',
+			'desc'    => __('Whether the zoom control is added to the map by default.','lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-zoomcontrol.png" width="124" height="77" />',
 			'type'    => 'radio',
 			'std'     => 'true',
 			'choices' => array(
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
+			)
+		);
+		$this->_settings['map_fullscreen_button'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section13',
+			'title'   => __('Fullscreen button','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Whether to add a button for displaying maps in fullscreen via HTML5','lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-fullscreen.png" width="77" height="107" /><a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
+			'type'    => 'radio-pro',
+			'std'     => 'false',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm'),
+			)
+		);
+		$this->_settings['map_fullscreen_button_position'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section13',
+			'title'   => __('Fullscreen button position','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('The position of the fullscreen button (one of the map corners).','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'topleft',
+			'choices' => array(
+				'bottomleft' => __('Bottom left of the map','lmm'),
+				'bottomright' => __('Bottom right of the map','lmm'),
+				'topright' => __('Top right of the map','lmm'),
+				'topleft' => __('Top left of the map','lmm')
 			)
 		);
 		$this->_settings['map_control_options_helptext2'] = array(
@@ -2393,9 +2562,9 @@ class Class_leaflet_options {
 			'section' => 'mapdefaults-section13',
 			'title'   => '',
 			'desc'    => '<div style="height:425px;"></div>',
-			'std'     => '', 
+			'std'     => '',
 			'type'    => 'helptext'
-		);			
+		);
 		/*
 		* Scale control options
 		*/
@@ -2403,11 +2572,11 @@ class Class_leaflet_options {
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section14',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'A simple scale control that shows the scale of the current center of screen in metric (m/km) and/or imperial (mi/ft) systems. The following settings will be used for all marker and layer maps.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-basemap-scale-control.jpg" />',
+			'desc'    => __( 'A simple scale control that shows the scale of the current center of screen in metric (m/km) and/or imperial (mi/ft) systems. The following settings will be used for all marker and layer maps.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-basemap-scale-control.jpg" width="645" height="43" />',
 			'type'    => 'helptext'
-		);	
+		);
 		$this->_settings['map_scale_control'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
@@ -2444,7 +2613,7 @@ class Class_leaflet_options {
 			'desc'    => __('Maximum width of the control in pixels. The width is set dynamically to show round values (e.g. 100, 200, 500).','lmm'),
 			'std'     => '100',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['map_scale_control_metric'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
@@ -2457,7 +2626,7 @@ class Class_leaflet_options {
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
 			)
-		);		
+		);
 		$this->_settings['map_scale_control_imperial'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
@@ -2470,7 +2639,7 @@ class Class_leaflet_options {
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
 			)
-		);			
+		);
 		$this->_settings['map_scale_control_updatewhenidle'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
@@ -2483,7 +2652,16 @@ class Class_leaflet_options {
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
 			)
-		);	
+		);
+		$this->_settings['map_scale_control_helptext2'] = array(
+			'version' => '3.6',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section14',
+			'std'     => '',
+			'title'   => '',
+			'desc'    => '<div style="height:30px;"></div>',
+			'type'    => 'helptext'
+		);
 		/*
 		* Retina display detection
 		*/
@@ -2491,11 +2669,11 @@ class Class_leaflet_options {
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section15',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'The following settings will be used for all marker and layer maps', 'lmm'),
 			'type'    => 'helptext'
-		);	
+		);
 		$this->_settings['map_retina_detection'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
@@ -2508,17 +2686,474 @@ class Class_leaflet_options {
 				'true' => __('true','lmm'),
 				'false' => __('false','lmm')
 			)
-		);	
+		);
 		$this->_settings['map_retina_detection_helptext2'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section15',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => '<div style="height:430px;"></div>',
+			'desc'    => '<div style="height:490px;"></div>',
 			'type'    => 'helptext'
+		);
+		/*
+		* Mobile web app settings
+		*/
+		$this->_settings['map_webapp_helptext'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section16',
+			'std'     => '',
+			'title'   => '',
+			'desc'    => __( 'Fullscreen maps are optimized for mobile devices in the pro version. This means that the viewport of the map automatically adjusts to the width of the device used and native javascript is used instead of jQuery which results in higher performance when loading maps.<br/><br/>For iOS devices (iphone, ipad, ipod) it is also possible to add maps with a custom icon to the homescreen and open them as web apps with a custom launch image and without the address bar of the browser.', 'lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-webapp.jpg" width="551" height="213" />'  . '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
+			'type'    => 'helptext'
+		);
+		$this->_settings['map_webapp_images'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section16',
+			'title'   => __('Images to use','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('If you want to use custom images, please enter the URL to app icons and launch images below:','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'default',
+			'choices' => array(
+				'none' => __('disable images','lmm'),
+				'default' => __('use default images','lmm'),
+				'custom' => __('use custom images','lmm')
+			)
+		);
+		$this->_settings['map_webapp_icon57'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section16',
+			'title'   => __('App icon URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Size for iPhone and iPod touch','lmm') . ' (57x57px)',
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['map_webapp_icon114'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section16',
+			'title'   => __('App icon URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Size for high-resolution iPhone and iPod touch','lmm') . ' (114x114px)',
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['map_webapp_icon72'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section16',
+			'title'   => __('App icon URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Size for iPad','lmm') . ' (72x72px)',
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['map_webapp_icon144'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section16',
+			'title'   => __('App icon URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Size for high-resolution iPad','lmm') . ' (144x144px)',
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['map_webapp_launch1024'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section16',
+			'title'   => __('Launch image URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Size for iPad','lmm') . ' (1024x748px)',
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['map_webapp_launch2048'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section16',
+			'title'   => __('Launch image URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Size for high-resolution iPad','lmm') . ' (2048x1496px)',
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['map_webapp_launch768'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section16',
+			'title'   => __('Launch image URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Size for iPad','lmm') . ' (768x1004px)',
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['map_webapp_launch1536'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section16',
+			'title'   => __('Launch image URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Size for high-resolution iPad','lmm') . ' (1536x2008px)',
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['map_webapp_launch320'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section16',
+			'title'   => __('Launch image URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Size for iPhone and iPod touch','lmm') . ' (320x460px)',
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['map_webapp_launch640'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section16',
+			'title'   => __('Launch image URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Size for high-resolution iPhone and iPod touch','lmm') . ' (640x920px)',
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['map_webapp_launch640_1096'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section16',
+			'title'   => __('Launch image URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Size for iPhone 5 and iPod 5','lmm') . ' (640x1096px)',
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		/*
+		* Minimap settings
+		*/
+		$this->_settings['minimap_helptext'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section17',
+			'std'     => '',
+			'title'   => '',
+			'desc'    => __( 'Add an expandable minimap to your maps which shows the same as the main map with a set zoom offset', 'lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-minimap.jpg" width="400" height="183" /><a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
+			'type'    => 'helptext'
+		);
+		$this->_settings['minimap_status'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section17',
+			'title'   => __('Status','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => '',
+			'type'    => 'radio-pro',
+			'std'     => 'hidden',
+			'choices' => array(
+				'collapsed' => __('collapsed','lmm'),
+				'expanded' => __('expanded','lmm'),
+				'hidden' => __('hidden','lmm')
+			)
+		);
+		$this->_settings['minimap_basemap'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section17',
+			'title'   => __('Basemap','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Please select basemap which should be used for minimaps (bing maps currently not supported)','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'automatic',
+			'choices' => array(
+				'automatic' => __('automatic (use basemap from main map and OpenStreetMap as fallback if unsupported)','lmm'),
+				'osm_mapnik_minimap' => __('OpenStreetMap (Mapnik, max zoom 18)','lmm'),
+				'mapquest_osm_minimap' => __('MapQuest (OSM, max zoom 18)','lmm'),
+				'mapquest_aerial_minimap' => __('MapQuest (Aerial, max zoom 12 globally, 12+ in the United States)','lmm'),
+				'googleLayer_roadmap_minimap' => __('Google Maps (Roadmap)','lmm'),
+				'googleLayer_satellite_minimap' => __('Google Maps (Satellite)','lmm'),
+				'googleLayer_hybrid_minimap' => __('Google Maps (Hybrid)','lmm'),
+				'googleLayer_terrain_minimap' => __('Google Maps (Terrain)','lmm')
+				)
+		);
+		$this->_settings['minimap_position'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section17',
+			'title'   => __('Position','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => '',
+			'type'    => 'radio-pro',
+			'std'     => 'bottomright',
+			'choices' => array(
+				'bottomleft' => __('Bottom left of the map','lmm'),
+				'bottomright' => __('Bottom right of the map','lmm'),
+				'topright' => __('Top right of the map','lmm'),
+				'topleft' => __('Top left of the map','lmm')
+			)
+		);
+		$this->_settings['minimap_width'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section17',
+			'title'   => __('Width','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('The width of the minimap in pixels.','lmm'),
+			'std'     => '150',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['minimap_height'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section17',
+			'title'   => __('Height','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __(' The height of the minimap in pixels.','lmm'),
+			'std'     => '150',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['minimap_zoomLevelOffset'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section17',
+			'title'   => 'zoomLevelOffset<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('The offset applied to the zoom in the minimap compared to the zoom of the main map. Can be positive or negative.','lmm'),
+			'std'     => '-5',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['minimap_zoomLevelFixed'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section17',
+			'title'   =>'zoomLevelFixed<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Overrides the offset to apply a fixed zoom level to the minimap regardless of the main map zoom. Set it to any valid zoom level, if unset zoomLevelOffset is used instead.','lmm'),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['minimap_zoomAnimation'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section17',
+			'title'   => 'zoomAnimation<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Sets whether the minimap should have an animated zoom. (Will cause it to lag a bit after the movement of the main map.)','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);
+		$this->_settings['minimap_toggleDisplay'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section17',
+			'title'   => 'toggleDisplay<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Sets whether the minimap should have a button to minimise it','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'true',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);
+		$this->_settings['minimap_autoToggleDisplay'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section17',
+			'title'   => 'autoToggleDisplay<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Sets whether the minimap should hide automatically if the parent map bounds does not fit within the minimap bounds. Especially useful when zoomLevelFixed is set.','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);
+		/*
+		* Marker clustering settings
+		*/
+		$this->_settings['clustering_helptext'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'std'     => '',
+			'title'   => '',
+			'desc'    => '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>' . __( 'Clustering can be enabled/disabled for each layer separately on the layer edit page. Below you will find the global settings which are valid for all layer maps with clustering enabled.', 'lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-clustering.jpg" width="500" height="204" />',
+			'type'    => 'helptext'
+		);
+		$this->_settings['clustering_zoomToBoundsOnClick'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   => 'zoomToBoundsOnClick<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('When you click a cluster it zooms to its bounds','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
+		$this->_settings['clustering_showCoverageOnHover'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   => 'showCoverageOnHover<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('When you mouse over a cluster it shows the bounds of its markers:','lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-clustering-coverage.jpg" width="135" height="94" />',
+			'type'    => 'radio-pro',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
+		$this->_settings['clustering_spiderfyOnMaxZoom'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   => 'spiderfyOnMaxZoom<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('When you click a cluster at the bottom zoom level it spiderfies it so you can see all of its markers:','lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-clustering-spiderify.jpg" width="140" height="100" />',
+			'type'    => 'radio-pro',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
+		$this->_settings['clustering_disableClusteringAtZoom'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   =>'disableClusteringAtZoom<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('If set (1 to 18 repectively 19 if supported), at this zoom level and below markers will not be clustered.','lmm'),
+			'std'     => '',
+			'type'    => 'text-pro'
 		);			
-		
+		$this->_settings['clustering_maxClusterRadius'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   =>'maxClusterRadius<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('The maximum radius that a cluster will cover from the central marker (in pixels). Decreasing will make more smaller clusters.','lmm'),
+			'std'     => '80',
+			'type'    => 'text-pro'
+		);	
+$this->_settings['clustering_helptext2'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'std'     => '',
+			'title'   =>'polygonOptions<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" />',
+			'desc'    => sprintf(__('Options to pass when creating the L.Polygon for styling (<a href="%1s" target="_blank">more details</a>)','lmm'), 'http://leafletjs.com/reference.html#path-options') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-clustering-polygon-options.jpg" width="141" height="91" />',
+			'type'    => 'helptext-twocolumn'
+		);		
+		$this->_settings['clustering_polygonOptions_stroke'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   => '',
+			'desc'    => __('stroke (whether to draw stroke along the path. Set it to false to disable borders on polygons or circles)','lmm'),
+			'type'    => 'radio-reverse-pro',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
+		$this->_settings['clustering_polygonOptions_color'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   =>'',
+			'desc'    => __('color (stroke color)','lmm') . ' - ' . __('example','lmm') . ': ff0000',
+			'std'     => '03f',
+			'type'    => 'text-reverse-pro'
+		);	
+		$this->_settings['clustering_polygonOptions_weight'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   =>'',
+			'desc'    => __('weight (stroke width in pixel)','lmm') . ' - ' . __('example','lmm') . ': 5',
+			'std'     => '5',
+			'type'    => 'text-reverse-pro'
+		);	
+		$this->_settings['clustering_polygonOptions_opacity'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   =>'',
+			'desc'    => __('opacity (stroke opacity)','lmm') . ' - ' . __('example','lmm') . ': 0.5',
+			'std'     => '0.5',
+			'type'    => 'text-reverse-pro'
+		);
+		$this->_settings['clustering_polygonOptions_fill'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   => '',
+			'desc'    => __('fill (whether to fill the path with color. Set it to false to disable filling on polygons or circles)','lmm'),
+			'type'    => 'radio-reverse-pro',
+			'std'     => 'auto',
+			'choices' => array(
+				'auto' => __('automatic','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
+		$this->_settings['clustering_polygonOptions_fillColor'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   =>'',
+			'desc'    => __('fillColor (fill color)','lmm') . ' - ' . __('example','lmm') . ': ff0000',
+			'std'     => '03f',
+			'type'    => 'text-reverse-pro'
+		);
+		$this->_settings['clustering_polygonOptions_fillopacity'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   => '',
+			'desc'    => __('fillOpacity (fill opacity)','lmm') . ' - ' . __('example','lmm') . ': 0.2',
+			'std'     => '0.2',
+			'type'    => 'text-reverse-pro'
+		);
+		$this->_settings['clustering_polygonOptions_clickable'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   => '',
+			'desc'    => __('clickable (if false, the vector will not emit mouse events and will act as a part of the underlying map)','lmm'),
+			'type'    => 'radio-reverse-pro',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
+		$this->_settings['clustering_singleMarkerMode'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   => 'singleMarkerMode<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('If set to true, overrides the icon for all added markers to make them appear as a 1 size cluster:','lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-clustering-singlemarkermode.jpg" width="123" height="100" />',
+			'type'    => 'radio-pro',
+			'std'     => 'false',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);	
+		$this->_settings['clustering_spiderfyDistanceMultiplier'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   =>'spiderfyDistanceMultiplier<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Increase from 1 to increase the distance away from the center that spiderfied markers are placed. Use if you are using big marker icons:','lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-clustering-spiderify-distance.jpg" width="117" height="100" />',
+			'std'     => '1',
+			'type'    => 'text-pro'
+		);			
+		$this->_settings['clustering_animateAddingMarkers'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   => 'animateAddingMarkers<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('If set to true then adding individual markers to the MarkerClusterGroup after it has been added to the map will add the marker and animate it in to the cluster. Defaults to false as this gives better performance when bulk adding markers.','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'false',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);		
+
 		/*===========================================
 		*
 		*
@@ -2533,9 +3168,9 @@ class Class_leaflet_options {
 			'version' => '1.6',
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section1',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-cloudmade.jpg" />',
+			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a>. ' . __('After finishing the basemap configuration, please navigate to Settings / "Maps Defaults" / "Available basemaps in control box" and check the corresponding checkbox to make this basemap available in the layer control box!','lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-cloudmade.jpg" width="411" height="261" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['cloudmade_api_key'] = array(
@@ -2563,9 +3198,9 @@ class Class_leaflet_options {
 			'version' => '1.6',
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section2',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-cloudmade.jpg" />',
+			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a>. ' . __('After finishing the basemap configuration, please navigate to Settings / "Maps Defaults" / "Available basemaps in control box" and check the corresponding checkbox to make this basemap available in the layer control box!','lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-cloudmade.jpg" width="411" height="261" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['cloudmade2_api_key'] = array(
@@ -2585,7 +3220,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => '',
 			'type'    => 'text'
-		);		
+		);
 		/*
 		* Cloudmade 3 settings
 		*/
@@ -2593,9 +3228,9 @@ class Class_leaflet_options {
 			'version' => '1.6',
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section3',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a><br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-cloudmade.jpg" />',
+			'desc'    => __( 'Tutorial for Cloudmade configuration:', 'lmm').'<a href="http://mapsmarker.com/cloudmade" target="_blank">http://mapsmarker.com/cloudmade</a>. ' . __('After finishing the basemap configuration, please navigate to Settings / "Maps Defaults" / "Available basemaps in control box" and check the corresponding checkbox to make this basemap available in the layer control box!','lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-cloudmade.jpg" width="411" height="261" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['cloudmade3_api_key'] = array(
@@ -2615,7 +3250,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => '',
 			'type'    => 'text'
-		);		
+		);
 		/*
 		* MapBox settings
 		*/
@@ -2623,9 +3258,9 @@ class Class_leaflet_options {
 			'version' => '2.1',
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section4',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-mapbox.jpg" />',
+			'desc'    => __('After finishing the basemap configuration, please navigate to Settings / "Maps Defaults" / "Available basemaps in control box" and check the corresponding checkbox to make this basemap available in the layer control box!','lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-mapbox.jpg" width="400" height="230" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['mapbox_user'] = array(
@@ -2680,9 +3315,9 @@ class Class_leaflet_options {
 			'version' => '2.1',
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section5',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-mapbox.jpg" />',
+			'desc'    => __('After finishing the basemap configuration, please navigate to Settings / "Maps Defaults" / "Available basemaps in control box" and check the corresponding checkbox to make this basemap available in the layer control box!','lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-mapbox.jpg" width="400" height="230" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['mapbox2_user'] = array(
@@ -2702,7 +3337,7 @@ class Class_leaflet_options {
 			'desc'    => __('e.g.','lmm') . 'http://tiles.mapbox.com/mapbox/map/<strong>geography-class</strong>',
 			'std'     => 'geography-class',
 			'type'    => 'text'
-		);	
+		);
 		$this->_settings['mapbox2_minzoom'] = array(
 			'version' => '2.1',
 			'pane'    => 'basemaps',
@@ -2737,9 +3372,9 @@ class Class_leaflet_options {
 			'version' => '2.1',
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section6',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-mapbox.jpg" />',
+			'desc'    => __('After finishing the basemap configuration, please navigate to Settings / "Maps Defaults" / "Available basemaps in control box" and check the corresponding checkbox to make this basemap available in the layer control box!','lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-mapbox.jpg" width="400" height="230" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['mapbox3_user'] = array(
@@ -2759,7 +3394,7 @@ class Class_leaflet_options {
 			'desc'    => __('e.g.','lmm') . 'http://tiles.mapbox.com/mapbox/map/<strong>mapbox-streets</strong>',
 			'std'     => 'mapbox-streets',
 			'type'    => 'text'
-		);					
+		);
 		$this->_settings['mapbox3_minzoom'] = array(
 			'version' => '2.1',
 			'pane'    => 'basemaps',
@@ -2794,9 +3429,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section7',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 1):<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-custom-basemaps.jpg" />',
+			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 1). ' . __('After finishing the basemap configuration, please navigate to Settings / "Maps Defaults" / "Available basemaps in control box" and check the corresponding checkbox to make this basemap available in the layer control box!','lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-custom-basemaps.jpg" width="411" height="261" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['custom_basemap_tileurl'] = array(
@@ -2834,7 +3469,7 @@ class Class_leaflet_options {
 			'desc'    => __('Note: maximum zoom level may vary on your basemap','lmm'),
 			'std'     => '17',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['custom_basemap_tms'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'basemaps',
@@ -2847,7 +3482,7 @@ class Class_leaflet_options {
 				'false' => __('false','lmm'),
 				'true' => __('true','lmm')
 			)
-		);	
+		);
 		$this->_settings['custom_basemap_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'basemaps',
@@ -2869,7 +3504,7 @@ class Class_leaflet_options {
 			'desc'    => __('For example','lmm'). ": &quot;a&quot;, &quot;b&quot;, &quot;c&quot;",
 			'std'     => '&quot;a&quot;, &quot;b&quot;, &quot;c&quot;',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['custom_basemap_continuousworld_enabled'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'basemaps',
@@ -2916,9 +3551,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section8',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 2):<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-custom-basemaps.jpg" />',
+			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 2). ' . __('After finishing the basemap configuration, please navigate to Settings / "Maps Defaults" / "Available basemaps in control box" and check the corresponding checkbox to make this basemap available in the layer control box!','lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-custom-basemaps.jpg" width="411" height="261" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['custom_basemap2_tileurl'] = array(
@@ -2956,7 +3591,7 @@ class Class_leaflet_options {
 			'desc'    => __('Note: maximum zoom level may vary on your basemap','lmm'),
 			'std'     => '17',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['custom_basemap2_tms'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'basemaps',
@@ -2969,7 +3604,7 @@ class Class_leaflet_options {
 				'false' => __('false','lmm'),
 				'true' => __('true','lmm')
 			)
-		);			
+		);
 		$this->_settings['custom_basemap2_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'basemaps',
@@ -3038,9 +3673,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section9',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 3):<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-custom-basemaps.jpg" />',
+			'desc'    => __( 'Please enter settings for custom basemap', 'lmm').' (custom 3). ' . __('After finishing the basemap configuration, please navigate to Settings / "Maps Defaults" / "Available basemaps in control box" and check the corresponding checkbox to make this basemap available in the layer control box!','lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-default-basemap-custom-basemaps.jpg" width="411" height="261" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['custom_basemap3_tileurl'] = array(
@@ -3078,7 +3713,7 @@ class Class_leaflet_options {
 			'desc'    => __('Note: maximum zoom level may vary on your basemap','lmm'),
 			'std'     => '18',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['custom_basemap3_tms'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'basemaps',
@@ -3091,7 +3726,7 @@ class Class_leaflet_options {
 				'false' => __('false','lmm'),
 				'true' => __('true','lmm')
 			)
-		);			
+		);
 		$this->_settings['custom_basemap3_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'basemaps',
@@ -3139,7 +3774,7 @@ class Class_leaflet_options {
 				'false' => __('false','lmm'),
 				'true' => __('true','lmm')
 			)
-		);	
+		);
 		$this->_settings['custom_basemap3_errortileurl'] = array(
 			'version' => '3.1',
 			'pane'    => 'basemaps',
@@ -3153,7 +3788,7 @@ class Class_leaflet_options {
 				'false' => __('false','lmm')
 			)
 		);
-			
+
 		/*===========================================
 		*
 		*
@@ -3168,9 +3803,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'overlays',
 			'section' => 'overlays-section1',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Please select the overlays which should be available in the control box.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-overlays-custom.jpg" />',
+			'desc'    => __( 'Please select the overlays which should be available in the control box.', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-overlays-custom.jpg" width="500" height="162" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['overlays_custom'] = array(
@@ -3189,9 +3824,9 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom overlay 2','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
-		
+			'std'     => 0
+		);
+
 		$this->_settings['overlays_custom3'] = array(
 			'version' => '1.0',
 			'pane'    => 'overlays',
@@ -3199,9 +3834,9 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom overlay 3','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
-		
+			'std'     => 0
+		);
+
 		$this->_settings['overlays_custom4'] = array(
 			'version' => '1.0',
 			'pane'    => 'overlays',
@@ -3209,8 +3844,8 @@ class Class_leaflet_options {
 			'title'   => '',
 			'desc'    => __('Custom overlay 4','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);		
+			'std'     => 0
+		);
 		/*
 		* Custom overlay settings
 		*/
@@ -3218,9 +3853,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'overlays',
 			'section' => 'overlays-section2',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').':<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-overlays-custom.jpg" />',
+			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').':<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-overlays-custom.jpg" width="500" height="162" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['overlays_custom_name'] = array(
@@ -3231,8 +3866,8 @@ class Class_leaflet_options {
 			'desc'   => __( 'Will be displayed in controlbox if selected', 'lmm' ),
 			'std'     => __('OGD Vienna addresses','lmm'),
 			'type'    => 'text'
-		);		
-		
+		);
+
 		$this->_settings['overlays_custom_tileurl'] = array(
 			'version' => '1.0',
 			'pane'    => 'overlays',
@@ -3268,7 +3903,7 @@ class Class_leaflet_options {
 			'desc'    => __('Note: maximum zoom level may vary on your basemap','lmm'),
 			'std'     => '19',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['overlays_custom_opacity'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'overlays',
@@ -3277,7 +3912,7 @@ class Class_leaflet_options {
 			'desc'    => __('The opacity of the tile layer.','lmm'),
 			'std'     => '1.0',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['overlays_custom_tms'] = array(
 			'version' => '3.1',
 			'pane'    => 'overlays',
@@ -3290,7 +3925,7 @@ class Class_leaflet_options {
 				'false' => __('false','lmm'),
 				'true' => __('true','lmm')
 			)
-		);		
+		);
 		$this->_settings['overlays_custom_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'overlays',
@@ -3333,9 +3968,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'overlays',
 			'section' => 'overlays-section3',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 2:<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-overlays-custom.jpg" />',
+			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 2:<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-overlays-custom.jpg" width="500" height="162" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['overlays_custom2_name'] = array(
@@ -3346,8 +3981,8 @@ class Class_leaflet_options {
 			'desc'   => __( 'Will be displayed in controlbox if selected', 'lmm' ),
 			'std'     => 'Custom2',
 			'type'    => 'text'
-		);		
-		
+		);
+
 		$this->_settings['overlays_custom2_tileurl'] = array(
 			'version' => '1.0',
 			'pane'    => 'overlays',
@@ -3365,7 +4000,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => 'Addresses: City of Vienna (<a href=&quot;http://data.wien.gv.at&quot; target=&quot;_blank&quot;>data.wien.gv.at</a>)',
 			'type'    => 'text'
-		);	
+		);
 		$this->_settings['overlays_custom2_minzoom'] = array(
 			'version' => '1.0',
 			'pane'    => 'overlays',
@@ -3383,7 +4018,7 @@ class Class_leaflet_options {
 			'desc'    => __('Note: maximum zoom level may vary on your basemap','lmm'),
 			'std'     => '17',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['overlays_custom2_opacity'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'overlays',
@@ -3392,7 +4027,7 @@ class Class_leaflet_options {
 			'desc'    => __('The opacity of the tile layer.','lmm'),
 			'std'     => '1.0',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['overlays_custom2_tms'] = array(
 			'version' => '3.1',
 			'pane'    => 'overlays',
@@ -3405,7 +4040,7 @@ class Class_leaflet_options {
 				'false' => __('false','lmm'),
 				'true' => __('true','lmm')
 			)
-		);		
+		);
 		$this->_settings['overlays_custom2_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'overlays',
@@ -3448,9 +4083,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'overlays',
 			'section' => 'overlays-section4',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 3:<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-overlays-custom.jpg" />',
+			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 3:<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-overlays-custom.jpg" width="500" height="162" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['overlays_custom3_name'] = array(
@@ -3461,7 +4096,7 @@ class Class_leaflet_options {
 			'desc'   => __( 'Will be displayed in controlbox if selected', 'lmm' ),
 			'std'     => 'Custom3',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['overlays_custom3_tileurl'] = array(
 			'version' => '1.0',
 			'pane'    => 'overlays',
@@ -3479,7 +4114,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => 'Addresses: City of Vienna (<a href=&quot;http://data.wien.gv.at&quot; target=&quot;_blank&quot;>data.wien.gv.at</a>)',
 			'type'    => 'text'
-		);	
+		);
 		$this->_settings['overlays_custom3_minzoom'] = array(
 			'version' => '1.0',
 			'pane'    => 'overlays',
@@ -3497,7 +4132,7 @@ class Class_leaflet_options {
 			'desc'    => __('Note: maximum zoom level may vary on your basemap','lmm'),
 			'std'     => '17',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['overlays_custom3_opacity'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'overlays',
@@ -3506,7 +4141,7 @@ class Class_leaflet_options {
 			'desc'    => __('The opacity of the tile layer.','lmm'),
 			'std'     => '1.0',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['overlays_custom3_tms'] = array(
 			'version' => '3.1',
 			'pane'    => 'overlays',
@@ -3519,7 +4154,7 @@ class Class_leaflet_options {
 				'false' => __('false','lmm'),
 				'true' => __('true','lmm')
 			)
-		);		
+		);
 		$this->_settings['overlays_custom3_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'overlays',
@@ -3562,9 +4197,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'overlays',
 			'section' => 'overlays-section5',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 4:<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-overlays-custom.jpg" />',
+			'desc'    => __( 'Please enter settings for custom overlay', 'lmm').' 4:<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-overlays-custom.jpg" width="500" height="162" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['overlays_custom4_name'] = array(
@@ -3575,8 +4210,8 @@ class Class_leaflet_options {
 			'desc'   => __( 'Will be displayed in controlbox if selected', 'lmm' ),
 			'std'     => 'Custom4',
 			'type'    => 'text'
-		);		
-		
+		);
+
 		$this->_settings['overlays_custom4_tileurl'] = array(
 			'version' => '1.0',
 			'pane'    => 'overlays',
@@ -3594,7 +4229,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => 'Addresses: City of Vienna (<a href=&quot;http://data.wien.gv.at&quot; target=&quot;_blank&quot;>data.wien.gv.at</a>)',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['overlays_custom4_minzoom'] = array(
 			'version' => '1.0',
 			'pane'    => 'overlays',
@@ -3612,7 +4247,7 @@ class Class_leaflet_options {
 			'desc'    => __('Note: maximum zoom level may vary on your basemap','lmm'),
 			'std'     => '17',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['overlays_custom4_opacity'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'overlays',
@@ -3621,7 +4256,7 @@ class Class_leaflet_options {
 			'desc'    => __('The opacity of the tile layer.','lmm'),
 			'std'     => '1.0',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['overlays_custom4_tms'] = array(
 			'version' => '3.1',
 			'pane'    => 'overlays',
@@ -3634,7 +4269,7 @@ class Class_leaflet_options {
 				'false' => __('false','lmm'),
 				'true' => __('true','lmm')
 			)
-		);		
+		);
 		$this->_settings['overlays_custom4_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'overlays',
@@ -3670,7 +4305,7 @@ class Class_leaflet_options {
 				'false' => __('false','lmm')
 			)
 		);
-		
+
 		/*===========================================
 		*
 		*
@@ -3685,16 +4320,16 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'wms',
 			'section' => 'wms-sections1',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __('WMS stands for <a href="http://www.opengeospatial.org/standards/wms" target="_blank">Web Map Service</a> and is a standard protocol for serving georeferenced map images over the Internet that are generated by a map server using data from a GIS database.<br/>With Leaflet Maps Marker you can configure up to 10 WMS layers which can be enabled for each map. As default, 10 WMS layers from <a href="http://data.wien.gv.at" target="_blank">OGD Vienna</a> and from the <a href="http://www.eea.europa.eu/code/gis" target="_blank">European Environment Agency</a> have been predefined for you.<br/>A selection of further possible WMS layers can be found at <a href="http://www.mapsmarker.com/wms" target="_blank">http://www.mapsmarker.com/wms</a>', 'lmm'),
 			'type'    => 'helptext'
-		);		
+		);
 		$this->_settings['wms_available_heading'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
 			'section' => 'wms-sections1',
-			'title'   => '', 
+			'title'   => '',
 			'desc'    => '<a name="wms1" class="lmm-index-links"></a>' . __( 'Available WMS layers for new markers/layers', 'lmm'),
 			'type'    => 'heading'
 		);
@@ -3702,9 +4337,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'wms',
 			'section' => 'wms-sections1',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Please select the WMS layers which should be available when creating new markers/layers', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-wms-available-wms-layers.jpg" />',
+			'desc'    => __( 'Please select the WMS layers which should be available when creating new markers/layers', 'lmm').'<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-wms-available-wms-layers.jpg" width="724" height="245" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['wms_wms_available'] = array(
@@ -3714,7 +4349,7 @@ class Class_leaflet_options {
 			'title'    => __('Available WMS layers','lmm'),
 			'desc'    => 'WMS 1',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['wms_wms2_available'] = array(
 			'version' => '1.0',
@@ -3723,7 +4358,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'WMS 2',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['wms_wms3_available'] = array(
 			'version' => '1.0',
@@ -3732,7 +4367,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'WMS 3',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['wms_wms4_available'] = array(
 			'version' => '1.0',
@@ -3741,7 +4376,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'WMS 4',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['wms_wms5_available'] = array(
 			'version' => '1.0',
@@ -3750,7 +4385,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'WMS 5',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['wms_wms6_available'] = array(
 			'version' => '1.0',
@@ -3759,7 +4394,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'WMS 6',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['wms_wms7_available'] = array(
 			'version' => '1.0',
@@ -3768,7 +4403,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'WMS 7',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['wms_wms8_available'] = array(
 			'version' => '1.0',
@@ -3777,7 +4412,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'WMS 8',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['wms_wms9_available'] = array(
 			'version' => '1.0',
@@ -3786,7 +4421,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'WMS 9',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['wms_wms10_available'] = array(
 			'version' => '1.0',
@@ -3795,7 +4430,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'WMS 10',
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		/*
 		* WMS layer settings
@@ -3804,7 +4439,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'wms',
 			'section' => 'wms-sections2',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => '', //empty for not breaking settings layout
 			'type'    => 'helptext'
@@ -3816,7 +4451,7 @@ class Class_leaflet_options {
 			'title'    => __('Name','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => '<a href=&quot;http://data.wien.gv.at/katalog/wc-anlagen.html&quot; target=&quot;_blank&quot;>OGD Vienna - Public Toilets</a>' 
+			'std'     => '<a href=&quot;http://data.wien.gv.at/katalog/wc-anlagen.html&quot; target=&quot;_blank&quot;>OGD Vienna - Public Toilets</a>'
 		);
 		$this->_settings['wms_wms_baseurl'] = array(
 			'version' => '1.0',
@@ -3825,7 +4460,7 @@ class Class_leaflet_options {
 			'title'    => __('baseURL','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'http://data.wien.gv.at/daten/wms' 
+			'std'     => 'http://data.wien.gv.at/daten/wms'
 		);
 		$this->_settings['wms_wms_layers'] = array(
 			'version' => '1.0',
@@ -3834,7 +4469,7 @@ class Class_leaflet_options {
 			'title'    => __('Layers','lmm'),
 			'desc'    => __('(required) Comma-separated list of WMS layers to show','lmm'),
 			'type'    => 'text',
-			'std'     => 'WCANLAGEOGD' 
+			'std'     => 'WCANLAGEOGD'
 		);
 		$this->_settings['wms_wms_styles'] = array(
 			'version' => '1.0',
@@ -3843,7 +4478,7 @@ class Class_leaflet_options {
 			'title'    => __('Styles','lmm'),
 			'desc'    => __('Comma-separated list of WMS styles','lmm'),
 			'type'    => 'text',
-			'std'     => '' 
+			'std'     => ''
 		);
 		$this->_settings['wms_wms_format'] = array(
 			'version' => '1.0',
@@ -3852,8 +4487,8 @@ class Class_leaflet_options {
 			'title'    => __('Format','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'image/gif' 
-		);		
+			'std'     => 'image/gif'
+		);
 		$this->_settings['wms_wms_transparent'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -3874,7 +4509,7 @@ class Class_leaflet_options {
 			'title'    => __('Version','lmm'),
 			'desc'    => __('Version of the WMS service to use','lmm'),
 			'type'    => 'text',
-			'std'     => '1.1.1' 
+			'std'     => '1.1.1'
 		);
 		$this->_settings['wms_wms_attribution'] = array(
 			'version' => '1.0',
@@ -3883,8 +4518,8 @@ class Class_leaflet_options {
 			'title'    => __('Attribution','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'WMS: City of Vienna (<a href=&quot;http://data.wien.gv.at&quot; target=&quot;_blank&quot;>http://data.wien.gv.at</a>)' 
-		);		
+			'std'     => 'WMS: City of Vienna (<a href=&quot;http://data.wien.gv.at&quot; target=&quot;_blank&quot;>http://data.wien.gv.at</a>)'
+		);
 		$this->_settings['wms_wms_legend_enabled'] = array(
 			'version' => '1.1',
 			'pane'    => 'wms',
@@ -3897,7 +4532,7 @@ class Class_leaflet_options {
 				'yes' => __('Yes','lmm'),
 				'no' => __('No','lmm')
 			)
-		);		
+		);
 		$this->_settings['wms_wms_legend'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -3905,8 +4540,8 @@ class Class_leaflet_options {
 			'title'    => __('Legend','lmm'),
 			'desc'    => __('URL of image which gets show when hovering the text "(Legend)" next to WMS attribution text','lmm'),
 			'type'    => 'text',
-			'std'     => '' 
-		);		
+			'std'     => ''
+		);
 		$this->_settings['wms_wms_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -3928,12 +4563,12 @@ class Class_leaflet_options {
 			'desc'    => __('For example','lmm'). ": &quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;",
 			'std'     => '&quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;',
 			'type'    => 'text'
-		);	
+		);
 		$this->_settings['wms_wms_kml_helptext'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
 			'section' => 'wms-sections2',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
 			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
 			'type'    => 'helptext'
@@ -3950,7 +4585,7 @@ class Class_leaflet_options {
 				'yes' => __('yes','lmm'),
 				'no' => __('no','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms_kml_href'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -3958,8 +4593,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
 			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://data.wien.gv.at/daten/geoserver/ows?version=1.3.0&service=WMS&request=GetMap&crs=EPSG:4326&bbox=48.10,16.16,48.34,16.59&width=1&height=1&layers=ogdwien:OEFFWCOGD&styles=&format=application/vnd.google-earth.kml+xml' 
-		);	
+			'std'     => 'http://data.wien.gv.at/daten/geoserver/ows?version=1.3.0&service=WMS&request=GetMap&crs=EPSG:4326&bbox=48.10,16.16,48.34,16.59&width=1&height=1&layers=ogdwien:OEFFWCOGD&styles=&format=application/vnd.google-earth.kml+xml'
+		);
 		$this->_settings['wms_wms_kml_refreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -3974,7 +4609,7 @@ class Class_leaflet_options {
 				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
 				'onStop' => __('onStop (after camera movement stops)','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms_kml_refreshInterval'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -3982,8 +4617,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
 			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
 			'type'    => 'text',
-			'std'     => '30' 
-		);		
+			'std'     => '30'
+		);
 		$this->_settings['wms_wms_kml_viewRefreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -3997,7 +4632,7 @@ class Class_leaflet_options {
 				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
 				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
 			)
-		);			
+		);
 		$this->_settings['wms_wms_kml_viewRefreshTime'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4005,9 +4640,9 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
 			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
 			'type'    => 'text',
-			'std'     => '1' 
+			'std'     => '1'
 		);
-		
+
 		/*
 		* WMS layer 2 settings
 		*/
@@ -4015,7 +4650,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'wms',
 			'section' => 'wms-sections3',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => '', //empty for not breaking settings layout
 			'type'    => 'helptext'
@@ -4027,7 +4662,7 @@ class Class_leaflet_options {
 			'title'    => __('Name','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => '<a href=&quot;http://data.wien.gv.at/katalog/aufzuege.html&quot; target=&quot;_blank&quot;>OGD Vienna - Elevators at stations</a>' 
+			'std'     => '<a href=&quot;http://data.wien.gv.at/katalog/aufzuege.html&quot; target=&quot;_blank&quot;>OGD Vienna - Elevators at stations</a>'
 		);
 		$this->_settings['wms_wms2_baseurl'] = array(
 			'version' => '1.0',
@@ -4036,7 +4671,7 @@ class Class_leaflet_options {
 			'title'    => __('baseURL','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'http://data.wien.gv.at/daten/wms' 
+			'std'     => 'http://data.wien.gv.at/daten/wms'
 		);
 		$this->_settings['wms_wms2_layers'] = array(
 			'version' => '1.0',
@@ -4045,7 +4680,7 @@ class Class_leaflet_options {
 			'title'    => __('Layers','lmm'),
 			'desc'    => __('(required) Comma-separated list of WMS layers to show','lmm'),
 			'type'    => 'text',
-			'std'     => 'AUFZUGOGD' 
+			'std'     => 'AUFZUGOGD'
 		);
 		$this->_settings['wms_wms2_styles'] = array(
 			'version' => '1.0',
@@ -4054,7 +4689,7 @@ class Class_leaflet_options {
 			'title'    => __('Styles','lmm'),
 			'desc'    => __('Comma-separated list of WMS styles','lmm'),
 			'type'    => 'text',
-			'std'     => '' 
+			'std'     => ''
 		);
 		$this->_settings['wms_wms2_format'] = array(
 			'version' => '1.0',
@@ -4063,8 +4698,8 @@ class Class_leaflet_options {
 			'title'    => __('Format','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'image/gif' 
-		);		
+			'std'     => 'image/gif'
+		);
 		$this->_settings['wms_wms2_transparent'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4085,8 +4720,8 @@ class Class_leaflet_options {
 			'title'    => __('Version','lmm'),
 			'desc'    => __('Version of the WMS service to use','lmm'),
 			'type'    => 'text',
-			'std'     => '1.1.1' 
-		);	
+			'std'     => '1.1.1'
+		);
 		$this->_settings['wms_wms2_attribution'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4094,8 +4729,8 @@ class Class_leaflet_options {
 			'title'    => __('Attribution','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'WMS: City of Vienna (<a href=&quot;http://data.wien.gv.at&quot; target=&quot;_blank&quot;>http://data.wien.gv.at</a>)' 
-		);		
+			'std'     => 'WMS: City of Vienna (<a href=&quot;http://data.wien.gv.at&quot; target=&quot;_blank&quot;>http://data.wien.gv.at</a>)'
+		);
 		$this->_settings['wms_wms2_legend_enabled'] = array(
 			'version' => '1.1',
 			'pane'    => 'wms',
@@ -4108,7 +4743,7 @@ class Class_leaflet_options {
 				'yes' => __('Yes','lmm'),
 				'no' => __('No','lmm')
 			)
-		);		
+		);
 		$this->_settings['wms_wms2_legend'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4116,8 +4751,8 @@ class Class_leaflet_options {
 			'title'    => __('Legend','lmm'),
 			'desc'    => __('URL of image which gets show when hovering the text "(Legend)" next to WMS attribution text','lmm'),
 			'type'    => 'text',
-			'std'     => '' 
-		);		
+			'std'     => ''
+		);
 		$this->_settings['wms_wms2_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4139,12 +4774,12 @@ class Class_leaflet_options {
 			'desc'    => __('For example','lmm'). ": &quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;",
 			'std'     => '&quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;',
 			'type'    => 'text'
-		);	
+		);
 		$this->_settings['wms_wms2_kml_helptext'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
 			'section' => 'wms-sections3',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
 			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
 			'type'    => 'helptext'
@@ -4161,7 +4796,7 @@ class Class_leaflet_options {
 				'yes' => __('yes','lmm'),
 				'no' => __('no','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms2_kml_href'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4169,8 +4804,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
 			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://data.wien.gv.at/daten/geoserver/ows?version=1.3.0&service=WMS&request=GetMap&crs=EPSG:4326&bbox=48.10,16.16,48.34,16.59&width=1&height=1&layers=ogdwien:AUFZUGOGD&styles=&format=application/vnd.google-earth.kml+xml' 
-		);	
+			'std'     => 'http://data.wien.gv.at/daten/geoserver/ows?version=1.3.0&service=WMS&request=GetMap&crs=EPSG:4326&bbox=48.10,16.16,48.34,16.59&width=1&height=1&layers=ogdwien:AUFZUGOGD&styles=&format=application/vnd.google-earth.kml+xml'
+		);
 		$this->_settings['wms_wms2_kml_refreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4185,7 +4820,7 @@ class Class_leaflet_options {
 				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
 				'onStop' => __('onStop (after camera movement stops)','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms2_kml_refreshInterval'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4193,8 +4828,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
 			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
 			'type'    => 'text',
-			'std'     => '30' 
-		);		
+			'std'     => '30'
+		);
 		$this->_settings['wms_wms2_kml_viewRefreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4208,7 +4843,7 @@ class Class_leaflet_options {
 				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
 				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
 			)
-		);			
+		);
 		$this->_settings['wms_wms2_kml_viewRefreshTime'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4216,8 +4851,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
 			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
 			'type'    => 'text',
-			'std'     => '1' 
-		);		
+			'std'     => '1'
+		);
 		/*
 		* WMS layer 3 settings
 		*/
@@ -4225,7 +4860,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'wms',
 			'section' => 'wms-sections4',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => '', //empty for not breaking settings layout
 			'type'    => 'helptext'
@@ -4237,7 +4872,7 @@ class Class_leaflet_options {
 			'title'    => __('Name','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Air/EPRTRDiffuseAir_Dyna_WGS84/MapServer/7&quot; target=&quot;_blank&quot;>EEA - CO emissions from road transport</a>' 
+			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Air/EPRTRDiffuseAir_Dyna_WGS84/MapServer/7&quot; target=&quot;_blank&quot;>EEA - CO emissions from road transport</a>'
 		);
 		$this->_settings['wms_wms3_baseurl'] = array(
 			'version' => '1.0',
@@ -4246,7 +4881,7 @@ class Class_leaflet_options {
 			'title'    => __('baseURL','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Air/EPRTRDiffuseAir_Dyna_WGS84/MapServer/WMSServer' 
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Air/EPRTRDiffuseAir_Dyna_WGS84/MapServer/WMSServer'
 		);
 		$this->_settings['wms_wms3_layers'] = array(
 			'version' => '1.0',
@@ -4255,7 +4890,7 @@ class Class_leaflet_options {
 			'title'    => __('Layers','lmm'),
 			'desc'    => __('(required) Comma-separated list of WMS layers to show','lmm'),
 			'type'    => 'text',
-			'std'     => '24' 
+			'std'     => '24'
 		);
 		$this->_settings['wms_wms3_styles'] = array(
 			'version' => '1.0',
@@ -4264,7 +4899,7 @@ class Class_leaflet_options {
 			'title'    => __('Styles','lmm'),
 			'desc'    => __('Comma-separated list of WMS styles','lmm'),
 			'type'    => 'text',
-			'std'     => '' 
+			'std'     => ''
 		);
 		$this->_settings['wms_wms3_format'] = array(
 			'version' => '1.0',
@@ -4273,8 +4908,8 @@ class Class_leaflet_options {
 			'title'    => __('Format','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'image/png' 
-		);		
+			'std'     => 'image/png'
+		);
 		$this->_settings['wms_wms3_transparent'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4295,8 +4930,8 @@ class Class_leaflet_options {
 			'title'    => __('Attribution','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>' 
-		);		
+			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>'
+		);
 		$this->_settings['wms_wms3_legend_enabled'] = array(
 			'version' => '1.1',
 			'pane'    => 'wms',
@@ -4309,7 +4944,7 @@ class Class_leaflet_options {
 				'yes' => __('Yes','lmm'),
 				'no' => __('No','lmm')
 			)
-		);		
+		);
 		$this->_settings['wms_wms3_legend'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4317,8 +4952,8 @@ class Class_leaflet_options {
 			'title'    => __('Legend','lmm'),
 			'desc'    => __('URL of image which gets show when hovering the text "(Legend)" next to WMS attribution text','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Air/EPRTRDiffuseAir_Dyna_WGS84/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=1' 
-		);		
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Air/EPRTRDiffuseAir_Dyna_WGS84/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=1'
+		);
 		$this->_settings['wms_wms3_version'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4326,8 +4961,8 @@ class Class_leaflet_options {
 			'title'    => __('Version','lmm'),
 			'desc'    => __('Version of the WMS service to use','lmm'),
 			'type'    => 'text',
-			'std'     => '1.3.0' 
-		);		
+			'std'     => '1.3.0'
+		);
 		$this->_settings['wms_wms3_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4349,12 +4984,12 @@ class Class_leaflet_options {
 			'desc'    => __('For example','lmm'). ": &quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;",
 			'std'     => '&quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;',
 			'type'    => 'text'
-		);	
+		);
 		$this->_settings['wms_wms3_kml_helptext'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
 			'section' => 'wms-sections4',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
 			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
 			'type'    => 'helptext'
@@ -4371,7 +5006,7 @@ class Class_leaflet_options {
 				'yes' => __('yes','lmm'),
 				'no' => __('no','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms3_kml_href'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4379,8 +5014,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
 			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Air/EPRTRDiffuseAir_Dyna_WGS84/MapServer/generatekml?docName=&l%3A7=on&layers=7&layerOptions=nonComposite' 
-		);	
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Air/EPRTRDiffuseAir_Dyna_WGS84/MapServer/generatekml?docName=&l%3A7=on&layers=7&layerOptions=nonComposite'
+		);
 		$this->_settings['wms_wms3_kml_refreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4395,7 +5030,7 @@ class Class_leaflet_options {
 				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
 				'onStop' => __('onStop (after camera movement stops)','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms3_kml_refreshInterval'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4403,8 +5038,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
 			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
 			'type'    => 'text',
-			'std'     => '30' 
-		);		
+			'std'     => '30'
+		);
 		$this->_settings['wms_wms3_kml_viewRefreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4418,7 +5053,7 @@ class Class_leaflet_options {
 				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
 				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
 			)
-		);			
+		);
 		$this->_settings['wms_wms3_kml_viewRefreshTime'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4426,8 +5061,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
 			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
 			'type'    => 'text',
-			'std'     => '1' 
-		);	
+			'std'     => '1'
+		);
 		/*
 		* WMS layer 4 settings
 		*/
@@ -4435,7 +5070,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'wms',
 			'section' => 'wms-sections5',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => '', //empty for not breaking settings layout
 			'type'    => 'helptext'
@@ -4447,7 +5082,7 @@ class Class_leaflet_options {
 			'title'    => __('Name','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Land/CLC2006_Dyna_WM/MapServer&quot; target=&quot;_blank&quot;>EEA - Agricultural areas</a>' 
+			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Land/CLC2006_Dyna_WM/MapServer&quot; target=&quot;_blank&quot;>EEA - Agricultural areas</a>'
 		);
 		$this->_settings['wms_wms4_baseurl'] = array(
 			'version' => '1.0',
@@ -4456,7 +5091,7 @@ class Class_leaflet_options {
 			'title'    => __('baseURL','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Land/CLC2006_Dyna_WM/MapServer/WMSServer' 
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Land/CLC2006_Dyna_WM/MapServer/WMSServer'
 		);
 		$this->_settings['wms_wms4_layers'] = array(
 			'version' => '1.0',
@@ -4465,7 +5100,7 @@ class Class_leaflet_options {
 			'title'    => __('Layers','lmm'),
 			'desc'    => __('(required) Comma-separated list of WMS layers to show','lmm'),
 			'type'    => 'text',
-			'std'     => '10' 
+			'std'     => '10'
 		);
 		$this->_settings['wms_wms4_styles'] = array(
 			'version' => '1.0',
@@ -4474,7 +5109,7 @@ class Class_leaflet_options {
 			'title'    => __('Styles','lmm'),
 			'desc'    => __('Comma-separated list of WMS styles','lmm'),
 			'type'    => 'text',
-			'std'     => '' 
+			'std'     => ''
 		);
 		$this->_settings['wms_wms4_format'] = array(
 			'version' => '1.0',
@@ -4483,8 +5118,8 @@ class Class_leaflet_options {
 			'title'    => __('Format','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'image/png' 
-		);		
+			'std'     => 'image/png'
+		);
 		$this->_settings['wms_wms4_transparent'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4505,7 +5140,7 @@ class Class_leaflet_options {
 			'title'    => __('Version','lmm'),
 			'desc'    => __('Version of the WMS service to use','lmm'),
 			'type'    => 'text',
-			'std'     => '1.3.0' 
+			'std'     => '1.3.0'
 		);
 		$this->_settings['wms_wms4_attribution'] = array(
 			'version' => '1.0',
@@ -4514,8 +5149,8 @@ class Class_leaflet_options {
 			'title'    => __('Attribution','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>' 
-		);		
+			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>'
+		);
 		$this->_settings['wms_wms4_legend_enabled'] = array(
 			'version' => '1.1',
 			'pane'    => 'wms',
@@ -4528,7 +5163,7 @@ class Class_leaflet_options {
 				'yes' => __('Yes','lmm'),
 				'no' => __('No','lmm')
 			)
-		);		
+		);
 		$this->_settings['wms_wms4_legend'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4536,8 +5171,8 @@ class Class_leaflet_options {
 			'title'    => __('Legend','lmm'),
 			'desc'    => __('URL of image which gets show when hovering the text "(Legend)" next to WMS attribution text','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Land/CLC2000_Cach_WM/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=11'			
-		);		
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Land/CLC2000_Cach_WM/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=11'
+		);
 		$this->_settings['wms_wms4_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4559,12 +5194,12 @@ class Class_leaflet_options {
 			'desc'    => __('For example','lmm'). ": &quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;",
 			'std'     => '&quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;',
 			'type'    => 'text'
-		);	
+		);
 		$this->_settings['wms_wms4_kml_helptext'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
 			'section' => 'wms-sections5',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
 			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
 			'type'    => 'helptext'
@@ -4581,7 +5216,7 @@ class Class_leaflet_options {
 				'yes' => __('yes','lmm'),
 				'no' => __('no','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms4_kml_href'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4589,8 +5224,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
 			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Land/CLC2006_Dyna_WM/MapServer/generatekml?docName=&l%3A5=on&layers=5&layerOptions=nonComposite' 
-		);	
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Land/CLC2006_Dyna_WM/MapServer/generatekml?docName=&l%3A5=on&layers=5&layerOptions=nonComposite'
+		);
 		$this->_settings['wms_wms4_kml_refreshMode'] = array(
 			'version' => '1.4.3',
 
@@ -4607,7 +5242,7 @@ class Class_leaflet_options {
 				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
 				'onStop' => __('onStop (after camera movement stops)','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms4_kml_refreshInterval'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4615,8 +5250,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
 			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
 			'type'    => 'text',
-			'std'     => '30' 
-		);		
+			'std'     => '30'
+		);
 		$this->_settings['wms_wms4_kml_viewRefreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4630,7 +5265,7 @@ class Class_leaflet_options {
 				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
 				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
 			)
-		);			
+		);
 		$this->_settings['wms_wms4_kml_viewRefreshTime'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4638,8 +5273,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
 			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
 			'type'    => 'text',
-			'std'     => '1' 
-		);	
+			'std'     => '1'
+		);
 		/*
 		* WMS layer 5 settings
 		*/
@@ -4647,7 +5282,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'wms',
 			'section' => 'wms-sections6',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => '', //empty for not breaking settings layout
 			'type'    => 'helptext'
@@ -4659,7 +5294,7 @@ class Class_leaflet_options {
 			'title'    => __('Name','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Noise/Noise_Dyna_LAEA/MapServer/460&quot; target=&quot;_blank&quot;>EEA - Airport Annual Traffic</a>' 
+			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Noise/Noise_Dyna_LAEA/MapServer/460&quot; target=&quot;_blank&quot;>EEA - Airport Annual Traffic</a>'
 		);
 		$this->_settings['wms_wms5_baseurl'] = array(
 			'version' => '1.0',
@@ -4668,7 +5303,7 @@ class Class_leaflet_options {
 			'title'    => __('baseURL','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Noise/Noise_Dyna_LAEA/MapServer/WMSServer' 
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Noise/Noise_Dyna_LAEA/MapServer/WMSServer'
 		);
 		$this->_settings['wms_wms5_layers'] = array(
 			'version' => '1.0',
@@ -4677,7 +5312,7 @@ class Class_leaflet_options {
 			'title'    => __('Layers','lmm'),
 			'desc'    => __('(required) Comma-separated list of WMS layers to show','lmm'),
 			'type'    => 'text',
-			'std'     => '8' 
+			'std'     => '8'
 		);
 		$this->_settings['wms_wms5_styles'] = array(
 			'version' => '1.0',
@@ -4686,7 +5321,7 @@ class Class_leaflet_options {
 			'title'    => __('Styles','lmm'),
 			'desc'    => __('Comma-separated list of WMS styles','lmm'),
 			'type'    => 'text',
-			'std'     => '' 
+			'std'     => ''
 		);
 		$this->_settings['wms_wms5_format'] = array(
 			'version' => '1.0',
@@ -4695,8 +5330,8 @@ class Class_leaflet_options {
 			'title'    => __('Format','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'image/png' 
-		);		
+			'std'     => 'image/png'
+		);
 		$this->_settings['wms_wms5_transparent'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4717,8 +5352,8 @@ class Class_leaflet_options {
 			'title'    => __('Version','lmm'),
 			'desc'    => __('Version of the WMS service to use','lmm'),
 			'type'    => 'text',
-			'std'     => '1.3.0' 
-		);	
+			'std'     => '1.3.0'
+		);
 		$this->_settings['wms_wms5_attribution'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4726,8 +5361,8 @@ class Class_leaflet_options {
 			'title'    => __('Attribution','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>' 
-		);		
+			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>'
+		);
 		$this->_settings['wms_wms5_legend_enabled'] = array(
 			'version' => '1.1',
 			'pane'    => 'wms',
@@ -4740,7 +5375,7 @@ class Class_leaflet_options {
 				'yes' => __('Yes','lmm'),
 				'no' => __('No','lmm')
 			)
-		);		
+		);
 		$this->_settings['wms_wms5_legend'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4748,8 +5383,8 @@ class Class_leaflet_options {
 			'title'    => __('Legend','lmm'),
 			'desc'    => __('URL of image which gets show when hovering the text "(Legend)" next to WMS attribution text','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Noise/Noise_Dyna_LAEA/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=8'			
-		);		
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Noise/Noise_Dyna_LAEA/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=8'
+		);
 		$this->_settings['wms_wms5_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4771,12 +5406,12 @@ class Class_leaflet_options {
 			'desc'    => __('For example','lmm'). ": &quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;",
 			'std'     => '&quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;',
 			'type'    => 'text'
-		);	
+		);
 		$this->_settings['wms_wms5_kml_helptext'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
 			'section' => 'wms-sections6',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
 			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
 			'type'    => 'helptext'
@@ -4794,7 +5429,7 @@ class Class_leaflet_options {
 				'yes' => __('yes','lmm'),
 				'no' => __('no','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms5_kml_href'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4802,8 +5437,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
 			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Noise/Noise_Dyna_LAEA/MapServer/generatekml?docName=&l%3A460=on&layers=460&layerOptions=nonComposite' 
-		);	
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Noise/Noise_Dyna_LAEA/MapServer/generatekml?docName=&l%3A460=on&layers=460&layerOptions=nonComposite'
+		);
 		$this->_settings['wms_wms5_kml_refreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4818,7 +5453,7 @@ class Class_leaflet_options {
 				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
 				'onStop' => __('onStop (after camera movement stops)','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms5_kml_refreshInterval'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4826,8 +5461,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
 			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
 			'type'    => 'text',
-			'std'     => '30' 
-		);		
+			'std'     => '30'
+		);
 		$this->_settings['wms_wms5_kml_viewRefreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4841,7 +5476,7 @@ class Class_leaflet_options {
 				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
 				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
 			)
-		);			
+		);
 		$this->_settings['wms_wms5_kml_viewRefreshTime'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -4849,8 +5484,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
 			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
 			'type'    => 'text',
-			'std'     => '1' 
-		);				
+			'std'     => '1'
+		);
 		/*
 		* WMS layer 6 settings
 		*/
@@ -4858,7 +5493,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'wms',
 			'section' => 'wms-sections7',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => '', //empty for not breaking settings layout
 			'type'    => 'helptext'
@@ -4870,7 +5505,7 @@ class Class_leaflet_options {
 			'title'    => __('Name','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Land/CLC2006_Dyna_WM/MapServer&quot; target=&quot;_blank&quot;>EEA - WaterBodies</a>' 
+			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Land/CLC2006_Dyna_WM/MapServer&quot; target=&quot;_blank&quot;>EEA - WaterBodies</a>'
 		);
 		$this->_settings['wms_wms6_baseurl'] = array(
 			'version' => '1.0',
@@ -4879,7 +5514,7 @@ class Class_leaflet_options {
 			'title'    => __('baseURL','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Land/CLC2006_Dyna_WM/MapServer/WMSServer' 
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Land/CLC2006_Dyna_WM/MapServer/WMSServer'
 		);
 		$this->_settings['wms_wms6_layers'] = array(
 			'version' => '1.0',
@@ -4888,7 +5523,7 @@ class Class_leaflet_options {
 			'title'    => __('Layers','lmm'),
 			'desc'    => __('(required) Comma-separated list of WMS layers to show','lmm'),
 			'type'    => 'text',
-			'std'     => '2' 
+			'std'     => '2'
 		);
 		$this->_settings['wms_wms6_styles'] = array(
 			'version' => '1.0',
@@ -4897,7 +5532,7 @@ class Class_leaflet_options {
 			'title'    => __('Styles','lmm'),
 			'desc'    => __('Comma-separated list of WMS styles','lmm'),
 			'type'    => 'text',
-			'std'     => '' 
+			'std'     => ''
 		);
 		$this->_settings['wms_wms6_format'] = array(
 			'version' => '1.0',
@@ -4906,8 +5541,8 @@ class Class_leaflet_options {
 			'title'    => __('Format','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'image/png' 
-		);		
+			'std'     => 'image/png'
+		);
 		$this->_settings['wms_wms6_transparent'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4928,8 +5563,8 @@ class Class_leaflet_options {
 			'title'    => __('Version','lmm'),
 			'desc'    => __('Version of the WMS service to use','lmm'),
 			'type'    => 'text',
-			'std'     => '1.3.0' 
-		);	
+			'std'     => '1.3.0'
+		);
 		$this->_settings['wms_wms6_attribution'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4937,8 +5572,8 @@ class Class_leaflet_options {
 			'title'    => __('Attribution','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>' 
-		);		
+			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>'
+		);
 		$this->_settings['wms_wms6_legend_enabled'] = array(
 			'version' => '1.1',
 			'pane'    => 'wms',
@@ -4951,7 +5586,7 @@ class Class_leaflet_options {
 				'yes' => __('Yes','lmm'),
 				'no' => __('No','lmm')
 			)
-		);		
+		);
 		$this->_settings['wms_wms6_legend'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4959,8 +5594,8 @@ class Class_leaflet_options {
 			'title'    => __('Legend','lmm'),
 			'desc'    => __('URL of image which gets show when hovering the text "(Legend)" next to WMS attribution text','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Land/CLC2006_Dyna_WM/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=2'			
-		);		
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Land/CLC2006_Dyna_WM/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=2'
+		);
 		$this->_settings['wms_wms6_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -4982,12 +5617,12 @@ class Class_leaflet_options {
 			'desc'    => __('For example','lmm'). ": &quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;",
 			'std'     => '&quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;',
 			'type'    => 'text'
-		);	
+		);
 		$this->_settings['wms_wms6_kml_helptext'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
 			'section' => 'wms-sections7',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
 			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
 			'type'    => 'helptext'
@@ -5004,7 +5639,7 @@ class Class_leaflet_options {
 				'yes' => __('yes','lmm'),
 				'no' => __('no','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms6_kml_href'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5012,8 +5647,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
 			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Land/CLC2006_Dyna_WM/MapServer/generatekml?docName=&l%3A14=on&layers=14&layerOptions=nonComposite' 
-		);	
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Land/CLC2006_Dyna_WM/MapServer/generatekml?docName=&l%3A14=on&layers=14&layerOptions=nonComposite'
+		);
 		$this->_settings['wms_wms6_kml_refreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5028,7 +5663,7 @@ class Class_leaflet_options {
 				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
 				'onStop' => __('onStop (after camera movement stops)','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms6_kml_refreshInterval'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5036,8 +5671,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
 			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
 			'type'    => 'text',
-			'std'     => '30' 
-		);		
+			'std'     => '30'
+		);
 		$this->_settings['wms_wms6_kml_viewRefreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5051,7 +5686,7 @@ class Class_leaflet_options {
 				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
 				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
 			)
-		);			
+		);
 		$this->_settings['wms_wms6_kml_viewRefreshTime'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5059,8 +5694,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
 			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
 			'type'    => 'text',
-			'std'     => '1' 
-		);		
+			'std'     => '1'
+		);
 		/*
 		* WMS layer 7 settings
 		*/
@@ -5068,7 +5703,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'wms',
 			'section' => 'wms-sections8',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => '', //empty for not breaking settings layout
 			'type'    => 'helptext'
@@ -5080,7 +5715,7 @@ class Class_leaflet_options {
 			'title'    => __('Name','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Water/RiverAndLakes_Dyna_WM/MapServer&quot; target=&quot;_blank&quot;>EEA - Mean annual nitrates in rivers 2008</a>' 
+			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Water/RiverAndLakes_Dyna_WM/MapServer&quot; target=&quot;_blank&quot;>EEA - Mean annual nitrates in rivers 2008</a>'
 		);
 		$this->_settings['wms_wms7_baseurl'] = array(
 			'version' => '1.0',
@@ -5089,7 +5724,7 @@ class Class_leaflet_options {
 			'title'    => __('baseURL','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Water/RiverAndLakes_Dyna_WM/MapServer/WMSServer' 
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Water/RiverAndLakes_Dyna_WM/MapServer/WMSServer'
 		);
 		$this->_settings['wms_wms7_layers'] = array(
 			'version' => '1.0',
@@ -5098,7 +5733,7 @@ class Class_leaflet_options {
 			'title'    => __('Layers','lmm'),
 			'desc'    => __('(required) Comma-separated list of WMS layers to show','lmm'),
 			'type'    => 'text',
-			'std'     => '14' 
+			'std'     => '14'
 		);
 		$this->_settings['wms_wms7_styles'] = array(
 			'version' => '1.0',
@@ -5107,7 +5742,7 @@ class Class_leaflet_options {
 			'title'    => __('Styles','lmm'),
 			'desc'    => __('Comma-separated list of WMS styles','lmm'),
 			'type'    => 'text',
-			'std'     => '' 
+			'std'     => ''
 		);
 		$this->_settings['wms_wms7_format'] = array(
 			'version' => '1.0',
@@ -5116,8 +5751,8 @@ class Class_leaflet_options {
 			'title'    => __('Format','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'image/png' 
-		);		
+			'std'     => 'image/png'
+		);
 		$this->_settings['wms_wms7_transparent'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5138,8 +5773,8 @@ class Class_leaflet_options {
 			'title'    => __('Version','lmm'),
 			'desc'    => __('Version of the WMS service to use','lmm'),
 			'type'    => 'text',
-			'std'     => '1.3.0' 
-		);	
+			'std'     => '1.3.0'
+		);
 		$this->_settings['wms_wms7_attribution'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5147,8 +5782,8 @@ class Class_leaflet_options {
 			'title'    => __('Attribution','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>' 
-		);		
+			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>'
+		);
 		$this->_settings['wms_wms7_legend_enabled'] = array(
 			'version' => '1.1',
 			'pane'    => 'wms',
@@ -5161,7 +5796,7 @@ class Class_leaflet_options {
 				'yes' => __('Yes','lmm'),
 				'no' => __('No','lmm')
 			)
-		);		
+		);
 		$this->_settings['wms_wms7_legend'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5169,8 +5804,8 @@ class Class_leaflet_options {
 			'title'    => __('Legend','lmm'),
 			'desc'    => __('URL of image which gets show when hovering the text "(Legend)" next to WMS attribution text','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Water/RiverAndLakes_Dyna_WM/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=14'			
-		);		
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Water/RiverAndLakes_Dyna_WM/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=14'
+		);
 		$this->_settings['wms_wms7_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5192,12 +5827,12 @@ class Class_leaflet_options {
 			'desc'    => __('For example','lmm'). ": &quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;",
 			'std'     => '&quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;',
 			'type'    => 'text'
-		);	
+		);
 		$this->_settings['wms_wms7_kml_helptext'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
 			'section' => 'wms-sections8',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
 			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
 			'type'    => 'helptext'
@@ -5214,7 +5849,7 @@ class Class_leaflet_options {
 				'yes' => __('yes','lmm'),
 				'no' => __('no','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms7_kml_href'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5222,8 +5857,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
 			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Water/RiverAndLakes_Dyna_WM/MapServer/generatekml?docName=&l%3A9=on&layers=9&layerOptions=nonComposite' 
-		);	
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Water/RiverAndLakes_Dyna_WM/MapServer/generatekml?docName=&l%3A9=on&layers=9&layerOptions=nonComposite'
+		);
 		$this->_settings['wms_wms7_kml_refreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5238,7 +5873,7 @@ class Class_leaflet_options {
 				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
 				'onStop' => __('onStop (after camera movement stops)','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms7_kml_refreshInterval'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5246,8 +5881,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
 			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
 			'type'    => 'text',
-			'std'     => '30' 
-		);		
+			'std'     => '30'
+		);
 		$this->_settings['wms_wms7_kml_viewRefreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5261,7 +5896,7 @@ class Class_leaflet_options {
 				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
 				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
 			)
-		);			
+		);
 		$this->_settings['wms_wms7_kml_viewRefreshTime'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5269,7 +5904,7 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
 			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
 			'type'    => 'text',
-			'std'     => '1' 
+			'std'     => '1'
 		);
 		/*
 		* WMS layer 8 settings
@@ -5278,7 +5913,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'wms',
 			'section' => 'wms-sections9',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => '', //empty for not breaking settings layout
 			'type'    => 'helptext'
@@ -5290,7 +5925,7 @@ class Class_leaflet_options {
 			'title'    => __('Name','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Reports2010/Reports2008_Dyna_WGS84/MapServer&quot; target=&quot;_blank&quot;>EEA - Temperature Change</a>' 
+			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Reports2010/Reports2008_Dyna_WGS84/MapServer&quot; target=&quot;_blank&quot;>EEA - Temperature Change</a>'
 		);
 		$this->_settings['wms_wms8_baseurl'] = array(
 			'version' => '1.0',
@@ -5299,7 +5934,7 @@ class Class_leaflet_options {
 			'title'    => __('baseURL','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Reports2010/Reports2008_Dyna_WGS84/MapServer/WMSServer' 
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Reports2010/Reports2008_Dyna_WGS84/MapServer/WMSServer'
 		);
 		$this->_settings['wms_wms8_layers'] = array(
 			'version' => '1.0',
@@ -5308,7 +5943,7 @@ class Class_leaflet_options {
 			'title'    => __('Layers','lmm'),
 			'desc'    => __('(required) Comma-separated list of WMS layers to show','lmm'),
 			'type'    => 'text',
-			'std'     => '5' 
+			'std'     => '5'
 		);
 		$this->_settings['wms_wms8_styles'] = array(
 			'version' => '1.0',
@@ -5317,7 +5952,7 @@ class Class_leaflet_options {
 			'title'    => __('Styles','lmm'),
 			'desc'    => __('Comma-separated list of WMS styles','lmm'),
 			'type'    => 'text',
-			'std'     => '' 
+			'std'     => ''
 		);
 		$this->_settings['wms_wms8_format'] = array(
 			'version' => '1.0',
@@ -5326,8 +5961,8 @@ class Class_leaflet_options {
 			'title'    => __('Format','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'image/png' 
-		);		
+			'std'     => 'image/png'
+		);
 		$this->_settings['wms_wms8_transparent'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5348,8 +5983,8 @@ class Class_leaflet_options {
 			'title'    => __('Version','lmm'),
 			'desc'    => __('Version of the WMS service to use','lmm'),
 			'type'    => 'text',
-			'std'     => '1.3.0' 
-		);	
+			'std'     => '1.3.0'
+		);
 		$this->_settings['wms_wms8_attribution'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5357,8 +5992,8 @@ class Class_leaflet_options {
 			'title'    => __('Attribution','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>' 
-		);		
+			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>'
+		);
 		$this->_settings['wms_wms8_legend_enabled'] = array(
 			'version' => '1.1',
 			'pane'    => 'wms',
@@ -5371,7 +6006,7 @@ class Class_leaflet_options {
 				'yes' => __('Yes','lmm'),
 				'no' => __('No','lmm')
 			)
-		);		
+		);
 		$this->_settings['wms_wms8_legend'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5379,8 +6014,8 @@ class Class_leaflet_options {
 			'title'    => __('Legend','lmm'),
 			'desc'    => __('URL of image which gets show when hovering the text "(Legend)" next to WMS attribution text','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://cow6/ArcGIS/services/Reports2010/Reports2008_Dyna_WGS84/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=5'			
-		);		
+			'std'     => 'http://cow6/ArcGIS/services/Reports2010/Reports2008_Dyna_WGS84/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=5'
+		);
 		$this->_settings['wms_wms8_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5402,12 +6037,12 @@ class Class_leaflet_options {
 			'desc'    => __('For example','lmm'). ": &quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;",
 			'std'     => '&quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;',
 			'type'    => 'text'
-		);	
+		);
 		$this->_settings['wms_wms8_kml_helptext'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
 			'section' => 'wms-sections9',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
 			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
 			'type'    => 'helptext'
@@ -5425,7 +6060,7 @@ class Class_leaflet_options {
 				'yes' => __('yes','lmm'),
 				'no' => __('no','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms8_kml_href'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5433,8 +6068,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
 			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Reports2010/Reports2008_Dyna_WGS84/MapServer/generatekml?docName=&l%3A26=on&layers=26&layerOptions=nonComposite' 
-		);	
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Reports2010/Reports2008_Dyna_WGS84/MapServer/generatekml?docName=&l%3A26=on&layers=26&layerOptions=nonComposite'
+		);
 		$this->_settings['wms_wms8_kml_refreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5449,7 +6084,7 @@ class Class_leaflet_options {
 				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
 				'onStop' => __('onStop (after camera movement stops)','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms8_kml_refreshInterval'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5457,8 +6092,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
 			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
 			'type'    => 'text',
-			'std'     => '30' 
-		);		
+			'std'     => '30'
+		);
 		$this->_settings['wms_wms8_kml_viewRefreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5472,7 +6107,7 @@ class Class_leaflet_options {
 				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
 				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
 			)
-		);			
+		);
 		$this->_settings['wms_wms8_kml_viewRefreshTime'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5480,7 +6115,7 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
 			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
 			'type'    => 'text',
-			'std'     => '1' 
+			'std'     => '1'
 		);
 		/*
 		* WMS layer 9 settings
@@ -5489,7 +6124,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'wms',
 			'section' => 'wms-sections10',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => '', //empty for not breaking settings layout
 			'type'    => 'helptext'
@@ -5501,7 +6136,7 @@ class Class_leaflet_options {
 			'title'    => __('Name','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Bio/CDDA_Dyna_WGS84/MapServer&quot; target=&quot;_blank&quot;>EEA - Common Database on Designated Areas</a>' 
+			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Bio/CDDA_Dyna_WGS84/MapServer&quot; target=&quot;_blank&quot;>EEA - Common Database on Designated Areas</a>'
 		);
 		$this->_settings['wms_wms9_baseurl'] = array(
 			'version' => '1.0',
@@ -5510,7 +6145,7 @@ class Class_leaflet_options {
 			'title'    => __('baseURL','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Bio/CDDA_Dyna_WGS84/MapServer/WMSServer' 
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Bio/CDDA_Dyna_WGS84/MapServer/WMSServer'
 		);
 		$this->_settings['wms_wms9_layers'] = array(
 			'version' => '1.0',
@@ -5519,7 +6154,7 @@ class Class_leaflet_options {
 			'title'    => __('Layers','lmm'),
 			'desc'    => __('(required) Comma-separated list of WMS layers to show','lmm'),
 			'type'    => 'text',
-			'std'     => '0' 
+			'std'     => '0'
 		);
 		$this->_settings['wms_wms9_styles'] = array(
 			'version' => '1.0',
@@ -5528,7 +6163,7 @@ class Class_leaflet_options {
 			'title'    => __('Styles','lmm'),
 			'desc'    => __('Comma-separated list of WMS styles','lmm'),
 			'type'    => 'text',
-			'std'     => '' 
+			'std'     => ''
 		);
 		$this->_settings['wms_wms9_format'] = array(
 			'version' => '1.0',
@@ -5537,8 +6172,8 @@ class Class_leaflet_options {
 			'title'    => __('Format','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'image/png' 
-		);		
+			'std'     => 'image/png'
+		);
 		$this->_settings['wms_wms9_transparent'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5559,8 +6194,8 @@ class Class_leaflet_options {
 			'title'    => __('Version','lmm'),
 			'desc'    => __('Version of the WMS service to use','lmm'),
 			'type'    => 'text',
-			'std'     => '1.3.0' 
-		);	
+			'std'     => '1.3.0'
+		);
 		$this->_settings['wms_wms9_attribution'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5568,8 +6203,8 @@ class Class_leaflet_options {
 			'title'    => __('Attribution','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>' 
-		);		
+			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>'
+		);
 		$this->_settings['wms_wms9_legend_enabled'] = array(
 			'version' => '1.1',
 			'pane'    => 'wms',
@@ -5582,7 +6217,7 @@ class Class_leaflet_options {
 				'yes' => __('Yes','lmm'),
 				'no' => __('No','lmm')
 			)
-		);		
+		);
 		$this->_settings['wms_wms9_legend'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5590,8 +6225,8 @@ class Class_leaflet_options {
 			'title'    => __('Legend','lmm'),
 			'desc'    => __('URL of image which gets show when hovering the text "(Legend)" next to WMS attribution text','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Bio/CDDA_Dyna_WGS84/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=0'			
-		);		
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Bio/CDDA_Dyna_WGS84/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=0'
+		);
 		$this->_settings['wms_wms9_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5613,12 +6248,12 @@ class Class_leaflet_options {
 			'desc'    => __('For example','lmm'). ": &quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;",
 			'std'     => '&quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;',
 			'type'    => 'text'
-		);	
+		);
 		$this->_settings['wms_wms9_kml_helptext'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
 			'section' => 'wms-sections10',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
 			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
 			'type'    => 'helptext'
@@ -5635,7 +6270,7 @@ class Class_leaflet_options {
 				'yes' => __('yes','lmm'),
 				'no' => __('no','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms9_kml_href'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5643,8 +6278,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
 			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Bio/CDDA_Dyna_WGS84/MapServer/generatekml?docName=&l%3A2=on&layers=2&layerOptions=nonComposite' 
-		);	
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Bio/CDDA_Dyna_WGS84/MapServer/generatekml?docName=&l%3A2=on&layers=2&layerOptions=nonComposite'
+		);
 		$this->_settings['wms_wms9_kml_refreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5659,7 +6294,7 @@ class Class_leaflet_options {
 				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
 				'onStop' => __('onStop (after camera movement stops)','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms9_kml_refreshInterval'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5667,8 +6302,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
 			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
 			'type'    => 'text',
-			'std'     => '30' 
-		);		
+			'std'     => '30'
+		);
 		$this->_settings['wms_wms9_kml_viewRefreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5682,7 +6317,7 @@ class Class_leaflet_options {
 				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
 				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
 			)
-		);			
+		);
 		$this->_settings['wms_wms9_kml_viewRefreshTime'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5690,7 +6325,7 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
 			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
 			'type'    => 'text',
-			'std'     => '1' 
+			'std'     => '1'
 		);
 		/*
 		* WMS layer 10 settings
@@ -5699,7 +6334,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'wms',
 			'section' => 'wms-sections11',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => '', //empty for not breaking settings layout
 			'type'    => 'helptext'
@@ -5711,7 +6346,7 @@ class Class_leaflet_options {
 			'title'    => __('Name','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Noise/Noise_Dyna_LAEA/MapServer&quot; target=&quot;_blank&quot;>EEA - Road noise Austria</a>' 
+			'std'     => '<a href=&quot;http://discomap.eea.europa.eu/ArcGIS/rest/services/Noise/Noise_Dyna_LAEA/MapServer&quot; target=&quot;_blank&quot;>EEA - Road noise Austria</a>'
 		);
 		$this->_settings['wms_wms10_baseurl'] = array(
 			'version' => '1.0',
@@ -5720,7 +6355,7 @@ class Class_leaflet_options {
 			'title'    => __('baseURL','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Noise/Noise_Dyna_LAEA/MapServer/WMSServer' 
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Noise/Noise_Dyna_LAEA/MapServer/WMSServer'
 		);
 		$this->_settings['wms_wms10_layers'] = array(
 			'version' => '1.0',
@@ -5729,7 +6364,7 @@ class Class_leaflet_options {
 			'title'    => __('Layers','lmm'),
 			'desc'    => __('(required) Comma-separated list of WMS layers to show','lmm'),
 			'type'    => 'text',
-			'std'     => '247' 
+			'std'     => '247'
 		);
 		$this->_settings['wms_wms10_styles'] = array(
 			'version' => '1.0',
@@ -5738,7 +6373,7 @@ class Class_leaflet_options {
 			'title'    => __('Styles','lmm'),
 			'desc'    => __('Comma-separated list of WMS styles','lmm'),
 			'type'    => 'text',
-			'std'     => '' 
+			'std'     => ''
 		);
 		$this->_settings['wms_wms10_format'] = array(
 			'version' => '1.0',
@@ -5747,8 +6382,8 @@ class Class_leaflet_options {
 			'title'    => __('Format','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'image/png' 
-		);		
+			'std'     => 'image/png'
+		);
 		$this->_settings['wms_wms10_transparent'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5770,8 +6405,8 @@ class Class_leaflet_options {
 			'title'    => __('Version','lmm'),
 			'desc'    => __('Version of the WMS service to use','lmm'),
 			'type'    => 'text',
-			'std'     => '1.3.0' 
-		);	
+			'std'     => '1.3.0'
+		);
 		$this->_settings['wms_wms10_attribution'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5779,8 +6414,8 @@ class Class_leaflet_options {
 			'title'    => __('Attribution','lmm'),
 			'desc'    => '',
 			'type'    => 'text',
-			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>' 
-		);		
+			'std'     => 'WMS: <a href=&quot;http://www.eea.europa.eu/code/gis&quot; target=&quot;_blank&quot;>European Environment Agency</a>'
+		);
 		$this->_settings['wms_wms10_legend_enabled'] = array(
 			'version' => '1.1',
 			'pane'    => 'wms',
@@ -5793,7 +6428,7 @@ class Class_leaflet_options {
 				'yes' => __('Yes','lmm'),
 				'no' => __('No','lmm')
 			)
-		);		
+		);
 		$this->_settings['wms_wms10_legend'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5801,8 +6436,8 @@ class Class_leaflet_options {
 			'title'    => __('Legend','lmm'),
 			'desc'    => __('URL of image which gets show when hovering the text "(Legend)" next to WMS attribution text','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Noise/Noise_Dyna_LAEA/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=247'			
-		);		
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/services/Noise/Noise_Dyna_LAEA/MapServer/WMSServer?request=GetLegendGraphic%26version=1.3.0%26format=image/png%26layer=247'
+		);
 		$this->_settings['wms_wms10_subdomains_enabled'] = array(
 			'version' => '1.0',
 			'pane'    => 'wms',
@@ -5824,12 +6459,12 @@ class Class_leaflet_options {
 			'desc'    => __('For example','lmm'). ": &quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;",
 			'std'     => '&quot;subdomain1&quot;, &quot;subdomain2&quot;, &quot;subdomain3&quot;',
 			'type'    => 'text'
-		);											
+		);
 		$this->_settings['wms_wms10_kml_helptext'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
 			'section' => 'wms-sections11',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '<strong>' . __('KML settings','lmm') . '</strong>',
 			'desc'    => __('If the WMS server supports KML output of the WMS layer, the settings below will be used when a marker or layer map with this active WMS layer is exported as KML.','lmm'),
 			'type'    => 'helptext'
@@ -5846,7 +6481,7 @@ class Class_leaflet_options {
 				'yes' => __('yes','lmm'),
 				'no' => __('no','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms10_kml_href'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5854,8 +6489,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
 			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Noise/Noise_Dyna_LAEA/MapServer/generatekml?docName=&l%3A222=on&layers=222&layerOptions=nonComposite' 
-		);	
+			'std'     => 'http://discomap.eea.europa.eu/ArcGIS/rest/services/Noise/Noise_Dyna_LAEA/MapServer/generatekml?docName=&l%3A222=on&layers=222&layerOptions=nonComposite'
+		);
 		$this->_settings['wms_wms10_kml_refreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5870,7 +6505,7 @@ class Class_leaflet_options {
 				'onExpire' => __('onExpire (refresh the file when the expiration time is reached)','lmm'),
 				'onStop' => __('onStop (after camera movement stops)','lmm')
 			)
-		);	
+		);
 		$this->_settings['wms_wms10_kml_refreshInterval'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5878,8 +6513,8 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#refreshinterval" target="_blank">refreshInterval</a>',
 			'desc'    => __('Indicates to refresh the file every n seconds','lmm'),
 			'type'    => 'text',
-			'std'     => '30' 
-		);		
+			'std'     => '30'
+		);
 		$this->_settings['wms_wms10_kml_viewRefreshMode'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5893,7 +6528,7 @@ class Class_leaflet_options {
 				'onStop' => __('onStop (refresh the file n seconds after movement stops, where n is specified in viewRefreshTime)','lmm'),
 				'onRequest' => __('onRequest (refresh the file only when the user explicitly requests it)','lmm')
 			)
-		);			
+		);
 		$this->_settings['wms_wms10_kml_viewRefreshTime'] = array(
 			'version' => '1.4.3',
 			'pane'    => 'wms',
@@ -5901,16 +6536,16 @@ class Class_leaflet_options {
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#viewrefreshtime" target="_blank">viewRefreshTime</a>',
 			'desc'    => __('After camera movement stops, specifies the number of seconds to wait before refreshing the view (is used when viewRefreshMode is set to onStop)','lmm'),
 			'type'    => 'text',
-			'std'     => '1' 
+			'std'     => '1'
 		);
-	
+
 		/*===========================================
 		*
 		*
 		* pane Google
 		*
 		*
-		===========================================*/	
+		===========================================*/
 		/*
 		* Google Maps API Key
 		*/
@@ -5918,7 +6553,7 @@ class Class_leaflet_options {
 			'version' => '2.6',
 			'pane'    => 'google',
 			'section' => 'google-section1',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'The usage of Google Maps is free for non-commercial users. Since 01/2012, commercial users have a current usage limit of 25.000 free requests a day - with additional usage cost of 0.5$/1000 requests. In order to comply with the <a href="https://developers.google.com/maps/faq" target="_blank">Google Maps terms of services</a>, commercial users have to <a href="https://developers.google.com/maps/documentation/javascript/tutorial#api_key">register for a free API key</a>. This API key can also be used by non-commercial users in order to monitor their Google Maps API usage.', 'lmm'),
 			'type'    => 'helptext'
@@ -5936,9 +6571,9 @@ class Class_leaflet_options {
 			'version' => '2.6',
 			'pane'    => 'google',
 			'section' => 'google-section1',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => '<div style="height:10px;"></div>',
+			'desc'    => '<div style="height:60px;"></div>',
 			'type'    => 'helptext'
 		);
 		/*
@@ -5949,7 +6584,7 @@ class Class_leaflet_options {
 			'version' => '2.7.1',
 			'pane'    => 'google',
 			'section' => 'google-section2',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'Language used when displaying textual information such as the names for controls, copyright notices, driving directions and labels on Google maps, direction links and autocomplete for address search.', 'lmm'),
 			'type'    => 'helptext'
@@ -6025,7 +6660,7 @@ class Class_leaflet_options {
 			'version' => '2.7.1',
 			'pane'    => 'google',
 			'section' => 'google-section3',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'The base domain from which to load the Google Maps API (used for geocoding for example). If you want to change the language of the Google Maps interface (buttons etc) only, please change the option "Google language localization" above.', 'lmm') . ' ' . __('This base domain is also used for Google Maps Directions.','lmm'),
 			'type'    => 'helptext'
@@ -6078,7 +6713,7 @@ class Class_leaflet_options {
 			'desc'    => __( 'If your localized Google Maps basedomain is not available in the list above, please enter the domain name here (without http://, for example maps.google.com). If a domain name is entered, the setting "Google Maps base domain" from above gets overwritten.', 'lmm' ),
 			'std'     => '',
 			'type'    => 'text'
-		);		
+		);
 		/*
 		* Google Places Bounds
 		*/
@@ -6086,9 +6721,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'google',
 			'section' => 'google-section4',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Leaflet Maps Marker uses the <a href="http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html" target="_blank">Google Places Autocomplete API</a> to easily find coordinates for places or addresses. This feature is enabled by default. Preview:', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-google-places-preview.png" /><br/>' . __( 'You can get better search results if you enable the bounds feature. This allows you to specify the area in which to primarily search for places or addresses. Please note: the results are biased towards, but not restricted to places or addresses contained within these bounds.', 'lmm'),
+			'desc'    => __( 'Leaflet Maps Marker uses the <a href="http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html" target="_blank">Google Places Autocomplete API</a> to easily find coordinates for places or addresses. This feature is enabled by default. Preview:', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-google-places-preview.png" width="640" height="132" /><br/>' . __( 'You can get better search results if you enable the bounds feature. This allows you to specify the area in which to primarily search for places or addresses. Please note: the results are biased towards, but not restricted to places or addresses contained within these bounds.', 'lmm'),
 			'type'    => 'helptext'
 		);
 		$this->_settings['google_places_bounds_status'] = array(
@@ -6108,9 +6743,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'google',
 			'section' => 'google-section4',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'If enabled, please enter longitude and latitude values below for the corner points of the prefered search area. Below you find an example for Vienna/Austria:', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-google-places-bounds.jpg" />',
+			'desc'    => __( 'If enabled, please enter longitude and latitude values below for the corner points of the prefered search area. Below you find an example for Vienna/Austria:', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-google-places-bounds.jpg" width="425" height="334" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['google_places_bounds_lat1'] = array(
@@ -6148,7 +6783,7 @@ class Class_leaflet_options {
 			'desc'    => __( 'Please use a dot instead of a coma as decimal delimiter!', 'lmm' ),
 			'std'     => '16.187325',
 			'type'    => 'text'
-		);		
+		);
 		/*
 		* Google Places Search Prefix
 		*/
@@ -6156,9 +6791,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'google',
 			'section' => 'google-section5',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'You can also select a search prefix, which automatically gets added to search form when creating a new marker or layer.', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-google-places-prefix.png" />',
+			'desc'    => __( 'You can also select a search prefix, which automatically gets added to search form when creating a new marker or layer.', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-google-places-prefix.png" width="630" height="55" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['google_places_search_prefix_status'] = array(
@@ -6182,15 +6817,176 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => 'Wien, ',
 			'type'    => 'text'
-		);	
-		
+		);
+		/*
+		* Google Adsense Settings
+		*/
+		$this->_settings['google_adsense_helptext1'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'google',
+			'section' => 'google-section6',
+			'std'     => '',
+			'title'   => '',
+			'desc'    => __( 'Use the settings below to customize the display of ads on Google basemaps.', 'lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-adsense.jpg" width="625" height="67" /><br/><br/><a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a><br/><span style="font-weight:bold;color:red;">' . sprintf(__( 'Attention: please be aware that although the plugin has been designed to meet the <a href="%1s" target="_blank">Google AdSense programme policies</a>, finally it is your responsibility to verify that your maps meet the Adsense requirements (as this is heavily depended on how you have configured your maps). For example it is advised to double check the position of the ads in order that they are not being overlayed by map controls (which is not allowed by Google and could result in sanctions like the cancellation of your Adsense publisher account)!', 'lmm'), 'https://support.google.com/adsense/answer/48182') . '</span>',
+			'type'    => 'helptext'
+		);
+		$this->_settings['google_adsense_status'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'google',
+			'section' => 'google-section6',
+			'title'   => 'Google Adsense<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Please set to disabled if you do not want to display ads on Google basemaps','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'disabled',
+			'choices' => array(
+				'enabled' => __('enabled','lmm'),
+				'disabled' => __('disabled','lmm')
+			)
+		);
+		$this->_settings['google_adsense_publisherId'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'google',
+			'section' => 'google-section6',
+			'title'   => 'publisherId<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => sprintf(__('Adding display ads to your map requires that you have an AdSense account enabled for AdSense for Content. If you do not yet have an AdSense account, <a href="%1s" target="_blank">sign up for one</a>. Once you have done so (or if you already have an account) make sure you have also enabled the account with <a href="%2s" target="_blank">AdSense for Content</a>. Once you have an Adsense for Content account, you will have received an AdSense for Content (AFC) publisher ID. This publisher ID is used within your code to link any advertising shown to your AdSense account, allowing you to share in advertising revenue when a user clicks on one of the ads shown on your map.','lmm'), 'https://www.google.com/adsense/support/bin/answer.py?answer=10162', 'https://www.google.com/adsense/support/bin/answer.py?hl=en&answer=17470'),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);		
+		$this->_settings['google_adsense_format'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'google',
+			'section' => 'google-section6',
+			'title'   => __('Format','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => sprintf(__('Display formats of type google.maps.adsense.AdFormat, both text ads and link units are supported. Please see %1s for more details and examples','lmm'),'<a href="https://support.google.com/adsense/bin/answer.py?hl=de&utm_medium=link&utm_campaign=ww-ww-et-asfe_&utm_source=aso&answer=185665" target="_blank">https://support.google.com/adsense/...</a>'),
+			'type'    => 'radio-pro',
+			'std'     => 'HALF_BANNER',
+			'choices' => array(
+				'LEADERBOARD' => 'LEADERBOARD',
+				'BANNER' => 'BANNER',
+				'HALF_BANNER' => 'HALF_BANNER',
+				'SKYSCRAPER' => 'SKYSCRAPER',
+				'WIDE_SKYSCRAPER' => 'WIDE_SKYSCRAPER',
+				'VERTICAL_BANNER' => 'VERTICAL_BANNER',
+				'BUTTON' => 'BUTTON',
+				'SMALL_SQUARE' => 'SMALL_SQUARE',
+				'SQUARE' => 'SQUARE',
+				'SMALL_RECTANGLE' => 'SMALL_RECTANGLE',
+				'MEDIUM_RECTANGLE' => 'MEDIUM_RECTANGLE',
+				'LARGE_RECTANGLE' => 'LARGE_RECTANGLE',
+				'SMALL_VERTICAL_LINK_UNIT' => 'SMALL_VERTICAL_LINK_UNIT',
+				'MEDIUM_VERTICAL_LINK_UNIT' => 'MEDIUM_VERTICAL_LINK_UNIT',
+				'LARGE_VERTICAL_LINK_UNIT' => 'LARGE_VERTICAL_LINK_UNIT',
+				'X_LARGE_VERTICAL_LINK_UNIT' => 'X_LARGE_VERTICAL_LINK_UNIT',
+				'SMALL_HORIZONTAL_LINK_UNIT' => 'SMALL_HORIZONTAL_LINK_UNIT',
+				'LARGE_HORIZONTAL_LINK_UNIT' => 'LARGE_HORIZONTAL_LINK_UNIT'
+			)
+		);
+		$this->_settings['google_adsense_position'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'google',
+			'section' => 'google-section6',
+			'title'   => __('Position','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => sprintf(__('<a href="%1s" target="_blank">click here for more information on ad positions which might cause conflicts with Google AdSense programme policies</a>','lmm'), 'http://www.mapsmarker.com/docs/pro-version-docs/how-to-configure-google-adsense-in-order-not-to-violate-google-adsense-programme-policies/') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-google-adsense-positions.jpg" width="640" height="480" />',
+			'type'    => 'radio-pro',
+			'std'     => 'TOP_CENTER',
+			'choices' => array(
+				'TOP_CENTER' => 'TOP_CENTER',
+				'TOP_LEFT' => 'TOP_LEFT' . ' <span style="font-weight:bold;color:red;">(' . __('likely to violate Google AdSense programme policies with default configuration!','lmm') . ')</span>',
+				'TOP_RIGHT' => 'TOP_RIGHT' . ' <span style="font-weight:bold;color:red;">(' . __('likely to violate Google AdSense programme policies with default configuration!','lmm') . ')</span>',
+				'LEFT_TOP' => 'LEFT_TOP' . ' <span style="font-weight:bold;color:red;">(' . __('likely to violate Google AdSense programme policies with default configuration!','lmm') . ')</span>',
+				'RIGHT_TOP' => 'RIGHT_TOP' . ' <span style="font-weight:bold;color:red;">(' . __('likely to violate Google AdSense programme policies with default configuration!','lmm') . ')</span>',
+				'LEFT_CENTER' => 'LEFT_CENTER',
+				'RIGHT_CENTER' => 'RIGHT_CENTER',
+				'LEFT_BOTTOM' => 'LEFT_BOTTOM',
+				'RIGHT_BOTTOM' => 'RIGHT_BOTTOM' . ' <span style="font-weight:bold;color:red;">(' . __('likely to violate Google AdSense programme policies with default configuration!','lmm') . ')</span>',
+				'BOTTOM_LEFT' => 'BOTTOM_LEFT' . ' <span style="font-weight:bold;color:red;">(' . __('likely to violate Google AdSense programme policies with default configuration!','lmm') . ')</span>',
+				'BOTTOM_CENTER' => 'BOTTOM_CENTER',
+				'BOTTOM_RIGHT' => 'BOTTOM_RIGHT' . ' <span style="font-weight:bold;color:red;">(' . __('likely to violate Google AdSense programme policies with default configuration!','lmm') . ')</span>'
+			)
+		);
+		$this->_settings['google_adsense_backgroundColor'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'google',
+			'section' => 'google-section6',
+			'title'   => 'backgroundColor<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Ad unit background color','lmm'),
+			'std'     => '#c4d4f3',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['google_adsense_borderColor'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'google',
+			'section' => 'google-section6',
+			'title'   => 'borderColor<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Ad unit border color','lmm'),
+			'std'     => '#e5ecf9',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['google_adsense_titleColor'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'google',
+			'section' => 'google-section6',
+			'title'   => 'titleColor<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Ad title link color','lmm'),
+			'std'     => '#0000cc',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['google_adsense_textColor'] = array(
+			'version' => 'p1.0',
+
+			'pane'    => 'google',
+			'section' => 'google-section6',
+			'title'   => 'textColor<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Ad creative text color','lmm'),
+			'std'     => '#000000',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['google_adsense_urlColor'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'google',
+			'section' => 'google-section6',
+			'title'   => 'urlColor<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Ad attribution URL link color','lmm'),
+			'std'     => '#009900',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['google_adsense_channelNumber'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'google',
+			'section' => 'google-section6',
+			'title'   => 'channelNumber<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('The AdSense For Content channel number for tracking the performance of this AdUnit. It must be stored as a string as it will typically be a large UINT64.','lmm'),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		/*
+		* Google Maps styling
+		*/
+		$this->_settings['google_styling_helptext1'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'google',
+			'section' => 'google-section7',
+			'std'     => '',
+			'title'   => '',
+			'desc'    => __( 'Styled maps allow you to customize the presentation of the standard Google base maps, changing the visual display of such elements as roads, parks, and built-up areas.', 'lmm') . '<br/><a href="http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/examplestyles.html" target="_blank" title="' . esc_attr__('show examples','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-google-styling-preview.jpg" width="650" height="401" /></a><a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
+			'type'    => 'helptext'
+		);
+		$this->_settings['google_styling_json'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'google',
+			'section' => 'google-section7',
+			'title'   => 'JSON<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => sprintf(__('Please enter the custom JSON array to style your Google maps (you can use the <a href="%1s" target="_blank">Google Styled Maps Wizard</a> to create custom styles easily). Example for hiding roads:','lmm'), 'http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html') . ' <br/><strong>[ { &#39;featureType&#39;: &#39;road.highway&#39;, &#39;elementType&#39;: &#39;geometry&#39;, &#39;stylers&#39;: [ { &#39;visibility&#39;: &#39;off&#39; } ] },{ &#39;featureType&#39;: &#39;road.arterial&#39;, &#39;stylers&#39;: [ { &#39;visibility&#39;: &#39;off&#39; } ] },{ &#39;featureType&#39;: &#39;road.local&#39;, &#39;stylers&#39;: [ { &#39;visibility&#39;: &#39;off&#39; } ] } ]</strong>',
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
 		/*===========================================
 		*
 		*
 		* pane Bing
 		*
 		*
-		===========================================*/	
+		===========================================*/
 		/*
 		* Bing Maps API Key
 		*/
@@ -6198,11 +6994,11 @@ class Class_leaflet_options {
 			'version' => '2.6',
 			'pane'    => 'bing',
 			'section' => 'bing-section1',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'An API key is required if you want to use Bing Maps as basemap for marker or layer maps. Please click on the question mark for more info on how to get your API key.', 'lmm') . ' <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'helptext'
-		);		
+		);
 		$this->_settings['bingmaps_api_key'] = array(
 			'version' => '2.6',
 			'pane'    => 'bing',
@@ -6211,7 +7007,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'std'     => '',
 			'type'    => 'text'
-		);				
+		);
 		/*
 		* Bing culture parameter
 		* http://msdn.microsoft.com/en-us/library/hh441729.aspx
@@ -6220,7 +7016,7 @@ class Class_leaflet_options {
 			'version' => '2.9',
 			'pane'    => 'bing',
 			'section' => 'bing-section2',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'The culture parameter allows you to select the language of the culture for geographic entities, place names and map labels on bing map images. For supported cultures, street names are localized to the local culture. For example, if you request a location in France, the street names are localized in French. For other localized data such as country names, the level of localization will vary for each culture. For example, there may not be a localized name for the "United States" for every culture code. See <a href="http://msdn.microsoft.com/en-us/library/hh441729.aspx" target="_blank">this page</a> for more details.', 'lmm'),
 			'type'    => 'helptext'
@@ -6350,14 +7146,14 @@ class Class_leaflet_options {
 				'zh-Hant' => __('Chinese (Traditional)','lmm') . ' (' . __('culture code','lmm') . ': zh-Hant)',
 				'zu' => __('isiZulu','lmm') . ' (' . __('culture code','lmm') . ': zu)'
 			)
-		);		
+		);
 		/*===========================================
 		*
 		*
 		* pane Directions
 		*
 		*
-		===========================================*/	
+		===========================================*/
 		/*
 		* Directions General
 		*/
@@ -6365,7 +7161,7 @@ class Class_leaflet_options {
 			'version' => '1.4',
 			'pane'    => 'directions',
 			'section' => 'directions-section1',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'Please select your prefered directions provider. This setting will be used for the directions link in the panel on top of marker maps and for the action panel which gets attached to the popup text on each marker if enabled.', 'lmm'),
 			'type'    => 'helptext'
@@ -6382,9 +7178,10 @@ class Class_leaflet_options {
 				'googlemaps' => __('Google Maps (worldwide)','lmm') . ' - <a href="http://maps.google.com/maps?saddr=Vienna&daddr=Linz&hl=de&sll=37.0625,-95.677068&sspn=59.986788,135.263672&geocode=FS6Z3wIdO9j5ACmfyjZRngdtRzFGW6JRiuXC_Q%3BFfwa4QIdBvzZAClNhZn6lZVzRzHEdXlXLClTfA&vpsrc=0&mra=ls&t=m&z=9&layer=t" style="text-decoration:none;" target="_blank">Demo</a>',
 				'yours' => __('yournavigation.org (based on OpenStreetMap, worldwide)','lmm') . ' - <a href="http://www.yournavigation.org/?flat=52.215636&flon=6.963946&tlat=52.2573&tlon=6.1799&v=motorcar&fast=1&layer=mapnik" style="text-decoration:none;" target="_blank">Demo</a>',
 				'osrm' => __('map.project-osrm.org (based on OpenStreetMap, worldwide)','lmm') . ' - <a href="http://map.project-osrm.org/?hl=en&loc=48.242330,16.433030&loc=48.219069,16.380959" style="text-decoration:none;" target="_blank">Demo</a>',
-				'ors' => __('openrouteservice.org (based on OpenStreetMap, Europe only)','lmm') . ' - <a href="http://openrouteservice.org/index.php?start=7.0892567,50.7265543&end=7.0986258,50.7323634&lat=50.72905&lon=7.09574&zoom=15&pref=Fastest&lang=de" style="text-decoration:none;" target="_blank">Demo</a>'
+				'ors' => __('openrouteservice.org (based on OpenStreetMap, Europe only)','lmm') . ' - <a href="http://openrouteservice.org/index.php?start=7.0892567,50.7265543&end=7.0986258,50.7323634&lat=50.72905&lon=7.09574&zoom=15&pref=Fastest&lang=de" style="text-decoration:none;" target="_blank">Demo</a>',
+				'bingmaps' => __('Bing Maps (worldwide)','lmm') . ' - <a href="http://www.bing.com/maps/default.aspx?v=2&rtp=pos.48.208614_16.370541___e_~pos.48.207321_16.330513" style="text-decoration:none;" target="_blank">Demo</a>'
 			)
-		);	
+		);
 		$this->_settings['directions_popuptext_panel'] = array(
 			'version' => '1.4',
 			'pane'    => 'directions',
@@ -6396,14 +7193,14 @@ class Class_leaflet_options {
 			'choices' => array(
 				'yes' => __('yes','lmm'),
 				'no' => __('no','lmm')			)
-		);			
+		);
 		$this->_settings['directions_general_helptext2'] = array(
 			'version' => '1.4',
 			'pane'    => 'directions',
 			'section' => 'directions-section1',
-			'std'     => '', 
-			'title'   => '',	
-			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-directions-popuptext-panel.jpg" />',
+			'std'     => '',
+			'title'   => '',
+			'desc'    => '<img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-directions-popuptext-panel.jpg" width="450" height="218" />',
 			'type'    => 'helptext'
 		);
 		/*
@@ -6417,7 +7214,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'type'    => 'helptext',
 			'std'     => ''
-		);			
+		);
 		$this->_settings['directions_googlemaps_map_type'] = array(
 			'version' => '1.4',
 			'pane'    => 'directions',
@@ -6430,9 +7227,9 @@ class Class_leaflet_options {
 				'm' => __('Map','lmm'),
 				'k' => __('Satellite','lmm'),
 				'h' => __('Hybrid','lmm'),
-				'p' => __('Terrain','lmm')							
+				'p' => __('Terrain','lmm')
 			)
-		);	
+		);
 		$this->_settings['directions_googlemaps_traffic'] = array(
 			'version' => '1.4',
 			'pane'    => 'directions',
@@ -6445,7 +7242,7 @@ class Class_leaflet_options {
 				'1' => __('yes','lmm'),
 				'0' => __('no','lmm')
 			)
-		);	
+		);
 		$this->_settings['directions_googlemaps_distance_units'] = array(
 			'version' => '1.4',
 			'pane'    => 'directions',
@@ -6456,9 +7253,9 @@ class Class_leaflet_options {
 			'std'     => 'ptk',
 			'choices' => array(
 				'ptk' => __('metric (km)','lmm'),
-				'ptm' => __('imperial (miles)','lmm')							
+				'ptm' => __('imperial (miles)','lmm')
 			)
-		);		
+		);
 		$this->_settings['directions_googlemaps_route_type_highways'] = array(
 			'version' => '1.0',
 			'pane'    => 'directions',
@@ -6466,8 +7263,8 @@ class Class_leaflet_options {
 			'title'    => __('Route type','lmm'),
 			'desc'    => __('Avoid highways','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);				
+			'std'     => 0
+		);
 		$this->_settings['directions_googlemaps_route_type_tolls'] = array(
 			'version' => '1.0',
 			'pane'    => 'directions',
@@ -6475,8 +7272,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Avoid tolls','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['directions_googlemaps_route_type_public_transport'] = array(
 			'version' => '1.0',
 			'pane'    => 'directions',
@@ -6484,8 +7281,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Public transport (works only in some areas)','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['directions_googlemaps_route_type_walking'] = array(
 			'version' => '1.0',
 			'pane'    => 'directions',
@@ -6493,8 +7290,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Walking directions','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);					
+			'std'     => 0
+		);
 		$this->_settings['directions_googlemaps_overview_map'] = array(
 			'version' => '1.4',
 			'pane'    => 'directions',
@@ -6507,8 +7304,8 @@ class Class_leaflet_options {
 				'0' => __('hidden','lmm'),
 				'1' => __('visible','lmm')
 			)
-		);			
-		
+		);
+
 		/*
 		* yournavigation.org
 		*/
@@ -6516,11 +7313,11 @@ class Class_leaflet_options {
 			'version' => '1.4',
 			'pane'    => 'directions',
 			'section' => 'directions-section3',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => '',
 			'type'    => 'helptext'
-		);		
+		);
 		$this->_settings['directions_yours_type_of_transport'] = array(
 			'version' => '1.4',
 			'pane'    => 'directions',
@@ -6534,7 +7331,7 @@ class Class_leaflet_options {
 				'bicycle' => __('Bicycle','lmm'),
 				'foot' => __('Foot','lmm')
 			)
-		);		
+		);
 		$this->_settings['directions_yours_route_type'] = array(
 			'version' => '1.4',
 			'pane'    => 'directions',
@@ -6547,7 +7344,7 @@ class Class_leaflet_options {
 				'0' => __('fastest route','lmm'),
 				'1' => __('shortest route','lmm')
 			)
-		);		
+		);
 		$this->_settings['directions_yours_layer'] = array(
 			'version' => '1.4',
 			'pane'    => 'directions',
@@ -6560,7 +7357,7 @@ class Class_leaflet_options {
 				'mapnik' => __('mapnik (for normal routing using car, bicycle or foot)','lmm'),
 				'cn' => __('cn (for using bicycle routing using cycle route networks only)','lmm')
 			)
-		);		
+		);
 		/*
 		* map.project-osrm.org
 		*/
@@ -6572,7 +7369,7 @@ class Class_leaflet_options {
 			'desc'    => '',
 			'type'    => 'helptext',
 			'std'     => ''
-		);			
+		);
 		$this->_settings['directions_osrm_language'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'directions',
@@ -6591,9 +7388,9 @@ class Class_leaflet_options {
 				'it' => __('Italian','lmm'),
 				'lv' => __('Latvian','lmm'),
 				'pl' => __('Polish','lmm'),
-				'ru' => __('Russian','lmm')								
+				'ru' => __('Russian','lmm')
 			)
-		);	
+		);
 		$this->_settings['directions_osrm_units'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'directions',
@@ -6614,11 +7411,11 @@ class Class_leaflet_options {
 			'version' => '1.4',
 			'pane'    => 'directions',
 			'section' => 'directions-section5',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => '',
 			'type'    => 'helptext'
-		);			
+		);
 		$this->_settings['directions_ors_route_preferences'] = array(
 			'version' => '1.4',
 			'pane'    => 'directions',
@@ -6632,9 +7429,9 @@ class Class_leaflet_options {
 				'Fastest' => __('fastest route','lmm'),
 				'Shortest' => __('shortest route','lmm'),
 				'Pedestrian' => __('route for pedestrians','lmm'),
-				'Bicycle' => __('route for bicycles','lmm')								
+				'Bicycle' => __('route for bicycles','lmm')
 			)
-		);	
+		);
 		$this->_settings['directions_ors_language'] = array(
 			'version' => '1.4',
 			'pane'    => 'directions',
@@ -6650,7 +7447,7 @@ class Class_leaflet_options {
 				'fr' => __('French','lmm'),
 				'es' => __('Spanish','lmm')
 			)
-		);	
+		);
 		$this->_settings['directions_ors_no_motorways'] = array(
 			'version' => '1.4',
 			'pane'    => 'directions',
@@ -6663,7 +7460,7 @@ class Class_leaflet_options {
 				'false' => __('false','lmm'),
 				'true' => __('true','lmm')
 			)
-		);	
+		);
 		$this->_settings['directions_ors_no_tollways'] = array(
 			'version' => '1.4',
 			'pane'    => 'directions',
@@ -6674,16 +7471,16 @@ class Class_leaflet_options {
 			'std'     => 'false',
 			'choices' => array(
 				'false' => __('false','lmm'),
-				'true' => __('true','lmm')							
+				'true' => __('true','lmm')
 			)
-		);		
+		);
 		/*===========================================
 		*
 		*
 		* pane Augmented-Reality
 		*
 		*
-		===========================================*/	
+		===========================================*/
 		/*
 		* AR General
 		*/
@@ -6691,9 +7488,9 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'ar',
 			'section' => 'ar-section1',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Markers created with Leaflet Maps Marker can also be displayed via <a href="http://en.wikipedia.org/wiki/Augmented_reality" target="_blank">Augmented-Reality technology</a> on mobile devices. As a first steps, an API to <a href="http://www.wikitude.com" target="_blank">Wikitude</a> has been implemented. APIs to other Augmented-Reality-Providers (like <a href="http://www.layar.com" target="_blank">Layar</a> or <a href="http://www.junaio.de" target="_blank">Junaio</a>) will probably follow in one of the next versions. Sample screenshots:', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-wikitude.jpg" />',
+			'desc'    => __( 'Markers created with Leaflet Maps Marker can also be displayed via <a href="http://en.wikipedia.org/wiki/Augmented_reality" target="_blank">Augmented-Reality technology</a> on mobile devices. As a first steps, an API to <a href="http://www.wikitude.com" target="_blank">Wikitude</a> has been implemented. APIs to other Augmented-Reality-Providers (like <a href="http://www.layar.com" target="_blank">Layar</a> or <a href="http://www.junaio.de" target="_blank">Junaio</a>) will probably follow in one of the next versions. Sample screenshots:', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-wikitude.jpg" width="500" height="699" />',
 			'type'    => 'helptext'
 		);
 		/*
@@ -6703,7 +7500,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'ar',
 			'section' => 'ar-section1',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'Please visit <a href="http://www.mapsmarker.com/wikitude" target="_blank">http://www.mapsmarker.com/wikitude</a> for instructions how to submit your marker or layer maps to Wikitude.', 'lmm'),
 			'type'    => 'helptext'
@@ -6724,7 +7521,16 @@ class Class_leaflet_options {
 			'title'   => __( 'Short name', 'lmm' ),
 			'desc'    => __( 'A short name for your World, should only be up to 20 characters, to be used when there is not enough space.', 'lmm' ),
 			'std'     => 'www.mapsmarker.com',
-			'type'    => 'text'
+			'type'    => 'text-deletable'
+		);
+		$this->_settings['ar_wikitude_description'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'ar',
+			'section' => 'ar-section1',
+			'title'   => __( 'Description', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __( 'Description of the content provider that provides additional information about the content displayed.', 'lmm' ) . '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
+			'std'     => __('Wikitude API powered by www.mapsmarker.com','lmm'),
+			'type'    => 'text-pro'
 		);
 		$this->_settings['ar_wikitude_promotiontext'] = array(
 			'version' => '3.3',
@@ -6733,7 +7539,7 @@ class Class_leaflet_options {
 			'title'   => __( 'Promotion text', 'lmm' ),
 			'desc'    => __( 'A promotion text describing your World in more details.', 'lmm' ),
 			'std'     => 'Wikitude API powered by www.mapsmarker.com',
-			'type'    => 'text'
+			'type'    => 'text-deletable'
 		);
 		$this->_settings['ar_wikitude_promotiongraphic'] = array(
 			'version' => '3.3',
@@ -6742,7 +7548,7 @@ class Class_leaflet_options {
 			'title'   => __( 'Promotion graphic', 'lmm' ),
 			'desc'    => __( 'A graphic advertising your World. Format: 180x120 pixel, transparent PNG', 'lmm' ),
 			'std'     => LEAFLET_PLUGIN_URL . 'inc/img/wikitude-promotiongraphic-180x200.png',
-			'type'    => 'text'
+			'type'    => 'text-deletable'
 		);
 		$this->_settings['ar_wikitude_optout'] = array(
 			'version' => '3.3',
@@ -6754,7 +7560,7 @@ class Class_leaflet_options {
 			'std'     => 'false',
 			'choices' => array(
 				'false' => __('false', 'lmm'),
-				'true' => __('true', 'lmm')		
+				'true' => __('true', 'lmm')
 			)
 		);
 		$this->_settings['ar_wikitude_featuregraphic'] = array(
@@ -6764,7 +7570,7 @@ class Class_leaflet_options {
 			'title'   => __( 'Feature graphic', 'lmm' ),
 			'desc'    => __( 'A graphic spotlighting your World in promotions. Format: 1024x500 pixel, transparent PNG', 'lmm' ),
 			'std'     => LEAFLET_PLUGIN_URL . 'inc/img/wikitude-featuregraphic-1024x500.png',
-			'type'    => 'text'
+			'type'    => 'text-deletable'
 		);
 		$this->_settings['ar_wikitude_provider_url'] = array(
 			'version' => '1.0',
@@ -6773,7 +7579,7 @@ class Class_leaflet_options {
 			'title'   => __( 'Provider URL', 'lmm' ),
 			'desc'    => __( 'Link to content provider', 'lmm' ),
 			'std'     => 'http://www.mapsmarker.com',
-			'type'    => 'text'
+			'type'    => 'text-deletable'
 		);
 		$this->_settings['ar_wikitude_logo'] = array(
 			'version' => '3.3',
@@ -6782,7 +7588,7 @@ class Class_leaflet_options {
 			'title'   => __( 'Logo', 'lmm' ),
 			'desc'    => __( 'The logo is displayed on the left bottom corner on Wikitude when an icon is selected - 96x96 pixel, transparent PNG', 'lmm' ),
 			'std'     => LEAFLET_PLUGIN_URL . 'inc/img/wikitude-logo-96x96.png',
-			'type'    => 'text'
+			'type'    => 'text-deletable'
 		);
 		$this->_settings['ar_wikitude_icon'] = array(
 			'version' => '3.3',
@@ -6791,8 +7597,8 @@ class Class_leaflet_options {
 			'title'   => __( 'Icon', 'lmm' ),
 			'desc'    => __( 'The icon is displayed in the cam view of Wikitude to indicate a marker - 32x32 pixel, transparent PNG', 'lmm' ),
 			'std'     => LEAFLET_PLUGIN_URL . 'inc/img/wikitude-icon-32x32.png',
-			'type'    => 'text'
-		);		
+			'type'    => 'text-deletable'
+		);
 		$this->_settings['ar_wikitude_hiresicon'] = array(
 			'version' => '3.3',
 			'pane'    => 'ar',
@@ -6800,8 +7606,8 @@ class Class_leaflet_options {
 			'title'   => __( 'High Resolution Icon', 'lmm' ),
 			'desc'    => __( 'A high resolution icon for your World which can be included in features. Format: 512x512 pixel, transparent PNG', 'lmm' ),
 			'std'     => '',
-			'type'    => 'text'
-		);		
+			'type'    => 'text-deletable'
+		);
 		$this->_settings['ar_wikitude_tags'] = array(
 			'version' => '3.3',
 			'pane'    => 'ar',
@@ -6809,8 +7615,8 @@ class Class_leaflet_options {
 			'title'   => __( 'Tags', 'lmm' ),
 			'desc'    => __( 'Comma separated list of keywords that characterize the content provider. When users search for content in Wikitude the tags will be searched as well. A match in the tags is higher ranked than in the description.', 'lmm' ),
 			'std'     => 'mapsmarker',
-			'type'    => 'text'
-		);		
+			'type'    => 'text-deletable'
+		);
 		$this->_settings['ar_wikitude_email'] = array(
 			'version' => '1.0',
 			'pane'    => 'ar',
@@ -6818,8 +7624,8 @@ class Class_leaflet_options {
 			'title'   => __( 'E-Mail', 'lmm' ),
 			'desc'    => __( 'Optional: displayed on each marker; used for sending an email directly from Wikitude', 'lmm' ),
 			'std'     => '',
-			'type'    => 'text'
-		);		
+			'type'    => 'text-deletable'
+		);
 		$this->_settings['ar_wikitude_phone'] = array(
 			'version' => '1.0',
 			'pane'    => 'ar',
@@ -6827,8 +7633,8 @@ class Class_leaflet_options {
 			'title'   => __( 'Phone', 'lmm' ),
 			'desc'    => __( 'Optional: example: +4312345 - when a phone number is given, Wikitude displays a "call me" button in the bubble; used for every marker.', 'lmm' ),
 			'std'     => '',
-			'type'    => 'text'
-		);		
+			'type'    => 'text-deletable'
+		);
 		$this->_settings['ar_wikitude_attachment'] = array(
 			'version' => '1.0',
 			'pane'    => 'ar',
@@ -6836,8 +7642,8 @@ class Class_leaflet_options {
 			'title'   => __( 'Attachment', 'lmm' ),
 			'desc'    => __( 'Optional: displayed on each marker; can be a link to a resource (image, PDF file...). You could use this to issue coupons or vouchers for potential clients that found you via Wikitude.', 'lmm' ),
 			'std'     => '',
-			'type'    => 'text'
-		);		
+			'type'    => 'text-deletable'
+		);
 		$this->_settings['ar_wikitude_radius'] = array(
 			'version' => '1.0',
 			'pane'    => 'ar',
@@ -6846,7 +7652,7 @@ class Class_leaflet_options {
 			'desc'    => __( 'Retrieve POIs (Points of Interests) from database within this search radius in meters from the current location of the Wikitude user', 'lmm' ),
 			'std'     => '100000',
 			'type'    => 'text'
-		);		
+		);
 		$this->_settings['ar_wikitude_maxnumberpois'] = array(
 			'version' => '1.0',
 			'pane'    => 'ar',
@@ -6855,8 +7661,8 @@ class Class_leaflet_options {
 			'desc'    => __( 'Used if Wikitude does not pass the variable maxNumberofPois - 50 is the maximum recommended', 'lmm' ),
 			'std'     => '50',
 			'type'    => 'text'
-		);	
-		
+		);
+
 		/*===========================================
 		*
 		*
@@ -6868,10 +7674,23 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'misc',
 			'section' => 'misc-section1',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => '', //empty for not breaking settings layout
 			'type'    => 'helptext'
+		);
+		$this->_settings['misc_backlink'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'misc-section1',
+			'title'   => __('MapsMarker.com backlinks','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('Option to hide backlinks to Mapsmarker.com on maps and screen overlays in KML files.','lmm') . '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-backlink.jpg" width="642" height="45" /><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-backlink-kml.jpg" width="471" height="71" />',
+			'type'    => 'radio-pro',
+			'std'     => 'show',
+			'choices' => array(
+				'show' => __('show','lmm'),
+				'hide' => __('hide','lmm')
+			)
 		);
 		$this->_settings['capabilities_edit'] = array(
 			'version' => '1.0',
@@ -6886,7 +7705,7 @@ class Class_leaflet_options {
 				'moderate_comments' => __('Editor (Capability moderate_comments)', 'lmm'),
 				'edit_published_posts' => __('Author (Capability edit_published_posts)', 'lmm'),
 				'edit_posts' => __('Contributor (Capability edit_posts)', 'lmm'),
-				'read' => __('Subscriber (Capability read)', 'lmm')				
+				'read' => __('Subscriber (Capability read)', 'lmm')
 			)
 		);
 		$this->_settings['capabilities_delete'] = array(
@@ -6902,7 +7721,7 @@ class Class_leaflet_options {
 				'moderate_comments' => __('Editor (Capability moderate_comments)', 'lmm'),
 				'edit_published_posts' => __('Author (Capability edit_published_posts)', 'lmm'),
 				'edit_posts' => __('Contributor (Capability edit_posts)', 'lmm'),
-				'read' => __('Subscriber (Capability read)', 'lmm')		
+				'read' => __('Subscriber (Capability read)', 'lmm')
 			)
 		);
 		$this->_settings['markers_per_page'] = array(
@@ -6988,15 +7807,6 @@ class Class_leaflet_options {
 				'disabled' => __('disabled','lmm')
 			)
 		);
-		$this->_settings['misc_qrcode_size'] = array(
-			'version' => '1.1',
-			'pane'    => 'misc',
-			'section' => 'misc-section1',
-			'title'   => __( 'QR code image size', 'lmm' ),
-			'desc'    => __( 'Width and height in pixel of QR code image for marker/layer standalone fullscreen map links', 'lmm' ),
-			'std'     => '150',
-			'type'    => 'text'
-		);
 		$this->_settings['misc_projections'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7070,7 +7880,7 @@ class Class_leaflet_options {
 			'version' => '2.4',
 			'pane'    => 'misc',
 			'section' => 'misc-section2',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __('The language used on plugin pages on backend and/or on maps on frontend. Please note that the language for Google and Bing Services can be set seperately via Settings / tab "Google Maps" / "Google language localization" respectively tab "Bing Maps" / "Cultures"','lmm') . '<br/><br/>' . sprintf(__('If your language is missing or not fully translated yet, you are invited to help on the <a href="%1s" target="_blank">web-based translation plattform</a>.','lmm'), 'http://translate.mapsmarker.com/projects/lmm'),
 			'type'    => 'helptext'
@@ -7103,14 +7913,16 @@ class Class_leaflet_options {
 				'id_ID' => __('Indonesian','lmm') . ' (id_ID)',
 				'it_IT' => __('Italian','lmm') . ' (it_IT)',
 				'ja' => __('Japanese','lmm') . ' (ja)',
+				'ko_KR' => __('Korean','lmm') . ' (ko_KR)',
+				'lv' => __('Latvian','lmm') . ' (lv)',
 				'pl_PL' => __('Polish','lmm') . ' (pl_PL)',
 				'pt_BR' => __('Portuguese','lmm') . ' - ' . __('Brazil','lmm') . ' (pt_BR)',
 				'pt_PT' => __('Portuguese','lmm') . ' - ' . __('Portugal','lmm') . ' (pt_PT)',
 				'ro_RO' => __('Romanian','lmm') . ' (ro_RO)',
 				'ru_RU' => __('Russian','lmm') . ' (ru_RU)',
 				'sk_SK' => __('Slovak','lmm') . ' (sk_SK)',
-				'es_ES' => __('Spanish','lmm') . ' (es_ES)',
 				'sv_SE' => __('Swedish','lmm') . ' (sv_SE)',
+				'es_ES' => __('Spanish','lmm') . ' (es_ES)',
 				'tr_TR' => __('Turkish','lmm') . ' (tr_TR)',
 				'uk_UK' => __('Ukrainian','lmm') . ' (uk_UK)',
 				'yi' => __('Yiddish','lmm') . ' (yi)'
@@ -7129,7 +7941,7 @@ class Class_leaflet_options {
 				'frontend' => __('WordPress frontend only','lmm'),
 				'both' => __('WordPress admin area and frontend','lmm')
 			)
-		);		
+		);
 		/*
 		* KML Settings
 		*/
@@ -7137,7 +7949,7 @@ class Class_leaflet_options {
 			'version' => '1.8',
 			'pane'    => 'misc',
 			'section' => 'misc-section3',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'Choose how marker names should be displayed in KML files', 'lmm') . ' <a href="http://www.mapsmarker.com/kml-names" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'helptext'
@@ -7160,12 +7972,12 @@ class Class_leaflet_options {
 			'version' => '1.8',
 			'pane'    => 'misc',
 			'section' => 'misc-section3',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => '<div style="height:80px;"></div>',
+			'desc'    => '<div style="height:150px;"></div>',
 			'type'    => 'helptext'
 		);
-		
+
 		/*
 		* Available columns for marker listing page
 		*/
@@ -7173,7 +7985,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'misc',
 			'section' => 'misc-section4',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'Please select the columns which should be available on the page "List all markers"', 'lmm'),
 			'type'    => 'helptext'
@@ -7185,7 +7997,7 @@ class Class_leaflet_options {
 			'title'    => __('Columns to show','lmm'),
 			'desc'    => 'ID',
 			'type'    => 'checkbox-readonly',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['misc_marker_listing_columns_icon'] = array(
 			'version' => '1.0',
@@ -7194,7 +8006,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Icon','lmm'),
 			'type'    => 'checkbox-readonly',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['misc_marker_listing_columns_markername'] = array(
 			'version' => '1.0',
@@ -7203,7 +8015,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Marker name','lmm'),
 			'type'    => 'checkbox-readonly',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['misc_marker_listing_columns_address'] = array(
 			'version' => '3.0',
@@ -7212,7 +8024,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Address','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['misc_marker_listing_columns_popuptext'] = array(
 			'version' => '1.0',
@@ -7221,8 +8033,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Popup text','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);	
+			'std'     => 1
+		);
 		$this->_settings['misc_marker_listing_columns_layername'] = array(
 			'version' => '2.7.1',
 			'pane'    => 'misc',
@@ -7230,8 +8042,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Layer name','lmm') . ' ' . __('(for marker listings below multi-layer maps only)','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);			
+			'std'     => 1
+		);
 		$this->_settings['misc_marker_listing_columns_basemap'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7239,8 +8051,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Basemap','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_marker_listing_columns_layer'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7248,8 +8060,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Layer','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);	
+			'std'     => 1
+		);
 		$this->_settings['misc_marker_listing_columns_coordinates'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7257,8 +8069,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Coordinates','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_marker_listing_columns_zoom'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7266,8 +8078,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Zoom','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_marker_listing_columns_openpopup'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7275,8 +8087,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Popup status','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_marker_listing_columns_panelstatus'] = array(
 			'version' => '1.4',
 			'pane'    => 'misc',
@@ -7284,8 +8096,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Panel status','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_marker_listing_columns_mapsize'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7293,8 +8105,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Map size','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_marker_listing_columns_createdby'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7302,8 +8114,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Created by','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_marker_listing_columns_createdon'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7311,8 +8123,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Created on','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_marker_listing_columns_updatedby'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7320,8 +8132,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Updated by','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_marker_listing_columns_updatedon'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7329,8 +8141,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Updated on','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_marker_listing_columns_controlbox'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7338,7 +8150,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Controlbox status','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['misc_marker_listing_columns_shortcode'] = array(
 			'version' => '1.0',
@@ -7347,8 +8159,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Shortcode','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);	
+			'std'     => 1
+		);
 		$this->_settings['misc_marker_listing_columns_kml'] = array(
 			'version' => '3.0',
 			'pane'    => 'misc',
@@ -7356,8 +8168,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'KML',
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_marker_listing_columns_fullscreen'] = array(
 			'version' => '3.0',
 			'pane'    => 'misc',
@@ -7365,8 +8177,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Fullscreen','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_marker_listing_columns_qr_code'] = array(
 			'version' => '3.0',
 			'pane'    => 'misc',
@@ -7374,8 +8186,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('QR code','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_marker_listing_columns_geojson'] = array(
 			'version' => '3.0',
 			'pane'    => 'misc',
@@ -7383,8 +8195,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'GeoJSON',
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_marker_listing_columns_georss'] = array(
 			'version' => '3.0',
 			'pane'    => 'misc',
@@ -7392,8 +8204,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'GeoRSS',
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_marker_listing_columns_wikitude'] = array(
 			'version' => '3.0',
 			'pane'    => 'misc',
@@ -7402,7 +8214,7 @@ class Class_leaflet_options {
 			'desc'    => 'Wikitude',
 			'type'    => 'checkbox',
 			'std'     => 0
-		);		
+		);
 		/*
 		* Sort order for marker listing page
 		*/
@@ -7410,7 +8222,7 @@ class Class_leaflet_options {
 			'version' => '2.3',
 			'pane'    => 'misc',
 			'section' => 'misc-section5',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'Please select order by and sort order for "List all markers" page', 'lmm'),
 			'type'    => 'helptext'
@@ -7450,11 +8262,11 @@ class Class_leaflet_options {
 			'version' => '2.3',
 			'pane'    => 'misc',
 			'section' => 'misc-section5',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => '<div style="height:0px;"></div>',
 			'type'    => 'helptext'
-		);		
+		);
 		/*
 		* Available columns for layer listing page
 		*/
@@ -7462,7 +8274,7 @@ class Class_leaflet_options {
 			'version' => '1.0',
 			'pane'    => 'misc',
 			'section' => 'misc-section6',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'Please select the columns which should be available on the page "List all layers"', 'lmm'),
 			'type'    => 'helptext'
@@ -7474,7 +8286,7 @@ class Class_leaflet_options {
 			'title'    => __('Columns to show','lmm'),
 			'desc'    => 'ID',
 			'type'    => 'checkbox-readonly',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['misc_layer_listing_columns_type'] = array(
 			'version' => '1.7',
@@ -7483,8 +8295,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Type','lmm'),
 			'type'    => 'checkbox-readonly',
-			'std'     => 1 
-		);		
+			'std'     => 1
+		);
 		$this->_settings['misc_layer_listing_columns_layername'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7492,7 +8304,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Layer name','lmm'),
 			'type'    => 'checkbox-readonly',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['misc_layer_listing_columns_address'] = array(
 			'version' => '3.0',
@@ -7501,7 +8313,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Address','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
+			'std'     => 1
 		);
 		$this->_settings['misc_layer_listing_columns_markercount'] = array(
 			'version' => '1.0',
@@ -7510,8 +8322,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Number of markers','lmm'),
 			'type'    => 'checkbox-readonly',
-			'std'     => 1 
-		);		
+			'std'     => 1
+		);
 		$this->_settings['misc_layer_listing_columns_basemap'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7519,8 +8331,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Basemap','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_layer_listing_columns_layercenter'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7528,8 +8340,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Layer center','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_layer_listing_columns_zoom'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7537,8 +8349,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Zoom','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_layer_listing_columns_mapsize'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7546,8 +8358,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Map size','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_layer_listing_columns_panelstatus'] = array(
 			'version' => '1.4',
 			'pane'    => 'misc',
@@ -7555,8 +8367,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Panel status','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_layer_listing_columns_createdby'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7564,8 +8376,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Created by','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_layer_listing_columns_createdon'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7573,8 +8385,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Created on','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_layer_listing_columns_updatedby'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7582,8 +8394,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Updated by','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_layer_listing_columns_updatedon'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7591,8 +8403,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Updated on','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_layer_listing_columns_controlbox'] = array(
 			'version' => '1.0',
 			'pane'    => 'misc',
@@ -7600,7 +8412,7 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Controlbox status','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
+			'std'     => 0
 		);
 		$this->_settings['misc_layer_listing_columns_shortcode'] = array(
 			'version' => '1.0',
@@ -7609,8 +8421,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Shortcode','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 1 
-		);	
+			'std'     => 1
+		);
 		$this->_settings['misc_layer_listing_columns_kml'] = array(
 			'version' => '3.0',
 			'pane'    => 'misc',
@@ -7618,8 +8430,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'KML',
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_layer_listing_columns_fullscreen'] = array(
 			'version' => '3.0',
 			'pane'    => 'misc',
@@ -7627,8 +8439,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('Fullscreen','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_layer_listing_columns_qr_code'] = array(
 			'version' => '3.0',
 			'pane'    => 'misc',
@@ -7636,8 +8448,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => __('QR code','lmm'),
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_layer_listing_columns_geojson'] = array(
 			'version' => '3.0',
 			'pane'    => 'misc',
@@ -7645,8 +8457,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'GeoJSON',
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_layer_listing_columns_georss'] = array(
 			'version' => '3.0',
 			'pane'    => 'misc',
@@ -7654,8 +8466,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'GeoRSS',
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		$this->_settings['misc_layer_listing_columns_wikitude'] = array(
 			'version' => '3.0',
 			'pane'    => 'misc',
@@ -7663,8 +8475,8 @@ class Class_leaflet_options {
 			'title'    => '',
 			'desc'    => 'Wikitude',
 			'type'    => 'checkbox',
-			'std'     => 0 
-		);	
+			'std'     => 0
+		);
 		/*
 		* Sort order for layer listing page
 		*/
@@ -7672,7 +8484,7 @@ class Class_leaflet_options {
 			'version' => '2.3',
 			'pane'    => 'misc',
 			'section' => 'misc-section7',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
 			'desc'    => __( 'Please select order by and sort order for "List all layers" page', 'lmm'),
 			'type'    => 'helptext'
@@ -7706,23 +8518,312 @@ class Class_leaflet_options {
 				'ASC' => __('ascending','lmm'),
 				'DESC' => __('descending','lmm')
 			)
-		);		
+		);
 		$this->_settings['misc_layer_listing_sort_helptext2'] = array(
 			'version' => '2.3',
 			'pane'    => 'misc',
 			'section' => 'misc-section7',
-			'std'     => '', 
+			'std'     => '',
 			'title'   => '',
-			'desc'    => '<div style="height:0px;"></div>',
+			'desc'    => '<div style="height:40px;"></div>',
 			'type'    => 'helptext'
 		);
+		/*
+		* QR Code settings
+		*/
+		$this->_settings['qrcode_provider_helptext'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'std'     => '',
+			'title'   => '',
+			'desc'    => '',
+			'type'    => 'helptext'
+		);
+		$this->_settings['qrcode_provider'] = array(
+			'version' => '3.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'title'   => __('QR code provider','lmm'),
+			'desc'    => __('Service provider used for creating QR codes for links to full screen maps','lmm'),
+			'type'    => 'radio',
+			'std'     => 'visualead',
+			'choices' => array(
+				'visualead' => 'Visualead.com ' . __('(allows using a custom background for your QR codes)','lmm'),
+				'google' => 'Google'
+			)
+		);
+		$this->_settings['qrcode_visualead_helptext'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'std'     => '',
+			'title'   => '<strong>' . __('Visualead settings','lmm') . '</strong>',
+			'desc'    =>  '<img src="' . LEAFLET_PLUGIN_URL . 'inc/img/help-visualead.png" width="200" height="200" /><a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
+			'type'    => 'helptext'
+		);
+		$this->_settings['qrcode_visualead_api_key'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'title'   => __( 'API key', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('If empty, the (unlimited) API key from MapsMarker.com will be used','lmm'),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['qrcode_visualead_image_url'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'title'   => __( 'Image URL', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => sprintf(__( 'If empty, the default image url %s will be used', 'lmm' ),LEAFLET_PLUGIN_URL . 'inc/img/logo-qr-code.png'),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['qrcode_visualead_qr_size'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'title'   => __( 'QR size', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('The width/height of the Visual QR Code (minimum: 124 pixel)','lmm'),
+			'std'     => '124',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['qrcode_visualead_qr_cell_size'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'title'   => __( 'QR cell size', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => esc_attr__('Force a specific size of the QR Code cell (Measured in pixels). Once this parameter is used then the "QR size" parameter is ignored. If the resulting QR Code size is bigger than the image, then the image is extended.','lmm'),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['qrcode_visualead_qr_x'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'title'   => 'QR x<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('The top left x position of the QR Code. (Measured in pixels)','lmm'),
+			'std'     => '4',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['qrcode_visualead_qr_y'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'title'   => 'QR y<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('The top left y position of the QR Code. (Measured in pixels)','lmm'),
+			'std'     => '5',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['qrcode_visualead_qr_gravity'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'title'   => __( 'QR gravity', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => esc_attr__('center/N/S/W/E (Or common combinations such as NW or Scenter) – will position the QR Code accordingly. Once this parameter is used then the "qr_x and "qr_y" parameters are ignored.','lmm'),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['qrcode_visualead_qr_rotation'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'title'   => __( 'QR rotation', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('The angle of the QR Code rotation. Allowed angles: 0/90/180/270.','lmm'),
+			'std'     => '0',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['qrcode_visualead_output_image_width'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'title'   => __( 'Output image width', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'desc'    => __('The desired image width returned in the response. If empty, the width of the image from image url will be used.','lmm'),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['qrcode_google_helptext'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'std'     => '',
+			'title'   => '<strong>' . __('Google QR settings','lmm') . '</strong>',
+			'desc'    => '',
+			'type'    => 'helptext'
+		);
+		$this->_settings['misc_qrcode_size'] = array(
+			'version' => '1.1',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'title'   => __( 'QR code image size', 'lmm' ),
+			'desc'    => __( 'Width and height in pixel of QR code image for marker/layer standalone fullscreen map links', 'lmm' ),
+			'std'     => '150',
+			'type'    => 'text'
+		);
+		/*
+		* MapsMarker API settings
+		*/
+		$this->_settings['api_helptext'] = array(
+			'version' => '3.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'std'     => '',
+			'title'   => '',
+			'desc'    => sprintf(__('For more information on how to use the MapsMarker API, <a href="%1s" target="_blank">please visit the API docs on mapsmarker.com</a>','lmm'), 'http://www.mapsmarker.com/mapsmarker-api'),
+			'type'    => 'helptext'
+		);
+		$this->_settings['api_helptext2'] = array(
+			'version' => '3.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'std'     => '',
+			'title'   => '',
+			'desc'    =>  '<strong>' . __('API endpoint','lmm') . ':</strong> ' . LEAFLET_PLUGIN_URL . 'leaflet-api.php<br/><br/>',
+			'type'    => 'helptext'
+		);
+		$this->_settings['api_status'] = array(
+			'version' => '3.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'title'   => __('API status','lmm'),
+			'desc'    => '',
+			'type'    => 'radio',
+			'std'     => 'disabled',
+			'choices' => array(
+				'enabled' => __('enabled','lmm'),
+				'disabled' => __('disabled','lmm')
+			)
+		);
+		$this->_settings['api_default_format'] = array(
+			'version' => '3.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'title'   => __('API default format','lmm'),
+			'desc'    => __('Default output format (can be overwritten by parameter format on each API request)','lmm'),
+			'type'    => 'radio',
+			'std'     => 'json',
+			'choices' => array(
+				'json' => 'JSON',
+				'xml' => 'XML'
+			)
+		);
+		$this->_settings['api_json_callback'] = array(
+			'version' => '3.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'title'   => __('JSONP callback function name', 'lmm'),
+			'desc'    => sprintf(__('Used for JSON format only, allows to overcome the <a href="%1s" target="_blank">same origin policy</a> (can be overwritten by parameter callback on each API request)','lmm'), 'http://en.wikipedia.org/wiki/JSONP'),
+			'std'     => 'jsonp',
+			'type'    => 'text'
+		);
+		$this->_settings['api_helptext3'] = array(
+			'version' => '3.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'std'     => '',
+			'title'   => '<strong>' . __('Security options','lmm') . '</strong>',
+			'desc'    =>  '',
+			'type'    => 'helptext'
+		);
+		$this->_settings['api_permissions_view'] = array(
+			'version' => '3.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'title'   => __('Allowed API actions','lmm'),
+			'desc'    => __('view existing markers/layers','lmm'),
+			'type'    => 'checkbox',
+			'std'     => 1
+		);
+		$this->_settings['api_permissions_add'] = array(
+			'version' => '3.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'title'   => '',
+			'desc'    => __('add new markers/layers','lmm'),
+			'type'    => 'checkbox',
+			'std'     => 1
+		);
+		$this->_settings['api_permissions_update'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'title'   => '',
+			'desc'    => __('update existing markers/layers','lmm') . ' <a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-feature.png" width="70" height="15" /></a>',
+			'type'    => 'checkbox-pro',
+			'std'     => 0
+		);
+		$this->_settings['api_permissions_delete'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'title'   => '',
+			'desc'    => __('delete existing markers/layers','lmm') . ' <a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-feature.png" width="70" height="15" /></a>',
+			'type'    => 'checkbox-pro',
+			'std'     => 0
+		);
+		$this->_settings['api_key'] = array(
+			'version' => '3.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'title'   => __('API key', 'lmm'),
+			'desc'    => __('It is strongly advised to set an API key to protect it from misuse!','lmm'),
+			'std'     => '',
+			'type'    => 'text'
+		);
+		$this->_settings['api_allowed_ip'] = array(
+			'version' => '3.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'title'   => __('IP access restriction', 'lmm'),
+			'desc'    => __('If an IP address or range is entered above (like 12.34.56.*), only API calls from this IP address or range are allowed.','lmm'),
+			'std'     => '',
+			'type'    => 'text'
+		);
+		$this->_settings['api_allowed_referer'] = array(
+			'version' => '3.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'title'   => __('Allowed referer', 'lmm'),
+			'desc'    => __('If set (like http://www.your-domain.com/form.php), only API calls with this referer are allowed.','lmm'),
+			'std'     => '',
+			'type'    => 'text'
+		);
+		$this->_settings['api_request_type_get'] = array(
+			'version' => '3.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'title'   => __('Allowed API request methods','lmm'),
+			'desc'    => 'GET',
+			'type'    => 'checkbox',
+			'std'     => 1
+		);
+		$this->_settings['api_request_type_post'] = array(
+			'version' => '3.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'title'   => '',
+			'desc'    => 'POST',
+			'type'    => 'checkbox',
+			'std'     => 1
+		);
+
 		/*===========================================
 		*
 		*
 		* pane reset
 		*
 		*
-		===========================================*/	
+		===========================================*/
+		$this->_settings['reset_helptext'] = array(
+			'version' => 'p1.0',
+			'pane'    => 'misc',
+			'section' => 'reset-section1',
+			'std'     => '',
+			'title'   => '',
+			'desc'    => '<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-feature.png" width="70" height="15" /></a> ' . sprintf(__('You can backup your current settings on the <a href="%1$s">tools page</a> before resetting all options to their default values.','lmm'), LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools'),
+			'type'    => 'helptext'
+		);
 		$this->_settings['reset_settings'] = array(
 			'version' => '1.0',
 			'pane'    => 'reset',
@@ -7734,14 +8835,14 @@ class Class_leaflet_options {
 			'desc'    => __( 'Check this box and click "Save Changes" below to reset plugin options to their defaults.','lmm' )
 		);
 	}
-	
+
 	/**
 	 * Initialize settings to their default values
-	 */ 
+	 */
 	public function initialize_settings() {
 		$default_settings = array();
 		foreach ( $this->settings as $id => $setting ) {
-			if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' ) {
+			if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' ) {
 				$default_settings[$id] = $setting['std'];
 				}
 		}
@@ -7750,22 +8851,22 @@ class Class_leaflet_options {
 	/**
 	* Register settings
 	*/
-    
+
 	public function register_settings() {
 		global $pagenow;
 		$current_page = (isset($_REQUEST['page'])) ? $_REQUEST['page'] : '';
 		if ( ('options.php' !== $pagenow) && ! in_array( $current_page, array( 'leafletmapsmarker_settings' ) ) )
 			return;
-		
+
 		register_setting( 'leafletmapsmarker_options', 'leafletmapsmarker_options', array ( &$this, 'validate_settings' ) );
-		
+
 		$this->get_settings();
 
 		    foreach ( $this->settings as $id => $setting ) {
 			    $setting['id'] = $id;
 			    $this->create_setting( $setting );  // ----setttings
         }
-	}   
+	}
 	/**
 	 * save defaults for new options after plugin updates but keep values of old settings
 	 */
@@ -7774,9 +8875,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '1.0' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '1.1')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '1.1')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7789,9 +8890,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '1.1' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '1.2')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '1.2')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7804,9 +8905,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '1.3' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '1.4')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '1.4')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7815,13 +8916,13 @@ class Class_leaflet_options {
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
-		//info:  set defaults for options introduced in v1.4.3		
+		//info:  set defaults for options introduced in v1.4.3
 		if (get_option('leafletmapsmarker_version') == '1.4.2' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '1.4.3')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '1.4.3')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7834,9 +8935,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '1.4.3' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '1.5')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '1.5')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7849,9 +8950,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '1.5.1' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '1.6')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '1.6')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7864,9 +8965,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '1.6' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '1.7')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '1.7')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7879,9 +8980,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '1.7' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '1.8')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '1.8')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7894,9 +8995,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '1.8' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '1.9')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '1.9')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7909,9 +9010,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '2.0' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.1')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '2.1')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7924,9 +9025,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '2.1' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.2')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '2.2')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7939,9 +9040,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '2.2' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.3')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '2.3')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7954,9 +9055,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '2.3' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.4')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '2.4')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7969,9 +9070,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '2.4' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.5')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '2.5')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7984,9 +9085,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '2.5' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.6')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '2.6')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -7999,9 +9100,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '2.7' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.7.1')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '2.7.1')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -8014,9 +9115,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '2.7.1' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.8')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '2.8')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -8029,9 +9130,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '2.8.2' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '2.9')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '2.9')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -8044,9 +9145,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '2.9.2' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.0')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.0')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -8059,9 +9160,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '3.0' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.1')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.1')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -8074,9 +9175,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '3.1' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.2')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.2')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -8089,9 +9190,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '3.2.1' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.2.2')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.2.2')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -8104,9 +9205,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '3.2.5' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.3')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.3')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -8119,9 +9220,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '3.3' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.4')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.4')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -8134,9 +9235,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '3.4.3' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.5')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.5')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -8149,9 +9250,9 @@ class Class_leaflet_options {
 		if (get_option('leafletmapsmarker_version') == '3.5.1' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.5.2')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.5.2')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -8160,14 +9261,29 @@ class Class_leaflet_options {
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
-		/* template for plugin updates 
 		//info:  set defaults for options introduced in v3.6
 		if (get_option('leafletmapsmarker_version') == '3.5.4' )
 		{
 			$new_options_defaults = array();
-			foreach ( $this->settings as $id => $setting ) 
+			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['version'] == '3.6')
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.6')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}
+		/* template for plugin updates
+		//info:  set defaults for options introduced in v3.7
+		if (get_option('leafletmapsmarker_version') == '3.6' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting )
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.7')
 				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
@@ -8178,15 +9294,15 @@ class Class_leaflet_options {
 		}
 		*/
 	}
-	
+
 	/**
 	* Validate settings
 	*/
 	public function validate_settings( $input ) {
-		
+
 		if ( ! isset( $input['reset_settings'] ) ) {
 			$options = get_option( 'leafletmapsmarker_options' );
-			
+
 			foreach ( $this->checkboxes as $id ) {
 				if ( isset( $options[$id] ) && ! isset( $input[$id] ) )
 					unset( $options[$id] );

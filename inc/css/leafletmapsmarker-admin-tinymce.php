@@ -11,7 +11,7 @@ echo "
 html .mcecontentbody {
 	font: 12px/1.4 'Helvetica Neue',Arial,Helvetica,sans-serif;
 	max-width:" . intval($lmm_options['defaults_marker_popups_maxwidth'] + 1) . "px;
-	word-wrap: break-word; 
+	word-wrap: break-word;
 }
 .mcecontentbody a {
 	text-decoration:none;
