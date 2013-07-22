@@ -3,9 +3,9 @@
     Export all markers as CVS file - Leaflet Maps Marker Plugin
 */
 //info: construct path to wp-load.php
-while(!is_file('wp-load.php')){
-  if(is_dir('../')) chdir('../');
-  else die('Error: Could not construct path to wp-load.php - please check <a href="http://mapsmarker.com/path-error">http://mapsmarker.com/path-error</a> for more details');
+while(!is_file('wp-load.php')) {
+	if(is_dir('..' . DIRECTORY_SEPARATOR)) chdir('..' . DIRECTORY_SEPARATOR);
+	else die('Error: Could not construct path to wp-load.php - please check <a href="http://mapsmarker.com/path-error">http://mapsmarker.com/path-error</a> for more details');
 }
 include( 'wp-load.php' );
 function hide_email($email) { $character_set = '+-.0123456789@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz'; $key = str_shuffle($character_set); $cipher_text = ''; $id = 'e'.rand(1,999999999); for ($i=0;$i<strlen($email);$i+=1) $cipher_text.= $key[strpos($character_set,$email[$i])]; $script = 'var a="'.$key.'";var b=a.split("").sort().join("");var c="'.$cipher_text.'";var d="";'; $script.= 'for(var e=0;e<c.length;e++)d+=b.charAt(a.indexOf(c.charAt(e)));'; $script.= 'document.getElementById("'.$id.'").innerHTML="<a href=\\"mailto:"+d+"\\">"+d+"</a>"'; $script = "eval(\"".str_replace(array("\\",'"'),array("\\\\",'\"'), $script)."\")"; $script = '<script type="text/javascript">/*<![CDATA[*/'.$script.'/*]]>*/</script>'; return '<span id="'.$id.'">[javascript protected email address]</span>'.$script; }
@@ -24,13 +24,13 @@ function lmm_is_plugin_active_for_network( $plugin ) {
 	return false;
 }
 if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
-	echo 'The WordPress plugin <a href="http://www.mapsmarker.com" target="_blank">Leaflet Maps Marker</a> is inactive on this site and therefore this API link is not working.<br/><br/>Please contact the site owner (' . hide_email(get_bloginfo('admin_email')) . ') who can activate this plugin again.';
+	echo sprintf(__('The plugin "Leaflet Maps Marker" is inactive on this site and therefore this API link is not working.<br/><br/>Please contact the site owner (%1s) who can activate this plugin again.','lmm'), hide_email(get_bloginfo('admin_email')) );
 } else {
    global $wpdb;
-   $noncelink = isset($_GET['_wpnonce']) ? $_GET['_wpnonce'] : ''; 
+   $noncelink = isset($_GET['_wpnonce']) ? $_GET['_wpnonce'] : '';
    if (! wp_verify_nonce($noncelink, 'exportcsv-nonce') ) die("".__('Security check failed - please call this function from the according Leaflet Maps Marker admin page!','lmm')."");
    $lmm_options = get_option( 'leafletmapsmarker_options' );
-   if (current_user_can($lmm_options[ 'capabilities_edit' ])) { 
+   if (current_user_can($lmm_options[ 'capabilities_edit' ])) {
    $rows = array();
         $table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
@@ -45,11 +45,11 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 		$columns['lat'] = str_replace('.', ',', $row->lat);
 		$columns['lon'] = str_replace('.', ',', $row->lon);
 	    if ($row->icon == null) {
-	        $columns['icon'] = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';  
+	        $columns['icon'] = LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png';
 	    } else {
-	        $columns['icon'] = LEAFLET_PLUGIN_ICONS_URL . '/' . $row->icon; 
+	        $columns['icon'] = LEAFLET_PLUGIN_ICONS_URL . '/' . $row->icon;
     	}
-		
+
 		$columns['zoom'] = $row->zoom;
 		$columns['mapwidth'] = $row->mapwidth;
 		$columns['mapwidthunit'] = $row->mapwidthunit;
@@ -79,14 +79,14 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 		$columns['m.wms10'] = $row->mwms10;
 		$columns['m.kml_timestamp'] = $row->mkml_timestamp;
 		$columns['m.address'] = $row->maddress;
-		$rows[] = join(';',$columns); 
+		$rows[] = join(';',$columns);
 	}
         $header = "Markerid;Markername;Layername;PopupText;OpenPopup;Latitude;Longitude;Icon;Zoom;Mapwidth;MapwidthUnit;Mapheight;MapheightUnit;MarkerCreatedBy;MarkerCreatedOn;MarkerUpdatedBy;MarkerUpdatedOn;LayerCreatedBy;LayerCreatedOn;LayerUpdatedBy;LayerUpdatedOn;Overlays_Custom;Overlays_Custom2;Overlays_Custom3;Overlays_Custom4;WMS;WMS2;WMS3;WMS4;WMS5;WMS6;WMS7;WMS8;WMS9;WMS10;KML_Timestamp;Address";
-	$file = $header."\n".join("\n",$rows); 
+	$file = $header."\n".join("\n",$rows);
 	header('Content-Type: text/plain; charset=UTF-8');
 	echo $file;
 exit;
-	
+
 } else {
 	_e('Error - CSV export of all markers not allowed.','lmm');
 }

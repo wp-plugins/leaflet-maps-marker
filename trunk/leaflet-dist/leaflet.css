@@ -1,7 +1,7 @@
 /* additional/changed styles - added by RH */
 .lmm-listmarkers-panel-icons {
 	float:right;
-	margin-right:5px !important;	
+	margin-right:5px !important;
 	position:relative;
 	z-index:5;
 	width:135px;
@@ -9,7 +9,7 @@
 	line-height:10px;
 }
 .lmm-listmarkers-panel-icons a {
-	border:none;	
+	border:none;
 }
 .lmm-listmarkers img {
 	max-width:440px !important;
@@ -72,14 +72,14 @@
 	border-radius:0 !important;
 	box-shadow:none !important;
 }
-.lmm-geo-tags { display:none!important; } 
+.lmm-geo-tags { display:none!important; }
 .leaflet-container {
   max-width: none;
   max-height: none;
   border: 1px solid #ccc;
 }
 .leaflet-popup-content {
-	word-wrap: break-word; 
+	word-wrap: break-word;
 }
 .leaflet-popup-content a:hover {
 	text-decoration:underline;
@@ -94,7 +94,7 @@
 }
 .leaflet-control-layers-overlays, .leaflet-control-layers-base {
 	margin:0 !important;
-}		
+}
 /* original leaflet.css styles (check on updates!) */
 .leaflet-map-pane,
 .leaflet-tile,
@@ -107,12 +107,12 @@
 .leaflet-popup-pane,
 .leaflet-overlay-pane svg,
 .leaflet-zoom-box,
-.leaflet-image-layer, 
+.leaflet-image-layer,
 .leaflet-layer { /* TODO optimize classes */
 	position: absolute;
 	left: 0;
 	}
-	
+
 .leaflet-container {
 	overflow: hidden;
 	outline: 0;
@@ -136,7 +136,7 @@
 	}
 .leaflet-container img {
 	/* map is broken in FF if you have max-width: 100% on tiles */
-	max-width: none !important; 
+	max-width: none !important;
 	border:none !important; /*added RH*/
 	background:no-repeat !important; /*added RH*/
 	padding:0px !important; /*added RH*/
@@ -151,7 +151,7 @@
 .leaflet-overlay-pane { z-index: 4; }
 .leaflet-shadow-pane { z-index: 5; }
 .leaflet-marker-pane { z-index: 19; } /*changed RH*/
-.leaflet-popup-pane { z-index: 20; } /*changed RH*/	
+.leaflet-popup-pane { z-index: 20; } /*changed RH*/
 .leaflet-tile {
 	filter: inherit;
 	visibility: hidden;
@@ -465,12 +465,12 @@
 	font: 12px/1.4 "Helvetica Neue", Arial, Helvetica, sans-serif;
 	color:#000000 !important;
 	}
-	
+
 /*RH leave on updates to set max image width in popups. Gets overriden by extra css with set value if theme supports wp_head()  */
 .leaflet-popup-content img {
 	max-width:250px !important;
 	height:auto;
 	margin: 0px !important;
-	padding: 0px !important;	
+	padding: 0px !important;
 	box-shadow:none !important;
 }

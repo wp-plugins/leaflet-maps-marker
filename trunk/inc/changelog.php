@@ -32,10 +32,10 @@ hr {
 </style>
 </head>
 <body>
-<?php 
-while(!is_file('wp-load.php')){
-  if(is_dir('../')) chdir('../');
-  else die('Error: Could not construct path to wp-load.php - please check <a href="http://mapsmarker.com/path-error">http://mapsmarker.com/path-error</a> for more details');
+<?php
+while(!is_file('wp-load.php')) {
+	if(is_dir('..' . DIRECTORY_SEPARATOR)) chdir('..' . DIRECTORY_SEPARATOR);
+	else die('Error: Could not construct path to wp-load.php - please check <a href="http://mapsmarker.com/path-error">http://mapsmarker.com/path-error</a> for more details');
 }
 include( 'wp-load.php' );
 if (get_option('leafletmapsmarker_update_info') == 'show') {
@@ -45,19 +45,28 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.4') . '</strong> - ' . __('released on','lmm') . ' xx.01.2013 (<a href="http://www.mapsmarker.com/v3.4" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-pro.png">
+		</td><td>
+		<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" target="_blank">Integrated upgrade for pro version for even more features - click here for more details and to find out how you can start a free 30-day-trial easily</a>
+		</td></tr>
+		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
 		</td><td>
-		
+
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
 		</td><td>
-		
+
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
-		
+
+		</td></tr>
+		<tr><td colspan="2">
+		<p><strong>' . __('Translation updates','lmm') . '</a></p></strong>
+		<p>' . sprintf(__('In case you want to help with translations, please visit the <a href="%1s" target="_blank">web-based translation plattform</a>','lmm'), 'http://translate.mapsmarker.com/projects/lmm') . '</p>
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
@@ -66,7 +75,190 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</td></tr>
 		</table>'.PHP_EOL;
 */
+		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.6') . '</strong> - ' . __('released on','lmm') . ' 22.07.2013 (<a href="http://www.mapsmarker.com/v3.6" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
+		<table>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-pro.png">
+		</td><td>
+		<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" target="_blank">Integrated upgrade for pro version for even more features - click here for more details and to find out how you can start a free 30-day-trial easily</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		<a href="http://www.mapsmarker.com/mapsmarker-api" target="_blank">MapsMarker API</a> to view and add markers or layers via GET or POST requests
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		use custom QR codes with background image thanks to <a href="http://www.visualead.com" target="_blank">Visualead.com</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		add bing maps as new directions provider (thanks Roxana!)
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		OpenStreetMap editor link now supports <a href="http://ideditor.com/" target="_blank">iD editor</a>, potlatch2 and remote editor (JOSM)
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		URL parameter full_icon_url for GeoJSON API to easier embedd maps on external sites
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		compatibility check for W3 Total Cache and tutorial how to solve conflicts with its Minify and CDN feature
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		improved multi-layer-maps workflow
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		improved compatibility with MAMP-server under Mac OS X
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		use of prepared statement for KML layer name parameter to improve security
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		removed plugin compatibility check for "<a href="http://wordpress.org/extend/plugins/seo-image/" target="_blank">SEO Friendly Images</a>" plugin (thx for the fix Vladimir!)
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		settings page headings were not localized since v3.5.3 (thanks again <a href="http://www.yakirs.net/" target="_blank">Yakir</a>!)
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		adding maps via tinyMCE button was broken when using WordPress 3.6
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		undefined index message when saving layers with debug enabled on older WordPress versions
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		OSM edit link was not added on fullscreen marker maps
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		settings page was broken on Phalanger installations (thx candriotis!)
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		CR/LF in marker name broke maps (when importing via phpmyadmin/excel for example) - thx Kjell!
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		TinyMCE button broke other input form fields on themes like Enfold - thx pmconsulting!
+		</td></tr>
+		<tr><td colspan="2">
+		<p><strong>' . __('Translation updates','lmm') . '</a></p></strong>
+		<p>' . sprintf(__('In case you want to help with translations, please visit the <a href="%1s" target="_blank">web-based translation plattform</a>','lmm'), 'http://translate.mapsmarker.com/projects/lmm') . '</p>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		Korean translation thanks to Andy Park, <a href="http://wcpadventure.com" target="_blank">http://wcpadventure.com</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		Latvian translation thanks to Juris Orlovs, <a href="http://lbpa.lv" target="_blank">http://lbpa.lv</a> and Eriks Remess <a href="http://geekli.st/Eriks" target="_blank">http://geekli.st/Eriks</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Bosnian translation thanks to Kenan Dervišević, <a href="http://dkenan.com" target="_blank">http://dkenan.com</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Catalan translation thanks to Efraim Bayarri, <a href="http://replicantsfactory.com" target="_blank">http://replicantsfactory.com</a> and  Vicent Cubells, <a href="http://vcubells.net" target="_blank">http://vcubells.net</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Chinese translation thanks to John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a> and ck
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Croatian translation thanks to Neven Pausic, <a href="http://www.airsoft-hrvatska.com" target="_blank">http://www.airsoft-hrvatska.com</a>, Alan Benic and Marijan Rajic, <a href="http://www.proprint.hr" target="_blank">http://www.proprint.hr</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Dutch translation thanks to Patrick Ruers, <a href="http://www.stationskwartiersittard.nl" target="_blank">http://www.stationskwartiersittard.nl</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated French translation thanks to Vincèn Pujol, <a href="http://www.skivr.com" target="_blank">http://www.skivr.com</a> and Rodolphe Quiedeville, <a href="http://rodolphe.quiedeville.org/" target="_blank">http://rodolphe.quiedeville.org/</a> and Fx Benard, <a href="http://wp-translator.com" target="_blank">http://wp-translator.com</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated German translation
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Indonesian translation thanks to Andy Aditya Sastrawikarta and Emir Hartato, <a href="http://whateverisaid.wordpress.com" target="_blank">http://whateverisaid.wordpress.com</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Italian translation thanks to Luca Barbetti, <a href="http://twitter.com/okibone" target="_blank">http://twitter.com/okibone</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Hungarian translation thanks to István Pintér, <a href="http://www.logicit.hu" target="_blank">http://www.logicit.hu</a> and Csaba Orban, <a href="http://www.foto-dvd.hu" target="_blank">http://www.foto-dvd.hu</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Polish translation thanks to Tomasz Rudnicki, <a href="http://www.kochambieszczady.pl" target="_blank">http://www.kochambieszczady.pl</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Romanian translation thanks to Arian, <a href="http://administrare-cantine.ro" target="_blank">http://administrare-cantine.ro</a> and Daniel Codrea, <a href="http://www.inadcod.com" target="_blank">http://www.inadcod.com</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Russian translation thanks to Ekaterina Golubina, supported by Teplitsa of Social Technologies - <a href="http://te-st.ru" target="_blank">http://te-st.ru</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Spanish translation thanks to Alvaro Lara, <a href="http://www.alvarolara.com" target="_blank">http://www.alvarolara.com</a>, Victor Guevara, <a href="http://1sistemas.net" target="_blank">http://1sistemas.net</a> and Ricardo Viteri, <a href="http://www.labviteri.com" target="_blank">http://www.labviteri.com</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Swedish translation thanks to Olof Odier <a href="http://www.historiskastadsvandringar.se" target="_blank">http://www.historiskastadsvandringar.se</a>, Tedy Warsitha <a href="http://codeorig.in/" target="_blank">http://codeorig.in/</a> and Dan Paulsson <a href="http://www.paulsson.eu" target="_blank">http://www.paulsson.eu</a>
+		</td></tr>
+		</table>'.PHP_EOL;
 
+	if ( ( $lmm_version_old < '3.5.4' ) && ( $lmm_version_old > '0' ) ) {
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.5.4') . '</strong> - ' . __('released on','lmm') . ' 24.05.2013 (<a href="http://www.mapsmarker.com/v3.5.4" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -126,7 +318,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
 		</td><td>
-		Indonesian translation thanks to Emir Hartato, <a href="http://whateverisaid.wordpress.com" target="_blank">http://whateverisaid.wordpress.com</a>
+		Indonesian translation thanks to Andy Aditya Sastrawikarta and Emir Hartato, <a href="http://whateverisaid.wordpress.com" target="_blank">http://whateverisaid.wordpress.com</a>
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
@@ -161,7 +353,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
 		</td><td>
-		updated Romanian translation thanks to Daniel Codrea, <a href="http://www.inadcod.com" target="_blank">http://www.inadcod.com</a>
+		updated Romanian translation thanks to Arian, <a href="http://administrare-cantine.ro" target="_blank">http://administrare-cantine.ro</a> and Daniel Codrea, <a href="http://www.inadcod.com" target="_blank">http://www.inadcod.com</a>
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
@@ -199,20 +391,11 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		updated German translation
 		</td></tr>
 		</table>'.PHP_EOL;
+	}
 
 	if ( ( $lmm_version_old < '3.5.3' ) && ( $lmm_version_old > '0' ) ) {
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.5.3') . '</strong> - ' . __('released on','lmm') . ' 17.04.2013 (<a href="http://www.mapsmarker.com/v3.5.3" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
-		<tr><td>
-		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
-		</td><td>
-		Chinese (zh_TW) translation thanks to jamesho Ho, <a href="http://outdooraccident.org" target="_blank">http://outdooraccident.org</a>
-		</td></tr>
-		<tr><td>
-		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
-		</td><td>
-		Romanian (ro_RO) translation thanks to Daniel Codrea, <a href="http://www.inadcod.com" target="_blank">http://www.inadcod.com</a>
-		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
 		</td><td>
@@ -222,6 +405,16 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
 		</td><td>
 		duplicate save buttons on top of edit pages for enhanced usability (thx Pat!)
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		Chinese (zh_TW) translation thanks to jamesho Ho, <a href="http://outdooraccident.org" target="_blank">http://outdooraccident.org</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		Romanian (ro_RO) translation thanks to Arian, <a href="http://administrare-cantine.ro" target="_blank">http://administrare-cantine.ro</a> and Daniel Codrea, <a href="http://www.inadcod.com" target="_blank">http://www.inadcod.com</a>
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
@@ -241,7 +434,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
-		fixed WMS layer "public toilets in Vienna" (only for new installs - change name to WCANLAGEOGD on existing installations manually or reset settings)
+		update pointer was broken if translations with apostrophes were loaded (thx joke2k!)
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
@@ -251,7 +444,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
-		update pointer was broken if translations with apostrophes were loaded (thx joke2k!)
+		fixed WMS layer "public toilets in Vienna" (only for new installs - change name to WCANLAGEOGD on existing installations manually or reset settings)
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
@@ -311,9 +504,9 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</td></tr>
 		</table>'.PHP_EOL;
 	}
-	
+
 	if ( ( $lmm_version_old < '3.5.1' ) && ( $lmm_version_old > '0' ) ) {
-		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.5.1') . '</strong> - ' . __('released on','lmm') . ' 05.02.2013 (<a href="http://www.mapsmarker.com/v3.4" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
+		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.5.1') . '</strong> - ' . __('released on','lmm') . ' 05.02.2013 (<a href="http://www.mapsmarker.com/v3.5.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
@@ -328,12 +521,17 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
 		</td><td>
-		show marker icon and shadow image checks on plugins pages only
+		show marker icon and shadow image checks on plugin pages only
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
 		</td><td>
 		update jQuery-Timepicker-Addon to v1.2 and compress file with jscompress.com
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		update jQuery for TinyMCE-button to v1.8.3
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
@@ -352,9 +550,9 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</td></tr>
 		</table>'.PHP_EOL;
 	}
-	
+
 	if ( ( $lmm_version_old < '3.5' ) && ( $lmm_version_old > '0' ) ) {
-		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.5.1') . '</strong> - ' . __('released on','lmm') . ' 01.02.2013 (<a href="http://www.mapsmarker.com/v3.5.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
+		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.5') . '</strong> - ' . __('released on','lmm') . ' 04.02.2013 (<a href="http://www.mapsmarker.com/v3.5" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
@@ -408,7 +606,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</td></tr>
 		</table>'.PHP_EOL;
 	}
-	
+
 	if ( ( $lmm_version_old < '3.4.3' ) && ( $lmm_version_old > '0' ) ) {
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.4.3') . '</strong> - ' . __('released on','lmm') . ' 19.01.2013 (<a href="http://www.mapsmarker.com/v3.4.3" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -557,7 +755,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</td></tr>
 		</table>'.PHP_EOL;
 	}
-	
+
 	if ( ( $lmm_version_old < '3.3' ) && ( $lmm_version_old > '0' ) ) {
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.3') . '</strong> - ' . __('released on','lmm') . ' 21.12.2012 (<a href="http://www.mapsmarker.com/v3.3" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -674,7 +872,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</td></tr>
 		</table>'.PHP_EOL;
 	}
-	
+
 	if ( ( $lmm_version_old < '3.2.4' ) && ( $lmm_version_old > '0' ) ) {
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.2.4') . '</strong> - ' . __('released on','lmm') . ' 17.12.2012 (<a href="http://www.mapsmarker.com/v3.2.4" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -772,7 +970,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</td></tr>
 		</table>'.PHP_EOL;
 	}
-	
+
 	if ( ( $lmm_version_old < '3.2.1' ) && ( $lmm_version_old > '0' ) ){
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.2.1') . '</strong> - ' . __('released on','lmm') . ' 13.12.2012 (<a href="http://www.mapsmarker.com/v3.2.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -1026,7 +1224,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</td></tr>
 		</table>'.PHP_EOL;
 	}
-	
+
 	if ( ( $lmm_version_old < '3.0' ) && ( $lmm_version_old > '0' ) ){
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.0') . '</strong> - ' . __('released on','lmm') . ' 28.11.2012 (<a href="http://www.mapsmarker.com/v3.0" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -1098,7 +1296,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
 		</td><td>
-		set jQuery cache for layers to true again for higher performance	
+		set jQuery cache for layers to true again for higher performance
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
@@ -1148,12 +1346,12 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
-		some links to the new settings panel from backend were broken	
+		some links to the new settings panel from backend were broken
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
-		layout of map panel was broken on preview if empty marker/layer name was entered	
+		layout of map panel was broken on preview if empty marker/layer name was entered
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
@@ -1510,7 +1708,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
-		maximum popup width and popup image width were ignored on TinyMCE editor 
+		maximum popup width and popup image width were ignored on TinyMCE editor
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
@@ -1716,7 +1914,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
 		</td><td>
 		updated Spanish translation thanks to Alvaro Lara, <a href="http://www.alvarolara.com" target="_blank">http://www.alvarolara.com</a>
-		</td></tr>		
+		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
 		</td><td>
@@ -1735,7 +1933,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
-		fixed broken links in multi-layer-maps-list and default state controlbox on layer maps on backend 
+		fixed broken links in multi-layer-maps-list and default state controlbox on layer maps on backend
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
@@ -1886,7 +2084,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		fixed vertical alignment of basemaps in layer control box in backend
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '2.5' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '2.5') . '</strong> - ' . __('released on','lmm') . ' 06.07.2012 (<a href="http://www.mapsmarker.com/v2.5" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -1981,7 +2179,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		\" in popup text caused layer maps to break (now " get replaced with &#39;)
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '2.4' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '2.4') . '</strong> - ' . __('released on','lmm') . ' 07.06.2012 (<a href="http://www.mapsmarker.com/v2.4" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2021,7 +2219,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		removed geo tags from Google (geo) sitemap as they are not supported anymore
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '2.3' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '2.3') . '</strong> - ' . __('released on','lmm') . ' 26.04.2012 (<a href="http://www.mapsmarker.com/v2.3" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2061,7 +2259,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		changed constant WP_ADMIN_URL to LEAFLET_WP_ADMIN_URL due to problems on some blogs
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '2.2' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '2.2') . '</strong> - ' . __('released on','lmm') . ' 24.03.2012 (<a href="http://www.mapsmarker.com/v2.2" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2081,7 +2279,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		TinyMCE button did not work when WordPress was installed in custom directory
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '2.1' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '2.1') . '</strong> - ' . __('released on','lmm') . ' 18.03.2012 (<a href="http://www.mapsmarker.com/v2.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2141,7 +2339,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		removed double slashes from image urls in settings
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '2.0' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '2.0') . '</strong> - ' . __('released on','lmm') . ' 13.03.2012 (<a href="http://www.mapsmarker.com/v2.0" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2166,7 +2364,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		maps didnt show up on French installations on backend
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '1.9' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '1.9') . '</strong> - ' . __('released on','lmm') . ' 05.03.2012 (<a href="http://www.mapsmarker.com/v1.9" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2196,7 +2394,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		removed support for OSM Osmarender basemaps (service has been discontinued)
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '1.8' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '1.8') . '</strong> - ' . __('released on','lmm') . ' 29.02.2012 (<a href="http://www.mapsmarker.com/v1.8" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2243,7 +2441,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
-		markers are not clickable anymore if there is no popup text 
+		markers are not clickable anymore if there is no popup text
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
@@ -2276,7 +2474,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		button "add to layer" did not work on new layers
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '1.7' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '1.7') . '</strong> - ' . __('released on','lmm') . ' 22.02.2012 (<a href="http://www.mapsmarker.com/v1.7" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2311,7 +2509,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		default font color in popups to black due to incompabilities with several themes
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '1.6' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '1.6') . '</strong> - ' . __('released on','lmm') . ' 14.02.2012 (<a href="http://www.mapsmarker.com/v1.6" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2344,9 +2542,9 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
 		lat/lon values for layer and marker maps were rounded on some installations
-		</td></tr>		
+		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '1.5.1' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '1.5.1') . '</strong> - ' . __('released on','lmm') . ' 12.02.2012 (<a href="http://www.mapsmarker.com/v1.5.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2384,9 +2582,9 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
 		admin pages for map/layer edit screens broken on WordPress 3.0 installations
-		</td></tr>		
+		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '1.5' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '1.5') . '</strong> - ' . __('released on','lmm') . ' 09.02.2012 (<a href="http://www.mapsmarker.com/v1.5" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2416,7 +2614,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		overlay status for layer maps wasnt displayed in backend preview
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '1.4.3' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '1.4.3') . '</strong> - ' . __('released on','lmm') . ' 29.01.2012 (<a href="http://www.mapsmarker.com/v1.4.3" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2436,14 +2634,14 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		missing KML schema declaration causing KML file not to work with scribblemaps.com
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '1.4.2' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '1.4.2') . '</strong> - ' . __('released on','lmm') . ' 25.01.2012 (<a href="http://www.mapsmarker.com/v1.4.2" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
 		</td><td>
-		custom marker icons not showing up on maps on certain hosts (using directory separators different to / ) 
+		custom marker icons not showing up on maps on certain hosts (using directory separators different to / )
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
@@ -2451,7 +2649,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		css styling for <label>-tag in controlbox got overriden by some templates
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '1.4.1' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '1.4.1') . '</strong> - ' . __('released on','lmm') . ' 24.01.2012 (<a href="http://www.mapsmarker.com/v1.4.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2466,7 +2664,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		markers & layers could not be added on some hosting providers (changed updatedby & updatedon column on both tables to NULL instead of NOT NULL)
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '1.4' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '1.4') . '</strong> - ' . __('released on','lmm') . ' 23.01.2012 (<a href="http://www.mapsmarker.com/v1.4" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2529,9 +2727,9 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
 		markers added directly with shortcode caused error on frontend
-		</td></tr>		
+		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '1.3' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '1.3') . '</strong> - ' . __('released on','lmm') . ' 17.01.2012 (<a href="http://www.mapsmarker.com/v1.3" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2599,9 +2797,9 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
 		text in layer controlbox was centered on some templates
-		</td></tr>		
+		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '1.2.2' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '1.2.2') . '</strong> - ' . __('released on','lmm') . ' 14.01.2012 (<a href="http://www.mapsmarker.com/v1.2.2" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2611,7 +2809,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		custom marker icons were not shown on certain hosts due to different wp-upload-directories
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '1.2.1' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '1.2.1') . '</strong> - ' . __('released on','lmm') . ' 13.01.2012 (<a href="http://www.mapsmarker.com/v1.2.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2641,7 +2839,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		API images in panel did show a border on some templates
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '1.2' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '1.2') . '</strong> - ' . __('released on','lmm') . ' 11.01.2012 (<a href="http://www.mapsmarker.com/v1.2" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2668,7 +2866,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
 		</td><td>
-		added sanitization for wikitude provider name 
+		added sanitization for wikitude provider name
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
@@ -2714,9 +2912,9 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
 		quotes were not shown on marker/layer names (note: double quotes are replaced with single quotes automatically due to compatibility reasons)
-		</td></tr>		
+		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	if ( ( $lmm_version_old < '1.1' ) && ( $lmm_version_old > '0' ) ){
 		echo '<hr noshade size="1"><p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '1.1') . '</strong> - ' . __('released on','lmm') . ' 08.01.2012 (<a href="http://www.mapsmarker.com/v1.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
@@ -2789,14 +2987,14 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
 		language pot-file did not include all text strings for translations
-		</td></tr>		
+		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
 		active translations made setting tabs unaccessible
 		</td></tr>
 		</table>'.PHP_EOL;
-	}		
+	}
 	echo '</div>';
 }
 ?>

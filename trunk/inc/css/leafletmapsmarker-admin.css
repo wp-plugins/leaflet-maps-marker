@@ -1,14 +1,14 @@
 /*Marker-Tabelle*/
 .fixed .column-id { width: 4%; }
-.fixed .column-type { width: 5%; } 
+.fixed .column-type { width: 5%; }
 .fixed .column-markername { width: 20%; }
 .fixed .column-layername { width: 240px; }
-.fixed .column-address { width: 20%; } 
+.fixed .column-address { width: 20%; }
 .fixed .column-coords { width: 105px; }
 .fixed .column-count { width: 5%;text-align:center; }
 .fixed .column-mapsize { width: 90px; }
 .fixed .column-zoom { width: 45px; }
-.fixed .column-icon { width: 5%; } 
+.fixed .column-icon { width: 5%; }
 .fixed .column-popuptext { width: 210px; }
 .fixed .column-openpopup { width: 60px; }
 .fixed .column-code { width: 150px; }
@@ -23,7 +23,7 @@
 /*options page*/
  .tabs-top {
 }
-.tabs-top ul { 
+.tabs-top ul {
 	position: relative;
 	text-shadow: 0 1px 0 #FFFFFF;
 	z-index: 1;
@@ -32,13 +32,13 @@
 	padding: 0;
 }
 .tabs-top ul li {
-	
+
 }
 .tabs-top li a {
-  
+
 }
 .ui-tabs-active a {
-	 
+
 }
 .tabs-left {
 	position: relative;
@@ -68,16 +68,16 @@
 }
  .leafletmapsmarker-listings{
 	padding: 0 0 0 130px !important;
-}   
+}
   .leafletmapsmarker-listings ul {
    background-color: #fff;
-	margin: 0 0 -10px 0 ;  
-}   
-.leafletmapsmarker-listings ul li a{ text-decoration: none !important;}	
-	
+	margin: 0 0 -10px 0 ;
+}
+.leafletmapsmarker-listings ul li a{ text-decoration: none !important;}
+
 .ui-tabs-panel{
 	margin-left: 200px;
-}   
+}
 .tabs-left{
 	margin: 0px;
 	padding: 0px;
@@ -91,7 +91,7 @@ ul.ui-tabs-nav-top{
 	min-width: 990px;
 }
 ul.ui-tabs-nav-top li{
-	margin: 0px;	
+	margin: 0px;
 	padding: 15px 10px 15px 10px;
 	float:left;
 	font-weight: bold;
@@ -174,4 +174,15 @@ h3.titl{
 }
 .lmm-nav-secondary:hover {
 	background: #E4E4E4 !important;
+}
+#settings-array {
+	height:115px;
+}
+a.pro-upgrade-external-links {
+	color:#21759b !important;
+	text-decoration:none;
+}
+a.pro-upgrade-external-links:hover {
+	color:#df6c21 !important;
+	text-decoration:none;
 }
