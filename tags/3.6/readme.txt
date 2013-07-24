@@ -250,7 +250,7 @@ This program is free software; you can redistribute it and/or modify it under th
 * Home icon by [ Pro Theme Design](http://prothemedesign.com/) - Creative Commons Attribution (by)
 * Images for changelog from [Firefox release notes](http://www.mozilla.org/en-US/firefox/11.0/releasenotes/), licence: Creative Commons Attribution ShareAlike (CC BY-SA 3.0)
 * Home-Icon from [Pro Theme Design](http://prothemedesign.com), licence: Creative Commons Attribution (by)
-* Editor-Switch-Icon by AMAZIGH Aneglus, license: GNU/GPL
+* Editor-Switch-Icon by AMAZIGH Aneglus, license: GNU/GPL v2
 * Submenu icons from [Bijou](http://bijou.im) and [Iconic](http://somerandomdude.com/work/iconic/) icon sets (GPL)
 
 = Credits & special thanks to =
