@@ -182,7 +182,7 @@ $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE 
 <?php $nonce= wp_create_nonce('tool-nonce'); ?>
 <form method="post">
 <input type="hidden" name="action" value="update-settings" />
-<?php wp_nonce_field('tool-nonce'); 
+<?php wp_nonce_field('tool-nonce');
 $serialized_options = serialize($lmm_options);
 ?>
 <table class="widefat" style="width:100%;height:100px;">
@@ -192,7 +192,7 @@ $serialized_options = serialize($lmm_options);
 	<tr>
 		<td style="vertical-align:top;">
 		<p><?php _e('Below you find you current settings. Use copy and paste to make a backup or restore.','lmm'); ?></p>
-		<?php 
+		<?php
 		global $wp_version;
 		if ( version_compare( $wp_version, '3.3', '>=' ) ) {
 				$settings_tinymce = array(
@@ -203,7 +203,7 @@ $serialized_options = serialize($lmm_options);
 				'quicktags' => false
 				);
 				wp_editor( $serialized_options, 'settings-array', $settings_tinymce);
-		} else { 
+		} else {
 			if (function_exists( 'wp_tiny_mce' ) ) {
 				add_filter( 'teeny_mce_before_init', create_function( '$a', '
 				$a["height"] = "110";

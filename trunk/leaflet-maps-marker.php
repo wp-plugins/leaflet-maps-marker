@@ -4,7 +4,7 @@ Plugin Name: Leaflet Maps Marker &reg;
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, APIs or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, WMTS, geoRSS, location, geo, geo-mashup, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, googlemaps, gmaps, google map, google map short code, google map widget, google maps v3, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, marker icons, layer, multiple markers, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice, widget, bing, bing maps, microsoft, map short code, map widget, kml, cross-browser, fully documented, traffic, bike lanes, map short code, custom marker text, custom marker icons and text
-Version: 3.6
+Version: 3.6.1
 Author: Robert Harm
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
@@ -59,7 +59,7 @@ if ( ! defined( 'LEAFLET_PLUGIN_ICONS_URL' ) )
 	define ("LEAFLET_PLUGIN_ICONS_URL", $lmm_upload_dir['baseurl'] . "/leaflet-maps-marker-icons");
 if ( ! defined( 'LEAFLET_PLUGIN_ICONS_DIR' ) )
 	define ("LEAFLET_PLUGIN_ICONS_DIR", $lmm_upload_dir['basedir'] . DIRECTORY_SEPARATOR . "leaflet-maps-marker-icons");
-class Leafletmapsmarker 
+class Leafletmapsmarker
 {
 	function __construct() {
 		global $wp_version;
@@ -88,7 +88,7 @@ class Leafletmapsmarker
 				add_action( 'wp_head', array( &$this, 'lmm_add_georss_to_head' ) );
 			}
 		}
-		
+
 		if ( isset($lmm_options['misc_tinymce_button']) && ($lmm_options['misc_tinymce_button'] == 'enabled') ) {
 			require_once( plugin_dir_path( __FILE__ ) . 'inc' . DIRECTORY_SEPARATOR . 'tinymce-plugin.php' );
 		}
@@ -169,7 +169,7 @@ class Leafletmapsmarker
 		$do_add_script = false;
 		$lmm_version_new = get_option( 'leafletmapsmarker_version' );
 		$version_without_dots = "lmmv" . str_replace('.', '', $lmm_version_new);
-	
+
 		if ( !isset($dismissed_pointers[$version_without_dots]) ) {
 			$do_add_script = true;
 			add_action( 'admin_print_footer_scripts', array( $this, 'lmm_update_pointer_footer_script' ) );
@@ -238,6 +238,7 @@ class Leafletmapsmarker
 		$widget_id = 'lmm-admin-dashboard-widget';
 		$number_of_markers =  isset( $widgets[$widget_id] ) && isset( $widgets[$widget_id]['items'] ) ? absint( $widgets[$widget_id]['items'] ) : 4;
 		$result = $wpdb->get_results($wpdb->prepare("SELECT ID,markername,icon,createdon,createdby FROM $table_name_markers ORDER BY createdon desc LIMIT %d", $number_of_markers), ARRAY_A);
+		echo '<p><a style="background:#f99755;display:block;padding:5px;text-decoration:none;color:#2702c6;text-align:center;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('Upgrade to pro version for even more features - click here to find out how you can start a free 30-day-trial easily','lmm') . '</a><hr style="border:0;height:1px;background-color:#d8d8d8;"/></p>';
 		if ($result != NULL) {
 			echo '<table style="margin-bottom:5px;"><tr>';
 			foreach ($result as $row ) {
@@ -368,8 +369,8 @@ class Leafletmapsmarker
 			require_once( plugin_dir_path( __FILE__ ) . 'inc' . DIRECTORY_SEPARATOR . 'class-leaflet-options.php' );
 			global $lmm_options_class;
 			$lmm_options_class = new Class_leaflet_options();
-		}	
-	}	
+		}
+	}
 	function lmm_admin_menu() {
 		$lmm_options = get_option( 'leafletmapsmarker_options' );
 		if ( !empty($lmm_options) ) { //info: needed to suppress warning when reseting settings
@@ -400,7 +401,7 @@ class Leafletmapsmarker
 			$page8 = '';
 			$page9 = '';
 			$page10 = '';
-		}	
+		}
 		//info: add javascript - leaflet.js - for admin area
 		add_action('admin_print_scripts-'.$page3, array(&$this, 'lmm_admin_enqueue_scripts'),7);
 		add_action('admin_print_scripts-'.$page5, array(&$this, 'lmm_admin_enqueue_scripts'),8);
@@ -518,7 +519,7 @@ class Leafletmapsmarker
 							'href' => LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade'
 						)
 					));
-	
+
 				foreach ($menu_items as $menu_item) {
 					$wp_admin_bar->add_menu($menu_item);
 				}
@@ -671,12 +672,12 @@ class Leafletmapsmarker
 				global $wp_query, $wp_version;
 				$posts = $wp_query->posts;
 				$pattern = get_shortcode_regex();
-	
+
 				$plugin_version = get_option('leafletmapsmarker_version');
 				global $wp_styles;
 				wp_register_style('leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.css', array(), $plugin_version);
 				wp_register_style('leafletmapsmarker-ie-only', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.ie.css', array(), $plugin_version);
-	
+
 				if (is_array($posts)) {
 					foreach ($posts as $post) {
 						if ( preg_match_all( '/'. $pattern .'/s', $post->post_content, $matches ) && array_key_exists( 2, $matches ) && in_array( $lmm_options['shortcode'], $matches[2] ) ) {
@@ -757,7 +758,7 @@ class Leafletmapsmarker
 	}
 	function lmm_install_and_updates() {
 		//info: set transient to execute install & update-routine only once a day
-		$current_version = "v36"; //2do - mandatory: change on each update to new version!
+		$current_version = "v361"; //2do - mandatory: change on each update to new version!
 		$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version;
 		$install_update_schedule = get_transient( $schedule_transient );
 		if ( $install_update_schedule === FALSE ) {
