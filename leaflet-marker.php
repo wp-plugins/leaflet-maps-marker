@@ -235,7 +235,7 @@ echo '<p><div class="error" style="padding:10px;">' . $error_marker_not_exists .
 echo '<p><a class=\'button-secondary lmm-nav-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_markers\'>' . __('list all markers','lmm') . '</a>&nbsp;&nbsp;&nbsp;<a class=\'button-secondary lmm-nav-secondary\' href=\'' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker\'>' . __('add new marker','lmm') . '</a></p>';
 } else { ?>
 
-<?php 
+<?php
 $edit_status = isset($_GET['status']) ? $_GET['status'] : '';
 if ( $edit_status == 'updated') {
 	echo '<p><div class="updated" style="padding:10px;">' . __('Marker has been successfully updated','lmm') . '</div>';

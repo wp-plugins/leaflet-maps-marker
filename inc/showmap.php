@@ -13,7 +13,6 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 	} else {
 		$marker_shadow_url = htmlspecialchars($lmm_options['defaults_marker_icon_shadow_url']);
 	}
-	$uid = substr(md5(''.rand()), 0, 8);
 	extract(shortcode_atts(array(
 		'lat' => '', 'lon' => '',
 		'mlat' => '', 'mlon' => '',
@@ -30,12 +29,14 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 		'panel' => '0',
 		'mapwidth' => intval($lmm_options[ 'defaults_marker_shortcode_mapwidth' ]),
 		'mapwidthunit' => $lmm_options[ 'defaults_marker_shortcode_mapwidthunit' ],
-		'mapheight' => intval($lmm_options[ 'defaults_marker_shortcode_mapheight' ]),
-		'mapname' => 'lmm_map_'.$uid
+		'mapheight' => intval($lmm_options[ 'defaults_marker_shortcode_mapheight' ])
 	), $atts));
-	$pname = 'pa'.$uid;
+
 	//info: prepare layers
 	if (!empty($layer)) {
+		$uid = 'layer_' . $layer;
+		$uid2 = substr(md5(''.rand()), 0, 8); //info: needed if same map is loaded twice
+		$mapname = 'lmm_map_layer_' . $layer. '_' . $uid2;
 		$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 		$row = $wpdb->get_row('SELECT id,name,basemap,mapwidth,mapheight,mapwidthunit,panel,layerzoom,layerviewlat,layerviewlon,controlbox,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10,listmarkers,multi_layer_map,multi_layer_map_list FROM '.$table_name_layers.' WHERE id='.intval($layer), ARRAY_A);
 		$id = $row['id'];
@@ -71,6 +72,9 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 	//info: prepare markers
 	if (!empty($marker))  {
 			$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
+			$uid = 'marker_' . $marker;
+			$uid2 = substr(md5(''.rand()), 0, 8); //info: needed if same map is loaded twice
+			$mapname = 'lmm_map_marker_' . $marker. '_' . $uid2;
 				$row = $wpdb->get_row('SELECT id,markername,basemap,layer,lat,lon,icon,popuptext,zoom,openpopup,mapwidth,mapwidthunit,mapheight,panel,controlbox,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10,address FROM '.$table_name_markers.' WHERE id='.intval($marker), ARRAY_A);
 				if(!empty($row)) {
 					$id = $row['id'];
@@ -115,6 +119,9 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 	}
 	//info: prepare markers only added by shortcode and not defined in backend
 	if (empty($layer) and empty($marker)) {
+		$uid = 'shortcode_' . str_replace(',','_',$mlat) . '_' . str_replace(',','_',$mlon);
+		$uid2 = substr(md5(''.rand()), 0, 8); //info: needed if same map is loaded twice
+		$mapname = 'lmm_map_shortcode_' . $uid2;
 		$lat = $mlat;
 		$lon = $mlon;
 		$controlbox = $lmm_options[ 'defaults_marker_shortcode_controlbox' ];
@@ -341,8 +348,8 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 	} else {
 		$layer_marker_list_width = $mapwidth.$mapwidthunit;
 	}
-	$lmm_out .= '<div id="lmm-listmarkers-'.$uid.'" class="lmm-listmarkers" style="width:' . $layer_marker_list_width . ';">'.PHP_EOL;
-	$lmm_out .= '<table style="width:' . $layer_marker_list_width . ';" id="lmm-listmarkers-table-'.$uid.'">';
+	$lmm_out .= '<div id="lmm_listmarkers_'.$uid.'" class="lmm-listmarkers" style="width:' . $layer_marker_list_width . ';">'.PHP_EOL;
+	$lmm_out .= '<table style="width:' . $layer_marker_list_width . ';" id="lmm_listmarkers_table_'.$uid.'">';
 	foreach ($layer_marker_list as $row){
 		if ( (isset($lmm_options[ 'defaults_layer_listmarkers_show_icon' ]) == TRUE ) && ($lmm_options[ 'defaults_layer_listmarkers_show_icon' ] == 1 ) ) {
 			$lmm_out .= '<tr><td style="width:35px;vertical-align:top;text-align:center;' . $lmm_options[ 'defaults_layer_listmarkers_extracss' ] . '">';
@@ -474,8 +481,8 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 					var map = $('#lmm_".$uid."');
 					";
 					if ($listmarkers == 1) {
-						$lmmjs_out .= "var map_list_markers_div = $('#lmm-listmarkers-".$uid."');".PHP_EOL;
-						$lmmjs_out .= "\t\t\t\t\t" . "var map_list_markers_table = $('#lmm-listmarkers-table-".$uid."');".PHP_EOL;
+						$lmmjs_out .= "var map_list_markers_div = $('#lmm_listmarkers_".$uid."');".PHP_EOL;
+						$lmmjs_out .= "\t\t\t\t\t" . "var map_list_markers_table = $('#lmm_listmarkers_table_".$uid."');".PHP_EOL;
 					}
 					$lmmjs_out .= "\t\t\t\t\t" . "var map_parent_size = $('#lmm_".$uid."').parent().width();
 					if( map_parent_size < ".$mapwidth." ) {

@@ -250,7 +250,7 @@ This program is free software; you can redistribute it and/or modify it under th
 * Home icon by [ Pro Theme Design](http://prothemedesign.com/) - Creative Commons Attribution (by)
 * Images for changelog from [Firefox release notes](http://www.mozilla.org/en-US/firefox/11.0/releasenotes/), licence: Creative Commons Attribution ShareAlike (CC BY-SA 3.0)
 * Home-Icon from [Pro Theme Design](http://prothemedesign.com), licence: Creative Commons Attribution (by)
-* Editor-Switch-Icon by AMAZIGH Aneglus, license: GNU/GPL v2
+* Editor-Switch-Icon by AMAZIGH Aneglus, license: GNU/GPL
 * Submenu icons from [Bijou](http://bijou.im) and [Iconic](http://somerandomdude.com/work/iconic/) icon sets (GPL)
 
 = Credits & special thanks to =
@@ -267,10 +267,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2013, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.6 =
-MapsMarker API, iD editor and pro upgrader - see http://www.mapsmarker.com/v3.6 for more details
+= v3.6.1 =
+updated translations - see http://www.mapsmarker.com/v3.6.1 for more details
 
 == Changelog ==
-[blog post with details about v3.6](http://www.mapsmarker.com/v3.6)
+[blog post with details about v3.6.1](http://www.mapsmarker.com/v3.6.1)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

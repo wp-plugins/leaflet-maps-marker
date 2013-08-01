@@ -25,7 +25,7 @@ function lmm_getLatLng($address) {
 		$latDom = $xml->result[0]->geometry->location->lat;
 		$lonDom = $xml->result[0]->geometry->location->lng;
 		$addressDom = $xml->result[0]->formatted_address;
-		if ($latDom != NULL) { 
+		if ($latDom != NULL) {
 			$response = array (
 				'success' 	=> true,
 				'lat' 		=> $latDom,
@@ -135,20 +135,20 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 	if ($lmm_options['api_status'] == 'enabled') {
 
 		if ( (($request_method == 'GET') && ($lmm_options['api_request_type_get'] == TRUE)) || (($request_method == 'POST') && ($lmm_options['api_request_type_post'] == TRUE)) ) {
-		
+
 			if ( ($version == '1') || ($version == '') ) { //info: change OR condition if v2 is available
 				$api_key = isset($_POST['key']) ? $_POST['key'] : (isset($_GET['key']) ? $_GET['key'] : '');
-	
+
 				if ($api_key == $lmm_options['api_key']) {
 					$referer = wp_get_referer();
-	
+
 					if ( ($lmm_options['api_allowed_referer'] == NULL) || ( ($lmm_options['api_allowed_referer'] != NULL) && ($referer == $lmm_options['api_allowed_referer'])) ) {
-	
+
 						if ( ($lmm_options['api_allowed_ip'] == null) || (($lmm_options['api_allowed_ip'] != null) && (strpos ($_SERVER['REMOTE_ADDR'], str_replace("..",".",str_replace("...",".",str_replace("*", "", $lmm_options['api_allowed_ip'])))) === 0)) ) {
 							$action = isset($_POST['action']) ? $_POST['action'] : (isset($_GET['action']) ? $_GET['action'] : '');
 							$id = isset($_POST['id']) ? $_POST['id'] : (isset($_GET['id']) ? $_GET['id'] : '');
 							$type = isset($_POST['type']) ? $_POST['type'] : (isset($_GET['type']) ? $_GET['type'] : '');
-		
+
 							if ($action == 'view') {
 								if ( $lmm_options['api_permissions_view'] == TRUE ) {
 									if ($type == 'marker') {
@@ -310,7 +310,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 												echo '<message>' . esc_attr__('API parameter id has to be set','lmm') . '</message>'.PHP_EOL;
 												echo '<data></data>'.PHP_EOL;
 												echo '</mapsmarker>';
-											}									
+											}
 										} else {
 											if ($format == 'json') {
 												header('Content-type: application/json; charset=utf-8');
@@ -329,7 +329,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 												echo '<message>' . sprintf(esc_attr__('A marker with the ID %1s does not exist','lmm'), $id) . '</message>'.PHP_EOL;
 												echo '<data></data>'.PHP_EOL;
 												echo '</mapsmarker>';
-											}									
+											}
 										} //info: end check if query_result markers >=1 / view
 									} else if ($type == 'layer') {
 										$query_result = $wpdb->get_row( $wpdb->prepare("SELECT * FROM $table_name_layers WHERE id = %d", $id), ARRAY_A);
@@ -424,7 +424,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 												echo '<!ELEMENT ' . $remap_multi_layer_map . ' (#PCDATA)>'.PHP_EOL;
 												echo '<!ELEMENT ' . $remap_multi_layer_map_list . ' (#PCDATA)>'.PHP_EOL;
 												echo '<!ELEMENT ' . $remap_address . ' (#PCDATA)>'.PHP_EOL;
-												echo ']>'.PHP_EOL;												
+												echo ']>'.PHP_EOL;
 												echo '<mapsmarker>'.PHP_EOL;
 												echo '<success>true</success>'.PHP_EOL;
 												echo '<message>' . esc_attr__('API call was successful','lmm') . '</message>'.PHP_EOL;
@@ -463,7 +463,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 													echo '<' . $remap_multi_layer_map_list . '>' . $query_result['multi_layer_map_list'] . '</' . $remap_multi_layer_map_list . '>'.PHP_EOL;
 													echo '<' . $remap_address . '>' . $query_result['address'] . '</' . $remap_address . '>'.PHP_EOL;
 												echo '</data>'.PHP_EOL;
-												echo '</mapsmarker>';										
+												echo '</mapsmarker>';
 											} //info: end format layer / view
 										} else {
 											if ($format == 'json') {
@@ -483,7 +483,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 												echo '<message>' . sprintf(esc_attr__('A layer with the ID %1s does not exist','lmm'), $id) . '</message>'.PHP_EOL;
 												echo '<data></data>'.PHP_EOL;
 												echo '</mapsmarker>';
-											}												
+											}
 										} //info: end check if query_result layers >=1 / view
 									} else if ($type == '') {
 										if ($format == 'json') {
@@ -503,7 +503,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 											echo '<message>' . esc_attr__('API parameter type has to be set','lmm') . '</message>'.PHP_EOL;
 											echo '<data></data>'.PHP_EOL;
 											echo '</mapsmarker>';
-										}											
+										}
 									} else {
 										if ($format == 'json') {
 											header('Content-type: application/json; charset=utf-8');
@@ -522,7 +522,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 											echo '<message>' . esc_attr__('API parameter type is invalid','lmm') . '</message>'.PHP_EOL;
 											echo '<data></data>'.PHP_EOL;
 											echo '</mapsmarker>';
-										}	
+										}
 									} //info: end type check / view
 								} else {
 									if ($format == 'json') {
@@ -542,7 +542,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 										echo '<message>' . esc_attr__('API action is not allowed','lmm') . '</message>'.PHP_EOL;
 										echo '<data></data>'.PHP_EOL;
 										echo '</mapsmarker>';
-									}	
+									}
 								} //info: end permission check / view
 							/******************************
 							* action add                  *
@@ -553,7 +553,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 										$markername = isset($_POST['markername']) ? $_POST['markername'] : (isset($_GET['markername']) ? $_GET['markername'] : '');
 										$markername_quotes = str_replace("\"", "'", $markername);
 										$mpopuptext = isset($_POST['popuptext']) ? str_replace('"', '\'', preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$_POST['popuptext'])) : (isset($_GET['popuptext']) ? str_replace('"', '\'', preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$_GET['popuptext'])) : '');
-										
+
 										$basemap = isset($_POST['basemap']) && in_array($_POST['basemap'], array('osm_mapnik','mapquest_osm','mapquest_aerial','googleLayer_roadmap','googleLayer_satellite','googleLayer_hybrid','googleLayer_terrain','bingaerial','bingaerialwithlabels','bingroad','ogdwien_basemap','ogdwien_satellite','cloudmade','cloudmade2','cloudmade3','mapbox','mapbox2','mapbox3','custom_basemap','custom_basemap2','custom_basemap3','empty_basemap')) ? $_POST['basemap'] : (isset($_GET['basemap']) && in_array($_GET['basemap'], array('osm_mapnik','mapquest_osm','mapquest_aerial','googleLayer_roadmap','googleLayer_satellite','googleLayer_hybrid','googleLayer_terrain','bingaerial','bingaerialwithlabels','bingroad','ogdwien_basemap','ogdwien_satellite','cloudmade','cloudmade2','cloudmade3','mapbox','mapbox2','mapbox3','custom_basemap','custom_basemap2','custom_basemap3','empty_basemap')) ? $_GET['basemap'] : $lmm_options[ 'standard_basemap' ]);
 										$layer = isset($_POST['layer']) ? intval($_POST['layer']) : (isset($_GET['layer']) ? intval($_GET['layer']) : (($lmm_options[ 'defaults_marker_default_layer' ] == '0') ? '0' : intval($lmm_options[ 'defaults_marker_default_layer' ])));
 										$lat = isset($_POST['lat']) ? floatval($_POST['lat']) : (isset($_GET['lat']) ? floatval($_GET['lat']) : floatval($lmm_options[ 'defaults_marker_lat' ]));
@@ -611,8 +611,8 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 													echo '<message>' . sprintf(esc_attr__('Geocoding error: %1s','lmm'), $do_geocoding['message']) . '</message>'.PHP_EOL;
 													echo '<data></data>'.PHP_EOL;
 													echo '</mapsmarker>';
-												}							
-												exit();	
+												}
+												exit();
 											}
 										}
 										if ($kml_timestamp == NULL) {
@@ -715,7 +715,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 												echo '<!ELEMENT ' . $remap_wms10 . ' (#PCDATA)>'.PHP_EOL;
 												echo '<!ELEMENT ' . $remap_kml_timestamp . ' (#PCDATA)>'.PHP_EOL;
 												echo '<!ELEMENT ' . $remap_address . ' (#PCDATA)>'.PHP_EOL;
-												echo ']>'.PHP_EOL;												
+												echo ']>'.PHP_EOL;
 												echo '<mapsmarker>'.PHP_EOL;
 												echo '<success>true</success>'.PHP_EOL;
 												echo '<message>' . esc_attr__('Marker has been successfully published','lmm') . '</message>'.PHP_EOL;
@@ -757,7 +757,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 													echo '<' . $remap_address . '><![CDATA[' . $address . ']]></' . $remap_address . '>'.PHP_EOL;
 												echo '</data>'.PHP_EOL;
 												echo '</mapsmarker>';
-											} //info: end format marker / add											
+											} //info: end format marker / add
 										} else {
 											if ($format == 'json') {
 												header('Content-type: application/json; charset=utf-8');
@@ -776,7 +776,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 												echo '<message>' . esc_attr__('You have an error in your SQL syntax','lmm') . '</message>'.PHP_EOL;
 												echo '<data></data>'.PHP_EOL;
 												echo '</mapsmarker>';
-											} //info: end query check marker ok / add		
+											} //info: end query check marker ok / add
 										} //info: end add marker
 									} else if ($type == 'layer') {
 										$name = isset($_POST['name']) ? $_POST['name'] : (isset($_GET['name']) ? $_GET['name'] : '');
@@ -836,8 +836,8 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 													echo '<message>' . sprintf(esc_attr__('Geocoding error: %1s','lmm'), $do_geocoding['message']) . '</message>'.PHP_EOL;
 													echo '<data></data>'.PHP_EOL;
 													echo '</mapsmarker>';
-												}							
-												exit();	
+												}
+												exit();
 											}
 										}
 										$query_add = $wpdb->prepare( "INSERT INTO $table_name_layers (name, basemap, layerzoom, mapwidth, mapwidthunit, mapheight, panel, layerviewlat, layerviewlon, createdby, createdon, updatedby, updatedon, controlbox, overlays_custom, overlays_custom2, overlays_custom3, overlays_custom4, wms, wms2, wms3, wms4, wms5, wms6, wms7, wms8, wms9, wms10, listmarkers, multi_layer_map, multi_layer_map_list, address ) VALUES (%s, %s, %d, %d, %s, %d, %d, %s, %s, %s, %s, %s, %s, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %d, %s, %s)", $name_quotes, $basemap, $layerzoom, $mapwidth, $mapwidthunit, $mapheight, $panel, str_replace(',', '.', $layerviewlat), str_replace(',', '.', $layerviewlon), $createdby, $createdon, $updatedby, $updatedon, $controlbox, $overlays_custom, $overlays_custom2, $overlays_custom3, $overlays_custom4, $wms, $wms2, $wms3, $wms4, $wms5, $wms6, $wms7, $wms8, $wms9, $wms10, $listmarkers, $multi_layer_map, $multi_layer_map_list, $address );
@@ -932,7 +932,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 												echo '<!ELEMENT ' . $remap_multi_layer_map . ' (#PCDATA)>'.PHP_EOL;
 												echo '<!ELEMENT ' . $remap_multi_layer_map_list . ' (#PCDATA)>'.PHP_EOL;
 												echo '<!ELEMENT ' . $remap_address . ' (#PCDATA)>'.PHP_EOL;
-												echo ']>'.PHP_EOL;												
+												echo ']>'.PHP_EOL;
 												echo '<mapsmarker>'.PHP_EOL;
 												echo '<success>true</success>'.PHP_EOL;
 												echo '<message>' . esc_attr__('Layer has been successfully published','lmm') . '</message>'.PHP_EOL;
@@ -971,8 +971,8 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 													echo '<' . $remap_multi_layer_map_list . '>' . $multi_layer_map_list . '</' . $remap_multi_layer_map_list . '>'.PHP_EOL;
 													echo '<' . $remap_address . '>' . $address . '</' . $remap_address . '>'.PHP_EOL;
 												echo '</data>'.PHP_EOL;
-												echo '</mapsmarker>';										
-											} //info: end format layer / add																				
+												echo '</mapsmarker>';
+											} //info: end format layer / add
 										} else {
 											if ($format == 'json') {
 												header('Content-type: application/json; charset=utf-8');
@@ -991,8 +991,8 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 												echo '<message>' . esc_attr__('You have an error in your SQL syntax','lmm') . '</message>'.PHP_EOL;
 												echo '<data></data>'.PHP_EOL;
 												echo '</mapsmarker>';
-											} //info: end query check layer ok / add		
-										} //info: end add layer		
+											} //info: end query check layer ok / add
+										} //info: end add layer
 									} else if ($type == '') {
 										if ($format == 'json') {
 											header('Content-type: application/json; charset=utf-8');
@@ -1011,7 +1011,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 											echo '<message>' . esc_attr__('API parameter type has to be set','lmm') . '</message>'.PHP_EOL;
 											echo '<data></data>'.PHP_EOL;
 											echo '</mapsmarker>';
-										}										
+										}
 									} else {
 										if ($format == 'json') {
 											header('Content-type: application/json; charset=utf-8');
@@ -1030,7 +1030,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 											echo '<message>' . esc_attr__('API parameter type is invalid','lmm') . '</message>'.PHP_EOL;
 											echo '<data></data>'.PHP_EOL;
 											echo '</mapsmarker>';
-										}										
+										}
 									} //info: end type check / add
 								} else {
 									if ($format == 'json') {
@@ -1050,7 +1050,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 										echo '<message>' . esc_attr__('API action is not allowed','lmm') . '</message>'.PHP_EOL;
 										echo '<data></data>'.PHP_EOL;
 										echo '</mapsmarker>';
-									}									
+									}
 								} //info: end permission check / add
 							/******************************
 							* action update               *
@@ -1173,7 +1173,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 							echo '<message>' . sprintf(esc_attr__('Referer (%1s) is invalid','lmm'), $referer) . '</message>'.PHP_EOL;
 							echo '<data></data>'.PHP_EOL;
 							echo '</mapsmarker>';
-						}									
+						}
 					} //info: end referer check / general
 				} else {
 					if ($format == 'json') {
@@ -1213,7 +1213,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					echo '<message>' . esc_attr__('API version is invalid','lmm') . '</message>'.PHP_EOL;
 					echo '<data></data>'.PHP_EOL;
 					echo '</mapsmarker>';
-				}				
+				}
 			} //info: end API version check
 		} else {
 			if ($format == 'json') {
@@ -1233,7 +1233,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<message>' . sprintf(esc_attr__('The request method %1s is not allowed','lmm'), $request_method) . '</message>'.PHP_EOL;
 				echo '<data></data>'.PHP_EOL;
 				echo '</mapsmarker>';
-			}		
+			}
 		} //info: end request method check
 	} else {
 		if ($format == 'json') {
@@ -1253,7 +1253,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			echo '<message>' . esc_attr__('API is disabled','lmm') . '</message>'.PHP_EOL;
 			echo '<data></data>'.PHP_EOL;
 			echo '</mapsmarker>';
-		}	
+		}
 	} //info: end api_status enabled
 } //info: end plugin active check
 ?>

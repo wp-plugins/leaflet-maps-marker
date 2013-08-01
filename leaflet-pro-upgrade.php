@@ -6,8 +6,8 @@
 if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-pro-upgrade.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
 ?>
 <div class="wrap">
-<?php 
-include('inc' . DIRECTORY_SEPARATOR . 'admin-header.php'); 
+<?php
+include('inc' . DIRECTORY_SEPARATOR . 'admin-header.php');
 $lmm_pro_readme = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'leaflet-maps-marker-pro' . DIRECTORY_SEPARATOR . 'readme.txt';
 $action = isset($_POST['action']) ? $_POST['action'] : '';
 if (extension_loaded('ionCube Loader')) { if ( function_exists('ioncube_loader_iversion') ) { $ic_lv = ioncube_loader_iversion(); $lmm_ic_lv = (int)substr($ic_lv,0,1); } else { $ic_lv = ioncube_loader_version(); $lmm_ic_lv = (int)substr($ic_lv,0,1); } if ($lmm_ic_lv >= 4) { $sf = ''; } else { $sf = strrev('orp-'); } } else { $sf = strrev('orp-'); }
@@ -35,14 +35,14 @@ if ( $action == NULL ) {
 					<li>' . __('improved scroll wheel zoom to be more responsive','lmm') . '</li>
 					<li>' . __('hand cursors for dragging','lmm') . '</li>
 					<li>' . __('optimized zoom control design','lmm') . '</li>
-				</ul>	
-				' . __('But the real power of the leaflet.js version used in Leaflet Maps Marker pro comes with about a hundred of subtle improvements and bugfixes, improving usability, performance and overall "feel" of browsing the map even further.','lmm') . '		
+				</ul>
+				' . __('But the real power of the leaflet.js version used in Leaflet Maps Marker pro comes with about a hundred of subtle improvements and bugfixes, improving usability, performance and overall "feel" of browsing the map even further.','lmm') . '
 				</p>
 				<p>
-				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-leaflet-changelog" target="_blank">' . sprintf(__('Click here to get the full changelog for leaflet.js v%1s currently integrated in the pro version','lmm'), '0.5.1') . '</a>
+				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-leaflet-changelog" target="_blank">' . sprintf(__('Click here to get the full changelog for leaflet.js v%1s currently integrated in the pro version','lmm'), '0.6.4') . '</a> (' . sprintf(__('v%1s is used in the free version','lmm'), '0.4.5') . ')
 				</p>
 				</div>
-				
+
 				<h3>' . __('mobile optimized maps through use of native javascript instead of jQuery','lmm') . '</h3>
 				<div>
 				<p style="margin:0 0 1em 0;">
@@ -50,7 +50,7 @@ if ( $action == NULL ) {
 				</p>
 				<p>
 				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-nojquery" target="_blank">' . __('Click here to get more information about this pro feature on mapsmarker.com','lmm') . '</a>
-				</p>				
+				</p>
 				</div>
 
 				<h3>' . __('option to remove MapsMarker.com backlinks','lmm') . '</h3>
@@ -63,7 +63,7 @@ if ( $action == NULL ) {
 				<img src="' . LEAFLET_PLUGIN_URL . 'inc/img/pro-feature-wikitude-backlink.jpg">
 				<p>
 				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-backlink-uploadbutton" target="_blank">' . __('Click here to get more information about this pro feature on mapsmarker.com','lmm') . '</a>
-				</p>					
+				</p>
 				</div>
 
 				<h3>' . __('Marker clustering','lmm') . '</h3>
@@ -71,10 +71,10 @@ if ( $action == NULL ) {
 				<p style="margin:0 0 1em 0;">
 				' . __('Leaflet Maps Marker Pro allows you to create beautifully animated marker clusters for layer maps:','lmm') . '
 				</p>
-				<img src="' . LEAFLET_PLUGIN_URL . 'inc/img/help-clustering.jpg">				
+				<img src="' . LEAFLET_PLUGIN_URL . 'inc/img/help-clustering.jpg">
 				<p>
 				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-clustering" target="_blank">' . __('Click here to get more information about this pro feature on mapsmarker.com','lmm') . '</a>
-				</p>					
+				</p>
 				</div>
 
 				<h3>' . __('HTML5 fullscreen maps','lmm') . '</h3>
@@ -84,9 +84,9 @@ if ( $action == NULL ) {
 				</p>
 				<p>
 				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-htlm5-fullscreen-maps" target="_blank">' . __('Click here to get more information about this pro feature on mapsmarker.com','lmm') . '</a>
-				</p>				
+				</p>
 				</div>
-				
+
 				<h3>' . __('Minimaps','lmm') . '</h3>
 				<div>
 				<p style="margin:0 0 1em 0;">
@@ -123,7 +123,7 @@ if ( $action == NULL ) {
 				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-google-styling" target="_blank">' . __('Click here to get more information about this pro feature on mapsmarker.com','lmm') . '</a>
 				</p>
 				</div>
-				
+
 				<h3>' . __('QR codes with custom backgrounds','lmm') . '</h3>
 				<div>
 				<p style="margin:0 0 1em 0;">
@@ -152,9 +152,9 @@ if ( $action == NULL ) {
 				<img src="' . LEAFLET_PLUGIN_URL . 'inc/img/pro-feature-icon-upload.jpg">
 				<p>
 				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-backlink-uploadbutton" target="_blank">' . __('Click here to get more information about this pro feature on mapsmarker.com','lmm') . '</a>
-				</p>					
+				</p>
 				</div>
-				
+
 				<h3>' . __('backup and restore of settings','lmm') . '</h3>
 				<div>
 				<p style="margin:0 0 1em 0;">
@@ -180,7 +180,7 @@ if ( $action == NULL ) {
 				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-advanced-widget" target="_blank">' . __('Click here to get more information about this pro feature on mapsmarker.com','lmm') . '</a>
 				</p>
 				</div>
-				
+
 				<h3>' . __('MapsMarker API','lmm') . '</h3>
 				<div>
 				<p style="margin:0 0 1em 0;">
@@ -190,7 +190,7 @@ if ( $action == NULL ) {
 				<p>
 				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-mapsmarker-api" target="_blank">' . __('For more details please visit the MapsMarker API docs.','lmm') . '</a>
 				</p>
-				</div>				
+				</div>
 
 				<h3>' . __('features planned for future releases','lmm') . '</h3>
 				<div>
@@ -218,7 +218,7 @@ if ( $action == NULL ) {
 				<p>
 				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/contact" target="_blank">' . __('Visit our contact form to submit your feature request or idea','lmm') . '</a>
 				</p>
-				</div>				
+				</div>
 
 			</div>
 				<script type="text/javascript">
@@ -272,7 +272,7 @@ if ( $action == NULL ) {
 			$dl_lt = 'www.mapsmarker.com/upgrade' . $sf;
 			echo '<p>' . sprintf(__('The pro plugin package could not be downloaded automatically. Please download the plugin from <a href="%1s">%2s</a> and upload it to the directory /wp-content/plugins on your server manually','lmm'), $dl_l, $dl_lt) . '</p>';
 		}
-	} 
+	}
 }
 ?>
 </div>
