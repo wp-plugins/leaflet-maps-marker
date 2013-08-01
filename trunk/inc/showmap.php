@@ -13,6 +13,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 	} else {
 		$marker_shadow_url = htmlspecialchars($lmm_options['defaults_marker_icon_shadow_url']);
 	}
+	$uid = substr(md5(''.rand()), 0, 8);
 	extract(shortcode_atts(array(
 		'lat' => '', 'lon' => '',
 		'mlat' => '', 'mlon' => '',
@@ -29,14 +30,12 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 		'panel' => '0',
 		'mapwidth' => intval($lmm_options[ 'defaults_marker_shortcode_mapwidth' ]),
 		'mapwidthunit' => $lmm_options[ 'defaults_marker_shortcode_mapwidthunit' ],
-		'mapheight' => intval($lmm_options[ 'defaults_marker_shortcode_mapheight' ])
+		'mapheight' => intval($lmm_options[ 'defaults_marker_shortcode_mapheight' ]),
+		'mapname' => 'lmm_map_'.$uid
 	), $atts));
 
 	//info: prepare layers
 	if (!empty($layer)) {
-		$uid = 'layer_' . $layer;
-		$uid2 = substr(md5(''.rand()), 0, 8); //info: needed if same map is loaded twice
-		$mapname = 'lmm_map_layer_' . $layer. '_' . $uid2;
 		$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 		$row = $wpdb->get_row('SELECT id,name,basemap,mapwidth,mapheight,mapwidthunit,panel,layerzoom,layerviewlat,layerviewlon,controlbox,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10,listmarkers,multi_layer_map,multi_layer_map_list FROM '.$table_name_layers.' WHERE id='.intval($layer), ARRAY_A);
 		$id = $row['id'];
@@ -72,9 +71,6 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 	//info: prepare markers
 	if (!empty($marker))  {
 			$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
-			$uid = 'marker_' . $marker;
-			$uid2 = substr(md5(''.rand()), 0, 8); //info: needed if same map is loaded twice
-			$mapname = 'lmm_map_marker_' . $marker. '_' . $uid2;
 				$row = $wpdb->get_row('SELECT id,markername,basemap,layer,lat,lon,icon,popuptext,zoom,openpopup,mapwidth,mapwidthunit,mapheight,panel,controlbox,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10,address FROM '.$table_name_markers.' WHERE id='.intval($marker), ARRAY_A);
 				if(!empty($row)) {
 					$id = $row['id'];
@@ -119,9 +115,6 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 	}
 	//info: prepare markers only added by shortcode and not defined in backend
 	if (empty($layer) and empty($marker)) {
-		$uid = 'shortcode_' . str_replace(',','_',$mlat) . '_' . str_replace(',','_',$mlon);
-		$uid2 = substr(md5(''.rand()), 0, 8); //info: needed if same map is loaded twice
-		$mapname = 'lmm_map_shortcode_' . $uid2;
 		$lat = $mlat;
 		$lon = $mlon;
 		$controlbox = $lmm_options[ 'defaults_marker_shortcode_controlbox' ];

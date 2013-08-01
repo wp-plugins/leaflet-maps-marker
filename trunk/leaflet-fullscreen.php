@@ -43,7 +43,7 @@ if ( $lmm_options['defaults_marker_icon_shadow_url_status'] == 'default' ) {
 $plugin_version = get_option('leafletmapsmarker_version');
 if (isset($_GET['layer'])) {
 	$layer = intval($_GET['layer']);
-	$uid = 'layer_' . $layer;
+	$uid = substr(md5(''.rand()), 0, 8);
 	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 	$row = $wpdb->get_row('SELECT id,name,basemap,mapwidth,mapheight,mapwidthunit,panel,layerzoom,layerviewlat,layerviewlon,controlbox,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10,multi_layer_map,multi_layer_map_list FROM '.$table_name_layers.' WHERE id='.$layer, ARRAY_A);
 	$id = $row['id'];
@@ -72,7 +72,7 @@ if (isset($_GET['layer'])) {
 	$wms8 = $row['wms8'];
 	$wms9 = $row['wms9'];
 	$wms10 = $row['wms10'];
-	$mapname = 'lmm_map_' . $uid;
+	$mapname = 'mapsmarker_'.$uid;
 	$multi_layer_map = $row['multi_layer_map'];
 	$multi_layer_map_list = $row['multi_layer_map_list'];
 	//info: check if layer/marker ID exists
@@ -512,7 +512,7 @@ if (isset($_GET['layer'])) {
 } //info: end isset($_GET['layer'])
 elseif (isset($_GET['marker'])) {
 	$markerid = intval($_GET['marker']);
-    $uid = 'marker_' . $markerid;
+	$uid = substr(md5(''.rand()), 0, 8);
 	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 		$row = $wpdb->get_row('SELECT id,markername,basemap,layer,lat,lon,icon,popuptext,zoom,openpopup,mapwidth,mapwidthunit,mapheight,panel,controlbox,overlays_custom,overlays_custom2,overlays_custom3,overlays_custom4,wms,wms2,wms3,wms4,wms5,wms6,wms7,wms8,wms9,wms10,address FROM '.$table_name_markers.' WHERE id='.$markerid, ARRAY_A);
 		if(!empty($row)) {
@@ -553,7 +553,7 @@ elseif (isset($_GET['marker'])) {
 			$wms9 = $row['wms9'];
 			$wms10 = $row['wms10'];
 			$address = $row['address'];
-			$mapname = 'lmm_map_' . $uid;
+			$mapname = 'mapsmarker_'.$uid;
 		}
 	//info: check if layer/marker ID exists
 	if ($row == NULL) {

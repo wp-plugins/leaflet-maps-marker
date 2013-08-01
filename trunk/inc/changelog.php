@@ -106,11 +106,6 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		move scale control up when using Google basemaps in order not to hide the Google logo (thx Kendall!)
 		</td></tr>
 		<tr><td>
-		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
-		</td><td>
-		not using random IDs for map divs on frontend anymore (for easier customisation via css)
-		</td></tr>
-		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
 		</td><td>
 		fixed warning message "Cannot modify header information" when plugin woocommerce is active
