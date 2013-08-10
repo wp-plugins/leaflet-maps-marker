@@ -9294,7 +9294,7 @@ $this->_settings['clustering_helptext2'] = array(
 		}
 		/* template for plugin updates
 		//info:  set defaults for options introduced in v3.7
-		if (get_option('leafletmapsmarker_version') == '3.6.1' )
+		if (get_option('leafletmapsmarker_version') == '3.6.2' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting )

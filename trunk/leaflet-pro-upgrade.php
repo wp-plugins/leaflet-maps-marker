@@ -234,6 +234,11 @@ if ( $action == NULL ) {
 					})(jQuery);
 				</script>
 				</p>';
+
+		echo '<h3 style="font-size:20px;">' . __('Live demo','lmm') . '</h3>';
+		echo '<p>' . sprintf(__('Please visit <a href="%1s" target="_blank">%2s</a> for demo maps comparing the free and pro version.','lmm'), 'http://www.mapsmarker.com/comparison','mapsmarker.com/comparison') . '</p>';
+		echo '<p>' . sprintf(__('If you want to test the admin area of the pro version, please visit <a href="%1s" target="_blank">%2s</a>.','lmm'), 'http://demo.mapsmarker.com/', 'demo.mapsmarker.com') . '</p>';
+		echo '<a href="http://www.mapsmarker.com/comparison" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/pro-free-comparison.jpg" alt="Free/Pro comparison" title="' . esc_attr__('show live demo on mapsmarker.com','lmm') . '"></a></h2>';
 		echo '<p>' . __('For more details, showcases and reviews please also visit <a style="text-decoration:none;" href="http://www.mapsmarker.com">www.mapsmarker.com</a>','lmm') . '</p>';
 		$dl_l = 'https://www.mapsmarker.com/upgrade' . $sf;
 		$dl_lt = 'www.mapsmarker.com/upgrade' . $sf;

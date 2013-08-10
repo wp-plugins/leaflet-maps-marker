@@ -5,6 +5,7 @@ while(!is_file('wp-load.php')){
   else die('Error: Could not construct path to wp-load.php - please check <a href="http://mapsmarker.com/path-error">http://mapsmarker.com/path-error</a> for more details');
 }
 include( 'wp-load.php' );
+header('Content-Type: text/css; charset=UTF-8'); //info: to prevent console warning on chrome
 $lmm_options = get_option( 'leafletmapsmarker_options' );
 echo "
 /* TinyMCE specific rules for Leaflet Maps Marker */
