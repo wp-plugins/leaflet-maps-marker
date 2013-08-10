@@ -8,7 +8,7 @@ Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0
 Tested up to:      3.6
-Stable tag:        3.6.1
+Stable tag:        3.6.2
 License:           GPLv2
 
 Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, APIs or Augmented-Reality browsers
@@ -16,7 +16,7 @@ Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Go
 == Description ==
 Maps Marker allows you to pin, organize and share your favorite spots through your WordPress powered site easily. You can use maps from OpenStreetMap, Google Maps, Google Earth, Bing Maps or custom maps and additionally display your spots in innovative ways like through augmented-reality browsers.
 
-For even more features please try "[Leaflet Maps Marker Pro](http://www.mapsmarker.com)". This plugin includes a pro upgrader which allows you to start a free 30 day trial easily.
+For even more features please try "[Leaflet Maps Marker Pro](http://www.mapsmarker.com)". This plugin includes a pro upgrader which allows you to start a free 30 day trial easily. For a live demo of the admin area please visit [demo.mapsmarker.com](http://demo.mapsmarker.com).
 
 = Vision =
 We are working hard on delivering the best mapping solution available for WordPress - helping you to share your favorite spots

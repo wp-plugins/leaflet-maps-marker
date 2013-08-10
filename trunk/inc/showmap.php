@@ -848,16 +848,17 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 
 	//info: fix for loading maps in jquery ui tabs
 	$lmmjs_out .= "
-		if (typeof jQuery.ui != 'undefined') {
-			jQuery(document).ready(function($) {
-				".$mapname.".invalidateSize();
-				$('.ui-tabs').on('tabsactivate', function(event, ui) {
+		if (typeof jQuery != 'undefined') {
+			if (typeof jQuery.ui != 'undefined') {
+				jQuery(document).ready(function($) {
 					".$mapname.".invalidateSize();
-         
+					$('.ui-tabs').on('tabsactivate', function(event, ui) {
+						".$mapname.".invalidateSize();
+					});
 				});
-			});
+			}
 		}
-	";
+	";	
 
 	//info: end workaround for incompatibility with jetpack plugin
 	$lmmjs_out .= '}'.PHP_EOL;
