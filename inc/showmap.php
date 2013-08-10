@@ -478,7 +478,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 						$lmmjs_out .= "\t\t\t\t\t" . "var map_list_markers_table = $('#lmm_listmarkers_table_".$uid."');".PHP_EOL;
 					}
 					$lmmjs_out .= "\t\t\t\t\t" . "var map_parent_size = $('#lmm_".$uid."').parent().width();
-					if( map_parent_size < ".$mapwidth." ) {
+					if( (map_parent_size >0) && (map_parent_size < ".$mapwidth.") ) {
 						map.css({ 'width': '100%'});".PHP_EOL;
 						if ($listmarkers == 1) {
 							$lmmjs_out .= "\t\t\t\t\t\t" . "map_list_markers_div.css({ 'width': '100%'});".PHP_EOL;
@@ -845,6 +845,19 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 		$lmmjs_out .= '}).addTo(' . $mapname . ');'.PHP_EOL;
 	}
 	$lmmjs_out .= '})(jQuery);'.PHP_EOL;
+
+	//info: fix for loading maps in jquery ui tabs
+	$lmmjs_out .= "
+		if (typeof jQuery.ui != 'undefined') {
+			jQuery(document).ready(function($) {
+				".$mapname.".invalidateSize();
+				$('.ui-tabs').on('tabsactivate', function(event, ui) {
+					".$mapname.".invalidateSize();
+         
+				});
+			});
+		}
+	";
 
 	//info: end workaround for incompatibility with jetpack plugin
 	$lmmjs_out .= '}'.PHP_EOL;
