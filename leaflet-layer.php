@@ -374,11 +374,11 @@ if ( $edit_status == 'updated') {
 		<table class="widefat fixed">
 			<?php if ($isedit === true) { ?>
 			<tr>
-				<td style="width:170px;"><label for="shortcode"><strong><?php _e('Shortcode and API links','lmm') ?>:</strong></label></td>
-				<td style="width:85%;"><input <?php echo $shortcode_select; ?> style="width:170px;background:#f3efef;" type="text" value="[<?php echo $lmm_options[ 'shortcode' ]; ?> layer=&quot;<?php echo $id?>&quot;]">
+				<td style="width:230px;"><label for="shortcode"><strong><?php _e('Shortcode and API links','lmm') ?>:</strong></label></td>
+				<td><input <?php echo $shortcode_select; ?> style="width:170px;background:#f3efef;" type="text" value="[<?php echo $lmm_options[ 'shortcode' ]; ?> layer=&quot;<?php echo $id?>&quot;]">
 				<?php
 				if ($current_editor == 'simplified') {
-					echo '<div id="apilinkstext" style="display:inline;"><a tabindex="100" href="javascript:();">' . __('show API links','lmm') . '</a></div>';
+					echo '<div id="apilinkstext" style="display:inline;"><a tabindex="100" style="cursor:pointer;">' . __('show API links','lmm') . '</a></div>';
 					echo '<span id="apilinks" style="display:none;">';
 				}
 				?>
@@ -394,8 +394,8 @@ if ( $edit_status == 'updated') {
 			</tr>
 			<?php } ?>
 			<tr>
-				<td style="width:170px;"><label for="layername"><strong><?php _e('Layer name', 'lmm') ?></strong></label></td>
-				<td style="width:85%;"><input <?php if (get_option('leafletmapsmarker_update_info') == 'hide') { echo 'autofocus'; } ?> style="width: 640px;" maxlenght="255" type="text" id="layername" name="name" value="<?php echo stripslashes($name) ?>" /></td>
+				<td style="width:230px;"><label for="layername"><strong><?php _e('Layer name', 'lmm') ?></strong></label></td>
+				<td><input <?php if (get_option('leafletmapsmarker_update_info') == 'hide') { echo 'autofocus'; } ?> style="width: 640px;" maxlenght="255" type="text" id="layername" name="name" value="<?php echo stripslashes($name) ?>" /></td>
 			</tr>
 			<tr>
 				<td><label for="address"><strong><?php _e('Location','lmm') ?></strong></label><br/><br/><a tabindex="111" href="http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html" target="_blank"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/powered-by-google.png" width="104" height="16" /></a></td>
@@ -443,6 +443,11 @@ if ( $edit_status == 'updated') {
 				<br/><small>
 				<a href="<?php echo LEAFLET_WP_ADMIN_URL; ?>admin.php?page=leafletmapsmarker_pro_upgrade" title="<?php esc_attr_e('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm'); ?>"><?php _e('Feature available in pro version only','lmm'); ?></a>
 				</small>
+				<br/><br/>
+				<div style="float:right;"><?php _e('display panel','lmm') ?>&nbsp;&nbsp;<input type="checkbox" name="gpx_panel" id="gpx_panel" disabled="disabled"></div>
+				<label for="gpx_url"><strong><?php _e('URL to GPX track','lmm') ?></strong></label><br/>
+				<input style="width:229px;" type="text" id="gpx_url" name="gpx_url" value="<?php echo __(' Feature available in pro version only','lmm'); ?>" disabled="disabled" /><br/>
+				<?php echo '<small>' . __('add file','lmm') . ' | ' . __('convert','lmm') . ' | ' . __('settings','lmm') . ' | ' . __('fit bounds','lmm') . '</small>'; ?>
 				</p>
 				<div style="<?php echo $current_editor_css; ?>">
 				<p><br/>
@@ -868,7 +873,7 @@ $markernonce = wp_create_nonce('marker-nonce'); //info: for delete-links
 		$delete_link_marker = '';
 	}
   if (count($layer_marker_list_table) < 1)
-    echo '<tr><td colspan="8">'.__('No marker assigned to this layer', 'lmm').'</td></tr>';
+    echo '<tr><td colspan="7">'.__('No marker assigned to this layer', 'lmm').'</td></tr>';
   else
     foreach ($layer_marker_list_table as $row){
 	//info: set column display variables - need for for-each
@@ -895,7 +900,7 @@ $markernonce = wp_create_nonce('marker-nonce'); //info: for delete-links
 	$openpopupstatus = ($row['mopenpopup'] == 1) ? __('open','lmm') : __('closed','lmm');
 	$popuptextabstract = (strlen($row['mpopuptext']) >= 90) ? "...": "";
 	$column_popuptext = ((isset($lmm_options[ 'misc_marker_listing_columns_popuptext' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_popuptext' ] == 1 )) ?
-'<td><a title="' . esc_attr__('Edit marker ', 'lmm') . ' ' . $row['markerid'] . '" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['markerid'] . '" >' . mb_substr(strip_tags(stripslashes($row['mpopuptext'])), 0, 90) . $popuptextabstract . '</a></td>' : '';
+'<td><a title="' . esc_attr__('Edit marker', 'lmm') . ' ' . $row['markerid'] . '" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['markerid'] . '" >' . mb_substr(strip_tags(stripslashes($row['mpopuptext'])), 0, 90) . $popuptextabstract . '</a></td>' : '';
 	echo '<tr valign="middle" class="alternate" id="link-'.$row['markerid'].'">
       <td>'.$row['markerid'].'</td>
       <td>';
@@ -945,7 +950,7 @@ var markers = {};
 (function($) {
   selectlayer = new L.Map("selectlayer", { dragging: <?php echo $lmm_options['misc_map_dragging'] ?>, touchZoom: <?php echo $lmm_options['misc_map_touchzoom'] ?>, scrollWheelZoom: <?php echo $lmm_options['misc_map_scrollwheelzoom'] ?>, doubleClickZoom: <?php echo $lmm_options['misc_map_doubleclickzoom'] ?>, boxzoom: <?php echo $lmm_options['map_interaction_options_boxzoom'] ?>, trackResize: <?php echo $lmm_options['misc_map_trackresize'] ?>, worldCopyJump: <?php echo $lmm_options['map_interaction_options_worldcopyjump'] ?>, closePopupOnClick: <?php echo $lmm_options['misc_map_closepopuponclick'] ?>, keyboard: <?php echo $lmm_options['map_keyboard_navigation_options_keyboard'] ?>, keyboardPanOffset: <?php echo intval($lmm_options['map_keyboard_navigation_options_keyboardpanoffset']) ?>, keyboardZoomOffset: <?php echo intval($lmm_options['map_keyboard_navigation_options_keyboardzoomoffset']) ?>, inertia: <?php echo $lmm_options['map_panning_inertia_options_inertia'] ?>, inertiaDeceleration: <?php echo intval($lmm_options['map_panning_inertia_options_inertiadeceleration']) ?>, inertiaMaxSpeed: <?php echo intval($lmm_options['map_panning_inertia_options_inertiamaxspeed']) ?>, zoomControl: <?php echo $lmm_options['misc_map_zoomcontrol'] ?>, crs: <?php echo $lmm_options['misc_projections'] ?> });
 	<?php
-		$attrib_prefix = '<a tabindex=\"120\" href=\"http://mapsmarker.com/go\" target=\"_blank\" title=\"powered by \'Leaflet Maps Marker\'-Plugin for WordPress\">MapsMarker.com</a> (<a tabindex=\"121\" href=\"http://www.leafletjs.com\" target=\"_blank\" title=\"\'Leaflet Maps Marker\' uses the JavaScript library \'Leaflet\' for interactive maps by CloudMade\">Leaflet</a>, <a tabindex=\"122\" href=\"http://mapicons.nicolasmollet.com\" target=\"_blank\" title=\"\'Leaflet Maps Marker\' uses icons from the \'Maps Icons Collection\'\">Icons</a>)';
+		$attrib_prefix = '<a tabindex=\"115\" href=\"http://mapsmarker.com/go\" target=\"_blank\" title=\"' . esc_attr__('Leaflet Maps Marker for WordPress - helping you to share your favorite spots and tracks','lmm') . '\">MapsMarker.com</a> (<a href=\"http://www.leafletjs.com\" target=\"_blank\" title=\"' . esc_attr__('Leaflet Maps Marker is based on the javascript library Leaflet maintained by Vladimir Agafonkin and Cloudmade','lmm') . '\">Leaflet</a>/<a href=\"http://mapicons.nicolasmollet.com\" target=\"_blank\" title=\"' . esc_attr__('Leaflet Maps Marker uses icons from the Maps Icons Collection maintained by Nicolas Mollet','lmm') . '\">icons</a>/<a href=\"http://www.visualead.com/go\" target=\"_blank\" rel=\"nofollow\" title=\"' . esc_attr__('Visual QR codes for fullscreen maps are created by Visualead.com','lmm') . '\">QR</a>)';
 		$osm_editlink = ($lmm_options['misc_map_osm_editlink'] == 'show') ? '&nbsp;(<a href=\"http://www.openstreetmap.org/edit?editor=' . $lmm_options['misc_map_osm_editlink_editor'] . '&amp;lat=' . $layerviewlat . '&amp;lon=' . $layerviewlon . '&zoom=' . $layerzoom . '\" target=\"_blank\" title=\"' . esc_attr__('help OpenStreetMap.org to improve map details','lmm') . '\">' . __('edit','lmm') . '</a>)' : '';
 		$attrib_osm_mapnik = __("Map",'lmm').': &copy; <a tabindex=\"123\" href=\"http://www.openstreetmap.org/copyright\" target=\"_blank\">' . __('OpenStreetMap contributors','lmm') . '</a>' . $osm_editlink;
 		$attrib_mapquest_osm = __("Map",'lmm').': Tiles Courtesy of <a tabindex=\"125\" href=\"http://www.mapquest.com/\" target=\"_blank\">MapQuest</a> <img src=\"' . LEAFLET_PLUGIN_URL . 'inc/img/logo-mapquest.png\" style=\"display:inline;\" /> - &copy; <a tabindex=\"126\" href=\"http://www.openstreetmap.org/copyright\" target=\"_blank\">' . __('OpenStreetMap contributors','lmm') . '</a>' . $osm_editlink;
@@ -966,9 +971,9 @@ var markers = {};
 	googleLayer_hybrid = new L.Google("HYBRID", {mmid: 'googleLayer_hybrid', detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
 	googleLayer_terrain = new L.Google("TERRAIN", {mmid: 'googleLayer_terrain', detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
 	<?php if ( isset($lmm_options['bingmaps_api_key']) && ($lmm_options['bingmaps_api_key'] != NULL ) ) { ?>
-	bingaerial = new L.BingLayer("<?php echo $lmm_options[ 'bingmaps_api_key' ]; ?>", {mmid: 'bingaerial', type: 'Aerial', maxZoom: 21, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'inc/img/error-tile-image.png", detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
-	bingaerialwithlabels = new L.BingLayer("<?php echo $lmm_options[ 'bingmaps_api_key' ]; ?>", {mmid: 'bingaerialwithlabels', type: 'AerialWithLabels', maxZoom: 21, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'inc/img/error-tile-image.png", detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
-	bingroad = new L.BingLayer("<?php echo $lmm_options[ 'bingmaps_api_key' ]; ?>", {mmid: 'bingroad', type: 'Road', maxZoom: 21, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'inc/img/error-tile-image.png", detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
+	bingaerial = new L.BingLayer("<?php echo $lmm_options[ 'bingmaps_api_key' ]; ?>", {mmid: 'bingaerial', type: 'Aerial', maxZoom: 19, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'inc/img/error-tile-image.png", detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
+	bingaerialwithlabels = new L.BingLayer("<?php echo $lmm_options[ 'bingmaps_api_key' ]; ?>", {mmid: 'bingaerialwithlabels', type: 'AerialWithLabels', maxZoom: 19, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'inc/img/error-tile-image.png", detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
+	bingroad = new L.BingLayer("<?php echo $lmm_options[ 'bingmaps_api_key' ]; ?>", {mmid: 'bingroad', type: 'Road', maxZoom: 19, minZoom: 1, errorTileUrl: "' . LEAFLET_PLUGIN_URL . 'inc/img/error-tile-image.png", detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
 	<?php }; ?>
 	ogdwien_basemap = new L.TileLayer("http://{s}.wien.gv.at/wmts/fmzk/pastell/google3857/{z}/{y}/{x}.jpeg", {mmid: 'ogdwien_basemap', maxZoom: 19, minZoom: 11, errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>inc/img/error-tile-image.png", attribution: "<?php echo $attrib_ogdwien_basemap; ?>", subdomains: ['maps','maps1', 'maps2', 'maps3'], detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});
 	ogdwien_satellite = new L.TileLayer("http://{s}.wien.gv.at/wmts/lb/farbe/google3857/{z}/{y}/{x}.jpeg", {mmid: 'ogdwien_satellite', maxZoom: 19, minZoom: 11, errorTileUrl: "<?php echo LEAFLET_PLUGIN_URL ?>inc/img/error-tile-image.png", attribution: "<?php echo $attrib_ogdwien_satellite; ?>", subdomains: ['maps','maps1', 'maps2', 'maps3'], detectRetina: <?php echo $lmm_options['map_retina_detection'] ?>});

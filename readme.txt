@@ -2,7 +2,7 @@
 Contributors:      harmr
 Plugin Name:       Leaflet Maps Marker
 Plugin URI:        http://www.mapsmarker.com
-Tags:              Google Maps, OpenStreetMap, OSM, bing maps, googlemaps, google earth, map, maps, kml, travel, location, augmented-reality
+Tags:              Google Maps, OpenStreetMap, OSM, bing maps, googlemaps, google earth, map, maps, kml, gpx, location, augmented-reality
 Author URI:        http://www.harm.co.at
 Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
@@ -11,15 +11,36 @@ Tested up to:      3.6
 Stable tag:        3.6.2
 License:           GPLv2
 
-Pin, organize & show your favorite places through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, APIs or Augmented-Reality browsers
+Pin, organize & show your favorite places & tracks through OpenStreetMap, Google Maps, KML, Bing Maps, APIs or Augmented-Reality browsers
 
 == Description ==
-Maps Marker allows you to pin, organize and share your favorite spots through your WordPress powered site easily. You can use maps from OpenStreetMap, Google Maps, Google Earth, Bing Maps or custom maps and additionally display your spots in innovative ways like through augmented-reality browsers.
+Maps Marker allows you to pin, organize and share your favorite places & tracks through your WordPress powered site easily. You can use maps from OpenStreetMap, Google Maps, Google Earth, Bing Maps or custom maps and additionally display your spots in innovative ways like through augmented-reality browsers.
 
-For even more features please try "[Leaflet Maps Marker Pro](http://www.mapsmarker.com)". This plugin includes a pro upgrader which allows you to start a free 30 day trial easily. For a live demo of the admin area please visit [demo.mapsmarker.com](http://demo.mapsmarker.com).
+For even more features please try "[Leaflet Maps Marker Pro](http://www.mapsmarker.com/comparison)": 
+
+* integration of the latest leaflet.js version
+* [marker clustering](http://www.mapsmarker.com/pro-feature-clustering)
+* [GPX tracks](http://www.mapsmarker.com/pro-feature-gpx)
+* [mobile optimized maps](http://www.mapsmarker.com/pro-feature-nojquery)
+* [HTML5 fullscreen maps](http://www.mapsmarker.com/pro-feature-html-fullscreen-maps)
+* [minimaps](http://www.mapsmarker.com/pro-feature-minimaps)
+* [mobile web app support and optimized mobile viewport](http://www.mapsmarker.com/pro-feature-webapp)
+* [custom Google Maps styling](http://www.mapsmarker.com/pro-feature-google-styling)
+* [option to remove backlinks](http://www.mapsmarker.com/pro-feature-backlink-upload-button)
+* [QR codes with custom backgrounds](http://www.mapsmarker.com/pro-feature-qrcode)
+* [Google Adsense for maps integration](http://www.mapsmarker.com/pro-feature-adsense)
+* [upload icon button & custom icon directory](http://www.mapsmarker.com/pro-feature-backlink-upload-button)
+* [backup and restore of settings](http://www.mapsmarker.com/pro-feature-backup-restore)
+* [advanced recent marker widget](http://www.mapsmarker.com/pro-feature-advanced-widget)
+* [MapsMarker API](http://www.mapsmarker.com/pro-feature-mapsmarker-api)
+* [whitelabel backend admin pages](http://www.mapsmarker.com/pro-feature-whitelabel)
+* [advanced permission settings](http://www.mapsmarker.com/pro-feature-advanced-permissions)
+* priority support
+
+The free version includes a pro upgrader which allows you to start a free 30 day trial easily. For a live demo of the admin area please visit [demo.mapsmarker.com](http://demo.mapsmarker.com).
 
 = Vision =
-We are working hard on delivering the best mapping solution available for WordPress - helping you to share your favorite spots
+We are working hard on delivering the best mapping solution available for WordPress - helping you to share your favorite spots & tracks
 
 = Mission Statement =
 [Maps Marker](http://www.mapsmarker.com) helps you to share your favorite spots easily. The plugin is based on the famous [leaflet.js library](http://www.leafletjs.com) from [CloudMade](http://www.cloudmade.com) which also powers maps on sites like [Flickr](http://www.flickr.com/map), [Foursquare](http://readwrite.com/2012/02/29/foursquare_dumps_google_goes_open-source_for_maps), [Craigslist](http://www.theverge.com/2012/10/4/3452526/craigslist-map-view-apartment-listings-roll-out), [Wikipedia](http://en.wikipedia.org/wiki/Wikipedia_App) and [Washington Post](http://www.washingtonpost.com/wp-srv/special/politics/election-map-2012/senate/). We use this library as the basis for our plugin and have integrated several other libraries for enhancing its functionality. Our main goal is to provide you with an intuitive and user-friendly interface for organizing your spots within your WordPress powered site. Furthermore we are constantly working on improving our plugin by adding new and innovative ways for managing and showing your spots. Our roadmap for new releases gets aligned to our users' needs - so giving support and talking to our users is essential.
@@ -142,7 +163,8 @@ to the visitors of your website.
 * Romanian (ro_RO) translation thanks to Arian and Daniel Codrea
 * Russian (ru_RU) thanks to Ekaterina Golubina, supported by Teplitsa of Social Technologies
 * Slovak (sk_SK) thanks to Zdenko Podobny
-* Spanish (es_ES) thanks to David Ramirez, Alvaro Lara, Ricardo Viteri and Victor Guevara
+* Spanish (es_ES) thanks to David Ramirez, Alvaro Lara, Ricardo Viteri
+* Spanish (es_MX) thanks to Victor Guevara
 * Swedish (sv_SE) thanks to Swedish translation thanks to Olof Odier, Tedy Warsitha and Dan Paulsson
 * Turkish (tr_TR) thanks to Emre Erkan
 * Ukrainian (uk_UK) thanks to Andrexj
@@ -267,10 +289,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2013, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.6.2 =
-fix for loading maps in (jquery ui) tabs - see http://www.mapsmarker.com/v3.6.2 for more details
+= v3.6.3 =
+optimized settings page, translatin updates & small tweaks to multi-layer-maps - see http://www.mapsmarker.com/v3.6.3 for more details
 
 == Changelog ==
-[blog post with details about v3.6.2](http://www.mapsmarker.com/v3.6.2)
+[blog post with details about v3.6.3](http://www.mapsmarker.com/v3.6.3)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

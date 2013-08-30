@@ -132,14 +132,6 @@ if ( isset($lmm_options['misc_global_admin_notices']) && ($lmm_options['misc_glo
 			echo '<div class="error" style="padding:10px;"><strong>' . sprintf(__('Leaflet Maps Marker Warning: the setting for the marker shadow url (%1s) seems to be invalid. This can happen when you moved your WordPress installation from one server to another one.<br/>Please navigate to <a href="%2s">Settings / Map Defaults / "Default values for marker icons"</a> and update the option "Shadow URL". If you do not know which values to enter, please <a href="%3s">reset all plugins options to their defaults</a>', 'lmm'), $shadow_icon_url, LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#mapdefaults-section5', LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#reset') . '</strong></div>';
 		}
 	}
-	//info: plugin WordPress Ultra Simple Paypal Shopping Cart
-	if (is_plugin_active('wp-ultra-simple-paypal-shopping-cart/wp_ultra_simple_shopping_cart.php') ) {
-		echo '<p><div class="error" style="padding:10px;"><strong>' . __('Warning: you are using the plugin WordPress Ultra Simple Paypal Shopping Cart which is causing the Leaflet Maps Marker settings page to break! Please temporarily deactivate this plugin if you want change the settings. The plugin developer has already been contacted and will hopefully release a fix soon.','lmm') . '</strong></div></p>';
-	}
-	//info: plugin Daily Stat
-	if (is_plugin_active('daily-stat/statpress.php') ) {
-		echo '<p><div class="error" style="padding:10px;"><strong>' . __('Warning: you are using the plugin Daily Stat which is causing the Leaflet Maps Marker settings page to break! Please temporarily deactivate this plugin if you want change the settings. The plugin developer has already been contacted and will hopefully release a fix soon.','lmm') . '</strong></div></p>';
-	}
 	//info: display admin notice (lmm only) if user switches back to free version
 	$lmm_pro_readme = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'leaflet-maps-marker-pro' . DIRECTORY_SEPARATOR . 'readme.txt';
 	if (file_exists($lmm_pro_readme)) {
@@ -150,10 +142,6 @@ if ( isset($lmm_options['misc_global_admin_notices']) && ($lmm_options['misc_glo
 			echo '<p><div  class="updated" style="padding:5px;">' . sprintf(__('You downloaded <a href="%1s" target="_blank">Leaflet Maps Marker Pro</a> but did not register a free 30-day-trial license key. Please note that <a href="%2s" target="_blank">according to our privacy policy</a> we will not disclose, rent or sell your personal information!<br/>If you install Leaflet Maps Marker Pro on a localhost installation (<a href="%3s" target="_blank">see available packages on Wikipedia</a>) you can also test the pro plugin without registering a free 30-day-trial license key and without time limitation.','lmm'), 'http://www.mapsmarker.com', 'http://www.mapsmarker.com/privacy', 'http://en.wikipedia.org/wiki/List_of_AMP_packages') . '<br/>' . __('This message will disappear once the pro version has been activated or deleted from your server (via the WordPress Plugins page!)','lmm') . '</div></p>';
 		}
 	}
-	//info: Dreamgrow Scroll Triggered Box
-	if (is_plugin_active('dreamgrow-scroll-triggered-box/index.php') ) {
-		echo '<p><div class="error" style="padding:10px;"><strong>' . sprintf(__('Warning: you are using the plugin %s which is causing the Leaflet Maps Marker settings page to break!<br/>Please temporarily deactivate this plugin if you want change the settings. The plugin developer has already been contacted and will hopefully release a fix soon.','lmm'), 'Dreamgrow Scrolled Triggered Box') . '</strong></div></p>';
-	}	
 }//info: end misc_global_admin_notices check
 //info: check if newer plugin version is available
 $plugin_updates = get_site_transient( 'update_plugins' );

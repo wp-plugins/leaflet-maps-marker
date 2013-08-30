@@ -121,7 +121,7 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 
 	<div style="display:inline;">
 		<p>
-		<span id="exportlinkstext"><a style="text-decoration:none;" href="javascript:();"><?php _e('Export and API links for all markers','lmm'); ?></a></span></div>
+		<span id="exportlinkstext"><a style="text-decoration:none;cursor:pointer;"><?php _e('Export and API links for all markers','lmm'); ?></a></span></div>
 		</p>
 	<div id="exportlinks" style="display:none;">
 	<p>
@@ -255,7 +255,7 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
      $popuptextabstract = (strlen($row['popuptext']) >= 90) ? "...": "";
      //info: set column display variables - need for for-each
      $column_popuptext = ((isset($lmm_options[ 'misc_marker_listing_columns_popuptext' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_popuptext' ] == 1 )) ?
-'<td><a title="' . esc_attr__('Edit marker ', 'lmm') . ' ' . $row['id'] . '" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['id'] . '" >' . mb_substr(strip_tags(stripslashes($row['popuptext'])), 0, 90) . $popuptextabstract . '</a></td>' : '';
+'<td><a title="' . esc_attr__('edit marker', 'lmm') . ' ' . $row['id'] . '" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['id'] . '" >' . mb_substr(strip_tags(stripslashes($row['popuptext'])), 0, 90) . $popuptextabstract . '</a></td>' : '';
      $column_layer = ((isset($lmm_options[ 'misc_marker_listing_columns_layer' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_layer' ] == 1 )) ?
 '<td>' . stripslashes($rowlayername) . '</td>' : '';
      $column_openpopup = ((isset($lmm_options[ 'misc_marker_listing_columns_openpopup' ] ) == TRUE ) && ( $lmm_options[ 'misc_marker_listing_columns_openpopup' ] == 1 )) ?
@@ -295,7 +295,7 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
          } else {
          echo '<img src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png" title="' . esc_attr__('standard icon','lmm') . '" />';};
       echo '</td>
-		  <td><strong><a title="' . esc_attr__('Edit marker','lmm') . ' (' . $row['id'].')" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['id'] . '" class="row-title">' . stripslashes(htmlspecialchars($row['markername'])) . '</a></strong><br/><div class="row-actions"><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['id'] . '">' . __('edit marker','lmm') . '</a>' . $delete_link_marker . '</div></td>
+		  <td><strong><a title="' . esc_attr__('edit marker','lmm') . ' (' . $row['id'].')" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['id'] . '" class="row-title">' . stripslashes(htmlspecialchars($row['markername'])) . '</a></strong><br/><div class="row-actions"><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&id=' . $row['id'] . '">' . __('edit marker','lmm') . '</a>' . $delete_link_marker . '</div></td>
 		  ' . $column_address . '
 		  ' . $column_popuptext . '
 		  ' . $column_layer . '

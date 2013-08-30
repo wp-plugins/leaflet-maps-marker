@@ -65,6 +65,7 @@ class Class_leaflet_options {
 		$this->sections['mapdefaults-section16']	= esc_attr__('Mobile web app settings','lmm');
 		$this->sections['mapdefaults-section17']	= esc_attr__('Minimap settings','lmm');
 		$this->sections['mapdefaults-section18']	= esc_attr__('Marker clustering settings','lmm');
+		$this->sections['mapdefaults-section19']	= esc_attr__('GPX tracks settings','lmm');
 
 		$this->sections['basemaps-section1']		= esc_attr__('Cloudmade 1 settings','lmm');
 		$this->sections['basemaps-section2']		= esc_attr__('Cloudmade 2 settings','lmm');
@@ -178,33 +179,51 @@ class Class_leaflet_options {
 		include(LEAFLET_PLUGIN_DIR . 'inc' . DIRECTORY_SEPARATOR . 'admin-header.php');
 		if ( isset( $_GET['settings-updated'] ) )
 			echo '<div style="margin:15px 0 0 0;" class="updated"><p>' . __( 'Plugin options updated.','lmm' ) . '</p></div>';
-		echo '<h3 style="font-size:23px;margin:0.83em 0 0 0;">'.__('Settings','lmm').'</h3><div class="wrap lmmsettings">';
+		
+		echo '<h3 style="font-size:23px;margin:0.83em 0 0 0;float:left;">'.__('Settings','lmm').'</h3><div class="wrap lmmsettings" style="clear:both;">';
 		echo '<form action="options.php" method="post">';
 		settings_fields( 'leafletmapsmarker_options' );
-		echo '<div class="ui-tabs tabs-top">
-			<ul class="ui-tabs-nav-top">';
+		echo '<div class="lmm-ui-tabs tabs-top tabbable tabs-top">
+			<ul class="lmm-ui-tabs-nav-top ul-outter tabs" id="lmm-admin-top-tabs">';
 
-		foreach ( $this->panes as $pane_slug => $pane )
-			echo '<li><a href="#' . $pane_slug . '">' . $pane . '</a></li>';
+		$section_index = 0;
+		foreach ( $this->panes as $pane_slug => $pane ) {
+			$li_class = 0 === $section_index ? ' class="active"' : '';
+			$section_index++;
+			
+			echo '<li' . $li_class . '><a href="#' . $pane_slug . '" data-toggle="tab">' . $pane . '</a></li>';
+		}
 
 		echo '</ul>';
-
+		echo '<div class="tab-content">';
+		
+		$panel_index = 0;
         foreach($this->panes as $pane_slug => $pane){
-            echo '<div id = '.$pane_slug.' class="ui-tabs tabs-left">';
-            echo '<ul class="ui-tabs-nav ui-tabs-navleft">';
+	        $li_class = 0 === $panel_index ? ' in active' : '';
+	        $panel_index++;
+	        
+            echo '<div id = '.$pane_slug.' class="lmm-ui-tabs tabs-left tab-pane fade' . $li_class . '">';
+	        echo '<div class="tabbable tabs-left">';
+            echo '<ul class="lmm-ui-tabs-nav lmm-ui-tabs-navleft tabs lmm-admin-navleft-tabs">';
             $sections = array();
+	        $sub_panel_index = 0;
             foreach ( $this->sections as $key => $row ){
-
-                $k = explode("-",$key);
-                if($k[0]==$pane_slug){
-                echo '<li><a href="#' . $key . '">' . $row . '</a></li>';
-                $sections[] = $key;
-                }
+	            $k = explode("-",$key);
+	            if ( $k[0] == $pane_slug ) {
+		            $li_class = 0 === $sub_panel_index ? ' class="active"' : '';
+		            $sub_panel_index ++;
+		            echo '<li' . $li_class . '><a href="#' . $key . '" data-toggle="tab">' . $row . '</a></li>';
+		            $sections[] = $key;
+	            }
             }
             echo '</ul>';
-
+	        echo '<div class="tab-content">';
+	        
+	        $sub_panel_index = 0;
                 foreach($sections as $slug => $section){
-                    echo '<div class="section">';
+	                $li_class = 0 === $sub_panel_index ? ' in active' : '';
+	                $sub_panel_index++;
+                    echo '<div class="section tab-pane fade' . $li_class . '" id="' . $section. '">';
                     echo "<h3 class='titl'>".$this->sections[$section]."</h3>";
                     if (function_exists('display_'.$pane_slug.'_section')) { //info: Phalanger fix
                     	@call_user_func(array(&$this, 'display_'.$pane_slug.'_section'), array());
@@ -215,10 +234,12 @@ class Class_leaflet_options {
                     echo '</div>';
                 }
 
-            echo '</div>';
+            echo '</div>'; // tab-content
+            echo '</div>'; // tabs-left
+            echo '</div>'; // tab-pane
         }
-
-		echo '</div>';
+		echo '</div>'; // tab-content
+		echo '</div>'; // tabs-top
 		echo '<p class="submit"><input name="Submit" type="submit" class="button-primary" value="' . __( 'Save Changes','lmm' ) . '" /></p>
 
 	</form>';
@@ -231,19 +252,8 @@ class Class_leaflet_options {
 
 			foreach ( $this->sections as $pane_slug => $pane )
 				echo "panes['$pane'] = '$pane_slug';";
-			echo 'var wrapped = $(".wrap h3").wrap("<div class=\"ui-tabs-panel\">");
-			wrapped.each(function() {
-				$(this).parent().append($(this).parent().nextUntil("div.ui-tabs-panel"));
-			});
-			$(".ui-tabs-panel").each(function(index) {
-				$(this).attr("id", panes[$(this).children("h3").text()]);
-				if (index > 0)
-					$(this).addClass("ui-tabs-hide");
-			});
-			$(".ui-tabs").tabs({
-				//fx: { opacity: "toogle", duration: "fast"}
-			});
-  		$("input[type=text], textarea").each(function() {
+			echo '
+			$("input[type=text], textarea").each(function() {
 				if ($(this).val() == $(this).attr("placeholder") || $(this).val() == "")
 					$(this).css("color", "#999");
 			});
@@ -275,6 +285,8 @@ class Class_leaflet_options {
 			         $("form").attr("autocomplete", "off");
 		});
 	</script></div>';
+		?>
+	<?php
 	}
 
 	/**
@@ -457,6 +469,8 @@ class Class_leaflet_options {
 	public function get_settings() {
 		if ( ! empty( $this->_settings ) )
 			return;
+			
+		$pro_button_link = '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>';
 
 		/*===========================================
 		*
@@ -1275,7 +1289,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section5',
-			'title'   => __('Use custom icon URL and directory','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Use custom icon URL and directory','lmm') . $pro_button_link,
 			'desc'    => __('If set to yes, please be aware that the pro settings below have to be changed when you move your WordPress installation to another server for example!','lmm') . '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
 			'type'    => 'radio-pro',
 			'std'     => 'no',
@@ -1288,7 +1302,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section5',
-			'title'   => __( 'Custom icons URL', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __( 'Custom icons URL', 'lmm' ) . $pro_button_link,
 			'desc'    => __( 'If the option above is set to yes, icons will automatically be loaded from this URL. If the option above is set to no, the following marker icons url will be used:','lmm') . '<br/><strong>' . LEAFLET_PLUGIN_ICONS_URL . '</strong>',
 			'std'     => __('Custom directories can be set in the pro version only!','lmm'),
 			'type'    => 'text-pro'
@@ -1297,7 +1311,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section5',
-			'title'   => __( 'Custom icons directory', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __( 'Custom icons directory', 'lmm' ) . $pro_button_link,
 			'desc'    => __( 'If option above is set to yes, the directory on server where icons are stored will be used (needed for backend only). If the option above is set to no, the following marker icons directory will be used:','lmm') . '<br/><strong>' . LEAFLET_PLUGIN_ICONS_DIR . '</strong>',
 			'std'     => __('Custom directories can be set in the pro version only!','lmm'),
 			'type'    => 'text-pro'
@@ -1910,7 +1924,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section8',
-			'title'   => __('Marker clustering','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Marker clustering','lmm') . $pro_button_link,
 			'desc'    => '',
 			'type'    => 'radio-pro',
 			'std'     => 'disabled',
@@ -2532,7 +2546,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section13',
-			'title'   => __('Fullscreen button','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Fullscreen button','lmm') . $pro_button_link,
 			'desc'    => __('Whether to add a button for displaying maps in fullscreen via HTML5','lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-fullscreen.png" width="77" height="107" /><a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
 			'type'    => 'radio-pro',
 			'std'     => 'false',
@@ -2545,7 +2559,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section13',
-			'title'   => __('Fullscreen button position','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Fullscreen button position','lmm') . $pro_button_link,
 			'desc'    => __('The position of the fullscreen button (one of the map corners).','lmm'),
 			'type'    => 'radio-pro',
 			'std'     => 'topleft',
@@ -2555,15 +2569,6 @@ class Class_leaflet_options {
 				'topright' => __('Top right of the map','lmm'),
 				'topleft' => __('Top left of the map','lmm')
 			)
-		);
-		$this->_settings['map_control_options_helptext2'] = array(
-			'version' => '2.7.1',
-			'pane'    => 'mapdefaults',
-			'section' => 'mapdefaults-section13',
-			'title'   => '',
-			'desc'    => '<div style="height:425px;"></div>',
-			'std'     => '',
-			'type'    => 'helptext'
 		);
 		/*
 		* Scale control options
@@ -2653,15 +2658,6 @@ class Class_leaflet_options {
 				'false' => __('false','lmm')
 			)
 		);
-		$this->_settings['map_scale_control_helptext2'] = array(
-			'version' => '3.6',
-			'pane'    => 'mapdefaults',
-			'section' => 'mapdefaults-section14',
-			'std'     => '',
-			'title'   => '',
-			'desc'    => '<div style="height:30px;"></div>',
-			'type'    => 'helptext'
-		);
 		/*
 		* Retina display detection
 		*/
@@ -2712,7 +2708,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section16',
-			'title'   => __('Images to use','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Images to use','lmm') . $pro_button_link,
 			'desc'    => __('If you want to use custom images, please enter the URL to app icons and launch images below:','lmm'),
 			'type'    => 'radio-pro',
 			'std'     => 'default',
@@ -2726,7 +2722,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section16',
-			'title'   => __('App icon URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('App icon URL','lmm') . $pro_button_link,
 			'desc'    => __('Size for iPhone and iPod touch','lmm') . ' (57x57px)',
 			'std'     => '',
 			'type'    => 'text-pro'
@@ -2735,7 +2731,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section16',
-			'title'   => __('App icon URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('App icon URL','lmm') . $pro_button_link,
 			'desc'    => __('Size for high-resolution iPhone and iPod touch','lmm') . ' (114x114px)',
 			'std'     => '',
 			'type'    => 'text-pro'
@@ -2744,7 +2740,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section16',
-			'title'   => __('App icon URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('App icon URL','lmm') . $pro_button_link,
 			'desc'    => __('Size for iPad','lmm') . ' (72x72px)',
 			'std'     => '',
 			'type'    => 'text-pro'
@@ -2753,7 +2749,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section16',
-			'title'   => __('App icon URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('App icon URL','lmm') . $pro_button_link,
 			'desc'    => __('Size for high-resolution iPad','lmm') . ' (144x144px)',
 			'std'     => '',
 			'type'    => 'text-pro'
@@ -2762,7 +2758,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section16',
-			'title'   => __('Launch image URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Launch image URL','lmm') . $pro_button_link,
 			'desc'    => __('Size for iPad','lmm') . ' (1024x748px)',
 			'std'     => '',
 			'type'    => 'text-pro'
@@ -2771,7 +2767,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section16',
-			'title'   => __('Launch image URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Launch image URL','lmm') . $pro_button_link,
 			'desc'    => __('Size for high-resolution iPad','lmm') . ' (2048x1496px)',
 			'std'     => '',
 			'type'    => 'text-pro'
@@ -2780,7 +2776,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section16',
-			'title'   => __('Launch image URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Launch image URL','lmm') . $pro_button_link,
 			'desc'    => __('Size for iPad','lmm') . ' (768x1004px)',
 			'std'     => '',
 			'type'    => 'text-pro'
@@ -2789,7 +2785,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section16',
-			'title'   => __('Launch image URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Launch image URL','lmm') . $pro_button_link,
 			'desc'    => __('Size for high-resolution iPad','lmm') . ' (1536x2008px)',
 			'std'     => '',
 			'type'    => 'text-pro'
@@ -2798,7 +2794,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section16',
-			'title'   => __('Launch image URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Launch image URL','lmm') . $pro_button_link,
 			'desc'    => __('Size for iPhone and iPod touch','lmm') . ' (320x460px)',
 			'std'     => '',
 			'type'    => 'text-pro'
@@ -2807,7 +2803,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section16',
-			'title'   => __('Launch image URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Launch image URL','lmm') . $pro_button_link,
 			'desc'    => __('Size for high-resolution iPhone and iPod touch','lmm') . ' (640x920px)',
 			'std'     => '',
 			'type'    => 'text-pro'
@@ -2816,7 +2812,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section16',
-			'title'   => __('Launch image URL','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Launch image URL','lmm') . $pro_button_link,
 			'desc'    => __('Size for iPhone 5 and iPod 5','lmm') . ' (640x1096px)',
 			'std'     => '',
 			'type'    => 'text-pro'
@@ -2837,7 +2833,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section17',
-			'title'   => __('Status','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Status','lmm') . $pro_button_link,
 			'desc'    => '',
 			'type'    => 'radio-pro',
 			'std'     => 'hidden',
@@ -2851,7 +2847,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section17',
-			'title'   => __('Basemap','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Basemap','lmm') . $pro_button_link,
 			'desc'    => __('Please select basemap which should be used for minimaps','lmm'),
 			'type'    => 'radio-pro',
 			'std'     => 'automatic',
@@ -2873,7 +2869,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section17',
-			'title'   => __('Position','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Position','lmm') . $pro_button_link,
 			'desc'    => '',
 			'type'    => 'radio-pro',
 			'std'     => 'bottomright',
@@ -2888,7 +2884,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section17',
-			'title'   => __('Width','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Width','lmm') . $pro_button_link,
 			'desc'    => __('The width of the minimap in pixels.','lmm'),
 			'std'     => '150',
 			'type'    => 'text-pro'
@@ -2897,7 +2893,7 @@ class Class_leaflet_options {
 			'version' => 'p1.0',
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section17',
-			'title'   => __('Height','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Height','lmm') . $pro_button_link,
 			'desc'    => __(' The height of the minimap in pixels.','lmm'),
 			'std'     => '150',
 			'type'    => 'text-pro'
@@ -3033,7 +3029,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section18',
 			'std'     => '',
-			'title'   =>'polygonOptions<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" />',
+			'title'   =>'polygonOptions<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
 			'desc'    => sprintf(__('Options to pass when creating the L.Polygon for styling (<a href="%1s" target="_blank">more details</a>)','lmm'), 'http://leafletjs.com/reference.html#path-options') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-clustering-polygon-options.jpg" width="141" height="91" />',
 			'type'    => 'helptext-twocolumn'
 		);
@@ -3156,6 +3152,319 @@ $this->_settings['clustering_helptext2'] = array(
 				'false' => __('false','lmm')
 			)
 		);
+
+		/*
+		* GPX tracks settings
+		*/
+		$this->_settings['gpx_helptext'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'std'     => '',
+			'title'   => '',
+			'desc'    => '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-gpx.jpg" width="449" height="263" /><br/>' . __( 'Settings below will be applied to all GPX tracks added to marker or layer maps.', 'lmm'),
+			'type'    => 'helptext'
+		);
+		$this->_settings['gpx_track_color'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => __('Polygon options','lmm'). $pro_button_link,
+			'desc'    => __('Track color','lmm') . ' - ' . sprintf(__('Please enter the hex value of the color you would like to use. For help please visit <a href="%1s" target="_blank">%2s</a>.','lmm'), 'http://www.mapsmarker.com/colorpicker', 'mapsmarker.com/colorpicker'),
+			'std'     => '#0000FF',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['gpx_track_weight'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __('Track weight','lmm') . ' - ' . __('Stroke width in pixels','lmm'),
+			'std'     => '5',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['gpx_track_opacity'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __('Stroke opacity','lmm'),
+			'std'     => '0.5',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['gpx_track_clickable'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __('Clickable','lmm') . ' - ' . __('If true, the vector will emit mouse events and will act as a part of the underlying map.','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);
+		$this->_settings['gpx_track_noClip'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => 'noClip' . ' - ' . __('polyline clipping','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'false',
+			'choices' => array(
+				'false' => __('false','lmm'),
+				'true' => __('true','lmm')
+			)
+		);
+		$this->_settings['gpx_track_smoothFactor'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __('Track smoothFactor','lmm') . ' - ' . __('How much to simplify the polyline on each zoom level. More means better performance and smoother look, and less means more accurate representation.','lmm'),
+			'std'     => '1.0',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['gpx_metadata_units'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => __('GPX metadata settings','lmm'). $pro_button_link,
+			'desc'    => __('Distance units','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'metric',
+			'choices' => array(
+				'metric' => __('metric (km)','lmm'),
+				'imperial' => __('imperial (miles)','lmm')
+			)
+		);		
+		$this->_settings['gpx_metadata_name'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Track name', 'lmm' ),
+			'type'    => 'checkbox-pro',
+			'std'     => 1
+		);
+		$this->_settings['gpx_metadata_start'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Starting time', 'lmm' ),
+			'type'    => 'checkbox-pro',
+			'std'     => 1
+		);
+		$this->_settings['gpx_metadata_end'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'End time', 'lmm' ),
+			'type'    => 'checkbox-pro',
+			'std'     => 0
+		);
+		$this->_settings['gpx_metadata_distance'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Total track distance', 'lmm' ),
+			'type'    => 'checkbox-pro',
+			'std'     => 1
+		);
+		$this->_settings['gpx_metadata_duration_total'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Duration', 'lmm' ),
+			'type'    => 'checkbox-pro',
+			'std'     => 1
+		);
+		$this->_settings['gpx_metadata_duration_moving'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Moving time', 'lmm' ),
+			'type'    => 'checkbox-pro',
+			'std'     => 0
+		);
+		$this->_settings['gpx_metadata_avpace'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Average moving pace', 'lmm' ),
+			'type'    => 'checkbox-pro',
+			'std'     => 1
+		);
+		$this->_settings['gpx_metadata_avhr'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Average heart rate', 'lmm' ),
+			'type'    => 'checkbox-pro',
+			'std'     => 0
+		);
+		$this->_settings['gpx_metadata_hr_full'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Full heart rate data', 'lmm' ),
+			'type'    => 'checkbox-pro',
+			'std'     => 0
+		);		
+		$this->_settings['gpx_metadata_elev_gain'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Elevation gain', 'lmm' ),
+			'type'    => 'checkbox-pro',
+			'std'     => 1
+		);
+		$this->_settings['gpx_metadata_elev_loss'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Elevation loss', 'lmm' ),
+			'type'    => 'checkbox-pro',
+			'std'     => 1
+		);
+		$this->_settings['gpx_metadata_elev_net'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Elevation net', 'lmm' ),
+			'type'    => 'checkbox-pro',
+			'std'     => 1
+		);
+		$this->_settings['gpx_metadata_elev_full'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Full elevation data', 'lmm' ),
+			'type'    => 'checkbox-pro',
+			'std'     => 0
+		);
+		$this->_settings['gpx_max_point_interval'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => __('Maximum interval between points','lmm'). $pro_button_link,
+			'desc'    => __('GPX parsing will automatically handle pauses in the track with a default tolerance interval of 15 seconds between points.','lmm'),
+			'std'     => '15000',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['gpx_startIconUrl'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => __('GPX icon settings','lmm'). $pro_button_link,
+			'desc'    => __('Start icon','lmm') . ' - ' . sprintf(__('Leave empty to use the <a href="%1s" target="_blank">default icon</a>. To use a custom icon, please enter the file name of the icon within your marker icon directory (%2s)','lmm'), LEAFLET_PLUGIN_URL . 'leaflet-dist/images/gpx-icon-start.png', LEAFLET_PLUGIN_ICONS_URL),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['gpx_endIconUrl'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __('End icon','lmm') . ' - ' . sprintf(__('Leave empty to use the <a href="%1s" target="_blank">default icon</a>. To use a custom icon, please enter the file name of the icon within your marker icon directory (%2s)','lmm'), LEAFLET_PLUGIN_URL . 'leaflet-dist/images/gpx-icon-end.png', LEAFLET_PLUGIN_ICONS_URL),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['gpx_shadowUrl'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __('Shadow icon','lmm') . ' - ' . sprintf(__('Leave empty to use the <a href="%1s" target="_blank">default icon</a>. To use a custom icon, please enter the file name of the icon within your marker icon directory (%2s)','lmm'), LEAFLET_PLUGIN_URL . 'leaflet-dist/images/gpx-icon-shadow.png', LEAFLET_PLUGIN_ICONS_URL),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['gpx_iconSize_x'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Icon size', 'lmm' ) . ' (x) - ' . __( 'Width of the icons in pixel', 'lmm' ),
+			'std'     => '33',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['gpx_iconSize_y'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Icon size', 'lmm' ) . ' (y) - ' . __( 'Width of the icons in pixel', 'lmm' ),
+			'std'     => '50',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['gpx_shadowSize_x'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Shadow size', 'lmm' ) . ' (x) - ' . __( 'Width of the shadow in pixel', 'lmm' ),
+			'std'     => '50',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['gpx_shadowSize_y'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Shadow size', 'lmm' ) . ' (y) - ' . __( 'Height of the shadow in pixel', 'lmm' ),
+			'std'     => '50',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['gpx_iconAnchor_x'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Icon anchor', 'lmm' ) . ' (x) - ' . __( 'The x-coordinates of the icons in pixel', 'lmm' ),
+			'std'     => '16',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['gpx_iconAnchor_y'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Icon anchor', 'lmm' ) . ' (y) - ' . __( 'The y-coordinates of the icons in pixel', 'lmm' ),
+			'std'     => '45',
+			'type'    => 'text-pro'
+		);		
+		$this->_settings['gpx_shadowAnchor_x'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Shadow anchor', 'lmm' ) . ' (x) - ' . __( 'The x-coordinates of the shadow in pixel', 'lmm' ),
+			'std'     => '16',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['gpx_shadowAnchor_y'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section19',
+			'title'   => '',
+			'desc'    => __( 'Shadow anchor', 'lmm' ) . ' (y) - ' . __( 'The x-coordinates of the shadow in pixel', 'lmm' ),
+			'std'     => '47',
+			'type'    => 'text-pro'
+		);		
 
 		/*===========================================
 		*
@@ -6859,7 +7168,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'version' => 'p1.0',
 			'pane'    => 'google',
 			'section' => 'google-section6',
-			'title'   => __('Format','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Format','lmm') . $pro_button_link,
 			'desc'    => sprintf(__('Display formats of type google.maps.adsense.AdFormat, both text ads and link units are supported. Please see %1s for more details and examples','lmm'),'<a href="https://support.google.com/adsense/bin/answer.py?hl=de&utm_medium=link&utm_campaign=ww-ww-et-asfe_&utm_source=aso&answer=185665" target="_blank">https://support.google.com/adsense/...</a>'),
 			'type'    => 'radio-pro',
 			'std'     => 'HALF_BANNER',
@@ -6888,7 +7197,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'version' => 'p1.0',
 			'pane'    => 'google',
 			'section' => 'google-section6',
-			'title'   => __('Position','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Position','lmm') . $pro_button_link,
 			'desc'    => sprintf(__('<a href="%1s" target="_blank">click here for more information on ad positions which might cause conflicts with Google AdSense programme policies</a>','lmm'), 'http://www.mapsmarker.com/docs/pro-version-docs/how-to-configure-google-adsense-in-order-not-to-violate-google-adsense-programme-policies/') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-google-adsense-positions.jpg" width="640" height="480" />',
 			'type'    => 'radio-pro',
 			'std'     => 'TOP_CENTER',
@@ -7530,7 +7839,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'version' => 'p1.0',
 			'pane'    => 'ar',
 			'section' => 'ar-section1',
-			'title'   => __( 'Description', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __( 'Description', 'lmm' ) . $pro_button_link,
 			'desc'    => __( 'Description of the content provider that provides additional information about the content displayed.', 'lmm' ) . '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
 			'std'     => __('Wikitude API powered by www.mapsmarker.com','lmm'),
 			'type'    => 'text-pro'
@@ -7686,7 +7995,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'version' => 'p1.0',
 			'pane'    => 'misc',
 			'section' => 'misc-section1',
-			'title'   => __('MapsMarker.com backlinks','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('MapsMarker.com backlinks','lmm') . $pro_button_link,
 			'desc'    => __('Option to hide backlinks to Mapsmarker.com on maps and screen overlays in KML files.','lmm') . '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-backlink.jpg" width="642" height="45" /><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-backlink-kml.jpg" width="471" height="71" />',
 			'type'    => 'radio-pro',
 			'std'     => 'show',
@@ -7700,8 +8009,24 @@ $this->_settings['clustering_helptext2'] = array(
 			'pane'    => 'misc',
 			'section' => 'misc-section1',
 			'title'   => __( 'User role needed for adding and editing markers/layers', 'lmm' ),
-			'desc'    => __( 'Note: the settings and tools pages are always visible to admins only.', 'lmm' ),
+			'desc'    => '',
 			'type'    => 'radio',
+			'std'     => 'edit_posts',
+			'choices' => array(
+				'activate_plugins' => __('Administrator (Capability activate_plugins)', 'lmm'),
+				'moderate_comments' => __('Editor (Capability moderate_comments)', 'lmm'),
+				'edit_published_posts' => __('Author (Capability edit_published_posts)', 'lmm'),
+				'edit_posts' => __('Contributor (Capability edit_posts)', 'lmm'),
+				'read' => __('Subscriber (Capability read)', 'lmm')
+			)
+		);
+		$this->_settings['capabilities_edit_others'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'misc',
+			'section' => 'misc-section1',
+			'title'   => __( 'User role needed for editing markers/layers from other users', 'lmm' ) . $pro_button_link,
+			'desc'    => '',
+			'type'    => 'radio-pro',
 			'std'     => 'edit_posts',
 			'choices' => array(
 				'activate_plugins' => __('Administrator (Capability activate_plugins)', 'lmm'),
@@ -7716,8 +8041,24 @@ $this->_settings['clustering_helptext2'] = array(
 			'pane'    => 'misc',
 			'section' => 'misc-section1',
 			'title'   => __( 'User role needed for deleting markers/layers', 'lmm' ),
-			'desc'    => __( 'Note: the settings and tool pages are always visible to admins only.', 'lmm' ),
+			'desc'    => '',
 			'type'    => 'radio',
+			'std'     => 'edit_posts',
+			'choices' => array(
+				'activate_plugins' => __('Administrator (Capability activate_plugins)', 'lmm'),
+				'moderate_comments' => __('Editor (Capability moderate_comments)', 'lmm'),
+				'edit_published_posts' => __('Author (Capability edit_published_posts)', 'lmm'),
+				'edit_posts' => __('Contributor (Capability edit_posts)', 'lmm'),
+				'read' => __('Subscriber (Capability read)', 'lmm')
+			)
+		);
+		$this->_settings['capabilities_delete_others'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'misc',
+			'section' => 'misc-section1',
+			'title'   => __( 'User role needed for deleting markers/layers from other users', 'lmm' ) . $pro_button_link,
+			'desc'    => '',
+			'type'    => 'radio-pro',
 			'std'     => 'edit_posts',
 			'choices' => array(
 				'activate_plugins' => __('Administrator (Capability activate_plugins)', 'lmm'),
@@ -7880,8 +8221,21 @@ $this->_settings['clustering_helptext2'] = array(
 			'version' => 'p1.1',
 			'pane'    => 'misc',
 			'section' => 'misc-section1',
-			'title'   => __('Beta testing','lmm'). '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __('Beta testing','lmm'). $pro_button_link,
 			'desc'    => __('Set to enabled if you want to easily upgrade to beta releases.','lmm') . ' <span style="font-weight:bold;color:red;">' . __('Warning: not recommended on production sites - use on your own risk!','lmm') . '</span>',
+			'type'    => 'radio-pro',
+			'std'     => 'disabled',
+			'choices' => array(
+				'disabled' => __('disabled','lmm'),
+				'enabled' => __('enabled','lmm')
+			)
+		);
+		$this->_settings['misc_whitelabel_backend'] = array(
+			'version' => 'p1.2',
+			'pane'    => 'misc',
+			'section' => 'misc-section1',
+			'title'   => __('Whitelabel backend','lmm'). $pro_button_link,
+			'desc'    => __('Set to enabled if you want to remove all backlinks and logos on backend as well as making the pages and menu entries for Tools, Settings, Support, License visible to admins only (user capability activate_plugins).','lmm'),
 			'type'    => 'radio-pro',
 			'std'     => 'disabled',
 			'choices' => array(
@@ -7939,6 +8293,7 @@ $this->_settings['clustering_helptext2'] = array(
 				'sk_SK' => __('Slovak','lmm') . ' (sk_SK)',
 				'sv_SE' => __('Swedish','lmm') . ' (sv_SE)',
 				'es_ES' => __('Spanish','lmm') . ' (es_ES)',
+				'es_MX' => __('Spanish','lmm') . ' (es_MX)',
 				'tr_TR' => __('Turkish','lmm') . ' (tr_TR)',
 				'uk_UK' => __('Ukrainian','lmm') . ' (uk_UK)',
 				'yi' => __('Yiddish','lmm') . ' (yi)'
@@ -8582,7 +8937,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'version' => 'p1.0',
 			'pane'    => 'misc',
 			'section' => 'misc-section8',
-			'title'   => __( 'API key', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __( 'API key', 'lmm' ) . $pro_button_link,
 			'desc'    => __('If empty, the (unlimited) API key from MapsMarker.com will be used','lmm'),
 			'std'     => '',
 			'type'    => 'text-pro'
@@ -8591,7 +8946,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'version' => 'p1.0',
 			'pane'    => 'misc',
 			'section' => 'misc-section8',
-			'title'   => __( 'Image URL', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __( 'Image URL', 'lmm' ) . $pro_button_link,
 			'desc'    => sprintf(__( 'If empty, the default image url %s will be used', 'lmm' ),LEAFLET_PLUGIN_URL . 'inc/img/logo-qr-code.png'),
 			'std'     => '',
 			'type'    => 'text-pro'
@@ -8600,7 +8955,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'version' => 'p1.0',
 			'pane'    => 'misc',
 			'section' => 'misc-section8',
-			'title'   => __( 'QR size', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __( 'QR size', 'lmm' ) . $pro_button_link,
 			'desc'    => __('The width/height of the Visual QR Code (minimum: 124 pixel)','lmm'),
 			'std'     => '124',
 			'type'    => 'text-pro'
@@ -8609,7 +8964,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'version' => 'p1.0',
 			'pane'    => 'misc',
 			'section' => 'misc-section8',
-			'title'   => __( 'QR cell size', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __( 'QR cell size', 'lmm' ) . $pro_button_link,
 			'desc'    => esc_attr__('Force a specific size of the QR Code cell (Measured in pixels). Once this parameter is used then the "QR size" parameter is ignored. If the resulting QR Code size is bigger than the image, then the image is extended.','lmm'),
 			'std'     => '',
 			'type'    => 'text-pro'
@@ -8636,8 +8991,8 @@ $this->_settings['clustering_helptext2'] = array(
 			'version' => 'p1.0',
 			'pane'    => 'misc',
 			'section' => 'misc-section8',
-			'title'   => __( 'QR gravity', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
-			'desc'    => esc_attr__('center/N/S/W/E (Or common combinations such as NW or Scenter) – will position the QR Code accordingly. Once this parameter is used then the "qr_x and "qr_y" parameters are ignored.','lmm'),
+			'title'   => __( 'QR gravity', 'lmm' ) . $pro_button_link,
+			'desc'    => esc_attr__('center/N/S/W/E (or common combinations such as NW or Scenter) - will position the QR Code accordingly. Once this parameter is used then the "qr_x and "qr_y" parameters are ignored.','lmm'),
 			'std'     => '',
 			'type'    => 'text-pro'
 		);
@@ -8645,7 +9000,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'version' => 'p1.0',
 			'pane'    => 'misc',
 			'section' => 'misc-section8',
-			'title'   => __( 'QR rotation', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __( 'QR rotation', 'lmm' ) . $pro_button_link,
 			'desc'    => __('The angle of the QR Code rotation. Allowed angles: 0/90/180/270.','lmm'),
 			'std'     => '0',
 			'type'    => 'text-pro'
@@ -8654,7 +9009,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'version' => 'p1.0',
 			'pane'    => 'misc',
 			'section' => 'misc-section8',
-			'title'   => __( 'Output image width', 'lmm' ) . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
+			'title'   => __( 'Output image width', 'lmm' ) . $pro_button_link,
 			'desc'    => __('The desired image width returned in the response. If empty, the width of the image from image url will be used.','lmm'),
 			'std'     => '',
 			'type'    => 'text-pro'
@@ -9294,7 +9649,7 @@ $this->_settings['clustering_helptext2'] = array(
 		}
 		/* template for plugin updates
 		//info:  set defaults for options introduced in v3.7
-		if (get_option('leafletmapsmarker_version') == '3.6.2' )
+		if (get_option('leafletmapsmarker_version') == '3.6.4' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting )
