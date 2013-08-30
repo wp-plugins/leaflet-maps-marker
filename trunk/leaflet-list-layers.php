@@ -28,7 +28,7 @@ $csvexportlink = LEAFLET_PLUGIN_URL . 'leaflet-exportcsv.php?_wpnonce=' . $nonce
 
 <div style="display:inline;">
 <p>
-<span id="exportlinkstext"><a style="text-decoration:none;" href="javascript:();"><?php _e('Export and API links for all markers','lmm'); ?></a></span></div>
+<span id="exportlinkstext"><a style="text-decoration:none;cursor:pointer;"><?php _e('Export and API links for all markers','lmm'); ?></a></span></div>
 </p>
 <div id="exportlinks" style="display:none;">
 <p>

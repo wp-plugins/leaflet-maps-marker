@@ -77,10 +77,13 @@ if (is_plugin_active('w3-total-cache/w3-total-cache.php') ) {
 		}
 	}
 	$w3tc_cdn = $w3tc_config->get_boolean('cdn.enabled');
+	$w3tc_version = $w3tc_config->get_string('version');
 	if ($w3tc_cdn == true) {
-		$w3tc_cdn_exclude = $w3tc_config->get_array('cdn.reject.files');
-		if (in_array('wp-content/uploads/leaflet-maps-marker-icons/*', $w3tc_cdn_exclude) == false) {
-			echo '<p><div class="error" style="padding:10px;"><strong>' . sprintf(__('Warning: you are using the plugin "W3 Total Cache" with the feature "CDN" enabled which is causing layer maps to break.<br/>To fix this, please navigate to <a href="%1s">Performance / CDN / Advanced</a> and add <strong>%2s</strong> to "Rejected files:"','lmm'), LEAFLET_WP_ADMIN_URL . 'admin.php?page=w3tc_cdn', 'wp-content/uploads/leaflet-maps-marker-icons/*') . '</strong></div></p>';
+		if ($w3tc_version < '0.9.3' ) {
+			$w3tc_cdn_exclude = $w3tc_config->get_array('cdn.reject.files');
+			if (in_array('wp-content/uploads/leaflet-maps-marker-icons/*', $w3tc_cdn_exclude) == false) {
+				echo '<p><div class="error" style="padding:10px;"><strong>' . sprintf(__('Warning: you are using the plugin "W3 Total Cache" with the feature "CDN" enabled which is causing layer maps to break.<br/>To fix this, please navigate to <a href="%1s">Performance / CDN / Advanced</a> and add <strong>%2s</strong> to "Rejected files:"','lmm'), LEAFLET_WP_ADMIN_URL . 'admin.php?page=w3tc_cdn', 'wp-content/uploads/leaflet-maps-marker-icons/*') . '</strong></div></p>';
+			}
 		}
 	}
 }

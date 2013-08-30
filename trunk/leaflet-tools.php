@@ -517,7 +517,7 @@ $serialized_options = serialize($lmm_options);
 						'theme_advanced_buttons1' => 'bold,italic,underline,strikethrough,|,fontselect,fontsizeselect,forecolor,backcolor,|,justifyleft,justifycenter,justifyright,justifyfull,|,outdent,indent,blockquote,|,link,unlink,|,ltr,rtl',
 						'theme' => 'advanced',
 						'height' => '300',
-						'content_css' => LEAFLET_PLUGIN_URL . 'inc/css/leafletmapsmarker-admin-tinymce.css',
+						'content_css' => LEAFLET_PLUGIN_URL . 'inc/css/leafletmapsmarker-admin-tinymce.php',
 						'theme_advanced_statusbar_location' => 'bottom',
 						'setup' => 'function(ed) {
 								ed.onKeyDown.add(function(ed, e) {

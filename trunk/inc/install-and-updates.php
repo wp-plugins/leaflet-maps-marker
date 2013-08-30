@@ -85,7 +85,7 @@ $sql_layers_table = "CREATE TABLE " . $table_name_layers . " (
 	wms10 tinyint(1) NOT NULL,
 	listmarkers tinyint(1) NOT NULL,
 	multi_layer_map tinyint(1) NOT NULL,
-	multi_layer_map_list varchar(255) DEFAULT NULL,
+	multi_layer_map_list varchar(4000) DEFAULT NULL,
 	address varchar(255) NOT NULL,
 	PRIMARY KEY  (id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
@@ -640,6 +640,15 @@ if (get_option('leafletmapsmarker_version') == '3.6.1' ) {
 		update_option('leafletmapsmarker_version_before_update', '3.6.1');
 	}
 	update_option('leafletmapsmarker_version', '3.6.2');
+}
+if (get_option('leafletmapsmarker_version') == '3.6.2' ) {
+	delete_transient( 'leafletmapsmarker_install_update_cache_v362');
+	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
+	if ( $version_before_update === FALSE ) {
+		set_transient( 'leafletmapsmarker_version_before_update', 'deleted-in-1-hour', 60*3 );
+		update_option('leafletmapsmarker_version_before_update', '3.6.2');
+	}
+	update_option('leafletmapsmarker_version', '3.6.3');
 	//info: redirect to create marker page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 	if (get_option('leafletmapsmarker_redirect') == 'true')
 	{
@@ -654,6 +663,7 @@ if (get_option('leafletmapsmarker_version') == '3.6.1' ) {
 			update_option('leafletmapsmarker_update_info', 'hide');
 	}
 }
+
 /* template for plugin updates
 if (get_option('leafletmapsmarker_version') == 'x.xbefore' ) {
 	delete_transient( 'leafletmapsmarker_install_update_cache_vxxbefore'); //2do: update to version from line above

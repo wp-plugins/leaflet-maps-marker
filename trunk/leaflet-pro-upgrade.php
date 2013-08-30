@@ -77,6 +77,17 @@ if ( $action == NULL ) {
 				</p>
 				</div>
 
+				<h3>' . __('GPX tracks','lmm') . '</h3>
+				<div>
+				<p style="margin:0 0 1em 0;">
+				' . __('Leaflet Maps Marker Pro allows you to also display GPX tracks with optional metadata on your maps:','lmm') . '
+				</p>
+				<img src="' . LEAFLET_PLUGIN_URL . 'inc/img/help-gpx.jpg">
+				<p>
+				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-gpx" target="_blank">' . __('Click here to get more information about this pro feature on mapsmarker.com','lmm') . '</a>
+				</p>
+				</div>
+
 				<h3>' . __('HTML5 fullscreen maps','lmm') . '</h3>
 				<div>
 				<p style="margin:0 0 1em 0;">
@@ -128,6 +139,8 @@ if ( $action == NULL ) {
 				<div>
 				<p style="margin:0 0 1em 0;">
 				<div style="float:left;margin:0 10px 10px 0;"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/help-visualead.png"></div>' . __('Leaflet Maps Marker Pro allows you to use custom backgrounds for QR codes.','lmm') . '
+				<br/><br/>
+				' . __('Additionally the pro version does not display the visualead logo on the QR code output pages.','lmm') . '
 				<br/><br/>
 				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-qrcode" target="_blank">' . __('Click here to get more information about this pro feature on mapsmarker.com','lmm') . '</a>
 				</p>
@@ -192,6 +205,28 @@ if ( $action == NULL ) {
 				</p>
 				</div>
 
+				<h3>' . __('whitelabel backend admin pages','lmm') . '</h3>
+				<div>
+				<p style="margin:0 0 1em 0;">
+				' . __('Leaflet Maps Marker Pro allows you to remove all backlinks and logos on backend as well as making the pages and menu entries for Tools, Settings, Support, License visible to admins only.','lmm') . '
+				</p>
+				<img src="' . LEAFLET_PLUGIN_URL . 'inc/img/pro-preview-whitelabel-backend.png">
+				<p>
+				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-whitelabel" target="_blank">' . __('Click here to get more information about this pro feature on mapsmarker.com','lmm') . '</a>
+				</p>
+				</div>
+
+				<h3>' . __('advanced permission settings','lmm') . '</h3>
+				<div>
+				<p style="margin:0 0 1em 0;">
+				' . __('Leaflet Maps Marker Pro allows you to set the user level needed for editing and deleting marker and layer maps from other users.','lmm') . '
+				</p>
+				<img src="' . LEAFLET_PLUGIN_URL . 'inc/img/pro-feature-advanced-permissions.png">
+				<p>
+				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-advanced-permissions" target="_blank">' . __('Click here to get more information about this pro feature on mapsmarker.com','lmm') . '</a>
+				</p>
+				</div>
+
 				<h3>' . __('features planned for future releases','lmm') . '</h3>
 				<div>
 				<p style="margin:0 0 1em 0;">
@@ -199,7 +234,6 @@ if ( $action == NULL ) {
 				</p>
 				<ul style="list-style-type:disc;margin-left:15px;">
 					<li>' . __('filtering markers on frontend','lmm') . '</li>
-					<li>' . __('support for displaying routes (GPX)','lmm') . '</li>
 					<li>' . __('support for displaying KML files','lmm') . '</li>
 					<li>' . __('adding markers from frontend','lmm') . '</li>
 					<li>' . __('support for Google Street View','lmm') . '</li>

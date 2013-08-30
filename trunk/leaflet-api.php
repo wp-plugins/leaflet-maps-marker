@@ -43,7 +43,7 @@ function lmm_getLatLng($address) {
 }
 $lmm_options = get_option( 'leafletmapsmarker_options' );
 $callback = isset($_POST['callback']) ? $_POST['callback'] : (isset($_GET['callback']) ? $_GET['callback'] :  $lmm_options['api_json_callback']);
-$format = isset($_POST['format']) ? $_POST['format'] : (isset($_GET['format']) ? $_GET['format'] : $lmm_options['api_default_format']);
+$format = ( isset($_POST['format']) && ( ($_POST['format'] == 'json') || ($_POST['format'] == 'xml')) ) ? $_POST['format'] : ( isset($_GET['format']) && ( ($_GET['format'] == 'json') || ($_GET['format'] == 'xml') ) ? $_GET['format'] : $lmm_options['api_default_format']);
 
 function hide_email($email) { $character_set = '+-.0123456789@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz'; $key = str_shuffle($character_set); $cipher_text = ''; $id = 'e'.rand(1,999999999); for ($i=0;$i<strlen($email);$i+=1) $cipher_text.= $key[strpos($character_set,$email[$i])]; $script = 'var a="'.$key.'";var b=a.split("").sort().join("");var c="'.$cipher_text.'";var d="";'; $script.= 'for(var e=0;e<c.length;e++)d+=b.charAt(a.indexOf(c.charAt(e)));'; $script.= 'document.getElementById("'.$id.'").innerHTML="<a href=\\"mailto:"+d+"\\">"+d+"</a>"'; $script = "eval(\"".str_replace(array("\\",'"'),array("\\\\",'\"'), $script)."\")"; $script = '<script type="text/javascript">/*<![CDATA[*/'.$script.'/*]]>*/</script>'; return '<span id="'.$id.'">[javascript protected email address]</span>'.$script; }
 //info: check if plugin is active (didnt use is_plugin_active() due to problems reported by users)
