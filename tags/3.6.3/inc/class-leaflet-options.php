@@ -202,7 +202,7 @@ class Class_leaflet_options {
 	        $li_class = 0 === $panel_index ? ' in active' : '';
 	        $panel_index++;
 	        
-            echo '<div id = '.$pane_slug.' class="lmm-ui-tabs tabs-left tab-pane fade' . $li_class . '">';
+            echo '<div id = '.$pane_slug.' class="lmm-ui-tabs tabs-left tab-pane lmm-fade' . $li_class . '">';
 	        echo '<div class="tabbable tabs-left">';
             echo '<ul class="lmm-ui-tabs-nav lmm-ui-tabs-navleft tabs lmm-admin-navleft-tabs">';
             $sections = array();
@@ -223,7 +223,7 @@ class Class_leaflet_options {
                 foreach($sections as $slug => $section){
 	                $li_class = 0 === $sub_panel_index ? ' in active' : '';
 	                $sub_panel_index++;
-                    echo '<div class="section tab-pane fade' . $li_class . '" id="' . $section. '">';
+                    echo '<div class="section tab-pane lmm-fade' . $li_class . '" id="' . $section. '">';
                     echo "<h3 class='titl'>".$this->sections[$section]."</h3>";
                     if (function_exists('display_'.$pane_slug.'_section')) { //info: Phalanger fix
                     	@call_user_func(array(&$this, 'display_'.$pane_slug.'_section'), array());
