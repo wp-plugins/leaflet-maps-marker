@@ -227,6 +227,13 @@ if ( $action == NULL ) {
 				</p>
 				</div>
 
+				<h3>' . __('additional optimizations and improvements','lmm') . '</h3>
+				<div>
+				<ul style="list-style-type:disc;margin-left:15px;">
+					<li>' . __('improved performance for layer maps with a huge number of markers (parsing of GeoJSON is up to 3 times faster)','lmm') . '</li>
+				</ul>
+				</div>
+
 				<h3>' . __('features planned for future releases','lmm') . '</h3>
 				<div>
 				<p style="margin:0 0 1em 0;">
