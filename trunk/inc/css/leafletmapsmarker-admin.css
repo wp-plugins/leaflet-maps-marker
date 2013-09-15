@@ -565,13 +565,13 @@ a.pro-upgrade-external-links:hover {
 	background-color: transparent;
 	cursor: default;
 }
-.fade {
+.lmm-fade {
 	opacity: 0;
 	-webkit-transition: opacity 0.15s linear;
 	-moz-transition: opacity 0.15s linear;
 	-o-transition: opacity 0.15s linear;
 	transition: opacity 0.15s linear;
 }
-.fade.in {
+.lmm-fade.in {
 	opacity: 1;
 }

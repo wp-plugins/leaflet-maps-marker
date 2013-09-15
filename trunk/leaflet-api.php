@@ -45,7 +45,6 @@ $lmm_options = get_option( 'leafletmapsmarker_options' );
 $callback = isset($_POST['callback']) ? $_POST['callback'] : (isset($_GET['callback']) ? $_GET['callback'] :  $lmm_options['api_json_callback']);
 $format = ( isset($_POST['format']) && ( ($_POST['format'] == 'json') || ($_POST['format'] == 'xml')) ) ? $_POST['format'] : ( isset($_GET['format']) && ( ($_GET['format'] == 'json') || ($_GET['format'] == 'xml') ) ? $_GET['format'] : $lmm_options['api_default_format']);
 
-function hide_email($email) { $character_set = '+-.0123456789@ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz'; $key = str_shuffle($character_set); $cipher_text = ''; $id = 'e'.rand(1,999999999); for ($i=0;$i<strlen($email);$i+=1) $cipher_text.= $key[strpos($character_set,$email[$i])]; $script = 'var a="'.$key.'";var b=a.split("").sort().join("");var c="'.$cipher_text.'";var d="";'; $script.= 'for(var e=0;e<c.length;e++)d+=b.charAt(a.indexOf(c.charAt(e)));'; $script.= 'document.getElementById("'.$id.'").innerHTML="<a href=\\"mailto:"+d+"\\">"+d+"</a>"'; $script = "eval(\"".str_replace(array("\\",'"'),array("\\\\",'\"'), $script)."\")"; $script = '<script type="text/javascript">/*<![CDATA[*/'.$script.'/*]]>*/</script>'; return '<span id="'.$id.'">[javascript protected email address]</span>'.$script; }
 //info: check if plugin is active (didnt use is_plugin_active() due to problems reported by users)
 function lmm_is_plugin_active( $plugin ) {
 	$active_plugins = get_option('active_plugins');
@@ -558,7 +557,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 										$layer = isset($_POST['layer']) ? intval($_POST['layer']) : (isset($_GET['layer']) ? intval($_GET['layer']) : (($lmm_options[ 'defaults_marker_default_layer' ] == '0') ? '0' : intval($lmm_options[ 'defaults_marker_default_layer' ])));
 										$lat = isset($_POST['lat']) ? floatval($_POST['lat']) : (isset($_GET['lat']) ? floatval($_GET['lat']) : floatval($lmm_options[ 'defaults_marker_lat' ]));
 										$lon = isset($_POST['lon']) ? floatval($_POST['lon']) : (isset($_GET['lon']) ? floatval($_GET['lon']) : floatval($lmm_options[ 'defaults_marker_lon' ]));
-										$icon = isset($_POST['icon']) ? $_POST['icon'] : (isset($_GET['icon']) ? $_GET['icon'] : ($lmm_options[ 'defaults_marker_icon' ] == NULL) ? '' : $lmm_options[ 'defaults_marker_icon' ]);
+										$icon = isset($_POST['icon']) ? $_POST['icon'] : (isset($_GET['icon']) ? $_GET['icon'] : (($lmm_options[ 'defaults_marker_icon' ] == NULL) ? '' : $lmm_options[ 'defaults_marker_icon' ]));
 										$popuptext = $mpopuptext;
 										$zoom = isset($_POST['zoom']) ? intval($_POST['zoom']) : (isset($_GET['zoom']) ? intval($_GET['zoom']) : intval($lmm_options[ 'defaults_marker_zoom' ]));
 										$openpopup = ( isset($_POST['openpopup']) && ( ($_POST['openpopup'] == '0') || ($_POST['openpopup'] == '1')) ) ? $_POST['openpopup'] : ( isset($_GET['openpopup']) && ( ($_GET['openpopup'] == '0') || ($_GET['openpopup'] == '1') ) ? $_GET['openpopup'] : $lmm_options[ 'defaults_marker_openpopup' ]);

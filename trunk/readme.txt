@@ -48,7 +48,7 @@ We are working hard on delivering the best mapping solution available for WordPr
 = Plugin's Official Site =
 http://mapsmarker.com
 
-* [FAQ](http://www.mapsmarker.com/faq/) - [Docs](http://www.mapsmarker.com/docs/) - [Support](http://mapsmarker.com/support/) - [Github](https://github.com/robertharm/Leaflet-Maps-Marker) - [Donations](http://mapsmarker.com/donations) - [Twitter](http://twitter.com/mapsmarker) - [Facebook](http://facebook.com/mapsmarker) - [Google+](http://www.mapsmarker.com/+) - [Translations](http://translate.mapsmarker.com/projects/lmm)
+* [Affiliates](https://www.mapsmarker.com/affiliates/) - [FAQ](http://www.mapsmarker.com/faq/) - [Docs](http://www.mapsmarker.com/docs/) - [Support](http://mapsmarker.com/support/) - [Github](https://github.com/robertharm/Leaflet-Maps-Marker) - [Twitter](http://twitter.com/mapsmarker) - [Facebook](http://facebook.com/mapsmarker) - [Google+](http://www.mapsmarker.com/+) - [Translations](http://translate.mapsmarker.com/projects/lmm)
 
 = Main features =
 Leaflet Maps Marker allows you to
@@ -112,7 +112,6 @@ to the visitors of your website.
 * "OGD Vienna selector": if a place within boundaries of Vienna/Austria is chosen, OGD Vienna basemaps are automatically selected
 * admin dashboard widget showing latest markers and blog posts from mapsmarker.com
 * support for google maps and bing map localization (cultures)
-* integrated [donation links](http://www.mapsmarker.com/donations) to show your support for this plugin :-)
 
 = Technical details =
 * full support for responsive designs (= automatic resizing of maps if viewport is wider than map width)
@@ -174,9 +173,6 @@ For full credits of each translations please visit [http://www.mapsmarker.com/la
 
 Leaflet Maps Marker also supports easy switching between translations through a specific plugin setting.
 For more information on translations and how to contribute a new translation, please visit [http://translate.mapsmarker.com](http://translate.mapsmarker.com/projects/lmm).
-
-= Leaflet Maps Marker Needs Your Support =
-It is hard to continue development and support for this plugin without contributions from users like you. If you enjoy using Leaflet Maps Marker - particularly within a commercial context - please consider [__making a donation__](http://www.mapsmarker.com/donations). Your donation will help keeping the plugin free for everyone and allow me to spend more time on developing, maintaining and support. I´d be happy to accept your donation! Thanks! [Robert Harm](http://www.harm.co.at)
 
 == Installation ==
 
@@ -256,7 +252,7 @@ For demo maps please visit [http://www.mapsmarker.com/demo](http://www.mapsmarke
 == Other Notes ==
 
 = Licence =
-Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, you can thank me and leave a small donation for the time I've spent writing and supporting this plugin. Please see [http://www.mapsmarker.com/donations](http://www.mapsmarker.com/donations) for details.
+Good news, this plugin is free for everyone! Since it's released under the GPL, you can use it free of charge on your personal or commercial blog. But if you enjoy this plugin, please consider upgrading to the pro version.
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License included with this plugin for more details.
 
 = Licenses for used libraries, services and images =
@@ -289,10 +285,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2013, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.6.3 =
-optimized settings page, translatin updates & small tweaks to multi-layer-maps - see http://www.mapsmarker.com/v3.6.3 for more details
+= v3.6.4 =
+support for Maps Marker affiliate links - see http://www.mapsmarker.com/v3.6.4 for more details
 
 == Changelog ==
-[blog post with details about v3.6.3](http://www.mapsmarker.com/v3.6.3)
+[blog post with details about v3.6.4](http://www.mapsmarker.com/v3.6.4)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

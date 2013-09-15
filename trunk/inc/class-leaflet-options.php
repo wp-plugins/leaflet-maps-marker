@@ -202,7 +202,7 @@ class Class_leaflet_options {
 	        $li_class = 0 === $panel_index ? ' in active' : '';
 	        $panel_index++;
 	        
-            echo '<div id = '.$pane_slug.' class="lmm-ui-tabs tabs-left tab-pane fade' . $li_class . '">';
+            echo '<div id = '.$pane_slug.' class="lmm-ui-tabs tabs-left tab-pane lmm-fade' . $li_class . '">';
 	        echo '<div class="tabbable tabs-left">';
             echo '<ul class="lmm-ui-tabs-nav lmm-ui-tabs-navleft tabs lmm-admin-navleft-tabs">';
             $sections = array();
@@ -223,7 +223,7 @@ class Class_leaflet_options {
                 foreach($sections as $slug => $section){
 	                $li_class = 0 === $sub_panel_index ? ' in active' : '';
 	                $sub_panel_index++;
-                    echo '<div class="section tab-pane fade' . $li_class . '" id="' . $section. '">';
+                    echo '<div class="section tab-pane lmm-fade' . $li_class . '" id="' . $section. '">';
                     echo "<h3 class='titl'>".$this->sections[$section]."</h3>";
                     if (function_exists('display_'.$pane_slug.'_section')) { //info: Phalanger fix
                     	@call_user_func(array(&$this, 'display_'.$pane_slug.'_section'), array());
@@ -7991,6 +7991,15 @@ $this->_settings['clustering_helptext2'] = array(
 			'desc'    => '', //empty for not breaking settings layout
 			'type'    => 'helptext'
 		);
+		$this->_settings['affiliate_id'] = array(
+			'version' => '3.6.4',
+			'pane'    => 'misc',
+			'section' => 'misc-section1',
+			'title'   => __( 'Affiliate ID', 'lmm' ),
+			'desc'    => __( 'Enter your affiliate ID to replace the default MapsMarker.com-backlink on all maps with your personal affiliate link - enabling you to receive commissions up to 50% from sales of the pro version.', 'lmm' ) . '<br/><a href="http://www.mapsmarker.com/affiliateid" target="_blank">' . __('Click here for more infos on the Maps Marker affiliate program and how to get your affiliate ID','lmm') . '</a>',
+			'std'     => '',
+			'type'    => 'text'
+		);
 		$this->_settings['misc_backlink'] = array(
 			'version' => 'p1.0',
 			'pane'    => 'misc',
@@ -9647,6 +9656,21 @@ $this->_settings['clustering_helptext2'] = array(
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}
+		//info:  set defaults for options introduced in v3.4
+		if (get_option('leafletmapsmarker_version') == '3.6.3' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting )
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.6.4')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}		
 		/* template for plugin updates
 		//info:  set defaults for options introduced in v3.7
 		if (get_option('leafletmapsmarker_version') == '3.6.4' )
