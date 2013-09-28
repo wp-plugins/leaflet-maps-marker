@@ -371,7 +371,7 @@ if ( $edit_status == 'updated') {
 		?>
 		</h3>
 
-		<table class="widefat fixed">
+		<table class="widefat">
 			<?php if ($isedit === true) { ?>
 			<tr>
 				<td style="width:230px;"><label for="shortcode"><strong><?php _e('Shortcode and API links','lmm') ?>:</strong></label></td>

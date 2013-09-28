@@ -272,7 +272,7 @@ if ( $edit_status == 'updated') {
 		<input style="font-weight:bold;margin-left:10px;" type="submit" name="marker" class="submit button-primary" value="<?php ($isedit === true) ? _e('update','lmm') : _e('publish','lmm') ?>" />
 	</h3>
 
-		<table class="widefat fixed">
+		<table class="widefat">
 			<?php if ($isedit === true) { ?>
 			<tr>
 				<td style="width:230px;"><label for="shortcode"><strong><?php _e('Shortcode and API links','lmm') ?></strong></label></td>
