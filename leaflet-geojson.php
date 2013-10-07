@@ -92,7 +92,7 @@ if (isset($_GET['layer'])) {
 		if ($full == 1) {
 			echo '"markerid":"'.$marker['mid'].'",'.PHP_EOL;
 		}
-			echo '"markername":"' . stripslashes(esc_js($marker['mmarkername'])) . '",'.PHP_EOL;
+			echo '"markername":"' . stripslashes(str_replace("\"", "'", $marker['mmarkername'])) . '",'.PHP_EOL;
 		if ($full == 1) {
 			echo '"basemap":"'.$marker['mbasemap'].'",'.PHP_EOL;
 			echo '"lat":"'.$marker['mlat'].'",'.PHP_EOL;
@@ -220,7 +220,7 @@ elseif (isset($_GET['marker'])) {
 	echo '{'.PHP_EOL;
 	if ($full == 1) {
 		echo '"markerid":"'.$marker['mid'].'",'.PHP_EOL;
-		echo '"markername":"' . stripslashes(esc_js($marker['mmarkername'])) . '",'.PHP_EOL;
+		echo '"markername":"' . stripslashes(str_replace("\"", "'", $marker['mmarkername'])) . '",'.PHP_EOL;
 		echo '"basemap":"'.$marker['mbasemap'].'",'.PHP_EOL;
 		echo '"lat":"'.$marker['mlat'].'",'.PHP_EOL;
 		echo '"lon":"'.$marker['mlon'].'",'.PHP_EOL;
