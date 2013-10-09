@@ -79,6 +79,51 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</table>'.PHP_EOL;
 *************************************************************************************************************************************/
 
+		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.6.6') . '</strong> - ' . __('released on','lmm') . ' 09.10.2013 (<a href="http://www.mapsmarker.com/v3.6.6" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
+		<table>
+		<tr><td>
+		<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . esc_attr__('Upgrade to pro version for even more features - click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-pro.png"></a>
+		</td><td>
+		<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . esc_attr__('Upgrade to pro version for even more features - click here to find out how you can start a free 30-day-trial easily','lmm') . '">new options to set text color in marker cluster circles (thanks Simon!)</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		GeoJSON output for markers did not display marker name if parameter full was set to no
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-fixed.png">
+		</td><td>
+		GeoJSON output could break if special characters were used in marker names
+		</td></tr>
+		<tr><td colspan="2">
+		<p><strong>' . __('Translation updates','lmm') . '</a></p></strong>
+		<p>' . sprintf(__('In case you want to help with translations, please visit the <a href="%1s" target="_blank">web-based translation plattform</a>','lmm'), 'http://translate.mapsmarker.com/projects/lmm') . '</p>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Chinese (zh_TW) translation thanks to jamesho Ho, <a href="http://outdooraccident.org" target="_blank">http://outdooraccident.org</a>
+		</td></tr>	
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Dutch translation thanks to Patrick Ruers, <a href="http://www.stationskwartiersittard.nl" target="_blank">http://www.stationskwartiersittard.nl</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Latvian translation thanks to Juris Orlovs, <a href="http://lbpa.lv" target="_blank">http://lbpa.lv</a> and Eriks Remess <a href="http://geekli.st/Eriks" target="_blank">http://geekli.st/Eriks</a>
+		</td></tr>		
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Polish translation thanks to Tomasz Rudnicki, <a href="http://www.kochambieszczady.pl" target="_blank">http://www.kochambieszczady.pl</a>
+		</td></tr>
+		</table>'.PHP_EOL;
+
+	if ( ( $lmm_version_old < '3.6.5' ) && ( $lmm_version_old > '0' ) ) {
+		echo '<p><hr noshade size="1"/></p>';
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.6.5') . '</strong> - ' . __('released on','lmm') . ' 08.10.2013 (<a href="http://www.mapsmarker.com/v3.6.5" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -166,8 +211,10 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		updated Romanian translation thanks to Arian, <a href="http://administrare-cantine.ro" target="_blank">http://administrare-cantine.ro</a> and Daniel Codrea, <a href="http://www.inadcod.com" target="_blank">http://www.inadcod.com</a>
 		</td></tr>
 		</table>'.PHP_EOL;
+	}
 
 	if ( ( $lmm_version_old < '3.6.4' ) && ( $lmm_version_old > '0' ) ) {
+		echo '<p><hr noshade size="1"/></p>';
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.6.4') . '</strong> - ' . __('released on','lmm') . ' 14.09.2013 (<a href="http://www.mapsmarker.com/v3.6.4" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -268,6 +315,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 	}
 
 	if ( ( $lmm_version_old < '3.6.3' ) && ( $lmm_version_old > '0' ) ) {
+		echo '<p><hr noshade size="1"/></p>';
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.6.3') . '</strong> - ' . __('released on','lmm') . ' 31.08.2013 (<a href="http://www.mapsmarker.com/v3.6.3" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -413,6 +461,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 	}
 
 	if ( ( $lmm_version_old < '3.6.2' ) && ( $lmm_version_old > '0' ) ) {
+		echo '<p><hr noshade size="1"/></p>';
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.6.2') . '</strong> - ' . __('released on','lmm') . ' 10.08.2013 (<a href="http://www.mapsmarker.com/v3.6.2" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -493,6 +542,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 	}
 
 	if ( ( $lmm_version_old < '3.6.1' ) && ( $lmm_version_old > '0' ) ) {
+		echo '<p><hr noshade size="1"/></p>';
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.6.1') . '</strong> - ' . __('released on','lmm') . ' 01.08.2013 (<a href="http://www.mapsmarker.com/v3.6.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -578,6 +628,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 	}
 
 	if ( ( $lmm_version_old < '3.6' ) && ( $lmm_version_old > '0' ) ) {
+		echo '<p><hr noshade size="1"/></p>';
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.6') . '</strong> - ' . __('released on','lmm') . ' 22.07.2013 (<a href="http://www.mapsmarker.com/v3.6" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -763,6 +814,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 	}
 
 	if ( ( $lmm_version_old < '3.5.4' ) && ( $lmm_version_old > '0' ) ) {
+		echo '<p><hr noshade size="1"/></p>';
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.5.4') . '</strong> - ' . __('released on','lmm') . ' 24.05.2013 (<a href="http://www.mapsmarker.com/v3.5.4" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -898,6 +950,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 	}
 
 	if ( ( $lmm_version_old < '3.5.3' ) && ( $lmm_version_old > '0' ) ) {
+		echo '<p><hr noshade size="1"/></p>';
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.5.3') . '</strong> - ' . __('released on','lmm') . ' 17.04.2013 (<a href="http://www.mapsmarker.com/v3.5.3" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -989,6 +1042,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 	}
 
 	if ( ( $lmm_version_old < '3.5.2' ) && ( $lmm_version_old > '0' ) ) {
+		echo '<p><hr noshade size="1"/></p>';
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.5.2') . '</strong> - ' . __('released on','lmm') . ' 09.02.2013 (<a href="http://www.mapsmarker.com/v3.5.2" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -1010,6 +1064,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 	}
 
 	if ( ( $lmm_version_old < '3.5.1' ) && ( $lmm_version_old > '0' ) ) {
+		echo '<p><hr noshade size="1"/></p>';
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.5.1') . '</strong> - ' . __('released on','lmm') . ' 05.02.2013 (<a href="http://www.mapsmarker.com/v3.5.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -1056,6 +1111,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 	}
 
 	if ( ( $lmm_version_old < '3.5' ) && ( $lmm_version_old > '0' ) ) {
+		echo '<p><hr noshade size="1"/></p>';
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.5') . '</strong> - ' . __('released on','lmm') . ' 04.02.2013 (<a href="http://www.mapsmarker.com/v3.5" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>

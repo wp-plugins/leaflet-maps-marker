@@ -3144,6 +3144,15 @@ $this->_settings['clustering_helptext2'] = array(
 			'desc'    => __('Options to set the colors of the cluster circles','lmm') . ' - <a href="http://www.mapsmarker.com/colorpicker" target="_blank">http://www.mapsmarker.com/colorpicker</a><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-clustering-colors.jpg" width="400" height="98" />',
 			'type'    => 'helptext-twocolumn'
 		);
+		$this->_settings['clustering_color_small_text'] = array(
+			'version' => 'p1.3.1',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   =>'',
+			'desc'    => __('Cluster small (text color)','lmm'),
+			'std'     => '#000000',
+			'type'    => 'text-reverse-pro'
+		);
 		$this->_settings['clustering_color_small'] = array(
 			'version' => 'p1.3',
 			'pane'    => 'mapdefaults',
@@ -3180,6 +3189,15 @@ $this->_settings['clustering_helptext2'] = array(
 			'std'     => 'rgba(240, 194, 12, 0.6)',
 			'type'    => 'text-reverse-pro'
 		);
+		$this->_settings['clustering_color_medium_text'] = array(
+			'version' => 'p1.3.1',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   =>'',
+			'desc'    => __('Cluster medium (text color)','lmm'),
+			'std'     => '#000000',
+			'type'    => 'text-reverse-pro'
+		);
 		$this->_settings['clustering_color_large'] = array(
 			'version' => 'p1.3',
 			'pane'    => 'mapdefaults',
@@ -3196,6 +3214,15 @@ $this->_settings['clustering_helptext2'] = array(
 			'title'   =>'',
 			'desc'    => __('Cluster large (inner)','lmm'),
 			'std'     => 'rgba(241, 128, 23, 0.6)',
+			'type'    => 'text-reverse-pro'
+		);
+		$this->_settings['clustering_color_large_text'] = array(
+			'version' => 'p1.3.1',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section18',
+			'title'   =>'',
+			'desc'    => __('Cluster large (text color)','lmm'),
+			'std'     => '#000000',
 			'type'    => 'text-reverse-pro'
 		);
 		$this->_settings['clustering_singleMarkerMode'] = array(
@@ -9754,7 +9781,7 @@ $this->_settings['clustering_helptext2'] = array(
 		}		
 		/* template for plugin updates
 		//info:  set defaults for options introduced in v3.7
-		if (get_option('leafletmapsmarker_version') == '3.6.5' )
+		if (get_option('leafletmapsmarker_version') == '3.6.6' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting )
