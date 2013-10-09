@@ -764,7 +764,7 @@ class Leafletmapsmarker
 	}
 	function lmm_install_and_updates() {
 		//info: set transient to execute install & update-routine only once a day
-		$current_version = "v365"; //2do - mandatory: change on each update to new version!
+		$current_version = "v366"; //2do - mandatory: change on each update to new version!
 		$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version;
 		$install_update_schedule = get_transient( $schedule_transient );
 		if ( $install_update_schedule === FALSE ) {
