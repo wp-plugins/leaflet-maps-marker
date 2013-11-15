@@ -103,7 +103,8 @@ if (!empty($action)) {
 		echo '<p><div class="updated" style="padding:10px;">' . __('The icon for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';
   }
   elseif ($action == 'openpopup') {
-		$result = $wpdb->prepare( "UPDATE $table_name_markers SET openpopup = %d", $_POST['openpopup'] );
+		$popuptext = preg_replace("/\t/", " ", $_POST['popuptext']); //info: tabs break geojson
+		$result = $wpdb->prepare( "UPDATE $table_name_markers SET popuptext = %s", $popuptext );
 		$wpdb->query( $result );
 		$wpdb->query( "OPTIMIZE TABLE $table_name_markers" );
 		echo '<p><div class="updated" style="padding:10px;">' . __('The popup status for all markers has been successfully updated','lmm') . '</div><br/><a class="button-secondary" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools">' . __('Back to Tools', 'lmm') . '</a></p>';

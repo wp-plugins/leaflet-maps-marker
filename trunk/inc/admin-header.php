@@ -13,6 +13,7 @@ $oid = isset($_POST['id']) ? intval($_POST['id']) : (isset($_GET['id']) ? intval
 if ($page == 'leafletmapsmarker_markers') {
 	$buttonclass1 = 'button-primary lmm-nav-primary';
 	$buttonclass2 = 'button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button-secondary lmm-nav-secondary';
 	$buttonclass3 = 'button-secondary lmm-nav-secondary';
 	$buttonclass4 = 'button-secondary lmm-nav-secondary';
 	$buttonclass5 = 'button-secondary lmm-nav-secondary';
@@ -28,6 +29,17 @@ if ($page == 'leafletmapsmarker_markers') {
 	} else {
 		$buttonclass2 = 'button-secondary lmm-nav-secondary';
 	}
+	$buttonclass2b = 'button-secondary lmm-nav-secondary';
+	$buttonclass3 = 'button-secondary lmm-nav-secondary';
+	$buttonclass4 = 'button-secondary lmm-nav-secondary';
+	$buttonclass5 = 'button-secondary lmm-nav-secondary';
+	$buttonclass6 = 'button-secondary lmm-nav-secondary';
+	$buttonclass7 = 'button-secondary lmm-nav-secondary';
+	$buttonclass8 = 'button-secondary lmm-nav-secondary';
+} else if ($page == 'leafletmapsmarker_import_export') {
+	$buttonclass1 = 'button-secondary lmm-nav-secondary';
+	$buttonclass2 = 'button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button-primary lmm-nav-primary';
 	$buttonclass3 = 'button-secondary lmm-nav-secondary';
 	$buttonclass4 = 'button-secondary lmm-nav-secondary';
 	$buttonclass5 = 'button-secondary lmm-nav-secondary';
@@ -37,6 +49,7 @@ if ($page == 'leafletmapsmarker_markers') {
 } else if ($page == 'leafletmapsmarker_layers') {
 	$buttonclass1 = 'button-secondary lmm-nav-secondary';
 	$buttonclass2 = 'button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button-secondary lmm-nav-secondary';
 	$buttonclass3 = 'button-primary lmm-nav-primary';
 	$buttonclass4 = 'button-secondary lmm-nav-secondary';
 	$buttonclass5 = 'button-secondary lmm-nav-secondary';
@@ -46,6 +59,7 @@ if ($page == 'leafletmapsmarker_markers') {
 } else if ($page == 'leafletmapsmarker_layer') {
 	$buttonclass1 = 'button-secondary lmm-nav-secondary';
 	$buttonclass2 = 'button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button-secondary lmm-nav-secondary';
 	$buttonclass3 = 'button-secondary lmm-nav-secondary';
 	if ( ($oid == NULL) && ($page == 'leafletmapsmarker_layer') ) {
 		$buttonclass4 = 'button-primary lmm-nav-primary';
@@ -61,6 +75,7 @@ if ($page == 'leafletmapsmarker_markers') {
 } else if ($page == 'leafletmapsmarker_tools') {
 	$buttonclass1 = 'button-secondary lmm-nav-secondary';
 	$buttonclass2 = 'button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button-secondary lmm-nav-secondary';
 	$buttonclass3 = 'button-secondary lmm-nav-secondary';
 	$buttonclass4 = 'button-secondary lmm-nav-secondary';
 	$buttonclass5 = 'button-primary lmm-nav-primary';
@@ -70,6 +85,7 @@ if ($page == 'leafletmapsmarker_markers') {
 } else if ($page == 'leafletmapsmarker_settings') {
 	$buttonclass1 = 'button-secondary lmm-nav-secondary';
 	$buttonclass2 = 'button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button-secondary lmm-nav-secondary';
 	$buttonclass3 = 'button-secondary lmm-nav-secondary';
 	$buttonclass4 = 'button-secondary lmm-nav-secondary';
 	$buttonclass5 = 'button-secondary lmm-nav-secondary';
@@ -79,6 +95,7 @@ if ($page == 'leafletmapsmarker_markers') {
 } else if ($page == 'leafletmapsmarker_help') {
 	$buttonclass1 = 'button-secondary lmm-nav-secondary';
 	$buttonclass2 = 'button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button-secondary lmm-nav-secondary';
 	$buttonclass3 = 'button-secondary lmm-nav-secondary';
 	$buttonclass4 = 'button-secondary lmm-nav-secondary';
 	$buttonclass5 = 'button-secondary lmm-nav-secondary';
@@ -88,6 +105,7 @@ if ($page == 'leafletmapsmarker_markers') {
 } else if ($page == 'leafletmapsmarker_pro_upgrade') {
 	$buttonclass1 = 'button-secondary lmm-nav-secondary';
 	$buttonclass2 = 'button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button-secondary lmm-nav-secondary';
 	$buttonclass3 = 'button-secondary lmm-nav-secondary';
 	$buttonclass4 = 'button-secondary lmm-nav-secondary';
 	$buttonclass5 = 'button-secondary lmm-nav-secondary';
@@ -164,6 +182,7 @@ if (isset($plugin_updates->response['leaflet-maps-marker/leaflet-maps-marker.php
   <p style="margin:1em 0 0 0;line-height:32px;">
   <a class="<?php echo $buttonclass1; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_markers"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-menu-list.png" width="10" height="10" /><?php _e("List all markers", "lmm") ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a class="<?php echo $buttonclass2; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_marker"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-menu-add.png" width="10" height="10" /> <?php _e("Add new marker", "lmm"); ?></a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
+  <a class="<?php echo $buttonclass2b; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_import_export"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-menu-import-export.png" width="10" height="10" /> <?php _e("Import/Export", "lmm"); ?></a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
   <a class="<?php echo $buttonclass3; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_layers"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-menu-list.png" width="10" height="10" /> <?php _e("List all layers", "lmm") ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a class="<?php echo $buttonclass4; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_layer"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-menu-add.png" width="10" height="10" /> <?php _e("Add new layer", "lmm"); ?></a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
   <?php echo $admin_quicklink_tools_buttons ?>

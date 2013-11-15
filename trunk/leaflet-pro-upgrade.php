@@ -77,6 +77,17 @@ if ( $action == NULL ) {
 				</p>
 				</div>
 
+				<h3>' . __('support for CSV/XLS/XLSX/ODS import and export for bulk additions and bulk updates of markers','lmm') . '</h3>
+				<div>
+				<p style="margin:0 0 1em 0;">
+				' . __('Leaflet Maps Marker Pro allows you to easily perform bulk updates on markers by using the integrated import feature:','lmm') . '
+				</p>
+				<img src="' . LEAFLET_PLUGIN_URL . 'inc/img/help-import.png">
+				<p>
+				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-import" target="_blank">' . __('Click here to get more information about this pro feature on mapsmarker.com','lmm') . '</a>
+				</p>
+				</div>
+
 				<h3>' . __('GPX tracks','lmm') . '</h3>
 				<div>
 				<p style="margin:0 0 1em 0;">
