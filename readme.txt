@@ -7,7 +7,7 @@ Author URI:        http://www.harm.co.at
 Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0
-Tested up to:      3.7-RC1
+Tested up to:      3.7.1
 Stable tag:        3.6.6
 License:           GPLv2
 
@@ -22,6 +22,7 @@ For even more features please try "[Leaflet Maps Marker Pro](http://www.mapsmark
 * [marker clustering](http://www.mapsmarker.com/pro-feature-clustering)
 * [GPX tracks](http://www.mapsmarker.com/pro-feature-gpx)
 * [mobile optimized maps](http://www.mapsmarker.com/pro-feature-nojquery)
+* [support for CSV/XLS/XLSX/ODS import and export for bulk additions and bulk updates of markers](http://www.mapsmarker.com/pro-feature-import)
 * [HTML5 fullscreen maps](http://www.mapsmarker.com/pro-feature-html-fullscreen-maps)
 * [minimaps](http://www.mapsmarker.com/pro-feature-minimaps)
 * [mobile web app support and optimized mobile viewport](http://www.mapsmarker.com/pro-feature-webapp)
@@ -156,6 +157,7 @@ to the visitors of your website.
 * Japanese (ja) thanks to Shu Higashi
 * Korean (ko_KR) thanks to Andy Park
 * Latvian (lv) thanks to Juris Orlovs and Eriks Remess
+* Norwegian/Bokmål (nb_NO) thanks to Inge Tang
 * Polish (pl_PL) translation thanks to Pawel Wyszynski and Tomasz Rudnicki
 * Portuguese (pt_BR) thanks to Andre Santos and Antonio Hammerl
 * Portuguese (pt_PT) translation thanks to Joao Campos
@@ -225,8 +227,7 @@ One personal request: before you post a new support ticket in the [Wordpress Sup
 1. [FAQ](www.mapsmarker.com/faq/)
 2. [Docs](http://www.mapsmarker.com/docs/)
 3. [Wordpress Support Forum](http://wordpress.org/support/plugin/leaflet-maps-marker) (free community support)
-4. [WP Questions](http://wpquestions.com/affiliates/register/name/robertharm) (paid community support)
-5. [WordPress HelpCenter](http://wphelpcenter.com/) (paid professional support)
+4. [Upgrade to Pro](http://www.mapsmarker.com/install) (paid developer support)
 
 [More info on support](http://mapsmarker.com/support/)
 
@@ -270,7 +271,7 @@ This program is free software; you can redistribute it and/or modify it under th
 * Home-Icon from [Pro Theme Design](http://prothemedesign.com), licence: Creative Commons Attribution (by)
 * Editor-Switch-Icon by AMAZIGH Aneglus, license: GNU/GPL
 * Submenu icons from [Bijou](http://bijou.im) and [Iconic](http://somerandomdude.com/work/iconic/) icon sets (GPL)
-
+* PHPExcel for import/export [http://phpexcel.codeplex.com/](http://phpexcel.codeplex.com/) (LGPL)
 = Credits & special thanks to =
 * Sindre Wimberger ([http://www.sindre.at](http://www.sindre.at)) for help with bugfixing & geo-consulting
 * Julia Loew ([http://www.weiderand.net](http://www.weiderand.net)) for logo and corporate design
@@ -285,10 +286,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2013, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.6.6 =
-bugfix release; special chars in marker names could break layer maps - see http://www.mapsmarker.com/v3.6.6 for more details
+= v3.7 =
+export markers as csv/xls/xlsx files; optimizations and bugfixes (special chars in marker names could break layer maps) - see http://www.mapsmarker.com/v3.7 for more details
 
 == Changelog ==
-[blog post with details about v3.6.6](http://www.mapsmarker.com/v3.6.6)
+[blog post with details about v3.7](http://www.mapsmarker.com/v3.7)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

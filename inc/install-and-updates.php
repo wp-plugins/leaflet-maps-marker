@@ -47,6 +47,8 @@ $sql_markers_table = "CREATE TABLE " . $table_name_markers . " (
 	wms10 tinyint(1) NOT NULL,
 	kml_timestamp datetime DEFAULT NULL,
 	address varchar(255) NOT NULL,
+	gpx_url varchar(2083) NOT NULL,
+	gpx_panel tinyint(1) NOT NULL,
 	PRIMARY KEY  (id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 dbDelta($sql_markers_table);
@@ -87,6 +89,9 @@ $sql_layers_table = "CREATE TABLE " . $table_name_layers . " (
 	multi_layer_map tinyint(1) NOT NULL,
 	multi_layer_map_list varchar(4000) DEFAULT NULL,
 	address varchar(255) NOT NULL,
+	clustering tinyint(1) unsigned NOT NULL,
+	gpx_url varchar(2083) NOT NULL,
+	gpx_panel tinyint(1) NOT NULL,
 	PRIMARY KEY  (id)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 dbDelta($sql_layers_table);
@@ -678,6 +683,15 @@ if (get_option('leafletmapsmarker_version') == '3.6.5' ) {
 		update_option('leafletmapsmarker_version_before_update', '3.6.5');
 	}
 	update_option('leafletmapsmarker_version', '3.6.6');
+}
+if (get_option('leafletmapsmarker_version') == '3.6.6' ) {
+	delete_transient( 'leafletmapsmarker_install_update_cache_v366');
+	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
+	if ( $version_before_update === FALSE ) {
+		set_transient( 'leafletmapsmarker_version_before_update', 'deleted-in-1-hour', 60*3 );
+		update_option('leafletmapsmarker_version_before_update', '3.6.6');
+	}
+	update_option('leafletmapsmarker_version', '3.7');
 	//info: redirect to create marker page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 	if (get_option('leafletmapsmarker_redirect') == 'true')
 	{
