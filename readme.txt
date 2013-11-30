@@ -7,7 +7,7 @@ Author URI:        http://www.harm.co.at
 Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0
-Tested up to:      3.7.1
+Tested up to:      3.8
 Stable tag:        3.7
 License:           GPLv2
 
@@ -286,10 +286,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2013, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.7 =
-export markers as csv/xls/xlsx files; optimizations and bugfixes (special chars in marker names could break layer maps) - see http://www.mapsmarker.com/v3.7 for more details
+= v3.8 =
+WordPress 3.8/MP6 compatibility, QR code changes - see http://www.mapsmarker.com/v3.8 for more details
 
 == Changelog ==
-[blog post with details about v3.7](http://www.mapsmarker.com/v3.7)
+[blog post with details about v3.8](http://www.mapsmarker.com/v3.8)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

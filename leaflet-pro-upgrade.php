@@ -13,11 +13,31 @@ $action = isset($_POST['action']) ? $_POST['action'] : '';
 if (extension_loaded('ionCube Loader')) { if ( function_exists('ioncube_loader_iversion') ) { $ic_lv = ioncube_loader_iversion(); $lmm_ic_lv = (int)substr($ic_lv,0,1); } else { $ic_lv = ioncube_loader_version(); $lmm_ic_lv = (int)substr($ic_lv,0,1); } if ($lmm_ic_lv >= 4) { $sf = ''; } else { $sf = strrev('orp-'); } } else { $sf = strrev('orp-'); }
 if ( $action == NULL ) {
 	if (!file_exists($lmm_pro_readme)) {
-		echo '<h3 style="font-size:23px;">' . __('Upgrade to Pro','lmm') . '</h3>';
-		echo '<div style="float:left;margin: 0 10px 10px 0;"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/logo-mapsmarker-pro.png" alt="Pro Logo" title="Leaflet Maps Marker Pro Logo"></div>';
+		echo '<div style="float:left;margin: 20px 10px 10px 0;"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/logo-mapsmarker-pro.png" alt="Pro Logo" title="Leaflet Maps Marker Pro Logo"></div>';
+		echo '<h3 style="font-size:23px;margin:28px 0 0 0;">' . __('Upgrade to Pro','lmm') . '</h3>';
 		echo '<form method="post"><input type="hidden" name="action" value="upgrade_to_pro_version" />';
 		wp_nonce_field('pro-upgrade-nonce');
-		echo '<p style="padding-top:15px;">' . __('If you like using Leaflet Maps Marker, you might also be interested in starting a free 30-day-trial of Leaflet Maps Marker Pro, which offers even more features, higher performance and more. <br/>Below you find some highlights you will get when going pro (please click on the heading for more details):','lmm') . '</p>';
+		echo '<p>' . __('If you like using Leaflet Maps Marker, you might also be interested in starting a free 30-day-trial of Leaflet Maps Marker Pro, which offers even more features, higher performance and more.','lmm');
+		$dl_l = 'https://www.mapsmarker.com/upgrade' . $sf;
+		$dl_lt = 'mapsmarker.com/upgrade' . $sf;
+		echo '</p><p style="clear:both;">' . sprintf(__('Please click on the button below - this will start the download of Leaflet Maps Marker Pro from <a style="text-decoration:none;" href="%1s">%2s</a> and installation as a separate plugin.','lmm'), $dl_l, $dl_lt);
+		echo '<br/>' . __('As next step please activate the pro plugin and you will be guided through the process to receive a free 30-day-trial license without any obligations.','lmm');
+		echo '<br/>' . sprintf(__('Your trial will expire automatically unless you purchase an unexpiring license key at %1$s','lmm'), '<a href="https://www.mapsmarker.com/order" style="text-decoration:none;" target="_blank">mapsmarker.com/order</a>') . ' (<a href="http://www.mapsmarker.com/terms-of-services" target="_blank" style="text-decoration:none;">' . __('Terms of Service','lmm') . '</a>/<a href="http://www.mapsmarker.com/privacy-policy" target="_blank" style="text-decoration:none;">' . __('Privacy Policy','lmm') . '</a>)';
+		echo '<br/>' . __('You can also switch back to the free version at any time without loosing any data.','lmm');
+		echo '</p>';
+		if ( current_user_can( 'install_plugins' ) ) {
+			echo '<input style="font-weight:bold;" type="submit" name="submit_upgrade_to_pro_version" value="' . __('start free 30-day-trial','lmm') . ' &raquo;" class="submit button-primary" />';
+		} else {
+			echo '<div class="error" style="padding:10px;"><strong>' . sprintf(__('Warning: your user does not have the capability to install new plugins - please contact your administrator (%1s)','lmm'), '<a href="mailto:' . get_bloginfo('admin_email') . '?subject=' . esc_attr__('Please install the plugin "Leaflet MapsMarker Pro"','lmm') . '">' . get_bloginfo('admin_email') . '</a>' ) . '</strong></div>';
+			echo '<input style="font-weight:bold;" type="submit" name="submit_upgrade_to_pro_version" value="' . __('start free 30-day-trial','lmm') . ' &raquo;" class="submit button-secondary" disabled="disabled" />';
+		}
+		echo '</form>';
+
+		echo '<hr noshade size="1" style="margin-top:15px;"/><h2>' . __('Live demos','lmm') . '</h2>';
+		echo '<p>' . sprintf(__('For demo maps please visit %1s which also allows you to test the admin area of the pro version.','lmm'), '<a href="http://demo.mapsmarker.com/" target="_blank" style="text-decoration:none;">demo.mapsmarker.com</a>') . '</p>';
+		echo '<p>' . sprintf(__('If you want to compare the free and pro version side by side, please visit %1s.','lmm'), '<a href="http://www.mapsmarker.com/comparison" target="_blank" style="text-decoration:none;">mapsmarker.com/comparison</a>') . '</p>';
+		
+		echo '<hr noshade size="1" style="margin-top:15px;"/><h2 style="margin-top:10px;">' . __('Highlights of Leaflet Maps Marker Pro','lmm') . '</h2>';
 		echo '<p style="clear:both;">
 			<div id="accordion">
 				<h3>' . __('integration of the latest leaflet.js version','lmm') . '</h3>
@@ -28,18 +48,18 @@ if ( $action == NULL ) {
 				<p>
 				' . __('Major highlights:','lmm') . '
 				<ul style="list-style-type:disc;margin-left:15px;">
-					<li>' . __('support for IE10 touch devices','lmm') . '</li>
+					<li>' . __('support for IE11 touch devices','lmm') . '</li>
 					<li>' . __('support for Metro apps','lmm') . '</li>
 					<li>' . __('a much better panning inertia implementation','lmm') . '</li>
 					<li>' . __('improved zoom animation curve for a better feel overal','lmm') . '</li>
 					<li>' . __('improved scroll wheel zoom to be more responsive','lmm') . '</li>
 					<li>' . __('hand cursors for dragging','lmm') . '</li>
-					<li>' . __('optimized zoom control design','lmm') . '</li>
+					<li>' . __('significantly improved controls design on mobile devices','lmm') . '</li>
 				</ul>
 				' . __('But the real power of the leaflet.js version used in Leaflet Maps Marker pro comes with about a hundred of subtle improvements and bugfixes, improving usability, performance and overall "feel" of browsing the map even further.','lmm') . '
 				</p>
 				<p>
-				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-leaflet-changelog" target="_blank">' . sprintf(__('Click here to get the full changelog for leaflet.js v%1s currently integrated in the pro version','lmm'), '0.6.4') . '</a> (' . sprintf(__('v%1s is used in the free version','lmm'), '0.4.5') . ')
+				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-leaflet-changelog" target="_blank">' . sprintf(__('Click here to get the full changelog for leaflet.js v%1s currently integrated in the pro version','lmm'), '0.7') . '</a> (' . sprintf(__('v%1s is used in the free version','lmm'), '0.4.5') . ')
 				</p>
 				</div>
 
@@ -149,9 +169,11 @@ if ( $action == NULL ) {
 				<h3>' . __('QR codes with custom backgrounds','lmm') . '</h3>
 				<div>
 				<p style="margin:0 0 1em 0;">
-				<div style="float:left;margin:0 10px 10px 0;"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/help-visualead.png"></div>' . __('Leaflet Maps Marker Pro allows you to use custom backgrounds for QR codes.','lmm') . '
+				<div style="float:left;margin:0 10px 10px 0;"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/help-visualead.png"></div>' . __('Leaflet Maps Marker Pro allows you to use custom backgrounds for QR codes.','lmm') . ' (' . __('custom visualead API key required!','lmm') . ')
 				<br/><br/>
 				' . __('Additionally the pro version does not display the visualead logo on the QR code output pages.','lmm') . '
+				<br/><br/>
+				' . __('Since pro v1.5 QR code images are also cached for a higher performance.','lmm') . '
 				<br/><br/>
 				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-qrcode" target="_blank">' . __('Click here to get more information about this pro feature on mapsmarker.com','lmm') . '</a>
 				</p>
@@ -243,6 +265,7 @@ if ( $action == NULL ) {
 				<ul style="list-style-type:disc;margin-left:15px;">
 					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.2.1p" target="_blank">' . __('improved performance for layer maps with a huge number of markers (parsing of GeoJSON is up to 3 times faster)','lmm') . '</a></li>
 					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.3p" target="_blank">' . __('support for shortcodes in popup texts','lmm') . '</a></li>
+					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.5p" target="_blank">' . __('support for setting global maximum zoom level to 21 (tiles from basemaps with lower native zoom levels will be upscaled automatically)','lmm') . '</a></li>
 				</ul>
 				</div>
 
@@ -287,22 +310,7 @@ if ( $action == NULL ) {
 					})(jQuery);
 				</script>
 				</p>';
-
-		echo '<h3 style="font-size:20px;">' . __('Live demo','lmm') . '</h3>';
-		echo '<p>' . sprintf(__('Please visit <a href="%1s" target="_blank">%2s</a> for demo maps comparing the free and pro version.','lmm'), 'http://www.mapsmarker.com/comparison','mapsmarker.com/comparison') . '</p>';
-		echo '<p>' . sprintf(__('If you want to test the admin area of the pro version, please visit <a href="%1s" target="_blank">%2s</a>.','lmm'), 'http://demo.mapsmarker.com/', 'demo.mapsmarker.com') . '</p>';
-		echo '<a href="http://www.mapsmarker.com/comparison" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/pro-free-comparison.jpg" alt="Free/Pro comparison" title="' . esc_attr__('show live demo on mapsmarker.com','lmm') . '"></a></h2>';
 		echo '<p>' . __('For more details, showcases and reviews please also visit <a style="text-decoration:none;" href="http://www.mapsmarker.com">www.mapsmarker.com</a>','lmm') . '</p>';
-		$dl_l = 'https://www.mapsmarker.com/upgrade' . $sf;
-		$dl_lt = 'www.mapsmarker.com/upgrade' . $sf;
-		echo '<p>' . sprintf(__('To start your free 30-day-trial of Leaflet Maps Marker Pro, please click on the button "start installation" below. This will start the download of Leaflet Maps Marker Pro from <a style="text-decoration:none;" href="%1s">%2s</a> and installation as a separate plugin.<br/>Afterwards please activate the pro plugin and you will be guided through the process to receive a free 30-day-trial license without any obligations. Your trial will expire automatically unless you purchase a valid pro license. You can also switch back to the free version at any time.','lmm'), $dl_l, $dl_lt) . '</p>';
-		if ( current_user_can( 'install_plugins' ) ) {
-			echo '<input style="font-weight:bold;" type="submit" name="submit_upgrade_to_pro_version" value="' . __('start installation','lmm') . ' &raquo;" class="submit button-primary" />';
-		} else {
-			echo '<div class="error" style="padding:10px;"><strong>' . sprintf(__('Warning: your user does not have the capability to install new plugins - please contact your administrator (%1s)','lmm'), '<a href="mailto:' . get_bloginfo('admin_email') . '?subject=' . esc_attr__('Please install the plugin "Leaflet MapsMarker Pro"','lmm') . '">' . get_bloginfo('admin_email') . '</a>' ) . '</strong></div>';
-			echo '<input style="font-weight:bold;" type="submit" name="submit_upgrade_to_pro_version" value="' . __('start installation','lmm') . ' &raquo;" class="submit button-secondary" disabled="disabled" />';
-		}
-		echo '</form>';
 	} else if (file_exists($lmm_pro_readme)) {
 		echo '<h3 style="font-size:23px;">' . __('Upgrade to pro version','lmm') . '</h3>';
 		echo '<div class="error" style="padding:10px;"><strong>' . __('You already downloaded "Leaflet Maps Marker Pro" to your server but did not activate the plugin yet!','lmm') . '</strong></div>';
