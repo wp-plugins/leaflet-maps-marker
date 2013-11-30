@@ -11,107 +11,107 @@ $lmm_options = get_option( 'leafletmapsmarker_options' ); //info: required for b
 $page = (isset($_GET['page']) ? $_GET['page'] : '');
 $oid = isset($_POST['id']) ? intval($_POST['id']) : (isset($_GET['id']) ? intval($_GET['id']) : '');
 if ($page == 'leafletmapsmarker_markers') {
-	$buttonclass1 = 'button-primary lmm-nav-primary';
-	$buttonclass2 = 'button-secondary lmm-nav-secondary';
-	$buttonclass2b = 'button-secondary lmm-nav-secondary';
-	$buttonclass3 = 'button-secondary lmm-nav-secondary';
-	$buttonclass4 = 'button-secondary lmm-nav-secondary';
-	$buttonclass5 = 'button-secondary lmm-nav-secondary';
-	$buttonclass6 = 'button-secondary lmm-nav-secondary';
-	$buttonclass7 = 'button-secondary lmm-nav-secondary';
-	$buttonclass8 = 'button-secondary lmm-nav-secondary';
+	$buttonclass1 = 'button button-primary lmm-nav-primary';
+	$buttonclass2 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button button-secondary lmm-nav-secondary';
+	$buttonclass3 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass4 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass5 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass6 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass7 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass8 = 'button button-secondary lmm-nav-secondary';
 } else if ($page == 'leafletmapsmarker_marker') {
-	$buttonclass1 = 'button-secondary lmm-nav-secondary';
+	$buttonclass1 = 'button button-secondary lmm-nav-secondary';
 	if ( ($oid == NULL) && ($page == 'leafletmapsmarker_marker') ) {
-		$buttonclass2 = 'button-primary lmm-nav-primary';
+		$buttonclass2 = 'button button-primary lmm-nav-primary';
 	} else if ( ($oid != NULL) && ($page == 'leafletmapsmarker_marker') ) {
-		$buttonclass2 = 'button-secondary lmm-nav-secondary';
+		$buttonclass2 = 'button button-secondary lmm-nav-secondary';
 	} else {
-		$buttonclass2 = 'button-secondary lmm-nav-secondary';
+		$buttonclass2 = 'button button-secondary lmm-nav-secondary';
 	}
-	$buttonclass2b = 'button-secondary lmm-nav-secondary';
-	$buttonclass3 = 'button-secondary lmm-nav-secondary';
-	$buttonclass4 = 'button-secondary lmm-nav-secondary';
-	$buttonclass5 = 'button-secondary lmm-nav-secondary';
-	$buttonclass6 = 'button-secondary lmm-nav-secondary';
-	$buttonclass7 = 'button-secondary lmm-nav-secondary';
-	$buttonclass8 = 'button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button button-secondary lmm-nav-secondary';
+	$buttonclass3 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass4 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass5 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass6 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass7 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass8 = 'button button-secondary lmm-nav-secondary';
 } else if ($page == 'leafletmapsmarker_import_export') {
-	$buttonclass1 = 'button-secondary lmm-nav-secondary';
-	$buttonclass2 = 'button-secondary lmm-nav-secondary';
-	$buttonclass2b = 'button-primary lmm-nav-primary';
-	$buttonclass3 = 'button-secondary lmm-nav-secondary';
-	$buttonclass4 = 'button-secondary lmm-nav-secondary';
-	$buttonclass5 = 'button-secondary lmm-nav-secondary';
-	$buttonclass6 = 'button-secondary lmm-nav-secondary';
-	$buttonclass7 = 'button-secondary lmm-nav-secondary';
-	$buttonclass8 = 'button-secondary lmm-nav-secondary';
+	$buttonclass1 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass2 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button button-primary lmm-nav-primary';
+	$buttonclass3 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass4 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass5 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass6 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass7 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass8 = 'button button-secondary lmm-nav-secondary';
 } else if ($page == 'leafletmapsmarker_layers') {
-	$buttonclass1 = 'button-secondary lmm-nav-secondary';
-	$buttonclass2 = 'button-secondary lmm-nav-secondary';
-	$buttonclass2b = 'button-secondary lmm-nav-secondary';
-	$buttonclass3 = 'button-primary lmm-nav-primary';
-	$buttonclass4 = 'button-secondary lmm-nav-secondary';
-	$buttonclass5 = 'button-secondary lmm-nav-secondary';
-	$buttonclass6 = 'button-secondary lmm-nav-secondary';
-	$buttonclass7 = 'button-secondary lmm-nav-secondary';
-	$buttonclass8 = 'button-secondary lmm-nav-secondary';
+	$buttonclass1 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass2 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button button-secondary lmm-nav-secondary';
+	$buttonclass3 = 'button button-primary lmm-nav-primary';
+	$buttonclass4 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass5 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass6 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass7 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass8 = 'button button-secondary lmm-nav-secondary';
 } else if ($page == 'leafletmapsmarker_layer') {
-	$buttonclass1 = 'button-secondary lmm-nav-secondary';
-	$buttonclass2 = 'button-secondary lmm-nav-secondary';
-	$buttonclass2b = 'button-secondary lmm-nav-secondary';
-	$buttonclass3 = 'button-secondary lmm-nav-secondary';
+	$buttonclass1 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass2 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button button-secondary lmm-nav-secondary';
+	$buttonclass3 = 'button button-secondary lmm-nav-secondary';
 	if ( ($oid == NULL) && ($page == 'leafletmapsmarker_layer') ) {
-		$buttonclass4 = 'button-primary lmm-nav-primary';
+		$buttonclass4 = 'button button-primary lmm-nav-primary';
 	} else if ( ($oid != NULL) && ($page == 'leafletmapsmarker_layer') ) {
-		$buttonclass4 = 'button-secondary lmm-nav-secondary';
+		$buttonclass4 = 'button button-secondary lmm-nav-secondary';
 	} else {
-		$buttonclass4 = 'button-secondary lmm-nav-secondary';
+		$buttonclass4 = 'button button-secondary lmm-nav-secondary';
 	}
-	$buttonclass5 = 'button-secondary lmm-nav-secondary';
-	$buttonclass6 = 'button-secondary lmm-nav-secondary';
-	$buttonclass7 = 'button-secondary lmm-nav-secondary';
-	$buttonclass8 = 'button-secondary lmm-nav-secondary';
+	$buttonclass5 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass6 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass7 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass8 = 'button button-secondary lmm-nav-secondary';
 } else if ($page == 'leafletmapsmarker_tools') {
-	$buttonclass1 = 'button-secondary lmm-nav-secondary';
-	$buttonclass2 = 'button-secondary lmm-nav-secondary';
-	$buttonclass2b = 'button-secondary lmm-nav-secondary';
-	$buttonclass3 = 'button-secondary lmm-nav-secondary';
-	$buttonclass4 = 'button-secondary lmm-nav-secondary';
-	$buttonclass5 = 'button-primary lmm-nav-primary';
-	$buttonclass6 = 'button-secondary lmm-nav-secondary';
-	$buttonclass7 = 'button-secondary lmm-nav-secondary';
-	$buttonclass8 = 'button-secondary lmm-nav-secondary';
+	$buttonclass1 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass2 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button button-secondary lmm-nav-secondary';
+	$buttonclass3 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass4 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass5 = 'button button-primary lmm-nav-primary';
+	$buttonclass6 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass7 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass8 = 'button button-secondary lmm-nav-secondary';
 } else if ($page == 'leafletmapsmarker_settings') {
-	$buttonclass1 = 'button-secondary lmm-nav-secondary';
-	$buttonclass2 = 'button-secondary lmm-nav-secondary';
-	$buttonclass2b = 'button-secondary lmm-nav-secondary';
-	$buttonclass3 = 'button-secondary lmm-nav-secondary';
-	$buttonclass4 = 'button-secondary lmm-nav-secondary';
-	$buttonclass5 = 'button-secondary lmm-nav-secondary';
-	$buttonclass6 = 'button-primary lmm-nav-primary';
-	$buttonclass7 = 'button-secondary lmm-nav-secondary';
-	$buttonclass8 = 'button-secondary lmm-nav-secondary';
+	$buttonclass1 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass2 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button button-secondary lmm-nav-secondary';
+	$buttonclass3 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass4 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass5 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass6 = 'button button-primary lmm-nav-primary';
+	$buttonclass7 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass8 = 'button button-secondary lmm-nav-secondary';
 } else if ($page == 'leafletmapsmarker_help') {
-	$buttonclass1 = 'button-secondary lmm-nav-secondary';
-	$buttonclass2 = 'button-secondary lmm-nav-secondary';
-	$buttonclass2b = 'button-secondary lmm-nav-secondary';
-	$buttonclass3 = 'button-secondary lmm-nav-secondary';
-	$buttonclass4 = 'button-secondary lmm-nav-secondary';
-	$buttonclass5 = 'button-secondary lmm-nav-secondary';
-	$buttonclass6 = 'button-secondary lmm-nav-secondary';
-	$buttonclass7 = 'button-primary lmm-nav-primary';
-	$buttonclass8 = 'button-secondary lmm-nav-secondary';
+	$buttonclass1 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass2 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button button-secondary lmm-nav-secondary';
+	$buttonclass3 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass4 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass5 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass6 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass7 = 'button button-primary lmm-nav-primary';
+	$buttonclass8 = 'button button-secondary lmm-nav-secondary';
 } else if ($page == 'leafletmapsmarker_pro_upgrade') {
-	$buttonclass1 = 'button-secondary lmm-nav-secondary';
-	$buttonclass2 = 'button-secondary lmm-nav-secondary';
-	$buttonclass2b = 'button-secondary lmm-nav-secondary';
-	$buttonclass3 = 'button-secondary lmm-nav-secondary';
-	$buttonclass4 = 'button-secondary lmm-nav-secondary';
-	$buttonclass5 = 'button-secondary lmm-nav-secondary';
-	$buttonclass6 = 'button-secondary lmm-nav-secondary';
-	$buttonclass7 = 'button-secondary lmm-nav-secondary';
-	$buttonclass8 = 'button-primary lmm-nav-primary';
+	$buttonclass1 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass2 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass2b = 'button button-secondary lmm-nav-secondary';
+	$buttonclass3 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass4 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass5 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass6 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass7 = 'button button-secondary lmm-nav-secondary';
+	$buttonclass8 = 'button button-primary lmm-nav-primary';
 }
 $admin_quicklink_tools_buttons = ( current_user_can( "activate_plugins" ) ) ? "<a class='" . $buttonclass5 ."' href='" . LEAFLET_WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_tools'><img src='" . LEAFLET_PLUGIN_URL . "inc/img/icon-menu-tools.png' width='10' height='10'/> ".__('Tools','lmm')."</a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;" : "";
 $admin_quicklink_settings_buttons = ( current_user_can( "activate_plugins" ) ) ? "<a class='" . $buttonclass6 ."' href='" . LEAFLET_WP_ADMIN_URL . "admin.php?page=leafletmapsmarker_settings'><img src='" . LEAFLET_PLUGIN_URL . "inc/img/icon-menu-settings.png' width='10' height='10'/> ".__('Settings','lmm')."</a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;" : "";
@@ -147,7 +147,7 @@ if ( isset($lmm_options['misc_global_admin_notices']) && ($lmm_options['misc_glo
 		$custom_shadow_icon_url = $lmm_options['defaults_marker_icon_shadow_url'];
 		$custom_shadow_icon_url_exists = checkUrlExists($custom_shadow_icon_url);
 		if ( ($custom_shadow_icon_url != NULL) && (!$custom_shadow_icon_url_exists) ) {
-			echo '<div class="error" style="padding:10px;"><strong>' . sprintf(__('Leaflet Maps Marker Warning: the setting for the marker shadow url (%1s) seems to be invalid. This can happen when you moved your WordPress installation from one server to another one.<br/>Please navigate to <a href="%2s">Settings / Map Defaults / "Default values for marker icons"</a> and update the option "Shadow URL". If you do not know which values to enter, please <a href="%3s">reset all plugins options to their defaults</a>', 'lmm'), $shadow_icon_url, LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#mapdefaults-section5', LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#reset') . '</strong></div>';
+			echo '<div class="error" style="padding:10px;margin:10px 0;"><strong>' . sprintf(__('Leaflet Maps Marker Warning: the setting for the marker shadow url (%1s) seems to be invalid. This can happen when you moved your WordPress installation from one server to another one.<br/>Please navigate to <a href="%2s">Settings / Map Defaults / "Default values for marker icons"</a> and update the option "Shadow URL". If you do not know which values to enter, please <a href="%3s">reset all plugins options to their defaults</a>', 'lmm'), $shadow_icon_url, LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#mapdefaults-section5', LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#reset') . '</strong></div>';
 		}
 	}
 	//info: display admin notice (lmm only) if user switches back to free version
@@ -155,9 +155,9 @@ if ( isset($lmm_options['misc_global_admin_notices']) && ($lmm_options['misc_glo
 	if (file_exists($lmm_pro_readme)) {
 		$lmm_pro_version = get_option( 'leafletmapsmarker_version_pro' );
 		if ( $lmm_pro_version != NULL) {
-			echo '<p><div  class="updated" style="padding:5px;">' . sprintf(__('Too bad you are using the free version again :-( <a href="%1s" target="_blank">Please tell us what we can do to win you as a happy pro user and receive a discount voucher!</a>','lmm'), 'http://www.mapsmarker.com/feedback') . '<br/>' . __('This message will disappear once the pro version has been activated or deleted from your server (via the WordPress Plugins page!)','lmm') . '</div></p>';
+			echo '<p><div  class="updated" style="padding:10px;margin:10px 0;">' . sprintf(__('Too bad you are using the free version again :-( <a href="%1s" target="_blank">Please tell us what we can do to win you as a happy pro user and receive a discount voucher!</a>','lmm'), 'http://www.mapsmarker.com/feedback') . '<br/>' . __('This message will disappear once the pro version has been activated or deleted from your server (via the WordPress Plugins page!)','lmm') . '</div></p>';
 		} else {
-			echo '<p><div  class="updated" style="padding:5px;">' . sprintf(__('You downloaded <a href="%1s" target="_blank">Leaflet Maps Marker Pro</a> but did not register a free 30-day-trial license key. Please note that <a href="%2s" target="_blank">according to our privacy policy</a> we will not disclose, rent or sell your personal information!<br/>If you install Leaflet Maps Marker Pro on a localhost installation (<a href="%3s" target="_blank">see available packages on Wikipedia</a>) you can also test the pro plugin without registering a free 30-day-trial license key and without time limitation.','lmm'), 'http://www.mapsmarker.com', 'http://www.mapsmarker.com/privacy', 'http://en.wikipedia.org/wiki/List_of_AMP_packages') . '<br/>' . __('This message will disappear once the pro version has been activated or deleted from your server (via the WordPress Plugins page!)','lmm') . '</div></p>';
+			echo '<p><div  class="updated" style="padding:10px;margin:10px 0;">' . sprintf(__('You downloaded <a href="%1s" target="_blank">Leaflet Maps Marker Pro</a> but did not register a free 30-day-trial license key. Please note that <a href="%2s" target="_blank">according to our privacy policy</a> we will not disclose, rent or sell your personal information!<br/>If you install Leaflet Maps Marker Pro on a localhost installation (<a href="%3s" target="_blank">see available packages on Wikipedia</a>) you can also test the pro plugin without registering a free 30-day-trial license key and without time limitation.','lmm'), 'http://www.mapsmarker.com', 'http://www.mapsmarker.com/privacy', 'http://en.wikipedia.org/wiki/List_of_AMP_packages') . '<br/>' . __('This message will disappear once the pro version has been activated or deleted from your server (via the WordPress Plugins page!)','lmm') . '</div></p>';
 		}
 	}
 }//info: end misc_global_admin_notices check
@@ -176,9 +176,9 @@ if (isset($plugin_updates->response['leaflet-maps-marker/leaflet-maps-marker.php
 ?>
 <table cellpadding="5" cellspacing="0" class="widefat fixed">
   <tr>
-    <td><div style="float:left;margin:2px 10px 0 0;"><a href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_pro_upgrade" title="<?php _e('Upgrade to pro version for even more features - click here to find out how you can start a free 30-day-trial easily','lmm'); ?>"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/logo-mapsmarker.png" width="65" height="65" alt="Leaflet Maps Marker Plugin Logo by Julia Loew, www.weiderand.net" /></a></div>
+    <td><div style="float:left;margin:7px 10px 0 0;"><a href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_pro_upgrade" title="<?php _e('Upgrade to pro version for even more features - click here to find out how you can start a free 30-day-trial easily','lmm'); ?>"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/logo-mapsmarker.png" width="65" height="65" alt="Leaflet Maps Marker Plugin Logo by Julia Loew, www.weiderand.net" /></a></div>
 <?php $free_version = get_option("leafletmapsmarker_version"); ?>
-<div style="font-size:1.5em;margin-bottom:5px;padding:2px 0 0 0;"><span style="font-weight:bold;">Maps Marker<sup style="font-size:75%;">&reg;</sup> <a href="http://www.mapsmarker.com/v<?php echo $free_version; ?>" target="_blank" title="<?php esc_attr_e('view blogpost for current version','lmm');?>">v<?php echo $free_version; ?></a> - <?php _e('Lite Edition','lmm'); ?></span></div>
+<div style="font-size:1.5em;margin-bottom:5px;"><span style="font-weight:bold;">Maps Marker<sup style="font-size:75%;">&reg;</sup> <a href="http://www.mapsmarker.com/v<?php echo $free_version; ?>" target="_blank" title="<?php esc_attr_e('view blogpost for current version','lmm');?>">v<?php echo $free_version; ?></a> - <?php _e('Lite Edition','lmm'); ?></span></div>
   <p style="margin:1em 0 0 0;line-height:32px;">
   <a class="<?php echo $buttonclass1; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_markers"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-menu-list.png" width="10" height="10" /><?php _e("List all markers", "lmm") ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a class="<?php echo $buttonclass2; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_marker"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-menu-add.png" width="10" height="10" /> <?php _e("Add new marker", "lmm"); ?></a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;

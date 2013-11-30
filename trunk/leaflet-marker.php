@@ -326,7 +326,10 @@ if ( $edit_status == 'updated') {
 					<label for="zoom"><strong><?php _e('Zoom','lmm') ?></strong></label>&nbsp;<input style="width: 30px;" type="text" id="zoom" name="zoom" value="<?php echo $zoom ?>" />
 					<br>
 					<small>
-					<?php _e('You can also change zoom level by clicking on + or - on preview map or using your mouse wheel','lmm') ?>
+					<?php _e('You can also change zoom level by clicking on + or - on preview map or using your mouse wheel','lmm');
+					echo ' <span style="' . $current_editor_css . '">' . __('Global maximum zoom level','lmm') . ': <a title="' . esc_attr__('If the native maximum zoom level of a basemap is lower, tiles will be upscaled automatically.','lmm') . '" tabindex="111" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('pro version only','lmm') . '</a>'; 
+					?>
+					</span>
 					</small>
 					<br/><br/>
 					<label for="layer"><strong><?php _e('Layer','lmm') ?></strong></label>

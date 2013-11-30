@@ -424,7 +424,10 @@ if ( $edit_status == 'updated') {
 				<label for="layerzoom"><strong><?php _e('Zoom','lmm') ?></strong></label>&nbsp;<input id="layerzoom" style="width: 30px;" type="text" id="layerzoom" name="layerzoom" value="<?php echo $layerzoom ?>" />
 				<br/>
 				<small>
-				<?php _e('You can also change zoom level by clicking on + or - on preview map or using your mouse wheel','lmm') ?>
+				<?php _e('You can also change zoom level by clicking on + or - on preview map or using your mouse wheel','lmm');
+				echo ' <span style="' . $current_editor_css . '">' . __('Global maximum zoom level','lmm') . ': <a title="' . esc_attr__('If the native maximum zoom level of a basemap is lower, tiles will be upscaled automatically.','lmm') . '" tabindex="111" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('pro version only','lmm') . '</a>'; 
+				?>
+				</span>
 				</small>
 				<br/><br/>
 				<strong><?php _e('Display a list of markers under the map','lmm') ?></strong>&nbsp;<input type="checkbox" name="listmarkers" id="listmarkers" <?php checked($llistmarkers, 1 ); ?>><br/>

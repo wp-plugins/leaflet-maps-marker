@@ -575,3 +575,7 @@ a.pro-upgrade-external-links:hover {
 .lmm-fade.in {
 	opacity: 1;
 }
+/*settings mp6 fix*/
+.lmmsettings .form-table th {
+	padding:20px 10px;
+}

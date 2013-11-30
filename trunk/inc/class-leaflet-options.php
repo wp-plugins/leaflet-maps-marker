@@ -523,6 +523,15 @@ class Class_leaflet_options {
 				'empty_basemap' => __('empty basemap','lmm')
 			)
 		);
+		$this->_settings['global_maxzoom_level'] = array(
+			'version' => 'p1.5',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section1',
+			'title'   => __('Global maximum zoom level','lmm') . $pro_button_link,
+			'desc'    => __('If the native maximum zoom level of a basemap is lower, tiles will be upscaled automatically.','lmm'),
+			'std'     => '21',
+			'type'    => 'text-pro'
+		);
 		/*
 		* Names for default basemaps
 		*/
@@ -9038,7 +9047,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'type'    => 'radio',
 			'std'     => 'visualead',
 			'choices' => array(
-				'visualead' => 'Visualead.com ' . __('(allows using a custom background for your QR codes)','lmm'),
+				'visualead' => 'Visualead',
 				'google' => 'Google'
 			)
 		);
@@ -9051,12 +9060,25 @@ $this->_settings['clustering_helptext2'] = array(
 			'desc'    =>  '<img src="' . LEAFLET_PLUGIN_URL . 'inc/img/help-visualead.png" width="200" height="200" /><a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
 			'type'    => 'helptext'
 		);
+		$this->_settings['qrcode_visualead_caching'] = array(
+			'version' => 'p1.5',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'title'   => __('QR code caching','lmm') . $pro_button_link,
+			'desc'    => __('Save generated QR codes in the following directory for higher performance and for saving API calls:','lmm') . ' n/a<br/>' . __('Cached QR images will automatically be deleted if the according marker or layer map gets deleted!','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'disabled',
+			'choices' => array(
+				'enabled' => __('enabled','lmm'),
+				'disabled' => __('disabled','lmm')
+			)
+		);		
 		$this->_settings['qrcode_visualead_api_key'] = array(
 			'version' => 'p1.0',
 			'pane'    => 'misc',
 			'section' => 'misc-section8',
 			'title'   => __( 'API key', 'lmm' ) . $pro_button_link,
-			'desc'    => __('If empty, the (unlimited) API key from MapsMarker.com will be used','lmm'),
+			'desc'    => __('If empty, the default API key from MapsMarker.com will be used','lmm') . ' (' . __('valid for default image only!','lmm') . ')',
 			'std'     => '',
 			'type'    => 'text-pro'
 		);
@@ -9065,10 +9087,19 @@ $this->_settings['clustering_helptext2'] = array(
 			'pane'    => 'misc',
 			'section' => 'misc-section8',
 			'title'   => __( 'Image URL', 'lmm' ) . $pro_button_link,
-			'desc'    => sprintf(__( 'If empty, the default image url %s will be used', 'lmm' ),LEAFLET_PLUGIN_URL . 'inc/img/logo-qr-code.png'),
+			'desc'    => sprintf(__('A custom image can only be used if you sign up for a custom visualead API key! Please visit %s for more information.','lmm'), '<a href="http://www.mapsmarker.com/pro-feature-qrcode" target="_blank">mapsmarker.com/visualead</a>'),
 			'std'     => '',
 			'type'    => 'text-pro'
 		);
+		$this->_settings['qrcode_visualead_project_id'] = array(
+			'version' => 'p1.5',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'title'   => 'project_id' . $pro_button_link,
+			'desc'    => sprintf(__('If a visualead project_id is given, the generate_from_project method will be used instead of the generate method for creating QR codes with custom images (please note that the image url from above will also be ignored if a project_id is set - the image from the project_id is used instead). To create a new project, please log into the <a href="%s" target="_blank">visualead admin dashboard</a>.','lmm'), 'http://api.visualead.com/v3'),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);		
 		$this->_settings['qrcode_visualead_qr_size'] = array(
 			'version' => 'p1.0',
 			'pane'    => 'misc',
@@ -9132,12 +9163,38 @@ $this->_settings['clustering_helptext2'] = array(
 			'std'     => '',
 			'type'    => 'text-pro'
 		);
+		$this->_settings['qrcode_visualead_cells_type'] = array(
+			'version' => 'p1.5',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'title'   => 'cells_type' . $pro_button_link,
+			'desc'    => '',
+			'type'    => 'radio-pro',
+			'std'     => '1',
+			'choices' => array(
+				'1' => __('squared','lmm'),
+				'2' => __('rounded','lmm')
+			)
+		);
+		$this->_settings['qrcode_visualead_markers_type'] = array(
+			'version' => 'p1.5',
+			'pane'    => 'misc',
+			'section' => 'misc-section8',
+			'title'   => 'markers_type' . $pro_button_link,
+			'desc'    => '',
+			'type'    => 'radio-pro',
+			'std'     => '1',
+			'choices' => array(
+				'1' => __('squared','lmm'),
+				'2' => __('rounded','lmm')
+			)
+		);
 		$this->_settings['qrcode_google_helptext'] = array(
 			'version' => 'p1.0',
 			'pane'    => 'misc',
 			'section' => 'misc-section8',
 			'std'     => '',
-			'title'   => '<strong>' . __('Google QR settings','lmm') . '</strong>',
+			'title'   => '<strong>' . __('Google QR settings','lmm') . '</strong><br/><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/help-google-qr.png" width="122" height="126" />',
 			'desc'    => '',
 			'type'    => 'helptext'
 		);
@@ -9781,14 +9838,13 @@ $this->_settings['clustering_helptext2'] = array(
 		update_option( 'leafletmapsmarker_options', $options_new );
 		}		
 		/* template for plugin updates
-		//info:  set defaults for options introduced in v3.8
-		if (get_option('leafletmapsmarker_version') == '3.7' )
+		//info:  set defaults for options introduced in v3.9
+		if (get_option('leafletmapsmarker_version') == '3.8' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.8')
-				{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.9
 				$new_options_defaults[$id] = $setting['std'];
 				}
 			}
