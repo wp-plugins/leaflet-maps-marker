@@ -18,8 +18,7 @@ Maps Marker allows you to pin, organize and share your favorite places & tracks 
 
 For even more features please try "Leaflet Maps Marker Pro" - demo maps including admin area access available at [http://demo.mapsmarker.com](http://demo.mapsmarker.com/). 
 
-Highlights of Leaflet Maps Marker Pro:
-
+= Highlights of Leaflet Maps Marker Pro =
 * integration of the latest leaflet.js version
 * [marker clustering](http://www.mapsmarker.com/pro-feature-clustering)
 * [GPX tracks](http://www.mapsmarker.com/pro-feature-gpx)
