@@ -187,7 +187,7 @@ $layerlist = $wpdb->get_results('SELECT * FROM ' . $table_name_layers . ' WHERE 
 $serialized_options = serialize($lmm_options);
 ?>
 <table class="widefat" style="width:100%;height:100px;">
-	<tr style="background-color:#efefef;">
+	<tr style="background-color:#d6d5d5;">
 		<td colspan="2"><strong><?php _e('Backup/Restore settings','lmm'); ?> <a href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_pro_upgrade" title="<?php esc_attr_e('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') ?>"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/help-pro-feature.png" /></a></strong></td>
 	</tr>
 	<tr>
@@ -237,7 +237,7 @@ $serialized_options = serialize($lmm_options);
 <input type="hidden" name="action" value="mass_assign" />
 <?php wp_nonce_field('tool-nonce'); ?>
 <table class="widefat fixed" style="width:auto;">
-	<tr style="background-color:#efefef;">
+	<tr style="background-color:#d6d5d5;">
 		<td colspan="2"><strong><?php _e('Move markers to a layer','lmm') ?></strong></td>
 	</tr>
 	<tr>
@@ -276,7 +276,7 @@ $serialized_options = serialize($lmm_options);
 <input type="hidden" name="action" value="mass_delete_from_layer" />
 <?php wp_nonce_field('tool-nonce'); ?>
 <table class="widefat fixed" style="width:auto;">
-	<tr style="background-color:#efefef;">
+	<tr style="background-color:#d6d5d5;">
 		<td colspan="2"><strong><?php _e('Delete all markers from a layer','lmm') ?></strong></td>
 	</tr>
 	<tr>
@@ -301,20 +301,20 @@ $serialized_options = serialize($lmm_options);
 <br/><br/>
 <?php $nonce= wp_create_nonce('tool-nonce'); ?>
 <table class="widefat fixed" style="width:auto;">
-	<tr style="background-color:#efefef;">
+	<tr style="background-color:#d6d5d5;">
 		<?php
 		$settings_all_markers = sprintf( esc_attr__('Change settings for all %1$s existing marker maps','lmm'), $markercount_all);
 		?>
 		<td colspan="3"><strong><?php echo $settings_all_markers ?></strong></td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="basemap" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Basemap','lmm') ?></strong>
 		</td>
-		<td>
+		<td class="lmm-border">
 		<input id="markermaps_osm_mapnik" type="radio" name="basemap" value="osm_mapnik" checked /> <label for="markermaps_osm_mapnik"><?php echo $lmm_options['default_basemap_name_osm_mapnik']; ?></label><br />
 		<input id="markermaps_mapquest_osm" type="radio" name="basemap" value="mapquest_osm" /> <label for="markermaps_mapquest_osm"><?php echo $lmm_options['default_basemap_name_mapquest_osm']; ?></label><br />
 		<input id="markermaps_mapquest_aerial" type="radio" name="basemap" value="mapquest_aerial" /> <label for="markermaps_mapquest_aerial"><?php echo $lmm_options['default_basemap_name_mapquest_aerial']; ?></label><br />
@@ -337,37 +337,37 @@ $serialized_options = serialize($lmm_options);
 		<input id="markermaps_custom_basemap2" type="radio" name="basemap" value="custom_basemap2" /> <label for="markermaps_custom_basemap2"><?php echo $lmm_options['custom_basemap2_name']; ?></label><br />
 		<input id="markermaps_custom_basemap3" type="radio" name="basemap" value="custom_basemap3" /> <label for="markermaps_custom_basemap3"><?php echo $lmm_options['custom_basemap3_name']; ?></label>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="basemap-submit" value="<?php _e('change basemap for all markers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the basemap for all markers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="overlays" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Checked overlays in control box','lmm') ?></strong>
 		</td>
-		<td>
+		<td class="lmm-border">
 		<input id="markermaps_overlays_custom" type="checkbox" name="overlays_custom" /> <label for="markermaps_overlays_custom"><?php echo $lmm_options['overlays_custom_name']; ?></label><br />
 		<input id="markermaps_overlays_custom2" type="checkbox" name="overlays_custom2" /> <label for="markermaps_overlays_custom2"><?php echo $lmm_options['overlays_custom2_name']; ?></label><br />
 		<input id="markermaps_overlays_custom3" type="checkbox" name="overlays_custom3" /> <label for="markermaps_overlays_custom3"><?php echo $lmm_options['overlays_custom3_name']; ?></label><br />
 		<input id="markermaps_overlays_custom4" type="checkbox" name="overlays_custom4" /> <label for="markermaps_overlays_custom4"><?php echo $lmm_options['overlays_custom4_name']; ?></label>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="overlays-submit" value="<?php _e('change overlay status for all markers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the overlay status for all markers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="wms" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Active WMS layers','lmm') ?></strong>
 		</td>
-		<td>
+		<td class="lmm-border">
 		<input type="checkbox" name="wms" /> <?php echo $lmm_options['wms_wms_name']; ?><br />
 		<input type="checkbox" name="wms2" /> <?php echo $lmm_options['wms_wms2_name']; ?><br />
 		<input type="checkbox" name="wms3" /> <?php echo $lmm_options['wms_wms3_name']; ?><br />
@@ -379,19 +379,19 @@ $serialized_options = serialize($lmm_options);
 		<input type="checkbox" name="wms9" /> <?php echo $lmm_options['wms_wms9_name']; ?><br />
 		<input type="checkbox" name="wms10" /> <?php echo $lmm_options['wms_wms10_name']; ?><br />
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="wms-submit" value="<?php _e('change active WMS layers for all markers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change active WMS layers for all markers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="mapsize" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Map size','lmm') ?></strong>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<?php _e('Width','lmm') ?>:
 		<input size="2" maxlength="4" type="text" id="mapwidth" name="mapwidth" value="<?php echo intval($lmm_options[ 'defaults_marker_mapwidth' ]) ?>" />
 		<input id="markermaps_mapwidthunit_px" type="radio" name="mapwidthunit" value="px" checked />
@@ -400,67 +400,67 @@ $serialized_options = serialize($lmm_options);
 		<?php _e('Height','lmm') ?>:
 		<input size="2" maxlength="4" type="text" id="mapheight" name="mapheight" value="<?php echo intval($lmm_options[ 'defaults_marker_mapheight' ]) ?>" />px
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="mapsize-submit" value="<?php _e('change mapsize for all markers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the map size for all markers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="zoom" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Zoom','lmm') ?></strong>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="width: 30px;" type="text" name="zoom" value="<?php echo intval($lmm_options[ 'defaults_marker_zoom' ]) ?>" />
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="zoom-submit" value="<?php _e('change zoom for all markers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the zoom level for all markers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="controlbox" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Basemap/overlay controlbox on frontend','lmm') ?></strong>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input id="markermaps_controlbox_hidden" type="radio" name="controlbox" value="0" /><label for="markermaps_controlbox_hidden"><?php _e('hidden','lmm') ?></label><br/>
 		<input id="markermaps_controlbox_collapsed" type="radio" name="controlbox" value="1" checked /><label for="markermaps_controlbox_collapsed"><?php _e('collapsed (except on mobiles)','lmm') ?></label><br/>
 		<input id="markermaps_controlbox_expanded" type="radio" name="controlbox" value="2" /><label for="markermaps_controlbox_expanded"><?php _e('expanded','lmm') ?></label><br/>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="controlbox-submit" value="<?php _e('change controlbox status for all markers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the controlbox status for all markers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="panel" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Panel for displaying marker name and API URLs on top of map','lmm') ?></strong>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input id="markermaps_panel_show" type="radio" name="panel" value="1" checked />
 		<label for="markermaps_panel_show"><?php _e('show','lmm') ?></label><br/>
 		<input id="markermaps_panel_hide" type="radio" name="panel" value="0" />
 		<label for="markermaps_panel_hide"><?php _e('hide','lmm') ?></label></p></td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="panel-submit" value="<?php _e('change panel status for all markers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the panel status for all markers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="icon" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Icon','lmm') ?></strong></td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<div style="text-align:center;float:left;line-height:0px;margin-bottom:3px;"><label for="default_icon"><img src="<?php echo LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png' ?>"/></label><br/>
 		<input id="default_icon" type="radio" name="icon" value="" checked />
 		</div>
@@ -480,34 +480,34 @@ $serialized_options = serialize($lmm_options);
 		  echo '<div style="text-align:center;float:left;line-height:0px;margin-bottom:3px;"><label for="' . $row . '"><img id="iconpreview" src="' . LEAFLET_PLUGIN_ICONS_URL . '/' . $row . '" title="' . $row . '" alt="' . $row . '" width="32" height="37" /></label><br/><input id="' . $row . '" type="radio" name="icon" value="' . $row . '" /></div>';
 		?>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="icon-submit" value="<?php _e('update icon for all markers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the icon for all markers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="openpopup" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Popup status','lmm') ?></strong></td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input id="markermaps_openpopup_closed" type="radio" name="openpopup" value="0" checked />
 		<label for="markermaps_openpopup_closed"><?php _e('closed','lmm') ?></label>&nbsp;&nbsp;&nbsp;
 		<input id="markermaps_openpopup_open" type="radio" name="openpopup" value="1" />
 		<label for="markermaps_openpopup_open"><?php _e('open','lmm') ?></label></td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="openpopup-submit" value="<?php _e('change popup status for all markers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the popup status for all markers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="popuptext" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Popup text','lmm') ?></strong></td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<?php
 			global $wp_version;
 			if ( version_compare( $wp_version, '3.3', '>=' ) )
@@ -556,7 +556,7 @@ $serialized_options = serialize($lmm_options);
 			}
 		?>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="popuptext-submit" value="<?php _e('change popup text for all markers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the popup text for all markers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
@@ -565,20 +565,20 @@ $serialized_options = serialize($lmm_options);
 <br/><br/>
 <?php $nonce= wp_create_nonce('tool-nonce'); ?>
 <table class="widefat fixed" style="width:auto;">
-	<tr style="background-color:#efefef;">
+	<tr style="background-color:#d6d5d5;">
 		<?php
 		$settings_all_layers = sprintf( esc_attr__('Change settings for all %1$s existing layer maps','lmm'), $layercount_all);
 		?>
 		<td colspan="3"><strong><?php echo $settings_all_layers ?></strong></td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="basemap-layer" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Basemap','lmm') ?></strong>
 		</td>
-		<td>
+		<td class="lmm-border">
 		<input id="layermaps_osm_mapnik" type="radio" name="basemap-layer" value="osm_mapnik" checked /> <label for="layermaps_osm_mapnik"><?php echo $lmm_options['default_basemap_name_osm_mapnik']; ?></label><br />
 		<input id="layermaps_mapquest_osm" type="radio" name="basemap-layer" value="mapquest_osm" /> <label for="layermaps_mapquest_osm"><?php echo $lmm_options['default_basemap_name_mapquest_osm']; ?></label><br />
 		<input id="layermaps_mapquest_aerial" type="radio" name="basemap-layer" value="mapquest_aerial" /> <label for="layermaps_mapquest_aerial"><?php echo $lmm_options['default_basemap_name_mapquest_aerial']; ?></label><br />
@@ -601,37 +601,37 @@ $serialized_options = serialize($lmm_options);
 		<input id="layermaps_custom_basemap2" type="radio" name="basemap-layer" value="custom_basemap2" /> <label for="layermaps_custom_basemap2"><?php echo $lmm_options['custom_basemap2_name']; ?></label><br />
 		<input id="layermaps_custom_basemap3" type="radio" name="basemap-layer" value="custom_basemap3" /> <label for="layermaps_custom_basemap3"><?php echo $lmm_options['custom_basemap3_name']; ?></label>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="basemap-layer-submit" value="<?php _e('change basemap for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the basemap for all layers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="overlays-layer" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Checked overlays in control box','lmm') ?></strong>
 		</td>
-		<td>
+		<td class="lmm-border">
 		<input id="layermaps_overlays_custom-layer" type="checkbox" name="overlays_custom-layer" /> <label for="layermaps_overlays_custom-layer"><?php echo $lmm_options['overlays_custom_name']; ?></label><br />
 		<input id="layermaps_overlays_custom-layer2" type="checkbox" name="overlays_custom2-layer" /> <label for="layermaps_overlays_custom-layer2"><?php echo $lmm_options['overlays_custom2_name']; ?></label><br />
 		<input id="layermaps_overlays_custom-layer3" type="checkbox" name="overlays_custom3-layer" /> <label for="layermaps_overlays_custom-layer3"><?php echo $lmm_options['overlays_custom3_name']; ?></label><br />
 		<input id="layermaps_overlays_custom-layer4" type="checkbox" name="overlays_custom4-layer" /> <label for="layermaps_overlays_custom-layer4"><?php echo $lmm_options['overlays_custom4_name']; ?></label>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="overlays-layer-submit" value="<?php _e('change overlay status for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the overlay status for all layers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="wms-layer" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Active WMS layers','lmm') ?></strong>
 		</td>
-		<td>
+		<td class="lmm-border">
 		<input type="checkbox" name="wms-layer" /> <?php echo $lmm_options['wms_wms_name']; ?><br />
 		<input type="checkbox" name="wms2-layer" /> <?php echo $lmm_options['wms_wms2_name']; ?><br />
 		<input type="checkbox" name="wms3-layer" /> <?php echo $lmm_options['wms_wms3_name']; ?><br />
@@ -643,19 +643,19 @@ $serialized_options = serialize($lmm_options);
 		<input type="checkbox" name="wms9-layer" /> <?php echo $lmm_options['wms_wms9_name']; ?><br />
 		<input type="checkbox" name="wms10-layer" /> <?php echo $lmm_options['wms_wms10_name']; ?><br />
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="wms-layer-submit" value="<?php _e('change active WMS layers for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change active WMS layers for all layers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="mapsize-layer" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Map size','lmm') ?></strong>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<?php _e('Width','lmm') ?>:
 		<input size="2" maxlength="4" type="text" id="mapwidth-layer" name="mapwidth-layer" value="<?php echo intval($lmm_options[ 'defaults_layer_mapwidth' ]) ?>" />
 		<input id="layermaps_mapwidthunit_px" type="radio" name="mapwidthunit-layer" value="px" checked />
@@ -664,88 +664,88 @@ $serialized_options = serialize($lmm_options);
 		<?php _e('Height','lmm') ?>:
 		<input size="2" maxlength="4" type="text" id="mapheight-layer" name="mapheight-layer" value="<?php echo intval($lmm_options[ 'defaults_layer_mapheight' ]) ?>" />px
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="mapsize-layer-submit" value="<?php _e('change mapsize for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the map size for all layers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="zoom-layer" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Zoom','lmm') ?></strong>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="width: 30px;" type="text" id="zoom-layer" name="zoom-layer" value="<?php echo intval($lmm_options[ 'defaults_layer_zoom' ]) ?>" />
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="zoom-layer-submit" value="<?php _e('change zoom for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the zoom level for all layers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="controlbox-layer" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Basemap/overlay controlbox on frontend','lmm') ?></strong>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input id="layermaps_controlbox_hidden" type="radio" name="controlbox-layer" value="0" /><label for="layermaps_controlbox_hidden"><?php _e('hidden','lmm') ?></label><br/>
 		<input id="layermaps_controlbox_collapsed" type="radio" name="controlbox-layer" value="1" checked /><label for="layermaps_controlbox_collapsed"><?php _e('collapsed (except on mobiles)','lmm') ?></label><br/>
 		<input id="layermaps_controlbox_expanded" type="radio" name="controlbox-layer" value="2" /><label for="layermaps_controlbox_expanded"><?php _e('expanded','lmm') ?></label><br/>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="controlbox-layer-submit" value="<?php _e('change controlbox status for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the controlbox status for all layers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="panel-layer" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Panel for displaying layer name and API URLs on top of map','lmm') ?></strong>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input id="layermaps_panel_show" type="radio" name="panel-layer" value="1" checked />
 		<label for="layermaps_panel_show"><?php _e('show','lmm') ?></label><br/>
 		<input id="layermaps_panel_hide" type="radio" name="panel-layer" value="0" />
 		<label for="layermaps_panel_hide"><?php _e('hide','lmm') ?></label></p></td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="panel-layer-submit" value="<?php _e('change panel status for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the panel status for all layers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<input type="hidden" name="action" value="listmarkers-layer" />
 		<?php wp_nonce_field('tool-nonce'); ?>
 		<strong><?php _e('Display a list of markers under the map','lmm') ?></strong>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input id="layermaps_listmarkers_yes" type="radio" name="listmarkers-layer" value="1" checked />
 		<label for="layermaps_listmarkers_yes"><?php _e('yes','lmm') ?></label><br/>
 		<input id="layermaps_listmarkers_no" type="radio" name="listmarkers-layer" value="0" />
 		<label for="layermaps_listmarkers_no"><?php _e('no','lmm') ?></label></p></td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="listmarkers-layer-submit" value="<?php _e('change list marker-status for all layers','lmm') ?> &raquo;" onclick="return confirm('<?php _e('Do you really want to change the list marker-status for all layers? (cannot be undone)','lmm') ?>')" />
 		</form>
 		</td>
 	</tr>
 	<tr>
-		<td>
+		<td class="lmm-border">
 		<form method="post">
 		<strong><?php _e('Marker clustering','lmm') ?></strong><br/><a href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_pro_upgrade" title="<?php esc_attr_e('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') ?>"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/help-pro-feature.png" /></a>
 		</td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input id="layermaps_clustering_enabled" type="radio" name="listmarkers-clustering" value="1" disabled="disabled" />
 		<label for="layermaps_clustering_enabled"><?php _e('enabled','lmm') ?></label><br/>
 		<input id="layermaps_clustering_disabled" type="radio" name="listmarkers-clustering" value="0" checked disabled="disabled" />
 		<label for="layermaps_listmarkers_disabled"><?php _e('disabled','lmm') ?></label></p></td>
-		<td style="vertical-align:middle;">
+		<td style="vertical-align:middle;" class="lmm-border">
 		<input style="font-weight:bold;" class="submit button-primary" type="submit" name="listmarkers-clustering-submit" value="<?php _e('change clustering status for all layers','lmm') ?> &raquo;" disabled="disabled" />
 		</form>
 		</td>
@@ -757,7 +757,7 @@ $serialized_options = serialize($lmm_options);
 <input type="hidden" name="action" value="mass_delete_all_markers" />
 <?php wp_nonce_field('tool-nonce'); ?>
 <table class="widefat fixed" style="width:auto;">
-	<tr style="background-color:#efefef;">
+	<tr style="background-color:#d6d5d5;">
 		<?php
 		$delete_all = sprintf( esc_attr__('Delete all %1$s markers from all %2$s layers','lmm'), $markercount_all, $layercount_all);
 		?>

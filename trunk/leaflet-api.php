@@ -18,18 +18,44 @@ function lmm_getLatLng($address) {
 	$xml = simplexml_load_string($xml_raw['body']);
 	$response = array();
 	$statusCode = $xml->status;
-	if ( ($statusCode != false) && ($statusCode != NULL) && ($statusCode == 'OK') ) {
-		$latDom = $xml->result[0]->geometry->location->lat;
-		$lonDom = $xml->result[0]->geometry->location->lng;
-		$addressDom = $xml->result[0]->formatted_address;
-		if ($latDom != NULL) {
-			$response = array (
-				'success' 	=> true,
-				'lat' 		=> $latDom,
-				'lon' 		=> $lonDom,
-				'address'	=> $addressDom
-			);
-			return $response;
+	if ( ($statusCode != false) && ($statusCode != NULL) ) {
+		if ($statusCode == 'OK') {
+			$latDom = $xml->result[0]->geometry->location->lat;
+			$lonDom = $xml->result[0]->geometry->location->lng;
+			$addressDom = $xml->result[0]->formatted_address;
+			if ($latDom != NULL) {
+				$response = array (
+					'success' 	=> true,
+					'lat' 		=> $latDom,
+					'lon' 		=> $lonDom,
+					'address'	=> $addressDom
+				);
+				return $response;
+			}
+		} else if ($statusCode == 'OVER_QUERY_LIMIT') { //info: wait 1.5sec and try again once
+			usleep(1500000); 
+			$xml_raw = wp_remote_post( $url, array( 'sslverify' => false, 'timeout' => 10 ) );
+			$xml = simplexml_load_string($xml_raw['body']);
+			
+			$response = array();
+			$statusCode = $xml->status;
+			
+			if ( ($statusCode != false) && ($statusCode != NULL) ) {
+				if ($statusCode == 'OK') {
+					$latDom = $xml->result[0]->geometry->location->lat;
+					$lonDom = $xml->result[0]->geometry->location->lng;
+					$addressDom = $xml->result[0]->formatted_address;
+					if ($latDom != NULL) {
+						$response = array (
+							'success' 	=> true,
+							'lat' 		=> $latDom,
+							'lon' 		=> $lonDom,
+							'address'	=> $addressDom
+						);
+						return $response;
+					}
+				}
+			}
 		}
 	}
 	$response = array (

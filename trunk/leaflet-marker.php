@@ -279,8 +279,8 @@ if ( $edit_status == 'updated') {
 		<table class="widefat">
 			<?php if ($isedit === true) { ?>
 			<tr>
-				<td style="width:230px;"><label for="shortcode"><strong><?php _e('Shortcode and API links','lmm') ?></strong></label></td>
-				<td><input id="shortcode" style="width:200px;background:#f3efef;" type="text" value="[<?php echo $lmm_options[ 'shortcode' ]; ?> marker=&quot;<?php echo $id?>&quot;]" <?php echo $shortcode_select; ?>>
+				<td style="width:230px;" class="lmm-border"><label for="shortcode"><strong><?php _e('Shortcode and API links','lmm') ?></strong></label></td>
+				<td class="lmm-border"><input id="shortcode" style="width:200px;background:#f3efef;" type="text" value="[<?php echo $lmm_options[ 'shortcode' ]; ?> marker=&quot;<?php echo $id?>&quot;]" <?php echo $shortcode_select; ?>>
 				<?php
 					if ($current_editor == 'simplified') {
 						echo '<div id="apilinkstext" style="display:inline;"><a tabindex="123" style="cursor:pointer;">' . __('show API links','lmm') . '</a></div>';
@@ -298,12 +298,12 @@ if ( $edit_status == 'updated') {
 			</tr>
 			<?php } ?>
 			<tr>
-				<td style="width:230px;"><label for="markername"><strong><?php _e('Marker name','lmm') ?></strong></label></td>
-				<td><input <?php if (get_option('leafletmapsmarker_update_info') == 'hide') { echo 'autofocus'; } ?> style="width:640px;" type="text" id="markername" name="markername" value="<?php echo stripslashes($markername) ?>" /></td>
+				<td style="width:230px;" class="lmm-border"><label for="markername"><strong><?php _e('Marker name','lmm') ?></strong></label></td>
+				<td class="lmm-border"><input <?php if (get_option('leafletmapsmarker_update_info') == 'hide') { echo 'autofocus'; } ?> style="width:640px;" type="text" id="markername" name="markername" value="<?php echo stripslashes($markername) ?>" /></td>
 			</tr>
 			<tr>
-				<td><label for="address"><strong><?php _e('Location','lmm') ?></strong></label><br/><br/><a tabindex="99" href="http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html" target="_blank"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/powered-by-google.png" width="104" height="16" /></a></td>
-				<td><p><label for="address"><?php _e('Please select a place or an address','lmm') ?></label> <?php if (current_user_can('activate_plugins')) { echo '<span style="' . $current_editor_css . '"><a tabindex="100" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#google">(' . __('Settings','lmm') . ')</a></span>'; } ?><br/>
+				<td class="lmm-border"><label for="address"><strong><?php _e('Location','lmm') ?></strong></label><br/><br/><a tabindex="99" href="http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html" target="_blank"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/powered-by-google.png" width="104" height="16" /></a></td>
+				<td class="lmm-border"><p><label for="address"><?php _e('Please select a place or an address','lmm') ?></label> <?php if (current_user_can('activate_plugins')) { echo '<span style="' . $current_editor_css . '"><a tabindex="100" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#google">(' . __('Settings','lmm') . ')</a></span>'; } ?><br/>
 					<input style="width: 640px;" type="text" id="address" name="address" value="<?php echo stripslashes(htmlspecialchars($address)); ?>" />
 					<div style="<?php echo $current_editor_css; ?>">
 					<?php _e('or paste coordinates here','lmm') ?> -
@@ -314,7 +314,7 @@ if ( $edit_status == 'updated') {
 				</td>
 			</tr>
 			<tr>
-				<td><p style="margin-bottom:0px;"><label for="mapwidth"><strong><?php _e('Map size','lmm') ?></strong></label><br/>
+				<td class="lmm-border"><p style="margin-bottom:0px;"><label for="mapwidth"><strong><?php _e('Map size','lmm') ?></strong></label><br/>
 					<?php _e('Width','lmm') ?>:
 					<input size="3" maxlength="4" type="text" id="mapwidth" name="mapwidth" value="<?php echo $mapwidth ?>" />
 					<input id="mapwidthunit_px" type="radio" name="mapwidthunit" value="px" <?php checked($mapwidthunit, 'px'); ?>>
@@ -323,14 +323,10 @@ if ( $edit_status == 'updated') {
 					<?php _e('Height','lmm') ?>:
 					<input size="3" maxlength="4" type="text" id="mapheight" name="mapheight" value="<?php echo $mapheight ?>" />px
 					<br/><br/>
-					<label for="zoom"><strong><?php _e('Zoom','lmm') ?></strong></label>&nbsp;<input style="width: 30px;" type="text" id="zoom" name="zoom" value="<?php echo $zoom ?>" />
-					<br>
-					<small>
-					<?php _e('You can also change zoom level by clicking on + or - on preview map or using your mouse wheel','lmm');
-					echo ' <span style="' . $current_editor_css . '">' . __('Global maximum zoom level','lmm') . ': <a title="' . esc_attr__('If the native maximum zoom level of a basemap is lower, tiles will be upscaled automatically.','lmm') . '" tabindex="111" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('pro version only','lmm') . '</a>'; 
+					<label for="zoom"><strong><?php _e('Zoom','lmm') ?></strong> <img src="<?php echo LEAFLET_PLUGIN_URL; ?>inc/img/icon-question-mark.png" title="<?php esc_attr_e('You can also change zoom level by clicking on + or - on preview map or using your mouse wheel'); ?>" width="12" height="12" border="0"/></label>&nbsp;<input style="width: 30px;" type="text" id="zoom" name="zoom" value="<?php echo $zoom ?>" />
+					<?php __('You can also change zoom level by clicking on + or - on preview map or using your mouse wheel','lmm');
+					echo ' <span style="' . $current_editor_css . '"><br/><small>' . __('Global maximum zoom level','lmm') . ': <a title="' . esc_attr__('If the native maximum zoom level of a basemap is lower, tiles will be upscaled automatically.','lmm') . '" tabindex="111" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('pro version only','lmm') . '</a></small></span>'; 
 					?>
-					</span>
-					</small>
 					<br/><br/>
 					<label for="layer"><strong><?php _e('Layer','lmm') ?></strong></label>
 					<?php if ($addtoLayer == NULL) { //info: addtoLayer part1/3 ?>
@@ -363,7 +359,7 @@ if ( $edit_status == 'updated') {
 					<?php echo '<small>' . __('add','lmm') . ' | ' . __('convert','lmm') . ' | ' . __('merge','lmm') . ' | ' . __('settings','lmm') . ' | ' . __('fit bounds','lmm') . '</small>'; ?>
 					</p>
 					<div style="<?php echo $current_editor_css; ?>">
-					<p><br/>
+					<p>
 					<strong><?php _e('Controlbox for basemaps/overlays','lmm') ?>:</strong></label><br/>
 					<input id="controlbox_hidden" type="radio" name="controlbox" value="0" <?php checked($controlbox, 0); ?>><label for="controlbox_hidden"><?php _e('hidden','lmm') ?></label><br/>
 					<input id="controlbox_collapsed" type="radio" name="controlbox" value="1" <?php checked($controlbox, 1); ?>><label for="controlbox_collapsed"><?php _e('collapsed','lmm') ?></label><br/>
@@ -398,8 +394,8 @@ if ( $edit_status == 'updated') {
 					<small><?php _e('If empty, marker creation date will be used','lmm') ?></small>
 					</p>
 					</div>
-					<p><br/>
-					<label for="hide-backlinks"><strong><?php _e('Hide MapsMarker.com backlinks','lmm') ?></strong></label>
+					<p>
+					<label for="hide-backlinks"><strong style="font-size:98%"><?php _e('Hide MapsMarker.com backlinks','lmm') ?></strong></label>
 					&nbsp;&nbsp;<input type="checkbox" name="hide-backlinks" id="hide-backlinks" disabled="disabled" />
 					<br/><small>
 					<a href="<?php echo LEAFLET_WP_ADMIN_URL; ?>admin.php?page=leafletmapsmarker_pro_upgrade" title="<?php esc_attr_e('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm'); ?>"><?php _e('Feature available in pro version only','lmm'); ?></a>
@@ -409,7 +405,7 @@ if ( $edit_status == 'updated') {
 					<small><a tabindex="110" href="<?php echo LEAFLET_WP_ADMIN_URL; ?>admin.php?page=leafletmapsmarker_settings#mapdefaults-section17"><?php _e('Please visit Settings / Maps / Minimap settings','lmm'); ?></a></small>
 					</p>
 				</td>
-				<td id="wmscheckboxes" style="padding-bottom:5px;">
+				<td id="wmscheckboxes" style="padding-bottom:5px;" class="lmm-border">
 					<?php
 					echo '<div id="lmm" style="float:left;width:' . $mapwidth.$mapwidthunit . ';">'.PHP_EOL;
 					//info: panel for marker name and API URLs
@@ -530,7 +526,7 @@ if ( $edit_status == 'updated') {
 				</td>
 			</tr>
 			<tr>
-				<td><label for="default_icon"><strong><?php _e('Icon', 'lmm') ?></strong></label>
+				<td class="lmm-border"><label for="default_icon"><strong><?php _e('Icon', 'lmm') ?></strong></label>
 					<br/>
 					<br/>
 					<?php
@@ -555,7 +551,7 @@ if ( $edit_status == 'updated') {
 					} ?>
 					</small>
 				</td>
-				<td><?php
+				<td class="lmm-border"><?php
 					if ($current_editor == 'simplified') {
 						echo '<div style="text-align:center;float:left;line-height:0px;margin-bottom:3px;"><label for="default_icon"><img src="' . LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png" width="32" height="37" title="' . esc_attr__('filename','lmm') . ': marker.png, ' . esc_attr__('CSS classname','lmm') . ': lmm_marker_icon_default" alt="default.png" /></label><br/><input id="default_icon" style="margin:1px 0 0 1px;" onchange="updateicon(this.value);" type="radio" name="icon" value="" ' . ($icon == NULL ? ' checked' : '') . '/></div>';
 						if ($icon != NULL) {
@@ -585,7 +581,7 @@ if ( $edit_status == 'updated') {
 				</td>
 			</tr>
 			<tr>
-				<td><p><label for="popuptext"><strong><?php _e('Popup text','lmm') ?></strong></label>
+				<td class="lmm-border"><p><label for="popuptext"><strong><?php _e('Popup text','lmm') ?></strong></label>
 				<br /><br />
 				<?php _e('open popup','lmm') ?>&nbsp;&nbsp;<input type="checkbox" name="openpopup" id="openpopup" <?php checked($openpopup, 1 ); ?>>
 				<br/><small>
@@ -596,7 +592,7 @@ if ( $edit_status == 'updated') {
 			<br/><small><a tabindex="119" href="<?php echo LEAFLET_WP_ADMIN_URL; ?>admin.php?page=leafletmapsmarker_settings#lmm-directions"><?php _e('Please visit Settings to change this globally','lmm'); ?></a></small>
 				</p>
 				</td>
-				<td>
+				<td class="lmm-border">
 				<?php
 					if ( version_compare( $wp_version, '3.3', '>=' ) )
 					{
@@ -672,6 +668,14 @@ if ( $edit_status == 'updated') {
 	<input style="font-weight:bold;<?php echo $margin_top = ($isedit === false) ? 'margin-top:17px;' : '' ?>" type="submit" name="marker" class="submit button-primary" value="<?php ($isedit === true) ? _e('update','lmm') : _e('publish','lmm') ?>" />
 	</form>
 	</td>
+	<td>
+		<?php  
+				echo '<form method="post">';
+				echo '<div class="submit" style="margin:0 0 0 40px;">';
+				echo '<input title="' . esc_attr__('Feature available in pro version only','lmm') . '" class="submit button-secondary lmm-nav-secondary" type="submit" name="marker" value="' . __('duplicate', 'lmm') . '" disabled="disabled" />';
+				echo '</div></form>';
+		?>
+	</td>	
 	<?php if ( ($isedit) && (current_user_can( $lmm_options[ 'capabilities_delete' ]) )) { ?>
 	<td>
 		<form method="post">

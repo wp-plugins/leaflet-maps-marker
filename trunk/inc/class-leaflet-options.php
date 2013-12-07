@@ -2556,7 +2556,7 @@ class Class_leaflet_options {
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section13',
 			'title'   => __('Fullscreen button','lmm') . $pro_button_link,
-			'desc'    => __('Whether to add a button for displaying maps in fullscreen via HTML5','lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-fullscreen.png" width="77" height="107" /><a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
+			'desc'    => __('Whether to add a button for displaying maps in fullscreen via HTML5','lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-fullscreen.png" width="83" height="115" /><a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
 			'type'    => 'radio-pro',
 			'std'     => 'false',
 			'choices' => array(
@@ -9839,7 +9839,7 @@ $this->_settings['clustering_helptext2'] = array(
 		}		
 		/* template for plugin updates
 		//info:  set defaults for options introduced in v3.9
-		if (get_option('leafletmapsmarker_version') == '3.8' )
+		if (get_option('leafletmapsmarker_version') == '3.8.1' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting )
