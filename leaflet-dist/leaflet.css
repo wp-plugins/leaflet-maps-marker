@@ -97,6 +97,9 @@
 .leaflet-control-layers-overlays, .leaflet-control-layers-base {
 	margin:0 !important;
 }
+.gm-style { /*Gmap link fix*/
+	pointer-events:auto;
+}
 /* original leaflet.css styles (check on updates!) */
 .leaflet-map-pane,
 .leaflet-tile,

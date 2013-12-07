@@ -37,6 +37,7 @@ For even more features please try "Leaflet Maps Marker Pro" - demo maps includin
 * [MapsMarker API](http://www.mapsmarker.com/pro-feature-mapsmarker-api)
 * [whitelabel backend admin pages](http://www.mapsmarker.com/pro-feature-whitelabel)
 * [advanced permission settings](http://www.mapsmarker.com/pro-feature-advanced-permissions)
+* [duplicate markers](http://www.mapsmarker.com/v1.5.1p)
 * priority support
 
 The free version includes a pro upgrader which allows you to start a free 30 day trial easily. 
@@ -289,10 +290,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2013, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.8 =
-WordPress 3.8/MP6 compatibility, QR code changes - see http://www.mapsmarker.com/v3.8 for more details
+= v3.8.1 =
+bugfixes for Google Maps TOS links, usability optimizations - see http://www.mapsmarker.com/v3.8.1 for more details
 
 == Changelog ==
-[blog post with details about v3.8](http://www.mapsmarker.com/v3.8)
+[blog post with details about v3.8](http://www.mapsmarker.com/v3.8.1)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

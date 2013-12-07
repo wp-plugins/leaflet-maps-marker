@@ -181,7 +181,17 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					<td valign="top">' . __('Which geocoding option should be used?','lmm') . '</td>
 					<td>
 						<input id="geocoding-on" type="radio" name="geocoding-option" value="geocoding-on" checked="checked" disabled="disabled" /> <label for="geocoding-on"> ' . __('use address for geocoding (latitude and longitude values will get overwritten by geocoding results)','lmm') . '</label><br/>
-						<input id="geocoding-off" type="radio" name="geocoding-option" value="geocoding-off" disabled="disabled" /> <label for="geocoding-off"> ' . __('do not use address for geocoding (address, latitude and longitude values will be imported as given)','lmm') . '</label>
+						<input id="geocoding-off" type="radio" name="geocoding-option" value="geocoding-off" disabled="disabled" /> <label for="geocoding-off"> ' . __('do not use address for geocoding (address, latitude and longitude values will be imported as given)','lmm') . '</label><br/>
+
+						<p id="show-more-gmapsbusiness" style="margin:5px 0 0 24px;"><a href="#" onclick="document.getElementById(\'gmapsbusiness-more-options\').style.display = \'block\';document.getElementById(\'show-more-gmapsbusiness\').style.display = \'none\';">' . sprintf(__('Please note: Google Maps API allows up to %1$s geocoding requests per day and IP-address! Click here if you have a Google Maps API for Business account which allows up to %2$s geocoding requests per day','lmm'), '2.500', '100.000') . '</a></p>
+						<div id="gmapsbusiness-more-options" style="display:none;">
+						<p style="margin:5px 0 0 24px;">
+						' . sprintf(__('To use your <a href="%1$s" target="_blank">Google Maps API for business</a>-account, please fill in the fields below - more details at %2$s','lmm'), 'http://www.google.com/enterprise/mapsearth/products/mapsapi.html?rd=1#','<a href="https://developers.google.com/maps/documentation/business/webservices/auth" target="_blank">https://developers.google.com/maps/documentation/business/webservices/auth</a>') . '<br/>
+						</p>
+						<p style="margin:5px 0 0 24px;"><label for="gmapsbusiness-client" style="margin-right:12px;">client ID</label> <input id="gmapsbusiness-client" type="input" name="gmapsbusiness-client" value="" style="width:250px;" disabled="disabled" /></label></span></p>
+						<p style="margin:5px 0 0 24px;"><label for="gmapsbusiness-signature" style="margin-right:4px;">signature</label> <input id="gmapsbusiness-signature" type="input" name="gmapsbusiness-signature" value="" style="width:250px;" disabled="disabled" /></label></span></p>
+						<p style="margin:5px 0 0 24px;"><label for="gmapsbusiness-channel" style="margin-right:12px;">channel</label> <input id="gmapsbusiness-channel" type="input" name="gmapsbusiness-channel" value="" style="width:250px;" disabled="disabled" /></label></span></p>
+						</div>
 					</td>
 				</tr>
 				<tr>
