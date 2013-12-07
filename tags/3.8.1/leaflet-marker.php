@@ -303,14 +303,13 @@ if ( $edit_status == 'updated') {
 			</tr>
 			<tr>
 				<td class="lmm-border"><label for="address"><strong><?php _e('Location','lmm') ?></strong></label><br/><br/><a tabindex="99" href="http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html" target="_blank"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/powered-by-google.png" width="104" height="16" /></a></td>
-				<td class="lmm-border"><p><label for="address"><?php _e('Please select a place or an address','lmm') ?></label> <?php if (current_user_can('activate_plugins')) { echo '<span style="' . $current_editor_css . '"><a tabindex="100" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#google">(' . __('Settings','lmm') . ')</a></span>'; } ?><br/>
+				<td class="lmm-border"><label for="address"><?php _e('Please select a place or an address','lmm') ?></label> <?php if (current_user_can('activate_plugins')) { echo '<span style="' . $current_editor_css . '"><a tabindex="100" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#google">(' . __('Settings','lmm') . ')</a></span>'; } ?><br/>
 					<input style="width: 640px;" type="text" id="address" name="address" value="<?php echo stripslashes(htmlspecialchars($address)); ?>" />
-					<div style="<?php echo $current_editor_css; ?>">
+					<div style="margin-top:5px;<?php echo $current_editor_css; ?>">
 					<?php _e('or paste coordinates here','lmm') ?> -
 					<?php _e('latitude','lmm') ?>: <input style="width: 100px;" type="text" id="lat" name="lat" value="<?php echo $lat; ?>" />
 					<?php _e('longitude','lmm') ?>: <input style="width: 100px;" type="text" id="lon" name="lon" value="<?php echo $lon; ?>" />
 					</div>
-					</p>
 				</td>
 			</tr>
 			<tr>
