@@ -294,6 +294,6 @@ Copyright 2011-2013, Robert Harm, All Rights Reserved
 bugfixes for Google Maps TOS links, usability optimizations - see http://www.mapsmarker.com/v3.8.1 for more details
 
 == Changelog ==
-[blog post with details about v3.8](http://www.mapsmarker.com/v3.8.1)
+[blog post with details about v3.8.1](http://www.mapsmarker.com/v3.8.1)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

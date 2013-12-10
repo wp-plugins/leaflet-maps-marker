@@ -3,9 +3,15 @@
 	content: url('../img/icon-adminbar.png');
 }
 @media screen and ( max-width: 782px ) {
+	li#wp-admin-bar-lmm.menupop {
+		display:block;
+	}
 	#wp-admin-bar-lmm > .ab-item .ab-icon:before {
-			content: url('../img/icon-adminbar-2x.png');
-			margin: 0 5px;
+		content: url('../img/icon-adminbar-2x.png');
+		margin: 0 5px;
+	}
+	li#wp-admin-bar-lmm.menupop div.ab-item {
+		margin-left:10px;
 	}
 }
 #wp-admin-bar-lmm > .ab-item .ab-icon:hover {
