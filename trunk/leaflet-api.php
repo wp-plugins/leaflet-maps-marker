@@ -14,7 +14,7 @@ include( 'wp-load.php' );
  */
 function lmm_getLatLng($address) {
 	$url = 'http://maps.googleapis.com/maps/api/geocode/xml?address=' . urlencode($address) . '&sensor=false';
-	$xml_raw = wp_remote_post( $url, array( 'sslverify' => false, 'timeout' => 10 ) );	
+	$xml_raw = wp_remote_get( $url, array( 'sslverify' => false, 'timeout' => 10 ) );	
 	$xml = simplexml_load_string($xml_raw['body']);
 	$response = array();
 	$statusCode = $xml->status;
@@ -34,7 +34,7 @@ function lmm_getLatLng($address) {
 			}
 		} else if ($statusCode == 'OVER_QUERY_LIMIT') { //info: wait 1.5sec and try again once
 			usleep(1500000); 
-			$xml_raw = wp_remote_post( $url, array( 'sslverify' => false, 'timeout' => 10 ) );
+			$xml_raw = wp_remote_get( $url, array( 'sslverify' => false, 'timeout' => 10 ) );
 			$xml = simplexml_load_string($xml_raw['body']);
 			
 			$response = array();

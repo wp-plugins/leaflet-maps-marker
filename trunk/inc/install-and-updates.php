@@ -724,6 +724,16 @@ if (get_option('leafletmapsmarker_version') == '3.8' ) {
 			update_option('leafletmapsmarker_update_info', 'hide');
 	}
 }
+if (get_option('leafletmapsmarker_version') == '3.8.1' ) {
+	delete_transient( 'leafletmapsmarker_install_update_cache_v381');
+	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
+	if ( $version_before_update === FALSE ) {
+		set_transient( 'leafletmapsmarker_version_before_update', 'deleted-in-1-hour', 60*3 );
+		update_option('leafletmapsmarker_version_before_update', '3.8.1');
+	}
+	update_option('leafletmapsmarker_version', '3.8.2');
+}
+
 /* template for plugin updates
 if (get_option('leafletmapsmarker_version') == 'x.xbefore' ) {
 	delete_transient( 'leafletmapsmarker_install_update_cache_vxxbefore'); //2do: update to version from line above

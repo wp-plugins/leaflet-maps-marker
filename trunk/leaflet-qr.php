@@ -34,7 +34,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 	//info: visualead settings
 	if ($lmm_options['qrcode_provider'] == 'visualead') {
 		$api_url = 'http://api.visualead.com/v3/generate_from_project?api_key=22ecaee1-101a-4ee8-1bc0-0000584d2591&project_id=94819&qr_x=4&qr_y=5&qr_size=124&qr_rotation=0&output_type=1&action=url&content[url]='.$url.'&cells_type=1&markers_type=1';
-		$output = wp_remote_post( $api_url, array( 'sslverify' => false, 'timeout' => 10 ) );
+		$output = wp_remote_get( $api_url, array( 'sslverify' => false, 'timeout' => 10 ) );
 		$results = json_decode($output['body']);
 		
 		//$results = json_decode($output);
