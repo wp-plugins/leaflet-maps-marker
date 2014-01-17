@@ -8423,6 +8423,7 @@ $this->_settings['clustering_helptext2'] = array(
 				'es_MX' => __('Spanish','lmm') . ' (es_MX)',
 				'tr_TR' => __('Turkish','lmm') . ' (tr_TR)',
 				'uk_UK' => __('Ukrainian','lmm') . ' (uk_UK)',
+				'vi' => __('Vietnamese','lmm') . ' (vi)',
 				'yi' => __('Yiddish','lmm') . ' (yi)'
 			)
 		);
@@ -9839,7 +9840,7 @@ $this->_settings['clustering_helptext2'] = array(
 		}		
 		/* template for plugin updates
 		//info:  set defaults for options introduced in v3.9
-		if (get_option('leafletmapsmarker_version') == '3.8.2' )
+		if (get_option('leafletmapsmarker_version') == '3.8.3' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting )
