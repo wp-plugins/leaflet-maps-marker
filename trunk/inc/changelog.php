@@ -48,7 +48,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 /*************************************************************************************************************************************/
 /* 2do: change verion numbers and date in first line on each update and add if ( ($lmm_version_old < 'x.x' ) ){ to old changelog
 *************************************************************************************************************************************
-		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.6.x') . '</strong> - ' . __('released on','lmm') . ' xx.08.2013 (<a href="http://www.mapsmarker.com/v3.6.x" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
+		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.x') . '</strong> - ' . __('released on','lmm') . ' xx.08.2014 (<a href="http://www.mapsmarker.com/v3.x" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
 		<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . esc_attr__('Upgrade to pro version for even more features - click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-pro.png"></a>
@@ -82,6 +82,81 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		</table>'.PHP_EOL;
 *************************************************************************************************************************************/
 
+		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.8.3') . '</strong> - ' . __('released on','lmm') . ' 17.01.2014 (<a href="http://www.mapsmarker.com/v3.8.3" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
+		<table>
+		<tr><td>
+		<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . esc_attr__('Upgrade to pro version for even more features - click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-pro.png"></a>
+		</td><td>
+		<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . esc_attr__('Upgrade to pro version for even more features - click here to find out how you can start a free 30-day-trial easily','lmm') . '">upgrade to leaflet.js v0.7.2</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		Vietnamese (vi) translation thanks to Hoai Thu, <a href="http://bizover.net" target="_blank">http://bizover.net</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		increased security by loading basemaps for OSM, Mapbox and OGD Vienna via SSL if WordPress also loads via SSL
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-new.png">
+		</td><td>
+		increased security by hardening search input field for markers on backend
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		optimized performance by moving version checks for PHP and WordPress to register_activation_hook()
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-changed.png">
+		</td><td>
+		optimized performance by running pro active check only on admin pages
+		</td></tr>
+		<tr><td colspan="2">
+		<p><strong>' . __('Translation updates','lmm') . '</a></p></strong>
+		<p>' . sprintf(__('In case you want to help with translations, please visit the <a href="%1s" target="_blank">web-based translation plattform</a>','lmm'), 'http://translate.mapsmarker.com/projects/lmm') . '</p>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Chinese translation thanks to John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a> and ck
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated German translation
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Norwegian (Bokmål) translation thanks to Inge Tang, <a href="http://drommemila.no" target="_blank">http://drommemila.no</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Polish translation thanks to Tomasz Rudnicki, <a href="http://www.kochambieszczady.pl" target="_blank">http://www.kochambieszczady.pl</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Russian translation thanks to Ekaterina Golubina (supported by Teplitsa of Social Technologies - <a href="http://te-st.ru" target="_blank">http://te-st.ru</a>) and Vyacheslav Strenadko, <a href="http://poi-gorod.ru" target="_blank">http://poi-gorod.ru</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Spanish translation thanks to Alvaro Lara, <a href="http://www.alvarolara.com" target="_blank">http://www.alvarolara.com</a>, Victor Guevara, <a href="http://1sistemas.net" target="_blank">http://1sistemas.net</a> and Ricardo Viteri, <a href="http://www.labviteri.com" target="_blank">http://www.labviteri.com</a>
+		</td></tr>
+		<tr><td>
+		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
+		</td><td>
+		updated Turkish translation thanks to Emre Erkan, <a href="http://www.karalamalar.net" target="_blank">http://www.karalamalar.net</a> and Mahir Tosun, <a href="http://www.bozukpusula.com" target="_blank">http://www.bozukpusula.com</a>
+		</td></tr>
+		</table>'.PHP_EOL;
+
+	if ( ( $lmm_version_old < '3.8.2' ) && ( $lmm_version_old > '0' ) ) {
+		echo '<p><hr noshade size="1"/></p>';
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.8.2') . '</strong> - ' . __('released on','lmm') . ' 21.12.2013 (<a href="http://www.mapsmarker.com/v3.8.2" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
 		<table>
 		<tr><td>
@@ -126,7 +201,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
 		</td><td>
-		updated Indonesian translation thanks to Andy Aditya Sastrawikarta and Emir Hartato, <a href="http://whateverisaid.wordpress.com" target="_blank">http://whateverisaid.wordpress.com</a>
+		updated Indonesian translation thanks to Andy Aditya Sastrawikarta and Emir Hartato, <a href="http://whateverisaid.wordpress.com" target="_blank">http://whateverisaid.wordpress.com</a> and Phibu Reza, <a href="http://www.dedoho.pw/" target="_blank">http://www.dedoho.pw/</a>
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
@@ -159,7 +234,8 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		updated Romanian translation thanks to Arian, <a href="http://administrare-cantine.ro" target="_blank">http://administrare-cantine.ro</a> and Daniel Codrea, <a href="http://www.inadcod.com" target="_blank">http://www.inadcod.com</a>
 		</td></tr>
 		</table>'.PHP_EOL;
-
+	}
+	
 	if ( ( $lmm_version_old < '3.8.1' ) && ( $lmm_version_old > '0' ) ) {
 		echo '<p><hr noshade size="1"/></p>';
 		echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf(__('Changelog for version %s','lmm'), '3.8.1') . '</strong> - ' . __('released on','lmm') . ' 07.12.2013 (<a href="http://www.mapsmarker.com/v3.8.1" target="_blank">' . __('blog post with more details about this release','lmm') . '</a>):</p>
@@ -1150,7 +1226,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
 		</td><td>
-		updated Russian translation thanks to Ekaterina Golubina, supported by Teplitsa of Social Technologies - <a href="http://te-st.ru" target="_blank">http://te-st.ru</a>
+		updated Russian translation thanks to Ekaterina Golubina (supported by Teplitsa of Social Technologies - <a href="http://te-st.ru" target="_blank">http://te-st.ru</a>) and Vyacheslav Strenadko, <a href="http://poi-gorod.ru" target="_blank">http://poi-gorod.ru</a>
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
@@ -1597,7 +1673,7 @@ if (get_option('leafletmapsmarker_update_info') == 'show') {
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">
 		</td><td>
-		updated Turkish translation thanks to Emre Erkan, <a href="http://www.karalamalar.net" target="_blank">http://www.karalamalar.net</a>
+		updated Turkish translation thanks to Emre Erkan, <a href="http://www.karalamalar.net" target="_blank">http://www.karalamalar.net</a> and Mahir Tosun, <a href="http://www.bozukpusula.com" target="_blank">http://www.bozukpusula.com</a>
 		</td></tr>
 		<tr><td>
 		<img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-translations.png">

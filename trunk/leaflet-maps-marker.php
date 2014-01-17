@@ -4,14 +4,14 @@ Plugin Name: Leaflet Maps Marker &reg;
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places & tracks through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, APIs or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, WMTS, geoRSS, location, geo, geo-mashup, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, googlemaps, gmaps, google map, google map short code, google map widget, google maps v3, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, marker icons, layer, multiple markers, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice, widget, bing, bing maps, microsoft, map short code, map widget, kml, cross-browser, fully documented, traffic, bike lanes, map short code, custom marker text, custom marker icons and text, gpx
-Version: 3.8.2
+Version: 3.8.3
 Author: Robert Harm
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
 Requires at least: 3.0
 Tested up to: 3.8
 Requires at least PHP 5.2
-Copyright 2011-2013 - @RobertHarm - All rights reserved
+Copyright 2011-2014 - @RobertHarm - All rights reserved
 MapsMarker &reg; - registration pending
 Parts of this plugin were originally based on the Leaflet Plugin by Hind (Copyright 2011)
 
@@ -27,26 +27,23 @@ along with this program (see file licence-gpl20.txt)
 */
 //info prevent file from being accessed directly
 if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-maps-marker.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
-global $wp_version;
-if (version_compare($wp_version,"3.0","<")){
-	exit('[Leaflet Maps Marker Plugin - installation failed!]: WordPress Version 3.0 or higher is needed for this plugin (you are using version '.$wp_version.') - please upgrade your WordPress installation!');
-}
-if (version_compare(phpversion(),"5.2","<")){
-	exit('[Leaflet Maps Marker Plugin - installation failed]: PHP 5.2 is needed for this plugin (you are using PHP '.phpversion().'; note: support for PHP 4 has been officially discontinued since 2007-12-31!) - please upgrade your PHP installation!');
-}
+
 //info: die if pro version is active
-include_once( ABSPATH . 'wp-admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'plugin.php' );
-if (is_plugin_active('leaflet-maps-marker-pro/leaflet-maps-marker.php') ) {
-	if (!is_multisite()) {
-		exit('Too bad you want to use the free version again :-( Please deactivate "Leaflet Maps Marker Pro" first before downgrading to the free version!<br/>Please tell us what we can do to win you as a happy pro user at <a href="http://www.mapsmarker.com/feedback" target="_blank">www.mapsmarker.com/feedback</a> and receive a discount voucher!');
-	} else {
-		if (is_network_admin()) {
-			echo 'Network wide activation of the plugin "Leaflet Maps Marker" failed as the plugin "Leaflet Maps Marker Pro" is still active on subsites. Please activate "Leaflet Maps Marker" on desired subsites only!<br/>Please tell us what we can do to win you as a happy pro user at <a href="http://www.mapsmarker.com/feedback" target="_blank">www.mapsmarker.com/feedback</a> and receive a discount voucher!<br/><br/>';
+if ( is_admin() ) {
+	include_once( ABSPATH . 'wp-admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'plugin.php' );
+	if (is_plugin_active('leaflet-maps-marker-pro/leaflet-maps-marker.php') ) {
+		if (!is_multisite()) {
+			exit('Too bad you want to use the free version again :-( Please deactivate "Leaflet Maps Marker Pro" first before downgrading to the free version!<br/>Please tell us what we can do to win you as a happy pro user at <a href="http://www.mapsmarker.com/feedback" target="_blank">www.mapsmarker.com/feedback</a> and receive a discount voucher!');
 		} else {
-			echo 'Too bad you want to use the free version again :-( Please deactivate "Leaflet Maps Marker Pro" first before downgrading to the free version!<br/>Please tell us what we can do to win you as a happy pro user at <a href="http://www.mapsmarker.com/feedback" target="_blank">www.mapsmarker.com/feedback</a> and receive a discount voucher!<br/><br/>';
+			if (is_network_admin()) {
+				echo 'Network wide activation of the plugin "Leaflet Maps Marker" failed as the plugin "Leaflet Maps Marker Pro" is still active on subsites. Please activate "Leaflet Maps Marker" on desired subsites only!<br/>Please tell us what we can do to win you as a happy pro user at <a href="http://www.mapsmarker.com/feedback" target="_blank">www.mapsmarker.com/feedback</a> and receive a discount voucher!<br/><br/>';
+			} else {
+				echo 'Too bad you want to use the free version again :-( Please deactivate "Leaflet Maps Marker Pro" first before downgrading to the free version!<br/>Please tell us what we can do to win you as a happy pro user at <a href="http://www.mapsmarker.com/feedback" target="_blank">www.mapsmarker.com/feedback</a> and receive a discount voucher!<br/><br/>';
+			}
 		}
-	}
+	}		
 }
+
 //info: define necessary paths and urls
 if ( ! defined( 'LEAFLET_WP_ADMIN_URL' ) )
 	define( 'LEAFLET_WP_ADMIN_URL', get_admin_url() );
@@ -125,6 +122,15 @@ class Leafletmapsmarker
 		add_action('plugin_row_meta', array( &$this,'lmm_plugins_page_add_links' ), 10, 2);
 		add_action( 'admin_enqueue_scripts', array( $this, 'lmm_style_plugins_page' ));
 	}
+	function lmm_register_activation_hook() {
+		global $wp_version;
+		if (version_compare($wp_version,"3.0","<")){
+			exit('[Leaflet Maps Marker Plugin - installation failed!]: WordPress Version 3.0 or higher is needed for this plugin (you are using version '.$wp_version.') - please upgrade your WordPress installation!');
+		}
+		if (version_compare(phpversion(),"5.2","<")){
+			exit('[Leaflet Maps Marker Plugin - installation failed]: PHP 5.2 is needed for this plugin (you are using PHP '.phpversion().'; note: support for PHP 4 has been officially discontinued since 2007-12-31!) - please upgrade your PHP installation!');
+		}
+    }
 	function lmm_style_plugins_page() {
 		global $pagenow;
 		if ($pagenow == "plugins.php") {
@@ -769,7 +775,7 @@ class Leafletmapsmarker
 	}	
 	function lmm_install_and_updates() {
 		//info: set transient to execute install & update-routine only once a day
-		$current_version = "v382"; //2do - mandatory: change on each update to new version!
+		$current_version = "v383"; //2do - mandatory: change on each update to new version!
 		$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version;
 		$install_update_schedule = get_transient( $schedule_transient );
 		if ( $install_update_schedule === FALSE ) {
@@ -796,6 +802,7 @@ class Leafletmapsmarker
 		add_filter( 'plugin_action_links', 'leafletmapsmarker_filter_plugin_meta', 10, 2 );
 	  } //info: end plugin_meta_links()
 } //info: end class
+register_activation_hook( __FILE__, array( 'Leafletmapsmarker', 'lmm_register_activation_hook' ) ); //info: run WP+PHP checks only on activation
 $run_leafletmapsmarker = new Leafletmapsmarker();
 //info: include widget class
 require_once( plugin_dir_path( __FILE__ ) . 'inc' . DIRECTORY_SEPARATOR . 'class-leaflet-recent-marker-widget.php' );
