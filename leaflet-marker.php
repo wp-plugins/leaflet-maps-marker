@@ -334,13 +334,14 @@ if ( $edit_status == 'updated') {
 						<?php _e('not assigned to a layer','lmm') ?>
 						</option>
 						<?php
-							foreach ($layerlist as $row) {
-								if ($row['multi_layer_map'] == 0) {
-									echo '<option value="' . $row['id'] . '"' . ($row['id'] == $layer ? ' selected="selected"' : '') . '>' . stripslashes(htmlspecialchars($row['name'])) . ' (ID ' . $row['id'] . ')</option>';
-								} else {
-									echo '<option title="' . esc_attr__('This is a multi-layer map - markers cannot be assigned to this layer directly','lmm') . '" value="' . $row['id'] . '"' . ($row['id'] == $layer ? ' selected="selected"' : '') . ' disabled="disabled">' . stripslashes(htmlspecialchars($row['name'])) . ' (ID ' . $row['id'] . '/MLM)</option>';
-								}
+						foreach ($layerlist as $row) {
+							$layername_abstract = (strlen($row['name']) >= 25) ? '...': '';
+							if ($row['multi_layer_map'] == 0) {
+								echo '<option value="' . $row['id'] . '"' . ($row['id'] == $layer ? ' selected="selected"' : '') . ' title="' . stripslashes(htmlspecialchars($row['name'])) . '">' . mb_substr(stripslashes(htmlspecialchars($row['name'])), 0, 25) . $layername_abstract . ' (ID ' . $row['id'] . ')</option>';
+							} else {
+								echo '<option title="' . stripslashes(htmlspecialchars($row['name'])) . ' (' . esc_attr__('This is a multi-layer map - markers cannot be assigned to this layer directly','lmm') . ')" value="' . $row['id'] . '"' . ($row['id'] == $layer ? ' selected="selected"' : '') . ' disabled="disabled">' . mb_substr(stripslashes(htmlspecialchars($row['name'])), 0, 25) . $layername_abstract . ' (ID ' . $row['id'] . '/MLM)</option>';
 							}
+						}
 						?>
 					</select>
 					<br>
@@ -389,7 +390,7 @@ if ( $edit_status == 'updated') {
 					</script>
 					<?php }; ?>
 					<label for="kml_timestamp"><strong><?php _e('Timestamp for KML animation','lmm') ?>:</strong></label> <a tabindex="104" href="http://www.mapsmarker.com/kml-timestamp" target="_blank"><img src="<?php echo LEAFLET_PLUGIN_URL; ?>inc/img/icon-question-mark.png" title="<?php esc_attr_e('Click here for more information on animations in KML/Google Earth','lmm'); ?>" width="12" height="12" border="0"/></a><br/>
-					<input type="text" id="kml_timestamp" name="kml_timestamp" value="<?php echo $kml_timestamp ; ?>" style="width:145px;background-image:url(<?php echo LEAFLET_PLUGIN_URL; ?>inc/img/icon-calendar.png);background-position:123px center;background-repeat:no-repeat;" /><br/>
+					<input type="text" id="kml_timestamp" name="kml_timestamp" value="<?php echo $kml_timestamp ; ?>" style="width:166px;background-image:url(<?php echo LEAFLET_PLUGIN_URL; ?>inc/img/icon-calendar.png);background-position:143px center;background-repeat:no-repeat;" /><br/>
 					<small><?php _e('If empty, marker creation date will be used','lmm') ?></small>
 					</p>
 					</div>
@@ -595,13 +596,15 @@ if ( $edit_status == 'updated') {
 				<?php
 					if ( version_compare( $wp_version, '3.3', '>=' ) )
 					{
+						$defaults_marker_popups_maxwidth = intval($lmm_options['defaults_marker_popups_maxwidth'] + 1);
+						$defaults_marker_popups_image_max_width = intval($lmm_options['defaults_marker_popups_image_max_width']);
 						$settings = array(
 								'wpautop' => true,
 								'tinymce' => array(
 								'theme_advanced_buttons1' => 'bold,italic,underline,strikethrough,|,fontselect,fontsizeselect,forecolor,backcolor,|,justifyleft,justifycenter,justifyright,justifyfull,|,outdent,indent,blockquote,|,link,unlink,|,ltr,rtl',
 								'theme' => 'advanced',
 								'height' => '300',
-								'content_css' => LEAFLET_PLUGIN_URL . 'inc/css/leafletmapsmarker-admin-tinymce.php',
+								'content_css' => LEAFLET_PLUGIN_URL . 'inc/css/leafletmapsmarker-admin-tinymce.php?defaults_marker_popups_maxwidth=' . $defaults_marker_popups_maxwidth . '&defaults_marker_popups_image_max_width=' . $defaults_marker_popups_image_max_width . '',
 								'theme_advanced_statusbar_location' => 'bottom',
 								'setup' => 'function(ed) {
 										ed.onKeyDown.add(function(ed, e) {

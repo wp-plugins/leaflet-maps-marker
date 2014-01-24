@@ -217,7 +217,17 @@ if ( (get_option('leafletmapsmarker_update_info') == 'show') && ($page != 'leafl
 	} else {
 		echo '<p><span style="font-weight:bold;font-size:125%;">' . sprintf(__('Leaflet Maps Marker has been successfully updated from version %1s to %2s!','lmm'), $lmm_version_old, $lmm_version_new) . '</span></p>';
 	}
-	echo '<iframe name="changelog" src="' . LEAFLET_PLUGIN_URL . 'inc/changelog.php" width="98%" height="285" marginwidth="0" marginheight="0" style="border:thin dashed #E6DB55;"></iframe>'.PHP_EOL;
+	$cl_text_a = base64_encode(__('Changelog for version %s','lmm'));
+	$cl_text_b = base64_encode(__('released on','lmm'));
+	$cl_text_c = base64_encode(__('blog post with more details about this release','lmm'));
+	$cl_text_d = base64_encode(__('Translation updates','lmm'));
+	$cl_text_e = base64_encode(__('In case you want to help with translations, please visit the <a href="%1s" target="_blank">web-based translation plattform</a>','lmm'));
+	$cl_text_f = base64_encode(__('Known issues','lmm'));
+	$cl_text_g = base64_encode(__('Although we tried hard, not all known issues could be fixed with this release:','lmm'));
+	$cl_text_h = base64_encode(esc_attr__('Upgrade to pro version for even more features - click here to find out how you can start a free 30-day-trial easily','lmm'));
+	$leaflet_plugin_url = base64_encode(LEAFLET_PLUGIN_URL);
+	$leaflet_wp_admin_url = base64_encode(LEAFLET_WP_ADMIN_URL);
+	echo '<iframe name="changelog" src="' . LEAFLET_PLUGIN_URL . 'inc/changelog.php?version_old=' . $lmm_version_old . '&version_new=' . $lmm_version_new . '&cl_text_a=' . $cl_text_a . '&cl_text_b=' . $cl_text_b . '&cl_text_c=' . $cl_text_c . '&cl_text_d=' . $cl_text_d . '&cl_text_e=' . $cl_text_e . '&cl_text_f=' . $cl_text_f . '&cl_text_g=' . $cl_text_g . '&cl_text_h=' . $cl_text_h . '&leaflet_plugin_url=' . $leaflet_plugin_url . '&leaflet_wp_admin_url=' . $leaflet_wp_admin_url . '" width="98%" height="285" marginwidth="0" marginheight="0" style="border:thin dashed #E6DB55;"></iframe>'.PHP_EOL;
 
 	echo '<p>' . __('If you like using the plugin, please <a href="http://www.mapsmarker.com/reviews" target="_blank" style="text-decoration:none;">review the plugin on wordpress.org</a> - thanks!','lmm') . '</p>'.PHP_EOL;
 	echo '<form method="post" style="padding:2px 0 6px 0;">

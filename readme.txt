@@ -7,7 +7,7 @@ Author URI:        http://www.harm.co.at
 Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.0
-Tested up to:      3.8
+Tested up to:      3.8.1
 Stable tag:        3.8.3
 License:           GPLv2
 
@@ -291,10 +291,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2014, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.8.3 =
-added Vietnamese translation, added tile loading via SSL if available - see http://www.mapsmarker.com/v3.8.3 for more details
+= v3.8.4 =
+optimized TinyMCE button, backend performance and usability improvements - see http://www.mapsmarker.com/v3.8.4 for more details
 
 == Changelog ==
-[blog post with details about v3.8.3](http://www.mapsmarker.com/v3.8.3)
+[blog post with details about v3.8.4](http://www.mapsmarker.com/v3.8.4)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

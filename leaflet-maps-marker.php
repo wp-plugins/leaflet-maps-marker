@@ -4,12 +4,12 @@ Plugin Name: Leaflet Maps Marker &reg;
 Plugin URI: http://www.mapsmarker.com
 Description: Pin, organize & show your favorite places & tracks through OpenStreetMap, Google Maps, Google Earth (KML), Bing Maps, APIs or Augmented-Reality browsers
 Tags: map, maps, Leaflet, OpenStreetMap, geoJSON, json, jsonp, OSM, travelblog, opendata, open data, opengov, open government, ogdwien, WMTS, geoRSS, location, geo, geo-mashup, geocoding, geolocation, travel, mapnick, osmarender, cloudmade, mapquest, geotag, geocaching, gpx, OpenLayers, mapping, bikemap, coordinates, geocode, geocoding, geotagging, latitude, longitude, position, route, tracks, google maps, googlemaps, gmaps, google map, google map short code, google map widget, google maps v3, google earth, gmaps, ar, augmented-reality, wikitude, wms, web map service, geocache, geocaching, qr, qr code, fullscreen, marker, marker icons, layer, multiple markers, karte, blogmap, geocms, geographic, routes, tracks, directions, navigation, routing, location plan, YOURS, yournavigation, ORS, openrouteservice, widget, bing, bing maps, microsoft, map short code, map widget, kml, cross-browser, fully documented, traffic, bike lanes, map short code, custom marker text, custom marker icons and text, gpx
-Version: 3.8.3
+Version: 3.8.4
 Author: Robert Harm
 Author URI: http://www.harm.co.at
 Donate link: http://www.mapsmarker.com/donations
 Requires at least: 3.0
-Tested up to: 3.8
+Tested up to: 3.8.1
 Requires at least PHP 5.2
 Copyright 2011-2014 - @RobertHarm - All rights reserved
 MapsMarker &reg; - registration pending
@@ -421,6 +421,9 @@ class Leafletmapsmarker
 		add_action('admin_print_scripts-'.$page3, array(&$this, 'lmm_admin_enqueue_scripts'),7);
 		add_action('admin_print_scripts-'.$page5, array(&$this, 'lmm_admin_enqueue_scripts'),8);
 		add_action('admin_print_scripts-'.$page7, array(&$this, 'lmm_admin_jquery_ui'),9);
+		//info: add leaflet css styles for map pages
+		add_action('admin_print_styles-'.$page3, array(&$this, 'lmm_admin_enqueue_stylesheets_leaflet'),19);
+		add_action('admin_print_styles-'.$page5, array(&$this, 'lmm_admin_enqueue_stylesheets_leaflet'),19);
 		//info: add css styles for admin area
 		add_action('admin_print_styles-'.$page, array(&$this, 'lmm_admin_enqueue_stylesheets'),17);
 		add_action('admin_print_styles-'.$page2, array(&$this, 'lmm_admin_enqueue_stylesheets'),18);
@@ -743,26 +746,23 @@ class Leafletmapsmarker
 		return $template;
 	}
 	function lmm_admin_enqueue_stylesheets() {
+		$plugin_version = get_option('leafletmapsmarker_version');
+		wp_register_style( 'leafletmapsmarker-admin', LEAFLET_PLUGIN_URL . 'inc/css/leafletmapsmarker-admin.css', array(), $plugin_version);
+		wp_enqueue_style('leafletmapsmarker-admin' );
+	}
+	function lmm_admin_enqueue_stylesheets_leaflet() {
 		global $wp_styles;
 		$plugin_version = get_option('leafletmapsmarker_version');
 		wp_register_style( 'leafletmapsmarker', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.css', array(), $plugin_version);
 		wp_enqueue_style( 'leafletmapsmarker' );
-		wp_register_style( 'leafletmapsmarker-admin', LEAFLET_PLUGIN_URL . 'inc/css/leafletmapsmarker-admin.css', array(), $plugin_version);
-		wp_enqueue_style('leafletmapsmarker-admin' );
 		wp_register_style('leafletmapsmarker-ie-only', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.ie.css', array(), $plugin_version);
 		wp_enqueue_style('leafletmapsmarker-ie-only');
 		$wp_styles->add_data('leafletmapsmarker-ie-only', 'conditional', 'lt IE 9');
-		//info: compatibility fix for flickr gallery plugin which is breaking the settings page
-		if (is_plugin_active('flickr-gallery/flickr-gallery.php') ) {
-			wp_dequeue_style('fg-jquery-ui');
-		}
 	}
 	function lmm_admin_enqueue_stylesheets_datepicker() {
 		$plugin_version = get_option('leafletmapsmarker_version');
-		wp_register_style( 'jquery-ui-all', LEAFLET_PLUGIN_URL . 'inc/css/jquery-datepicker-theme/jquery-ui-1.9.2.custom.css', array(), $plugin_version);
-		wp_enqueue_style( 'jquery-ui-all' );
-		wp_register_style( 'jquery-ui-timepicker-addon', LEAFLET_PLUGIN_URL . 'inc/css/jquery-datepicker-theme/jquery-ui-timepicker-addon.css', array('jquery-ui-all'), NULL );
-		wp_enqueue_style( 'jquery-ui-timepicker-addon' );
+		wp_register_style( 'leafletmapsmarker-jquery-ui-custom', LEAFLET_PLUGIN_URL . 'inc/css/jquery-datepicker-theme/jquery-ui-custom.css', array(), $plugin_version);
+		wp_enqueue_style( 'leafletmapsmarker-jquery-ui-custom' );
 	}
 	function lmm_admin_enqueue_stylesheets_adminbar() {
 		$lmm_options = get_option( 'leafletmapsmarker_options' );
@@ -775,7 +775,7 @@ class Leafletmapsmarker
 	}	
 	function lmm_install_and_updates() {
 		//info: set transient to execute install & update-routine only once a day
-		$current_version = "v383"; //2do - mandatory: change on each update to new version!
+		$current_version = "v384"; //2do - mandatory: change on each update to new version!
 		$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version;
 		$install_update_schedule = get_transient( $schedule_transient );
 		if ( $install_update_schedule === FALSE ) {
