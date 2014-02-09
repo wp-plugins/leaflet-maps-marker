@@ -43,7 +43,7 @@ $layerid = isset($_GET['layerid']) ? $_GET['layerid'] : ''; //info: for switched
 
 if (!empty($action)) {
 	$layernonce = isset($_POST['_wpnonce']) ? $_POST['_wpnonce'] : (isset($_GET['_wpnonce']) ? $_GET['_wpnonce'] : '');
-	if (! wp_verify_nonce($layernonce, 'layer-nonce') ) { die('<br/>'.__('Security check failed - please call this function from the according Leaflet Maps Marker admin page!','lmm').''); };
+	if (! wp_verify_nonce($layernonce, 'layer-nonce') ) { die('<br/>'.__('Security check failed - please call this function from the according admin page!','lmm').''); };
   if ($action == 'add') {
   if ( ($lat_check != NULL) && ($lon_check != NULL) ) {
 		global $current_user;

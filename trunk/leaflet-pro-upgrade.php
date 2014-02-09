@@ -104,10 +104,10 @@ if ( $action == NULL ) {
 				</div>
 				<p><a href="#top" class="upgrade-top-link">' . __('back to top to start free 30-day-trial','lmm') . '</a></p>
 
-				<span class="pro-feature-header">' . __('support for CSV/XLS/XLSX/ODS import and export for bulk additions and bulk updates of markers','lmm') . '</span>
+				<span class="pro-feature-header">' . __('support for CSV/XLS/XLSX/ODS import and export for bulk additions and bulk updates','lmm') . '</span>
 				<div class="pro-feature-content" style="background:' . $bgcolor . ';">
 				<p style="margin:0 0 10px 0;">
-				' . __('Leaflet Maps Marker Pro allows you to easily perform bulk updates on markers by using the integrated import feature:','lmm') . '
+				' . __('Leaflet Maps Marker Pro allows you to easily perform bulk updates on markers and layers by using the integrated import feature:','lmm') . '
 				</p>
 				<img src="' . LEAFLET_PLUGIN_URL . 'inc/img/help-import.png">
 				<p>
@@ -333,7 +333,7 @@ if ( $action == NULL ) {
 		}
 	}
 } else {
-	if (!wp_verify_nonce( $_POST['_wpnonce'], 'pro-upgrade-nonce') ) { wp_die('<br/>'.__('Security check failed - please call this function from the according Leaflet Maps Marker admin page!','lmm').''); };
+	if (!wp_verify_nonce( $_POST['_wpnonce'], 'pro-upgrade-nonce') ) { wp_die('<br/>'.__('Security check failed - please call this function from the according admin page!','lmm').''); };
 	if ($action == 'upgrade_to_pro_version') {
 		include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
 		add_filter( 'https_ssl_verify', '__return_false' ); //info: otherwise SSL error on localhost installs.

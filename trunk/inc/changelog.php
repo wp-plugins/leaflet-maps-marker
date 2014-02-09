@@ -32,6 +32,49 @@ $issue = '<img src="' . $leaflet_plugin_url .'inc/img/icon-changelog-know-issues
 
 /*****************************************************************************************/
 
+echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf($cl_text_a, '3.8.5') . '</strong> - ' . $cl_text_b . ' 10.02.2014 (<a href="http://www.mapsmarker.com/v3.8.5" target="_blank">' . $cl_text_c . '</a>):</p>
+<table>
+<tr><td><a href="' . $leaflet_wp_admin_url . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $cl_text_h . '"><img src="' . $leaflet_plugin_url .'inc/img/icon-changelog-pro.png"></a></td><td>
+<a href="' . $leaflet_wp_admin_url . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $cl_text_h . '">loading progress bar for markerclusters when loading of markers takes longer than 1 second</a>
+</td></tr>
+<tr><td><a href="' . $leaflet_wp_admin_url . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $cl_text_h . '"><img src="' . $leaflet_plugin_url .'inc/img/icon-changelog-pro.png"></a></td><td>
+<a href="' . $leaflet_wp_admin_url . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $cl_text_h . '">splitted leaflet.js into leaflet-core.js and leaflet-addons.js to utilize parallel loading</a>
+<tr><td><a href="' . $leaflet_wp_admin_url . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $cl_text_h . '"><img src="' . $leaflet_plugin_url .'inc/img/icon-changelog-pro.png"></a></td><td>
+<a href="' . $leaflet_wp_admin_url . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $cl_text_h . '">import and export of layer maps as CSV/XLS/XLSX/ODS file</a>
+</td></tr>
+</td></tr>
+<tr><td>' . $new . '</td><td>
+support for conditional SSL loading of Javascript for Google Maps to increase performance (thx John!)
+</td></tr>
+<tr><td>' . $changed . '</td><td>
+icons on marker maps on backend are now also draggable (thx Sascha for the hint!)
+</td></tr>
+<tr><td colspan="2">
+<p><strong>' . $cl_text_d . '</a></p></strong>
+<p>' . sprintf($cl_text_e, 'https://translate.mapsmarker.com/projects/lmm') . '</p>
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated Chinese translation thanks to John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a> and ck
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated Danish translation thanks to Mads Dyrmann Larsen and Peter Erfurt, <a href="http://24-7news.dk" target="_blank">http://24-7news.dk</a>
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated Dutch translation thanks to Patrick Ruers, <a href="http://www.stationskwartiersittard.nl" target="_blank">http://www.stationskwartiersittard.nl</a>
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated German translation
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated Romanian translation thanks to Arian, <a href="http://administrare-cantine.ro" target="_blank">http://administrare-cantine.ro</a> and Daniel Codrea, <a href="http://www.inadcod.com" target="_blank">http://www.inadcod.com</a>
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated Spanish translation thanks to Alvaro Lara, <a href="http://www.alvarolara.com" target="_blank">http://www.alvarolara.com</a>, Victor Guevara, <a href="http://1sistemas.net" target="_blank">http://1sistemas.net</a> and Ricardo Viteri, <a href="http://www.labviteri.com" target="_blank">http://www.labviteri.com</a>
+</td></tr>
+</table>'.PHP_EOL;
+
+if ( ( $lmm_version_old < '3.8.4' ) && ( $lmm_version_old > '0' ) ) {
+echo '<p><hr noshade size="1"/></p>';
 echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf($cl_text_a, '3.8.4') . '</strong> - ' . $cl_text_b . ' 24.01.2014 (<a href="http://www.mapsmarker.com/v3.8.4" target="_blank">' . $cl_text_c . '</a>):</p>
 <table>
 <tr><td>' . $changed . '</td><td>
@@ -99,6 +142,7 @@ updated German translation
 updated Italian translation thanks to Luca Barbetti, <a href="http://twitter.com/okibone" target="_blank">http://twitter.com/okibone</a>
 </td></tr>
 </table>'.PHP_EOL;
+}
 
 if ( ( $lmm_version_old < '3.8.3' ) && ( $lmm_version_old > '0' ) ) {
 echo '<p><hr noshade size="1"/></p>';
@@ -2637,7 +2681,7 @@ echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf($cl_text_a, '3.x') . '<
 </td></tr>
 <tr><td colspan="2">
 <p><strong>' . $cl_text_d . '</a></p></strong>
-<p>' . sprintf($cl_text_e, 'http://translate.mapsmarker.com/projects/lmm') . '</p>
+<p>' . sprintf($cl_text_e, 'https://translate.mapsmarker.com/projects/lmm') . '</p>
 </td></tr>
 <tr><td>' . $transl . '</td><td>
 updated German translation
@@ -2647,6 +2691,7 @@ updated German translation
 <p>' . $cl_text_g . '</p>
 </td></tr>	
 </table>'.PHP_EOL;
+echo '<p><hr noshade size="1"/></p>';
 *************************************************************************************************************************************/
 ?>
 </body>

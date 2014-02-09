@@ -737,6 +737,15 @@ if (get_option('leafletmapsmarker_version') == '3.8.3' ) {
 		update_option('leafletmapsmarker_version_before_update', '3.8.3');
 	}
 	update_option('leafletmapsmarker_version', '3.8.4');
+}
+if (get_option('leafletmapsmarker_version') == '3.8.4' ) {
+	delete_transient( 'leafletmapsmarker_install_update_cache_v384');
+	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
+	if ( $version_before_update === FALSE ) {
+		set_transient( 'leafletmapsmarker_version_before_update', 'deleted-in-1-hour', 60*3 );
+		update_option('leafletmapsmarker_version_before_update', '3.8.4');
+	}
+	update_option('leafletmapsmarker_version', '3.8.5');
 	//info: redirect to create marker page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 	if (get_option('leafletmapsmarker_redirect') == 'true')
 	{
@@ -751,7 +760,6 @@ if (get_option('leafletmapsmarker_version') == '3.8.3' ) {
 			update_option('leafletmapsmarker_update_info', 'hide');
 	}
 }
-
 /* template for plugin updates
 if (get_option('leafletmapsmarker_version') == 'x.xbefore' ) {
 	delete_transient( 'leafletmapsmarker_install_update_cache_vxxbefore'); //2do: update to version from line above
