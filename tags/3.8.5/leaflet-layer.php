@@ -1204,7 +1204,7 @@ var markers = {};
   <?php if ( $lmm_options['map_scale_control'] == 'enabled' ) { ?>
   L.control.scale({position:'<?php echo $lmm_options['map_scale_control_position'] ?>', maxWidth: <?php echo intval($lmm_options['map_scale_control_maxwidth']) ?>, metric: <?php echo $lmm_options['map_scale_control_metric'] ?>, imperial: <?php echo $lmm_options['map_scale_control_imperial'] ?>, updateWhenIdle: <?php echo $lmm_options['map_scale_control_updatewhenidle'] ?>}).addTo(selectlayer);
   <?php }; ?>
-  mapcentermarker = new L.Marker(new L.LatLng(<?php echo $layerviewlat . ', ' . $layerviewlon; ?>),{ title: '<?php esc_attr_e('use this marker to center the layer','lmm'); ?>', clickable: false });
+  mapcentermarker = new L.Marker(new L.LatLng(<?php echo $layerviewlat . ', ' . $layerviewlon; ?>),{ title: '<?php esc_attr_e('use this marker to center the layer','lmm'); ?>', clickable: true, draggable: true });
   mapcentermarker.options.icon = new L.Icon({iconUrl:'<?php echo LEAFLET_PLUGIN_URL . 'inc/img/icon-layer-center.png' ?>',iconSize: [32, 37],iconAnchor: [17, 37],shadowUrl: ''});
   mapcentermarker.addTo(selectlayer);
   var layers = {};
@@ -1288,6 +1288,15 @@ var markers = {};
       document.getElementById('layerviewlon').value = e.latlng.lng.toFixed(6);
       selectlayer.setView(e.latlng,selectlayer.getZoom());
       mapcentermarker.setLatLng(e.latlng);
+  });
+  //info: set new coordinates on mapcentermarker drag
+  mapcentermarker.on('dragend', function(e) {
+      var newlocation = mapcentermarker.getLatLng();
+	  var newlat = newlocation['lat'];
+  	  var newlon = newlocation['lng'];
+	  document.getElementById('layerviewlat').value = newlat.toFixed(6);
+	  document.getElementById('layerviewlon').value = newlon.toFixed(6);
+	  selectlayer.setView(newlocation,selectlayer.getZoom());
   });
   var mapElement = $('#selectlayer'), mapWidth = $('#mapwidth'), mapHeight = $('#mapheight'), layerviewlat = $('#layerviewlat'), layerviewlon = $('#layerviewlon'), panel = $('#lmm-panel'), lmm = $('#lmm'), layername = $('#layername'), listmarkers = $('#lmm-listmarkers'), listmarkers_table = $('#lmm-listmarkers-table'), multi_layer_map = $('#lmm-multi_layer_map'), zoom = $('#layerzoom');
 	//info: bugfix causing maps not to show up in WP 3.0 and errors in WP <3.3

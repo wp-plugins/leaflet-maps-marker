@@ -40,14 +40,17 @@ echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf($cl_text_a, '3.8.5') . 
 <tr><td><a href="' . $leaflet_wp_admin_url . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $cl_text_h . '"><img src="' . $leaflet_plugin_url .'inc/img/icon-changelog-pro.png"></a></td><td>
 <a href="' . $leaflet_wp_admin_url . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $cl_text_h . '">splitted leaflet.js into leaflet-core.js and leaflet-addons.js to utilize parallel loading</a>
 <tr><td><a href="' . $leaflet_wp_admin_url . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $cl_text_h . '"><img src="' . $leaflet_plugin_url .'inc/img/icon-changelog-pro.png"></a></td><td>
-<a href="' . $leaflet_wp_admin_url . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $cl_text_h . '">import and export of layer maps as CSV/XLS/XLSX/ODS file</a>
+<a href="' . $leaflet_wp_admin_url . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $cl_text_h . '">import of layer maps as CSV/XLS/XLSX/ODS file</a>
 </td></tr>
 </td></tr>
 <tr><td>' . $new . '</td><td>
 support for conditional SSL loading of Javascript for Google Maps to increase performance (thx John!)
 </td></tr>
+<tr><td>' . $new . '</td><td>
+export of layer maps as CSV/XLS/XLSX/ODS file
+</td></tr>
 <tr><td>' . $changed . '</td><td>
-icons on marker maps on backend are now also draggable (thx Sascha for the hint!)
+icons on marker maps and layer maps center icon on backend are now also draggable (thx Sascha for the hint!)
 </td></tr>
 <tr><td colspan="2">
 <p><strong>' . $cl_text_d . '</a></p></strong>
