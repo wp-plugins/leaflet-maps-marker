@@ -291,10 +291,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2014, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.8.4 =
-optimized TinyMCE button, backend performance and usability improvements - see http://www.mapsmarker.com/v3.8.4 for more details
+= v3.8.5 =
+XLSX/XLS/CSV/ODS export of layer maps, Google Maps performance improvements - see http://www.mapsmarker.com/v3.8.5 for more details
 
 == Changelog ==
-[blog post with details about v3.8.4](http://www.mapsmarker.com/v3.8.4)
+[blog post with details about v3.8.5](http://www.mapsmarker.com/v3.8.5)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

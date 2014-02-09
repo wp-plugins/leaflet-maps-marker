@@ -14,12 +14,16 @@ $action = isset($_POST['action']) ? $_POST['action'] : '';
 
 if (!empty($action)) {
 	$import_export_nonce = isset($_POST['_wpnonce']) ? $_POST['_wpnonce'] : (isset($_GET['_wpnonce']) ? $_GET['_wpnonce'] : '');
-	if (! wp_verify_nonce($import_export_nonce, 'import-export-nonce') ) die('<br/>'.__('Security check failed - please call this function from the according Leaflet Maps Marker admin page!','lmm').'');
+	if (! wp_verify_nonce($import_export_nonce, 'import-export-nonce') ) die('<br/>'.__('Security check failed - please call this function from the according admin page!','lmm').'');
 	$import_export_standalone_nonce = wp_create_nonce('import-export-standalone-nonce');
 	if ($action == 'import') {
 		echo '<iframe name="import" src="' . LEAFLET_PLUGIN_URL . 'inc/import-export/start.php?action_iframe=import&_wpnonce=' . $import_export_standalone_nonce . '" width="100%" height="850" marginwidth="0" marginheight="0"></iframe>'.PHP_EOL;
+	} else if ($action == 'import-layers') {
+		echo '<iframe name="import-layers" src="' . LEAFLET_PLUGIN_URL . 'inc/import-export/start.php?action_iframe=import-layers&_wpnonce=' . $import_export_standalone_nonce . '" width="100%" height="850" marginwidth="0" marginheight="0"></iframe>'.PHP_EOL;
 	} elseif ($action == 'export') {
 		echo '<iframe name="export" src="' . LEAFLET_PLUGIN_URL . 'inc/import-export/start.php?action_iframe=export&_wpnonce=' . $import_export_standalone_nonce . '" width="100%" height="850" marginwidth="0" marginheight="0"></iframe>'.PHP_EOL;
+	} elseif ($action == 'export-layers') {
+		echo '<iframe name="export-layers" src="' . LEAFLET_PLUGIN_URL . 'inc/import-export/start.php?action_iframe=export-layers&_wpnonce=' . $import_export_standalone_nonce . '" width="100%" height="850" marginwidth="0" marginheight="0"></iframe>'.PHP_EOL;
 	}
 } else { //info: !empty($action) 2/3
 ?>
@@ -39,7 +43,9 @@ if (!empty($action)) {
 	<p>
 	<table>
 		<tr>
-			<td colspan="2"><span style="font-weight:bold;"><?php _e('Import markers','lmm'); ?></span> (<?php _e('for bulk additions of new markers and bulk updates of existing markers','lmm'); ?>)</td>
+			<td colspan="2"><span style="font-weight:bold;"><?php _e('Import markers','lmm'); ?></span></td>
+			<td style="width:50px;"></td>
+			<td colspan="2"><span style="font-weight:bold;"><?php _e('Import layers','lmm'); ?></span></td>
 		</tr>
 		<tr>
 			<td style="width:35px;"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-import.png" width="32" height="32" alt="import"></td>
@@ -50,9 +56,20 @@ if (!empty($action)) {
 				<input style="font-weight:bold;" type="submit" name="submit" class="submit button-primary" value="<?php esc_attr_e('prepare import','lmm'); ?>" />
 				</form>
 			</td>
+			<td></td>
+			<td style="width:35px;"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-import.png" width="32" height="32" alt="import"></td>
+			<td>
+				<form method="post">
+				<?php wp_nonce_field('import-export-nonce'); ?>
+				<input type="hidden" name="action" value="import-layers" />
+				<input style="font-weight:bold;" type="submit" name="submit" class="submit button-primary" value="<?php esc_attr_e('prepare import','lmm'); ?>" />
+				</form>
+			</td>
 		</tr>
 		<tr>
 			<td colspan="2" style="font-weight:bold;"><?php _e('Export markers','lmm'); ?></td>
+			<td></td>
+			<td colspan="2"><span style="font-weight:bold;"><?php _e('Export layers','lmm'); ?></span></td>
 		</tr>
 		<tr>
 			<td style="width:35px;"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-export.png" width="32" height="32" alt="export"></td>
@@ -60,6 +77,15 @@ if (!empty($action)) {
 				<form method="post">
 				<?php wp_nonce_field('import-export-nonce'); ?>
 				<input type="hidden" name="action" value="export" />
+				<input style="font-weight:bold;" type="submit" name="submit" class="submit button-primary" value="<?php esc_attr_e('prepare export','lmm'); ?>" />
+				</form>
+			</td>
+			<td></td>
+			<td style="width:35px;"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-export.png" width="32" height="32" alt="export"></td>
+			<td>
+				<form method="post">
+				<?php wp_nonce_field('import-export-nonce'); ?>
+				<input type="hidden" name="action" value="export-layers" />
 				<input style="font-weight:bold;" type="submit" name="submit" class="submit button-primary" value="<?php esc_attr_e('prepare export','lmm'); ?>" />
 				</form>
 			</td>

@@ -27,7 +27,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 	echo sprintf(__('The plugin "Leaflet Maps Marker" is inactive on this site and therefore this API link is not working.<br/><br/>Please contact the site owner (%1s) who can activate this plugin again.','lmm'), antispambot(get_bloginfo('admin_email')) );
 } else {
 	$import_export_standalone_nonce = isset($_GET['_wpnonce']) ? $_GET['_wpnonce'] : '';
-	if (! wp_verify_nonce($import_export_standalone_nonce, 'import-export-standalone-nonce') ) die("".__('Security check failed - please call this function from the according Leaflet Maps Marker admin page!','lmm')."");
+	if (! wp_verify_nonce($import_export_standalone_nonce, 'import-export-standalone-nonce') ) die("".__('Security check failed - please call this function from the according admin page!','lmm')."");
 
 	global $wpdb, $current_user;
 	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
@@ -158,9 +158,9 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					<td colspan="2">
 					' . __('Download import template files','lmm') . ': ';
 					if (extension_loaded('zip')) {
-						echo '<a href="http://www.mapsmarker.com/import-template-xlsx">.xlsx (Excel2007)</a>, <a href="http://www.mapsmarker.com/import-template-xls">.xls (Excel5)</a>, <a href="http://www.mapsmarker.com/import-template-ods">.ods (OpenOffice/LibreOffice)</a>, <a href="http://www.mapsmarker.com/import-template-csv">.csv</a><br/>';
+						echo '<a href="http://www.mapsmarker.com/import-template-xlsx" target="_blank">.xlsx (Excel2007)</a>, <a href="http://www.mapsmarker.com/import-template-xls" target="_blank">.xls (Excel5)</a>, <a href="http://www.mapsmarker.com/import-template-ods" target="_blank">.ods (OpenOffice/LibreOffice)</a>, <a href="http://www.mapsmarker.com/import-template-csv" target="_blank">.csv</a><br/>';
 					} else {
-						echo '<a href="http://www.mapsmarker.com/import-template-xls">.xls (Excel5)</a>, <a href="http://www.mapsmarker.com/import-template-csv">.csv</a><br/>';
+						echo '<a href="http://www.mapsmarker.com/import-template-xls" target="_blank">.xls (Excel5)</a>, <a href="http://www.mapsmarker.com/import-template-csv" target="_blank">.csv</a><br/>';
 					}
 					echo '<a href="javascript:back();">' . __('If you want to bulk update existing markers, please make an export first!','lmm') . '</a>
 					</td>
@@ -254,7 +254,138 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				</tr>
 			</table>
 			</form>';
-		//info: end ($action_iframe == 'import')
+		//info: end ($action_iframe == 'import') markers
+		} else if ($action_iframe == 'import-layers') {
+			/**********************************
+			*      import form layers        *
+			**********************************/
+			echo '<table><tr><td><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-import.png" width="32" height="32" alt="import"></td>';
+			echo '<td><h3 style="font-size:20px;margin:0px;"> ' . __('prepare import','lmm') . ' (' . __('layers','lmm') . ')</h3></td></tr></table>';
+			echo '
+			<script>
+			function lmm_check_file_extension()	{
+				str=document.getElementById("import-file").value.toUpperCase();
+				suffix=".CSV";
+				suffix2=".XLS";
+				suffix3=".XLSX";
+				suffix4=".ODS";
+				if(!(str.indexOf(suffix, str.length - suffix.length) !== -1
+							|| str.indexOf(suffix2, str.length - suffix2.length) !== -1
+							|| str.indexOf(suffix3, str.length - suffix3.length) !== -1
+							|| str.indexOf(suffix4, str.length - suffix4.length) !== -1)
+					){
+					alert("' . sprintf(esc_attr__('Error: file type not allowed - allowed file types: %1$s','lmm'), 'csv, xls, xlsx, ods') . '");
+					document.getElementById("import-file").value="";
+				}
+			}
+			</script>
+			
+			<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" target="_top">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>
+
+			<form method="post" enctype="multipart/form-data">
+			<input type="hidden" name="action_standalone" value="import-layers" />
+			<table>
+				<tr>
+					<td colspan="2">
+					' . __('Download import template files','lmm') . ': ';
+					if (extension_loaded('zip')) {
+						echo '<a href="http://www.mapsmarker.com/import-template-layers-xlsx" target="_blank">.xlsx (Excel2007)</a>, <a href="http://www.mapsmarker.com/import-template-layers-xls" target="_blank">.xls (Excel5)</a>, <a href="http://www.mapsmarker.com/import-template-layers-ods" target="_blank">.ods (OpenOffice/LibreOffice)</a>, <a href="http://www.mapsmarker.com/import-template-layers-csv" target="_blank">.csv</a><br/>';
+					} else {
+						echo '<a href="http://www.mapsmarker.com/import-template-layers-xls" target="_blank">.xls (Excel5)</a>, <a href="http://www.mapsmarker.com/import-template-layers-csv" target="_blank">.csv</a><br/>';
+					}
+					echo '<a href="javascript:back();">' . __('If you want to bulk update existing layers, please make an export first!','lmm') . '</a>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">' . __('Please select import file','lmm') . '</td>
+					<td>
+						<input id="import-file" name="import-file" type="file" size="50" onchange="lmm_check_file_extension()" disabled="disabled" /><br/>';
+						if (extension_loaded('zip')) {
+							echo sprintf(__('supported formats: %1$s','lmm'), 'xlsx, xls, ods, csv') . ' ' . __('(with semicolons as delimiters)','lmm');
+						} else {
+							echo sprintf(__('supported formats: %1$s','lmm'), 'xls, csv') . ' ' . __('(with semicolons as delimiters)','lmm') . '<br/>';
+							echo ' <span style="background:yellow;padding:2px;">' . __('The PHP extension php_zip is not enabled on your server - this means that .xlsx or .ods files cannot be handled. Please contact your admin for more details.','lmm') . '</span>';
+						}
+					echo '</td>
+				</tr>
+				<tr>
+					<td valign="top">' . __('Which geocoding option should be used?','lmm') . '</td>
+					<td>
+						<input id="geocoding-on" type="radio" name="geocoding-option" value="geocoding-on" checked="checked" disabled="disabled" /> <label for="geocoding-on"> ' . __('use address for geocoding (latitude and longitude values will get overwritten by geocoding results)','lmm') . '</label><br/>
+						<input id="geocoding-off" type="radio" name="geocoding-option" value="geocoding-off" disabled="disabled" /> <label for="geocoding-off"> ' . __('do not use address for geocoding (address, latitude and longitude values will be imported as given)','lmm') . '</label><br/>
+
+						<p id="show-more-gmapsbusiness" style="margin:5px 0 0 24px;"><a href="#" onclick="document.getElementById(\'gmapsbusiness-more-options\').style.display = \'block\';document.getElementById(\'show-more-gmapsbusiness\').style.display = \'none\';">' . sprintf(__('Please note: Google Maps API allows up to %1$s geocoding requests per day and IP-address! Click here if you have a Google Maps API for Business account which allows up to %2$s geocoding requests per day','lmm'), '2.500', '100.000') . '</a></p>
+						<div id="gmapsbusiness-more-options" style="display:none;">
+						<p style="margin:5px 0 0 24px;">
+						' . sprintf(__('To use your <a href="%1$s" target="_blank">Google Maps API for business</a>-account, please fill in the fields below - more details at %2$s','lmm'), 'http://www.google.com/enterprise/mapsearth/products/mapsapi.html?rd=1#','<a href="https://developers.google.com/maps/documentation/business/webservices/auth" target="_blank">https://developers.google.com/maps/documentation/business/webservices/auth</a>') . '<br/>
+						</p>
+						<p style="margin:5px 0 0 24px;"><label for="gmapsbusiness-client" style="margin-right:12px;">client ID</label> <input id="gmapsbusiness-client" type="input" name="gmapsbusiness-client" value="" style="width:250px;" disabled="disabled" /></label></span></p>
+						<p style="margin:5px 0 0 24px;"><label for="gmapsbusiness-signature" style="margin-right:4px;">signature</label> <input id="gmapsbusiness-signature" type="input" name="gmapsbusiness-signature" value="" style="width:250px;" disabled="disabled" /></label></span></p>
+						<p style="margin:5px 0 0 24px;"><label for="gmapsbusiness-channel" style="margin-right:12px;">channel</label> <input id="gmapsbusiness-channel" type="input" name="gmapsbusiness-channel" value="" style="width:250px;" disabled="disabled" /></label></span></p>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">' . __('Which audit option should be used?','lmm') . '</td>
+					<td>
+						<input id="audit-on" type="radio" name="audit-option" value="audit-on" checked="checked" disabled="disabled" /> <label for="audit-on"> ' . sprintf(__('use current userlogin (%1$s) and current timestamp for createdby/createdon on new layers and updatedby/updatedon on layer updates','lmm'), $current_user->user_login) . '</label><br/>
+						<input id="audit-off" type="radio" name="audit-option" value="audit-off" disabled="disabled" /> <label for="audit-off"> ' . __('import values for createdby/createdon and updatedby/updatedon as given (no changes will be made to import file)','lmm') . '</label>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">' . __('Which caching method should be used?','lmm') . '</td>
+					<td>
+						<input id="caching-auto" type="radio" name="caching-method" value="auto" checked="checked" disabled="disabled" /> <label for="caching-auto">' . __('automatic','lmm') . '</label>
+
+						<a href="#" id="show-more-link" onclick="document.getElementById(\'caching-options-more\').style.display = \'block\';document.getElementById(\'show-more-link\').style.display = \'none\';"> - ' . __('show more options','lmm') . '</a>
+						<div id="caching-options-more" style="display:none;">
+						<span ' . $caching_sqlite2_disabled_css . '><input id="caching-sqlite2" type="radio" name="caching-method" value="sqlite2" ' . $caching_sqlite2_disabled . ' disabled="disabled" /> <label for="caching-sqlite2">SQLite2 <a href="http://www.sqlite.org/" title="http://www.sqlite.org/" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-menu-external.png" width="10" height="10"/></a> (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('very low','lmm'), __('low','lmm')) . ')</label></span><br/>
+
+						<span ' . $caching_sqlite3_disabled_css . '><input id="caching-sqlite3" type="radio" name="caching-method" value="sqlite3" ' . $caching_sqlite3_disabled . ' disabled="disabled" /> <label for="caching-sqlite3">SQLite3 <a href="http://www.sqlite.org/" title="http://www.sqlite.org/" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-menu-external.png" width="10" height="10"/></a> (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('very low','lmm'), __('very low','lmm')) . ')</label></span><br/>
+
+						<span ' . $caching_apc_disabled_css . '><input id="caching-apc" type="radio" name="caching-method" value="apc" ' . $caching_apc_disabled . ' disabled="disabled" /> <label for="caching-apc">APC <a href="http://pecl.php.net/package/APC" title="http://pecl.php.net/package/APC" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-menu-external.png" width="10" height="10"/></a> (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('low','lmm'), __('medium','lmm')) . ')<br/>
+						<label for="caching-apc-timeout" style="margin-left:24px;">' . __('timeout in seconds','lmm') . ' </label> <input id="caching-apc-timeout" type="input" name="caching-apc-timeout" value="600" style="width:30px;" ' . $caching_apc_disabled . ' disabled="disabled" /></label></span><br/>
+
+						<span ' . $caching_memcache_disabled_css . '><input id="caching-memcache" type="radio" name="caching-method" value="memcache" ' . $caching_memcache_disabled . ' disabled="disabled" /> <label for="caching-memcache">Memcache <a href="http://memcached.org/" title="http://memcached.org/" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-menu-external.png" width="10" height="10"/></a> (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('low','lmm'), __('medium','lmm')) . ')<br/>
+						<label for="caching-memcache-server" style="margin-left:24px;">' . __('server','lmm') . ' </label> <input id="caching-memcache-server" type="input" name="caching-memcache-server" value="localhost" style="width:150px;" ' . $caching_memcache_disabled . ' disabled="disabled" /></label>
+						<label for="caching-memcache-port" style="margin-left:5px;">' . __('port','lmm') . ' </label> <input id="caching-memcache-port" type="input" name="caching-memcache-port" value="11211" style="width:49px;" ' . $caching_memcache_disabled . ' disabled="disabled" /></label>
+						<label for="caching-memcache-timeout" style="margin-left:5px;">' . __('timeout in seconds','lmm') . ' </label> <input id="caching-memcache-timeout" type="input" name="caching-memcache-timeout" value="600" style="width:31px;" ' . $caching_memcache_disabled . ' disabled="disabled" /></label></span><br/>
+
+						<span ' . $caching_wincache_disabled_css . '><input id="caching-wincache" type="radio" name="caching-method" value="wincache" ' . $caching_wincache_disabled . ' disabled="disabled" /> <label for="caching-wincache">Wincache <a href="http://sourceforge.net/projects/wincache/" title="http://sourceforge.net/projects/wincache/" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-menu-external.png" width="10" height="10"/></a> (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('low','lmm'), __('medium','lmm')) . ')<br/>
+						<label for="caching-wincache-timeout" style="margin-left:24px;">' . __('timeout in seconds','lmm') . ' </label> <input id="caching-wincache-timeout" type="input" name="caching-wincache-timeout" value="600" style="width:31px;" ' . $caching_wincache_disabled . ' disabled="disabled" /></label></span><br/>
+
+						<span ' . $caching_memorygzip_disabled_css . '><input id="caching-memorygzip" type="radio" name="caching-method" value="memorygzip" ' . $caching_memorygzip_disabled . ' disabled="disabled" /> <label for="caching-memorygzip">MemoryGZIP (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')</label></span><br/>
+
+						<span ' . $caching_discisam_disabled_css . '><input id="caching-discisam" type="radio" name="caching-method" value="discisam" ' . $caching_discisam_disabled . ' disabled="disabled" /> <label for="caching-discisam">DiscISAM (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')' . $caching_discisam_disabled . '</label><br/>
+						<label for="caching-discisam-directory" style="margin-left:24px;">' . __('custom directory for temp files (instead of php temp directory)','lmm') . ' </label>:<br/>
+						<input style="margin-left:24px;width:300px;" id="caching-discisam-directory" type="input" name="caching-discisam-directory" value="" ' . $caching_discisam_disabled . ' disabled="disabled" /></label></span><br/>
+
+						<span ' . $caching_phptemp_disabled_css . '><input id="caching-phptemp" type="radio" name="caching-method" value="phptemp" ' . $caching_phptemp_disabled . ' disabled="disabled" /> <label for="caching-phptemp">phpTemp ' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')</label><br/>
+						<label for="caching-phptemp-filesize" style="margin-left:24px;">' . __('maximum temporary file size in MB','lmm') . ' </label> <input id="caching-phptemp-filesize" type="input" name="caching-phptemp-filesize" value="8" style="width:30px;" ' . $caching_phptemp_disabled . ' disabled="disabled" /></label></span><br/>
+
+						<span ' . $caching_igbinary_disabled_css . '><input id="caching-igbinary" type="radio" name="caching-method" value="igbinary" ' . $caching_igbinary_disabled . ' disabled="disabled" /> <label for="caching-igbinary">igbinary <a href="http://pecl.php.net/package/igbinary" title="http://pecl.php.net/package/igbinary" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-menu-external.png" width="10" height="10"/></a> (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('high','lmm')) . ')</label></span><br/>
+
+						<span ' . $caching_memoryserialized_disabled_css . '><input id="caching-memoryserialized" type="radio" name="caching-method" value="memoryserialized" ' . $caching_memoryserialized_disabled . ' disabled="disabled" /> <label for="caching-memoryserialized">Memory serialized (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('high','lmm'), __('high','lmm')) . ')' . $caching_memoryserialized_disabled . '</label></span><br/>
+
+						<input id="caching-memory" type="radio" name="caching-method" value="memory" disabled="disabled" /> <label for="caching-memory">Memory <a href="http://www.php.net/manual/en/ini.core.php#ini.memory-limit" title="http://www.php.net/manual/en/ini.core.php#ini.memory-limit" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-menu-external.png" width="10" height="10"/></a> (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('very high','lmm'), __('very high','lmm')) . ')</label><br/>
+
+						<input type="checkbox" name="setReadDataOnly" id="setReadDataOnly" disabled="disabled" /> <label for="setReadDataOnly"> ' . __('further reduce memory usage for xlsx/xls/ods input files by only importing linktext for hyperlinks','lmm') . '</a>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">' . __('Test mode','lmm') . '</td>
+					<td>
+						<input id="test-mode-on" type="radio" name="test-mode" value="test-mode-on" checked="checked" disabled="disabled" /> <label for="test-mode-on"> ' . __('on (check import file only - no changes will be made to database)','lmm') . '</label><br/>
+						<input id="test-mode-off" type="radio" name="test-mode" value="test-mode-off" disabled="disabled" /> <label for="test-mode-off"> ' . __('off (save changes to database)','lmm') . '</label>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input style="font-weight:bold;" type="submit" name="submit" class="submit button-primary" value="' . esc_attr__('start import','lmm') . '" disabled="disabled" /></td>
+				</tr>
+			</table>
+			</form>';
+		//info: end ($action_iframe == 'import-layers')	
 		} else if ($action_iframe == 'export') {
 			/**********************************
 			*         export form             *
@@ -391,7 +522,108 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				</tr>
 			</table>
 			</form>';
-		} //info: ($action_iframe == 'import')
+		//info: ($action_iframe == 'import')
+		} else if ($action_iframe == 'export-layers') {
+			/**********************************
+			*      export form layers        *
+			**********************************/
+			echo '<table><tr><td><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-export.png" width="32" height="32" alt="export"></td>';
+			echo '<td><h3 style="font-size:20px;margin:0px;"> ' . __('prepare export','lmm') . ' (' . __('layers','lmm') . ')</h3></td></tr></table>';
+			$layerlist = $wpdb->get_results('SELECT id,name,multi_layer_map FROM '.$table_name_layers, ARRAY_A);
+			$layercount_all = $wpdb->get_var('SELECT count(*) FROM '.$table_name_layers.'') - 1;
+			
+			if (extension_loaded('zip')) {
+				$export_disabled = '';
+				$export_disabled_info = '';
+			} else {
+				$export_disabled = 'disabled="disabled"';
+				$export_disabled_info = ' <span style="background:yellow;padding:2px;">' . __('The PHP extension php_zip is not enabled on your server - this means that .xlsx or .ods files cannot be handled. Please contact your admin for more details.','lmm') . '</span>';
+			}
+			echo '<p>' . __('Please keep in mind that you can only export layer maps here - if you also want to export the assigned markers, please also use the function "export markers"!','lmm') . '</p>';
+			echo '
+			<form method="post">
+			<input type="hidden" name="action_standalone" value="export-layers" />
+			<table>
+				<tr>
+					<td>' . __('Which layers should be selected?','lmm') . '</td>
+					<td>
+						<select id="filter-layer" name="filter-layer">
+						<option value="select-all">' . sprintf(__('all %1$s layers','lmm'), $layercount_all) . '</option>';
+						foreach ($layerlist as $row) {
+							if ($row['id'] != 0) {
+								echo '<option value="' . $row['id'] . '"' . ($row['id'] == $layer ? ' selected="selected"' : '') . '>' . stripslashes(htmlspecialchars($row['name'])) . ' (' . __('layer','lmm') . ' ID ' . $row['id'] . ')</option>';
+							}
+						}
+						echo '
+						</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>' . __('How many layers should be exported?','lmm') . '</td>
+					<td><input type="text" id="limit-to" name="limit-to" value="' . $layercount_all . '" style="width:31px;" /> ' . __('layers','lmm') . '</td>
+				</tr>
+				<tr>
+					<td valign="top">' . __('Which export format should be used?','lmm') . '</td>
+					<td>';
+						//info: needed if excel2007 is not supported
+						if ($export_disabled == NULL) {
+							$default_export_format_exel2007 = 'checked="checked"';
+							$default_export_format_exel5 = '';
+						} else {
+							$default_export_format_exel2007 = '';
+							$default_export_format_exel5 = 'checked="checked"';
+						}
+					echo '<input id="export-exel2007" type="radio" name="export-format" value="exel2007" ' . $export_disabled . ' ' . $default_export_format_exel2007 . ' /> <label for="export-exel2007">Excel2007 (.xlsx) - ' . sprintf(__('compatible with OpenOffice %1$s and LibreOffice %2$s','lmm'), '3.0+', '3.6+') . '</label> ' . $export_disabled_info . '<br/>
+						<input id="export-excel5" type="radio" name="export-format" value="excel5" ' . $default_export_format_exel5 . ' /> <label for="export-excel5">Excel5 (.xls)</label><br/>
+						<input id="export-csv" type="radio" name="export-format" value="csv" /> <label for="export-csv">CSV (.csv)</label>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">' . __('Which caching method should be used?','lmm') . '</td>
+					<td>
+						<input id="caching-auto" type="radio" name="caching-method" value="auto" checked="checked" /> <label for="caching-auto">' . __('automatic','lmm') . '</label>
+
+						<a href="#" id="show-more-link" onclick="document.getElementById(\'caching-options-more\').style.display = \'block\';document.getElementById(\'show-more-link\').style.display = \'none\';"> - ' . __('show more options','lmm') . '</a>
+						<div id="caching-options-more" style="display:none;">
+						<span ' . $caching_sqlite2_disabled_css . '><input id="caching-sqlite2" type="radio" name="caching-method" value="sqlite2" ' . $caching_sqlite2_disabled . ' /> <label for="caching-sqlite2">SQLite2 <a href="http://www.sqlite.org/" title="http://www.sqlite.org/" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-menu-external.png" width="10" height="10"/></a> (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('very low','lmm'), __('low','lmm')) . ')</label></span><br/>
+
+						<span ' . $caching_sqlite3_disabled_css . '><input id="caching-sqlite3" type="radio" name="caching-method" value="sqlite3" ' . $caching_sqlite3_disabled . ' /> <label for="caching-sqlite3">SQLite3 <a href="http://www.sqlite.org/" title="http://www.sqlite.org/" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-menu-external.png" width="10" height="10"/></a> (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('very low','lmm'), __('very low','lmm')) . ')</label></span><br/>
+
+						<span ' . $caching_apc_disabled_css . '><input id="caching-apc" type="radio" name="caching-method" value="apc" ' . $caching_apc_disabled . ' /> <label for="caching-apc">APC <a href="http://pecl.php.net/package/APC" title="http://pecl.php.net/package/APC" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-menu-external.png" width="10" height="10"/></a> (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('low','lmm'), __('medium','lmm')) . ')<br/>
+						<label for="caching-apc-timeout" style="margin-left:24px;">' . __('timeout in seconds','lmm') . ' </label> <input id="caching-apc-timeout" type="input" name="caching-apc-timeout" value="600" style="width:30px;" ' . $caching_apc_disabled . ' /></label></span><br/>
+
+						<span ' . $caching_memcache_disabled_css . '><input id="caching-memcache" type="radio" name="caching-method" value="memcache" ' . $caching_memcache_disabled . ' /> <label for="caching-memcache">Memcache <a href="http://memcached.org/" title="http://memcached.org/" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-menu-external.png" width="10" height="10"/></a> (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('low','lmm'), __('medium','lmm')) . ')<br/>
+						<label for="caching-memcache-server" style="margin-left:24px;">' . __('server','lmm') . ' </label> <input id="caching-memcache-server" type="input" name="caching-memcache-server" value="localhost" style="width:150px;" ' . $caching_memcache_disabled . ' /></label>
+						<label for="caching-memcache-port" style="margin-left:5px;">' . __('port','lmm') . ' </label> <input id="caching-memcache-port" type="input" name="caching-memcache-port" value="11211" style="width:49px;" ' . $caching_memcache_disabled . ' /></label>
+						<label for="caching-memcache-timeout" style="margin-left:5px;">' . __('timeout in seconds','lmm') . ' </label> <input id="caching-memcache-timeout" type="input" name="caching-memcache-timeout" value="600" style="width:31px;" ' . $caching_memcache_disabled . ' /></label></span><br/>
+
+						<span ' . $caching_wincache_disabled_css . '><input id="caching-wincache" type="radio" name="caching-method" value="wincache" ' . $caching_wincache_disabled . ' /> <label for="caching-wincache">Wincache <a href="http://sourceforge.net/projects/wincache/" title="http://sourceforge.net/projects/wincache/" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-menu-external.png" width="10" height="10"/></a> (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('low','lmm'), __('medium','lmm')) . ')<br/>
+						<label for="caching-wincache-timeout" style="margin-left:24px;">' . __('timeout in seconds','lmm') . ' </label> <input id="caching-wincache-timeout" type="input" name="caching-wincache-timeout" value="600" style="width:31px;" ' . $caching_wincache_disabled . ' /></label></span><br/>
+
+						<span ' . $caching_memorygzip_disabled_css . '><input id="caching-memorygzip" type="radio" name="caching-method" value="memorygzip" ' . $caching_memorygzip_disabled . ' /> <label for="caching-memorygzip">MemoryGZIP (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')</label></span><br/>
+
+						<span ' . $caching_discisam_disabled_css . '><input id="caching-discisam" type="radio" name="caching-method" value="discisam" ' . $caching_discisam_disabled . ' /> <label for="caching-discisam">DiscISAM (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')' . $caching_discisam_disabled . '</label><br/>
+						<label for="caching-discisam-directory" style="margin-left:24px;">' . __('custom directory for temp files (instead of php temp directory)','lmm') . ' </label>:<br/>
+						<input style="margin-left:24px;width:300px;" id="caching-discisam-directory" type="input" name="caching-discisam-directory" value="" ' . $caching_discisam_disabled . ' /></label></span><br/>
+
+						<span ' . $caching_phptemp_disabled_css . '><input id="caching-phptemp" type="radio" name="caching-method" value="phptemp" ' . $caching_phptemp_disabled . ' /> <label for="caching-phptemp">phpTemp ' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')</label><br/>
+						<label for="caching-phptemp-filesize" style="margin-left:24px;">' . __('maximum temporary file size in MB','lmm') . ' </label> <input id="caching-phptemp-filesize" type="input" name="caching-phptemp-filesize" value="8" style="width:30px;" ' . $caching_phptemp_disabled . ' /></label></span><br/>
+
+						<span ' . $caching_igbinary_disabled_css . '><input id="caching-igbinary" type="radio" name="caching-method" value="igbinary" ' . $caching_igbinary_disabled . ' /> <label for="caching-igbinary">igbinary <a href="http://pecl.php.net/package/igbinary" title="http://pecl.php.net/package/igbinary" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-menu-external.png" width="10" height="10"/></a> (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('high','lmm')) . ')</label></span><br/>
+
+						<span ' . $caching_memoryserialized_disabled_css . '><input id="caching-memoryserialized" type="radio" name="caching-method" value="memoryserialized" ' . $caching_memoryserialized_disabled . ' /> <label for="caching-memoryserialized">Memory serialized (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('high','lmm'), __('high','lmm')) . ')' . $caching_memoryserialized_disabled . '</label></span><br/>
+
+						<input id="caching-memory" type="radio" name="caching-method" value="memory" /> <label for="caching-memory">Memory <a href="http://www.php.net/manual/en/ini.core.php#ini.memory-limit" title="http://www.php.net/manual/en/ini.core.php#ini.memory-limit" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-menu-external.png" width="10" height="10"/></a> (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('very high','lmm'), __('very high','lmm')) . ')</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input style="font-weight:bold;" type="submit" name="submit" class="submit button-primary" value="' . esc_attr__('start export','lmm') . '" /></td>
+				</tr>
+			</table>
+			</form>';
+		} //info: ($action_iframe == 'export-layers') 
 		echo '</p></body></html>';
 
 	//info: end ($action_standalone == NULL)
@@ -746,7 +978,173 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			unset($export_rows);
 			$objPHPExcel->disconnectWorksheets();
 			unset($objPHPExcel);
-		} //info: end (action_standalone == export)
+		//info: end (action_standalone == export)
+		} else if ($action_standalone == 'export-layers') {
+			/**********************************
+			*      export action layer        *
+			**********************************/
+			//info: prepare sql for layer filter
+			if ( $_POST['filter-layer'] == 'select-all' ) {
+				$filter_layer_sql = '(1=1)';
+			} else {
+				$filter_layer_sql = 'id = ' . intval($_POST['filter-layer']);
+			}
+			$filter_limit_to = intval($_POST['limit-to']);
+			$export_rows = $wpdb->get_results("SELECT * FROM $table_name_layers WHERE $filter_layer_sql AND id != 0 LIMIT 0, $filter_limit_to", ARRAY_A);
+
+			//info: set document properties
+			global $user;
+			$objPHPExcel->getProperties()->setCreator("$current_user->user_login")
+								 ->setLastModifiedBy("$current_user->user_login")
+								 ->setTitle("MapsMarker Export Layers")
+								 ->setDescription("Marker export created with MapsMarkerPro (http://www.mapsmarker.com), using PHPExcel (http://phpexcel.codeplex.com)")
+								 ->setKeywords("MapsMarker PHPExcel");
+
+			 //info: rename worksheet
+			$objPHPExcel->getActiveSheet()->setTitle('MapsMarker-Export-Layers');
+			//info: set active sheet index to the first sheet, so Excel opens this as the first sheet
+			$objPHPExcel->setActiveSheetIndex(0);
+			//info: activate autofilter
+			$objPHPExcel->getActiveSheet()->setAutoFilter('A1:AJ1');
+
+			//info: add header data
+			$headings = array('id','name','address','layerviewlat','layerviewlon','layerzoom','mapwidth','mapwidthunit','mapheight','basemap','panel','clustering','listmarkers','multi_layer_map','multi_layer_map_list','controlbox','createdby','createdon','updatedby','updatedon','overlays_custom','overlays_custom2','overlays_custom3','overlays_custom4','wms','wms2','wms3','wms4','wms5','wms6','wms7','wms8','wms9','wms10','gpx_url','gpx_panel');
+			$rowNumber = 1;
+			$col = 'A';
+			foreach($headings as $heading) {
+			   $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$heading);
+			   $col++;
+			}
+			$rowNumber = 2;
+			$array_count_total = count($export_rows);
+			$array_count_current = 0;
+
+			$export_format = $_POST['export-format'];
+
+			while ($array_count_current < $array_count_total) {
+				$objPHPExcel->getActiveSheet()->setCellValue('A'.$rowNumber,$export_rows[$array_count_current]['id']);
+				if ($export_format != 'csv') {
+					$objPHPExcel->getActiveSheet()->getStyle('B'.$rowNumber)->getAlignment()->setWrapText(true);
+				}
+				$objPHPExcel->getActiveSheet()->setCellValue('B'.$rowNumber,stripslashes($export_rows[$array_count_current]['name']));
+				if ($export_format == 'csv') {
+					$objPHPExcel->getActiveSheet()->setCellValue('C'.$rowNumber,$export_rows[$array_count_current]['address']);
+				} else {
+					$objPHPExcel->getActiveSheet()->getStyle('C'.$rowNumber)->getAlignment()->setWrapText(true);
+					$objPHPExcel->getActiveSheet()->setCellValue('C'.$rowNumber,stripslashes($export_rows[$array_count_current]['address']));
+				}
+				$objPHPExcel->getActiveSheet()->setCellValue('D'.$rowNumber,$export_rows[$array_count_current]['layerviewlat']);
+				$objPHPExcel->getActiveSheet()->setCellValue('E'.$rowNumber,$export_rows[$array_count_current]['layerviewlon']);
+				$objPHPExcel->getActiveSheet()->setCellValue('F'.$rowNumber,$export_rows[$array_count_current]['layerzoom']);
+				$objPHPExcel->getActiveSheet()->setCellValue('G'.$rowNumber,$export_rows[$array_count_current]['mapwidth']);
+				$objPHPExcel->getActiveSheet()->setCellValue('H'.$rowNumber,$export_rows[$array_count_current]['mapwidthunit']);
+				$objPHPExcel->getActiveSheet()->setCellValue('I'.$rowNumber,$export_rows[$array_count_current]['mapheight']);
+				$objPHPExcel->getActiveSheet()->setCellValue('J'.$rowNumber,$export_rows[$array_count_current]['basemap']);
+				$objPHPExcel->getActiveSheet()->setCellValue('K'.$rowNumber,$export_rows[$array_count_current]['panel']);
+				$objPHPExcel->getActiveSheet()->setCellValue('L'.$rowNumber,$export_rows[$array_count_current]['clustering']);
+				$objPHPExcel->getActiveSheet()->setCellValue('M'.$rowNumber,$export_rows[$array_count_current]['listmarkers']);
+				$objPHPExcel->getActiveSheet()->setCellValue('N'.$rowNumber,$export_rows[$array_count_current]['multi_layer_map']);
+				$objPHPExcel->getActiveSheet()->setCellValue('O'.$rowNumber,$export_rows[$array_count_current]['multi_layer_map_list']);
+				$objPHPExcel->getActiveSheet()->setCellValue('P'.$rowNumber,$export_rows[$array_count_current]['controlbox']);
+				$objPHPExcel->getActiveSheet()->setCellValue('Q'.$rowNumber,$export_rows[$array_count_current]['createdby']);
+				$objPHPExcel->getActiveSheet()->setCellValue('R'.$rowNumber,$export_rows[$array_count_current]['createdon']);
+				$objPHPExcel->getActiveSheet()->setCellValue('S'.$rowNumber,$export_rows[$array_count_current]['updatedby']);
+				$objPHPExcel->getActiveSheet()->setCellValue('T'.$rowNumber,$export_rows[$array_count_current]['updatedon']);
+				$objPHPExcel->getActiveSheet()->setCellValue('U'.$rowNumber,$export_rows[$array_count_current]['overlays_custom']);
+				$objPHPExcel->getActiveSheet()->setCellValue('V'.$rowNumber,$export_rows[$array_count_current]['overlays_custom2']);
+				$objPHPExcel->getActiveSheet()->setCellValue('W'.$rowNumber,$export_rows[$array_count_current]['overlays_custom3']);
+				$objPHPExcel->getActiveSheet()->setCellValue('X'.$rowNumber,$export_rows[$array_count_current]['overlays_custom4']);
+				$objPHPExcel->getActiveSheet()->setCellValue('Y'.$rowNumber,$export_rows[$array_count_current]['wms']);
+				$objPHPExcel->getActiveSheet()->setCellValue('Z'.$rowNumber,$export_rows[$array_count_current]['wms2']);
+				$objPHPExcel->getActiveSheet()->setCellValue('AA'.$rowNumber,$export_rows[$array_count_current]['wms3']);
+				$objPHPExcel->getActiveSheet()->setCellValue('AB'.$rowNumber,$export_rows[$array_count_current]['wms4']);
+				$objPHPExcel->getActiveSheet()->setCellValue('AC'.$rowNumber,$export_rows[$array_count_current]['wms5']);
+				$objPHPExcel->getActiveSheet()->setCellValue('AD'.$rowNumber,$export_rows[$array_count_current]['wms6']);
+				$objPHPExcel->getActiveSheet()->setCellValue('AE'.$rowNumber,$export_rows[$array_count_current]['wms7']);
+				$objPHPExcel->getActiveSheet()->setCellValue('AF'.$rowNumber,$export_rows[$array_count_current]['wms8']);
+				$objPHPExcel->getActiveSheet()->setCellValue('AG'.$rowNumber,$export_rows[$array_count_current]['wms9']);
+				$objPHPExcel->getActiveSheet()->setCellValue('AH'.$rowNumber,$export_rows[$array_count_current]['wms10']);
+				$objPHPExcel->getActiveSheet()->setCellValue('AI'.$rowNumber,$export_rows[$array_count_current]['gpx_url']);
+				$objPHPExcel->getActiveSheet()->setCellValue('AJ'.$rowNumber,$export_rows[$array_count_current]['gpx_panel']);
+				$rowNumber++;
+				$array_count_current++;
+			}
+
+			//info: freeze pane so that the heading line will not scroll
+			$objPHPExcel->getActiveSheet()->freezePane('A2');
+
+			//info: set column widths
+			$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(6);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(40);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(40);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(13);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(12);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(16);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(13);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('J')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(9);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('L')->setWidth(12);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('M')->setWidth(13);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('N')->setWidth(18);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('O')->setWidth(22);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('P')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('Q')->setWidth(13);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('R')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('S')->setWidth(13);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('T')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('U')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('V')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('W')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('X')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('Y')->setWidth(8);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('Z')->setWidth(9);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('AA')->setWidth(9);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('AB')->setWidth(9);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('AC')->setWidth(9);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('AD')->setWidth(9);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('AE')->setWidth(9);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('AF')->setWidth(9);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('AG')->setWidth(9);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('AH')->setWidth(10);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('AI')->setAutoSize(true);
+			$objPHPExcel->getActiveSheet()->getColumnDimension('AJ')->setWidth(13);
+
+			//info: prepare output file
+			header("Pragma: public");
+			header("Expires: 0");
+			header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+			header("Content-Type: application/force-download");
+			header("Content-Type: application/download");
+			header("Content-Type: application/octet-stream");
+			$filename = 'MapsMarkerPro-Export-Layers-' . date("Y-m-d_H-i");
+
+			$export_format = $_POST['export-format'];
+			if ($export_format == 'csv') {
+				$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'CSV');
+				$objWriter->setDelimiter(';');
+				header("Content-Type: text/csv");
+				header("Content-Disposition: attachment;filename=" . $filename . ".csv");
+				header("Content-Transfer-Encoding: binary ");
+			} else if ($export_format == 'excel5') {
+				$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+				header("Content-Transfer-Encoding: binary ");
+				header("Content-Type: application/vnd.ms-excel");
+				header("Content-Disposition: attachment;filename=" . $filename . ".xls");
+			} else if ($export_format == 'exel2007') {
+				$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+				header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+				header("Content-Disposition: attachment;filename=" . $filename . ".xlsx");
+				header("Content-Transfer-Encoding: binary ");
+			}
+			$objWriter->save('php://output');
+
+			//info: cleanup to free memory
+			unset($export_rows);
+			$objPHPExcel->disconnectWorksheets();
+			unset($objPHPExcel);
+		} //info: end (action_standalone == export-layers)
 	} //info: end (action_standalone != NULL) - shared code for import/export
 } //info: end plugin active check
 ?>

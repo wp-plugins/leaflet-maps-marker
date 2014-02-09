@@ -17,7 +17,7 @@ $layercount_all = $wpdb->get_var('SELECT count(*) FROM '.$table_name_layers.'') 
 $action = isset($_POST['action']) ? $_POST['action'] : '';
 if (!empty($action)) {
 	$toolnonce = isset($_POST['_wpnonce']) ? $_POST['_wpnonce'] : (isset($_GET['_wpnonce']) ? $_GET['_wpnonce'] : '');
-	if (! wp_verify_nonce($toolnonce, 'tool-nonce') ) { die('<br/>'.__('Security check failed - please call this function from the according Leaflet Maps Marker admin page!','lmm').''); };
+	if (! wp_verify_nonce($toolnonce, 'tool-nonce') ) { die('<br/>'.__('Security check failed - please call this function from the according admin page!','lmm').''); };
   if ($action == 'mass_assign') {
 		$result = $wpdb->prepare( "UPDATE $table_name_markers SET layer = %d where layer = %d", $_POST['layer_assign_to'], $_POST['layer_assign_from'] );
 		$wpdb->query( $result );

@@ -44,7 +44,7 @@ $markerid = isset($_GET['markerid']) ? $_GET['markerid'] : ''; //info: for switc
 
 if (!empty($action)) {
 $markernonce = isset($_POST['_wpnonce']) ? $_POST['_wpnonce'] : (isset($_GET['_wpnonce']) ? $_GET['_wpnonce'] : '');
-if (! wp_verify_nonce($markernonce, 'marker-nonce') ) die('<br/>'.__('Security check failed - please call this function from the according Leaflet Maps Marker admin page!','lmm').'');
+if (! wp_verify_nonce($markernonce, 'marker-nonce') ) die('<br/>'.__('Security check failed - please call this function from the according admin page!','lmm').'');
   $layer = isset($_POST['layer']) ? intval($_POST['layer']) : 0;
   if ($action == 'add') {
 	  if ( ($lat_check != NULL) && ($lon_check != NULL) ) {
@@ -936,7 +936,7 @@ var marker,selectlayer,googleLayer_roadmap,googleLayer_satellite,googleLayer_hyb
   <?php if ( $lmm_options['map_scale_control'] == 'enabled' ) { ?>
   L.control.scale({position:'<?php echo $lmm_options['map_scale_control_position'] ?>', maxWidth: <?php echo intval($lmm_options['map_scale_control_maxwidth']) ?>, metric: <?php echo $lmm_options['map_scale_control_metric'] ?>, imperial: <?php echo $lmm_options['map_scale_control_imperial'] ?>, updateWhenIdle: <?php echo $lmm_options['map_scale_control_updatewhenidle'] ?>}).addTo(selectlayer);
   <?php }; ?>
-  marker = new L.Marker(new L.LatLng(<?php echo $lat . ", " . $lon; ?>),{ <?php if ($lmm_options[ 'defaults_marker_icon_title' ] == 'show') { $markername_title = htmlspecialchars_decode($markername); echo "title: '$markername_title', "; }; ?> opacity: <?php echo floatval($lmm_options[ 'defaults_marker_icon_opacity' ]) ?>});
+  marker = new L.Marker(new L.LatLng(<?php echo $lat . ", " . $lon; ?>),{ <?php if ($lmm_options[ 'defaults_marker_icon_title' ] == 'show') { $markername_title = htmlspecialchars_decode($markername); echo "title: '$markername_title', "; }; ?> opacity: <?php echo floatval($lmm_options[ 'defaults_marker_icon_opacity' ]) ?>, draggable: true});
   <?php if ($icon == NULL) {
   	echo "marker.options.icon = new L.Icon({iconUrl: '" . LEAFLET_PLUGIN_URL . "leaflet-dist/images/marker.png',iconSize: [" . intval($lmm_options[ 'defaults_marker_icon_iconsize_x' ]) . ", " . intval($lmm_options[ 'defaults_marker_icon_iconsize_y' ]) . "],iconAnchor: [" . intval($lmm_options[ 'defaults_marker_icon_iconanchor_x' ]) . ", " . intval($lmm_options[ 'defaults_marker_icon_iconanchor_y' ]) . "],popupAnchor: [" . intval($lmm_options[ 'defaults_marker_icon_popupanchor_x' ]) . ", " . intval($lmm_options[ 'defaults_marker_icon_popupanchor_y' ]) . "],shadowUrl: '" . $marker_shadow_url . "',shadowSize: [" . intval($lmm_options[ 'defaults_marker_icon_shadowsize_x' ]) . ", " . intval($lmm_options[ 'defaults_marker_icon_shadowsize_y' ]) . "],shadowAnchor: [" . intval($lmm_options[ 'defaults_marker_icon_shadowanchor_x' ]) . ", " . intval($lmm_options[ 'defaults_marker_icon_shadowanchor_y' ]) . "],className: 'lmm_marker_icon_default'});".PHP_EOL;
   } else {
@@ -1028,6 +1028,18 @@ var marker,selectlayer,googleLayer_roadmap,googleLayer_satellite,googleLayer_hyb
       <?php if ($popuptext != NULL) { ?>
       marker.bindPopup('<?php echo preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$popuptext) ?>',{maxWidth: <?php echo intval($lmm_options['defaults_marker_popups_maxwidth']) ?>, minWidth: <?php echo intval($lmm_options['defaults_marker_popups_minwidth']) ?>, maxHeight: <?php echo intval($lmm_options['defaults_marker_popups_maxheight']) ?>, autoPan: <?php echo $lmm_options['defaults_marker_popups_autopan'] ?>, closeButton: <?php echo $lmm_options['defaults_marker_popups_closebutton'] ?>, autoPanPadding: new L.Point(<?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_x']) ?>, <?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_y']) ?>)})<?php  if ($openpopup == 1) { echo '.openPopup()'; } ?>;
       <?php }?>
+  });
+  //info: set new coordinates on marker drag
+  marker.on('dragend', function(e) {
+      var newlocation = marker.getLatLng();
+	  var newlat = newlocation['lat'];
+  	  var newlon = newlocation['lng'];
+	  document.getElementById('lat').value = newlat.toFixed(6);
+	  document.getElementById('lon').value = newlon.toFixed(6);
+	  selectlayer.setView(newlocation,selectlayer.getZoom());
+	  if($('input:checkbox[name=openpopup]').is(':checked')) {
+			marker.openPopup();
+	  } 
   });
   var mapElement = $('#selectlayer'), mapWidth = $('#mapwidth'), mapHeight = $('#mapheight'), popupText = $('#popuptext'), lat = $('#lat'), lon = $('#lon'), panel = $('#lmm-panel'), lmm = $('#lmm'), markername = $('#markername'), zoom = $('#zoom');
 	//info: bugfix causing maps not to show up in WP 3.0 and errors in WP <3.3
