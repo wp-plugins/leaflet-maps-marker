@@ -9217,16 +9217,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'section' => 'misc-section9',
 			'std'     => '',
 			'title'   => '',
-			'desc'    => sprintf(__('For more information on how to use the MapsMarker API, <a href="%1s" target="_blank">please visit the API docs on mapsmarker.com</a>','lmm'), 'http://www.mapsmarker.com/mapsmarker-api'),
-			'type'    => 'helptext'
-		);
-		$this->_settings['api_helptext2'] = array(
-			'version' => '3.6',
-			'pane'    => 'misc',
-			'section' => 'misc-section9',
-			'std'     => '',
-			'title'   => '',
-			'desc'    =>  '<strong>' . __('API endpoint','lmm') . ':</strong> ' . LEAFLET_PLUGIN_URL . 'leaflet-api.php<br/><br/>',
+			'desc'    => sprintf(__('For more information on how to use the MapsMarker API, <a href="%1s" target="_blank">please visit the API docs on mapsmarker.com</a>','lmm'), 'http://www.mapsmarker.com/mapsmarker-api') . '<br/><br/><br/><strong>' . __('API endpoint','lmm') . ':</strong> ' . LEAFLET_PLUGIN_URL . 'leaflet-api.php<br/><br/>',
 			'type'    => 'helptext'
 		);
 		$this->_settings['api_status'] = array(
@@ -9262,6 +9253,33 @@ $this->_settings['clustering_helptext2'] = array(
 			'title'   => __('JSONP callback function name', 'lmm'),
 			'desc'    => sprintf(__('Used for JSON format only, allows to overcome the <a href="%1s" target="_blank">same origin policy</a> (can be overwritten by parameter callback on each API request)','lmm'), 'http://en.wikipedia.org/wiki/JSONP'),
 			'std'     => 'jsonp',
+			'type'    => 'text'
+		);
+		$this->_settings['api_helptext4'] = array(
+			'version' => '3.8.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'std'     => '',
+			'title'   => '<strong>' . __('Authentication','lmm') . '</strong>',
+			'desc'    =>  sprintf(__('You will find a <a href="%1$s">API URL generator</a> and <a href="%2$s">API URL tester</a> in the tools section. Please see the API docs for more information on authentication.','lmm'), LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools#api-url-generator', LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_tools#api-url-tester'),
+			'type'    => 'helptext'
+		);
+		$this->_settings['api_key'] = array(
+			'version' => '3.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'title'   => __('Public API key', 'lmm'),
+			'desc'    => __('Both public and private API keys are needed for API calls!','lmm'),
+			'std'     => '',
+			'type'    => 'text'
+		);
+		$this->_settings['api_key_private'] = array(
+			'version' => '3.8.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section9',
+			'title'   => __('Private API key', 'lmm'),
+			'desc'    => __('Both public and private API keys are needed for API calls!','lmm'),
+			'std'     => '',
 			'type'    => 'text'
 		);
 		$this->_settings['api_helptext3'] = array(
@@ -9309,15 +9327,15 @@ $this->_settings['clustering_helptext2'] = array(
 			'type'    => 'checkbox-pro',
 			'std'     => 0
 		);
-		$this->_settings['api_key'] = array(
-			'version' => '3.6',
+		$this->_settings['api_permissions_search'] = array(
+			'version' => 'p1.5.7',
 			'pane'    => 'misc',
 			'section' => 'misc-section9',
-			'title'   => __('API key', 'lmm'),
-			'desc'    => __('It is strongly advised to set an API key to protect it from misuse!','lmm'),
-			'std'     => '',
-			'type'    => 'text'
-		);
+			'title'   => '',
+			'desc'    => __('search existing markers/layers','lmm') . ' <a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-feature.png" width="70" height="15" /></a>',
+			'type'    => 'checkbox-pro',
+			'std'     => 0
+		);		
 		$this->_settings['api_allowed_ip'] = array(
 			'version' => '3.6',
 			'pane'    => 'misc',
@@ -9837,15 +9855,31 @@ $this->_settings['clustering_helptext2'] = array(
 		$options_current = get_option( 'leafletmapsmarker_options' );
 		$options_new = array_merge($options_current, $new_options_defaults);
 		update_option( 'leafletmapsmarker_options', $options_new );
-		}		
-		/* template for plugin updates
-		//info:  set defaults for options introduced in v3.9
+		}
+		//info:  set defaults for options introduced in v3.8.6
 		if (get_option('leafletmapsmarker_version') == '3.8.5' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting )
 			{
-				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.9
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.8.6')
+				{
+				$new_options_defaults[$id] = $setting['std'];
+				}
+			}
+		$options_current = get_option( 'leafletmapsmarker_options' );
+		$options_new = array_merge($options_current, $new_options_defaults);
+		update_option( 'leafletmapsmarker_options', $options_new );
+		}
+		/* template for plugin updates
+		//info:  set defaults for options introduced in v3.9
+		if (get_option('leafletmapsmarker_version') == '3.8.6' )
+		{
+			$new_options_defaults = array();
+			foreach ( $this->settings as $id => $setting )
+			{
+				if ( $setting['type'] != 'heading' && $setting['type'] != 'helptext' && $setting['type'] != 'helptext-twocolumn' && $setting['type'] != 'checkbox-pro' && $setting['type'] != 'select-pro' && $setting['type'] != 'radio-pro' && $setting['type'] != 'radio-reverse-pro' && $setting['type'] != 'textarea-pro' && $setting['type'] != 'text-pro' && $setting['type'] != 'text-reverse-pro' && $setting['version'] == '3.9')
+				{
 				$new_options_defaults[$id] = $setting['std'];
 				}
 			}

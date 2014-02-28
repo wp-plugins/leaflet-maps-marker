@@ -746,6 +746,17 @@ if (get_option('leafletmapsmarker_version') == '3.8.4' ) {
 		update_option('leafletmapsmarker_version_before_update', '3.8.4');
 	}
 	update_option('leafletmapsmarker_version', '3.8.5');
+}
+if (get_option('leafletmapsmarker_version') == '3.8.5' ) {
+	delete_transient( 'leafletmapsmarker_install_update_cache_v385');
+	$save_defaults_for_new_options = new Class_leaflet_options();
+	$save_defaults_for_new_options->save_defaults_for_new_options();
+	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
+	if ( $version_before_update === FALSE ) {
+		set_transient( 'leafletmapsmarker_version_before_update', 'deleted-in-1-hour', 60*3 );
+		update_option('leafletmapsmarker_version_before_update', '3.8.5');
+	}
+	update_option('leafletmapsmarker_version', '3.8.6');
 	//info: redirect to create marker page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 	if (get_option('leafletmapsmarker_redirect') == 'true')
 	{
