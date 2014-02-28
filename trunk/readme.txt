@@ -38,6 +38,10 @@ For even more features please try "Leaflet Maps Marker Pro" - demo maps includin
 * [whitelabel backend admin pages](http://www.mapsmarker.com/pro-feature-whitelabel)
 * [advanced permission settings](http://www.mapsmarker.com/pro-feature-advanced-permissions)
 * [duplicate markers](http://www.mapsmarker.com/v1.5.1p)
+* [support for dynamic switching between simplified and advanced editor (no more reloads needed)](http://www.mapsmarker.com/v1.5.7p)
+* [support for filtering of marker icons on backend (based on filename)](http://www.mapsmarker.com/v1.5.7p)
+* [support for changing marker IDs and layer IDs from the tools page](http://www.mapsmarker.com/v1.5.7p)
+* [support for bulk updates of marker maps on the tools page for selected layers only](http://www.mapsmarker.com/v1.5.7p)
 * priority support
 
 The free version includes a pro upgrader which allows you to start a free 30 day trial easily. 
@@ -292,7 +296,7 @@ Copyright 2011-2014, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
 = v3.8.6 =
-breaking MapsMarker API changes and backend optimizations  -  see http://www.mapsmarker.com/v3.8.6 for more details
+breaking MapsMarker API changes and backend optimizations - see http://www.mapsmarker.com/v3.8.6 for more details
 
 == Changelog ==
 [blog post with details about v3.8.6](http://www.mapsmarker.com/v3.8.6)
