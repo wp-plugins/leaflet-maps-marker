@@ -291,10 +291,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2014, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.8.5 =
-XLSX/XLS/CSV/ODS export of layer maps, Google Maps performance improvements - see http://www.mapsmarker.com/v3.8.5 for more details
+= v3.8.6 =
+breaking MapsMarker API changes and backend optimizations - see http://www.mapsmarker.com/v3.8.6 for more details
 
 == Changelog ==
-[blog post with details about v3.8.5](http://www.mapsmarker.com/v3.8.5)
+[blog post with details about v3.8.6](http://www.mapsmarker.com/v3.8.6)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

@@ -289,6 +289,10 @@ if ( $action == NULL ) {
 					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.3p" target="_blank">' . __('support for shortcodes in popup texts','lmm') . '</a></li>
 					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.5p" target="_blank">' . __('support for setting global maximum zoom level to 21 (tiles from basemaps with lower native zoom levels will be upscaled automatically)','lmm') . '</a></li>
 					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.5.1p" target="_blank">' . __('support for duplicating markers','lmm') . '</a></li>
+					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.5.7p" target="_blank">' . __('support for dynamic switching between simplified and advanced editor (no more reloads needed)','lmm') . '</a></li>
+					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.5.7p" target="_blank">' . __('support for filtering of marker icons on backend (based on filename)','lmm') . '</a></li>
+					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.5.7p" target="_blank">' . __('support for changing marker IDs and layer IDs from the tools page','lmm') . '</a></li>
+					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.5.7p" target="_blank">' . __('support for bulk updates of marker maps on the tools page for selected layers only','lmm') . '</a></li>
 				</ul>
 				</div>
 				<p><a href="#top" class="upgrade-top-link">' . __('back to top to start free 30-day-trial','lmm') . '</a></p>
@@ -303,7 +307,6 @@ if ( $action == NULL ) {
 					<li>' . __('support for displaying KML files','lmm') . '</li>
 					<li>' . __('adding markers from frontend','lmm') . '</li>
 					<li>' . __('support for Google Street View','lmm') . '</li>
-					<li>' . __('import and export function for markers and layers','lmm') . '</li>
 					<li>' . __('better integration into the publication workflow (adding markers from posts or as custom post type)','lmm') . '</li>
 					<li>' . __('support for Wikitude AR launchlinks','lmm') . '</li>
 					<li>' . __('search for markers on frontend','lmm') . '</li>
