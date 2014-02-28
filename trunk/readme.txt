@@ -292,7 +292,7 @@ Copyright 2011-2014, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
 = v3.8.6 =
-breaking MapsMarker API changes and backend optimizations - see http://www.mapsmarker.com/v3.8.6 for more details
+breaking MapsMarker API changes and backend optimizations  -  see http://www.mapsmarker.com/v3.8.6 for more details
 
 == Changelog ==
 [blog post with details about v3.8.6](http://www.mapsmarker.com/v3.8.6)
