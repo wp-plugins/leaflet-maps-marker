@@ -772,17 +772,17 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			if ( $_POST['filter-markername'] == NULL ) {
 				$filter_option1_sql .= '(1=1)';
 			} else {
-				$filter_option1_sql .= 'markername LIKE "%' . mysql_real_escape_string($_POST['filter-markername']) . '%"';
+				$filter_option1_sql .= 'markername LIKE "%' . esc_sql($_POST['filter-markername']) . '%"';
 			}
 			if ( ($_POST['filter-markername'] == NULL) || ($_POST['filter-popuptext'] == NULL) ) {
 					$filter_option1_sql .= ' AND '; //info: otherwise search for popuptext only returns all results
 			} else {
-					$filter_option1_sql .= ' ' . mysql_real_escape_string($_POST['filter-operator1']) . ' ';
+					$filter_option1_sql .= ' ' . esc_sql($_POST['filter-operator1']) . ' ';
 			}
 			if ( $_POST['filter-popuptext'] == NULL ) {
 				$filter_option1_sql .= '(1=1)';
 			} else {
-				$filter_option1_sql .= 'popuptext LIKE "%' . mysql_real_escape_string($_POST['filter-popuptext']) . '%"';
+				$filter_option1_sql .= 'popuptext LIKE "%' . esc_sql($_POST['filter-popuptext']) . '%"';
 			}
 			$filter_option1_sql .= ')';
 			//info: prepare sql for optional 2
@@ -790,17 +790,17 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			if ( $_POST['filter-exclude-markername'] == NULL ) {
 				$filter_option2_sql .= '(1=1)';
 			} else {
-				$filter_option2_sql .= 'markername NOT LIKE "%' . mysql_real_escape_string($_POST['filter-exclude-markername']) . '%"';
+				$filter_option2_sql .= 'markername NOT LIKE "%' . esc_sql($_POST['filter-exclude-markername']) . '%"';
 			}
 			if ( ($_POST['filter-exclude-markername'] == NULL) || ($_POST['filter-exclude-popuptext'] == NULL) ) {
 					$filter_option2_sql .= ' AND '; //info: otherwise search for popuptext only returns all results
 			} else {
-					$filter_option2_sql .= ' ' . mysql_real_escape_string($_POST['filter-operator2']) . ' ';
+					$filter_option2_sql .= ' ' . esc_sql($_POST['filter-operator2']) . ' ';
 			}
 			if ( $_POST['filter-exclude-popuptext'] == NULL ) {
 				$filter_option2_sql .= '(1=1)';
 			} else {
-				$filter_option2_sql .= 'popuptext NOT LIKE "%' . mysql_real_escape_string($_POST['filter-exclude-popuptext']) . '%"';
+				$filter_option2_sql .= 'popuptext NOT LIKE "%' . esc_sql($_POST['filter-exclude-popuptext']) . '%"';
 			}
 			$filter_option2_sql .= ')';
 			//info: filter for marker icons
@@ -809,7 +809,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			} else if ( $_POST['filter-icon'] == 'icon-any' ) {
 				$filter_icons_sql = '(icon = "")';
 			} else {
-				$filter_icons_sql = '(icon = "' . mysql_real_escape_string($_POST['filter-icon']) . '")';
+				$filter_icons_sql = '(icon = "' . esc_sql($_POST['filter-icon']) . '")';
 			}
 			$filter_limit_from = intval($_POST['limit-from']);
 			$filter_limit_to = intval($_POST['limit-to']);

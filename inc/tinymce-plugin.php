@@ -4,62 +4,59 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'tinymce-plugin.php') { die ("Pleas
 add_action('admin_print_styles-post.php', 'mm_shortcode_button');
 add_action('admin_print_styles-post-new.php', 'mm_shortcode_button');
 
-/**
-Create Our Initialization Function
+/*
+Initialize
 */
 function mm_shortcode_button() {
 	if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
 		return;
 	}
 	if ( get_user_option('rich_editing') == 'true' ) {
-		add_filter( 'mce_external_plugins', 'lmm_add_plugin' );
-		add_filter( 'mce_buttons', 'lmm_register_button' );
-		add_filter( 'mce_external_plugins', 'lmm_qt' );
+		add_filter( 'mce_external_plugins', 'lmm_button_visual' );
+		add_filter( 'mce_external_plugins', 'lmm_button_text' );
 	} else {
-		add_action('admin_footer', 'Lmm_qt');
+		add_action('admin_footer', 'lmm_button_text');
 	}
 }
-function lmm_qt($plugin_array) {
+/*
+Map button for text tab
+*/
+function lmm_button_text($plugin_array) {
 	if (!is_multisite()) { $adminurl = admin_url(); } else { $adminurl = get_admin_url(); }
 	$text_add = __('Add Map','lmm');
-	$text_insert = __('Insert map','lmm');
-	$link = LEAFLET_PLUGIN_URL . 'inc/js/tinymce_visual_button.php?leafletpluginurl='.base64_encode(LEAFLET_PLUGIN_URL).'&adminurl='.base64_encode($adminurl).'&textadd='.base64_encode($text_add).'&textinsert='.base64_encode($text_insert);
+	$link = LEAFLET_PLUGIN_URL . 'inc/js/tinymce_button_text.php?leafletpluginurl='.base64_encode(LEAFLET_PLUGIN_URL).'&adminurl='.base64_encode($adminurl).'&textadd='.base64_encode($text_add);
 	wp_register_script('html-dialog', $link);
 	wp_enqueue_script('html-dialog');
 	return $plugin_array;
 }
-/**
-Register Button
+/*
+Map button for visual tab
 */
-function lmm_register_button( $buttons ) {
-	array_push( $buttons, "|", "mm_shortcode" );
-	return $buttons;
-}
-/**
-Register TinyMCE Plugin
-*/
-function lmm_add_plugin( $plugin_array ) {
+function lmm_button_visual( $plugin_array ) {
 	if (!is_multisite()) { $adminurl = admin_url(); } else { $adminurl = get_admin_url(); }
 	$text_add = __('Add Map','lmm');
-	$text_insert = __('Insert map','lmm');
-	$plugin_array['mm_shortcode'] = LEAFLET_PLUGIN_URL . 'inc/js/tinymce_text_button.php?leafletpluginurl='.base64_encode(LEAFLET_PLUGIN_URL).'&adminurl='.base64_encode($adminurl).'&textadd='.base64_encode($text_add).'&textinsert='.base64_encode($text_insert);
+	$plugin_array['mm_shortcode'] = LEAFLET_PLUGIN_URL . 'inc/js/tinymce_button_visual.php?leafletpluginurl='.base64_encode(LEAFLET_PLUGIN_URL).'&adminurl='.base64_encode($adminurl).'&textadd='.base64_encode($text_add);
 	return $plugin_array;
 }
 add_action('wp_ajax_get_mm_list',  'get_mm_list');
 
 function get_mm_list(){
-	global $wpdb;
+	$get_map_search_nonce = isset($_GET['map_search_nonce']) ? $_GET['map_search_nonce'] : '';
+	if (isset($_GET['q'])) {
+		if (!wp_verify_nonce($get_map_search_nonce, 'map-search-nonce')) { die(__('Security check failed - please call this function from the according admin page!','lmm').''); };
+	}
+	global $wpdb, $wp_version;
 	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 
-	$l_condition = isset($_GET['q']) ? "AND l.name LIKE '%" . mysql_real_escape_string($_GET['q']) . "%'" : '';
-	$m_condition = isset($_GET['q']) ? "AND m.markername LIKE '%" . mysql_real_escape_string($_GET['q']) . "%'" : '';
+	$l_condition = isset($_GET['q']) ? "AND l.name LIKE '%" . esc_sql($_GET['q']) . "%'" : '';
+	$m_condition = isset($_GET['q']) ? "AND m.markername LIKE '%" . esc_sql($_GET['q']) . "%'" : '';
 
 	$marklist = $wpdb->get_results("
 		(SELECT l.id, 'icon-layer.png' as 'icon', l.name as 'name', l.updatedon, l.updatedby, 'layer' as 'type' FROM $table_name_layers as l WHERE l.id != '0' $l_condition)
 		UNION
 		(SELECT m.id, m.icon as 'icon', m.markername as 'name', m.updatedon, m.updatedby, 'marker' as 'type' FROM $table_name_markers as m WHERE  m.id != '0' $m_condition)
-		order by updatedon DESC LIMIT 50", ARRAY_A);
+		order by updatedon DESC LIMIT 100", ARRAY_A);
 	if (isset($_GET['q'])) {
 		buildMarkersList($marklist);
 		exit();
@@ -71,8 +68,7 @@ function get_mm_list(){
 		<title><?php _e('Add Map','lmm') ?></title>
 		<?php echo '<script type="text/javascript" src="' . site_url() . '/wp-includes/js/jquery/jquery.js"></script>'.PHP_EOL; ?>
 		<?php if(!isset($_GET['mode'])): ?>
-			<script type='text/javascript' src='<?php echo site_url() . '/wp-includes/js/tinymce/tiny_mce_popup.js' ?>'></script>
-			<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/tinymce_text_button.php' ?>'></script>
+			<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/tinymce_button_visual.php' ?>'></script>
 		<?php endif;?>
 		<script type='text/javascript' src='<?php echo LEAFLET_PLUGIN_URL . 'inc/js/jquery_caret.js' ?>'></script>
 		<link rel='stylesheet' href='<?php echo LEAFLET_PLUGIN_URL . 'inc/css/marker_select_box.css' ?>' type='text/css' media='all' />
@@ -132,11 +128,12 @@ function get_mm_list(){
 				$('#msb_insertMarkerSC').on('click', function(e){
 					e.preventDefault();
 					self.insert();
-					self.close();
+					parent.tb_remove();
+
 				})
 				$('#msb_cancel').on('click', function(e){
 					e.preventDefault();
-					self.close();
+					parent.tb_remove();
 				})
 				$(document).on('click touchstart', '.list_item', function(e){
 					e.preventDefault();
@@ -156,7 +153,8 @@ function get_mm_list(){
 					window.open(url, '_blank');
 				})
 				$('#msb_search').on('keyup', function(){
-					$.post('<?php if (!is_multisite()) { echo admin_url(); } else { echo get_admin_url(); } ?>admin-ajax.php?action=get_mm_list&q='+$(this).val(), function(data){
+					<?php $noncelink_map_search = wp_create_nonce('map-search-nonce'); ?>
+					$.post('<?php if (!is_multisite()) { echo admin_url(); } else { echo get_admin_url(); } ?>admin-ajax.php?action=get_mm_list&map_search_nonce=<?php echo $noncelink_map_search; ?>&q='+$(this).val(), function(data){
 							$('.list_item').remove();
 							$('#msb_listContainer').append(data);
 					})
@@ -180,10 +178,18 @@ function get_mm_list(){
 			  return '[mapsmarker '+ selectMarkerBox.mapsmarkerType +'="'+ selectMarkerBox.markerID +'"]';
 			},
 			insert : function() {
-				if(typeof(tinyMCEPopup) !== 'undefined')
-				tinyMCEPopup.editor.execCommand('mceInsertContent', false, selectMarkerBox.getShortCode());
-				else
-				$('#content', parent.document.body).insertAtCaret(selectMarkerBox.getShortCode());
+				<?php
+					if ( get_user_option("rich_editing") == "true" ) {
+						echo "$('#content', parent.document.body).insertAtCaret(selectMarkerBox.getShortCode());";
+						if ( version_compare( $wp_version, '3.9-alpha', '>=' ) ) { 
+							echo "window.parent.tinyMCE.get('content').insertContent(selectMarkerBox.getShortCode());";
+						} else {
+							echo "window.parent.tinyMCE.activeEditor.execCommand('mceInsertContent', false, selectMarkerBox.getShortCode());";
+						}
+					} else {
+						echo "$('#content', parent.document.body).insertAtCaret(selectMarkerBox.getShortCode());";
+					} 
+				?>
 			},
 			insertMarker : function() {
 				return;
@@ -192,10 +198,7 @@ function get_mm_list(){
 				return;
 			},
 			close : function() {
-				if(typeof(tinyMCEPopup) !== 'undefined')
-				tinyMCEPopup.close();
-				else
-				window.parent.jQuery('#modal-content').wpdialog('close');
+				parent.tb_remove();
 			}
 		}
 		selectMarkerBox.init();

@@ -6,8 +6,8 @@ Tags:              Google Maps, OpenStreetMap, OSM, bing maps, googlemaps, googl
 Author URI:        http://www.harm.co.at
 Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
-Requires at least: 3.0
-Tested up to:      3.8.1
+Requires at least: 3.3
+Tested up to:      3.9
 Stable tag:        3.8.6
 License:           GPLv2
 
@@ -174,7 +174,7 @@ to the visitors of your website.
 * Slovak (sk_SK) thanks to Zdenko Podobny
 * Spanish (es_ES) thanks to David Ramirez, Alvaro Lara, Ricardo Viteri
 * Spanish (es_MX) thanks to Victor Guevara
-* Swedish (sv_SE) thanks to Swedish translation thanks to Olof Odier, Tedy Warsitha and Dan Paulsson
+* Swedish (sv_SE) thanks to Swedish translation thanks to Olof Odier, Tedy Warsitha, Dan Paulsson and Elger Lindgren
 * Turkish (tr_TR) thanks to Emre Erkan and Mahir Tosun
 * Ukrainian (uk_UK) thanks to Andrexj
 * Vietnamese (vi) thanks to Hoai Thu
@@ -295,10 +295,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2014, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.8.6 =
-breaking MapsMarker API changes and backend optimizations - see http://www.mapsmarker.com/v3.8.6 for more details
+= v3.8.7 =
+compatibility with WordPress 3.9 and improvements based on a security audit by the City of Vienna - see http://www.mapsmarker.com/v3.8.7 for more details
 
 == Changelog ==
-[blog post with details about v3.8.6](http://www.mapsmarker.com/v3.8.6)
+[blog post with details about v3.8.7](http://www.mapsmarker.com/v3.8.7)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

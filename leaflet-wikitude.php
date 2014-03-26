@@ -31,7 +31,10 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 	$ar_wikitude_provider_name_sanitized = strtolower(preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), $lmm_options[ 'ar_wikitude_provider_name' ]));
 	if (isset($_GET['layer'])) {
-		$layer = mysql_real_escape_string($_GET['layer']);
+		$layer_prepared = esc_sql($_GET['layer']);
+		$layer = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"," ","!","/"), "", $layer_prepared);
+		if ($layer == NULL) { die(); }
+		
 		$maxNumberOfPois = isset($_GET['maxNumberOfPois']) ? intval($_GET['maxNumberOfPois']) : $lmm_options[ 'ar_wikitude_maxnumberpois' ];
 
 		if ($layer == '*' or $layer == 'all') {
@@ -63,7 +66,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 		$boundingBoxLongitude1 = $lonUser - $distanceLLA;
 		$boundingBoxLongitude2 = $lonUser + $distanceLLA;
 
-		isset($_GET['searchterm']) ? $searchterm = mysql_real_escape_string($_GET['searchterm']) : $searchterm = NULL;
+		isset($_GET['searchterm']) ? $searchterm = esc_sql($_GET['searchterm']) : $searchterm = NULL;
 		if ($searchterm != NULL) {
 			$q = '';
 			if ($layer == '*' or $layer == 'all') {
@@ -82,11 +85,11 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 						}
 					}
 					if (count($checkedlayers) > 0) {
-						$q = "WHERE layer IN (".implode(",", $checkedlayers).") and m.lat BETWEEN " . $boundingBoxLatitude1 . " AND " . $boundingBoxLatitude2 . " AND m.lon BETWEEN " . $boundingBoxLongitude1 . " AND " . $boundingBoxLongitude2 . " AND (m.markername LIKE '%" . $searchterm . "%' OR m.popuptext LIKE '%" . $searchterm . "%')";
+						$q = "WHERE m.layer IN (".implode(",", $checkedlayers).") and m.lat BETWEEN " . $boundingBoxLatitude1 . " AND " . $boundingBoxLatitude2 . " AND m.lon BETWEEN " . $boundingBoxLongitude1 . " AND " . $boundingBoxLongitude2 . " AND (m.markername LIKE '%" . $searchterm . "%' OR m.popuptext LIKE '%" . $searchterm . "%')";
 					}
 				} else if ( ($mlm_check == 1) && (!in_array('all',$mlm_check_list) ) ) {
 					$clayer = 0;
-					$q = "WHERE layer IN (".implode(",", $mlm_check_list).") and m.lat BETWEEN " . $boundingBoxLatitude1 . " AND " . $boundingBoxLatitude2 . " AND m.lon BETWEEN " . $boundingBoxLongitude1 . " AND " . $boundingBoxLongitude2 . " AND (m.markername LIKE '%" . $searchterm . "%' OR m.popuptext LIKE '%" . $searchterm . "%')";
+					$q = "WHERE m.layer IN (".implode(",", $mlm_check_list).") and m.lat BETWEEN " . $boundingBoxLatitude1 . " AND " . $boundingBoxLatitude2 . " AND m.lon BETWEEN " . $boundingBoxLongitude1 . " AND " . $boundingBoxLongitude2 . " AND (m.markername LIKE '%" . $searchterm . "%' OR m.popuptext LIKE '%" . $searchterm . "%')";
 				} else if ( ($mlm_check == 1) && (in_array('all',$mlm_check_list) ) ) {
 					$clayer = 0;
 					$q = '';
@@ -105,7 +108,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			if ( (($layer == '*' || $layer == 'all') || (count($checkedlayers) > 1) ) || ($mlm_check == 1) ) {
 				$layername = __('layer','lmm') . ' ID ' . $layer;
 			} else {
-				$layername = $wpdb->get_var($wpdb->prepare('SELECT l.name FROM $table_name_layers as l WHERE l.id = %d'), intval($layer));
+				$layername = $wpdb->get_var($wpdb->prepare("SELECT l.name FROM $table_name_layers as l WHERE l.id = %d", intval($layer)));
 			}
 			if ($layername == NULL) { 
 				$layername = get_bloginfo('name');
@@ -196,7 +199,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			if ( (($layer == '*' || $layer == 'all') || (count($checkedlayers) > 1) ) || ($mlm_check == 1) ) {
 				$layername = __('layer','lmm') . ' ID ' . $layer;
 			} else {
-				$layername = $wpdb->get_var($wpdb->prepare('SELECT l.name FROM $table_name_layers as l WHERE l.id = %d'), intval($layer));
+				$layername = $wpdb->get_var($wpdb->prepare("SELECT l.name FROM $table_name_layers as l WHERE l.id = %d", intval($layer)));
 			}
 			if ($layername == NULL) { 
 				$layername = get_bloginfo('name');
@@ -248,7 +251,10 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			echo '</kml>';
 		}
 	} elseif (isset($_GET['marker'])) {
-		$markerid = mysql_real_escape_string($_GET['marker']);
+		$markerid_prepared = esc_sql($_GET['marker']);
+		$markerid = str_replace(array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"," ","!","/","*"), "", $markerid_prepared);
+		if ($markerid == NULL) { die(); }
+		
 		$markers = explode(',', $markerid);
 		$maxNumberOfPois = isset($_GET['maxNumberOfPois']) ? intval($_GET['maxNumberOfPois']) : $lmm_options[ 'ar_wikitude_maxnumberpois' ];
 		$markerlat = $wpdb->get_var('SELECT lat FROM '.$table_name_markers.' WHERE id IN ('.$markerid.')');
@@ -263,7 +269,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 		$boundingBoxLatitude2 = $latUser + $distanceLLA;
 		$boundingBoxLongitude1 = $lonUser - $distanceLLA;
 		$boundingBoxLongitude2 = $lonUser + $distanceLLA;
-		isset($_GET['searchterm']) ? $searchterm = mysql_real_escape_string($_GET['searchterm']) : $searchterm = NULL;
+		isset($_GET['searchterm']) ? $searchterm = esc_sql($_GET['searchterm']) : $searchterm = NULL;
 		if ($searchterm != NULL) {
 			$checkedmarkers = array();
 			foreach ($markers as $cmarker) {

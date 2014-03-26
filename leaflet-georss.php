@@ -32,7 +32,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 	$lmm_options = get_option( 'leafletmapsmarker_options' );
 	
 	if (isset($_GET['layer'])) {
-		$layer_prepared = mysql_real_escape_string(strtolower($_GET['layer']));
+		$layer_prepared = esc_sql(strtolower($_GET['layer']));
 		$layer = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"), "", $layer_prepared);
 
 		$q = '';
@@ -94,12 +94,12 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<link href="' . home_url() . '"/>'.PHP_EOL;
 				echo '<id>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-all-layers</id>'.PHP_EOL;
 			} else {
-				$layername = $wpdb->get_var('SELECT name FROM '.$table_name_layers.' WHERE id = '.intval($_GET['layer']).'');
-				$layercreatedby = $wpdb->get_var('SELECT createdby FROM '.$table_name_layers.' WHERE id = '.intval($_GET['layer']).'');
-				$layercreatedon = $wpdb->get_var('SELECT createdon FROM '.$table_name_layers.' WHERE id = '.intval($_GET['layer']).'');
+				$layername = $wpdb->get_var($wpdb->prepare("SELECT name FROM $table_name_layers WHERE id = %d", intval($_GET['layer'])));
+				$layercreatedby = $wpdb->get_var($wpdb->prepare("SELECT createdby FROM $table_name_layers WHERE id = %d", intval($_GET['layer'])));
+				$layercreatedon = $wpdb->get_var($wpdb->prepare("SELECT createdon FROM $table_name_layers WHERE id = %d", intval($_GET['layer'])));
 				$date_kml =  strtotime($layercreatedon);
 				$time_kml =  strtotime($layercreatedon);
-				echo '<title>' . get_bloginfo('name') . ' - ' . $layername . '</title>'.PHP_EOL;
+				echo '<title>' . get_bloginfo('name') . ' - ' . htmlspecialchars($layername) . '</title>'.PHP_EOL;
 				echo '<author>'.PHP_EOL;
 				echo '<name>' . stripslashes($layercreatedby) . '</name>'.PHP_EOL;
 				echo '</author>'.PHP_EOL;
@@ -118,7 +118,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon'];
 				}
 				echo '<entry>'.PHP_EOL;
-				echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
+				echo '<title>' . htmlspecialchars(stripslashes($marker['mmarkername'])) . '</title>'.PHP_EOL;
 				echo '<link href="' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?marker=' . $marker['mid'] . '"/>'.PHP_EOL;
 				echo '<id>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-layer-' . intval($_GET['layer']) . '-marker-' . $marker['mid'] . '</id>'.PHP_EOL;
 				echo '<updated>' . date("Y-m-d", $date_kml) . 'T' . date("h:m:s", $time_kml) . $plus_minus . $offset_kml . '</updated>'.PHP_EOL;
@@ -159,12 +159,12 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<guid>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-all-layers</guid>'.PHP_EOL;
 				echo '<lastBuildDate>' . date("Y-m-d", $newest_marker_createdon) . 'T' . date("h:m:s", $newest_marker_createdon) . $plus_minus . $offset_kml . '</lastBuildDate>'.PHP_EOL;
 			} else {
-				$layername = $wpdb->get_var('SELECT name FROM '.$table_name_layers.' WHERE id = '.intval($_GET['layer']).'');
-				$layercreatedby = $wpdb->get_var('SELECT createdby FROM '.$table_name_layers.' WHERE id = '.intval($_GET['layer']).'');
-				$layercreatedon = $wpdb->get_var('SELECT createdon FROM '.$table_name_layers.' WHERE id = '.intval($_GET['layer']).'');
+				$layername = $wpdb->get_var($wpdb->prepare("SELECT name FROM $table_name_layers WHERE id = %d", intval($_GET['layer'])));
+				$layercreatedby = $wpdb->get_var($wpdb->prepare("SELECT createdby FROM $table_name_layers WHERE id = %d", intval($_GET['layer'])));
+				$layercreatedon = $wpdb->get_var($wpdb->prepare("SELECT createdon FROM $table_name_layers WHERE id = %d", intval($_GET['layer'])));
 				$date_kml_layer =  strtotime($layercreatedon);
 				$time_kml_layer =  strtotime($layercreatedon);
-				echo '<title>' . get_bloginfo('name') . ' - ' . $layername . '</title>'.PHP_EOL;
+				echo '<title>' . get_bloginfo('name') . ' - ' . htmlspecialchars($layername) . '</title>'.PHP_EOL;
 				echo '<managingEditor>' . stripslashes($layercreatedby) . '</managingEditor>'.PHP_EOL;
 				echo '<guid>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-layer-' . intval($_GET['layer']) . '</guid>'.PHP_EOL;
 				echo '<lastBuildDate>' . date("Y-m-d", $date_kml_layer) . 'T' . date("h:m:s", $time_kml_layer) . $plus_minus . $offset_kml . '</lastBuildDate>'.PHP_EOL;
@@ -181,7 +181,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon'];
 				}
 				echo '<item>'.PHP_EOL;
-				echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
+				echo '<title>' . htmlspecialchars(stripslashes($marker['mmarkername'])) . '</title>'.PHP_EOL;
 				echo '<link>' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?marker=' . $marker['mid'] . '</link>'.PHP_EOL;
 				echo '<guid>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-layer-' . $marker['lid'] . '-marker-' . $marker['mid'] . '</guid>'.PHP_EOL;
 				echo '<pubdate>' . date("Y-m-d", $date_kml_marker) . 'T' . date("h:m:s", $time_kml_marker) . $plus_minus . $offset_kml . '</pubdate>'.PHP_EOL;
@@ -202,7 +202,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 		} //info: end output as RSS 2.0
 	} //info: end isset($_GET['layer'])
 	elseif (isset($_GET['marker'])) {
-		$markerid_prepared = mysql_real_escape_string(strtolower($_GET['marker']));
+		$markerid_prepared = esc_sql(strtolower($_GET['marker']));
 		$markerid = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"), "", $markerid_prepared);
 
 		if (($markerid_prepared == 'all') || ($markerid_prepared == '*')) {
@@ -241,7 +241,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			foreach ($markers as $marker) {
 				$date_kml =  strtotime($marker['mcreatedon']);
 				$time_kml =  strtotime($marker['mcreatedon']);
-				echo '<title>' . get_bloginfo('name') . ' - ' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
+				echo '<title>' . get_bloginfo('name') . ' - ' . htmlspecialchars(stripslashes($marker['mmarkername'])) . '</title>'.PHP_EOL;
 				echo '<author>'.PHP_EOL;
 				echo '<name>' . stripslashes($marker['mcreatedby']) . '</name>'.PHP_EOL;
 				echo '</author>'.PHP_EOL;
@@ -262,7 +262,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon'];
 				}
 				echo '<entry>'.PHP_EOL;
-				echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
+				echo '<title>' . htmlspecialchars(stripslashes($marker['mmarkername'])) . '</title>'.PHP_EOL;
 				if (($markerid_prepared != 'all') || ($markerid_prepared != '*')) {
 					echo '<link href="' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?marker=' . intval($_GET['marker']) . '"/>'.PHP_EOL;
 					echo '<id>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-marker-' . intval($_GET['marker']) . '-detail</id>'.PHP_EOL;
@@ -299,7 +299,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			echo '<channel>'.PHP_EOL;
 			if (($markerid_prepared != 'all') || ($markerid_prepared != '*')) {
 				echo '<link>' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?marker=' . intval($_GET['marker']) . '</link>'.PHP_EOL;
-				echo '<title>' . get_bloginfo('name') . ' - ' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
+				echo '<title>' . get_bloginfo('name') . ' - ' . htmlspecialchars(stripslashes($marker['mmarkername'])) . '</title>'.PHP_EOL;
 			} else {
 				echo '<title>' . get_bloginfo('name') . '</title>'.PHP_EOL;
 			}			
@@ -320,7 +320,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					$micon_url = LEAFLET_PLUGIN_ICONS_URL . '/' . $marker['micon'];
 				}
 				echo '<item>'.PHP_EOL;
-				echo '<title>' . stripslashes($marker['mmarkername']) . '</title>'.PHP_EOL;
+				echo '<title>' . htmlspecialchars(stripslashes($marker['mmarkername'])) . '</title>'.PHP_EOL;
 				echo '<link>' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?marker=' . $marker['mid'] . '</link>'.PHP_EOL;
 				echo '<guid>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-marker-' . $marker['mid'] . '</guid>'.PHP_EOL;
 				echo '<pubdate>' . date("Y-m-d", $date_kml_marker) . 'T' . date("h:m:s", $time_kml_marker) . $plus_minus . $offset_kml . '</pubdate>'.PHP_EOL;

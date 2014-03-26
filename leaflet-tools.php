@@ -215,31 +215,15 @@ if (!empty($action)) {
 			<td style="vertical-align:top;">
 				<p><?php _e('Below you find you current settings. Use copy and paste to make a backup or restore.','lmm'); ?></p>
 				<?php
-				global $wp_version;
-				if ( version_compare( $wp_version, '3.3', '>=' ) ) {
-						$settings_tinymce = array(
-						'wpautop' => false,
-						'media_buttons' => false,
-						'tinymce' => array(
-						 ),
-						'quicktags' => false
-						);
-						wp_editor( $serialized_options, 'settings-array', $settings_tinymce);
-				} else {
-					if (function_exists( 'wp_tiny_mce' ) ) {
-						add_filter( 'teeny_mce_before_init', create_function( '$a', '
-						$a["height"] = "110";
-						$a["width"] = "640";
-						$a["editor_selector"] = "mceEditor";
-						$a["force_br_newlines"] = false;
-						$a["force_p_newlines"] = false;
-						$a["convert_newlines_to_brs"] = false;
-						return $a;'));
-						wp_tiny_mce(true);
-					}
-					echo '<textarea id="settings-array" name="settings-array">' . $serialized_options . '</textarea>';
-				}
-				echo '<div style="margin:10px 0;"><strong><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a></strong></div>';
+					$settings_tinymce = array(
+					'wpautop' => false,
+					'media_buttons' => false,
+					'tinymce' => array(
+					 ),
+					'quicktags' => false
+					);
+					wp_editor( $serialized_options, 'settings-array', $settings_tinymce);
+					echo '<div style="margin:10px 0;"><strong><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a></strong></div>';
 				?>
 				<script type="text/javascript">
 					(function($) {
@@ -323,9 +307,6 @@ if (!empty($action)) {
 				<input id="markermaps_bingroad" type="radio" name="basemap" value="bingroad" /> <label for="markermaps_bingroad"><?php echo $lmm_options['default_basemap_name_bingroad']; ?></label><br />
 				<input id="markermaps_ogdwien_basemap" type="radio" name="basemap" value="ogdwien_basemap" /> <label for="markermaps_ogdwien_basemap"><?php echo $lmm_options['default_basemap_name_ogdwien_basemap']; ?></label><br />
 				<input id="markermaps_ogdwien_satellite" type="radio" name="basemap" value="ogdwien_satellite" /> <label for="markermaps_ogdwien_satellite"><?php echo $lmm_options['default_basemap_name_ogdwien_satellite']; ?></label><br />
-				<input id="markermaps_cloudmade" type="radio" name="basemap" value="cloudmade" /> <label for="markermaps_cloudmade"><?php echo $lmm_options['cloudmade_name']; ?></label><br />
-				<input id="markermaps_cloudmade2" type="radio" name="basemap" value="cloudmade2" /> <label for="markermaps_cloudmade2"><?php echo $lmm_options['cloudmade2_name']; ?></label><br />
-				<input id="markermaps_cloudmade3" type="radio" name="basemap" value="cloudmade3" /> <label for="markermaps_cloudmade3"><?php echo $lmm_options['cloudmade3_name']; ?></label><br />
 				<input id="markermaps_mapbox" type="radio" name="basemap" value="mapbox" /> <label for="markermaps_mapbox"><?php echo $lmm_options['mapbox_name']; ?></label><br />
 				<input id="markermaps_mapbox2" type="radio" name="basemap" value="mapbox2" /> <label for="markermaps_mapbox2"><?php echo $lmm_options['mapbox2_name']; ?></label><br />
 				<input id="markermaps_mapbox3" type="radio" name="basemap" value="mapbox3" /> <label for="markermaps_mapbox3"><?php echo $lmm_options['mapbox3_name']; ?></label><br />
@@ -579,7 +560,7 @@ if (!empty($action)) {
 					if ($file === false)
 					  break;
 					if ($file != "." and $file != "..")
-					  if (!is_dir($dir.$file) and substr($file, count($file)-5, 4) == '.png')
+					  if (!is_dir($dir.$file) && ((substr($file, count($file)-5, 4) == '.png') || (substr($file, count($file)-5, 4) == '.jpg') || (substr($file, count($file)-5, 4) == '.gif')))
 						$iconlist[] = $file;
 				  }
 				  closedir($dir);
@@ -652,50 +633,29 @@ if (!empty($action)) {
 			<td style="vertical-align:middle;" class="lmm-border">
 				<?php
 					global $wp_version;
-					if ( version_compare( $wp_version, '3.3', '>=' ) )
-					{
+					$defaults_marker_popups_maxwidth = intval($lmm_options['defaults_marker_popups_maxwidth'] + 1);
+					$defaults_marker_popups_image_css = urlencode(htmlspecialchars($lmm_options['defaults_marker_popups_image_css']));
+					if ( version_compare( $wp_version, '3.9-alpha', '>=' ) ) {
 						$settings = array(
-								'wpautop' => true,
-								'tinymce' => array(
+							'wpautop' => true,
+							'tinymce' => array(
+								'height' => '250',
+								'content_css' => LEAFLET_PLUGIN_URL . 'inc/css/leafletmapsmarker-admin-tinymce.php?defaults_marker_popups_maxwidth=' . $defaults_marker_popups_maxwidth . '&defaults_marker_popups_image_css=' . $defaults_marker_popups_image_css . ''
+							 ),
+						'quicktags' => array('buttons' => 'strong,em,link,block,del,ins,img,code,close'));
+					} else {
+						$settings = array(
+							'wpautop' => true,
+							'tinymce' => array(
 								'theme_advanced_buttons1' => 'bold,italic,underline,strikethrough,|,fontselect,fontsizeselect,forecolor,backcolor,|,justifyleft,justifycenter,justifyright,justifyfull,|,outdent,indent,blockquote,|,link,unlink,|,ltr,rtl',
 								'theme' => 'advanced',
-								'height' => '300',
-								'content_css' => LEAFLET_PLUGIN_URL . 'inc/css/leafletmapsmarker-admin-tinymce.php',
-								'theme_advanced_statusbar_location' => 'bottom',
-								'setup' => 'function(ed) {
-										ed.onKeyDown.add(function(ed, e) {
-											marker._popup.setContent(ed.getContent());
-										});
-									}'
-								 ),
-								'quicktags' => array(
-									'buttons' => 'strong,em,link,block,del,ins,img,code,close'));
-						wp_editor( '', 'popuptext', $settings);
+								'height' => '250',
+								'content_css' => LEAFLET_PLUGIN_URL . 'inc/css/leafletmapsmarker-admin-tinymce.php?defaults_marker_popups_maxwidth=' . $defaults_marker_popups_maxwidth . '&defaults_marker_popups_image_css=' . $defaults_marker_popups_image_css . '',
+								'theme_advanced_statusbar_location' => 'bottom'
+							),
+						'quicktags' => array('buttons' => 'strong,em,link,block,del,ins,img,code,close'));
 					}
-					else //info: for WP 3.0, 3.1. 3.2
-					{
-						if (function_exists( 'wp_tiny_mce' ) ) {
-							add_filter( 'teeny_mce_before_init', create_function( '$a', '
-							$a["theme_advanced_buttons1"] = "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,|,outdent,indent,blockquote,|,bullist,numlist,|,link,unlink,image,|,code";
-							$a["theme"] = "advanced";
-							$a["skin"] = "wp_theme";
-							$a["height"] = "250";
-							$a["width"] = "640";
-							$a["onpageload"] = "";
-							$a["mode"] = "exact";
-							$a["elements"] = "popuptext";
-							$a["editor_selector"] = "mceEditor";
-							$a["plugins"] = "inlinepopups";
-							$a["forced_root_block"] = "p";
-							$a["force_br_newlines"] = true;
-							$a["force_p_newlines"] = false;
-							$a["convert_newlines_to_brs"] = true;
-							$a["theme_advanced_statusbar_location"] = "bottom";
-							return $a;'));
-							wp_tiny_mce(true);
-						}
-					echo '<textarea id="popuptext" name="popuptext"></textarea>';
-					}
+					wp_editor( '', 'popuptext', $settings);
 				?>
 			</td>
 			<td style="vertical-align:middle;text-align:center;" class="lmm-border">
@@ -749,9 +709,6 @@ if (!empty($action)) {
 				<input id="layermaps_bingroad" type="radio" name="basemap-layer" value="bingroad" /> <label for="layermaps_bingroad"><?php echo $lmm_options['default_basemap_name_bingroad']; ?></label><br />
 				<input id="layermaps_ogdwien_basemap" type="radio" name="basemap-layer" value="ogdwien_basemap" /> <label for="layermaps_ogdwien_basemap"><?php echo $lmm_options['default_basemap_name_ogdwien_basemap']; ?></label><br />
 				<input id="layermaps_ogdwien_satellite" type="radio" name="basemap-layer" value="ogdwien_satellite" /> <label for="layermaps_ogdwien_satellite"><?php echo $lmm_options['default_basemap_name_ogdwien_satellite']; ?></label><br />
-				<input id="layermaps_cloudmade" type="radio" name="basemap-layer" value="cloudmade" /> <label for="layermaps_cloudmade"><?php echo $lmm_options['cloudmade_name']; ?></label><br />
-				<input id="layermaps_cloudmade2" type="radio" name="basemap-layer" value="cloudmade2" /> <label for="layermaps_cloudmade2"><?php echo $lmm_options['cloudmade2_name']; ?></label><br />
-				<input id="layermaps_cloudmade3" type="radio" name="basemap-layer" value="cloudmade3" /> <label for="layermaps_cloudmade3"><?php echo $lmm_options['cloudmade3_name']; ?></label><br />
 				<input id="layermaps_mapbox" type="radio" name="basemap-layer" value="mapbox" /> <label for="layermaps_mapbox"><?php echo $lmm_options['mapbox_name']; ?></label><br />
 				<input id="layermaps_mapbox2" type="radio" name="basemap-layer" value="mapbox2" /> <label for="layermaps_mapbox2"><?php echo $lmm_options['mapbox2_name']; ?></label><br />
 				<input id="layermaps_mapbox3" type="radio" name="basemap-layer" value="mapbox3" /> <label for="layermaps_mapbox3"><?php echo $lmm_options['mapbox3_name']; ?></label><br />
