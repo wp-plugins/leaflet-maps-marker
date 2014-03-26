@@ -42,7 +42,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 	if ($lmm_options[ 'wms_wms10_kml_support' ] == 'yes') { $wms10_kml_output = '<NetworkLink id="mapsmarker_wms10"><name><![CDATA[' . $lmm_options[ 'wms_wms10_name' ] . ']]></name><visibility>1</visibility><open>0</open><atom:author><![CDATA[' . $lmm_options[ 'wms_wms10_attribution' ] . ']]></atom:author><Snippet maxLines="2"><![CDATA[' . $lmm_options[ 'wms_wms10_attribution' ] . ']]></Snippet><Link><href><![CDATA[' . $lmm_options[ 'wms_wms10_kml_href' ] . ']]></href><refreshMode>' . $lmm_options[ 'wms_wms10_kml_refreshMode' ] . '</refreshMode><refreshInterval>' . $lmm_options[ 'wms_wms10_kml_refreshInterval' ] . '</refreshInterval><viewRefreshMode>' . $lmm_options[ 'wms_wms10_kml_viewRefreshMode' ] . '</viewRefreshMode><viewRefreshTime>' . $lmm_options[ 'wms_wms10_kml_viewRefreshTime' ] . '</viewRefreshTime></Link></NetworkLink>'; };
 
 	if (isset($_GET['layer'])) {
-		$layer_prepared = mysql_real_escape_string(strtolower($_GET['layer']));
+		$layer_prepared = esc_sql(strtolower($_GET['layer']));
 		$layer = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"), "", $layer_prepared);
 
 		$q = '';
@@ -202,7 +202,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			echo '</kml>';
 		} //info: check if layer exists end
 	} elseif (isset($_GET['marker'])) {
-		$markerid_prepared = mysql_real_escape_string(strtolower($_GET['marker']));
+		$markerid_prepared = esc_sql(strtolower($_GET['marker']));
 		$markerid = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"), "", $markerid_prepared);
 
 		if (($markerid_prepared == 'all') || ($markerid_prepared == '*')) {

@@ -757,6 +757,32 @@ if (get_option('leafletmapsmarker_version') == '3.8.5' ) {
 		update_option('leafletmapsmarker_version_before_update', '3.8.5');
 	}
 	update_option('leafletmapsmarker_version', '3.8.6');
+}
+if (get_option('leafletmapsmarker_version') == '3.8.6' ) {
+	delete_transient( 'leafletmapsmarker_install_update_cache_v386');
+	$save_defaults_for_new_options = new Class_leaflet_options();
+	$save_defaults_for_new_options->save_defaults_for_new_options();
+
+	//info: as cloudmade retired its free tiling service
+	$cloudmade_update_1 = "UPDATE `" . $table_name_markers . "` SET basemap = 'osm_mapnik' WHERE basemap = 'cloudmade';";
+	$wpdb->query($cloudmade_update_1);
+	$cloudmade_update_2 = "UPDATE `" . $table_name_layers . "` SET basemap = 'osm_mapnik' WHERE basemap = 'cloudmade';";
+	$wpdb->query($cloudmade_update_2);
+	$cloudmade_update_3 = "UPDATE `" . $table_name_markers . "` SET basemap = 'osm_mapnik' WHERE basemap = 'cloudmade2';";
+	$wpdb->query($cloudmade_update_3);
+	$cloudmade_update_4 = "UPDATE `" . $table_name_layers . "` SET basemap = 'osm_mapnik' WHERE basemap = 'cloudmade2';";
+	$wpdb->query($cloudmade_update_4);
+	$cloudmade_update_5 = "UPDATE `" . $table_name_markers . "` SET basemap = 'osm_mapnik' WHERE basemap = 'cloudmade3';";
+	$wpdb->query($cloudmade_update_5);
+	$cloudmade_update_6 = "UPDATE `" . $table_name_layers . "` SET basemap = 'osm_mapnik' WHERE basemap = 'cloudmade3';";
+	$wpdb->query($cloudmade_update_6);
+
+	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
+	if ( $version_before_update === FALSE ) {
+		set_transient( 'leafletmapsmarker_version_before_update', 'deleted-in-1-hour', 60*3 );
+		update_option('leafletmapsmarker_version_before_update', '3.8.6');
+	}
+	update_option('leafletmapsmarker_version', '3.8.7');
 	//info: redirect to create marker page only on first plugin activation, otherwise redirect is also done on bulk plugin activations
 	if (get_option('leafletmapsmarker_redirect') == 'true')
 	{

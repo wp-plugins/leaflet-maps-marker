@@ -44,7 +44,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 		$google_language = "&hl=" . $lmm_options['google_maps_language_localization'];
 	}
 	if (isset($_GET['layer'])) {
-		$layer_prepared = mysql_real_escape_string(strtolower($_GET['layer']));
+		$layer_prepared = esc_sql(strtolower($_GET['layer']));
 		$layer = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"), "", $layer_prepared); //info: not intval() cause otherwise $layer=0 when creating new layer and showing all markers with layer id = 0
 		$q = '';
 		if (($layer_prepared == 'all') || ($layer_prepared == '*')) {
@@ -115,8 +115,8 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				$mpopuptext = stripslashes(str_replace('"', '\'', preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])));
 				if ($lmm_options['directions_popuptext_panel'] == 'yes') {
 
-					$mpopuptext_css = ($marker['mpopuptext'] != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;" : "";
-					$mpopuptext = $mpopuptext . "<div style='" . $mpopuptext_css . "'>" . $maddress . " (";
+					$mpopuptext_css = ($marker['mpopuptext'] != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;clear:both;" : "";
+					$mpopuptext = $mpopuptext . "<div class='popup-directions' style='" . $mpopuptext_css . "'>" . $maddress . " (";
 
 					if ($lmm_options['directions_provider'] == 'googlemaps') {
 						if ( isset($lmm_options['google_maps_base_domain_custom']) && ($lmm_options['google_maps_base_domain_custom'] == NULL) ) { $gmaps_base_domain_directions = $lmm_options['google_maps_base_domain']; } else { $gmaps_base_domain_directions = urlencode($lmm_options['google_maps_base_domain_custom']); }
@@ -179,7 +179,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 		//info: callback for JSONP - part 2
 		if ($callback != NULL) { echo ');'; }
 	} elseif (isset($_GET['marker'])) {
-		$markerid_prepared = mysql_real_escape_string(strtolower($_GET['marker']));
+		$markerid_prepared = esc_sql(strtolower($_GET['marker']));
 		$markerid = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"), "", $markerid_prepared);
 		if (($markerid_prepared == 'all') || ($markerid_prepared == '*')) {
 			$q = '';
@@ -247,9 +247,9 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 
 			if ($lmm_options['directions_popuptext_panel'] == 'yes') {
 
-				$mpopuptext_css = ($marker['mpopuptext'] != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;" : "";
+				$mpopuptext_css = ($marker['mpopuptext'] != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;clear:both;" : "";
 				$mpopuptext = stripslashes(str_replace('"', '\'', preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])));
-				$mpopuptext = $mpopuptext . "<div style='" . $mpopuptext_css . "'>" . $maddress . " (";
+				$mpopuptext = $mpopuptext . "<div class='popup-directions' style='" . $mpopuptext_css . "'>" . $maddress . " (";
 
 				if ($lmm_options['directions_provider'] == 'googlemaps') {
 					if ( isset($lmm_options['google_maps_base_domain_custom']) && ($lmm_options['google_maps_base_domain_custom'] == NULL) ) { $gmaps_base_domain_directions = $lmm_options['google_maps_base_domain']; } else { $gmaps_base_domain_directions = urlencode($lmm_options['google_maps_base_domain_custom']); }
