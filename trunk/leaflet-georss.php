@@ -108,7 +108,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<id>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-layer-' . intval($_GET['layer']) . '</id>'.PHP_EOL;
 			}
 			echo '<generator>www.mapsmarker.com</generator>'.PHP_EOL;
-			echo '<subtitle>GeoRSS-feed created with MapsMarker.com WordPress Plugin</subtitle>'.PHP_EOL;
+			echo '<subtitle>GeoRSS-feed created with Maps Marker Pro (www.mapsmarker.com)</subtitle>'.PHP_EOL;
 
 			foreach ($markers as $marker) {
 				//info: get icon urls for each marker
@@ -123,11 +123,11 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<id>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-layer-' . intval($_GET['layer']) . '-marker-' . $marker['mid'] . '</id>'.PHP_EOL;
 				echo '<updated>' . date("Y-m-d", $date_kml) . 'T' . date("h:m:s", $time_kml) . $plus_minus . $offset_kml . '</updated>'.PHP_EOL;
 				echo '<contributor>' . stripslashes($marker['mcreatedby']) . '</contributor>'.PHP_EOL;
-				echo '<content><![CDATA[' . stripslashes($marker['mpopuptext']) . ']]></content>'.PHP_EOL;
+				echo '<content><![CDATA[' . stripslashes(wp_kses($marker['mpopuptext'])) . ']]></content>'.PHP_EOL;
 				echo '<logo>' . $micon_url . '</logo>'.PHP_EOL;
 				echo '<icon>' . $micon_url . '</icon>'.PHP_EOL;
 				echo '<source>' . home_url() . '</source>'.PHP_EOL;
-				echo '<where>' . $marker['maddress'] . '</where>'.PHP_EOL;
+				echo '<where>' . htmlspecialchars($marker['maddress']) . '</where>'.PHP_EOL;
 				echo '<georss:where>'.PHP_EOL;
 				//info: add if srsnames are verified - <gml:Point srsName="' . $srsname . '">
 				echo '<gml:Point>'.PHP_EOL;
@@ -170,7 +170,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<lastBuildDate>' . date("Y-m-d", $date_kml_layer) . 'T' . date("h:m:s", $time_kml_layer) . $plus_minus . $offset_kml . '</lastBuildDate>'.PHP_EOL;
 			}
 			echo '<generator>www.mapsmarker.com</generator>'.PHP_EOL;
-			echo '<description>GeoRSS-feed created with MapsMarker.com WordPress Plugin</description>'.PHP_EOL;
+			echo '<description>GeoRSS-feed created with Maps Marker Pro (www.mapsmarker.com)</description>'.PHP_EOL;
 			foreach ($markers as $marker) {
 				$date_kml_marker =  strtotime($marker['mcreatedon']);
 				$time_kml_marker =  strtotime($marker['mcreatedon']);
@@ -186,10 +186,10 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<guid>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-layer-' . $marker['lid'] . '-marker-' . $marker['mid'] . '</guid>'.PHP_EOL;
 				echo '<pubdate>' . date("Y-m-d", $date_kml_marker) . 'T' . date("h:m:s", $time_kml_marker) . $plus_minus . $offset_kml . '</pubdate>'.PHP_EOL;
 				echo '<author>' . $marker['mcreatedby'] . '</author>'.PHP_EOL;
-				echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
+				echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',wp_kses($marker['mpopuptext']))) . ']]></description>'.PHP_EOL;
 				echo '<image>' . $micon_url . '</image>'.PHP_EOL;
 				echo '<source>' . home_url() . '</source>'.PHP_EOL;
-				echo '<where>' . $marker['maddress'] . '</where>'.PHP_EOL;
+				echo '<where>' . htmlspecialchars($marker['maddress']) . '</where>'.PHP_EOL;
 				echo '<georss:where>'.PHP_EOL;
 				echo '<gml:Point>'.PHP_EOL;
 				echo '<gml:pos>'.$marker['mlat'].' '.$marker['mlon'].'</gml:pos>'.PHP_EOL;
@@ -248,7 +248,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<updated>' . date("Y-m-d", $date_kml) . 'T' . date("h:m:s", $time_kml) . $plus_minus . $offset_kml . '</updated>'.PHP_EOL;
 			}
 			echo '<generator>www.mapsmarker.com</generator>'.PHP_EOL;
-			echo '<subtitle>GeoRSS-feed created with MapsMarker.com WordPress Plugin</subtitle>'.PHP_EOL;
+			echo '<subtitle>GeoRSS-feed created with Maps Marker Pro (www.mapsmarker.com)</subtitle>'.PHP_EOL;
 			if (($markerid_prepared != 'all') || ($markerid_prepared != '*')) {
 				echo '<link href="' . LEAFLET_PLUGIN_URL . 'leaflet-fullscreen.php?marker=' . intval($_GET['marker']) . '"/>'.PHP_EOL;
 			}
@@ -268,11 +268,11 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					echo '<id>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-marker-' . intval($_GET['marker']) . '-detail</id>'.PHP_EOL;
 				}
 				echo '<updated>' . date("Y-m-d", $date_kml) . 'T' . date("h:m:s", $time_kml) . $plus_minus . $offset_kml . '</updated>'.PHP_EOL;
-				echo '<content><![CDATA[' . stripslashes($marker['mpopuptext']) . ']]></content>'.PHP_EOL;
+				echo '<content><![CDATA[' . stripslashes(wp_kses($marker['mpopuptext'])) . ']]></content>'.PHP_EOL;
 				echo '<logo>' . $micon_url . '</logo>'.PHP_EOL;
 				echo '<icon>' . $micon_url . '</icon>'.PHP_EOL;
 				echo '<source>' . home_url() . '</source>'.PHP_EOL;
-				echo '<where>' . $marker['maddress'] . '</where>'.PHP_EOL;
+				echo '<where>' . htmlspecialchars($marker['maddress']) . '</where>'.PHP_EOL;
 				echo '<georss:where>'.PHP_EOL;
 				//info: add if srsnames are verified - <gml:Point srsName="' . $srsname . '">
 				echo '<gml:Point>'.PHP_EOL;
@@ -304,7 +304,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<title>' . get_bloginfo('name') . '</title>'.PHP_EOL;
 			}			
 			echo '<generator>www.mapsmarker.com</generator>'.PHP_EOL;
-			echo '<description>GeoRSS-feed created with MapsMarker.com WordPress Plugin</description>'.PHP_EOL;
+			echo '<description>GeoRSS-feed created with Maps Marker Pro (www.mapsmarker.com)</description>'.PHP_EOL;
 			if (($markerid_prepared != 'all') || ($markerid_prepared != '*')) {
 				echo '<guid>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-marker-' . intval($_GET['marker']) . '-channel</guid>'.PHP_EOL;
 			} else {
@@ -325,10 +325,10 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<guid>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-marker-' . $marker['mid'] . '</guid>'.PHP_EOL;
 				echo '<pubdate>' . date("Y-m-d", $date_kml_marker) . 'T' . date("h:m:s", $time_kml_marker) . $plus_minus . $offset_kml . '</pubdate>'.PHP_EOL;
 				echo '<author>' . stripslashes($marker['mcreatedby']) . '</author>'.PHP_EOL;
-				echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
+				echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',wp_kses($marker['mpopuptext']))) . ']]></description>'.PHP_EOL;
 				echo '<image>' . $micon_url . '</image>'.PHP_EOL;
 				echo '<source>' . home_url() . '</source>'.PHP_EOL;
-				echo '<where>' . $marker['maddress'] . '</where>'.PHP_EOL;
+				echo '<where>' . htmlspecialchars($marker['maddress']) . '</where>'.PHP_EOL;
 				echo '<georss:where>'.PHP_EOL;
 				echo '<gml:Point>'.PHP_EOL;
 				echo '<gml:pos>'.$marker['mlat'].' '.$marker['mlon'].'</gml:pos>'.PHP_EOL;

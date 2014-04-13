@@ -295,10 +295,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2014, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.8.7 =
-compatibility with WordPress 3.9 and improvements based on a security audit by the City of Vienna - see http://www.mapsmarker.com/v3.8.7 for more details
+= v3.8.8 =
+security fixes (potential XSS issues - exploitable by admins only) - see http://www.mapsmarker.com/v3.8.8 for more details
 
 == Changelog ==
-[blog post with details about v3.8.7](http://www.mapsmarker.com/v3.8.7)
+[blog post with details about v3.8.8](http://www.mapsmarker.com/v3.8.8)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)
