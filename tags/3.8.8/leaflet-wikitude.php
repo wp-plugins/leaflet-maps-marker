@@ -25,11 +25,11 @@ function lmm_is_plugin_active_for_network( $plugin ) {
 if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 	echo sprintf(__('The plugin "Leaflet Maps Marker" is inactive on this site and therefore this API link is not working.<br/><br/>Please contact the site owner (%1s) who can activate this plugin again.','lmm'), antispambot(get_bloginfo('admin_email')) );
 } else {
-	global $wpdb;
+	global $wpdb, $allowedtags;
 	$lmm_options = get_option( 'leafletmapsmarker_options' );
 	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-	$ar_wikitude_provider_name_sanitized = strtolower(preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), wp_kses($lmm_options[ 'ar_wikitude_provider_name' ])));
+	$ar_wikitude_provider_name_sanitized = strtolower(preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), wp_kses($lmm_options[ 'ar_wikitude_provider_name' ], $allowedtags)));
 	if (isset($_GET['layer'])) {
 		$layer_prepared = esc_sql($_GET['layer']);
 		$layer = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"," ","!","/"), "", $layer_prepared);
@@ -119,15 +119,15 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 
 			echo '<ar:name><![CDATA[' . $layername . ']]></ar:name>'.PHP_EOL;
 			echo '<ar:description>' . __('Wikitude API powered by www.mapsmarker.com','lmm') . '</ar:description>'.PHP_EOL;
-			echo '<wikitude:providerUrl><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_provider_url' ]) . ']]></wikitude:providerUrl>'.PHP_EOL;
-			echo '<wikitude:tags><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_tags' ]) . ']]></wikitude:tags>'.PHP_EOL;
-			echo '<wikitude:shortName><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_shortname' ]) . ']]></wikitude:shortName>'.PHP_EOL;
-			echo '<wikitude:promotionText><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiontext' ]) . ']]></wikitude:promotionText>'.PHP_EOL;
-			echo '<wikitude:promotionGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiongraphic' ]) . ']]></wikitude:promotionGraphic>'.PHP_EOL;
-			echo '<wikitude:featureGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_featuregraphic' ]) . ']]></wikitude:featureGraphic>'.PHP_EOL;
-			echo '<wikitude:logo><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_logo' ]) . ']]></wikitude:logo>'.PHP_EOL;
-			echo '<wikitude:icon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_icon' ]) . ']]></wikitude:icon>'.PHP_EOL;
-			echo '<wikitude:hiResIcon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_hiresicon' ]) . ']]></wikitude:hiResIcon>'.PHP_EOL;
+			echo '<wikitude:providerUrl><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_provider_url' ], $allowedtags) . ']]></wikitude:providerUrl>'.PHP_EOL;
+			echo '<wikitude:tags><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_tags' ], $allowedtags) . ']]></wikitude:tags>'.PHP_EOL;
+			echo '<wikitude:shortName><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_shortname' ], $allowedtags) . ']]></wikitude:shortName>'.PHP_EOL;
+			echo '<wikitude:promotionText><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiontext' ], $allowedtags) . ']]></wikitude:promotionText>'.PHP_EOL;
+			echo '<wikitude:promotionGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiongraphic' ], $allowedtags) . ']]></wikitude:promotionGraphic>'.PHP_EOL;
+			echo '<wikitude:featureGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_featuregraphic' ], $allowedtags) . ']]></wikitude:featureGraphic>'.PHP_EOL;
+			echo '<wikitude:logo><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_logo' ], $allowedtags) . ']]></wikitude:logo>'.PHP_EOL;
+			echo '<wikitude:icon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_icon' ], $allowedtags) . ']]></wikitude:icon>'.PHP_EOL;
+			echo '<wikitude:hiResIcon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_hiresicon' ], $allowedtags) . ']]></wikitude:hiResIcon>'.PHP_EOL;
 			echo '</ar:provider>'.PHP_EOL;
 
 			foreach ($markers as $marker) {
@@ -145,11 +145,11 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<wikitude:info>'.PHP_EOL;
 				echo '<wikitude:markerIconUrl><![CDATA[' . $micon_url . ']]></wikitude:markerIconUrl>'.PHP_EOL;
 				echo '<wikitude:thumbnail><![CDATA[' . $micon_url . ']]></wikitude:thumbnail>'.PHP_EOL;
-				echo '<wikitude:phone><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_phone' ]) . ']]></wikitude:phone>'.PHP_EOL;
+				echo '<wikitude:phone><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_phone' ], $allowedtags) . ']]></wikitude:phone>'.PHP_EOL;
 				//echo '<wikitude:url><![CDATA[]]></wikitude:url>'.PHP_EOL;
-				echo '<wikitude:email><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_email' ]) . ']]></wikitude:email>'.PHP_EOL;
+				echo '<wikitude:email><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_email' ], $allowedtags) . ']]></wikitude:email>'.PHP_EOL;
 				echo '<wikitude:address><![CDATA[' . $marker['maddress'] . ']]></wikitude:address>'.PHP_EOL;
-				echo '<wikitude:attachment><![CDATA[' .wp_kses( $lmm_options[ 'ar_wikitude_attachment' ]) . ']]></wikitude:attachment>'.PHP_EOL;
+				echo '<wikitude:attachment><![CDATA[' .wp_kses( $lmm_options[ 'ar_wikitude_attachment' ], $allowedtags) . ']]></wikitude:attachment>'.PHP_EOL;
 				echo '</wikitude:info>'.PHP_EOL;
 				echo '<Point>'.PHP_EOL;
 				echo '<coordinates><![CDATA[' . $marker['mlon'] . ',' . $marker['mlat'] . ']]></coordinates>'.PHP_EOL;
@@ -210,15 +210,15 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 
 			echo '<ar:name><![CDATA[' . $layername . ']]></ar:name>'.PHP_EOL;
 			echo '<ar:description>' . __('Wikitude API powered by www.mapsmarker.com','lmm') . '</ar:description>'.PHP_EOL;
-			echo '<wikitude:providerUrl><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_provider_url' ]) . ']]></wikitude:providerUrl>'.PHP_EOL;
-			echo '<wikitude:tags><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_tags' ]) . ']]></wikitude:tags>'.PHP_EOL;
-			echo '<wikitude:shortName><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_shortname' ]) . ']]></wikitude:shortName>'.PHP_EOL;
-			echo '<wikitude:promotionText><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiontext' ]) . ']]></wikitude:promotionText>'.PHP_EOL;
-			echo '<wikitude:promotionGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiongraphic' ]) . ']]></wikitude:promotionGraphic>'.PHP_EOL;
-			echo '<wikitude:featureGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_featuregraphic' ]) . ']]></wikitude:featureGraphic>'.PHP_EOL;
-			echo '<wikitude:logo><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_logo' ]) . ']]></wikitude:logo>'.PHP_EOL;
-			echo '<wikitude:icon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_icon' ]) . ']]></wikitude:icon>'.PHP_EOL;
-			echo '<wikitude:hiResIcon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_hiresicon' ]) . ']]></wikitude:hiResIcon>'.PHP_EOL;
+			echo '<wikitude:providerUrl><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_provider_url' ], $allowedtags) . ']]></wikitude:providerUrl>'.PHP_EOL;
+			echo '<wikitude:tags><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_tags' ], $allowedtags) . ']]></wikitude:tags>'.PHP_EOL;
+			echo '<wikitude:shortName><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_shortname' ], $allowedtags) . ']]></wikitude:shortName>'.PHP_EOL;
+			echo '<wikitude:promotionText><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiontext' ], $allowedtags) . ']]></wikitude:promotionText>'.PHP_EOL;
+			echo '<wikitude:promotionGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiongraphic' ], $allowedtags) . ']]></wikitude:promotionGraphic>'.PHP_EOL;
+			echo '<wikitude:featureGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_featuregraphic' ], $allowedtags) . ']]></wikitude:featureGraphic>'.PHP_EOL;
+			echo '<wikitude:logo><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_logo' ], $allowedtags) . ']]></wikitude:logo>'.PHP_EOL;
+			echo '<wikitude:icon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_icon' ], $allowedtags) . ']]></wikitude:icon>'.PHP_EOL;
+			echo '<wikitude:hiResIcon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_hiresicon' ], $allowedtags) . ']]></wikitude:hiResIcon>'.PHP_EOL;
 			echo '</ar:provider>'.PHP_EOL;
 
 			foreach ($markers as $marker) {
@@ -236,11 +236,11 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<wikitude:info>'.PHP_EOL;
 				echo '<wikitude:markerIconUrl><![CDATA[' . $micon_url . ']]></wikitude:markerIconUrl>'.PHP_EOL;
 				echo '<wikitude:thumbnail><![CDATA[' . $micon_url . ']]></wikitude:thumbnail>'.PHP_EOL;
-				echo '<wikitude:phone><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_phone' ]) . ']]></wikitude:phone>'.PHP_EOL;
+				echo '<wikitude:phone><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_phone' ], $allowedtags) . ']]></wikitude:phone>'.PHP_EOL;
 				//echo '<wikitude:url><![CDATA[]]></wikitude:url>'.PHP_EOL;
-				echo '<wikitude:email><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_email' ]) . ']]></wikitude:email>'.PHP_EOL;
+				echo '<wikitude:email><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_email' ], $allowedtags) . ']]></wikitude:email>'.PHP_EOL;
 				echo '<wikitude:address><![CDATA[' . $marker['maddress'] . ']]></wikitude:address>'.PHP_EOL;
-				echo '<wikitude:attachment><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_attachment' ]) . ']]></wikitude:attachment>'.PHP_EOL;
+				echo '<wikitude:attachment><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_attachment' ], $allowedtags) . ']]></wikitude:attachment>'.PHP_EOL;
 				echo '</wikitude:info>'.PHP_EOL;
 				echo '<Point>'.PHP_EOL;
 				echo '<coordinates><![CDATA[' . $marker['mlon'] . ',' . $marker['mlat'] . ']]></coordinates>'.PHP_EOL;
@@ -297,15 +297,15 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<ar:name><![CDATA[' . $markername . ']]></ar:name>'.PHP_EOL;
 			}
 			echo '<ar:description>' . __('Wikitude API powered by www.mapsmarker.com','lmm') . '</ar:description>'.PHP_EOL;
-			echo '<wikitude:providerUrl><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_provider_url' ]) . ']]></wikitude:providerUrl>'.PHP_EOL;
-			echo '<wikitude:tags><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_tags' ]) . ']]></wikitude:tags>'.PHP_EOL;
-			echo '<wikitude:shortName><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_shortname' ]) . ']]></wikitude:shortName>'.PHP_EOL;
-			echo '<wikitude:promotionText><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiontext' ]) . ']]></wikitude:promotionText>'.PHP_EOL;
-			echo '<wikitude:promotionGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiongraphic' ]) . ']]></wikitude:promotionGraphic>'.PHP_EOL;
-			echo '<wikitude:featureGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_featuregraphic' ]) . ']]></wikitude:featureGraphic>'.PHP_EOL;
-			echo '<wikitude:logo><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_logo' ]) . ']]></wikitude:logo>'.PHP_EOL;
-			echo '<wikitude:icon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_icon' ]) . ']]></wikitude:icon>'.PHP_EOL;
-			echo '<wikitude:hiResIcon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_hiresicon' ]) . ']]></wikitude:hiResIcon>'.PHP_EOL;
+			echo '<wikitude:providerUrl><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_provider_url' ], $allowedtags) . ']]></wikitude:providerUrl>'.PHP_EOL;
+			echo '<wikitude:tags><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_tags' ], $allowedtags) . ']]></wikitude:tags>'.PHP_EOL;
+			echo '<wikitude:shortName><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_shortname' ], $allowedtags) . ']]></wikitude:shortName>'.PHP_EOL;
+			echo '<wikitude:promotionText><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiontext' ], $allowedtags) . ']]></wikitude:promotionText>'.PHP_EOL;
+			echo '<wikitude:promotionGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiongraphic' ], $allowedtags) . ']]></wikitude:promotionGraphic>'.PHP_EOL;
+			echo '<wikitude:featureGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_featuregraphic' ], $allowedtags) . ']]></wikitude:featureGraphic>'.PHP_EOL;
+			echo '<wikitude:logo><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_logo' ], $allowedtags) . ']]></wikitude:logo>'.PHP_EOL;
+			echo '<wikitude:icon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_icon' ], $allowedtags) . ']]></wikitude:icon>'.PHP_EOL;
+			echo '<wikitude:hiResIcon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_hiresicon' ], $allowedtags) . ']]></wikitude:hiResIcon>'.PHP_EOL;
 			echo '</ar:provider>'.PHP_EOL;
 
 			foreach ($markers as $marker) {
@@ -333,11 +333,11 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					echo '<wikitude:thumbnail><![CDATA[' . $micon_url . ']]></wikitude:thumbnail>'.PHP_EOL;
 				}
 
-				echo '<wikitude:phone><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_phone' ]) . ']]></wikitude:phone>'.PHP_EOL;
+				echo '<wikitude:phone><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_phone' ], $allowedtags) . ']]></wikitude:phone>'.PHP_EOL;
 				//echo '<wikitude:url><![CDATA[]]></wikitude:url>'.PHP_EOL;
-				echo '<wikitude:email><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_email' ]) . ']]></wikitude:email>'.PHP_EOL;
+				echo '<wikitude:email><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_email' ], $allowedtags) . ']]></wikitude:email>'.PHP_EOL;
 				echo '<wikitude:address><![CDATA[' . $marker['maddress'] . ']]></wikitude:address>'.PHP_EOL;
-				echo '<wikitude:attachment><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_attachment' ]) . ']]></wikitude:attachment>'.PHP_EOL;
+				echo '<wikitude:attachment><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_attachment' ], $allowedtags) . ']]></wikitude:attachment>'.PHP_EOL;
 				echo '</wikitude:info>'.PHP_EOL;
 				echo '<Point>'.PHP_EOL;
 				echo '<coordinates><![CDATA[' . $marker['mlon'] . ',' . $marker['mlat'] . ']]></coordinates>'.PHP_EOL;
@@ -373,15 +373,15 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<ar:name><![CDATA[' . $markername . ']]></ar:name>'.PHP_EOL;
 			}
 			echo '<ar:description>' . __('Wikitude API powered by www.mapsmarker.com','lmm') . '</ar:description>'.PHP_EOL;
-			echo '<wikitude:providerUrl><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_provider_url' ]) . ']]></wikitude:providerUrl>'.PHP_EOL;
-			echo '<wikitude:tags><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_tags' ]) . ']]></wikitude:tags>'.PHP_EOL;
-			echo '<wikitude:shortName><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_shortname' ]) . ']]></wikitude:shortName>'.PHP_EOL;
-			echo '<wikitude:promotionText><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiontext' ]) . ']]></wikitude:promotionText>'.PHP_EOL;
-			echo '<wikitude:promotionGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiongraphic' ]) . ']]></wikitude:promotionGraphic>'.PHP_EOL;
-			echo '<wikitude:featureGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_featuregraphic' ]) . ']]></wikitude:featureGraphic>'.PHP_EOL;
-			echo '<wikitude:logo><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_logo' ]) . ']]></wikitude:logo>'.PHP_EOL;
-			echo '<wikitude:icon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_icon' ]) . ']]></wikitude:icon>'.PHP_EOL;
-			echo '<wikitude:hiResIcon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_hiresicon' ]) . ']]></wikitude:hiResIcon>'.PHP_EOL;
+			echo '<wikitude:providerUrl><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_provider_url' ], $allowedtags) . ']]></wikitude:providerUrl>'.PHP_EOL;
+			echo '<wikitude:tags><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_tags' ], $allowedtags) . ']]></wikitude:tags>'.PHP_EOL;
+			echo '<wikitude:shortName><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_shortname' ], $allowedtags) . ']]></wikitude:shortName>'.PHP_EOL;
+			echo '<wikitude:promotionText><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiontext' ], $allowedtags) . ']]></wikitude:promotionText>'.PHP_EOL;
+			echo '<wikitude:promotionGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_promotiongraphic' ], $allowedtags) . ']]></wikitude:promotionGraphic>'.PHP_EOL;
+			echo '<wikitude:featureGraphic><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_featuregraphic' ], $allowedtags) . ']]></wikitude:featureGraphic>'.PHP_EOL;
+			echo '<wikitude:logo><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_logo' ], $allowedtags) . ']]></wikitude:logo>'.PHP_EOL;
+			echo '<wikitude:icon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_icon' ], $allowedtags) . ']]></wikitude:icon>'.PHP_EOL;
+			echo '<wikitude:hiResIcon><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_hiresicon' ], $allowedtags) . ']]></wikitude:hiResIcon>'.PHP_EOL;
 			echo '</ar:provider>'.PHP_EOL;
 
 			foreach ($markers as $marker) {
@@ -409,11 +409,11 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					echo '<wikitude:thumbnail><![CDATA[' . $micon_url . ']]></wikitude:thumbnail>'.PHP_EOL;
 				}
 
-				echo '<wikitude:phone><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_phone' ]) . ']]></wikitude:phone>'.PHP_EOL;
+				echo '<wikitude:phone><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_phone' ], $allowedtags) . ']]></wikitude:phone>'.PHP_EOL;
 				//echo '<wikitude:url><![CDATA[]]></wikitude:url>'.PHP_EOL;
-				echo '<wikitude:email><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_email' ]) . ']]></wikitude:email>'.PHP_EOL;
+				echo '<wikitude:email><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_email' ], $allowedtags) . ']]></wikitude:email>'.PHP_EOL;
 				echo '<wikitude:address><![CDATA[' . $marker['maddress'] . ']]></wikitude:address>'.PHP_EOL;
-				echo '<wikitude:attachment><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_attachment' ]) . ']]></wikitude:attachment>'.PHP_EOL;
+				echo '<wikitude:attachment><![CDATA[' . wp_kses($lmm_options[ 'ar_wikitude_attachment' ], $allowedtags) . ']]></wikitude:attachment>'.PHP_EOL;
 				echo '</wikitude:info>'.PHP_EOL;
 				echo '<Point>'.PHP_EOL;
 				echo '<coordinates><![CDATA[' . $marker['mlon'] . ',' . $marker['mlat'] . ']]></coordinates>'.PHP_EOL;
