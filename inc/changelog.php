@@ -36,7 +36,55 @@ hr{color:#E6DB55}
 </style></head><body>
 <?php
 /*****************************************************************************************/
+echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf($text_a, '3.8.8') . '</strong> - ' . $text_b . ' 13.04.2014 (<a href="http://www.mapsmarker.com/v3.8.8" target="_blank">' . $text_c . '</a>):</p>
+<table>
+<tr><td><a href="https://www.mapsmarker.com/reseller" target="_blank"><img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-pro.png"></a></td><td>
+<a href="https://www.mapsmarker.com/reseller"  target="_blank">Maps Marker Pro reseller program launched - see https://www.mapsmarker.com/reseller for more details</a>
+</td></tr>
+<tr><td><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $text_h . '"><img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-pro.png"></a></td><td>
+<a href="http://www.mapsmarker.com/pricing"  target="_blank" title="click here to view all available packages on mapsmarker.com/pricing">Maps Marker Pro licenses now available also with 3 and 5 years access to updates and support</a>
+</td></tr>
+<tr><td>' . $new . '</td><td>
+show warning message if incompatible plugin "Root Relative URLs" is active (thx Brad!)
+</td></tr>
+<tr><td>' . $changed . '</td><td>
+remove plugin version used from source code on frontend to prevent information disclosure
+</td></tr>
+<tr><td>' . $fixed . '</td><td>
+fixed potential XSS issues (exploitable by admins only)
+</td></tr>
+<tr><td>' . $fixed . '</td><td>
+attribution for mapbox 2 basemap was wrong on marker and layer edit pages
+</td></tr>
+<tr><td>' . $fixed . '</td><td>
+WMS demo layer "Vienna public toilets" was not shown on KML view (fixed on new installations only to not overwrite existing custom settings)
+</td></tr>
+<tr><td>' . $fixed . '</td><td>
+Certain types of apostrophes in addresses could break marker maps on backends
+</td></tr>
+<tr><td colspan="2">
+<p><strong>' . $text_d . '</a></p></strong>
+<p>' . sprintf($text_e, 'https://translate.mapsmarker.com/projects/lmm') . '</p>
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated Chinese translation thanks to John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a> and ck
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated Dutch translation thanks to Patrick Ruers, <a href="http://www.stationskwartiersittard.nl" target="_blank">http://www.stationskwartiersittard.nl</a>
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated German translation
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated Russian translation thanks to Ekaterina Golubina (supported by Teplitsa of Social Technologies - <a href="http://te-st.ru" target="_blank">http://te-st.ru</a>) and Vyacheslav Strenadko, <a href="http://poi-gorod.ru" target="_blank">http://poi-gorod.ru</a>
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated Turkish translation thanks to Emre Erkan, <a href="http://www.karalamalar.net" target="_blank">http://www.karalamalar.net</a> and Mahir Tosun, <a href="http://www.bozukpusula.com" target="_blank">http://www.bozukpusula.com</a>
+</td></tr>
+</table>'.PHP_EOL;
+echo '<p><hr noshade size="1"/></p>';
 
+if ( ( $lmm_version_old < '3.8.7' ) && ( $lmm_version_old > '0' ) ) {
 echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf($text_a, '3.8.7') . '</strong> - ' . $text_b . ' 27.03.2014 (<a href="http://www.mapsmarker.com/v3.8.7" target="_blank">' . $text_c . '</a>):</p>
 <table>
 <tr><td><a href="http://www.mapsmarker.com/pricing"  target="_blank"><img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-pro.png"></a></td><td style="font-size:1.7em;">
@@ -131,6 +179,7 @@ updated Spanish translation thanks to Alvaro Lara, <a href="http://www.alvarolar
 updated Swedish translation thanks to Olof Odier <a href="http://www.historiskastadsvandringar.se" target="_blank">http://www.historiskastadsvandringar.se</a>, Tedy Warsitha <a href="http://codeorig.in/" target="_blank">http://codeorig.in/</a>, Dan Paulsson <a href="http://www.paulsson.eu" target="_blank">http://www.paulsson.eu</a> and Elger Lindgren, <a href="http://20x.se" target="_blank">http://20x.se</a>
 </td></tr>
 </table>'.PHP_EOL;
+}
 
 if ( ( $lmm_version_old < '3.8.6' ) && ( $lmm_version_old > '0' ) ) {
 echo '<p><hr noshade size="1"/></p>';

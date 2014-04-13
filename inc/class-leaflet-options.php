@@ -4888,7 +4888,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'title'   => '<a href="http://code.google.com/apis/kml/documentation/kmlreference.html#href" target="_blank">href</a>',
 			'desc'    => __('http-address of the KML-webservice of the WMS layer','lmm'),
 			'type'    => 'text',
-			'std'     => 'http://data.wien.gv.at/daten/geo?version=1.3.0&service=WMS&request=GetMap&crs=EPSG:4326&bbox=48.10,16.16,48.34,16.59&width=1&height=1&layers=ogdwien:OEFFWCOGD&styles=&format=application/vnd.google-earth.kml+xml'
+			'std'     => 'http://data.wien.gv.at/daten/geo?version=1.3.0&service=WMS&request=GetMap&crs=EPSG:4326&bbox=48.10,16.16,48.34,16.59&width=1&height=1&layers=ogdwien:WCANLAGEOGD&styles=&format=application/vnd.google-earth.kml+xml'
 		);
 		$this->_settings['wms_wms_kml_refreshMode'] = array(
 			'version' => '1.4.3',
@@ -9754,7 +9754,7 @@ $this->_settings['clustering_helptext2'] = array(
 		}
 		/* template for plugin updates
 		//info:  set defaults for options introduced in v3.9
-		if (get_option('leafletmapsmarker_version') == '3.8.7' )
+		if (get_option('leafletmapsmarker_version') == '3.8.8' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting )

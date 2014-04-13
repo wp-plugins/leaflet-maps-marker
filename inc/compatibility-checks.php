@@ -78,4 +78,8 @@ if (is_plugin_active('w3-total-cache/w3-total-cache.php') ) {
 		}
 	}
 }
+//info: plugin Root Relative URLs
+if (is_plugin_active('root-relative-urls/sb_root_relative_urls.php') ) {
+	echo '<p><div class="error" style="padding:10px;"><strong>' . sprintf(__('Warning: the plugin %1$s is active and causing maps to break - please deactivate that plugin!','lmm'), '"Root Relative URLs"	') . '</strong></div></p>';
+}
 ?>
