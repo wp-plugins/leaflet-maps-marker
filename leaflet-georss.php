@@ -26,7 +26,7 @@ function lmm_is_plugin_active_for_network( $plugin ) {
 if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 	echo sprintf(__('The plugin "Leaflet Maps Marker" is inactive on this site and therefore this API link is not working.<br/><br/>Please contact the site owner (%1s) who can activate this plugin again.','lmm'), antispambot(get_bloginfo('admin_email')) );
 } else {
-	global $wpdb;
+	global $wpdb, $allowedtags;
 	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 	$lmm_options = get_option( 'leafletmapsmarker_options' );
@@ -123,7 +123,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<id>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-layer-' . intval($_GET['layer']) . '-marker-' . $marker['mid'] . '</id>'.PHP_EOL;
 				echo '<updated>' . date("Y-m-d", $date_kml) . 'T' . date("h:m:s", $time_kml) . $plus_minus . $offset_kml . '</updated>'.PHP_EOL;
 				echo '<contributor>' . stripslashes($marker['mcreatedby']) . '</contributor>'.PHP_EOL;
-				echo '<content><![CDATA[' . stripslashes(wp_kses($marker['mpopuptext'])) . ']]></content>'.PHP_EOL;
+				echo '<content><![CDATA[' . stripslashes(wp_kses($marker['mpopuptext'], $allowedtags)) . ']]></content>'.PHP_EOL;
 				echo '<logo>' . $micon_url . '</logo>'.PHP_EOL;
 				echo '<icon>' . $micon_url . '</icon>'.PHP_EOL;
 				echo '<source>' . home_url() . '</source>'.PHP_EOL;
@@ -186,7 +186,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<guid>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-layer-' . $marker['lid'] . '-marker-' . $marker['mid'] . '</guid>'.PHP_EOL;
 				echo '<pubdate>' . date("Y-m-d", $date_kml_marker) . 'T' . date("h:m:s", $time_kml_marker) . $plus_minus . $offset_kml . '</pubdate>'.PHP_EOL;
 				echo '<author>' . $marker['mcreatedby'] . '</author>'.PHP_EOL;
-				echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',wp_kses($marker['mpopuptext']))) . ']]></description>'.PHP_EOL;
+				echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',wp_kses($marker['mpopuptext'], $allowedtags))) . ']]></description>'.PHP_EOL;
 				echo '<image>' . $micon_url . '</image>'.PHP_EOL;
 				echo '<source>' . home_url() . '</source>'.PHP_EOL;
 				echo '<where>' . htmlspecialchars($marker['maddress']) . '</where>'.PHP_EOL;
@@ -268,7 +268,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					echo '<id>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-marker-' . intval($_GET['marker']) . '-detail</id>'.PHP_EOL;
 				}
 				echo '<updated>' . date("Y-m-d", $date_kml) . 'T' . date("h:m:s", $time_kml) . $plus_minus . $offset_kml . '</updated>'.PHP_EOL;
-				echo '<content><![CDATA[' . stripslashes(wp_kses($marker['mpopuptext'])) . ']]></content>'.PHP_EOL;
+				echo '<content><![CDATA[' . stripslashes(wp_kses($marker['mpopuptext'], $allowedtags)) . ']]></content>'.PHP_EOL;
 				echo '<logo>' . $micon_url . '</logo>'.PHP_EOL;
 				echo '<icon>' . $micon_url . '</icon>'.PHP_EOL;
 				echo '<source>' . home_url() . '</source>'.PHP_EOL;
@@ -325,7 +325,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<guid>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-marker-' . $marker['mid'] . '</guid>'.PHP_EOL;
 				echo '<pubdate>' . date("Y-m-d", $date_kml_marker) . 'T' . date("h:m:s", $time_kml_marker) . $plus_minus . $offset_kml . '</pubdate>'.PHP_EOL;
 				echo '<author>' . stripslashes($marker['mcreatedby']) . '</author>'.PHP_EOL;
-				echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',wp_kses($marker['mpopuptext']))) . ']]></description>'.PHP_EOL;
+				echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',wp_kses($marker['mpopuptext'], $allowedtags))) . ']]></description>'.PHP_EOL;
 				echo '<image>' . $micon_url . '</image>'.PHP_EOL;
 				echo '<source>' . home_url() . '</source>'.PHP_EOL;
 				echo '<where>' . htmlspecialchars($marker['maddress']) . '</where>'.PHP_EOL;
