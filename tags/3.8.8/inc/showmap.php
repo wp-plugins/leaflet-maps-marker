@@ -841,9 +841,9 @@ resizeMap();".PHP_EOL;
 		$lmmjs_out .= "
 			if (typeof jQuery != 'undefined') {
 				jQuery(document).ready(function($) {
-					".$mapname.".invalidateSize();
+					".$mapname_js.".invalidateSize();
 					$('.woocommerce-tabs ul.tabs li a').click(function(){
-						".$mapname.".invalidateSize();
+						".$mapname_js.".invalidateSize();
 					});
 				});
 			}
