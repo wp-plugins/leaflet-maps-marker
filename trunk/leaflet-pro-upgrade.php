@@ -10,7 +10,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-pro-upgrade.php') { die ("
 include('inc' . DIRECTORY_SEPARATOR . 'admin-header.php');
 $lmm_pro_readme = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'leaflet-maps-marker-pro' . DIRECTORY_SEPARATOR . 'readme.txt';
 $action = isset($_POST['action']) ? $_POST['action'] : '';
-if (extension_loaded('ionCube Loader')) { if ( function_exists('ioncube_loader_iversion') ) { $ic_lv = ioncube_loader_iversion(); $lmm_ic_lv = (int)substr($ic_lv,0,1); } else { $ic_lv = ioncube_loader_version(); $lmm_ic_lv = (int)substr($ic_lv,0,1); } if ($lmm_ic_lv >= 4) { $sf = ''; } else { $sf = strrev('orp-'); } } else { $sf = strrev('orp-'); }
+if ( extension_loaded('ionCube Loader') && version_compare(phpversion(),"5.5","<") ) { if ( function_exists('ioncube_loader_iversion') ) { $ic_lv = ioncube_loader_iversion(); $lmm_ic_lv = (int)substr($ic_lv,0,1); } else { $ic_lv = ioncube_loader_version(); $lmm_ic_lv = (int)substr($ic_lv,0,1); } if ($lmm_ic_lv >= 4) { $sf = ''; } else { $sf = strrev('orp-'); } } else { $sf = strrev('orp-'); }
 if ( $action == NULL ) {
 	if (!file_exists($lmm_pro_readme)) {
 		echo '<div style="float:left;margin: 20px 10px 10px 0;"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/logo-mapsmarker-pro.png" alt="Pro Logo" title="Leaflet Maps Marker Pro Logo"></div>';
