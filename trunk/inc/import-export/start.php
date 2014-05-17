@@ -226,7 +226,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 						<span ' . $caching_memorygzip_disabled_css . '><input id="caching-memorygzip" type="radio" name="caching-method" value="memorygzip" ' . $caching_memorygzip_disabled . ' /> <label for="caching-memorygzip">MemoryGZIP (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')</label></span><br/>
 
 						<span ' . $caching_discisam_disabled_css . '><input id="caching-discisam" type="radio" name="caching-method" value="discisam" ' . $caching_discisam_disabled . ' /> <label for="caching-discisam">DiscISAM (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')' . $caching_discisam_disabled . '</label><br/>
-						<label for="caching-discisam-directory" style="margin-left:24px;">' . __('custom directory for temp files (instead of php temp directory)','lmm') . ' </label>:<br/>
+						<label for="caching-discisam-directory" style="margin-left:24px;">' . __('optional - use the following custom directory for temp files','lmm') . '</label>:<br/>
 						<input style="margin-left:24px;width:300px;" id="caching-discisam-directory" type="input" name="caching-discisam-directory" value="" ' . $caching_discisam_disabled . ' /></label></span><br/>
 
 						<span ' . $caching_phptemp_disabled_css . '><input id="caching-phptemp" type="radio" name="caching-method" value="phptemp" ' . $caching_phptemp_disabled . ' /> <label for="caching-phptemp">phpTemp ' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')</label><br/>
@@ -357,7 +357,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 						<span ' . $caching_memorygzip_disabled_css . '><input id="caching-memorygzip" type="radio" name="caching-method" value="memorygzip" ' . $caching_memorygzip_disabled . ' disabled="disabled" /> <label for="caching-memorygzip">MemoryGZIP (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')</label></span><br/>
 
 						<span ' . $caching_discisam_disabled_css . '><input id="caching-discisam" type="radio" name="caching-method" value="discisam" ' . $caching_discisam_disabled . ' disabled="disabled" /> <label for="caching-discisam">DiscISAM (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')' . $caching_discisam_disabled . '</label><br/>
-						<label for="caching-discisam-directory" style="margin-left:24px;">' . __('custom directory for temp files (instead of php temp directory)','lmm') . ' </label>:<br/>
+						<label for="caching-discisam-directory" style="margin-left:24px;">' . __('optional - use the following custom directory for temp files','lmm') . '</label>:<br/>
 						<input style="margin-left:24px;width:300px;" id="caching-discisam-directory" type="input" name="caching-discisam-directory" value="" ' . $caching_discisam_disabled . ' disabled="disabled" /></label></span><br/>
 
 						<span ' . $caching_phptemp_disabled_css . '><input id="caching-phptemp" type="radio" name="caching-method" value="phptemp" ' . $caching_phptemp_disabled . ' disabled="disabled" /> <label for="caching-phptemp">phpTemp ' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')</label><br/>
@@ -503,7 +503,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 						<span ' . $caching_memorygzip_disabled_css . '><input id="caching-memorygzip" type="radio" name="caching-method" value="memorygzip" ' . $caching_memorygzip_disabled . ' /> <label for="caching-memorygzip">MemoryGZIP (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')</label></span><br/>
 
 						<span ' . $caching_discisam_disabled_css . '><input id="caching-discisam" type="radio" name="caching-method" value="discisam" ' . $caching_discisam_disabled . ' /> <label for="caching-discisam">DiscISAM (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')' . $caching_discisam_disabled . '</label><br/>
-						<label for="caching-discisam-directory" style="margin-left:24px;">' . __('custom directory for temp files (instead of php temp directory)','lmm') . ' </label>:<br/>
+						<label for="caching-discisam-directory" style="margin-left:24px;">' . __('optional - use the following custom directory for temp files','lmm') . '</label>:<br/>
 						<input style="margin-left:24px;width:300px;" id="caching-discisam-directory" type="input" name="caching-discisam-directory" value="" ' . $caching_discisam_disabled . ' /></label></span><br/>
 
 						<span ' . $caching_phptemp_disabled_css . '><input id="caching-phptemp" type="radio" name="caching-method" value="phptemp" ' . $caching_phptemp_disabled . ' /> <label for="caching-phptemp">phpTemp ' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')</label><br/>
@@ -604,7 +604,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 						<span ' . $caching_memorygzip_disabled_css . '><input id="caching-memorygzip" type="radio" name="caching-method" value="memorygzip" ' . $caching_memorygzip_disabled . ' /> <label for="caching-memorygzip">MemoryGZIP (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')</label></span><br/>
 
 						<span ' . $caching_discisam_disabled_css . '><input id="caching-discisam" type="radio" name="caching-method" value="discisam" ' . $caching_discisam_disabled . ' /> <label for="caching-discisam">DiscISAM (' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')' . $caching_discisam_disabled . '</label><br/>
-						<label for="caching-discisam-directory" style="margin-left:24px;">' . __('custom directory for temp files (instead of php temp directory)','lmm') . ' </label>:<br/>
+						<label for="caching-discisam-directory" style="margin-left:24px;">' . __('optional - use the following custom directory for temp files','lmm') . '</label>:<br/>
 						<input style="margin-left:24px;width:300px;" id="caching-discisam-directory" type="input" name="caching-discisam-directory" value="" ' . $caching_discisam_disabled . ' /></label></span><br/>
 
 						<span ' . $caching_phptemp_disabled_css . '><input id="caching-phptemp" type="radio" name="caching-method" value="phptemp" ' . $caching_phptemp_disabled . ' /> <label for="caching-phptemp">phpTemp ' . sprintf(__('Memory usage: %1$s, performance: %2$s','lmm'), __('medium','lmm'), __('medium','lmm')) . ')</label><br/>

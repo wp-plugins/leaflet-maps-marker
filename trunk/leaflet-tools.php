@@ -194,6 +194,7 @@ if (!empty($action)) {
 	<li>- <a href="#change-layer-id" style="text-decoration:none;">' . __('Change layer ID','lmm') . '</a></li>
 	<li>- <a href="#api-url-generator" style="text-decoration:none;">' . __('API URL generator','lmm') . '</a></li>
 	<li>- <a href="#api-url-tester" style="text-decoration:none;">' . __('API URL tester','lmm') . '</a></li>
+	<li>- <a href="#clear-qr-cache" style="text-decoration:none;">' . __('Clear QR code images cache','lmm') . '</a></li>
 	<li>- <a href="#delete-selected-markers" style="text-decoration:none;">' . __('Delete all markers from a layer','lmm') . '</a></li>
 	<li>- <a href="#delete-all-markers" style="text-decoration:none;">' . sprintf( esc_attr__('Delete all %1$s markers from all %2$s layers','lmm'), $markercount_all, $layercount_all) . '</a></li>
 	</ul>';
@@ -1088,6 +1089,26 @@ if (!empty($action)) {
 		});
 	});
 	</script>
+	<p><a href="#top" style="text-decoration:none;"><?php _e('back to top','lmm'); ?></a></p>
+
+	<a name="clear-qr-cache"></a>
+	<br/><br/>
+	<?php $nonce= wp_create_nonce('tool-nonce'); ?>
+	<form method="post">
+	<input type="hidden" name="action" value="clear_qr_cache" />
+	<?php wp_nonce_field('tool-nonce'); ?>
+	<table class="widefat fixed" style="width:auto;">
+		<tr style="background-color:#d6d5d5;">
+			<td colspan="2"><strong><?php echo sprintf(__('Clear QR code images cache at %1$s','lmm'), 'n/a') ?>  <a href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_pro_upgrade" title="<?php esc_attr_e('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') ?>"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/help-pro-feature.png" /></a></strong></td>
+		</tr>
+		<tr>
+			<td style="vertical-align:middle;">
+				<?php _e('Clearing the full QR code images cache is only recommended when a new QR code background is configured or if the URLs to the fullscreen maps have changed.','lmm');
+				echo '<div style="margin:10px 0;"><strong><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a></strong></div>'; ?>
+			</td>
+		</tr>
+	</table>
+	</form>
 	<p><a href="#top" style="text-decoration:none;"><?php _e('back to top','lmm'); ?></a></p>
 
 	<a name="delete-selected-markers"></a>

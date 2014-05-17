@@ -241,8 +241,9 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 			if ( (isset($lmm_options[ 'defaults_layer_panel_qr_code' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_panel_qr_code' ] == 1 ) ) {
 				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-qr.php?layer=' . $id . '&amp;callback=jsonp&amp;full=yes&amp;full_icon_url=yes" target="_blank" title="' . esc_attr__('Create QR code image for standalone map in fullscreen mode','lmm') . '" rel="nofollow"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-qr-code.png" width="14" height="14" alt="QR-code-logo" class="lmm-panel-api-images" /></a>';
 			}
-			if ( (isset($lmm_options[ 'defaults_layer_panel_geojson' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_panel_geojson' ] == 1 ) && ($multi_layer_map == 0 ) ) {
-				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?layer=' . $id . '&amp;callback=jsonp&amp;full=yes&amp;full_icon_url=yes" style="text-decoration:none;" title="' . esc_attr__('Export as GeoJSON','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-json.png" width="14" height="14" alt="GeoJSON-Logo" class="lmm-panel-api-images" /></a>';
+			if ( (isset($lmm_options[ 'defaults_layer_panel_geojson' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_panel_geojson' ] == 1 ) ) {
+				if ($multi_layer_map == 0 ) { $geojson_api_link = $id; } else { $geojson_api_link = $multi_layer_map_list; }
+				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?layer=' . $geojson_api_link . '&amp;callback=jsonp&amp;full=yes&amp;full_icon_url=yes" style="text-decoration:none;" title="' . esc_attr__('Export as GeoJSON','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-json.png" width="14" height="14" alt="GeoJSON-Logo" class="lmm-panel-api-images" /></a>';
 			}
 			if ( (isset($lmm_options[ 'defaults_layer_panel_georss' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_panel_georss' ] == 1 ) ) {
 				$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-georss.php?layer=' . $id . '" style="text-decoration:none;" title="' . esc_attr__('Export as GeoRSS','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-georss.png" width="14" height="14" alt="GeoRSS-Logo" class="lmm-panel-api-images" /></a>';
@@ -261,7 +262,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 	{
 	$table_name_markers = $wpdb->prefix.'leafletmapsmarker_markers';
 	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
-	$layer_mark_list_microformats = $wpdb->get_results('SELECT l.id as lid,l.name as lname, m.lon as mlon, m.lat as mlat, m.markername as markername,m.id as markerid FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.intval($layer), ARRAY_A);
+	$layer_mark_list_microformats = $wpdb->get_results($wpdb->prepare('SELECT l.id as lid,l.name as lname, m.lon as mlon, m.lat as mlat, m.markername as markername,m.id as markerid FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id = %d LIMIT 1000',$layer), ARRAY_A);
 		if (count($layer_mark_list_microformats) < 1) {
 			$lmm_out .= '<div id="lmm_geo_tags_'.$uid.'" class="lmm-geo-tags geo">' . $paneltext . ': <span class="latitude">' . $lat . '</span>, <span class="longitude">' . $lon . '</span></div>'.PHP_EOL;
 		} else {
@@ -293,7 +294,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 	{
 	//info: sqls for singe and multi-layer-maps
 	if ($multi_layer_map == 0) {
-		$layer_marker_list = $wpdb->get_results('SELECT l.id as lid, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid, m.createdon as mcreatedon, m.updatedon as mupdatedon, m.address as maddress FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$id.' ORDER BY ' . $lmm_options[ 'defaults_layer_listmarkers_order_by' ] . ' ' . $lmm_options[ 'defaults_layer_listmarkers_sort_order' ] . ' LIMIT ' . intval($lmm_options[ 'defaults_layer_listmarkers_limit' ]), ARRAY_A);
+		$layer_marker_list = $wpdb->get_results('SELECT l.id as lid, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid, m.createdon as mcreatedon, m.updatedon as mupdatedon, m.address as maddress, m.layer as mlayer, m.kml_timestamp as mkml_timestamp FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$id.' ORDER BY ' . $lmm_options[ 'defaults_layer_listmarkers_order_by' ] . ' ' . $lmm_options[ 'defaults_layer_listmarkers_sort_order' ] . ' LIMIT ' . intval($lmm_options[ 'defaults_layer_listmarkers_limit' ]), ARRAY_A);
 	} else if ($multi_layer_map == 1) {
 
 			//info: set sort order for multi-layer-maps based on list-marker-setting
@@ -301,38 +302,48 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 				$sort_order_mlm = 'markerid';
 			} else if ( $lmm_options['defaults_layer_listmarkers_order_by'] == 'm.markername') {
 				$sort_order_mlm = 'markername';
+			} else if ( $lmm_options['defaults_layer_listmarkers_order_by'] == 'm.popuptext') {
+				$sort_order_mlm = 'mpopuptext';
+			} else if ( $lmm_options['defaults_layer_listmarkers_order_by'] == 'm.icon') {
+				$sort_order_mlm = 'micon';
+			} else if ( $lmm_options['defaults_layer_listmarkers_order_by'] == 'm.createdby') {
+				$sort_order_mlm = 'mcreatedby';
 			} else if ( $lmm_options['defaults_layer_listmarkers_order_by'] == 'm.createdon') {
 				$sort_order_mlm = 'mcreatedon';
+			} else if ( $lmm_options['defaults_layer_listmarkers_order_by'] == 'm.updatedby') {
+				$sort_order_mlm = 'mupdatedby';
 			} else if ( $lmm_options['defaults_layer_listmarkers_order_by'] == 'm.updatedon') {
 				$sort_order_mlm = 'mupdatedon';
 			} else if ( $lmm_options['defaults_layer_listmarkers_order_by'] == 'm.layer') {
 				$sort_order_mlm = 'mlayer';
+			} else if ( $lmm_options['defaults_layer_listmarkers_order_by'] == 'm.kml_timestamp') {
+				$sort_order_mlm = 'mkml_timestamp';
 			}
 
 			if ( (count($multi_layer_map_list_exploded) == 1) && ($multi_layer_map_list != 'all') && ($multi_layer_map_list != NULL) ) { //info: only 1 layer selected
-				$mlm_query = "(SELECT l.id as lid,l.name as lname,l.mapwidth as lmapwidth,l.mapheight as lmapheight,l.mapwidthunit as lmapwidthunit,l.layerzoom as llayerzoom,l.layerviewlat as llayerviewlat,l.layerviewlon as llayerviewlon, l.address as laddress, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid,m.mapwidth as mmapwidth,m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight,m.zoom as mzoom,m.openpopup as mopenpopup, m.basemap as mbasemap, m.controlbox as mcontrolbox, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, m.address as maddress, m.layer as mlayer FROM " . $table_name_layers . " as l INNER JOIN " . $table_name_markers . " AS m ON l.id=m.layer WHERE l.id='" . $multi_layer_map_list . "' ORDER BY " . $lmm_options[ 'defaults_layer_listmarkers_order_by' ] . " " . $lmm_options[ 'defaults_layer_listmarkers_sort_order' ] . " LIMIT " . intval($lmm_options[ 'defaults_layer_listmarkers_limit' ]) . ")";
-				$mlm_query .= " ORDER BY " . $sort_order_mlm . " " . $lmm_options['defaults_layer_listmarkers_sort_order'] . " LIMIT " . $lmm_options['defaults_layer_listmarkers_limit'] . "";
+				$mlm_query = "(SELECT l.id as lid,l.name as lname,l.mapwidth as lmapwidth,l.mapheight as lmapheight,l.mapwidthunit as lmapwidthunit,l.layerzoom as llayerzoom,l.layerviewlat as llayerviewlat,l.layerviewlon as llayerviewlon, l.address as laddress, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid,m.mapwidth as mmapwidth,m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight,m.zoom as mzoom,m.openpopup as mopenpopup, m.basemap as mbasemap, m.controlbox as mcontrolbox, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, m.address as maddress, m.layer as mlayer, m.kml_timestamp as mkml_timestamp FROM " . $table_name_layers . " as l INNER JOIN " . $table_name_markers . " AS m ON l.id=m.layer WHERE l.id='" . $multi_layer_map_list . "' ORDER BY " . $lmm_options[ 'defaults_layer_listmarkers_order_by' ] . " " . $lmm_options[ 'defaults_layer_listmarkers_sort_order' ] . " LIMIT " . intval($lmm_options[ 'defaults_layer_listmarkers_limit' ]) . ")";
+				$mlm_query .= " ORDER BY " . $sort_order_mlm . " " . $lmm_options['defaults_layer_listmarkers_sort_order'] . " LIMIT " . intval($lmm_options['defaults_layer_listmarkers_limit']) . "";
 				$layer_marker_list = $wpdb->get_results($mlm_query, ARRAY_A);
 			} //info: end (count($multi_layer_map_list_exploded) == 1) && ($multi_layer_map_list != 'all') && ($multi_layer_map_list != NULL)
 			else if ( (count($multi_layer_map_list_exploded) > 1 ) && ($multi_layer_map_list != 'all') ) {
 				$first_mlm_id = $multi_layer_map_list_exploded[0];
 				$other_mlm_ids = array_slice($multi_layer_map_list_exploded,1);
-				$mlm_query = "(SELECT l.id as lid,l.name as lname,l.mapwidth as lmapwidth,l.mapheight as lmapheight,l.mapwidthunit as lmapwidthunit,l.layerzoom as llayerzoom,l.layerviewlat as llayerviewlat,l.layerviewlon as llayerviewlon, l.address as laddress, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid,m.mapwidth as mmapwidth,m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight,m.zoom as mzoom,m.openpopup as mopenpopup, m.basemap as mbasemap, m.controlbox as mcontrolbox, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, m.address as maddress, m.layer as mlayer FROM " . $table_name_layers . " as l INNER JOIN " . $table_name_markers . " AS m ON l.id=m.layer WHERE l.id='" . $first_mlm_id . "')";
+				$mlm_query = "(SELECT l.id as lid,l.name as lname,l.mapwidth as lmapwidth,l.mapheight as lmapheight,l.mapwidthunit as lmapwidthunit,l.layerzoom as llayerzoom,l.layerviewlat as llayerviewlat,l.layerviewlon as llayerviewlon, l.address as laddress, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid,m.mapwidth as mmapwidth,m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight,m.zoom as mzoom,m.openpopup as mopenpopup, m.basemap as mbasemap, m.controlbox as mcontrolbox, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, m.address as maddress, m.layer as mlayer, m.kml_timestamp as mkml_timestamp FROM " . $table_name_layers . " as l INNER JOIN " . $table_name_markers . " AS m ON l.id=m.layer WHERE l.id='" . $first_mlm_id . "')";
 				foreach ($other_mlm_ids as $row) {
-					$mlm_query .= " UNION (SELECT l.id as lid,l.name as lname,l.mapwidth as lmapwidth,l.mapheight as lmapheight,l.mapwidthunit as lmapwidthunit,l.layerzoom as llayerzoom,l.layerviewlat as llayerviewlat,l.layerviewlon as llayerviewlon, l.address as laddress, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid,m.mapwidth as mmapwidth,m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight,m.zoom as mzoom,m.openpopup as mopenpopup, m.basemap as mbasemap, m.controlbox as mcontrolbox, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, m.address as maddress, m.layer as mlayer FROM " . $table_name_layers . " as l INNER JOIN " . $table_name_markers . " AS m ON l.id=m.layer WHERE l.id='" . $row . "')";
+					$mlm_query .= " UNION (SELECT l.id as lid,l.name as lname,l.mapwidth as lmapwidth,l.mapheight as lmapheight,l.mapwidthunit as lmapwidthunit,l.layerzoom as llayerzoom,l.layerviewlat as llayerviewlat,l.layerviewlon as llayerviewlon, l.address as laddress, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid,m.mapwidth as mmapwidth,m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight,m.zoom as mzoom,m.openpopup as mopenpopup, m.basemap as mbasemap, m.controlbox as mcontrolbox, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, m.address as maddress, m.layer as mlayer, m.kml_timestamp as mkml_timestamp FROM " . $table_name_layers . " as l INNER JOIN " . $table_name_markers . " AS m ON l.id=m.layer WHERE l.id='" . $row . "')";
 				}
-				$mlm_query .= " ORDER BY " . $sort_order_mlm . " " . $lmm_options['defaults_layer_listmarkers_sort_order'] . " LIMIT " . $lmm_options['defaults_layer_listmarkers_limit'] . "";
+				$mlm_query .= " ORDER BY " . $sort_order_mlm . " " . $lmm_options['defaults_layer_listmarkers_sort_order'] . " LIMIT " . intval($lmm_options['defaults_layer_listmarkers_limit']) . "";
 				$layer_marker_list = $wpdb->get_results($mlm_query, ARRAY_A);
 			} //info: end else if ( (count($multi_layer_map_list_exploded) > 1 ) && ($multi_layer_map_list != 'all')
 			else if ($multi_layer_map_list == 'all') {
 				$first_mlm_id = '0';
 				$mlm_all_layers = $wpdb->get_results( "SELECT id FROM $table_name_layers", ARRAY_A );
 				$other_mlm_ids = array_slice($mlm_all_layers,1);
-				$mlm_query = "(SELECT l.id as lid,l.name as lname,l.mapwidth as lmapwidth,l.mapheight as lmapheight,l.mapwidthunit as lmapwidthunit,l.layerzoom as llayerzoom,l.layerviewlat as llayerviewlat,l.layerviewlon as llayerviewlon, l.address as laddress, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid,m.mapwidth as mmapwidth,m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight,m.zoom as mzoom,m.openpopup as mopenpopup, m.basemap as mbasemap, m.controlbox as mcontrolbox, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, m.address as maddress, m.layer as mlayer FROM " . $table_name_layers . " as l INNER JOIN " . $table_name_markers . " AS m ON l.id=m.layer WHERE l.id='" . $first_mlm_id . "')";
+				$mlm_query = "(SELECT l.id as lid,l.name as lname,l.mapwidth as lmapwidth,l.mapheight as lmapheight,l.mapwidthunit as lmapwidthunit,l.layerzoom as llayerzoom,l.layerviewlat as llayerviewlat,l.layerviewlon as llayerviewlon, l.address as laddress, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid,m.mapwidth as mmapwidth,m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight,m.zoom as mzoom,m.openpopup as mopenpopup, m.basemap as mbasemap, m.controlbox as mcontrolbox, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, m.address as maddress, m.layer as mlayer, m.kml_timestamp as mkml_timestamp FROM " . $table_name_layers . " as l INNER JOIN " . $table_name_markers . " AS m ON l.id=m.layer WHERE l.id='" . $first_mlm_id . "')";
 				foreach ($other_mlm_ids as $row) {
-					$mlm_query .= " UNION (SELECT l.id as lid,l.name as lname,l.mapwidth as lmapwidth,l.mapheight as lmapheight,l.mapwidthunit as lmapwidthunit,l.layerzoom as llayerzoom,l.layerviewlat as llayerviewlat,l.layerviewlon as llayerviewlon, l.address as laddress, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid,m.mapwidth as mmapwidth,m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight,m.zoom as mzoom,m.openpopup as mopenpopup, m.basemap as mbasemap, m.controlbox as mcontrolbox, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, m.address as maddress, m.layer as mlayer FROM " . $table_name_layers . " as l INNER JOIN " . $table_name_markers . " AS m ON l.id=m.layer WHERE l.id='" . $row['id'] . "')";
+					$mlm_query .= " UNION (SELECT l.id as lid,l.name as lname,l.mapwidth as lmapwidth,l.mapheight as lmapheight,l.mapwidthunit as lmapwidthunit,l.layerzoom as llayerzoom,l.layerviewlat as llayerviewlat,l.layerviewlon as llayerviewlon, l.address as laddress, m.lon as mlon, m.lat as mlat, m.icon as micon, m.popuptext as mpopuptext,m.markername as markername,m.id as markerid,m.mapwidth as mmapwidth,m.mapwidthunit as mmapwidthunit,m.mapheight as mmapheight,m.zoom as mzoom,m.openpopup as mopenpopup, m.basemap as mbasemap, m.controlbox as mcontrolbox, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, m.address as maddress, m.layer as mlayer, m.kml_timestamp as mkml_timestamp FROM " . $table_name_layers . " as l INNER JOIN " . $table_name_markers . " AS m ON l.id=m.layer WHERE l.id='" . $row['id'] . "')";
 				}
-				$mlm_query .= " ORDER BY " . $sort_order_mlm . " " . $lmm_options['defaults_layer_listmarkers_sort_order'] . " LIMIT " . $lmm_options['defaults_layer_listmarkers_limit'] . "";
+				$mlm_query .= " ORDER BY " . $sort_order_mlm . " " . $lmm_options['defaults_layer_listmarkers_sort_order'] . " LIMIT " . intval($lmm_options['defaults_layer_listmarkers_limit']) . "";
 				$layer_marker_list = $wpdb->get_results($mlm_query, ARRAY_A);
 			} //info: end else if ($multi_layer_map_list == 'all')
 			else { //info: if ($multi_layer_map == 1) but no layers selected
@@ -347,10 +358,10 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 		$layer_marker_list_width = $mapwidth.$mapwidthunit;
 	}
 	$lmm_out .= '<div id="lmm_listmarkers_'.$uid.'" class="lmm-listmarkers" style="width:' . $layer_marker_list_width . ';">'.PHP_EOL;
-	$lmm_out .= '<table style="width:' . $layer_marker_list_width . ';" id="lmm_listmarkers_table_'.$uid.'">';
+	$lmm_out .= '<table style="width:' . $layer_marker_list_width . ';" id="lmm_listmarkers_table_'.$uid.'" class="lmm-listmarkers-table">';
 	foreach ($layer_marker_list as $row){
 		if ( (isset($lmm_options[ 'defaults_layer_listmarkers_show_icon' ]) == TRUE ) && ($lmm_options[ 'defaults_layer_listmarkers_show_icon' ] == 1 ) ) {
-			$lmm_out .= '<tr><td style="width:35px;vertical-align:top;text-align:center;">';
+			$lmm_out .= '<tr><td class="lmm-listmarkers-icon">';
 			if ($row['micon'] != null) {
 				$lmm_out .= '<img style="border-radius:0;box-shadow:none;" alt="marker icon" src="' . LEAFLET_PLUGIN_ICONS_URL . '/'.$row['micon'].'" title="' . stripslashes($row['markername']) . '" />';
 			} else {
@@ -359,7 +370,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 		} else {
 			$lmm_out .= '<tr><td>';
 		};
-		$lmm_out .= '</td><td><div class="lmm-listmarkers-panel-icons">';
+		$lmm_out .= '</td><td class="lmm-listmarkers-popuptext"><div class="lmm-listmarkers-panel-icons">';
 		if ( (isset($lmm_options[ 'defaults_layer_listmarkers_api_directions' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_listmarkers_api_directions' ] == 1 ) ) {
 			if ($lmm_options['directions_provider'] == 'googlemaps') {
 				if ( isset($lmm_options['google_maps_base_domain_custom']) && ($lmm_options['google_maps_base_domain_custom'] == NULL) ) { $gmaps_base_domain_directions = $lmm_options['google_maps_base_domain']; } else { $gmaps_base_domain_directions = htmlspecialchars($lmm_options['google_maps_base_domain_custom']); }
@@ -400,7 +411,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 		if ( (isset($lmm_options[ 'defaults_layer_listmarkers_api_qr_code' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_listmarkers_api_qr_code' ] == 1 ) ) {
 			$lmm_out .= '&nbsp;<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-qr.php?marker=' . $row['markerid'] . '&amp;callback=jsonp&amp;full=yes&amp;full_icon_url=yes" target="_blank" title="' . esc_attr__('Create QR code image for standalone map in fullscreen mode','lmm') . '" rel="nofollow"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-qr-code.png" width="14" height="14" alt="QR-code-logo" class="lmm-panel-api-images" /></a>';
 		}
-		if ( (isset($lmm_options[ 'defaults_layer_listmarkers_api_geojson' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_listmarkers_api_geojson' ] == 1 ) && ($multi_layer_map == 0 ) ) {
+		if ( (isset($lmm_options[ 'defaults_layer_listmarkers_api_geojson' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_listmarkers_api_geojson' ] == 1 ) ) {
 			$lmm_out .= '&nbsp;<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-geojson.php?marker=' . $row['markerid'] . '&amp;callback=jsonp&amp;full=yes&amp;full_icon_url=yes" style="text-decoration:none;" title="' . esc_attr__('Export as GeoJSON','lmm') . '" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-json.png" width="14" height="14" alt="GeoJSON-Logo" class="lmm-panel-api-images" /></a>';
 		}
 		if ( (isset($lmm_options[ 'defaults_layer_listmarkers_api_georss' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_listmarkers_api_georss' ] == 1 ) ) {
@@ -414,13 +425,36 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 			$lmm_out .= '<strong>' . stripslashes(htmlspecialchars($row['markername'])) . '</strong>';
 		}
 		if ( (isset($lmm_options[ 'defaults_layer_listmarkers_show_popuptext' ]) == TRUE ) && ($lmm_options[ 'defaults_layer_listmarkers_show_popuptext' ] == 1 ) ) {
-			$lmm_out .= '<br/>' . nl2br(stripslashes($row['mpopuptext']));
+			$sanitize_popuptext_from = array(
+				'#<ul(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+				'#</li>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+				'#</li>(\s)*(<br\s*/?>)*(\s)*</ul>#si',
+				'#<ol(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+				'#</li>(\s)*(<br\s*/?>)*(\s)*</ol>#si',
+				'#(<br\s*/?>){1}\s*<ul(.*?)>#si',
+				'#(<br\s*/?>){1}\s*<ol(.*?)>#si',
+				'#</ul>\s*(<br\s*/?>){1}#si',
+				'#</ol>\s*(<br\s*/?>){1}#si',
+			);
+			$sanitize_popuptext_to = array(
+				'<ul$1><li$5>',
+				'</li><li$4>',
+				'</li></ul>',
+				'<ol$1><li$5>',
+				'</li></ol>',
+				'<ul$2>',
+				'<ol$2>',
+				'</ul>',
+				'</ol>'
+			);
+			$popuptext_sanitized = preg_replace($sanitize_popuptext_from, $sanitize_popuptext_to, stripslashes(preg_replace( '/(\015\012)|(\015)|(\012)/','<br />', $row['mpopuptext'])));
+			$lmm_out .= '<br/>' . do_shortcode($popuptext_sanitized);
 		}
 		if ( (isset($lmm_options[ 'defaults_layer_listmarkers_show_address' ]) == TRUE ) && ($lmm_options[ 'defaults_layer_listmarkers_show_address' ] == 1 ) ) {
 			if ( $row['mpopuptext'] == NULL ) {
 				$lmm_out .= stripslashes(htmlspecialchars($row['maddress']));
 			} else if ( ($row['mpopuptext'] != NULL) && ($row['maddress'] != NULL) ) {
-				$lmm_out .= '<br/><div style="border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;">' . stripslashes(htmlspecialchars($row['maddress'])) . '</div>';
+				$lmm_out .= '<br/><div class="lmm-listmarkers-hr">' . stripslashes(htmlspecialchars($row['maddress'])) . '</div>';
 			}
 		}
 		$lmm_out .= '</td></tr>';
@@ -429,12 +463,12 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
    //info: adding info if more markers are available than listed in markers list
    $markercount = 0;
    if ($multi_layer_map == 0) {
-		$markercount = $wpdb->get_var('SELECT count(*) FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$id);
+		$markercount = $wpdb->get_var('SELECT count(*) FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.intval($id));
    } else if ( ($multi_layer_map == 1) && ( $multi_layer_map_list == 'all' ) ) {
 		$markercount = intval($wpdb->get_var('SELECT COUNT(*) FROM '.$table_name_markers));
    } else if ( ($multi_layer_map == 1) && ( $multi_layer_map_list != NULL ) && ($multi_layer_map_list != 'all') ) {
 		foreach ($multi_layer_map_list_exploded as $mlmrowcount){
-		$mlm_count_temp{$mlmrowcount} = $wpdb->get_var('SELECT count(*) FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$mlmrowcount);
+		$mlm_count_temp{$mlmrowcount} = $wpdb->get_var('SELECT count(*) FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.intval($mlmrowcount));
 		}
 		$markercount = array_sum($mlm_count_temp);
    } else if ( ($multi_layer_map == 1) && ( $multi_layer_map_list == NULL ) ) {
@@ -453,7 +487,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 	} else if ($lmm_options['defaults_layer_listmarkers_order_by'] == 'm.layer') {
 		$orderby = __('layer ID','lmm');
 	}
-	$lmm_out .= '<tr><td colspan="2" style="text-align:center">' . sprintf(__('The table above is listing %1s out of %2s markers (sorted by %3s %4s)','lmm'), $lmm_options[ 'defaults_layer_listmarkers_limit' ], $markercount, $orderby, $asc_desc) . '</td></tr>';
+	$lmm_out .= '<tr><td colspan="2" style="text-align:center">' . sprintf(__('The table above is listing %1s out of %2s markers (sorted by %3s %4s)','lmm'), intval($lmm_options[ 'defaults_layer_listmarkers_limit' ]), $markercount, $orderby, $asc_desc) . '</td></tr>';
 	}
 	$lmm_out .= '</table></div>';
 	} //info: end display a list of markers under the map
@@ -745,7 +779,30 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 		$mpopuptext = $mpopuptext . ')</div>';
 	}
 		if (!empty($mpopuptext)) {
-			$lmmjs_out .= 'marker_'.$mapname_js.'.bindPopup("' . preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$mpopuptext) . '", {maxWidth: ' . intval($lmm_options['defaults_marker_popups_maxwidth']) . ', minWidth: ' . intval($lmm_options['defaults_marker_popups_minwidth']) . ', maxHeight: ' . intval($lmm_options['defaults_marker_popups_maxheight']) . ', autoPan: ' . $lmm_options['defaults_marker_popups_autopan'] . ', closeButton: ' . $lmm_options['defaults_marker_popups_closebutton'] . ', autoPanPadding: new L.Point(' . intval($lmm_options['defaults_marker_popups_autopanpadding_x']) . ', ' . intval($lmm_options['defaults_marker_popups_autopanpadding_y']) . ')})'.$mopenpopup.';'.PHP_EOL;
+			$sanitize_popuptext_from = array(
+				'#<ul(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+				'#</li>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+				'#</li>(\s)*(<br\s*/?>)*(\s)*</ul>#si',
+				'#<ol(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+				'#</li>(\s)*(<br\s*/?>)*(\s)*</ol>#si',
+				'#(<br\s*/?>){1}\s*<ul(.*?)>#si',
+				'#(<br\s*/?>){1}\s*<ol(.*?)>#si',
+				'#</ul>\s*(<br\s*/?>){1}#si',
+				'#</ol>\s*(<br\s*/?>){1}#si',
+			);
+			$sanitize_popuptext_to = array(
+				'<ul$1><li$5>',
+				'</li><li$4>',
+				'</li></ul>',
+				'<ol$1><li$5>',
+				'</li></ol>',
+				'<ul$2>',
+				'<ol$2>',
+				'</ul>',
+				'</ol>'
+			);
+			$popuptext_sanitized = preg_replace($sanitize_popuptext_from, $sanitize_popuptext_to, preg_replace( '/(\015\012)|(\015)|(\012)/','<br />', $mpopuptext));
+			$lmmjs_out .= 'marker_'.$mapname_js.'.bindPopup("' . $popuptext_sanitized . '", {maxWidth: ' . intval($lmm_options['defaults_marker_popups_maxwidth']) . ', minWidth: ' . intval($lmm_options['defaults_marker_popups_minwidth']) . ', maxHeight: ' . intval($lmm_options['defaults_marker_popups_maxheight']) . ', autoPan: ' . $lmm_options['defaults_marker_popups_autopan'] . ', closeButton: ' . $lmm_options['defaults_marker_popups_closebutton'] . ', autoPanPadding: new L.Point(' . intval($lmm_options['defaults_marker_popups_autopanpadding_x']) . ', ' . intval($lmm_options['defaults_marker_popups_autopanpadding_y']) . ')})'.$mopenpopup.';'.PHP_EOL;
 		}
 	} else if (!empty($geojson) or !empty($geojsonurl) or !empty($layer) ) {
 		$lmmjs_out .= 'var geojsonObj_'.$mapname_js.', mapIcon, marker_clickable, marker_title;'.PHP_EOL;
@@ -825,15 +882,24 @@ function resizeMap() {
 	}".PHP_EOL;
 		$lmmjs_out .= "}
 resizeMap();".PHP_EOL;
-	//info: fix for loading maps in jquery ui tabs
+	//info: fix for loading maps in jQuery UI tabs & jQuery Mobile
 	$lmmjs_out .= "if (typeof jQuery.ui != 'undefined') {
 	".$mapname_js.".invalidateSize();
 	$('.ui-tabs').on('tabsactivate', function(event, ui) {
 		".$mapname_js.".invalidateSize();
 	});
-}".PHP_EOL;
-		$lmmjs_out .= "});".PHP_EOL;
+}
+if (typeof jQuery.mobile != 'undefined') {
+	jQuery(document).bind('pageinit', function( event, data ){
+		".$mapname_js.".invalidateSize();
+	});".PHP_EOL;
+	if ($lmm_options['misc_javascript_header_footer'] == 'footer') {
+		$jquery_mobile_error = (current_user_can( 'manage_options' )) ? '	alert("' . esc_attr__('Warning: Maps Marker (Pro) is not properly configured to work with jQuery Mobile! Please navigate to Maps Marker (Pro)-Settings / Misc / General settings and set the option -Where to insert Javascript files on frontend?- to -header+inline javascript- to fix this issue.','lmm') . '");'.PHP_EOL : '';
+		$lmmjs_out .= $jquery_mobile_error;
 	}
+	$lmmjs_out .= "}".PHP_EOL;
+	$lmmjs_out .= "});".PHP_EOL;
+}
 
 	//info: fix for loading maps in woocommmerce tabs
 	include_once( ABSPATH . 'wp-admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'plugin.php' );

@@ -92,7 +92,7 @@ class Class_leaflet_options {
 		$this->sections['wms-sections10']			= esc_attr__('WMS layer 9 settings','lmm');
 		$this->sections['wms-sections11']			= esc_attr__('WMS layer 10 settings','lmm');
 
-		$this->sections['google-section1']			= esc_attr__('Google Maps API key','lmm');
+		$this->sections['google-section1']			= esc_attr__('Google Maps API','lmm');
 		$this->sections['google-section2']			= esc_attr__('Google language localization','lmm');
 		$this->sections['google-section3']			= esc_attr__('Google Maps base domain','lmm');
 		$this->sections['google-section4']			= esc_attr__('Google Places bounds','lmm');
@@ -6853,6 +6853,19 @@ $this->_settings['clustering_helptext2'] = array(
 			'desc'    => __( 'The usage of Google Maps is free for non-commercial users. Since 01/2012, commercial users have a current usage limit of 25.000 free requests a day - with additional usage cost of 0.5$/1000 requests. In order to comply with the <a href="https://developers.google.com/maps/faq" target="_blank">Google Maps terms of services</a>, commercial users have to <a href="https://developers.google.com/maps/documentation/javascript/tutorial#api_key">register for a free API key</a>. This API key can also be used by non-commercial users in order to monitor their Google Maps API usage.', 'lmm'),
 			'type'    => 'helptext'
 		);
+		$this->_settings['google_maps_api_status'] = array(
+			'version' => 'p1.6',
+			'pane'    => 'google',
+			'section' => 'google-section1',
+			'title'   => __('Google Maps API status','lmm') . $pro_button_link,
+			'desc'    => __('Disabling the Google Maps API will prevent loading scripts from google.com on frontend and will result in higher performance if alternative basemaps are going to be used only. Existing maps using Google basemaps will switch to OpenStreetMap automatically if this setting is disabled!','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'enabled',
+			'choices' => array(
+				'enabled' => __('enabled','lmm'),
+				'disabled' => __('disabled','lmm')
+			)
+		);
 		$this->_settings['google_maps_api_key'] = array(
 			'version' => '2.6',
 			'pane'    => 'google',
@@ -6861,15 +6874,6 @@ $this->_settings['clustering_helptext2'] = array(
 			'desc'    => __( 'Please enter your Google Maps API key here', 'lmm' ),
 			'std'     => '',
 			'type'    => 'text'
-		);
-		$this->_settings['google_maps_api_key_helptext2'] = array(
-			'version' => '2.6',
-			'pane'    => 'google',
-			'section' => 'google-section1',
-			'std'     => '',
-			'title'   => '',
-			'desc'    => '<div style="height:60px;"></div>',
-			'type'    => 'helptext'
 		);
 		/*
 		* Google language localization
@@ -8162,7 +8166,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'pane'    => 'misc',
 			'section' => 'misc-section1',
 			'title'   => __('Where to insert Javascript files on frontend?','lmm'),
-			'desc'    => __('Footer is recommended for better performance. If you are using WordPress lesser than v3.3, Javascript files automatically get inserted into the header of your site and the javascript needed for each maps inline within the content.','lmm') . ' ' . __('If you choose footer, javascripts will also only be loaded when a shortcode is used and not on all pages.','lmm'),
+			'desc'    => __('Footer is recommended for better performance. If you are using WordPress lesser than v3.3, Javascript files automatically get inserted into the header of your site and the javascript needed for each maps inline within the content.','lmm') . ' ' . __('If you choose footer, javascripts will also only be loaded when a shortcode is used and not on all pages.','lmm') . ' ' . __('Setting this option to header+inline-javascript is required, if maps should be displayed withing a jQuery mobile framework.','lmm'),
 			'type'    => 'radio',
 			'std'     => 'footer',
 			'choices' => array(
@@ -8207,6 +8211,19 @@ $this->_settings['clustering_helptext2'] = array(
 			'choices' => array(
 				'show' => __('show','lmm'),
 				'hide' => __('hide','lmm')
+			)
+		);
+		$this->_settings['async_geojson_loading'] = array(
+			'version' => 'p1.6',
+			'pane'    => 'misc',
+			'section' => 'misc-section1',
+			'title'   => __('Async GeoJSON loading for layer maps','lmm') . $pro_button_link,
+			'desc'    => __('Disabling async GeoJSON loading will increase page loadtime and is only needed if multiple instances of a layer map should be displayed on one page.','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'disabled',
+			'choices' => array(
+				'enabled' => __('enabled','lmm'),
+				'disabled' => __('disabled','lmm')
 			)
 		);
 		$this->_settings['misc_betatest'] = array(
@@ -9754,7 +9771,7 @@ $this->_settings['clustering_helptext2'] = array(
 		}
 		/* template for plugin updates
 		//info:  set defaults for options introduced in v3.9
-		if (get_option('leafletmapsmarker_version') == '3.8.8' )
+		if (get_option('leafletmapsmarker_version') == '3.8.9' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting )

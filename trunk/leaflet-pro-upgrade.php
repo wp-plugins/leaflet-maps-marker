@@ -286,6 +286,7 @@ if ( $action == NULL ) {
 				<div class="pro-feature-content" style="background:' . $bgcolor . ';">
 				<ul style="list-style-type:disc;margin-left:15px;margin-top:0;">
 					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.2.1p" target="_blank">' . __('improved performance for layer maps with a huge number of markers (parsing of GeoJSON is up to 3 times faster)','lmm') . '</a></li>
+					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.6p" target="_blank">' . __('improved performance for layer maps by asynchronous loading of markers via GeoJSON','lmm') . '</a></li>
 					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.3p" target="_blank">' . __('support for shortcodes in popup texts','lmm') . '</a></li>
 					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.5p" target="_blank">' . __('support for setting global maximum zoom level to 21 (tiles from basemaps with lower native zoom levels will be upscaled automatically)','lmm') . '</a></li>
 					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.5.1p" target="_blank">' . __('support for duplicating markers','lmm') . '</a></li>
@@ -295,6 +296,8 @@ if ( $action == NULL ) {
 					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.5.7p" target="_blank">' . __('support for bulk updates of marker maps on the tools page for selected layers only','lmm') . '</a></li>
 					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.5.8p" target="_blank">' . __('option to add markernames to popups automatically (default = false)','lmm') . '</a></li>
 					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.5.8p" target="_blank">' . __('map moves back to initial position after popup is closed','lmm') . '</a></li>
+					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.6p" target="_blank">' . __('option to disable loading of Google Maps API for higher performance if alternative basemaps are used only','lmm') . '</a></li>
+					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.6p" target="_blank">' . sprintf(__('map parameters can be overwritten within shortcodes (e.g. %1s)','lmm'), '[mapsmarker marker="1" height="100"]') . '</a></li>
 				</ul>
 				</div>
 				<p><a href="#top" class="upgrade-top-link">' . __('back to top to start free 30-day-trial','lmm') . '</a></p>

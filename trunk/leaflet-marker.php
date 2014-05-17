@@ -591,7 +591,30 @@ if ( $edit_status == 'updated') {
 						),
 					'quicktags' => array('buttons' => 'strong,em,link,block,del,ins,img,code,close'));
 				}
-				wp_editor( stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$popuptext)), 'popuptext', $settings);
+				$sanitize_popuptext_from = array(
+					'#<ul(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*</ul>#si',
+					'#<ol(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*</ol>#si',
+					'#(<br\s*/?>){1}\s*<ul(.*?)>#si',
+					'#(<br\s*/?>){1}\s*<ol(.*?)>#si',
+					'#</ul>\s*(<br\s*/?>){1}#si',
+					'#</ol>\s*(<br\s*/?>){1}#si',
+				);
+				$sanitize_popuptext_to = array(
+					'<ul$1><li$5>',
+					'</li><li$4>',
+					'</li></ul>',
+					'<ol$1><li$5>',
+					'</li></ol>',
+					'<ul$2>',
+					'<ol$2>',
+					'</ul>',
+					'</ol>'
+				);
+				$popuptext_sanitized = preg_replace($sanitize_popuptext_from, $sanitize_popuptext_to, stripslashes(preg_replace( '/(\015\012)|(\015)|(\012)/','<br />', $popuptext)));
+				wp_editor( $popuptext_sanitized, 'popuptext', $settings);
 				?>
 				<small>
 					<?php
@@ -1016,7 +1039,32 @@ var marker,selectlayer,googleLayer_roadmap,googleLayer_satellite,googleLayer_hyb
 	 $popuptext = $popuptext . $directions_settings_link . '</div>';
  }
  ?>
-  marker.bindPopup('<?php echo preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$popuptext) ?>',{maxWidth: <?php echo intval($lmm_options['defaults_marker_popups_maxwidth']) ?>, minWidth: <?php echo intval($lmm_options['defaults_marker_popups_minwidth']) ?>, maxHeight: <?php echo intval($lmm_options['defaults_marker_popups_maxheight']) ?>, autoPan: <?php echo $lmm_options['defaults_marker_popups_autopan'] ?>, closeButton: <?php echo $lmm_options['defaults_marker_popups_closebutton'] ?>, autoPanPadding: new L.Point(<?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_x']) ?>, <?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_y']) ?>)})<?php  if ($openpopup == 1) { echo '.openPopup()'; } ?>;
+ <?php
+	$sanitize_popuptext_from = array(
+		'#<ul(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+		'#</li>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+		'#</li>(\s)*(<br\s*/?>)*(\s)*</ul>#si',
+		'#<ol(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+		'#</li>(\s)*(<br\s*/?>)*(\s)*</ol>#si',
+		'#(<br\s*/?>){1}\s*<ul(.*?)>#si',
+		'#(<br\s*/?>){1}\s*<ol(.*?)>#si',
+		'#</ul>\s*(<br\s*/?>){1}#si',
+		'#</ol>\s*(<br\s*/?>){1}#si',
+	);
+	$sanitize_popuptext_to = array(
+		'<ul$1><li$5>',
+		'</li><li$4>',
+		'</li></ul>',
+		'<ol$1><li$5>',
+		'</li></ol>',
+		'<ul$2>',
+		'<ol$2>',
+		'</ul>',
+		'</ol>'
+	);
+	$popuptext_sanitized_js = preg_replace($sanitize_popuptext_from, $sanitize_popuptext_to, preg_replace( '/(\015\012)|(\015)|(\012)/','<br />', $popuptext));
+  ?>
+  marker.bindPopup('<?php echo $popuptext_sanitized_js; ?>',{maxWidth: <?php echo intval($lmm_options['defaults_marker_popups_maxwidth']) ?>, minWidth: <?php echo intval($lmm_options['defaults_marker_popups_minwidth']) ?>, maxHeight: <?php echo intval($lmm_options['defaults_marker_popups_maxheight']) ?>, autoPan: <?php echo $lmm_options['defaults_marker_popups_autopan'] ?>, closeButton: <?php echo $lmm_options['defaults_marker_popups_closebutton'] ?>, autoPanPadding: new L.Point(<?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_x']) ?>, <?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_y']) ?>)})<?php  if ($openpopup == 1) { echo '.openPopup()'; } ?>;
   //info: load wms layer when checkbox gets checked
 	$('#advanced-settings input:checkbox').click(function(el) {
 		if(el.target.checked) {
@@ -1053,7 +1101,7 @@ var marker,selectlayer,googleLayer_roadmap,googleLayer_satellite,googleLayer_hyb
       document.getElementById('lon').value = e.latlng.lng.toFixed(6);
       marker.setLatLng(e.latlng);
       <?php if ($popuptext != NULL) { ?>
-      marker.bindPopup('<?php echo preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$popuptext) ?>',{maxWidth: <?php echo intval($lmm_options['defaults_marker_popups_maxwidth']) ?>, minWidth: <?php echo intval($lmm_options['defaults_marker_popups_minwidth']) ?>, maxHeight: <?php echo intval($lmm_options['defaults_marker_popups_maxheight']) ?>, autoPan: <?php echo $lmm_options['defaults_marker_popups_autopan'] ?>, closeButton: <?php echo $lmm_options['defaults_marker_popups_closebutton'] ?>, autoPanPadding: new L.Point(<?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_x']) ?>, <?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_y']) ?>)})<?php  if ($openpopup == 1) { echo '.openPopup()'; } ?>;
+      marker.bindPopup('<?php echo $popuptext_sanitized_js; ?>',{maxWidth: <?php echo intval($lmm_options['defaults_marker_popups_maxwidth']) ?>, minWidth: <?php echo intval($lmm_options['defaults_marker_popups_minwidth']) ?>, maxHeight: <?php echo intval($lmm_options['defaults_marker_popups_maxheight']) ?>, autoPan: <?php echo $lmm_options['defaults_marker_popups_autopan'] ?>, closeButton: <?php echo $lmm_options['defaults_marker_popups_closebutton'] ?>, autoPanPadding: new L.Point(<?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_x']) ?>, <?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_y']) ?>)})<?php  if ($openpopup == 1) { echo '.openPopup()'; } ?>;
       <?php }?>
   });
   //info: set new coordinates on marker drag
@@ -1232,7 +1280,7 @@ gLoader = function(){
 			document.getElementById('lat').value = place.geometry.location.lat().toFixed(6);
 			document.getElementById('lon').value = place.geometry.location.lng().toFixed(6);
 			<?php if ($popuptext != NULL) { ?>
-			marker.bindPopup('<?php echo preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$popuptext) ?>',{maxWidth: <?php echo intval($lmm_options['defaults_marker_popups_maxwidth']) ?>, minWidth: <?php echo intval($lmm_options['defaults_marker_popups_minwidth']) ?>, maxHeight: <?php echo intval($lmm_options['defaults_marker_popups_maxheight']) ?>, autoPan: <?php echo $lmm_options['defaults_marker_popups_autopan'] ?>, closeButton: <?php echo $lmm_options['defaults_marker_popups_closebutton'] ?>, autoPanPadding: new L.Point(<?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_x']) ?>, <?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_y']) ?>)})<?php  if ($openpopup == 1) { echo '.openPopup()'; } ?>;
+			marker.bindPopup('<?php echo $popuptext_sanitized_js; ?>',{maxWidth: <?php echo intval($lmm_options['defaults_marker_popups_maxwidth']) ?>, minWidth: <?php echo intval($lmm_options['defaults_marker_popups_minwidth']) ?>, maxHeight: <?php echo intval($lmm_options['defaults_marker_popups_maxheight']) ?>, autoPan: <?php echo $lmm_options['defaults_marker_popups_autopan'] ?>, closeButton: <?php echo $lmm_options['defaults_marker_popups_closebutton'] ?>, autoPanPadding: new L.Point(<?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_x']) ?>, <?php echo intval($lmm_options['defaults_marker_popups_autopanpadding_y']) ?>)})<?php  if ($openpopup == 1) { echo '.openPopup()'; } ?>;
 			<?php }?>
 		 });
 		var input = document.getElementById('address');
