@@ -141,7 +141,30 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<Placemark id=\'' . $marker['mid'] . '\'>'.PHP_EOL;
 				echo '<ar:provider><![CDATA[' . $ar_wikitude_provider_name_sanitized . ']]></ar:provider>'.PHP_EOL;
 				echo '<name><![CDATA[' . stripslashes($marker['mmarkername']) . ']]></name>'.PHP_EOL;
-				echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
+				$sanitize_popuptext_from = array(
+					'#<ul(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*</ul>#si',
+					'#<ol(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*</ol>#si',
+					'#(<br\s*/?>){1}\s*<ul(.*?)>#si',
+					'#(<br\s*/?>){1}\s*<ol(.*?)>#si',
+					'#</ul>\s*(<br\s*/?>){1}#si',
+					'#</ol>\s*(<br\s*/?>){1}#si',
+				);
+				$sanitize_popuptext_to = array(
+					'<ul$1><li$5>',
+					'</li><li$4>',
+					'</li></ul>',
+					'<ol$1><li$5>',
+					'</li></ol>',
+					'<ul$2>',
+					'<ol$2>',
+					'</ul>',
+					'</ol>'
+				);
+				$popuptext_sanitized = preg_replace($sanitize_popuptext_from, $sanitize_popuptext_to, stripslashes(preg_replace( '/(\015\012)|(\015)|(\012)/','<br />', $marker['mpopuptext'])));
+				echo '<description><![CDATA[' . $popuptext_sanitized . ']]></description>'.PHP_EOL;
 				echo '<wikitude:info>'.PHP_EOL;
 				echo '<wikitude:markerIconUrl><![CDATA[' . $micon_url . ']]></wikitude:markerIconUrl>'.PHP_EOL;
 				echo '<wikitude:thumbnail><![CDATA[' . $micon_url . ']]></wikitude:thumbnail>'.PHP_EOL;
@@ -232,7 +255,30 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<Placemark id=\'' . $marker['mid'] . '\'>'.PHP_EOL;
 				echo '<ar:provider><![CDATA[' . $ar_wikitude_provider_name_sanitized . ']]></ar:provider>'.PHP_EOL;
 				echo '<name><![CDATA[' . stripslashes($marker['mmarkername']) . ']]></name>'.PHP_EOL;
-				echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
+				$sanitize_popuptext_from = array(
+					'#<ul(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*</ul>#si',
+					'#<ol(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*</ol>#si',
+					'#(<br\s*/?>){1}\s*<ul(.*?)>#si',
+					'#(<br\s*/?>){1}\s*<ol(.*?)>#si',
+					'#</ul>\s*(<br\s*/?>){1}#si',
+					'#</ol>\s*(<br\s*/?>){1}#si',
+				);
+				$sanitize_popuptext_to = array(
+					'<ul$1><li$5>',
+					'</li><li$4>',
+					'</li></ul>',
+					'<ol$1><li$5>',
+					'</li></ol>',
+					'<ul$2>',
+					'<ol$2>',
+					'</ul>',
+					'</ol>'
+				);
+				$popuptext_sanitized = preg_replace($sanitize_popuptext_from, $sanitize_popuptext_to, stripslashes(preg_replace( '/(\015\012)|(\015)|(\012)/','<br />', $marker['mpopuptext'])));
+				echo '<description><![CDATA[' . $popuptext_sanitized . ']]></description>'.PHP_EOL;
 				echo '<wikitude:info>'.PHP_EOL;
 				echo '<wikitude:markerIconUrl><![CDATA[' . $micon_url . ']]></wikitude:markerIconUrl>'.PHP_EOL;
 				echo '<wikitude:thumbnail><![CDATA[' . $micon_url . ']]></wikitude:thumbnail>'.PHP_EOL;
@@ -319,7 +365,30 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<Placemark id=\'' . $marker['mid'] . '\'>'.PHP_EOL;
 				echo '<ar:provider><![CDATA[' . $ar_wikitude_provider_name_sanitized . ']]></ar:provider>'.PHP_EOL;
 				echo '<name><![CDATA[' . stripslashes($marker['mmarkername']) . ']]></name>'.PHP_EOL;
-				echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
+				$sanitize_popuptext_from = array(
+					'#<ul(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*</ul>#si',
+					'#<ol(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*</ol>#si',
+					'#(<br\s*/?>){1}\s*<ul(.*?)>#si',
+					'#(<br\s*/?>){1}\s*<ol(.*?)>#si',
+					'#</ul>\s*(<br\s*/?>){1}#si',
+					'#</ol>\s*(<br\s*/?>){1}#si',
+				);
+				$sanitize_popuptext_to = array(
+					'<ul$1><li$5>',
+					'</li><li$4>',
+					'</li></ul>',
+					'<ol$1><li$5>',
+					'</li></ol>',
+					'<ul$2>',
+					'<ol$2>',
+					'</ul>',
+					'</ol>'
+				);
+				$popuptext_sanitized = preg_replace($sanitize_popuptext_from, $sanitize_popuptext_to, stripslashes(preg_replace( '/(\015\012)|(\015)|(\012)/','<br />', $marker['mpopuptext'])));
+				echo '<description><![CDATA[' . $popuptext_sanitized . ']]></description>'.PHP_EOL;
 				echo '<wikitude:info>'.PHP_EOL;
 
 				foreach ($markers as $marker) {
@@ -395,7 +464,30 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<Placemark id=\'' . $marker['mid'] . '\'>'.PHP_EOL;
 				echo '<ar:provider><![CDATA[' . $ar_wikitude_provider_name_sanitized . ']]></ar:provider>'.PHP_EOL;
 				echo '<name><![CDATA[' . stripslashes($marker['mmarkername']) . ']]></name>'.PHP_EOL;
-				echo '<description><![CDATA[' . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
+				$sanitize_popuptext_from = array(
+					'#<ul(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*</ul>#si',
+					'#<ol(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*</ol>#si',
+					'#(<br\s*/?>){1}\s*<ul(.*?)>#si',
+					'#(<br\s*/?>){1}\s*<ol(.*?)>#si',
+					'#</ul>\s*(<br\s*/?>){1}#si',
+					'#</ol>\s*(<br\s*/?>){1}#si',
+				);
+				$sanitize_popuptext_to = array(
+					'<ul$1><li$5>',
+					'</li><li$4>',
+					'</li></ul>',
+					'<ol$1><li$5>',
+					'</li></ol>',
+					'<ul$2>',
+					'<ol$2>',
+					'</ul>',
+					'</ol>'
+				);
+				$popuptext_sanitized = preg_replace($sanitize_popuptext_from, $sanitize_popuptext_to, stripslashes(preg_replace( '/(\015\012)|(\015)|(\012)/','<br />', $marker['mpopuptext'])));
+				echo '<description><![CDATA[' . $popuptext_sanitized . ']]></description>'.PHP_EOL;
 				echo '<wikitude:info>'.PHP_EOL;
 
 				foreach ($markers as $marker) {

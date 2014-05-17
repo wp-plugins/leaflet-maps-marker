@@ -160,7 +160,30 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<atom:author><atom:name>' . $marker['mcreatedby'] . '</atom:name></atom:author>'.PHP_EOL;
 				$home_url = home_url();
 				echo '<atom:link rel="related" href="' . $home_url . '" />'.PHP_EOL;
-				echo '<description><![CDATA[' .  $name_popup . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
+				$sanitize_popuptext_from = array(
+					'#<ul(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*</ul>#si',
+					'#<ol(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*</ol>#si',
+					'#(<br\s*/?>){1}\s*<ul(.*?)>#si',
+					'#(<br\s*/?>){1}\s*<ol(.*?)>#si',
+					'#</ul>\s*(<br\s*/?>){1}#si',
+					'#</ol>\s*(<br\s*/?>){1}#si',
+				);
+				$sanitize_popuptext_to = array(
+					'<ul$1><li$5>',
+					'</li><li$4>',
+					'</li></ul>',
+					'<ol$1><li$5>',
+					'</li></ol>',
+					'<ul$2>',
+					'<ol$2>',
+					'</ul>',
+					'</ol>'
+				);
+				$popuptext_sanitized = preg_replace($sanitize_popuptext_from, $sanitize_popuptext_to, stripslashes(preg_replace( '/(\015\012)|(\015)|(\012)/','<br />', $marker['mpopuptext'])));
+				echo '<description><![CDATA[' .  $name_popup . $popuptext_sanitized . ']]></description>'.PHP_EOL;
 				echo '<address><![CDATA[' . $marker['maddress'] . ']]></address>'.PHP_EOL;
 				echo '<Point>'.PHP_EOL;
 				echo '<coordinates>' . $marker['mlon'] . ',' . $marker['mlat'] . '</coordinates>'.PHP_EOL;
@@ -293,7 +316,30 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<atom:author><atom:name>' . $marker['mcreatedby'] . '</atom:name></atom:author>'.PHP_EOL;
 				$home_url = home_url();
 				echo '<atom:link rel="related" href="' . $home_url . '" />'.PHP_EOL;
-				echo '<description><![CDATA[' .  $name_popup . stripslashes(preg_replace('/(\015\012)|(\015)|(\012)/','<br/>',$marker['mpopuptext'])) . ']]></description>'.PHP_EOL;
+				$sanitize_popuptext_from = array(
+					'#<ul(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*</ul>#si',
+					'#<ol(.*?)>(\s)*(<br\s*/?>)*(\s)*<li(.*?)>#si',
+					'#</li>(\s)*(<br\s*/?>)*(\s)*</ol>#si',
+					'#(<br\s*/?>){1}\s*<ul(.*?)>#si',
+					'#(<br\s*/?>){1}\s*<ol(.*?)>#si',
+					'#</ul>\s*(<br\s*/?>){1}#si',
+					'#</ol>\s*(<br\s*/?>){1}#si',
+				);
+				$sanitize_popuptext_to = array(
+					'<ul$1><li$5>',
+					'</li><li$4>',
+					'</li></ul>',
+					'<ol$1><li$5>',
+					'</li></ol>',
+					'<ul$2>',
+					'<ol$2>',
+					'</ul>',
+					'</ol>'
+				);
+				$popuptext_sanitized = preg_replace($sanitize_popuptext_from, $sanitize_popuptext_to, stripslashes(preg_replace( '/(\015\012)|(\015)|(\012)/','<br />', $marker['mpopuptext'])));
+				echo '<description><![CDATA[' .  $name_popup . $popuptext_sanitized . ']]></description>'.PHP_EOL;
 				echo '<address><![CDATA[' . $marker['maddress'] . ']]></address>'.PHP_EOL;
 				echo '<Point>'.PHP_EOL;
 				echo '<coordinates>' . $marker['mlon'] . ',' . $marker['mlat'] . '</coordinates>'.PHP_EOL;

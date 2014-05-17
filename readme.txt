@@ -7,7 +7,7 @@ Author URI:        http://www.harm.co.at
 Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.3
-Tested up to:      3.9
+Tested up to:      3.9.1
 Stable tag:        3.8.8
 License:           GPLv2
 
@@ -42,6 +42,10 @@ For even more features please try "Leaflet Maps Marker Pro" - demo maps includin
 * [support for filtering of marker icons on backend (based on filename)](http://www.mapsmarker.com/v1.5.7p)
 * [support for changing marker IDs and layer IDs from the tools page](http://www.mapsmarker.com/v1.5.7p)
 * [support for bulk updates of marker maps on the tools page for selected layers only](http://www.mapsmarker.com/v1.5.7p)
+* [option to add markernames to popups automatically](http://www.mapsmarker.com/v1.5.8p)
+* [map moves back to initial position after popup is closed](http://www.mapsmarker.com/v1.5.8p)
+* [option to disable loading of Google Maps API for higher performance if alternative basemaps are used only](http://www.mapsmarker.com/v1.6p)
+* [map parameters can be overwritten within shortcodes (e.g. [mapsmarker marker="1" height="100"])](http://www.mapsmarker.com/v1.6p)
 * priority support
 
 The free version includes a pro upgrader which allows you to start a free 30 day trial easily. 
@@ -266,7 +270,7 @@ Good news, this plugin is free for everyone! Since it's released under the GPL, 
 This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License included with this plugin for more details.
 
 = Licenses for used libraries, services and images =
-* Leaflet - Copyright (c) 2010-2012, CloudMade, Vladimir Agafonkin [http://www.leafletjs.com](http://www.leafletjs.com)
+* Leaflet - Copyright (c) 2010-2014, CloudMade, Vladimir Agafonkin [http://www.leafletjs.com](http://www.leafletjs.com)
 * OpenStreetMap - The Free Wiki World Map: [OpenStreetMap License](http://wiki.openstreetmap.org/wiki/OpenStreetMap_License)
 * Map Icons Collection by Nicolas Mollet - [http://mapicons.nicolasmollet.com](http://mapicons.nicolasmollet.com)
 * Datasource OGD Vienna maps: Stadt Wien, Creative Commons Attribution (by) [http://data.wien.gv.at](http://data.wien.gv.at)
@@ -295,10 +299,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2014, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.8.8 =
-security fixes (potential XSS issues - exploitable by admins only) - see http://www.mapsmarker.com/v3.8.8 for more details
+= v3.8.9 =
+performance and usability improvements - see http://www.mapsmarker.com/v3.8.9 for more details
 
 == Changelog ==
-[blog post with details about v3.8.8](http://www.mapsmarker.com/v3.8.8)
+[blog post with details about v3.8.9](http://www.mapsmarker.com/v3.8.9)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

@@ -2,7 +2,7 @@
 /**
  * PHPExcel
  *
- * Copyright (c) 2006 - 2013 PHPExcel
+ * Copyright (c) 2006 - 2014 PHPExcel
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,9 +20,9 @@
  *
  * @category   PHPExcel
  * @package	PHPExcel_Shared
- * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license	http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version	1.7.9, 2013-06-02
+ * @version	##VERSION##, ##DATE##
  */
 
 if (!defined('DATE_W3C')) {
@@ -39,7 +39,7 @@ if (!defined('DEBUGMODE_ENABLED')) {
  *
  * @category   PHPExcel
  * @package	PHPExcel_Shared
- * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Shared_XMLWriter extends XMLWriter {
 	/** Temporary storage method */
@@ -66,7 +66,8 @@ class PHPExcel_Shared_XMLWriter extends XMLWriter {
 		} else {
 			// Create temporary filename
 			if ($pTemporaryStorageFolder === NULL)
-				$pTemporaryStorageFolder = PHPExcel_Shared_File::sys_get_temp_dir();
+				//RH $pTemporaryStorageFolder = PHPExcel_Shared_File::sys_get_temp_dir();
+				$pTemporaryStorageFolder = LEAFLET_PLUGIN_ICONS_DIR;
 			$this->_tempFileName = @tempnam($pTemporaryStorageFolder, 'xml');
 
 			// Open storage
@@ -88,7 +89,10 @@ class PHPExcel_Shared_XMLWriter extends XMLWriter {
 	public function __destruct() {
 		// Unlink temporary files
 		if ($this->_tempFileName != '') {
-			@unlink($this->_tempFileName);
+			//RH @unlink($this->_tempFileName);
+			foreach (glob(LEAFLET_PLUGIN_ICONS_DIR.'/PHPExcel*') as $tempfiles) {
+				unlink($tempfiles);
+			}
 		}
 	}
 

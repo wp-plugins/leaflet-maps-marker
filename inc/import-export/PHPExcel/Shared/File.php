@@ -2,7 +2,7 @@
 /**
  * PHPExcel
  *
- * Copyright (c) 2006 - 2013 PHPExcel
+ * Copyright (c) 2006 - 2014 PHPExcel
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,9 +20,9 @@
  *
  * @category   PHPExcel
  * @package    PHPExcel_Shared
- * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    1.7.9, 2013-06-02
+ * @version    ##VERSION##, ##DATE##
  */
 
 
@@ -31,7 +31,7 @@
  *
  * @category   PHPExcel
  * @package    PHPExcel_Shared
- * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_Shared_File
 {
@@ -172,14 +172,7 @@ class PHPExcel_Shared_File
 		// use ordinary built-in PHP function
 		//	There should be no problem with the 5.2.4 Suhosin realpath() bug, because this line should only
 		//		be called if we're running 5.2.1 or earlier
-
-		//info: use wp temp directory if php temp is not writeble
-		$php_temp_directory = realpath(sys_get_temp_dir());
-		if (is_writable($php_temp_directory)) {
-			return realpath(sys_get_temp_dir());
-		} else {
-			$wp_upload_dir = wp_upload_dir();
-			return $wp_upload_dir['path'];
-		}
+		return realpath(sys_get_temp_dir());
 	}
+
 }

@@ -2,7 +2,7 @@
 /**
  * PHPExcel
  *
- * Copyright (c) 2006 - 2013 PHPExcel
+ * Copyright (c) 2006 - 2014 PHPExcel
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -20,9 +20,9 @@
  *
  * @category   PHPExcel
  * @package    PHPExcel_CachedObjectStorage
- * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  * @license    http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt	LGPL
- * @version    1.7.9, 2013-06-02
+ * @version    ##VERSION##, ##DATE##
  */
 
 
@@ -31,7 +31,7 @@
  *
  * @category   PHPExcel
  * @package    PHPExcel_CachedObjectStorage
- * @copyright  Copyright (c) 2006 - 2013 PHPExcel (http://www.codeplex.com/PHPExcel)
+ * @copyright  Copyright (c) 2006 - 2014 PHPExcel (http://www.codeplex.com/PHPExcel)
  */
 class PHPExcel_CachedObjectStorage_DiscISAM extends PHPExcel_CachedObjectStorage_CacheBase implements PHPExcel_CachedObjectStorage_ICache {
 
@@ -65,7 +65,7 @@ class PHPExcel_CachedObjectStorage_DiscISAM extends PHPExcel_CachedObjectStorage
      * @throws	PHPExcel_Exception
      */
 	protected function _storeData() {
-		if ($this->_currentCellIsDirty) {
+		if ($this->_currentCellIsDirty && !empty($this->_currentObjectID)) {
 			$this->_currentObject->detach();
 
 			fseek($this->_fileHandle,0,SEEK_END);
@@ -194,7 +194,8 @@ class PHPExcel_CachedObjectStorage_DiscISAM extends PHPExcel_CachedObjectStorage
 	public function __construct(PHPExcel_Worksheet $parent, $arguments) {
 		$this->_cacheDirectory	= ((isset($arguments['dir'])) && ($arguments['dir'] !== NULL))
 									? $arguments['dir']
-									: PHPExcel_Shared_File::sys_get_temp_dir();
+									//RH: PHPExcel_Shared_File::sys_get_temp_dir();
+									: LEAFLET_PLUGIN_ICONS_DIR; 
 
 		parent::__construct($parent);
 		if (is_null($this->_fileHandle)) {
@@ -211,7 +212,10 @@ class PHPExcel_CachedObjectStorage_DiscISAM extends PHPExcel_CachedObjectStorage
 	public function __destruct() {
 		if (!is_null($this->_fileHandle)) {
 			fclose($this->_fileHandle);
-			unlink($this->_fileName);
+			//RH unlink($this->_fileName);
+			foreach (glob(LEAFLET_PLUGIN_ICONS_DIR.'/PHPExcel*') as $tempfiles) {
+				unlink($tempfiles);
+			}
 		}
 		$this->_fileHandle = null;
 	}	//	function __destruct()

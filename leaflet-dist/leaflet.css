@@ -38,6 +38,16 @@
 	border-left:none !important;
 	border-right:none !important;
 }
+td.lmm-listmarkers-icon {
+	width:35px;
+	vertical-align:top;
+	text-align:center;
+}
+.lmm-listmarkers-hr {
+	border-top:1px solid #f0f0e7;
+	padding-top:5px;
+	margin-top:5px:
+}
 .lmm-panel {
 	border-top: 1px solid #CCCCCC;
 	border-left: 1px solid #CCCCCC;
@@ -45,6 +55,7 @@
 }
 .lmm-panel a {
 	border:none;
+	line-height:1em;
 }
 .lmm-panel-text {
 	position:relative;
