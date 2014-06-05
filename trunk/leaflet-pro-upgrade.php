@@ -62,7 +62,7 @@ if ( $action == NULL ) {
 				' . __('But the real power of the leaflet.js version used in Leaflet Maps Marker pro comes with about a hundred of subtle improvements and bugfixes, improving usability, performance and overall "feel" of browsing the map even further.','lmm') . '
 				</p>
 				<p>
-				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-leaflet-changelog" target="_blank">' . sprintf(__('Click here to get the full changelog for leaflet.js v%1s currently integrated in the pro version','lmm'), '0.7.2 (01/2014)') . '</a> (' . sprintf(__('v%1s is used in the free version','lmm'), '0.4.5 (10/2012)') . ')
+				<a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/pro-feature-leaflet-changelog" target="_blank">' . sprintf(__('Click here to get the full changelog for leaflet.js v%1s currently integrated in the pro version','lmm'), '0.7.3 (05/2014)') . '</a> (' . sprintf(__('v%1s is used in the free version','lmm'), '0.4.5 (10/2012)') . ')
 				</p>
 				</div>
 				<p><a href="#top" class="upgrade-top-link">' . __('back to top to start free 30-day-trial','lmm') . '</a></p>

@@ -170,7 +170,7 @@ to the visitors of your website.
 * Korean (ko_KR) thanks to Andy Park
 * Latvian (lv) thanks to Juris Orlovs and Eriks Remess
 * Norwegian/Bokmål (nb_NO) thanks to Inge Tang
-* Polish (pl_PL) translation thanks to Pawel Wyszynski and Tomasz Rudnicki
+* Polish (pl_PL) translation thanks to Pawel Wyszynski, Tomasz Rudnicki and Robert Pawlak
 * Portuguese (pt_BR) thanks to Andre Santos and Antonio Hammerl
 * Portuguese (pt_PT) translation thanks to Joao Campos
 * Romanian (ro_RO) translation thanks to Arian and Daniel Codrea
@@ -299,10 +299,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2014, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.8.9 =
-performance and usability improvements - see http://www.mapsmarker.com/v3.8.9 for more details
+= v3.8.10 =
+compatibility fixes - see http://www.mapsmarker.com/v3.8.10 for more details
 
 == Changelog ==
-[blog post with details about v3.8.9](http://www.mapsmarker.com/v3.8.9)
+[blog post with details about v3.8.10](http://www.mapsmarker.com/v3.8.10)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)
