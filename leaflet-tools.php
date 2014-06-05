@@ -634,24 +634,36 @@ if (!empty($action)) {
 			<td style="vertical-align:middle;" class="lmm-border">
 				<?php
 					global $wp_version;
-					$defaults_marker_popups_maxwidth = intval($lmm_options['defaults_marker_popups_maxwidth'] + 1);
-					$defaults_marker_popups_image_css = urlencode(htmlspecialchars($lmm_options['defaults_marker_popups_image_css']));
 					if ( version_compare( $wp_version, '3.9-alpha', '>=' ) ) {
+						function lmm_plugin_mce_css( $mce_css ) {
+							global $wp_version;
+							$lmm_options = get_option( 'leafletmapsmarker_options' );
+							$defaults_marker_popups_maxwidth = intval($lmm_options['defaults_marker_popups_maxwidth'] + 1);
+							$defaults_marker_popups_image_css = urlencode(htmlspecialchars($lmm_options['defaults_marker_popups_image_css']));						
+							$custom_tinymce_css = LEAFLET_PLUGIN_URL . 'inc/css/leafletmapsmarker-admin-tinymce.php?defaults_marker_popups_maxwidth=' . $defaults_marker_popups_maxwidth . '&defaults_marker_popups_image_css=' . $defaults_marker_popups_image_css . '&wordpress_version='.$wp_version.'&timestamp='.time();
+							if ( ! empty( $mce_css ) ) {
+								$mce_css .= ',';
+							}
+							$mce_css .= $custom_tinymce_css;
+							return $mce_css;
+						}
+						add_filter( 'mce_css', 'lmm_plugin_mce_css' );
 						$settings = array(
 							'wpautop' => true,
 							'tinymce' => array(
-								'height' => '250',
-								'content_css' => LEAFLET_PLUGIN_URL . 'inc/css/leafletmapsmarker-admin-tinymce.php?defaults_marker_popups_maxwidth=' . $defaults_marker_popups_maxwidth . '&defaults_marker_popups_image_css=' . $defaults_marker_popups_image_css . ''
+								'height' => '250'
 							 ),
 						'quicktags' => array('buttons' => 'strong,em,link,block,del,ins,img,code,close'));
 					} else {
+						$defaults_marker_popups_maxwidth = intval($lmm_options['defaults_marker_popups_maxwidth'] + 1);
+						$defaults_marker_popups_image_css = urlencode(htmlspecialchars($lmm_options['defaults_marker_popups_image_css']));
 						$settings = array(
 							'wpautop' => true,
 							'tinymce' => array(
 								'theme_advanced_buttons1' => 'bold,italic,underline,strikethrough,|,fontselect,fontsizeselect,forecolor,backcolor,|,justifyleft,justifycenter,justifyright,justifyfull,|,outdent,indent,blockquote,|,link,unlink,|,ltr,rtl',
 								'theme' => 'advanced',
 								'height' => '250',
-								'content_css' => LEAFLET_PLUGIN_URL . 'inc/css/leafletmapsmarker-admin-tinymce.php?defaults_marker_popups_maxwidth=' . $defaults_marker_popups_maxwidth . '&defaults_marker_popups_image_css=' . $defaults_marker_popups_image_css . '',
+								'content_css' => LEAFLET_PLUGIN_URL . 'inc/css/leafletmapsmarker-admin-tinymce.php?wordpress_version='.$wp_version.'&timestamp='.time().'&defaults_marker_popups_maxwidth=' . $defaults_marker_popups_maxwidth . '&defaults_marker_popups_image_css=' . $defaults_marker_popups_image_css . '',
 								'theme_advanced_statusbar_location' => 'bottom'
 							),
 						'quicktags' => array('buttons' => 'strong,em,link,block,del,ins,img,code,close'));
