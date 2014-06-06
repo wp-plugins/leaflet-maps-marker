@@ -8,7 +8,7 @@ Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.3
 Tested up to:      3.9.1
-Stable tag:        3.8.9
+Stable tag:        3.8.10
 License:           GPLv2
 
 Pin, organize & show your favorite places & tracks through OpenStreetMap, Google Maps, KML, Bing Maps, APIs or Augmented-Reality browsers
@@ -173,7 +173,7 @@ to the visitors of your website.
 * Polish (pl_PL) translation thanks to Pawel Wyszynski, Tomasz Rudnicki and Robert Pawlak
 * Portuguese (pt_BR) thanks to Andre Santos and Antonio Hammerl
 * Portuguese (pt_PT) translation thanks to Joao Campos
-* Romanian (ro_RO) translation thanks to Arian and Daniel Codrea
+* Romanian (ro_RO) translation thanks to Arian, Daniel Codrea and Flo Bejgu, http://www.inboxtranslation.com
 * Russian (ru_RU) thanks to Ekaterina Golubina (supported by Teplitsa of Social Technologies) and Vyacheslav Strenadko
 * Slovak (sk_SK) thanks to Zdenko Podobny
 * Spanish (es_ES) thanks to David Ramirez, Alvaro Lara, Ricardo Viteri

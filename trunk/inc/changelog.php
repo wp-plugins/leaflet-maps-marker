@@ -57,6 +57,9 @@ updated German translation
 <tr><td>' . $transl . '</td><td>
 updated Italian translation thanks to Luca Barbetti, <a href="http://twitter.com/okibone" target="_blank">http://twitter.com/okibone</a>
 </td></tr>
+<tr><td>' . $transl . '</td><td>
+updated Romanian translation thanks to Arian, <a href="http://administrare-cantine.ro" target="_blank">http://administrare-cantine.ro</a>, Daniel Codrea, <a href="http://www.inadcod.com" target="_blank">http://www.inadcod.com</a> and Flo Bejgu, <a href="http://www.inboxtranslation.com" target="_blank">http://www.inboxtranslation.com</a>
+</td></tr>
 </table>'.PHP_EOL;
 
 if ( ( $lmm_version_old < '3.8.9' ) && ( $lmm_version_old > '0' ) ) {
