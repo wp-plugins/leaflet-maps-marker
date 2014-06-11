@@ -814,7 +814,7 @@ if (get_option('leafletmapsmarker_version') == '3.8.9' ) {
 	if (get_option('leafletmapsmarker_redirect') == 'true')
 	{
 		update_option('leafletmapsmarker_redirect', 'false');
-		wp_redirect(LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker&first_run=true');
+		wp_redirect(LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade&first_run=true');
 	} else {
 		update_option('leafletmapsmarker_update_info', 'show');
 	}

@@ -685,7 +685,7 @@ class Class_leaflet_options {
 			'section' => 'mapdefaults-section2',
 			'title'   => 'MapBox 3',
 			'desc'    => '',
-			'std'     => 'MapBox Streets',
+			'std'     => 'Natural Earth I',
 			'type'    => 'text'
 		);
 		$this->_settings['custom_basemap_name'] = array(
@@ -3677,7 +3677,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section3',
 			'title'   => __( 'User', 'lmm' ),
-			'desc'    => __('e.g.','lmm') . 'http://tiles.mapbox.com/<strong>mapbox</strong>/map/mapbox-streets',
+			'desc'    => __('e.g.','lmm') . 'http://tiles.mapbox.com/<strong>mapbox</strong>/map/natural-earth-1',
 			'std'     => 'mapbox',
 			'type'    => 'text'
 		);
@@ -3686,8 +3686,8 @@ $this->_settings['clustering_helptext2'] = array(
 			'pane'    => 'basemaps',
 			'section' => 'basemaps-section3',
 			'title'   => __('map','lmm'),
-			'desc'    => __('e.g.','lmm') . 'http://tiles.mapbox.com/mapbox/map/<strong>mapbox-streets</strong>',
-			'std'     => 'mapbox-streets',
+			'desc'    => __('e.g.','lmm') . 'http://tiles.mapbox.com/mapbox/map/<strong>natural-earth-1</strong>',
+			'std'     => 'natural-earth-1',
 			'type'    => 'text'
 		);
 		$this->_settings['mapbox3_minzoom'] = array(
@@ -3705,7 +3705,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'section' => 'basemaps-section3',
 			'title'   => __('Maximum zoom level','lmm'),
 			'desc'    => '',
-			'std'     => '17',
+			'std'     => '6',
 			'type'    => 'text'
 		);
 		$this->_settings['mapbox3_attribution'] = array(
