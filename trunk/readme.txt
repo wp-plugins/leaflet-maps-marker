@@ -16,9 +16,9 @@ Pin, organize & show your favorite places & tracks through OpenStreetMap, Google
 == Description ==
 Maps Marker allows you to pin, organize and share your favorite places & tracks through your WordPress powered site easily. You can use maps from OpenStreetMap, Google Maps, Google Earth, Bing Maps or custom maps and additionally display your spots in innovative ways like through augmented-reality browsers.
 
-For even more features please try "Leaflet Maps Marker Pro" - demo maps including admin area access available at [http://demo.mapsmarker.com](http://demo.mapsmarker.com/). 
+For even more features please try "Maps Marker Pro" - demo maps including admin area access available at [http://demo.mapsmarker.com](http://demo.mapsmarker.com/). 
 
-= Highlights of Leaflet Maps Marker Pro =
+= Highlights of Maps Marker Pro =
 * integration of the latest leaflet.js version
 * [marker clustering](http://www.mapsmarker.com/pro-feature-clustering)
 * [GPX tracks](http://www.mapsmarker.com/pro-feature-gpx)
@@ -37,7 +37,8 @@ For even more features please try "Leaflet Maps Marker Pro" - demo maps includin
 * [MapsMarker API](http://www.mapsmarker.com/pro-feature-mapsmarker-api)
 * [whitelabel backend admin pages](http://www.mapsmarker.com/pro-feature-whitelabel)
 * [advanced permission settings](http://www.mapsmarker.com/pro-feature-advanced-permissions)
-* [duplicate markers](http://www.mapsmarker.com/v1.5.1p)
+* [improved performance for layer maps with a huge number of markers (parsing of GeoJSON is up to 3 times faster)](http://www.mapsmarker.com/v1.2.1p)
+* [improved performance for layer maps by asynchronous loading of markers via GeoJSON](http://www.mapsmarker.com/v1.6p)
 * [support for dynamic switching between simplified and advanced editor (no more reloads needed)](http://www.mapsmarker.com/v1.5.7p)
 * [support for filtering of marker icons on backend (based on filename)](http://www.mapsmarker.com/v1.5.7p)
 * [support for changing marker IDs and layer IDs from the tools page](http://www.mapsmarker.com/v1.5.7p)
@@ -46,6 +47,11 @@ For even more features please try "Leaflet Maps Marker Pro" - demo maps includin
 * [map moves back to initial position after popup is closed](http://www.mapsmarker.com/v1.5.8p)
 * [option to disable loading of Google Maps API for higher performance if alternative basemaps are used only](http://www.mapsmarker.com/v1.6p)
 * [map parameters can be overwritten within shortcodes (e.g. [mapsmarker marker="1" height="100"])](http://www.mapsmarker.com/v1.6p)
+* [tool for monitoring "active shortcodes for already deleted maps"](http://www.mapsmarker.com/v1.8p)
+* [layer maps: center map on markers and open popups by clicking on list of marker entries](http://www.mapsmarker.com/v1.8p)
+* [support for shortcodes in popup texts](http://www.mapsmarker.com/v1.3p)
+* [support for setting global maximum zoom level to 21 (tiles from basemaps with lower native zoom levels will be upscaled automatically)](http://www.mapsmarker.com/v1.5p)
+* [duplicate markers](http://www.mapsmarker.com/v1.5.1p)
 * priority support
 
 The free version includes a pro upgrader which allows you to start a free 30 day trial easily. 
@@ -59,7 +65,7 @@ We are working hard on delivering the best mapping solution available for WordPr
 [Maps Marker](http://www.mapsmarker.com) helps you to share your favorite spots easily. The plugin is based on the famous [leaflet.js library](http://www.leafletjs.com) from [CloudMade](http://www.cloudmade.com) which also powers maps on sites like [Facebook](https://twitter.com/amercader/status/386144256148389889/photo/1), [Flickr](http://www.flickr.com/map), [Foursquare](http://readwrite.com/2012/02/29/foursquare_dumps_google_goes_open-source_for_maps), [Craigslist](http://www.theverge.com/2012/10/4/3452526/craigslist-map-view-apartment-listings-roll-out), [Wikipedia](http://en.wikipedia.org/wiki/Wikipedia_App) and [Washington Post](http://www.washingtonpost.com/wp-srv/special/politics/election-map-2012/senate/). We use this library as the basis for our plugin and have integrated several other libraries for enhancing its functionality. Our main goal is to provide you with an intuitive and user-friendly interface for organizing your spots within your WordPress powered site. Furthermore we are constantly working on improving our plugin by adding new and innovative ways for managing and showing your spots. Our roadmap for new releases gets aligned to our users' needs - so giving support and talking to our users is essential.
 
 = Plugin's Official Site =
-http://mapsmarker.com
+http://www.mapsmarker.com
 
 * [Affiliates](https://www.mapsmarker.com/affiliates/) - [FAQ](http://www.mapsmarker.com/faq/) - [Docs](http://www.mapsmarker.com/docs/) - [Support](http://mapsmarker.com/support/) - [Github](https://github.com/robertharm/Leaflet-Maps-Marker) - [Twitter](http://twitter.com/mapsmarker) - [Facebook](http://facebook.com/mapsmarker) - [Google+](http://www.mapsmarker.com/+) - [Translations](http://translate.mapsmarker.com/projects/lmm)
 
@@ -275,7 +281,7 @@ This program is free software; you can redistribute it and/or modify it under th
 * Map Icons Collection by Nicolas Mollet - [http://mapicons.nicolasmollet.com](http://mapicons.nicolasmollet.com)
 * Datasource OGD Vienna maps: Stadt Wien, Creative Commons Attribution (by) [http://data.wien.gv.at](http://data.wien.gv.at)
 * Jquery TimePicker, by Trent Richardson, [http://trentrichardson.com/examples/timepicker/](http://trentrichardson.com/examples/timepicker/), licence: GPL
-* Adress autocompletion powered by [Google Places API](http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html)
+* Adress autocompletion powered by [Google Places API](https://developers.google.com/places/documentation/autocomplete)
 * Map center icon [Joseph Wain](http://glyphish.com/) - Creative Commons Attribution (by)
 * Plus-, json-, layer-, language- & csv-export icon by icon by [Yusuke Kamiyamane](http://www.pinvoke.com/) - Creative Commons Attribution (by)
 * Question Mark icon by [RandomJabber](http://www.randomjabber.com/)
@@ -299,10 +305,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2014, Robert Harm, All Rights Reserved
 
 == Upgrade Notice ==
-= v3.8.10 =
-compatibility fixes - see http://www.mapsmarker.com/v3.8.10 for more details
+= v3.9 =
+bugfix release for IE11 - see http://www.mapsmarker.com/v3.9 for more details
 
 == Changelog ==
-[blog post with details about v3.8.10](http://www.mapsmarker.com/v3.8.10)
+[blog post with details about v3.9](http://www.mapsmarker.com/v3.9)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)

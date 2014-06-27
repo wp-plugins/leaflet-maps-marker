@@ -194,11 +194,6 @@ if ( ($action == 'add') || ($action == 'edit') || ($action == 'duplicate') ) {
 	$update_info_action = isset($_POST['update_info_action']) ? $_POST['update_info_action'] : '';
 	$first_run = (isset($_GET['first_run']) ? 'true' : 'false');
 
-	//info: show upgrade info only on new installs
-	if (($first_run == 'true') && ($page != 'leafletmapsmarker_pro_upgrade')) {
-		echo '<div  class="updated" style="padding:5px;margin-top:20px;"><div style="float:left;margin: 0 10px 10px 0;"><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/logo-mapsmarker-pro.png" alt="Pro Logo" title="' . esc_attr__('Upgrade to pro version for even more features - click here to find out how you can start a free 30-day-trial easily','lmm') . '"></a></div>';
-		echo '<p style="padding:10px 0 8px 0;"><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('Upgrade to pro version for even more features - click here to find out how you can start a free 30-day-trial easily','lmm') . '</a><br/><span style="padding-left:215px;"><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker">' . __('(not now, hide message)','lmm') . '</a></span><br/></p></div>';
-	}
 	if ( ($update_info_action == 'hide') && ($first_run == 'false') ) {
 		update_option('leafletmapsmarker_update_info', 'hide');
 	}

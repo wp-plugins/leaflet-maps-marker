@@ -134,7 +134,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					'</ul>',
 					'</ol>'
 				);
-				$mpopuptext = preg_replace($sanitize_popuptext_from, $sanitize_popuptext_to, stripslashes(str_replace('"', '\'', preg_replace( '/(\015\012)|(\015)|(\012)/','<br />', $marker['mpopuptext']))));
+				$mpopuptext = preg_replace($sanitize_popuptext_from, $sanitize_popuptext_to, stripslashes(str_replace("\\\\","/", str_replace('"', '\'', preg_replace( '/(\015\012)|(\015)|(\012)/','<br />', $marker['mpopuptext'])))));
 				if ($lmm_options['directions_popuptext_panel'] == 'yes') {
 
 					$mpopuptext_css = ($marker['mpopuptext'] != NULL) ? "border-top:1px solid #f0f0e7;padding-top:5px;margin-top:5px;clear:both;" : "";
@@ -292,7 +292,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					'</ul>',
 					'</ol>'
 				);
-				$mpopuptext = preg_replace($sanitize_popuptext_from, $sanitize_popuptext_to, stripslashes(str_replace('"', '\'', preg_replace( '/(\015\012)|(\015)|(\012)/','<br />', $marker['mpopuptext']))));
+				$mpopuptext = preg_replace($sanitize_popuptext_from, $sanitize_popuptext_to, stripslashes(str_replace("\\\\","/", str_replace('"', '\'', preg_replace( '/(\015\012)|(\015)|(\012)/','<br />', $marker['mpopuptext'])))));
 				$mpopuptext = $mpopuptext . "<div class='popup-directions' style='" . $mpopuptext_css . "'>" . $maddress . " (";
 
 				if ($lmm_options['directions_provider'] == 'googlemaps') {
