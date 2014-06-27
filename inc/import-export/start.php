@@ -156,13 +156,18 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			<table>
 				<tr>
 					<td colspan="2">
-					' . __('Download import template files','lmm') . ': ';
-					if (extension_loaded('zip')) {
-						echo '<a href="http://www.mapsmarker.com/import-template-xlsx" target="_blank">.xlsx (Excel2007)</a>, <a href="http://www.mapsmarker.com/import-template-xls" target="_blank">.xls (Excel5)</a>, <a href="http://www.mapsmarker.com/import-template-ods" target="_blank">.ods (OpenOffice/LibreOffice)</a>, <a href="http://www.mapsmarker.com/import-template-csv" target="_blank">.csv</a><br/>';
-					} else {
-						echo '<a href="http://www.mapsmarker.com/import-template-xls" target="_blank">.xls (Excel5)</a>, <a href="http://www.mapsmarker.com/import-template-csv" target="_blank">.csv</a><br/>';
-					}
-					echo '<a href="javascript:back();">' . __('If you want to bulk update existing markers, please make an export first!','lmm') . '</a>
+						' . sprintf(__('For details and tutorials about imports and exports, please visit %1s','lmm'), '<a href="http://www.mapsmarker.com/import-export" target="_blank" style="text-decoration:none;">www.mapsmarker.com/import-export</a>') . '
+						<ul>
+							<li>' . __('Download import template files','lmm') . ': ';
+							if (extension_loaded('zip')) {
+								echo '<a href="http://www.mapsmarker.com/import-template-xlsx" target="_blank">.xlsx (Excel2007)</a>, <a href="http://www.mapsmarker.com/import-template-xls" target="_blank">.xls (Excel5)</a>, <a href="http://www.mapsmarker.com/import-template-ods" target="_blank">.ods (OpenOffice/LibreOffice)</a>, <a href="http://www.mapsmarker.com/import-template-csv" target="_blank">.csv</a><br/>';
+							} else {
+								echo '<a href="http://www.mapsmarker.com/import-template-xls" target="_blank">.xls (Excel5)</a>, <a href="http://www.mapsmarker.com/import-template-csv" target="_blank">.csv</a><br/>';
+							}
+							echo '</li>
+							<li>' . __('If you want to bulk update existing markers, please make an export first!','lmm') . '</li>
+							<li>' . __('If you want to create new markers, please make sure the column ID is empty as otherwise the importer tries to update marker maps with that ID and will fail if map is not available!','lmm') . '</li>
+						</ul>
 					</td>
 				</tr>
 				<tr>
@@ -250,7 +255,11 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2"><input style="font-weight:bold;" type="submit" name="submit" class="submit button-primary" value="' . esc_attr__('start import','lmm') . '" disabled="disabled" /></td>
+					<td colspan="2">
+						<input style="font-weight:bold;" type="submit" name="submit" class="submit button-primary" value="' . esc_attr__('start import','lmm') . '" disabled="disabled" />
+						<br/><br/>
+						<a href="javascript:history.back();">' . __('or back to overview','lmm') . '</a>	
+					</td>
 				</tr>
 			</table>
 			</form>';
@@ -287,13 +296,18 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			<table>
 				<tr>
 					<td colspan="2">
-					' . __('Download import template files','lmm') . ': ';
-					if (extension_loaded('zip')) {
-						echo '<a href="http://www.mapsmarker.com/import-template-layers-xlsx" target="_blank">.xlsx (Excel2007)</a>, <a href="http://www.mapsmarker.com/import-template-layers-xls" target="_blank">.xls (Excel5)</a>, <a href="http://www.mapsmarker.com/import-template-layers-ods" target="_blank">.ods (OpenOffice/LibreOffice)</a>, <a href="http://www.mapsmarker.com/import-template-layers-csv" target="_blank">.csv</a><br/>';
-					} else {
-						echo '<a href="http://www.mapsmarker.com/import-template-layers-xls" target="_blank">.xls (Excel5)</a>, <a href="http://www.mapsmarker.com/import-template-layers-csv" target="_blank">.csv</a><br/>';
-					}
-					echo '<a href="javascript:back();">' . __('If you want to bulk update existing layers, please make an export first!','lmm') . '</a>
+						' . sprintf(__('For details and tutorials about imports and exports, please visit %1s','lmm'), '<a href="http://www.mapsmarker.com/import-export" target="_blank" style="text-decoration:none;">www.mapsmarker.com/import-export</a>') . '
+						<ul>
+							<li>' . __('Download import template files','lmm') . ': ';
+							if (extension_loaded('zip')) {
+								echo '<a href="http://www.mapsmarker.com/import-template-layers-xlsx" target="_blank">.xlsx (Excel2007)</a>, <a href="http://www.mapsmarker.com/import-template-layers-xls" target="_blank">.xls (Excel5)</a>, <a href="http://www.mapsmarker.com/import-template-layers-ods" target="_blank">.ods (OpenOffice/LibreOffice)</a>, <a href="http://www.mapsmarker.com/import-template-layers-csv" target="_blank">.csv</a><br/>';
+							} else {
+								echo '<a href="http://www.mapsmarker.com/import-template-layers-xls" target="_blank">.xls (Excel5)</a>, <a href="http://www.mapsmarker.com/import-template-layers-csv" target="_blank">.csv</a>';
+							}
+							echo '</li>
+							<li>' . __('If you want to bulk update existing layers, please make an export first!','lmm') . '</li>
+							<li>' . __('If you want to create new layers, please make sure the column ID is empty as otherwise the importer tries to update layer maps with that ID and will fail if map is not available!','lmm') . '</li>
+						</ul>
 					</td>
 				</tr>
 				<tr>
@@ -381,7 +395,11 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2"><input style="font-weight:bold;" type="submit" name="submit" class="submit button-primary" value="' . esc_attr__('start import','lmm') . '" disabled="disabled" /></td>
+					<td colspan="2">
+						<input style="font-weight:bold;" type="submit" name="submit" class="submit button-primary" value="' . esc_attr__('start import','lmm') . '" disabled="disabled" />
+						<br/><br/>
+						<a href="javascript:history.back();">' . __('or back to overview','lmm') . '</a>
+					</td>
 				</tr>
 			</table>
 			</form>';
@@ -518,7 +536,11 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2"><input style="font-weight:bold;" type="submit" name="submit" class="submit button-primary" value="' . esc_attr__('start export','lmm') . '" /></td>
+					<td colspan="2">
+						<input style="font-weight:bold;" type="submit" name="submit" class="submit button-primary" value="' . esc_attr__('start export','lmm') . '" />
+						<br/><br/>
+						<a href="javascript:history.back();">' . __('or back to overview','lmm') . '
+					</td>
 				</tr>
 			</table>
 			</form>';
@@ -619,7 +641,11 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2"><input style="font-weight:bold;" type="submit" name="submit" class="submit button-primary" value="' . esc_attr__('start export','lmm') . '" /></td>
+					<td colspan="2">
+						<input style="font-weight:bold;" type="submit" name="submit" class="submit button-primary" value="' . esc_attr__('start export','lmm') . '" />
+						<br/><br/>
+						<a href="javascript:history.back();">' . __('or back to overview','lmm') . '
+					</td>
 				</tr>
 			</table>
 			</form>';

@@ -8,13 +8,19 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-pro-upgrade.php') { die ("
 <div class="wrap">
 <?php
 include('inc' . DIRECTORY_SEPARATOR . 'admin-header.php');
+$first_run = (isset($_GET['first_run']) ? 'true' : 'false');
+
 $lmm_pro_readme = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'leaflet-maps-marker-pro' . DIRECTORY_SEPARATOR . 'readme.txt';
 $action = isset($_POST['action']) ? $_POST['action'] : '';
 if ( extension_loaded('ionCube Loader') && version_compare(phpversion(),"5.5","<") ) { if ( function_exists('ioncube_loader_iversion') ) { $ic_lv = ioncube_loader_iversion(); $lmm_ic_lv = (int)substr($ic_lv,0,1); } else { $ic_lv = ioncube_loader_version(); $lmm_ic_lv = (int)substr($ic_lv,0,1); } if ($lmm_ic_lv >= 4) { $sf = ''; } else { $sf = strrev('orp-'); } } else { $sf = strrev('orp-'); }
 if ( $action == NULL ) {
 	if (!file_exists($lmm_pro_readme)) {
 		echo '<div style="float:left;margin: 20px 10px 10px 0;"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/logo-mapsmarker-pro.png" alt="Pro Logo" title="Leaflet Maps Marker Pro Logo"></div>';
-		echo '<h3 style="font-size:23px;margin:28px 0 0 0;">' . __('Upgrade to Pro','lmm') . '</h3>';
+		if ($first_run == 'true') {
+			echo '<h3 style="font-size:23px;margin:28px 0 0 0;">' . __('Optional: start a free trial of Maps Marker Pro','lmm') . '</h3>';
+		} else {
+			echo '<h3 style="font-size:23px;margin:28px 0 0 0;">' . __('Upgrade to Pro','lmm') . '</h3>';
+		}
 		echo '<form method="post"><input type="hidden" name="action" value="upgrade_to_pro_version" />';
 		wp_nonce_field('pro-upgrade-nonce');
 		echo '<p>' . __('If you like using Leaflet Maps Marker, you might also be interested in starting a free 30-day-trial of Leaflet Maps Marker Pro, which offers even more features, higher performance and more.','lmm');
@@ -31,13 +37,17 @@ if ( $action == NULL ) {
 			echo '<div class="error" style="padding:10px;"><strong>' . sprintf(__('Warning: your user does not have the capability to install new plugins - please contact your administrator (%1s)','lmm'), '<a href="mailto:' . get_bloginfo('admin_email') . '?subject=' . esc_attr__('Please install the plugin "Leaflet MapsMarker Pro"','lmm') . '">' . get_bloginfo('admin_email') . '</a>' ) . '</strong></div>';
 			echo '<input style="font-weight:bold;" type="submit" name="submit_upgrade_to_pro_version" value="' . __('start free 30-day-trial','lmm') . ' &raquo;" class="submit button-secondary" disabled="disabled" />';
 		}
+		if ($first_run == 'true') {
+			echo ' <a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_marker" style="text-decoration:none;">' . __('or continue using the lite edition','lmm') . '</a>';
+		}
 		echo '</form>';
 
-		echo '<hr noshade size="1" style="margin-top:15px;"/><h2>' . __('Live demos','lmm') . '</h2>';
+		echo '<hr noshade size="1" style="margin-top:25px;"/><h2 style="margin-top:10px;">' . __('Highlights of Maps Marker Pro','lmm') . '</h2>';
+		
 		echo '<p>' . sprintf(__('For demo maps please visit %1s which also allows you to test the admin area of the pro version.','lmm'), '<a href="http://demo.mapsmarker.com/" target="_blank" style="text-decoration:none;">demo.mapsmarker.com</a>') . '</p>';
+		
 		echo '<p>' . sprintf(__('If you want to compare the free and pro version side by side, please visit %1s.','lmm'), '<a href="http://www.mapsmarker.com/comparison" target="_blank" style="text-decoration:none;">mapsmarker.com/comparison</a>') . '</p>';
-
-		echo '<hr noshade size="1" style="margin-top:15px;"/><h2 style="margin-top:10px;">' . __('Highlights of Leaflet Maps Marker Pro','lmm') . '</h2>';
+		
 		//info: different backgrounds for WP3.8+
 		global $wp_version;
 		if ( version_compare( $wp_version, '3.8-alpha', '>' ) ) { //info: for mp6 theme compatibility
@@ -298,6 +308,8 @@ if ( $action == NULL ) {
 					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.5.8p" target="_blank">' . __('map moves back to initial position after popup is closed','lmm') . '</a></li>
 					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.6p" target="_blank">' . __('option to disable loading of Google Maps API for higher performance if alternative basemaps are used only','lmm') . '</a></li>
 					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.6p" target="_blank">' . sprintf(__('map parameters can be overwritten within shortcodes (e.g. %1s)','lmm'), '[mapsmarker marker="1" height="100"]') . '</a></li>
+					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.8p" target="_blank">' . __('tool for monitoring "active shortcodes for already deleted maps"','lmm') . '</a></li>
+					<li><a class="pro-upgrade-external-links" href="http://www.mapsmarker.com/v1.8p" target="_blank">' . __('layer maps: center map on markers and open popups by clicking on list of marker entries','lmm') . '</a></li>
 				</ul>
 				</div>
 				<p><a href="#top" class="upgrade-top-link">' . __('back to top to start free 30-day-trial','lmm') . '</a></p>

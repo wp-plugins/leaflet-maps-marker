@@ -82,9 +82,10 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 	<h3 style="font-size:23px;"><?php _e('Licenses for used libraries, services and images','lmm') ?></h3>
 	<ul>
 		<li>- Leaflet by Cloudmade, <a href="http://www.leafletjs.com" target="_blank">http://www.leafletjs.com</a>, Copyright (c) 2010-<?php echo date('Y'); ?>, CloudMade, Vladimir Agafonkin</li>
+		<li>- Google Maps and bing maps plugin by shramov - <a href="https://github.com/shramov/leaflet-plugins" target="_blank">https://github.com/shramov/leaflet-plugins</a></li>
 		<li>- OpenStreetMap: <a href="http://wiki.openstreetmap.org/wiki/OpenStreetMap_License" target="_blank">OpenStreetMap License</a></li>
 		<li>- Datasource OGD Vienna maps: Stadt Wien - <a href="http://data.wien.gv.at" target="_blank">http://data.wien.gv.at</a></li>
-		<li>- Address autocompletion powered by <a href="http://code.google.com/intl/de-AT/apis/maps/documentation/places/autocomplete.html" target="_blank">Google Places API</a></li>
+		<li>- Address autocompletion powered by <a href="https://developers.google.com/places/documentation/autocomplete" target="_blank">Google Places API</a></li>
 		<li>- Jquery TimePicker by Trent Richardson, <a href="http://trentrichardson.com/examples/timepicker/" target="_blank">http://trentrichardson.com/examples/timepicker/</a>, licence: GPL</li>
 		<li>- <a href="http://mapicons.nicolasmollet.com" target="_blank">Map Icons Collection</a> by Nicolas Mollet</li>
 		<li>- Map center icon by <a href="http://glyphish.com/" target="_blank">Joseph Wain</a>, licence: Creative Commons Attribution (by)</li>
@@ -103,7 +104,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 		<li>- Sindre Wimberger (<a href="http://www.sindre.at" target="_blank">http://www.sindre.at</a>) - bugfixing &amp; geo-consulting</li>
 		<li>- Julia Loew (<a href="http://www.weiderand.net" target="_blank">http://www.weiderand.net</a>) - logo &amp; corporate design</li>
 		<li>- <a href="http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/" target="_blank">WordPress-Settings-API-Class</a> by Aliso the geek</li>
-		<li>- Hind who originally released a basic Leaflet plugin (not available anymore) which I used partly as a basis for Leaflet Maps Marker plugin</li>
+		<li>- Hind who originally released a basic Leaflet plugin (not available anymore) which I used partly as a basis for Leaflet Maps Marker</li>
 	</ul>
 	</p>
 </div>
