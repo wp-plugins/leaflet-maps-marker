@@ -8,7 +8,7 @@ Author:            Robert Harm
 Donate link:       http://www.mapsmarker.com/donations
 Requires at least: 3.3
 Tested up to:      3.9.1
-Stable tag:        3.8.10
+Stable tag:        3.9
 License:           GPLv2
 
 Pin, organize & show your favorite places & tracks through OpenStreetMap, Google Maps, KML, Bing Maps, APIs or Augmented-Reality browsers
