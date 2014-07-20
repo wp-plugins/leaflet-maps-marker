@@ -36,6 +36,52 @@ hr{color:#E6DB55}
 </style></head><body>
 <?php
 /*****************************************************************************************/
+echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf($text_a, '3.9.1') . '</strong> - ' . $text_b . ' 22.07.2014 (<a href="http://www.mapsmarker.com/v3.9.1" target="_blank">' . $text_c . '</a>):</p>
+<table>
+<tr><td>' . $new . '</td><td>
+<a href="https://www.mapsmarker.com/2014/07/22/10-discount-code-to-celebrate-the-1st-anniversary-of-maps-marker-pro/" target="_blank">10% discount code to celebrate the 1st anniversary of Maps Marker Pro</a>
+</td></tr>
+<tr><td>' . $new . '</td><td>
+<a href="https://www.mapsmarker.com" target="_blank">enabled SSL by default for MapsMarker.com website & installed EV SSL certificate (=verified identity)</a>
+</td></tr>
+<tr><td>' . $new . '</td><td>
+compatibility check for "Page Builder by SiteOrigin" plugin (thx porga!)
+</td></tr>
+<tr><td>' . $new . '</td><td>
+tested against WordPress 4.0
+</td></tr>
+<tr><td>' . $changed . '</td><td>
+optimized version compare functions by using PHP version_compare();
+</td></tr>
+<tr><td>' . $fixed . '</td><td>
+not all sections within settings could be selected on smaller screens (thx Francesco!)
+</td></tr>
+<tr><td>' . $fixed . '</td><td>
+display of popuptext in GeoRSS feed was broken (thx Indrajit!)
+</td></tr>
+<tr><td>' . $fixed . '</td><td>
+fixed broken incompatibility check with Better WordPress Minify plugin v1.3.0
+</td></tr>
+<tr><td colspan="2">
+<p><strong>' . $text_d . '</a></p></strong>
+<p>' . sprintf($text_e, 'https://translate.mapsmarker.com/projects/lmm') . '</p>
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated Chinese translation thanks to John Shen, <a href="http://www.synyan.net" target="_blank">http://www.synyan.net</a> and ck
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated Dutch translation thanks to Patrick Ruers, <a href="http://www.stationskwartiersittard.nl" target="_blank">http://www.stationskwartiersittard.nl</a>
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated Latvian translation thanks to Juris Orlovs, <a href="http://lbpa.lv" target="_blank">http://lbpa.lv</a> and Eriks Remess <a href="http://geekli.st/Eriks" target="_blank">http://geekli.st/Eriks</a>
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated Russian translation thanks to Ekaterina Golubina (supported by Teplitsa of Social Technologies - <a href="http://te-st.ru" target="_blank">http://te-st.ru</a>) and Vyacheslav Strenadko, <a href="http://poi-gorod.ru" target="_blank">http://poi-gorod.ru</a>
+</td></tr>
+</table>'.PHP_EOL;
+
+if ( (version_compare($lmm_version_old,"3.9","<")) && ( $lmm_version_old > '0' ) ) {
+echo '<p><hr noshade size="1"/></p>';
 echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf($text_a, '3.9') . '</strong> - ' . $text_b . ' 28.06.2014 (<a href="http://www.mapsmarker.com/v3.9" target="_blank">' . $text_c . '</a>):</p>
 <table>
 <tr><td><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $text_h . '"><img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-pro.png"></a></td><td>
@@ -70,6 +116,7 @@ updated German translation
 updated Turkish translation thanks to Emre Erkan, <a href="http://www.karalamalar.net" target="_blank">http://www.karalamalar.net</a> and Mahir Tosun, <a href="http://www.bozukpusula.com" target="_blank">http://www.bozukpusula.com</a>
 </td></tr>
 </table>'.PHP_EOL;
+}
 
 if ( (version_compare($lmm_version_old,"3.8.10","<")) && ( $lmm_version_old > '0' ) ) {
 echo '<p><hr noshade size="1"/></p>';

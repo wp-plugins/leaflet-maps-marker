@@ -28,7 +28,7 @@ if ( $action == NULL ) {
 		$dl_lt = 'mapsmarker.com/upgrade' . $sf;
 		echo '</p><p style="clear:both;">' . sprintf(__('Please click on the button below - this will start the download of Leaflet Maps Marker Pro from <a style="text-decoration:none;" href="%1s">%2s</a> and installation as a separate plugin.','lmm'), $dl_l, $dl_lt);
 		echo '<br/>' . __('As next step please activate the pro plugin and you will be guided through the process to receive a free 30-day-trial license without any obligations.','lmm');
-		echo '<br/>' . sprintf(__('Your trial will expire automatically unless you purchase an unexpiring license key at %1$s','lmm'), '<a href="https://www.mapsmarker.com/order" style="text-decoration:none;" target="_blank">mapsmarker.com/order</a>') . ' (<a href="http://www.mapsmarker.com/terms-of-services" target="_blank" style="text-decoration:none;">' . __('Terms of Service','lmm') . '</a>/<a href="http://www.mapsmarker.com/privacy-policy" target="_blank" style="text-decoration:none;">' . __('Privacy Policy','lmm') . '</a>)';
+		echo '<br/>' . sprintf(__('Your trial will expire automatically unless you purchase an unexpiring license key at %1$s','lmm'), '<a href="https://www.mapsmarker.com/order" style="text-decoration:none;" target="_blank">mapsmarker.com/order</a>') . ' (<a href="https://www.mapsmarker.com/terms-of-services" target="_blank" style="text-decoration:none;">' . __('Terms of Service','lmm') . '</a>/<a href="https://www.mapsmarker.com/privacy-policy" target="_blank" style="text-decoration:none;">' . __('Privacy Policy','lmm') . '</a>)';
 		echo '<br/>' . __('You can also switch back to the free version at any time without loosing any data.','lmm');
 		echo '</p>';
 		if ( current_user_can( 'install_plugins' ) ) {

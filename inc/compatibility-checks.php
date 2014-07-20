@@ -42,8 +42,8 @@ if (is_plugin_active('wp-google-analytics/wp-google-analytics.php') ) {
 if (is_plugin_active('bwp-minify/bwp-minify.php') ) {
 	$lmm_bwpminify_options = get_option( 'bwp_minify_general' );
 	if ($lmm_bwpminify_options['enable_min_js'] == 'yes') {
-		if (strpos($lmm_bwpminify_options['input_ignore'], 'leafletmapsmarker') === false)  {
-			echo '<p><div class="error" style="padding:10px;"><strong>' . __('Warning: you are using the plugin "Better WordPress Minify" which can cause Leaflet Maps Marker to break if the option "Minify JS files automatically?" is active. Please disable this option (Settings / BWP Minify) or add <strong>leafletmapsmarker</strong> to the form field "Scripts to be ignored (not minified)"','lmm') . '</strong></div></p>';
+		if ((strpos($lmm_bwpminify_options['input_ignore'], 'leafletmapsmarker') === false) || (strpos($lmm_bwpminify_options['input_ignore'], 'jquery-core') === false))  {
+			echo '<p><div class="error" style="padding:10px;">' . sprintf(__('Warning: you are using the plugin "Better WordPress Minify" which can cause Leaflet Maps Marker to break if the option "Minify JS files automatically?" is active. Please disable this option (BWP Minify / General Options) or navigate to BWP Minify / "Manage Enqueued Files", click on "Scripts to be ignored (not minified)" and add %1$s (one line for each)','lmm'), '<strong>leafletmapsmarker</strong> & <strong>jquery-core</strong>') . '</div></p>';
 		}
 	}
 }
@@ -70,7 +70,7 @@ if (is_plugin_active('w3-total-cache/w3-total-cache.php') ) {
 	$w3tc_cdn = $w3tc_config->get_boolean('cdn.enabled');
 	$w3tc_version = $w3tc_config->get_string('version');
 	if ($w3tc_cdn == true) {
-		if ($w3tc_version < '0.9.3' ) {
+		if (version_compare($w3tc_version,"0.9.3","<")){
 			$w3tc_cdn_exclude = $w3tc_config->get_array('cdn.reject.files');
 			if (in_array('wp-content/uploads/leaflet-maps-marker-icons/*', $w3tc_cdn_exclude) == false) {
 				echo '<p><div class="error" style="padding:10px;"><strong>' . sprintf(__('Warning: you are using the plugin "W3 Total Cache" with the feature "CDN" enabled which is causing layer maps to break.<br/>To fix this, please navigate to <a href="%1s">Performance / CDN / Advanced</a> and add <strong>%2s</strong> to "Rejected files:"','lmm'), LEAFLET_WP_ADMIN_URL . 'admin.php?page=w3tc_cdn', 'wp-content/uploads/leaflet-maps-marker-icons/*') . '</strong></div></p>';
@@ -81,5 +81,11 @@ if (is_plugin_active('w3-total-cache/w3-total-cache.php') ) {
 //info: plugin Root Relative URLs
 if (is_plugin_active('root-relative-urls/sb_root_relative_urls.php') ) {
 	echo '<p><div class="error" style="padding:10px;"><strong>' . sprintf(__('Warning: the plugin %1$s is active and causing maps to break - please deactivate that plugin!','lmm'), '"Root Relative URLs"	') . '</strong></div></p>';
+}
+//info: Page Builder by SiteOrigin plugin incompatibility
+if (is_plugin_active('siteorigin-panels/siteorigin-panels.php') ) {
+	if ($lmm_options['misc_javascript_header_footer'] == 'footer') {
+		echo '<p><div class="error" id="deleted_maps_errors" style="padding:10px;">' . sprintf(__('Warning: you are using the Plugin %1$s which is causing maps to break! To fix this, please navigate to <a href="%2$s">Settings / Misc / General Settings</a> and set the Option "Where to insert Javascript files on frontend?" to "header (+ inline javascript)".','lmm'), '"Page Builder by SiteOrigin"', LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#lmm-misc' ) . '</div></p>';
+	}
 }
 ?>

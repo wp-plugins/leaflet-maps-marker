@@ -32,7 +32,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-help-credits.php') { die (
 	<h3 style="font-size:23px;"><?php _e('Trademarks and copyright','lmm') ?></h3>
 	<p>
 	MapsMarker<sup style="font-size:75%;">&reg;</sup> - registration pending<br/>
-	Copyright &copy; 2011-<?php echo date('Y'); ?>, Robert Harm, All Rights Reserved
+	Copyright &copy; 2011-<?php echo date('Y'); ?>, MapsMarker.com e.U., All Rights Reserved
 	</p>
 	<h3 style="font-size:23px;"><?php _e('Translations','lmm') ?></h3>
 	<p>

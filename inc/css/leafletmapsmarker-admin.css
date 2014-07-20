@@ -86,6 +86,7 @@ ul.lmm-ui-tabs-nav-top{
 	padding: 0px;
 	height: 46px;
 	min-width: 990px;
+	display: inline;
 }
 ul.lmm-ui-tabs-nav-top li{
 	margin: 0px;
@@ -467,7 +468,7 @@ a.pro-upgrade-external-links:hover {
 	clear: both;
 }
 .tab-content {
-	/*overflow: auto;*/
+	clear:both;
 }
 .tabs-below > .nav-tabs,
 .tabs-right > .nav-tabs,

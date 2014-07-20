@@ -3,11 +3,10 @@ Contributors:      harmr
 Plugin Name:       Leaflet Maps Marker
 Plugin URI:        http://www.mapsmarker.com
 Tags:              Google Maps, OpenStreetMap, OSM, bing maps, googlemaps, google earth, map, maps, kml, gpx, location, augmented-reality
-Author URI:        http://www.harm.co.at
-Author:            Robert Harm
-Donate link:       http://www.mapsmarker.com/donations
+Author URI:        https://www.mapsmarker.com
+Author:            MapsMarker.com e.U.
 Requires at least: 3.3
-Tested up to:      3.9.1
+Tested up to:      4.0
 Stable tag:        3.9
 License:           GPLv2
 
@@ -302,13 +301,13 @@ For more information on translations of the plugin and how to contribute a new t
 
 = Trademark and copyright =
 MapsMarker &reg; - registration pending
-Copyright 2011-2014, Robert Harm, All Rights Reserved
+Copyright 2011-2014, MapsMarker.com e.U., All Rights Reserved
 
 == Upgrade Notice ==
-= v3.9 =
-bugfix release for IE11 - see http://www.mapsmarker.com/v3.9 for more details
+= v3.9.1 =
+compatibility fixes (WordPress 4.0, plugin conflicts) - see http://www.mapsmarker.com/v3.9.1 for more details
 
 == Changelog ==
-[blog post with details about v3.9](http://www.mapsmarker.com/v3.9)
+[blog post with details about v3.9.1](http://www.mapsmarker.com/v3.9.1)
 
 [changelog for all versions](http://www.mapsmarker.com/changelog)
