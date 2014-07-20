@@ -209,7 +209,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					'</ol>'
 				);
 				$popuptext_sanitized = preg_replace($sanitize_popuptext_from, $sanitize_popuptext_to, stripslashes(preg_replace( '/(\015\012)|(\015)|(\012)/','<br />', wp_kses($marker['mpopuptext'], $allowedtags))));
-				echo '<description><![CDATA[' . popuptext_sanitized . ']]></description>'.PHP_EOL;
+				echo '<description><![CDATA[' . $popuptext_sanitized . ']]></description>'.PHP_EOL;
 				echo '<image>' . $micon_url . '</image>'.PHP_EOL;
 				echo '<source>' . home_url() . '</source>'.PHP_EOL;
 				echo '<where>' . htmlspecialchars($marker['maddress']) . '</where>'.PHP_EOL;
