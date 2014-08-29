@@ -30,10 +30,10 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 	$lmm_options = get_option( 'leafletmapsmarker_options' );
 
-	$sql = 'SELECT m.id as mid, m.createdon as mcreatedon, m.updatedon as mupdatedon FROM '.$table_name_markers.' AS m';
+	$sql = 'SELECT m.id as mid, m.createdon as mcreatedon, m.updatedon as mupdatedon FROM `'.$table_name_markers.'` AS m';
 	$markers = $wpdb->get_results($sql, ARRAY_A);
 
-	$sql2 = 'SELECT l.id as lid, l.createdon as lcreatedon, l.updatedon as lupdatedon FROM '.$table_name_layers.' AS l WHERE l.id != 0';
+	$sql2 = 'SELECT l.id as lid, l.createdon as lcreatedon, l.updatedon as lupdatedon FROM `'.$table_name_layers.'` AS l WHERE l.id != 0';
 	$layers = $wpdb->get_results($sql2, ARRAY_A);
 
 	header('Cache-Control: no-cache, must-revalidate');

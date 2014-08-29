@@ -74,7 +74,7 @@ ul.lmm-ui-tabs-nav-top{
 ul.lmm-ui-tabs-nav-top li{
 	margin: 0px;
 	padding: 15px 10px 15px 10px;
-	float:left;
+	float:right;
 	font-weight: bold;
 	color: #D2E5EE;
 	font-size: 1em;
@@ -106,7 +106,7 @@ table.form-table{
 ul.lmm-ui-tabs-navleft{
 	margin: 0px 0 0 0;
 	padding: 14px 0px 0 0px !important;
-	width: 275px !important;
+	width: 280px !important;
 	background: #eff8ff;
 }
 ul.lmm-ui-tabs-navleft li{
@@ -137,8 +137,8 @@ ul.lmm-ui-tabs-navleft li.lmm-ui-state-active a {
 }
 .section{
 	margin-left: 0px;
-	padding-left: 275px;
-	margin-right: 15px;
+	padding-left: 0px;
+	margin-right: 280px;
 	border-right:1px solid #E9E9E9;
 }
 
@@ -149,7 +149,7 @@ h3.titl{
 	color: #444444;
 	background: #ffffff;
 	margin: 17px 0 -18px 0;
-	padding: 10px 0 10px 10px;
+	padding: 10px 10px 10px 0;
 	border-top:1px solid #E9E9E9;
 }
 .lmm-nav-primary {
@@ -220,7 +220,7 @@ a.pro-upgrade-external-links:hover {
 	max-width: none;
 }
 .nav > .pull-right {
-	float: right;
+	float: left;
 }
 .nav-header {
 	display: block;
@@ -520,7 +520,7 @@ a.pro-upgrade-external-links:hover {
 	*border-right-color: #ffffff;
 }
 .tabs-right > .nav-tabs {
-	float: right;
+	float: left;
 	margin-left: 19px;
 	border-left: 1px solid #ddd;
 }
@@ -592,23 +592,23 @@ a.pro-upgrade-external-links:hover {
 /*marker icons*/
 .div-marker-icon {
 	text-align:center;
-	float:left;
+	float:right;
 	line-height:0px;
 	margin-bottom:3px;
 	border-radius:4px;
 }
 /*RTL-tweaks*/
 .switch-link-rtl {
-	float: right;
+	float: left;
 }
 .lmm-rtl {
-	float: left;
+	float: right;
 }
 .logo-rtl {
-	float: left;
-	margin:7px 10px 0 0;
+	float: right;
+	margin:7px 0 0 10px;
 }
 .pro-upgrade-logo-rtl {
-	float:left;
-	margin: 20px 10px 10px 0;
+	float:right;
+	margin: 20px 0 10px 10px;
 }

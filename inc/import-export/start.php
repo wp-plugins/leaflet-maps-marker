@@ -410,7 +410,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			**********************************/
 			echo '<table><tr><td><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-export.png" width="32" height="32" alt="export"></td>';
 			echo '<td><h3 style="font-size:20px;margin:0px;"> ' . __('prepare export','lmm') . '</h3></td></tr></table>';
-			$layerlist = $wpdb->get_results('SELECT id,name,multi_layer_map FROM '.$table_name_layers, ARRAY_A);
+			$layerlist = $wpdb->get_results('SELECT `id`,`name`,`multi_layer_map` FROM '.$table_name_layers, ARRAY_A);
 			$markercount_all = $wpdb->get_var('SELECT count(*) FROM '.$table_name_markers.'');
 			$iconlist = $wpdb->get_results('SELECT distinct(icon) FROM '.$table_name_markers, ARRAY_A);
 
@@ -431,7 +431,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 						<select id="filter-layer" name="filter-layer">
 						<option value="select-all">' . sprintf(__('all %1$s markers','lmm'), $markercount_all) . '</option>';
 						foreach ($layerlist as $row) {
-							$markercount = $wpdb->get_var('SELECT count(*) FROM '.$table_name_layers.' as l INNER JOIN '.$table_name_markers.' AS m ON l.id=m.layer WHERE l.id='.$row['id']);
+							$markercount = $wpdb->get_var('SELECT count(*) FROM `'.$table_name_layers.'` as l INNER JOIN `'.$table_name_markers.'` AS m ON l.id=m.layer WHERE l.id='.$row['id']);
 							if ($row['multi_layer_map'] == 0) {
 								echo '<option value="' . $row['id'] . '"' . ($row['id'] == $layer ? ' selected="selected"' : '') . '>' . stripslashes(htmlspecialchars($row['name'])) . ' (' . __('layer','lmm') . ' ID ' . $row['id'] . ' - ' . sprintf(__('%1$s markers','lmm'), $markercount) . ')</option>';
 							} else {
@@ -551,7 +551,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			**********************************/
 			echo '<table><tr><td><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-export.png" width="32" height="32" alt="export"></td>';
 			echo '<td><h3 style="font-size:20px;margin:0px;"> ' . __('prepare export','lmm') . ' (' . __('layers','lmm') . ')</h3></td></tr></table>';
-			$layerlist = $wpdb->get_results('SELECT id,name,multi_layer_map FROM '.$table_name_layers, ARRAY_A);
+			$layerlist = $wpdb->get_results('SELECT `id`,`name`,`multi_layer_map` FROM '.$table_name_layers, ARRAY_A);
 			$layercount_all = $wpdb->get_var('SELECT count(*) FROM '.$table_name_layers.'') - 1;
 			
 			if (extension_loaded('zip')) {
@@ -791,7 +791,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			if ( $_POST['filter-layer'] == 'select-all' ) {
 				$filter_layer_sql = '(1=1)';
 			} else {
-				$filter_layer_sql = 'layer = ' . intval($_POST['filter-layer']);
+				$filter_layer_sql = '`layer` = ' . intval($_POST['filter-layer']);
 			}
 			//info: prepare sql for optional 1
 			$filter_option1_sql = '(';
@@ -808,7 +808,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			if ( $_POST['filter-popuptext'] == NULL ) {
 				$filter_option1_sql .= '(1=1)';
 			} else {
-				$filter_option1_sql .= 'popuptext LIKE "%' . esc_sql($_POST['filter-popuptext']) . '%"';
+				$filter_option1_sql .= '`popuptext` LIKE "%' . esc_sql($_POST['filter-popuptext']) . '%"';
 			}
 			$filter_option1_sql .= ')';
 			//info: prepare sql for optional 2
@@ -816,7 +816,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			if ( $_POST['filter-exclude-markername'] == NULL ) {
 				$filter_option2_sql .= '(1=1)';
 			} else {
-				$filter_option2_sql .= 'markername NOT LIKE "%' . esc_sql($_POST['filter-exclude-markername']) . '%"';
+				$filter_option2_sql .= '`markername` NOT LIKE "%' . esc_sql($_POST['filter-exclude-markername']) . '%"';
 			}
 			if ( ($_POST['filter-exclude-markername'] == NULL) || ($_POST['filter-exclude-popuptext'] == NULL) ) {
 					$filter_option2_sql .= ' AND '; //info: otherwise search for popuptext only returns all results
@@ -826,20 +826,20 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			if ( $_POST['filter-exclude-popuptext'] == NULL ) {
 				$filter_option2_sql .= '(1=1)';
 			} else {
-				$filter_option2_sql .= 'popuptext NOT LIKE "%' . esc_sql($_POST['filter-exclude-popuptext']) . '%"';
+				$filter_option2_sql .= '`popuptext` NOT LIKE "%' . esc_sql($_POST['filter-exclude-popuptext']) . '%"';
 			}
 			$filter_option2_sql .= ')';
 			//info: filter for marker icons
 			if ( $_POST['filter-icon'] == 'icon-any' ) {
 				$filter_icons_sql = '(1=1)';
 			} else if ( $_POST['filter-icon'] == 'icon-any' ) {
-				$filter_icons_sql = '(icon = "")';
+				$filter_icons_sql = '(`icon` = "")';
 			} else {
-				$filter_icons_sql = '(icon = "' . esc_sql($_POST['filter-icon']) . '")';
+				$filter_icons_sql = '(`icon` = "' . esc_sql($_POST['filter-icon']) . '")';
 			}
 			$filter_limit_from = intval($_POST['limit-from']);
 			$filter_limit_to = intval($_POST['limit-to']);
-			$export_rows = $wpdb->get_results("SELECT * FROM $table_name_markers WHERE $filter_layer_sql AND $filter_option1_sql AND $filter_option2_sql AND $filter_icons_sql LIMIT $filter_limit_from, $filter_limit_to", ARRAY_A);
+			$export_rows = $wpdb->get_results("SELECT * FROM `$table_name_markers` WHERE $filter_layer_sql AND $filter_option1_sql AND $filter_option2_sql AND $filter_icons_sql LIMIT $filter_limit_from, $filter_limit_to", ARRAY_A);
 
 			//info: set document properties
 			global $user;
@@ -1013,10 +1013,10 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			if ( $_POST['filter-layer'] == 'select-all' ) {
 				$filter_layer_sql = '(1=1)';
 			} else {
-				$filter_layer_sql = 'id = ' . intval($_POST['filter-layer']);
+				$filter_layer_sql = '`id` = ' . intval($_POST['filter-layer']);
 			}
 			$filter_limit_to = intval($_POST['limit-to']);
-			$export_rows = $wpdb->get_results("SELECT * FROM $table_name_layers WHERE $filter_layer_sql AND id != 0 LIMIT 0, $filter_limit_to", ARRAY_A);
+			$export_rows = $wpdb->get_results("SELECT * FROM `$table_name_layers` WHERE $filter_layer_sql AND `id` != 0 LIMIT 0, $filter_limit_to", ARRAY_A);
 
 			//info: set document properties
 			global $user;

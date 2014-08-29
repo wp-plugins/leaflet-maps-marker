@@ -3,7 +3,7 @@
     Import/Export marker - Leaflet Maps Marker Plugin
 */
 //info prevent file from being accessed directly
-if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-import-export.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
+if (basename($_SERVER['SCRIPT_FILENAME']) == 'leaflet-import-export.php') { die ("Please do not access this file directly. Thanks!<br/><a href='https://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
 ?>
 <div class="wrap">
 <?php 
@@ -38,7 +38,7 @@ if (!empty($action)) {
 	
 	<h3 style="font-size:23px;"><?php _e('Import/Export','lmm'); ?></h3>
 
-	<p><?php echo sprintf(__('For details and tutorials about imports and exports, please visit %1s','lmm'), '<a href="http://www.mapsmarker.com/import-export" target="_blank" style="text-decoration:none;">www.mapsmarker.com/import-export</a>'); ?></p>
+	<p><?php echo sprintf(__('For details and tutorials about imports and exports, please visit %1s','lmm'), '<a href="https://www.mapsmarker.com/import-export" target="_blank" style="text-decoration:none;">www.mapsmarker.com/import-export</a>'); ?></p>
 	
 	<p>
 	<table>

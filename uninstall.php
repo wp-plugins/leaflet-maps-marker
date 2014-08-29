@@ -2,10 +2,10 @@
 //info: die if uninstall not called from Wordpress exit
 if ( !defined( 'WP_UNINSTALL_PLUGIN' ) )
 	exit ();
-$current_version = "v391"; //2do: change on each update to current version!
+$current_version = "v392"; //2do: change on each update to current version!
 if (is_multisite()) {
 	global $wpdb;
-	$blogs = $wpdb->get_results("SELECT blog_id FROM {$wpdb->blogs}", ARRAY_A);
+	$blogs = $wpdb->get_results("SELECT `blog_id` FROM {$wpdb->blogs}", ARRAY_A);
 	$lmm_pro_readme = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'leaflet-maps-marker-pro' . DIRECTORY_SEPARATOR . 'readme.txt';
 		//info: delete transients (needed for reinstalls within validity of transients)
 		$schedule_transient = 'leafletmapsmarker_install_update_cache_' . $current_version;
