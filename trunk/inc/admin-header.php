@@ -3,7 +3,7 @@
 	Admin Header - Leaflet Maps Marker Plugin
 */
 //info prevent file from being accessed directly
-if (basename($_SERVER['SCRIPT_FILENAME']) == 'admin-header.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
+if (basename($_SERVER['SCRIPT_FILENAME']) == 'admin-header.php') { die ("Please do not access this file directly. Thanks!<br/><a href='https://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
 
 //info: dont show on save (remove with AJAX ;-)
 $action = isset($_POST['action']) ? $_POST['action'] : (isset($_GET['action']) ? $_GET['action'] : '');
@@ -152,9 +152,9 @@ if ( ($action == 'add') || ($action == 'edit') || ($action == 'duplicate') ) {
 		if (file_exists($lmm_pro_readme)) {
 			$lmm_pro_version = get_option( 'leafletmapsmarker_version_pro' );
 			if ( $lmm_pro_version != NULL) {
-				echo '<p><div  class="updated" style="padding:10px;margin:10px 0;">' . sprintf(__('Too bad you are using the free version again :-( <a href="%1s" target="_blank">Please tell us what we can do to win you as a happy pro user and receive a discount voucher!</a>','lmm'), 'http://www.mapsmarker.com/feedback') . '<br/>' . __('This message will disappear once the pro version has been activated or deleted from your server (via the WordPress Plugins page!)','lmm') . '</div></p>';
+				echo '<p><div  class="updated" style="padding:10px;margin:10px 0;">' . sprintf(__('Too bad you are using the free version again :-( <a href="%1s" target="_blank">Please tell us what we can do to win you as a happy pro user and receive a discount voucher!</a>','lmm'), 'https://www.mapsmarker.com/feedback') . '<br/>' . __('This message will disappear once the pro version has been activated or deleted from your server (via the WordPress Plugins page!)','lmm') . '</div></p>';
 			} else {
-				echo '<p><div  class="updated" style="padding:10px;margin:10px 0;">' . sprintf(__('You downloaded <a href="%1s" target="_blank">Leaflet Maps Marker Pro</a> but did not register a free 30-day-trial license key. Please note that <a href="%2s" target="_blank">according to our privacy policy</a> we will not disclose, rent or sell your personal information!<br/>If you install Leaflet Maps Marker Pro on a localhost installation (<a href="%3s" target="_blank">see available packages on Wikipedia</a>) you can also test the pro plugin without registering a free 30-day-trial license key and without time limitation.','lmm'), 'http://www.mapsmarker.com', 'http://www.mapsmarker.com/privacy', 'http://en.wikipedia.org/wiki/List_of_AMP_packages') . '<br/>' . __('This message will disappear once the pro version has been activated or deleted from your server (via the WordPress Plugins page!)','lmm') . '</div></p>';
+				echo '<p><div  class="updated" style="padding:10px;margin:10px 0;">' . sprintf(__('You downloaded <a href="%1s" target="_blank">Leaflet Maps Marker Pro</a> but did not register a free 30-day-trial license key. Please note that <a href="%2s" target="_blank">according to our privacy policy</a> we will not disclose, rent or sell your personal information!<br/>If you install Leaflet Maps Marker Pro on a localhost installation (<a href="%3s" target="_blank">see available packages on Wikipedia</a>) you can also test the pro plugin without registering a free 30-day-trial license key and without time limitation.','lmm'), 'https://www.mapsmarker.com', 'https://www.mapsmarker.com/privacy', 'http://en.wikipedia.org/wiki/List_of_AMP_packages') . '<br/>' . __('This message will disappear once the pro version has been activated or deleted from your server (via the WordPress Plugins page!)','lmm') . '</div></p>';
 			}
 		}
 	}//info: end misc_global_admin_notices check
@@ -173,9 +173,9 @@ if ( ($action == 'add') || ($action == 'edit') || ($action == 'duplicate') ) {
 	?>
 	<table cellpadding="5" cellspacing="0" class="widefat fixed">
 	  <tr>
-		<td><div style="float:left;margin:7px 10px 0 0;"><a href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_pro_upgrade" title="<?php _e('Upgrade to pro version for even more features - click here to find out how you can start a free 30-day-trial easily','lmm'); ?>"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/logo-mapsmarker.png" width="65" height="65" alt="Leaflet Maps Marker Plugin Logo by Julia Loew, www.weiderand.net" /></a></div>
+		<td><div class="logo-rtl"><a href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_pro_upgrade" title="<?php _e('Upgrade to pro version for even more features - click here to find out how you can start a free 30-day-trial easily','lmm'); ?>"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/logo-mapsmarker.png" width="65" height="65" alt="Leaflet Maps Marker Plugin Logo by Julia Loew, www.weiderand.net" /></a></div>
 	<?php $free_version = get_option("leafletmapsmarker_version"); ?>
-	<div style="font-size:1.5em;margin-bottom:5px;"><span style="font-weight:bold;">Maps Marker<sup style="font-size:75%;">&reg;</sup> <a href="http://www.mapsmarker.com/v<?php echo $free_version; ?>" target="_blank" title="<?php esc_attr_e('view blogpost for current version','lmm');?>">v<?php echo $free_version; ?></a> - <?php _e('Lite Edition','lmm'); ?></span></div>
+	<div style="font-size:1.5em;margin-bottom:5px;"><span style="font-weight:bold;">Maps Marker<sup style="font-size:75%;">&reg;</sup> <a href="https://www.mapsmarker.com/v<?php echo $free_version; ?>" target="_blank" title="<?php esc_attr_e('view blogpost for current version','lmm');?>">v<?php echo $free_version; ?></a> - <?php _e('Lite Edition','lmm'); ?></span></div>
 	  <p style="margin:1em 0 0 0;line-height:32px;">
 	  <a class="<?php echo $buttonclass1; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_markers"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-menu-list.png" width="10" height="10" /><?php _e("List all markers", "lmm") ?></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	  <a class="<?php echo $buttonclass2; ?>" href="<?php echo LEAFLET_WP_ADMIN_URL ?>admin.php?page=leafletmapsmarker_marker"><img src="<?php echo LEAFLET_PLUGIN_URL ?>inc/img/icon-menu-add.png" width="10" height="10" /> <?php _e("Add new marker", "lmm"); ?></a>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
@@ -200,8 +200,8 @@ if ( ($action == 'add') || ($action == 'edit') || ($action == 'duplicate') ) {
 	if ( (get_option('leafletmapsmarker_update_info') == 'show') && ($page != 'leafletmapsmarker_pro_upgrade') ){
 		$lmm_version_old = get_option( 'leafletmapsmarker_version_before_update' );
 		$lmm_version_new = get_option( 'leafletmapsmarker_version' );
-		$lmm_changelog_new_version = '<a href="http://www.mapsmarker.com/v' . $lmm_version_new . '" target="_blank" style="text-decoration:none;">http://www.mapsmarker.com/v' . $lmm_version_new . '</a>';
-		$lmm_full_changelog = '<a href="http://www.mapsmarker.com/changelog" target="_blank" style="text-decoration:none;">http://www.mapsmarker.com/changelog</a>';
+		$lmm_changelog_new_version = '<a href="https://www.mapsmarker.com/v' . $lmm_version_new . '" target="_blank" style="text-decoration:none;">https://www.mapsmarker.com/v' . $lmm_version_new . '</a>';
+		$lmm_full_changelog = '<a href="https://www.mapsmarker.com/changelog" target="_blank" style="text-decoration:none;">https://www.mapsmarker.com/changelog</a>';
 
 		echo '<div style="border-radius:3px;border-color:#E6DB55;background-color:#FFFFE0;margin:10px 0 5px;padding:0 0.6em;border-style:solid;border-width:1px;">';
 		if ($lmm_version_old == 0) {

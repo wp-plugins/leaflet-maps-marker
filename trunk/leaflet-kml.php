@@ -59,8 +59,8 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			if (count($mlm_checkedlayers) > 0) {
 				$mlm_q = 'WHERE id IN ('.implode(',', $mlm_checkedlayers).')';
 			
-				$sql_mlm_check = 'SELECT multi_layer_map FROM '.$table_name_layers.' '.$mlm_q;
-				$sql_mlm_check_list = 'SELECT multi_layer_map_list FROM '.$table_name_layers.' '.$mlm_q;
+				$sql_mlm_check = 'SELECT `multi_layer_map` FROM `'.$table_name_layers.'` '.$mlm_q;
+				$sql_mlm_check_list = 'SELECT `multi_layer_map_list` FROM `'.$table_name_layers.'` '.$mlm_q;
 				$mlm_check = $wpdb->get_var($sql_mlm_check);
 				$mlm_check_list = $wpdb->get_row($sql_mlm_check_list, ARRAY_A);
 			
@@ -83,12 +83,12 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				die('Error: a layer with that ID does not exist!');
 			}
 		}
-		$sql = 'SELECT m.id as mid, m.markername as mmarkername, m.layer as mlayer, m.icon as micon, m.createdby as mcreatedby, m.createdon as mcreatedon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext, m.kml_timestamp as mkml_timestamp, m.address as maddress, l.createdby as lcreatedby, l.createdon as lcreatedon, l.name as lname, l.wms as lwms, l.wms2 as lwms2, l.wms3 as lwms3, l.wms4 as lwms4, l.wms5 as lwms5, l.wms6 as lwms6, l.wms7 as lwms7, l.wms8 as lwms8, l.wms9 as lwms9, l.wms10 as lwms10 FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
+		$sql = 'SELECT m.id as mid, m.markername as mmarkername, m.layer as mlayer, m.icon as micon, m.createdby as mcreatedby, m.createdon as mcreatedon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext, m.kml_timestamp as mkml_timestamp, m.address as maddress, l.createdby as lcreatedby, l.createdon as lcreatedon, l.name as lname, l.wms as lwms, l.wms2 as lwms2, l.wms3 as lwms3, l.wms4 as lwms4, l.wms5 as lwms5, l.wms6 as lwms6, l.wms7 as lwms7, l.wms8 as lwms8, l.wms9 as lwms9, l.wms10 as lwms10 FROM `'.$table_name_markers.'` AS m INNER JOIN `'.$table_name_layers.'` AS l ON m.layer=l.id '.$q;
 		$markers = $wpdb->get_results($sql, ARRAY_A);
-		$sql_distinct = 'SELECT DISTINCT m.icon as micon FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
+		$sql_distinct = 'SELECT DISTINCT m.icon as micon FROM `'.$table_name_markers.'` AS m INNER JOIN `'.$table_name_layers.'` AS l ON m.layer=l.id '.$q;
 		$styles_distinct = $wpdb->get_results($sql_distinct, ARRAY_A);
 		if ($_GET['layer'] != 'all') {
-			$sql_wms_layer_for_kml = 'SELECT l.id as lid, l.wms as lwms, l.wms2 as lwms2, l.wms3 as lwms3, l.wms4 as lwms4, l.wms5 as lwms5, l.wms6 as lwms6, l.wms7 as lwms7, l.wms8 as lwms8, l.wms9 as lwms9, l.wms10 as lwms10 FROM '.$table_name_layers.' AS l '.$mlm_q;
+			$sql_wms_layer_for_kml = 'SELECT l.id as lid, l.wms as lwms, l.wms2 as lwms2, l.wms3 as lwms3, l.wms4 as lwms4, l.wms5 as lwms5, l.wms6 as lwms6, l.wms7 as lwms7, l.wms8 as lwms8, l.wms9 as lwms9, l.wms10 as lwms10 FROM `'.$table_name_layers.'` AS l '.$mlm_q;
 			$wmslayer_kml = $wpdb->get_results($sql_wms_layer_for_kml, ARRAY_A);
 		}
 		//info: check if layer result is not null
@@ -103,7 +103,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			echo '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
 			echo '<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2">'.PHP_EOL;
 			echo '<Document>'.PHP_EOL;
-			echo '<description><![CDATA[powered by <a href="http://www.wordpress.org">WordPress</a> &amp; <a href="http://www.mapsmarker.com">MapsMarker.com</a>]]></description>'.PHP_EOL;
+			echo '<description><![CDATA[powered by <a href="http://www.wordpress.org">WordPress</a> &amp; <a href="https://www.mapsmarker.com">MapsMarker.com</a>]]></description>'.PHP_EOL;
 			echo '<open>1</open>'.PHP_EOL;
 			foreach ($styles_distinct as $marker_icon) {
 				if ($marker_icon['micon'] == null) {
@@ -116,7 +116,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<Style id="' . $micon_name . '"><IconStyle><Icon><href>' . $micon_url . '</href></Icon></IconStyle></Style>'.PHP_EOL;
 			}
 
-			$layername = $wpdb->get_var( $wpdb->prepare("SELECT name FROM $table_name_layers WHERE id = %d", intval($_GET['layer']) ) );
+			$layername = $wpdb->get_var( $wpdb->prepare("SELECT `name` FROM `$table_name_layers` WHERE `id` = %d", intval($_GET['layer']) ) );
 			if ($_GET['layer'] != 'all') {
 				echo '<Folder>'.PHP_EOL;
 				echo '<name>' . htmlspecialchars($layername) . '</name>'.PHP_EOL;
@@ -245,11 +245,11 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			}
 		}
 		//info: added left outer join to also show markers without a layer
-		$sql = 'SELECT m.layer as mlayer,m.icon as micon,m.popuptext as mpopuptext,m.id as mid,m.markername as mmarkername,m.createdby as mcreatedby, m.createdon as mcreatedon, m.wms as mwms, m.wms2 as mwms2, m.wms3 as mwms3, m.wms4 as mwms4, m.wms5 as mwms5, m.wms6 as mwms6, m.wms7 as mwms7, m.wms8 as mwms8, m.wms9 as mwms9, m.wms10 as mwms10, m.lat as mlat, m.lon as mlon, m.kml_timestamp as mkml_timestamp, m.address as maddress FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
+		$sql = 'SELECT m.layer as mlayer,m.icon as micon,m.popuptext as mpopuptext,m.id as mid,m.markername as mmarkername,m.createdby as mcreatedby, m.createdon as mcreatedon, m.wms as mwms, m.wms2 as mwms2, m.wms3 as mwms3, m.wms4 as mwms4, m.wms5 as mwms5, m.wms6 as mwms6, m.wms7 as mwms7, m.wms8 as mwms8, m.wms9 as mwms9, m.wms10 as mwms10, m.lat as mlat, m.lon as mlon, m.kml_timestamp as mkml_timestamp, m.address as maddress FROM `'.$table_name_markers.'` AS m LEFT OUTER JOIN `'.$table_name_layers.'` AS l ON m.layer=l.id '.$q;
 		$markers = $wpdb->get_results($sql, ARRAY_A);
-		$sql_distinct = 'SELECT DISTINCT m.icon as micon FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
+		$sql_distinct = 'SELECT DISTINCT m.icon as micon FROM `'.$table_name_markers.'` AS m INNER JOIN `'.$table_name_layers.'` AS l ON m.layer=l.id '.$q;
 		$styles_distinct = $wpdb->get_results($sql_distinct, ARRAY_A);
-		$sql_wms_layer_for_kml = 'SELECT m.id as mid, m.wms as mwms, m.wms2 as mwms2, m.wms3 as mwms3, m.wms4 as mwms4, m.wms5 as mwms5, m.wms6 as mwms6, m.wms7 as mwms7, m.wms8 as mwms8, m.wms9 as mwms9, m.wms10 as mwms10 FROM '.$table_name_markers.' AS m '.$q;
+		$sql_wms_layer_for_kml = 'SELECT m.id as mid, m.wms as mwms, m.wms2 as mwms2, m.wms3 as mwms3, m.wms4 as mwms4, m.wms5 as mwms5, m.wms6 as mwms6, m.wms7 as mwms7, m.wms8 as mwms8, m.wms9 as mwms9, m.wms10 as mwms10 FROM `'.$table_name_markers.'` AS m '.$q;
 		$wmslayer_kml = $wpdb->get_results($sql_wms_layer_for_kml, ARRAY_A);
 
 		//info: check if marker result is not null
@@ -264,7 +264,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			echo '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
 			echo '<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2">'.PHP_EOL;
 			echo '<Document>'.PHP_EOL;
-			echo '<description><![CDATA[powered by <a href="http://www.wordpress.org">WordPress</a> &amp; <a href="http://www.mapsmarker.com">MapsMarker.com</a>]]></description>'.PHP_EOL;
+			echo '<description><![CDATA[powered by <a href="http://www.wordpress.org">WordPress</a> &amp; <a href="https://www.mapsmarker.com">MapsMarker.com</a>]]></description>'.PHP_EOL;
 			echo '<open>0</open>'.PHP_EOL;
 			foreach ($styles_distinct as $marker_icon) {
 				if ($marker_icon['micon'] == null) {

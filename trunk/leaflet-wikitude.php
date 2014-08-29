@@ -39,8 +39,8 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 
 		if ($layer == '*' or $layer == 'all') {
 			//info: no exact results, but better than getting no results on calling Wikitude ARML links which might confuse users
-			$first_marker_lat = $wpdb->get_var('SELECT lat FROM '.$table_name_markers.' WHERE id = 1');
-			$first_marker_lon = $wpdb->get_var('SELECT lon FROM '.$table_name_markers.' WHERE id = 1');
+			$first_marker_lat = $wpdb->get_var('SELECT `lat` FROM `'.$table_name_markers.'` WHERE `id` = 1');
+			$first_marker_lon = $wpdb->get_var('SELECT `lon` FROM `'.$table_name_markers.'` WHERE `id` = 1');
 			$latUser = isset($_GET['latitude']) ? floatval($_GET['latitude']) : $first_marker_lat;
 			$lonUser = isset($_GET['longitude']) ? floatval($_GET['longitude']) : $first_marker_lon;
 		} else {
@@ -52,10 +52,10 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				}
 			}
 			if (count($mlm_checkedlayers) > 0) {
-				$mlm_q = 'WHERE id IN ('.implode(',', $mlm_checkedlayers).')';
+				$mlm_q = 'WHERE `id` IN ('.implode(',', $mlm_checkedlayers).')';
 			}
-			$layerviewlat = $wpdb->get_var('SELECT layerviewlat FROM '.$table_name_layers.' '.$mlm_q);
-			$layerviewlon = $wpdb->get_var('SELECT layerviewlon FROM '.$table_name_layers.' '.$mlm_q);
+			$layerviewlat = $wpdb->get_var('SELECT `layerviewlat` FROM `'.$table_name_layers.'` '.$mlm_q);
+			$layerviewlon = $wpdb->get_var('SELECT `layerviewlon` FROM `'.$table_name_layers.'` '.$mlm_q);
 			$latUser = isset($_GET['latitude']) ? floatval($_GET['latitude']) : $layerviewlat;
 			$lonUser = isset($_GET['longitude']) ? floatval($_GET['longitude']) : $layerviewlon;
 		}
@@ -72,8 +72,8 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			if ($layer == '*' or $layer == 'all') {
 				$q = "WHERE m.lat BETWEEN " . $boundingBoxLatitude1 . " AND " . $boundingBoxLatitude2 . " AND m.lon BETWEEN " . $boundingBoxLongitude1 . " AND " . $boundingBoxLongitude2 . " AND (m.markername LIKE '%" . $searchterm . "%' OR m.popuptext LIKE '%" . $searchterm . "%')";
 			} else {
-				$sql_mlm_check = 'SELECT multi_layer_map FROM '.$table_name_layers.' '.$mlm_q;
-				$sql_mlm_check_list = 'SELECT multi_layer_map_list FROM '.$table_name_layers.' '.$mlm_q;
+				$sql_mlm_check = 'SELECT `multi_layer_map` FROM `'.$table_name_layers.'` '.$mlm_q;
+				$sql_mlm_check_list = 'SELECT `multi_layer_map_list` FROM `'.$table_name_layers.'` '.$mlm_q;
 				$mlm_check = $wpdb->get_var($sql_mlm_check);
 				$mlm_check_list = $wpdb->get_row($sql_mlm_check_list, ARRAY_A);
 				if ($mlm_check == 0) {
@@ -95,7 +95,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					$q = '';
 				}
 			}
-			$sql = 'SELECT m.id as mid, m.layer as mlayer, m.markername as mmarkername, m.icon as micon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext, m.address as maddress FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
+			$sql = 'SELECT m.id as mid, m.layer as mlayer, m.markername as mmarkername, m.icon as micon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext, m.address as maddress FROM `'.$table_name_markers.'` AS m INNER JOIN `'.$table_name_layers.'` AS l ON m.layer=l.id '.$q;
 			$markers = $wpdb->get_results($sql, ARRAY_A);
 			header('Cache-Control: no-cache, must-revalidate');
 			header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
@@ -108,7 +108,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			if ( (($layer == '*' || $layer == 'all') || (count($checkedlayers) > 1) ) || ($mlm_check == 1) ) {
 				$layername = __('layer','lmm') . ' ID ' . $layer;
 			} else {
-				$layername = $wpdb->get_var($wpdb->prepare("SELECT l.name FROM $table_name_layers as l WHERE l.id = %d", intval($layer)));
+				$layername = $wpdb->get_var($wpdb->prepare("SELECT l.name FROM `$table_name_layers` as l WHERE l.id = %d", intval($layer)));
 			}
 			if ($layername == NULL) { 
 				$layername = get_bloginfo('name');
@@ -186,8 +186,8 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			if ($layer == '*' or $layer == 'all') {
 				$q = "WHERE m.lat BETWEEN " . $boundingBoxLatitude1 . " AND " . $boundingBoxLatitude2 . " AND m.lon BETWEEN " . $boundingBoxLongitude1 . " AND " . $boundingBoxLongitude2 . "";//info: removed limit 5000
 			} else {
-				$sql_mlm_check = 'SELECT multi_layer_map FROM '.$table_name_layers.' '.$mlm_q;
-				$sql_mlm_check_list = 'SELECT multi_layer_map_list FROM '.$table_name_layers.' '.$mlm_q;
+				$sql_mlm_check = 'SELECT `multi_layer_map` FROM `'.$table_name_layers.'` '.$mlm_q;
+				$sql_mlm_check_list = 'SELECT `multi_layer_map_list` FROM `'.$table_name_layers.'` '.$mlm_q;
 				$mlm_check = $wpdb->get_var($sql_mlm_check);
 				$mlm_check_list = $wpdb->get_row($sql_mlm_check_list, ARRAY_A);
 				if ($mlm_check == 0) {
@@ -209,7 +209,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 					$q = '';
 				}
 			}
-			$sql = 'SELECT m.id as mid, m.layer as mlayer, m.markername as mmarkername, m.icon as micon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext, m.address as maddress FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
+			$sql = 'SELECT m.id as mid, m.layer as mlayer, m.markername as mmarkername, m.icon as micon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext, m.address as maddress FROM `'.$table_name_markers.'` AS m INNER JOIN `'.$table_name_layers.'` AS l ON m.layer=l.id '.$q;
 			$markers = $wpdb->get_results($sql, ARRAY_A);
 			header('Cache-Control: no-cache, must-revalidate');
 			header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
@@ -222,7 +222,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			if ( (($layer == '*' || $layer == 'all') || (count($checkedlayers) > 1) ) || ($mlm_check == 1) ) {
 				$layername = __('layer','lmm') . ' ID ' . $layer;
 			} else {
-				$layername = $wpdb->get_var($wpdb->prepare("SELECT l.name FROM $table_name_layers as l WHERE l.id = %d", intval($layer)));
+				$layername = $wpdb->get_var($wpdb->prepare("SELECT l.name FROM `$table_name_layers` as l WHERE l.id = %d", intval($layer)));
 			}
 			if ($layername == NULL) { 
 				$layername = get_bloginfo('name');
@@ -303,8 +303,8 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 		
 		$markers = explode(',', $markerid);
 		$maxNumberOfPois = isset($_GET['maxNumberOfPois']) ? intval($_GET['maxNumberOfPois']) : intval($lmm_options[ 'ar_wikitude_maxnumberpois' ]);
-		$markerlat = $wpdb->get_var('SELECT lat FROM '.$table_name_markers.' WHERE id IN ('.$markerid.')');
-		$markerlon = $wpdb->get_var('SELECT lon FROM '.$table_name_markers.' WHERE id IN ('.$markerid.')');
+		$markerlat = $wpdb->get_var('SELECT `lat` FROM `'.$table_name_markers.'` WHERE `id` IN ('.$markerid.')');
+		$markerlon = $wpdb->get_var('SELECT `lon` FROM `'.$table_name_markers.'` WHERE `id` IN ('.$markerid.')');
 
 		$latUser = isset($_GET['latitude']) ? floatval($_GET['latitude']) : $markerlat;
 		$lonUser = isset($_GET['longitude']) ? floatval($_GET['longitude']) : $markerlon;
@@ -329,7 +329,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				die();
 			}
 			//info: added left outer join to also show markers without a layer
-			$sql = 'SELECT m.icon as micon, m.popuptext as mpopuptext, m.id as mid, m.markername as mmarkername, m.lat as mlat, m.lon as mlon, m.address as maddress FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
+			$sql = 'SELECT m.icon as micon, m.popuptext as mpopuptext, m.id as mid, m.markername as mmarkername, m.lat as mlat, m.lon as mlon, m.address as maddress FROM `'.$table_name_markers.'` AS m LEFT OUTER JOIN `'.$table_name_layers.'` AS l ON m.layer=l.id '.$q;
 			$markers = $wpdb->get_results($sql, ARRAY_A);
 			header('Cache-Control: no-cache, must-revalidate');
 			header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
@@ -428,7 +428,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				die();
 			}
 			//info: added left outer join to also show markers without a layer
-			$sql = 'SELECT m.icon as micon, m.popuptext as mpopuptext, m.id as mid, m.markername as mmarkername, m.lat as mlat, m.lon as mlon, m.address as maddress FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
+			$sql = 'SELECT m.icon as micon, m.popuptext as mpopuptext, m.id as mid, m.markername as mmarkername, m.lat as mlat, m.lon as mlon, m.address as maddress FROM `'.$table_name_markers.'` AS m LEFT OUTER JOIN `'.$table_name_layers.'` AS l ON m.layer=l.id '.$q;
 			$markers = $wpdb->get_results($sql, ARRAY_A);
 			header('Cache-Control: no-cache, must-revalidate');
 			header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');

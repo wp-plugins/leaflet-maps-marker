@@ -1,7 +1,7 @@
 === Leaflet Maps Marker (Google Maps, OpenStreetMap, Bing Maps) ===
 Contributors:      harmr
 Plugin Name:       Leaflet Maps Marker
-Plugin URI:        http://www.mapsmarker.com
+Plugin URI:        https://www.mapsmarker.com
 Tags:              Google Maps, OpenStreetMap, OSM, bing maps, googlemaps, google earth, map, maps, kml, gpx, location, augmented-reality
 Author URI:        https://www.mapsmarker.com
 Author:            MapsMarker.com e.U.
@@ -19,54 +19,56 @@ For even more features please try "Maps Marker Pro" - demo maps including admin 
 
 = Highlights of Maps Marker Pro =
 * integration of the latest leaflet.js version
-* [marker clustering](http://www.mapsmarker.com/pro-feature-clustering)
-* [GPX tracks](http://www.mapsmarker.com/pro-feature-gpx)
-* [mobile optimized maps](http://www.mapsmarker.com/pro-feature-nojquery)
-* [support for CSV/XLS/XLSX/ODS import and export for bulk additions and bulk updates of markers](http://www.mapsmarker.com/pro-feature-import)
-* [HTML5 fullscreen maps](http://www.mapsmarker.com/pro-feature-html-fullscreen-maps)
-* [minimaps](http://www.mapsmarker.com/pro-feature-minimaps)
-* [mobile web app support and optimized mobile viewport](http://www.mapsmarker.com/pro-feature-webapp)
-* [custom Google Maps styling](http://www.mapsmarker.com/pro-feature-google-styling)
-* [option to remove backlinks](http://www.mapsmarker.com/pro-feature-backlink-upload-button)
-* [QR codes with custom backgrounds](http://www.mapsmarker.com/pro-feature-qrcode)
-* [Google Adsense for maps integration](http://www.mapsmarker.com/pro-feature-adsense)
-* [upload icon button & custom icon directory](http://www.mapsmarker.com/pro-feature-backlink-upload-button)
-* [backup and restore of settings](http://www.mapsmarker.com/pro-feature-backup-restore)
-* [advanced recent marker widget](http://www.mapsmarker.com/pro-feature-advanced-widget)
-* [MapsMarker API](http://www.mapsmarker.com/pro-feature-mapsmarker-api)
-* [whitelabel backend admin pages](http://www.mapsmarker.com/pro-feature-whitelabel)
-* [advanced permission settings](http://www.mapsmarker.com/pro-feature-advanced-permissions)
-* [improved performance for layer maps with a huge number of markers (parsing of GeoJSON is up to 3 times faster)](http://www.mapsmarker.com/v1.2.1p)
-* [improved performance for layer maps by asynchronous loading of markers via GeoJSON](http://www.mapsmarker.com/v1.6p)
-* [support for dynamic switching between simplified and advanced editor (no more reloads needed)](http://www.mapsmarker.com/v1.5.7p)
-* [support for filtering of marker icons on backend (based on filename)](http://www.mapsmarker.com/v1.5.7p)
-* [support for changing marker IDs and layer IDs from the tools page](http://www.mapsmarker.com/v1.5.7p)
-* [support for bulk updates of marker maps on the tools page for selected layers only](http://www.mapsmarker.com/v1.5.7p)
-* [option to add markernames to popups automatically](http://www.mapsmarker.com/v1.5.8p)
-* [map moves back to initial position after popup is closed](http://www.mapsmarker.com/v1.5.8p)
-* [option to disable loading of Google Maps API for higher performance if alternative basemaps are used only](http://www.mapsmarker.com/v1.6p)
-* [map parameters can be overwritten within shortcodes (e.g. [mapsmarker marker="1" height="100"])](http://www.mapsmarker.com/v1.6p)
-* [tool for monitoring "active shortcodes for already deleted maps"](http://www.mapsmarker.com/v1.8p)
-* [layer maps: center map on markers and open popups by clicking on list of marker entries](http://www.mapsmarker.com/v1.8p)
-* [support for shortcodes in popup texts](http://www.mapsmarker.com/v1.3p)
-* [support for setting global maximum zoom level to 21 (tiles from basemaps with lower native zoom levels will be upscaled automatically)](http://www.mapsmarker.com/v1.5p)
-* [duplicate markers](http://www.mapsmarker.com/v1.5.1p)
+* [marker clustering](https://www.mapsmarker.com/pro-feature-clustering)
+* [GPX tracks](https://www.mapsmarker.com/pro-feature-gpx)
+* [mobile optimized maps](https://www.mapsmarker.com/pro-feature-nojquery)
+* [geolocation support: show and follow your location when viewing maps](https://www.mapsmarker.com/v1.9p)
+* [support for CSV/XLS/XLSX/ODS import and export for bulk additions and bulk updates of markers](https://www.mapsmarker.com/pro-feature-import)
+* [HTML5 fullscreen maps](https://www.mapsmarker.com/pro-feature-html-fullscreen-maps)
+* [minimaps](https://www.mapsmarker.com/pro-feature-minimaps)
+* [mobile web app support and optimized mobile viewport](https://www.mapsmarker.com/pro-feature-webapp)
+* [custom Google Maps styling](https://www.mapsmarker.com/pro-feature-google-styling)
+* [option to remove backlinks](https://www.mapsmarker.com/pro-feature-backlink-upload-button)
+* [QR codes with custom backgrounds](https://www.mapsmarker.com/pro-feature-qrcode)
+* [Google Adsense for maps integration](https://www.mapsmarker.com/pro-feature-adsense)
+* [upload icon button & custom icon directory](https://www.mapsmarker.com/pro-feature-backlink-upload-button)
+* [backup and restore of settings](https://www.mapsmarker.com/pro-feature-backup-restore)
+* [advanced recent marker widget](https://www.mapsmarker.com/pro-feature-advanced-widget)
+* [MapsMarker API](https://www.mapsmarker.com/pro-feature-mapsmarker-api)
+* [whitelabel backend admin pages](https://www.mapsmarker.com/pro-feature-whitelabel)
+* [advanced permission settings](https://www.mapsmarker.com/pro-feature-advanced-permissions)
+* [improved performance for layer maps with a huge number of markers (parsing of GeoJSON is up to 3 times faster)](https://www.mapsmarker.com/v1.2.1p)
+* [improved performance for layer maps by asynchronous loading of markers via GeoJSON](https://www.mapsmarker.com/v1.6p)
+* [support for dynamic switching between simplified and advanced editor (no more reloads needed)](https://www.mapsmarker.com/v1.5.7p)
+* [support for filtering of marker icons on backend (based on filename)](https://www.mapsmarker.com/v1.5.7p)
+* [support for changing marker IDs and layer IDs from the tools page](https://www.mapsmarker.com/v1.5.7p)
+* [support for bulk updates of marker maps on the tools page for selected layers only](https://www.mapsmarker.com/v1.5.7p)
+* [option to add markernames to popups automatically](https://www.mapsmarker.com/v1.5.8p)
+* [map moves back to initial position after popup is closed](https://www.mapsmarker.com/v1.5.8p)
+* [option to disable loading of Google Maps API for higher performance if alternative basemaps are used only](https://www.mapsmarker.com/v1.6p)
+* [map parameters can be overwritten within shortcodes (e.g. [mapsmarker marker="1" height="100"])](https://www.mapsmarker.com/v1.6p)
+* [tool for monitoring "active shortcodes for already deleted maps"](https://www.mapsmarker.com/v1.8p)
+* [layer maps: center map on markers and open popups by clicking on list of marker entries](https://www.mapsmarker.com/v1.8p)
+* [support for shortcodes in popup texts](https://www.mapsmarker.com/v1.3p)
+* [support for setting global maximum zoom level to 21 (tiles from basemaps with lower native zoom levels will be upscaled automatically)](https://www.mapsmarker.com/v1.5p)
+* [duplicate markers](https://www.mapsmarker.com/v1.5.1p)
+
 * priority support
 
 The free version includes a pro upgrader which allows you to start a free 30 day trial easily. 
 
-If you want to compare the free and pro version side by side, please visit [http://www.mapsmarker.com/comparison](http://www.mapsmarker.com/comparison).
+If you want to compare the free and pro version side by side, please visit [https://www.mapsmarker.com/comparison](https://www.mapsmarker.com/comparison).
 
 = Vision =
 We are working hard on delivering the best mapping solution available for WordPress - helping you to share your favorite spots & tracks
 
 = Mission Statement =
-[Maps Marker](http://www.mapsmarker.com) helps you to share your favorite spots easily. The plugin is based on the famous [leaflet.js library](http://www.leafletjs.com) from [CloudMade](http://www.cloudmade.com) which also powers maps on sites like [Facebook](https://twitter.com/amercader/status/386144256148389889/photo/1), [Flickr](http://www.flickr.com/map), [Foursquare](http://readwrite.com/2012/02/29/foursquare_dumps_google_goes_open-source_for_maps), [Craigslist](http://www.theverge.com/2012/10/4/3452526/craigslist-map-view-apartment-listings-roll-out), [Wikipedia](http://en.wikipedia.org/wiki/Wikipedia_App) and [Washington Post](http://www.washingtonpost.com/wp-srv/special/politics/election-map-2012/senate/). We use this library as the basis for our plugin and have integrated several other libraries for enhancing its functionality. Our main goal is to provide you with an intuitive and user-friendly interface for organizing your spots within your WordPress powered site. Furthermore we are constantly working on improving our plugin by adding new and innovative ways for managing and showing your spots. Our roadmap for new releases gets aligned to our users' needs - so giving support and talking to our users is essential.
+[Maps Marker](https://www.mapsmarker.com) helps you to share your favorite spots easily. The plugin is based on the famous [leaflet.js library](http://www.leafletjs.com) from [CloudMade](http://www.cloudmade.com) which also powers maps on sites like [Facebook](https://twitter.com/amercader/status/386144256148389889/photo/1), [Flickr](http://www.flickr.com/map), [Foursquare](http://readwrite.com/2012/02/29/foursquare_dumps_google_goes_open-source_for_maps), [Craigslist](http://www.theverge.com/2012/10/4/3452526/craigslist-map-view-apartment-listings-roll-out), [Wikipedia](http://en.wikipedia.org/wiki/Wikipedia_App) and [Washington Post](http://www.washingtonpost.com/wp-srv/special/politics/election-map-2012/senate/). We use this library as the basis for our plugin and have integrated several other libraries for enhancing its functionality. Our main goal is to provide you with an intuitive and user-friendly interface for organizing your spots within your WordPress powered site. Furthermore we are constantly working on improving our plugin by adding new and innovative ways for managing and showing your spots. Our roadmap for new releases gets aligned to our users' needs - so giving support and talking to our users is essential.
 
 = Plugin's Official Site =
-http://www.mapsmarker.com
+https://www.mapsmarker.com
 
-* [Affiliates](https://www.mapsmarker.com/affiliates/) - [FAQ](http://www.mapsmarker.com/faq/) - [Docs](http://www.mapsmarker.com/docs/) - [Support](http://mapsmarker.com/support/) - [Github](https://github.com/robertharm/Leaflet-Maps-Marker) - [Twitter](http://twitter.com/mapsmarker) - [Facebook](http://facebook.com/mapsmarker) - [Google+](http://www.mapsmarker.com/+) - [Translations](http://translate.mapsmarker.com/projects/lmm)
+* [Affiliates](https://www.mapsmarker.com/affiliates/) - [FAQ](https://www.mapsmarker.com/faq/) - [Docs](https://www.mapsmarker.com/docs/) - [Support](http://mapsmarker.com/support/) - [Github](https://github.com/robertharm/Leaflet-Maps-Marker) - [Twitter](http://twitter.com/mapsmarker) - [Facebook](http://facebook.com/mapsmarker) - [Google+](https://www.mapsmarker.com/+) - [Translations](http://translate.mapsmarker.com/projects/lmm)
 
 = Main features =
 Leaflet Maps Marker allows you to
@@ -141,7 +143,7 @@ to the visitors of your website.
 * support for other languages through .po/.mo-files (please see http://mapsmarker.com/languages for details if you want to contribute a new translation)
 * option to select plugin default language in settings for backend and frontend (separately from language set in wp-config.php)
 * support for Retina displays to display maps in a higher resolution
-* GeoJSON feeds for every marker and layer with [JSONP support](http://www.mapsmarker.com/geojson)
+* GeoJSON feeds for every marker and layer with [JSONP support](https://www.mapsmarker.com/geojson)
 * use of Wordpress settings API for storing options
 * TinyMCE editor on backend for editing popuptext
 * integrated plugin compatibility check to warn about incompatible plugins
@@ -189,7 +191,7 @@ to the visitors of your website.
 * Vietnamese (vi) thanks to Hoai Thu
 * Yiddish (yi) thanks to Raphael Finkel
 
-For full credits of each translations please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages) (had to remove backlinks from readme-file as it is considered as spam by WordPress :-/ )
+For full credits of each translations please visit [https://www.mapsmarker.com/languages](https://www.mapsmarker.com/languages) (had to remove backlinks from readme-file as it is considered as spam by WordPress :-/ )
 
 Leaflet Maps Marker also supports easy switching between translations through a specific plugin setting.
 For more information on translations and how to contribute a new translation, please visit [http://translate.mapsmarker.com](http://translate.mapsmarker.com/projects/lmm).
@@ -208,7 +210,7 @@ For more information on translations and how to contribute a new translation, pl
 Done. You can create your first marker map (you are getting redirected after first plugin activation automatically)
 
 After installation you will also find a 'Leaflet Maps Marker' menu in your WordPress admin panel and in WordPress Admin Bar.
-For basic usage and tutorials, you can also have a look at [http://www.mapsmarker.com/docs](http://www.mapsmarker.com/docs "Docs").
+For basic usage and tutorials, you can also have a look at [https://www.mapsmarker.com/docs](https://www.mapsmarker.com/docs "Docs").
 
 = Detailed Installation Instructions =
 
@@ -240,17 +242,17 @@ Note: plugin requires at least PHP 5.2 and Wordpress 3.0!
 
 == Frequently Asked Questions ==
 Do you have questions or issues with Leaflet Maps Marker? Please use the following support channels appropriately.
-One personal request: before you post a new support ticket in the [Wordpress Support Forum](http://wordpress.org/support/plugin/leaflet-maps-marker), please follow the instructions from [http://www.mapsmarker.com/readme-first](http://www.mapsmarker.com/readme-first) which give you a guideline on how to deal with the most common issues.
+One personal request: before you post a new support ticket in the [Wordpress Support Forum](http://wordpress.org/support/plugin/leaflet-maps-marker), please follow the instructions from [https://www.mapsmarker.com/readme-first](https://www.mapsmarker.com/readme-first) which give you a guideline on how to deal with the most common issues.
 
-1. [FAQ](www.mapsmarker.com/faq/)
-2. [Docs](http://www.mapsmarker.com/docs/)
+1. [FAQ](https://www.mapsmarker.com/faq/)
+2. [Docs](https://www.mapsmarker.com/docs/)
 3. [Wordpress Support Forum](http://wordpress.org/support/plugin/leaflet-maps-marker) (free community support)
-4. [Upgrade to Pro](http://www.mapsmarker.com/install) (paid developer support)
+4. [Upgrade to Pro](https://www.mapsmarker.com/install) (paid developer support)
 
 [More info on support](http://mapsmarker.com/support/)
 
 == Screenshots ==
-For demo maps please visit [http://www.mapsmarker.com/demo](http://www.mapsmarker.com/demo).
+For demo maps please visit [https://www.mapsmarker.com/demo](https://www.mapsmarker.com/demo).
 
 01. Frontend: marker map (with open popup and image, basemap: OGD Vienna satellite, overlay: OGD Vienna addresses, controlbox: expanded)
 02. Frontend: layer map (5 marker, different icons, basemap: OpenStreetMap, controlbox: collapsed)
@@ -297,17 +299,17 @@ This program is free software; you can redistribute it and/or modify it under th
 * [Hind](http://www.nanodesu.ru) who originally release a basic Leaflet plugin (not available anymore) which I used partly as a basis for Leaflet Maps Marker plugin
 * [shramov](http://psha.org.ru/b/leaflet-plugins.html) for bing and google maps plugins for leaflet
 
-For more information on translations of the plugin and how to contribute a new translation, please visit [http://www.mapsmarker.com/languages](http://www.mapsmarker.com/languages).
+For more information on translations of the plugin and how to contribute a new translation, please visit [https://www.mapsmarker.com/languages](https://www.mapsmarker.com/languages).
 
 = Trademark and copyright =
 MapsMarker &reg; - registration pending
 Copyright 2011-2014, MapsMarker.com e.U., All Rights Reserved
 
 == Upgrade Notice ==
-= v3.9.1 =
-compatibility fixes (WordPress 4.0, plugin conflicts) - see http://www.mapsmarker.com/v3.9.1 for more details
+= v3.9.2 =
+bugfix and compatibility release (RTL support, mySQL...) - see https://www.mapsmarker.com/v3.9.2 for more details
 
 == Changelog ==
-[blog post with details about v3.9.1](http://www.mapsmarker.com/v3.9.1)
+[blog post with details about v3.9.2](https://www.mapsmarker.com/v3.9.2)
 
-[changelog for all versions](http://www.mapsmarker.com/changelog)
+[changelog for all versions](https://www.mapsmarker.com/changelog)

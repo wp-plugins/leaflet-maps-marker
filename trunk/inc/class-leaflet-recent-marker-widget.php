@@ -3,7 +3,7 @@
  * Leaflet Maps Marker Plugin - widget class
 */
 //info prevent file from being accessed directly
-if (basename($_SERVER['SCRIPT_FILENAME']) == 'class-leaflet-recent-marker-widget.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
+if (basename($_SERVER['SCRIPT_FILENAME']) == 'class-leaflet-recent-marker-widget.php') { die ("Please do not access this file directly. Thanks!<br/><a href='https://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
 class Class_leaflet_recent_marker_widget extends WP_Widget {
 	public function __construct() {
 		$widget_options = array(
@@ -140,7 +140,7 @@ class Class_leaflet_recent_marker_widget extends WP_Widget {
 		}
 		$orderby = ($instance['lmm-widget-orderby'] == 'createdon') ? 'createdon' : 'updatedon';
 		$orderbysortorder = ($instance['lmm-widget-orderby-sortorder'] == 'desc') ? 'desc' : 'asc';
-		$result = $wpdb->get_results("SELECT ID,markername,icon,popuptext,createdon FROM $table_name_markers ORDER BY $orderby $orderbysortorder LIMIT $limiter", ARRAY_A);
+		$result = $wpdb->get_results("SELECT `id`,`markername`,`icon`,`popuptext`,`createdon` FROM `$table_name_markers` ORDER BY `$orderby` $orderbysortorder LIMIT $limiter", ARRAY_A);
 		$title = (empty($instance['lmm-widget-title'])) ? '' : $instance['lmm-widget-title'];
 		if (!empty($title)) {
 			echo $before_title . $title . $after_title;
@@ -155,14 +155,14 @@ class Class_leaflet_recent_marker_widget extends WP_Widget {
 				if (!empty($instance['lmm-widget-showicons'])) {
 					$icon = ($row['icon'] == NULL) ? LEAFLET_PLUGIN_URL . 'leaflet-dist/images/marker.png' : LEAFLET_PLUGIN_ICONS_URL . '/'.$row['icon'];
 						if ($instance['lmm-widget-linktarget'] != 'none') {
-							echo '<td style="vertical-align:top;line-height:1.2em;padding-top:1px;min-width:30px;border:none;"><a href="' . LEAFLET_PLUGIN_URL . 'leaflet-' . $instance['lmm-widget-linktarget'] . '.php?marker='.$row['ID'].'" title="' . esc_attr__('show map','lmm') . ' (' . $instance['lmm-widget-linktarget'] . ')" target="_blank"><img alt="' . esc_attr__('show map','lmm') . '" src="'.$icon.'" style="width:' . $instance['lmm-widget-iconsize'] . '%;box-shadow:none;border-radius:0;display:inline;"></a></td>';
+							echo '<td style="vertical-align:top;line-height:1.2em;padding-top:1px;min-width:30px;border:none;"><a href="' . LEAFLET_PLUGIN_URL . 'leaflet-' . $instance['lmm-widget-linktarget'] . '.php?marker='.$row['id'].'" title="' . esc_attr__('show map','lmm') . ' (' . $instance['lmm-widget-linktarget'] . ')" target="_blank"><img alt="' . esc_attr__('show map','lmm') . '" src="'.$icon.'" style="width:' . $instance['lmm-widget-iconsize'] . '%;box-shadow:none;border-radius:0;display:inline;"></a></td>';
 							} else {
 							echo '<td style="vertical-align:top;line-height:1.2em;padding-top:1px;border:none;"><img alt="' . esc_attr__('show map','lmm') . '" src="'.$icon.'" style="width:' . $instance['lmm-widget-iconsize'] . '%;border:none;box-shadow:none;border-radius:0;display:inline;"></td>';
 						}
 				}
 				echo '<td style="vertical-align:top;line-height:1.2em;padding-top:1px;width:100%;border:none;">';
 				if ($instance['lmm-widget-linktarget'] != 'none') {
-					echo '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-' . $instance['lmm-widget-linktarget'] . '.php?marker='.$row['ID'].'" title="' . esc_attr__('show map','lmm') . ' (' . $instance['lmm-widget-linktarget'] . ')" target="_blank">'.htmlspecialchars(stripslashes($row['markername'])).'</a>';
+					echo '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-' . $instance['lmm-widget-linktarget'] . '.php?marker='.$row['id'].'" title="' . esc_attr__('show map','lmm') . ' (' . $instance['lmm-widget-linktarget'] . ')" target="_blank">'.htmlspecialchars(stripslashes($row['markername'])).'</a>';
 					} else {
 					echo htmlspecialchars(stripslashes($row['markername']));
 				}
@@ -190,7 +190,7 @@ class Class_leaflet_recent_marker_widget extends WP_Widget {
 			echo '<p style="margin:0;"><a target="_blank" href="' . LEAFLET_PLUGIN_URL . 'leaflet-georss.php?layer=all" title="' . esc_attr__('via GeoRSS - please use RSS Reader like http://google.com/reader for example','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-georss.png" alt="GeoRSS-Logo" /></a> <a target="_blank" href="' . LEAFLET_PLUGIN_URL . 'leaflet-georss.php?layer=all" title="' . esc_attr__('via GeoRSS - please use RSS Reader like http://google.com/reader for example','lmm') . '">' . __('Subscribe to markers','lmm') . '</a></p>';
 		}
 		if ($instance['lmm-widget-attributionlink'] == 'on') {
-			echo '<p style="margin:0;"><span style="font-size:x-small;line-height:1em;">' . __('powered by','lmm') . ' <a href="http://www.mapsmarker.com/go" target="_blank" title="Leaflet Maps Marker WordPress Plugin" style="text-decoration:none;font-size:x-small;">MapsMarker.com</a></span></p>';
+			echo '<p style="margin:0;"><span style="font-size:x-small;line-height:1em;">' . __('powered by','lmm') . ' <a href="https://www.mapsmarker.com/go" target="_blank" title="Leaflet Maps Marker WordPress Plugin" style="text-decoration:none;font-size:x-small;">MapsMarker.com</a></span></p>';
 		}
 		echo $after_widget;
 	}//info: END function public function widget($args, $instance)

@@ -47,10 +47,10 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				}
 			}
 			if (count($mlm_checkedlayers) > 0) {
-				$mlm_q = 'WHERE id IN ('.implode(',', $mlm_checkedlayers).')';
+				$mlm_q = 'WHERE `id` IN ('.implode(',', $mlm_checkedlayers).')';
 			
-				$sql_mlm_check = 'SELECT multi_layer_map FROM '.$table_name_layers.' '.$mlm_q;
-				$sql_mlm_check_list = 'SELECT multi_layer_map_list FROM '.$table_name_layers.' '.$mlm_q;
+				$sql_mlm_check = 'SELECT `multi_layer_map` FROM `'.$table_name_layers.'` '.$mlm_q;
+				$sql_mlm_check_list = 'SELECT `multi_layer_map_list` FROM `'.$table_name_layers.'` '.$mlm_q;
 				$mlm_check = $wpdb->get_var($sql_mlm_check);
 				$mlm_check_list = $wpdb->get_row($sql_mlm_check_list, ARRAY_A);
 			
@@ -73,7 +73,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				die('Error: a layer with that ID does not exist!');
 			}
 		}
-		$sql = 'SELECT m.id as mid, m.markername as mmarkername, m.layer as mlayer, CONCAT(m.lon,\',\',m.lat) AS mcoords, m.icon as micon, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext, m.address as maddress, l.id as lid, l.createdby as lcreatedby, l.createdon as lcreatedon, l.updatedby as lupdatedby, l.updatedon as lupdatedon, l.name AS lname FROM '.$table_name_markers.' AS m INNER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
+		$sql = 'SELECT m.id as mid, m.markername as mmarkername, m.layer as mlayer, CONCAT(m.lon,\',\',m.lat) AS mcoords, m.icon as micon, m.createdby as mcreatedby, m.createdon as mcreatedon, m.updatedby as mupdatedby, m.updatedon as mupdatedon, m.lat as mlat, m.lon as mlon, m.popuptext as mpopuptext, m.address as maddress, l.id as lid, l.createdby as lcreatedby, l.createdon as lcreatedon, l.updatedby as lupdatedby, l.updatedon as lupdatedon, l.name AS lname FROM `'.$table_name_markers.'` AS m INNER JOIN `'.$table_name_layers.'` AS l ON m.layer=l.id '.$q;
 		$markers = $wpdb->get_results($sql, ARRAY_A);
 		//info: output as atom - part 1
 		if ($format == 'atom') {
@@ -94,9 +94,9 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<link href="' . home_url() . '"/>'.PHP_EOL;
 				echo '<id>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-all-layers</id>'.PHP_EOL;
 			} else {
-				$layername = $wpdb->get_var($wpdb->prepare("SELECT name FROM $table_name_layers WHERE id = %d", intval($_GET['layer'])));
-				$layercreatedby = $wpdb->get_var($wpdb->prepare("SELECT createdby FROM $table_name_layers WHERE id = %d", intval($_GET['layer'])));
-				$layercreatedon = $wpdb->get_var($wpdb->prepare("SELECT createdon FROM $table_name_layers WHERE id = %d", intval($_GET['layer'])));
+				$layername = $wpdb->get_var($wpdb->prepare("SELECT `name` FROM `$table_name_layers` WHERE `id` = %d", intval($_GET['layer'])));
+				$layercreatedby = $wpdb->get_var($wpdb->prepare("SELECT `createdby` FROM `$table_name_layers` WHERE `id` = %d", intval($_GET['layer'])));
+				$layercreatedon = $wpdb->get_var($wpdb->prepare("SELECT `createdon` FROM `$table_name_layers` WHERE `id` = %d", intval($_GET['layer'])));
 				$date_kml =  strtotime($layercreatedon);
 				$time_kml =  strtotime($layercreatedon);
 				echo '<title>' . get_bloginfo('name') . ' - ' . htmlspecialchars($layername) . '</title>'.PHP_EOL;
@@ -159,9 +159,9 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 				echo '<guid>' .   preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), get_bloginfo('name')) . '-all-layers</guid>'.PHP_EOL;
 				echo '<lastBuildDate>' . date("Y-m-d", $newest_marker_createdon) . 'T' . date("h:m:s", $newest_marker_createdon) . $plus_minus . $offset_kml . '</lastBuildDate>'.PHP_EOL;
 			} else {
-				$layername = $wpdb->get_var($wpdb->prepare("SELECT name FROM $table_name_layers WHERE id = %d", intval($_GET['layer'])));
-				$layercreatedby = $wpdb->get_var($wpdb->prepare("SELECT createdby FROM $table_name_layers WHERE id = %d", intval($_GET['layer'])));
-				$layercreatedon = $wpdb->get_var($wpdb->prepare("SELECT createdon FROM $table_name_layers WHERE id = %d", intval($_GET['layer'])));
+				$layername = $wpdb->get_var($wpdb->prepare("SELECT `name` FROM `$table_name_layers` WHERE `id` = %d", intval($_GET['layer'])));
+				$layercreatedby = $wpdb->get_var($wpdb->prepare("SELECT `createdby` FROM `$table_name_layers` WHERE `id` = %d", intval($_GET['layer'])));
+				$layercreatedon = $wpdb->get_var($wpdb->prepare("SELECT `createdon` FROM `$table_name_layers` WHERE `id` = %d", intval($_GET['layer'])));
 				$date_kml_layer =  strtotime($layercreatedon);
 				$time_kml_layer =  strtotime($layercreatedon);
 				echo '<title>' . get_bloginfo('name') . ' - ' . htmlspecialchars($layername) . '</title>'.PHP_EOL;
@@ -245,7 +245,7 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			}
 		}		
 		//info: added left outer join to also show markers without a layer
-		$sql = 'SELECT m.layer as mlayer,m.icon as micon,m.popuptext as mpopuptext,m.id as mid,m.markername as mmarkername,m.createdby as mcreatedby, m.createdon as mcreatedon, m.lat as mlat, m.lon as mlon, m.address as maddress FROM '.$table_name_markers.' AS m LEFT OUTER JOIN '.$table_name_layers.' AS l ON m.layer=l.id '.$q;
+		$sql = 'SELECT m.layer as mlayer,m.icon as micon,m.popuptext as mpopuptext,m.id as mid,m.markername as mmarkername,m.createdby as mcreatedby, m.createdon as mcreatedon, m.lat as mlat, m.lon as mlon, m.address as maddress FROM `'.$table_name_markers.'` AS m LEFT OUTER JOIN `'.$table_name_layers.'` AS l ON m.layer=l.id '.$q;
 		$markers = $wpdb->get_results($sql, ARRAY_A);
 		//info: output as atom - part 1
 		if ($format == 'atom') {

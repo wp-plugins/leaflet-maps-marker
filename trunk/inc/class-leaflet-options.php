@@ -4,7 +4,7 @@
  * based on class by Alison Barrett, http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/
 */
 //info prevent file from being accessed directly
-if (basename($_SERVER['SCRIPT_FILENAME']) == 'class-leaflet-options.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
+if (basename($_SERVER['SCRIPT_FILENAME']) == 'class-leaflet-options.php') { die ("Please do not access this file directly. Thanks!<br/><a href='https://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
 class Class_leaflet_options {
 	private $panes;
 	private $sections;
@@ -66,6 +66,7 @@ class Class_leaflet_options {
 		$this->sections['mapdefaults-section17']	= esc_attr__('Minimap settings','lmm');
 		$this->sections['mapdefaults-section18']	= esc_attr__('Marker clustering settings','lmm');
 		$this->sections['mapdefaults-section19']	= esc_attr__('GPX tracks settings','lmm');
+		$this->sections['mapdefaults-section20']	= esc_attr__('Geolocate settings','lmm');
 
 		$this->sections['basemaps-section1']		= esc_attr__('MapBox 1 settings','lmm');
 		$this->sections['basemaps-section2']		= esc_attr__('MapBox 2 settings','lmm');
@@ -266,7 +267,7 @@ class Class_leaflet_options {
 				}
 			});
 
-			$(".lmmsettings h3, .lmmsettings table, .leafletmapsmarker-listings").show();
+			$(".lmmsettings h3, .lmmsettings table").show();
 
 			//info:  This will make the "warning" checkbox class really stand out when checked.
 			$(".warning").change(function() {
@@ -513,13 +514,13 @@ class Class_leaflet_options {
 				'osm_mapnik' => __('OpenStreetMap (Mapnik, max zoom 18)','lmm'),
 				'mapquest_osm' => __('MapQuest (OSM, max zoom 18)','lmm'),
 				'mapquest_aerial' => __('MapQuest (Aerial, max zoom 12 globally, 12+ in the United States)','lmm'),
-				'googleLayer_roadmap' => __('Google Maps (Roadmap)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'googleLayer_satellite' => __('Google Maps (Satellite)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'googleLayer_hybrid' => __('Google Maps (Hybrid)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'googleLayer_terrain' => __('Google Maps (Terrain)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'bingaerial' => __('Bing Maps (Aerial)','lmm') . ' - <strong>' . __('API key required!','lmm') . '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'bingaerialwithlabels' => __('Bing Maps (Aerial+Labels)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'bingroad' => __('Bing Maps (Road)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'googleLayer_roadmap' => __('Google Maps (Roadmap)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="https://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'googleLayer_satellite' => __('Google Maps (Satellite)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="https://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'googleLayer_hybrid' => __('Google Maps (Hybrid)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="https://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'googleLayer_terrain' => __('Google Maps (Terrain)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="https://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'bingaerial' => __('Bing Maps (Aerial)','lmm') . ' - <strong>' . __('API key required!','lmm') . '</strong> <a href="https://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'bingaerialwithlabels' => __('Bing Maps (Aerial+Labels)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="https://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'bingroad' => __('Bing Maps (Road)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="https://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 				'ogdwien_basemap' => __('OGD Vienna basemap (max zoom 19)','lmm'),
 				'ogdwien_satellite' => __('OGD Vienna satellite (max zoom 19)','lmm'),
 				'mapbox' => 'MapBox 1',
@@ -767,7 +768,7 @@ class Class_leaflet_options {
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section3',
 			'title'   => '',
-			'desc'    => __('Google Maps (Roadmap)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __('Google Maps (Roadmap)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="https://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
 			'std'     => 1
 		);
@@ -776,7 +777,7 @@ class Class_leaflet_options {
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section3',
 			'title'   => '',
-			'desc'    => __('Google Maps (Satellite)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __('Google Maps (Satellite)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="https://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
 			'std'     => 1
 		);
@@ -785,7 +786,7 @@ class Class_leaflet_options {
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section3',
 			'title'   => '',
-			'desc'    => __('Google Maps (Hybrid)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __('Google Maps (Hybrid)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="https://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
 			'std'     => 1
 		);
@@ -794,7 +795,7 @@ class Class_leaflet_options {
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section3',
 			'title'   => '',
-			'desc'    => __('Google Maps (Terrain)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="http://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __('Google Maps (Terrain)','lmm')  . ' - <strong>' . __('API key required for commercial usage!','lmm') . '</strong> <a href="https://www.mapsmarker.com/google-maps-api-key" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
 			'std'     => 1
 		);
@@ -803,7 +804,7 @@ class Class_leaflet_options {
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section3',
 			'title'   => '',
-			'desc'    => __('Bing Maps (Aerial)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __('Bing Maps (Aerial)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="https://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
 			'std'     => 0
 		);
@@ -812,7 +813,7 @@ class Class_leaflet_options {
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section3',
 			'title'   => '',
-			'desc'    => __('Bing Maps (Aerial+Labels)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __('Bing Maps (Aerial+Labels)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="https://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
 			'std'     => 0
 		);
@@ -821,7 +822,7 @@ class Class_leaflet_options {
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section3',
 			'title'   => '',
-			'desc'    => __('Bing Maps (Road)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __('Bing Maps (Road)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="https://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'checkbox',
 			'std'     => 0
 		);
@@ -1564,9 +1565,9 @@ class Class_leaflet_options {
 				'googleLayer_satellite' => __('Google Maps (Satellite)','lmm'),
 				'googleLayer_hybrid' => __('Google Maps (Hybrid)','lmm'),
 				'googleLayer_terrain' => __('Google Maps (Terrain)','lmm'),
-				'bingaerial' => __('Bing Maps (Aerial)','lmm') . ' - <strong>' . __('API key required!','lmm') . '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'bingaerialwithlabels' => __('Bing Maps (Aerial+Labels)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
-				'bingroad' => __('Bing Maps (Road)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'bingaerial' => __('Bing Maps (Aerial)','lmm') . ' - <strong>' . __('API key required!','lmm') . '</strong> <a href="https://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'bingaerialwithlabels' => __('Bing Maps (Aerial+Labels)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="https://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+				'bingroad' => __('Bing Maps (Road)','lmm') . ' - <strong>' . __('API key required!','lmm'). '</strong> <a href="https://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 				'ogdwien_basemap' => __('OGD Vienna basemap (max zoom 19)','lmm'),
 				'ogdwien_satellite' => __('OGD Vienna satellite (max zoom 19)','lmm'),
 				'custom_basemap' => __('Custom basemap','lmm'),
@@ -2697,7 +2698,7 @@ class Class_leaflet_options {
 			'section' => 'mapdefaults-section16',
 			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Fullscreen maps are optimized for mobile devices in the pro version. This means that the viewport of the map automatically adjusts to the width of the device used and native javascript is used instead of jQuery which results in higher performance when loading maps.<br/><br/>For iOS devices (iphone, ipad, ipod) it is also possible to add maps with a custom icon to the homescreen and open them as web apps with a custom launch image and without the address bar of the browser.', 'lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-webapp.jpg" width="551" height="213" />'  . '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
+			'desc'    => __( 'Fullscreen maps are optimized for mobile devices in the pro version. This means that the viewport of the map automatically adjusts to the width of the device used and native javascript is used instead of jQuery which results in higher performance when loading maps.<br/><br/>For iOS devices (iphone, ipad, ipod) it is also possible to add maps with a custom icon to the homescreen and open them as web apps with a custom launch image and without the address bar of the browser.', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-webapp.jpg" width="551" height="213" />'  . '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
 			'type'    => 'helptext'
 		);
 		$this->_settings['map_webapp_images'] = array(
@@ -2822,7 +2823,7 @@ class Class_leaflet_options {
 			'section' => 'mapdefaults-section17',
 			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Add an expandable minimap to your maps which shows the same as the main map with a set zoom offset', 'lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-minimap.jpg" width="400" height="183" /><a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>',
+			'desc'    => '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>' . __( 'Add an expandable minimap to your maps which shows the same as the main map with a set zoom offset', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-minimap.jpg" width="400" height="183" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['minimap_status'] = array(
@@ -2960,7 +2961,7 @@ class Class_leaflet_options {
 			'section' => 'mapdefaults-section18',
 			'std'     => '',
 			'title'   => '',
-			'desc'    => '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>' . __( 'Clustering can be enabled/disabled for each layer separately on the layer edit page. Below you will find the global settings which are valid for all layer maps with clustering enabled.', 'lmm') . '<br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-clustering.jpg" width="500" height="204" />',
+			'desc'    => '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>' . __( 'Clustering can be enabled/disabled for each layer separately on the layer edit page. Below you will find the global settings which are valid for all layer maps with clustering enabled.', 'lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-clustering.jpg" width="500" height="204" />',
 			'type'    => 'helptext'
 		);
 		$this->_settings['clustering_zoomToBoundsOnClick'] = array(
@@ -3119,7 +3120,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'section' => 'mapdefaults-section18',
 			'std'     => '',
 			'title'   => __('Cluster colors','lmm') . '<br/><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-pro-option.png" width="65" height="15" /></a>',
-			'desc'    => __('Options to set the colors of the cluster circles','lmm') . ' - <a href="http://www.mapsmarker.com/colorpicker" target="_blank">http://www.mapsmarker.com/colorpicker</a><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-clustering-colors.jpg" width="400" height="98" />',
+			'desc'    => __('Options to set the colors of the cluster circles','lmm') . ' - <a href="https://www.mapsmarker.com/colorpicker" target="_blank">https://www.mapsmarker.com/colorpicker</a><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-clustering-colors.jpg" width="400" height="98" />',
 			'type'    => 'helptext-twocolumn'
 		);
 		$this->_settings['clustering_color_small_text'] = array(
@@ -3248,7 +3249,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'section' => 'mapdefaults-section19',
 			'std'     => '',
 			'title'   => '',
-			'desc'    => '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-gpx.jpg" width="449" height="263" /><br/>' . __( 'Settings below will be applied to all GPX tracks added to marker or layer maps.', 'lmm'),
+			'desc'    => '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-gpx.jpg" width="449" height="263" /><br/><br/>' . __( 'Settings below will be applied to all GPX tracks added to marker or layer maps.', 'lmm'),
 			'type'    => 'helptext'
 		);
 		$this->_settings['gpx_track_color'] = array(
@@ -3256,7 +3257,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'pane'    => 'mapdefaults',
 			'section' => 'mapdefaults-section19',
 			'title'   => __('Polygon options','lmm'). $pro_button_link,
-			'desc'    => __('Track color','lmm') . ' - ' . sprintf(__('Please enter the hex value of the color you would like to use. For help please visit <a href="%1s" target="_blank">%2s</a>.','lmm'), 'http://www.mapsmarker.com/colorpicker', 'mapsmarker.com/colorpicker'),
+			'desc'    => __('Track color','lmm') . ' - ' . sprintf(__('Please enter the hex value of the color you would like to use. For help please visit <a href="%1s" target="_blank">%2s</a>.','lmm'), 'https://www.mapsmarker.com/colorpicker', 'mapsmarker.com/colorpicker'),
 			'std'     => '#0000FF',
 			'type'    => 'text-pro'
 		);
@@ -3551,6 +3552,205 @@ $this->_settings['clustering_helptext2'] = array(
 			'std'     => '47',
 			'type'    => 'text-pro'
 		);		
+		/*
+		* Geolocate settings
+		*/
+		$this->_settings['geolocate_helptext'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'std'     => '',
+			'title'   => '',
+			'desc'    => '<a style="background:#f99755;display:block;padding:3px;text-decoration:none;color:#2702c6;width:635px;margin:10px 0;" href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade">' . __('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '</a>' . __('Add a geolocate button to all maps which allows to show and follow your current location:','lmm') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-geolocation.jpg" width="399" height="186" />',
+			'type'    => 'helptext'
+		);
+		$this->_settings['geolocate_status'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => __('Add a geolocate button to each map','lmm') . $pro_button_link,
+			'desc'    => '',
+			'type'    => 'radio-pro',
+			'std'     => 'false',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
+		$this->_settings['geolocate_icon'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => __('icon','lmm') . $pro_button_link,
+			'desc'    => __('','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'icon-cross-hairs',
+			'choices' => array(
+				'icon-cross-hairs' => 'cross hairs <img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-icon-cross-hairs.png" width="20" height="20" />',
+				'icon-pin' => 'pin <img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-icon-pin.png" width="16" height="17" />',
+				'icon-arrow' => 'arrow <img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-icon-arrow.png" width="17" height="16" />'
+			)
+		);
+		$this->_settings['geolocate_position'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => __('Geolocate button position','lmm') . $pro_button_link,
+			'desc'    => __('The position of the geolocate button (one of the map corners).','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'topleft',
+			'choices' => array(
+				'topleft' => __('Top left of the map','lmm'),
+				'topright' => __('Top right of the map','lmm'),
+				'bottomleft' => __('Bottom left of the map','lmm'),
+				'bottomright' => __('Bottom right of the map','lmm')
+			)
+		);
+		$this->_settings['geolocate_drawCircle'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => 'drawCircle' . $pro_button_link,
+			'desc'    => __('controls whether a circle is drawn that shows the uncertainty about the location','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
+		$this->_settings['geolocate_follow'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => 'follow' . $pro_button_link,
+			'desc'    => esc_attr__('follow the location of the user','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
+		$this->_settings['geolocate_setView'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => 'setView' . $pro_button_link,
+			'desc'    => esc_attr__('automatically sets the map view to the location of the user, enabled if setting "follow" is true','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
+		$this->_settings['geolocate_keepCurrentZoomLevel'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => 'keepCurrentZoomLevel' . $pro_button_link,
+			'desc'    => esc_attr__('keep the current map zoom level when displaying the location of the user','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false (use maximum zoom level)','lmm')
+			)
+		);
+		$this->_settings['geolocate_remainActive'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => 'remainActive' . $pro_button_link,
+			'desc'    => esc_attr__('if true locate control remains active on click even if the location of the user is in view','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'false',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
+		$this->_settings['geolocate_showPopup'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => 'showPopup' . $pro_button_link,
+			'desc'    => esc_attr__('display a popup when the user click on the inner marker','lmm'),
+			'type'    => 'radio-pro',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('true','lmm'),
+				'false' => __('false','lmm')
+			)
+		);
+		$this->_settings['geolocate_units'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => __('Distance units','lmm') . $pro_button_link,
+			'desc'    => '',
+			'type'    => 'radio-pro',
+			'std'     => 'true',
+			'choices' => array(
+				'true' => __('metric (km)','lmm'),
+				'false' => __('imperial (miles)','lmm')
+			)
+		);
+		$this->_settings['geolocate_circlePadding'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => 'circlePadding' . $pro_button_link,
+			'desc'    => __('padding around accuracy circle, value is passed to setBounds','lmm'),
+			'std'     => '[0,0]',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['geolocate_circleStyle'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => 'circleStyle' . $pro_button_link,
+			'desc'    => sprintf(esc_attr__('change the style of the circle around the location of the user, example: %1$s','lmm'), "'color':'red'"),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['geolocate_markerStyle'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => 'markerStyle' . $pro_button_link,
+			'desc'    => sprintf(esc_attr__('change the style of the marker of the location of the user, example: %1$s','lmm'), "'color':'red'"),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['geolocate_followCircleStyle'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => 'followCircleStyle' . $pro_button_link,
+			'desc'    => sprintf(esc_attr__('change the style of the circle around the location of the user while following, example: %1$s','lmm'), "'color':'red'"),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['geolocate_followMarkerStyle'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => 'followMarkerStyle' . $pro_button_link,
+			'desc'    => sprintf(esc_attr__('change the style of the marker of the location of the user while following, example: %1$s','lmm'), "'color':'red','weight':'4'"),
+			'std'     => '',
+			'type'    => 'text-pro'
+		);
+		$this->_settings['geolocate_locateOptions'] = array(
+			'version' => 'p1.9',
+			'pane'    => 'mapdefaults',
+			'section' => 'mapdefaults-section20',
+			'title'   => 'locateOptions' . $pro_button_link,
+			'desc'    => sprintf(__('define additional location options e.g enableHighAccuracy: true, maxZoom: 10<br/>reference: %1$s','lmm'), '<a href="http://leafletjs.com/reference.html#map-locate-options" target="_blank">http://leafletjs.com/reference.html#map-locate-options</a>'),
+			'std'     => 'watch: true',
+			'type'    => 'text-pro'
+		);
 
 		/*===========================================
 		*
@@ -7202,7 +7402,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'pane'    => 'google',
 			'section' => 'google-section5',
 			'title'   => __('Position','lmm') . $pro_button_link,
-			'desc'    => sprintf(__('<a href="%1s" target="_blank">click here for more information on ad positions which might cause conflicts with Google AdSense programme policies</a>','lmm'), 'http://www.mapsmarker.com/docs/pro-version-docs/how-to-configure-google-adsense-in-order-not-to-violate-google-adsense-programme-policies/') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-google-adsense-positions.jpg" width="640" height="480" />',
+			'desc'    => sprintf(__('<a href="%1s" target="_blank">click here for more information on ad positions which might cause conflicts with Google AdSense programme policies</a>','lmm'), 'https://www.mapsmarker.com/docs/pro-version-docs/how-to-configure-google-adsense-in-order-not-to-violate-google-adsense-programme-policies/') . '<br/><br/><img src="'. LEAFLET_PLUGIN_URL .'inc/img/help-google-adsense-positions.jpg" width="640" height="480" />',
 			'type'    => 'radio-pro',
 			'std'     => 'TOP_CENTER',
 			'choices' => array(
@@ -7312,7 +7512,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'section' => 'bing-section1',
 			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'An API key is required if you want to use Bing Maps as basemap for marker or layer maps. Please click on the question mark for more info on how to get your API key.', 'lmm') . ' <a href="http://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __( 'An API key is required if you want to use Bing Maps as basemap for marker or layer maps. Please click on the question mark for more info on how to get your API key.', 'lmm') . ' <a href="https://www.mapsmarker.com/bing-maps" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'helptext'
 		);
 		$this->_settings['bingmaps_api_key'] = array(
@@ -8000,7 +8200,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'pane'    => 'misc',
 			'section' => 'misc-section1',
 			'title'   => __( 'Affiliate ID', 'lmm' ),
-			'desc'    => __( 'Enter your affiliate ID to replace the default MapsMarker.com-backlink on all maps with your personal affiliate link - enabling you to receive commissions up to 50% from sales of the pro version.', 'lmm' ) . '<br/><a href="http://www.mapsmarker.com/affiliateid" target="_blank">' . __('Click here for more infos on the Maps Marker affiliate program and how to get your affiliate ID','lmm') . '</a>',
+			'desc'    => __( 'Enter your affiliate ID to replace the default MapsMarker.com-backlink on all maps with your personal affiliate link - enabling you to receive commissions up to 50% from sales of the pro version.', 'lmm' ) . '<br/><a href="https://www.mapsmarker.com/affiliateid" target="_blank">' . __('Click here for more infos on the Maps Marker affiliate program and how to get your affiliate ID','lmm') . '</a>',
 			'std'     => '',
 			'type'    => 'text'
 		);
@@ -8278,7 +8478,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'section' => 'misc-section2',
 			'std'     => '',
 			'title'   => '',
-			'desc'    => __('The language used on plugin pages on backend and/or on maps on frontend. Please note that the language for Google and Bing Services can be set seperately via Settings / tab "Google Maps" / "Google language localization" respectively tab "Bing Maps" / "Cultures"','lmm') . '<br/><br/>' . sprintf(__('If your language is missing or not fully translated yet, you are invited to help on the <a href="%1s" target="_blank">web-based translation plattform</a>.','lmm'), 'http://translate.mapsmarker.com/projects/lmm'),
+			'desc'    => __('The language used on plugin pages on backend and/or on maps on frontend. Please note that the language for Google and Bing Services can be set seperately via Settings / tab "Google Maps" / "Google language localization" respectively tab "Bing Maps" / "Cultures"','lmm') . '<br/><br/>' . sprintf(__('If your language is missing or not fully translated yet, you are invited to help on the <a href="%1s" target="_blank">web-based translation plattform</a>.','lmm'), 'https://translate.mapsmarker.com/projects/lmm'),
 			'type'    => 'helptext'
 		);
 		$this->_settings['misc_plugin_language'] = array(
@@ -8350,7 +8550,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'section' => 'misc-section3',
 			'std'     => '',
 			'title'   => '',
-			'desc'    => __( 'Choose how marker names should be displayed in KML files', 'lmm') . ' <a href="http://www.mapsmarker.com/kml-names" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
+			'desc'    => __( 'Choose how marker names should be displayed in KML files', 'lmm') . ' <a href="https://www.mapsmarker.com/kml-names" target="_blank"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-question-mark.png" width="12" height="12" border="0"/></a>',
 			'type'    => 'helptext'
 		);
 		$this->_settings['misc_kml'] = array(
@@ -8988,7 +9188,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'pane'    => 'misc',
 			'section' => 'misc-section8',
 			'title'   => __( 'Image URL', 'lmm' ) . $pro_button_link,
-			'desc'    => sprintf(__('A custom image can only be used if you sign up for a custom visualead API key! Please visit %s for more information.','lmm'), '<a href="http://www.mapsmarker.com/pro-feature-qrcode" target="_blank">mapsmarker.com/visualead</a>'),
+			'desc'    => sprintf(__('A custom image can only be used if you sign up for a custom visualead API key! Please visit %s for more information.','lmm'), '<a href="https://www.mapsmarker.com/pro-feature-qrcode" target="_blank">mapsmarker.com/visualead</a>'),
 			'std'     => '',
 			'type'    => 'text-pro'
 		);
@@ -9117,7 +9317,7 @@ $this->_settings['clustering_helptext2'] = array(
 			'section' => 'misc-section9',
 			'std'     => '',
 			'title'   => '',
-			'desc'    => sprintf(__('For more information on how to use the MapsMarker API, <a href="%1s" target="_blank">please visit the API docs on mapsmarker.com</a>','lmm'), 'http://www.mapsmarker.com/mapsmarker-api') . '<br/><br/><br/><strong>' . __('API endpoint','lmm') . ':</strong> ' . LEAFLET_PLUGIN_URL . 'leaflet-api.php<br/><br/>',
+			'desc'    => sprintf(__('For more information on how to use the MapsMarker API, <a href="%1s" target="_blank">please visit the API docs on mapsmarker.com</a>','lmm'), 'https://www.mapsmarker.com/mapsmarker-api') . '<br/><br/><br/><strong>' . __('API endpoint','lmm') . ':</strong> ' . LEAFLET_PLUGIN_URL . 'leaflet-api.php<br/><br/>',
 			'type'    => 'helptext'
 		);
 		$this->_settings['api_status'] = array(
@@ -9788,7 +9988,7 @@ $this->_settings['clustering_helptext2'] = array(
 		}
 		/* template for plugin updates
 		//info:  set defaults for options introduced in v3.10
-		if (get_option('leafletmapsmarker_version') == '3.9.1' )
+		if (get_option('leafletmapsmarker_version') == '3.9.2' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting )

@@ -3,7 +3,7 @@
     Checks for incompatible plugins and settings - Leaflet Maps Marker Plugin
 */
 //info prevent file from being accessed directly
-if (basename($_SERVER['SCRIPT_FILENAME']) == 'compatibility-checks.php') { die ("Please do not access this file directly. Thanks!<br/><a href='http://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
+if (basename($_SERVER['SCRIPT_FILENAME']) == 'compatibility-checks.php') { die ("Please do not access this file directly. Thanks!<br/><a href='https://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
 require_once(ABSPATH . WPINC . DIRECTORY_SEPARATOR . "pluggable.php");
 $lmm_options = get_option( 'leafletmapsmarker_options' ); //info: required for bing maps api key check
 
@@ -86,6 +86,24 @@ if (is_plugin_active('root-relative-urls/sb_root_relative_urls.php') ) {
 if (is_plugin_active('siteorigin-panels/siteorigin-panels.php') ) {
 	if ($lmm_options['misc_javascript_header_footer'] == 'footer') {
 		echo '<p><div class="error" id="deleted_maps_errors" style="padding:10px;">' . sprintf(__('Warning: you are using the Plugin %1$s which is causing maps to break! To fix this, please navigate to <a href="%2$s">Settings / Misc / General Settings</a> and set the Option "Where to insert Javascript files on frontend?" to "header (+ inline javascript)".','lmm'), '"Page Builder by SiteOrigin"', LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_settings#lmm-misc' ) . '</div></p>';
+	}
+}
+//info: plugin WP External Links
+if (is_plugin_active('wp-external-links/wp-external-links.php') ) {
+	$plugin_options = get_option('wp_external_links-main');
+	if (!strpos($plugin_options['ignore'], 'mapsmarker.com')) { $ignore_list .= 'mapsmarker.com<br/>'; }
+	if (!strpos($plugin_options['ignore'], 'leafletjs.com')) { $ignore_list .= 'leafletjs.com<br/>'; }
+	if (!strpos($plugin_options['ignore'], 'mapicons.nicolasmollet.com')) { $ignore_list .= 'mapicons.nicolasmollet.com<br/>'; }
+	if (!strpos($plugin_options['ignore'], 'visualead.com')) { $ignore_list .= 'visualead.com<br/>'; }
+	if (!strpos($plugin_options['ignore'], 'openstreetmap.org')) { $ignore_list .= 'openstreetmap.org<br/>'; }
+	if (!strpos($plugin_options['ignore'], 'mapquest.com')) { $ignore_list .= 'mapquest.com<br/>'; }
+	if (!strpos($plugin_options['ignore'], 'data.wien.gv.at')) { $ignore_list .= 'data.wien.gv.at<br/>'; }
+	if (!strpos($plugin_options['ignore'], 'stamen.com')) { $ignore_list .= 'stamen.com<br/>'; }
+	if (!strpos($plugin_options['ignore'], 'creativecommons.org')) { $ignore_list .= 'creativecommons.org<br/>'; }
+	if (!strpos($plugin_options['ignore'], 'mapbox.com')) { $ignore_list .= 'mapbox.com<br/>'; }
+	if (!strpos($plugin_options['ignore'], 'thunderforest.com')) { $ignore_list .= 'thunderforest.com'; }
+	if ($ignore_list != NULL) {
+		echo '<p><div class="error" style="padding:10px;"><strong>' . sprintf(__('Warning: you are using the plugin "WP External Links" which is currently causing maps to break! Please navigate to "External Links" and add the following links to the option "Ignore links (URL) containing...": %1$s','lmm'), '</strong><br/>' . $ignore_list) . '</div></p>';
 	}
 }
 ?>
