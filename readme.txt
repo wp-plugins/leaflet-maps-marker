@@ -15,7 +15,7 @@ Pin, organize & show your favorite places & tracks through OpenStreetMap, Google
 == Description ==
 Maps Marker allows you to pin, organize and share your favorite places & tracks through your WordPress powered site easily. You can use maps from OpenStreetMap, Google Maps, Google Earth, Bing Maps or custom maps and additionally display your spots in innovative ways like through augmented-reality browsers.
 
-For even more features please try "Maps Marker Pro" - demo maps including admin area access available at [http://demo.mapsmarker.com](http://demo.mapsmarker.com/). 
+For even more features please try "Maps Marker Pro" - demo maps including admin area access available at [https://demo.mapsmarker.com](https://demo.mapsmarker.com/). 
 
 = Highlights of Maps Marker Pro =
 * integration of the latest leaflet.js version
