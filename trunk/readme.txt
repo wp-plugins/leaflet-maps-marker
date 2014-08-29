@@ -2,7 +2,7 @@
 Contributors:      harmr
 Plugin Name:       Leaflet Maps Marker
 Plugin URI:        https://www.mapsmarker.com
-Tags:              Google Maps, OpenStreetMap, OSM, bing maps, googlemaps, google earth, map, maps, kml, gpx, location, augmented-reality
+Tags:              Google Maps, OpenStreetMap, OSM, bing maps, googlemaps, google earth, map, maps, kml, gpx, location, augmented-reality 
 Author URI:        https://www.mapsmarker.com
 Author:            MapsMarker.com e.U.
 Requires at least: 3.3
