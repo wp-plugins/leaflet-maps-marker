@@ -44,7 +44,7 @@ if ( $action == NULL ) {
 
 		echo '<hr noshade size="1" style="margin-top:25px;"/><h2 style="margin-top:10px;">' . __('Highlights of Maps Marker Pro','lmm') . '</h2>';
 		
-		echo '<p>' . sprintf(__('For demo maps please visit %1s which also allows you to test the admin area of the pro version.','lmm'), '<a href="http://demo.mapsmarker.com/" target="_blank" style="text-decoration:none;">demo.mapsmarker.com</a>') . '</p>';
+		echo '<p>' . sprintf(__('For demo maps please visit %1s which also allows you to test the admin area of the pro version.','lmm'), '<a href="https://demo.mapsmarker.com/" target="_blank" style="text-decoration:none;">demo.mapsmarker.com</a>') . '</p>';
 		
 		echo '<p>' . sprintf(__('If you want to compare the free and pro version side by side, please visit %1s.','lmm'), '<a href="https://www.mapsmarker.com/comparison" target="_blank" style="text-decoration:none;">mapsmarker.com/comparison</a>') . '</p>';
 		
