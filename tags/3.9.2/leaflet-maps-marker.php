@@ -697,7 +697,7 @@ class Leafletmapsmarker
 		} else {
 				global $wp_styles;
 				$plugin_version = get_option('leafletmapsmarker_version');
-				wp_register_style($css_enqueue_handle, LEAFLET_PLUGIN_URL . 'leaflet-dist/' . css_file_name, array(), $plugin_version);
+				wp_register_style($css_enqueue_handle, LEAFLET_PLUGIN_URL . 'leaflet-dist/' . $css_file_name, array(), $plugin_version);
 				wp_enqueue_style($css_enqueue_handle);
 				wp_register_style('leafletmapsmarker-ie-only', LEAFLET_PLUGIN_URL . 'leaflet-dist/leaflet.ie.css', array(), $plugin_version);
 				wp_enqueue_style('leafletmapsmarker-ie-only');
