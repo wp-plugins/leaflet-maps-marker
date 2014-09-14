@@ -175,7 +175,14 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 	$lmm_out .= '<div id="lmm_'.$uid.'" style="width:' . $mapwidth.$mapwidthunit . ';" class="mapsmarker ' . $css_classes . '">'.PHP_EOL;
 	//info: panel for layer/marker name and API URLs
 	if ($panel == 1) {
-		$lmm_out .= '<div id="lmm_panel_'.$uid.'" class="lmm-panel" style="background: ' . ((!empty($marker)) ? htmlspecialchars(addslashes($lmm_options[ 'defaults_marker_panel_background_color' ])) : (!empty($layer)) ? htmlspecialchars(addslashes($lmm_options[ 'defaults_layer_panel_background_color' ])) : '') . ';">'.PHP_EOL;
+		if (!empty($marker)) { 
+			$panel_background = htmlspecialchars(addslashes($lmm_options[ 'defaults_marker_panel_background_color' ])); 
+		} else if (!empty($layer)) { 
+			$panel_background = htmlspecialchars(addslashes($lmm_options[ 'defaults_layer_panel_background_color' ])); 
+		} else {
+			$panel_background = '';
+		}
+		$lmm_out .= '<div id="lmm_panel_'.$uid.'" class="lmm-panel" style="background:' . $panel_background . ';">'.PHP_EOL;
 		if (!empty($marker))
 		{
 			$lmm_out .= '<div id="lmm_panel_api_'.$uid.'" class="lmm-panel-api">';
@@ -931,14 +938,18 @@ if (typeof jQuery.mobile != 'undefined') {
 
 	//info: if do_shortcode() within template files is used to show maps or for shortcodes in widgets
 	global $wp_styles;
-	if ( (!wp_style_is( 'leafletmapsmarker', 'done' )) || (!wp_style_is( 'leafletmapsmarker-ie-only', 'done' )) ) {
-		global $wp_styles;
-		wp_enqueue_style('leafletmapsmarker');
+	if ( function_exists( 'is_rtl' ) && is_rtl() ) { 
+		$css_enqueue_handle = 'leafletmapsmarker-rtl';
+	} else { 
+		$css_enqueue_handle = 'leafletmapsmarker'; 
+	}
+	if (!wp_style_is( $css_enqueue_handle, 'done' )) {
+		wp_enqueue_style($css_enqueue_handle);
 		wp_enqueue_style('leafletmapsmarker-ie-only');
 		$wp_styles->add_data('leafletmapsmarker-ie-only', 'conditional', 'lt IE 9');
 		//info: override max image width in popups
 		$lmm_custom_css = ".leaflet-popup-content img { " . htmlspecialchars($lmm_options['defaults_marker_popups_image_css']) . " }";
-			wp_add_inline_style('leafletmapsmarker',$lmm_custom_css);
+			wp_add_inline_style($css_enqueue_handle,$lmm_custom_css);
 	}
   } //info: end (!is_feed())
 }
