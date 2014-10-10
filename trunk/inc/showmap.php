@@ -1,7 +1,7 @@
 <?php
 //info prevent file from being accessed directly
 if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do not access this file directly. Thanks!<br/><a href='https://www.mapsmarker.com/go'>www.mapsmarker.com</a>"); }
-	global $wpdb, $allowedtags;
+	global $wpdb, $allowedtags, $locale;
 	$lmm_options = get_option( 'leafletmapsmarker_options' );
 	//info: set marker shadow url
 	if ( $lmm_options['defaults_marker_icon_shadow_url_status'] == 'default' ) {
@@ -199,7 +199,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 						if ($lmm_options['google_maps_language_localization'] == 'browser_setting') {
 							$google_language = '';
 						} else if ($lmm_options['google_maps_language_localization'] == 'wordpress_setting') {
-							if ( defined('WPLANG') ) { $google_language = '&hl=' . substr(WPLANG, 0, 2); } else { $google_language =  '&hl=en'; }
+							if ( $locale != NULL ) { $google_language = '&hl=' . substr($locale, 0, 2); } else { $google_language =  '&hl=en'; }
 						} else {
 							$google_language = '&hl=' . $lmm_options['google_maps_language_localization'];
 						}
@@ -392,7 +392,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 				if ($lmm_options['google_maps_language_localization'] == 'browser_setting') {
 					$google_language = '';
 				} else if ($lmm_options['google_maps_language_localization'] == 'wordpress_setting') {
-					if ( defined('WPLANG') ) { $google_language = '&hl=' . substr(WPLANG, 0, 2); } else { $google_language =  '&hl=en'; }
+					if ( $locale != NULL ) { $google_language = '&hl=' . substr($locale, 0, 2); } else { $google_language =  '&hl=en'; }
 				} else {
 					$google_language = '&hl=' . $lmm_options['google_maps_language_localization'];
 				}
@@ -769,7 +769,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) == 'showmap.php') { die ("Please do no
 			if ($lmm_options['google_maps_language_localization'] == 'browser_setting') {
 				$google_language = '';
 			} else if ($lmm_options['google_maps_language_localization'] == 'wordpress_setting') {
-				if ( defined('WPLANG') ) { $google_language = '&hl=' . substr(WPLANG, 0, 2); } else { $google_language =  '&hl=en'; }
+				if ( $locale != NULL ) { $google_language = '&hl=' . substr($locale, 0, 2); } else { $google_language =  '&hl=en'; }
 			} else {
 				$google_language = '&hl=' . $lmm_options['google_maps_language_localization'];
 			}
