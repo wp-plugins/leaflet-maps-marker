@@ -288,6 +288,7 @@ if (get_option('leafletmapsmarker_version') == '1.9' ) {
 	update_option('leafletmapsmarker_version', '2.0');
 }
 if (get_option('leafletmapsmarker_version') == '2.0' ) {
+	add_option('leafletmapsmarker_update_info', 'show'); //info: 1st time initialization
 	$save_defaults_for_new_options = new Class_leaflet_options();
 	$save_defaults_for_new_options->save_defaults_for_new_options();
 	$version_before_update = get_transient( 'leafletmapsmarker_version_before_update' );
