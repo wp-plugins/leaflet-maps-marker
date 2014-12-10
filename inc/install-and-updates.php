@@ -89,7 +89,7 @@ $sql_layers_table = "CREATE TABLE " . $table_name_layers . " (
 	multi_layer_map tinyint(1) NOT NULL,
 	multi_layer_map_list varchar(4000) DEFAULT NULL,
 	address varchar(255) NOT NULL,
-	clustering tinyint(1) unsigned NOT NULL,
+	`clustering` tinyint(1) unsigned NOT NULL,
 	gpx_url varchar(2083) NOT NULL,
 	gpx_panel tinyint(1) NOT NULL,
 	PRIMARY KEY  (id)
