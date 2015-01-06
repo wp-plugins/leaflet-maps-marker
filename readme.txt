@@ -10,7 +10,7 @@ Tested up to:      4.1
 Stable tag:        3.9.5
 License:           GPLv2
 
-The most comprehensive & user-friendly mapping solution for WordPress
+The most comprehensive & user-friendly mapping solution for WordPress 
 
 == Description ==
 Maps Marker allows you to pin, organize and share your favorite places & tracks through your WordPress powered site easily. You can use maps from OpenStreetMap, Google Maps, Google Earth, Bing Maps or custom maps and additionally display your spots in innovative ways like through augmented-reality browsers.
