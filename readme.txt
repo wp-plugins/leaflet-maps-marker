@@ -10,7 +10,7 @@ Tested up to:      4.1
 Stable tag:        3.9.5
 License:           GPLv2
 
-The most comprehensive & user-friendly mapping solution for WordPress 
+The most comprehensive & user-friendly mapping solution for WordPress
 
 == Description ==
 Maps Marker allows you to pin, organize and share your favorite places & tracks through your WordPress powered site easily. You can use maps from OpenStreetMap, Google Maps, Google Earth, Bing Maps or custom maps and additionally display your spots in innovative ways like through augmented-reality browsers.
@@ -165,6 +165,7 @@ If you want to compare the free and pro version side by side, please visit [http
 * Dutch (nl_NL) thanks to Marijke Metz and Patrick Ruers
 * English (en_US)
 * French (fr_FR) thanks to Vincèn Pujol and Rodolphe Quiedeville, Fx Benard, cazal cédric, Fabien Hurelle and Thomas Guignard
+* Galician (gl_ES) thanks to Fernando Coello
 * German (de_DE)
 * Hindi (hi_IN) thanks to by Outshine Solutions and Guntupalli Karunakar
 * Hungarian (hu_HU) thanks to István Pintér and Csaba Orban
@@ -196,7 +197,7 @@ For more information on translations and how to contribute a new translation, pl
 = Plugin's Official Site =
 https://www.mapsmarker.com
 
-* [Affiliates](https://www.mapsmarker.com/affiliates/) - [FAQ](https://www.mapsmarker.com/faq/) - [Docs](https://www.mapsmarker.com/docs/) - [Support](https://www.mapsmarker.com/support/) - [Github](https://github.com/robertharm/Leaflet-Maps-Marker) - [Twitter](https://twitter.com/mapsmarker) - [Facebook](https://facebook.com/mapsmarker) - [Google+](https://www.mapsmarker.com/+) - [Translations](https://translate.mapsmarker.com/projects/lmm)
+* [Affiliates](https://www.mapsmarker.com/affiliates/) - [FAQ](https://www.mapsmarker.com/faq/) - [Docs](https://www.mapsmarker.com/docs/) - [Support](https://www.mapsmarker.com/support/) - [Twitter](https://twitter.com/mapsmarker) - [Facebook](https://facebook.com/mapsmarker) - [Google+](https://www.mapsmarker.com/+) - [Translations](https://translate.mapsmarker.com/projects/lmm)
 
 == Installation ==
 
@@ -323,10 +324,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2015, MapsMarker.com e.U., All Rights Reserved
 
 == Upgrade Notice ==
-= v3.9.5 =
-layer management enhancements & bugfixes - see https://www.mapsmarker.com/v3.9.5 for more details
+= v3.9.6 =
+usability improvements & bugfixes - see https://www.mapsmarker.com/v3.9.6 for more details
 
 == Changelog ==
-[blog post with details about v3.9.5](https://www.mapsmarker.com/v3.9.5)
+[blog post with details about v3.9.6](https://www.mapsmarker.com/v3.9.6)
 
 [changelog for all versions](https://www.mapsmarker.com/changelog)
