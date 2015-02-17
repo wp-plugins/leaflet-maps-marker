@@ -5,7 +5,7 @@
 //info: construct path to wp-load.php and get $wp_path
 while(!is_file('wp-load.php')) {
 	if(is_dir('..' . DIRECTORY_SEPARATOR)) chdir('..' . DIRECTORY_SEPARATOR);
-	else die('Error: Could not construct path to wp-load.php - please check <a href="http://mapsmarker.com/path-error">http://mapsmarker.com/path-error</a> for more details');
+	else die('Error: Could not construct path to wp-load.php - please check <a href="https://www.mapsmarker.com/path-error">https://www.mapsmarker.com/path-error</a> for more details');
 }
 include( 'wp-load.php' );
 //info: check if plugin is active (didnt use is_plugin_active() due to problems reported by users)
@@ -76,9 +76,9 @@ if (isset($_GET['layer'])) {
 	$multi_layer_map_list = $row['multi_layer_map_list'];
 	//info: check if layer/marker ID exists
 	if ($row == NULL) {
-	$error_layer_not_exists = sprintf( esc_attr__('Error: a layer with the ID %1$s does not exist!','lmm'), $layer);
-	echo $error_layer_not_exists . '<br/>';
-	echo '<a href="https://www.mapsmarker.com" target="_blank" title="' . esc_attr__('Go to plugin website','lmm') . '"><img style="border:1px solid #ccc;" src="' . LEAFLET_PLUGIN_URL . 'inc/img/map-deleted-image.png"></a><br/>';
+		$error_layer_not_exists = sprintf( esc_attr__('Error: a layer with the ID %1$s does not exist!','lmm'), $layer);
+		echo $error_layer_not_exists . '<br/>';
+		echo '<a href="https://www.mapsmarker.com" target="_blank" title="' . esc_attr__('Go to plugin website','lmm') . '"><img style="border:1px solid #ccc;" src="' . LEAFLET_PLUGIN_URL . 'inc/img/map-deleted-image.png"></a><br/>';
 	} else {
 
 	//info: starting output on frontend
@@ -91,7 +91,7 @@ if (isset($_GET['layer'])) {
 	$lmm_out .= '<!--<![endif]-->'.PHP_EOL;
 	$lmm_out .= '<head>'.PHP_EOL;
 	if ($layername == '') { $title_layername = get_bloginfo('name'); } else { $title_layername = htmlspecialchars(stripslashes($layername)); }
-	$lmm_out .= '<title>' . $title_layername . ' ' . __('powered by','lmm') . ' MapsMarker.com</title>'.PHP_EOL;
+	$lmm_out .= '<title>' . $title_layername . ' ' . __('powered by','lmm') . ' MapsMarker.com - ' . get_bloginfo('name') . '</title>'.PHP_EOL;
 	$lmm_out .= '<meta charset="UTF-8" />'.PHP_EOL;
 	$lmm_out .= '<meta name="geo.position" content="' . $lat . ';' . $lon . '" />'.PHP_EOL;
 	$lmm_out .= '<meta name="ICBM" content="' . $lat . ', ' . $lon . '" />'.PHP_EOL;
@@ -153,7 +153,7 @@ if (isset($_GET['layer'])) {
 	//info: panel for layer/marker name and API URLs
 	if ($panel == 1) {
 		if ( function_exists( 'is_rtl' ) && is_rtl() ) { $panel_fullscreen_text = 'text-align:right;'; } else { $panel_fullscreen_text = 'text-align:left;'; }
-		$lmm_out .= '<div id="panel_top_' . $uid . '" style="' . $panel_fullscreen_text  . 'background: ' . htmlspecialchars(addslashes($lmm_options[ 'defaults_layer_panel_background_color' ])) . '; width:99%; padding:5px;">'.PHP_EOL;
+		$lmm_out .= '<div id="panel_top_' . $uid . '" class="lmm-panel" style="' . $panel_fullscreen_text  . 'background: ' . htmlspecialchars(addslashes($lmm_options[ 'defaults_layer_panel_background_color' ])) . '; width:99%; padding:5px;">'.PHP_EOL;
 		$lmm_out .= '<span style="' . htmlspecialchars(addslashes($lmm_options[ 'defaults_layer_panel_paneltext_css' ])) . '">' . $paneltext . '</span><span class="lmm-panel-api-fullscreen">';
 		if ( (isset($lmm_options[ 'defaults_layer_panel_kml' ] ) == TRUE ) && ( $lmm_options[ 'defaults_layer_panel_kml' ] == 1 ) ) {
 			$lmm_out .= '<a href="' . LEAFLET_PLUGIN_URL . 'leaflet-kml.php?layer=' . $id . '&amp;name=' . $lmm_options[ 'misc_kml' ] . '" style="text-decoration:none;" title="' . esc_attr__('Export as KML for Google Earth/Google Maps','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/icon-kml.png" width="14" height="14" alt="KML-Logo" class="lmm-panel-api-images" /></a>';
@@ -519,9 +519,9 @@ elseif (isset($_GET['marker'])) {
 		}
 	//info: check if layer/marker ID exists
 	if ($row == NULL) {
-	$error_marker_not_exists = sprintf( esc_attr__('Error: a marker with the ID %1$s does not exist!','lmm'), $markerid);
-	echo $error_marker_not_exists . '<br/>';
-	echo '<a href="https://www.mapsmarker.com" target="_blank" title="' . esc_attr__('Go to plugin website','lmm') . '"><img style="border:1px solid #ccc;" src="' . LEAFLET_PLUGIN_URL . 'inc/img/map-deleted-image.png"></a><br/>';
+		$error_marker_not_exists = sprintf( esc_attr__('Error: a marker with the ID %1$s does not exist!','lmm'), $markerid);
+		echo $error_marker_not_exists . '<br/>';
+		echo '<a href="https://www.mapsmarker.com" target="_blank" title="' . esc_attr__('Go to plugin website','lmm') . '"><img style="border:1px solid #ccc;" src="' . LEAFLET_PLUGIN_URL . 'inc/img/map-deleted-image.png"></a><br/>';
 	} else {
 
 	//info: starting output on frontend
@@ -534,7 +534,7 @@ elseif (isset($_GET['marker'])) {
 	$lmm_out .= '<!--<![endif]-->'.PHP_EOL;
 	$lmm_out .= '<head>'.PHP_EOL;
 	if ($markername == '') { $title_markername = get_bloginfo('name'); } else { $title_markername = htmlspecialchars(stripslashes($markername)); }
-	$lmm_out .= '<title>' . $title_markername . ' ' . __('powered by','lmm') . ' MapsMarker.com</title>'.PHP_EOL;
+	$lmm_out .= '<title>' . $title_markername . ' ' . __('powered by','lmm') . ' MapsMarker.com - ' . get_bloginfo('name') . '</title>'.PHP_EOL;
 	$lmm_out .= '<meta charset="UTF-8" />'.PHP_EOL;
 	$lmm_out .= '<meta name="geo.position" content="' . $lat . ';' . $lon . '" />'.PHP_EOL;
 	$lmm_out .= '<meta name="ICBM" content="' . $lat . ', ' . $lon . '" />'.PHP_EOL;
@@ -597,7 +597,7 @@ elseif (isset($_GET['marker'])) {
 	//info: panel for layer/marker name and API URLs
 	if ($panel == 1) {
 		if ( function_exists( 'is_rtl' ) && is_rtl() ) { $panel_fullscreen_text = 'text-align:right;'; } else { $panel_fullscreen_text = 'text-align:left;'; }
-		$lmm_out .= '<div id="panel_top_' . $uid . '" style="' . $panel_fullscreen_text . 'background: ' . htmlspecialchars(addslashes($lmm_options[ 'defaults_marker_panel_background_color' ])) . '; width:99%; padding:5px;">'.PHP_EOL;
+		$lmm_out .= '<div id="panel_top_' . $uid . '" class="lmm-panel" style="' . $panel_fullscreen_text . 'background: ' . htmlspecialchars(addslashes($lmm_options[ 'defaults_marker_panel_background_color' ])) . '; width:99%; padding:5px;">'.PHP_EOL;
 		$lmm_out .= '<span style="' . htmlspecialchars(addslashes($lmm_options[ 'defaults_marker_panel_paneltext_css' ])) . '">' . $paneltext . '</span><span class="lmm-panel-api-fullscreen">';
 		if ( (isset($lmm_options[ 'defaults_marker_panel_directions' ] ) == TRUE ) && ( $lmm_options[ 'defaults_marker_panel_directions' ] == 1 ) ) {
 				//info: Google language localization (directions)

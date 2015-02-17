@@ -200,9 +200,6 @@ if ( ($action == 'add') || ($action == 'edit') || ($action == 'duplicate') ) {
 	if ( (get_option('leafletmapsmarker_update_info') == 'show') && ($page != 'leafletmapsmarker_pro_upgrade') ){
 		$lmm_version_old = get_option( 'leafletmapsmarker_version_before_update' );
 		$lmm_version_new = get_option( 'leafletmapsmarker_version' );
-		$lmm_changelog_new_version = '<a href="https://www.mapsmarker.com/v' . $lmm_version_new . '" target="_blank" style="text-decoration:none;">https://www.mapsmarker.com/v' . $lmm_version_new . '</a>';
-		$lmm_full_changelog = '<a href="https://www.mapsmarker.com/changelog" target="_blank" style="text-decoration:none;">https://www.mapsmarker.com/changelog</a>';
-
 		echo '<div style="border-radius:3px;border-color:#E6DB55;background-color:#FFFFE0;margin:10px 0 5px;padding:0 0.6em;border-style:solid;border-width:1px;">';
 		if ($lmm_version_old == 0) {
 			echo '<p><span style="font-weight:bold;font-size:125%;">' . sprintf(__('Leaflet Maps Marker has been successfully updated to version %1s!','lmm'), $lmm_version_new) . '</span></p>';
