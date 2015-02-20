@@ -8,7 +8,7 @@ Version: 3.9.6
 Author: MapsMarker.com e.U.
 Author URI: https://www.mapsmarker.com
 Requires at least: 3.3
-Tested up to: 4.1
+Tested up to: 4.1.1
 Requires at least PHP 5.2
 Copyright 2011-2015 - MapsMarker.com e.U. - All rights reserved
 MapsMarker &reg; - registration pending
