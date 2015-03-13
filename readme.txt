@@ -6,7 +6,7 @@ Tags:              Google Maps, OpenStreetMap, OSM, bing maps, googlemaps, googl
 Author URI:        https://www.mapsmarker.com
 Author:            MapsMarker.com e.U.
 Requires at least: 3.3
-Tested up to:      4.1.1
+Tested up to:      4.2-beta1
 Stable tag:        3.9.6
 License:           GPLv2
 
@@ -26,7 +26,7 @@ Leaflet Maps Marker allows you to
 
 * pin your favorites places with markers,
 * use integrated address search (Google Places API) for quickly finding your places,
-* choose from up to 800 custom free map icons from [Maps Icons Collection](http://mapicons.nicolasmollet.com),
+* choose from up to 800 custom free map icons from [Maps Icons Collection](https://mapicons.mapsmarker.com),
 * add popup description text or images for each marker,
 * choose individual basemap, size and zoom level for each marker/layer map,
 * organize your markers in layers and
@@ -297,7 +297,7 @@ This program is free software; you can redistribute it and/or modify it under th
 = Licenses for used libraries, services and images =
 * Leaflet - Copyright (c) 2010-2015, CloudMade, Vladimir Agafonkin [http://www.leafletjs.com](http://www.leafletjs.com)
 * OpenStreetMap - The Free Wiki World Map: [OpenStreetMap License](http://wiki.openstreetmap.org/wiki/OpenStreetMap_License)
-* Map Icons Collection by Nicolas Mollet - [http://mapicons.nicolasmollet.com](http://mapicons.nicolasmollet.com)
+* Map Icons Collection by Nicolas Mollet - [https://mapicons.mapsmarker.com](https://mapicons.mapsmarker.com)
 * Datasource OGD Vienna maps: Stadt Wien, Creative Commons Attribution (by) [http://data.wien.gv.at](http://data.wien.gv.at)
 * Jquery TimePicker, by Trent Richardson, [http://trentrichardson.com/examples/timepicker/](http://trentrichardson.com/examples/timepicker/), licence: GPL
 * Adress autocompletion powered by [Google Places API](https://developers.google.com/places/documentation/autocomplete)
@@ -324,10 +324,10 @@ MapsMarker &reg; - registration pending
 Copyright 2011-2015, MapsMarker.com e.U., All Rights Reserved
 
 == Upgrade Notice ==
-= v3.9.6 =
-usability improvements & bugfixes - see https://www.mapsmarker.com/v3.9.6 for more details
+= v3.9.7 =
+security improvements - see https://www.mapsmarker.com/v3.9.7 for more details
 
 == Changelog ==
-[blog post with details about v3.9.6](https://www.mapsmarker.com/v3.9.6)
+[blog post with details about v3.9.7](https://www.mapsmarker.com/v3.9.7)
 
 [changelog for all versions](https://www.mapsmarker.com/changelog)

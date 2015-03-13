@@ -31,8 +31,8 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 	$table_name_layers = $wpdb->prefix.'leafletmapsmarker_layers';
 	$ar_wikitude_provider_name_sanitized = strtolower(preg_replace(array('/\s/', '/\.[\.]+/', '/[^\w_\.\-]/'), array('_', '.', ''), wp_kses($lmm_options[ 'ar_wikitude_provider_name' ], $allowedtags)));
 	if (isset($_GET['layer'])) {
-		$layer_prepared = esc_sql($_GET['layer']);
-		$layer = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"," ","!","/"), "", $layer_prepared);
+		$layer_prepared = esc_sql(strtolower($_GET['layer']));
+		$layer = str_replace(array("b","c","d","e","f","g","h","i","j","k","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"," ","!","/","(",")"), "", $layer_prepared);
 		if ($layer == NULL) { die(); }
 		
 		$maxNumberOfPois = isset($_GET['maxNumberOfPois']) ? intval($_GET['maxNumberOfPois']) : intval($lmm_options[ 'ar_wikitude_maxnumberpois' ]);
@@ -311,8 +311,8 @@ if (!lmm_is_plugin_active('leaflet-maps-marker/leaflet-maps-marker.php') ) {
 			echo '</kml>';
 		}
 	} elseif (isset($_GET['marker'])) {
-		$markerid_prepared = esc_sql($_GET['marker']);
-		$markerid = str_replace(array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"," ","!","/","*"), "", $markerid_prepared);
+		$markerid_prepared = esc_sql(strtolower($_GET['marker']));
+		$markerid = str_replace(array("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","$","%","#","-","_","'","\"","\\"," ","!","/","*","(",")"), "", $markerid_prepared);
 		if ($markerid == NULL) { die(); }
 		
 		$markers = explode(',', $markerid);

@@ -93,7 +93,7 @@ if (is_plugin_active('wp-external-links/wp-external-links.php') ) {
 	$plugin_options = get_option('wp_external_links-main');
 	if (!strpos($plugin_options['ignore'], 'mapsmarker.com')) { $ignore_list .= 'mapsmarker.com<br/>'; }
 	if (!strpos($plugin_options['ignore'], 'leafletjs.com')) { $ignore_list .= 'leafletjs.com<br/>'; }
-	if (!strpos($plugin_options['ignore'], 'mapicons.nicolasmollet.com')) { $ignore_list .= 'mapicons.nicolasmollet.com<br/>'; }
+	if (!strpos($plugin_options['ignore'], 'mapicons.mapsmarker.com')) { $ignore_list .= 'mapicons.mapsmarker.com<br/>'; }
 	if (!strpos($plugin_options['ignore'], 'visualead.com')) { $ignore_list .= 'visualead.com<br/>'; }
 	if (!strpos($plugin_options['ignore'], 'openstreetmap.org')) { $ignore_list .= 'openstreetmap.org<br/>'; }
 	if (!strpos($plugin_options['ignore'], 'mapquest.com')) { $ignore_list .= 'mapquest.com<br/>'; }

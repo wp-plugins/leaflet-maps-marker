@@ -1339,7 +1339,7 @@ class Class_leaflet_options {
 			'section' => 'mapdefaults-section5',
 			'std'     => '',
 			'title'   => '',
-			'desc'    => '<strong>' . __('Only change the values below if you are not using marker or shadow icons from the <a href="http://mapicons.nicolasmollet.com" target="_blank">Map Icons Collection</a>!','lmm') . '</strong>',
+			'desc'    => '<strong>' . sprintf(__('Only change the values below if you are not using marker or shadow icons from the <a href="%1$s" target="_blank">Map Icons Collection</a>!','lmm'), 'https://mapicons.mapsmarker.com') . '</strong>',
 			'type'    => 'helptext'
 		);
 		$this->_settings['defaults_marker_icon_iconsize_x'] = array(
@@ -10034,7 +10034,7 @@ $this->_settings['clustering_helptext2'] = array(
 		}
 		/* template for plugin updates
 		//info:  set defaults for options introduced in v3.10
-		if (get_option('leafletmapsmarker_version') == '3.9.6' )
+		if (get_option('leafletmapsmarker_version') == '3.9.7' )
 		{
 			$new_options_defaults = array();
 			foreach ( $this->settings as $id => $setting )
