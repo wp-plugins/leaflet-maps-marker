@@ -93,21 +93,27 @@ class Class_leaflet_recent_marker_widget extends WP_Widget {
 		echo '<input type="checkbox" name="' . $this->get_field_name('lmm-widget-georss') . '" ' . checked($georss, 'on', false) . ' /></p>';
 		$attributionlink = $instance['lmm-widget-attributionlink'];
 		echo '<p><label for="lmm-widget-attributionlink">' . __('Show attribution link', 'lmm') . ':&nbsp;</label>';
-		echo '<input type="checkbox" name="' . $this->get_field_name('lmm-widget-attributionlink') . '" ' . checked($attributionlink, 'on', false) . ' disabled="disabled" readonly="readonly" style="display:inline;" />&nbsp;&nbsp;&nbsp;<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/pro-feature-banner-small.png" width="68" height="9" border="0"></a></p>';
+		echo '<input type="checkbox" name="' . $this->get_field_name('lmm-widget-attributionlink') . '" ' . checked($attributionlink, 'on', false) . ' disabled="disabled" readonly="readonly" />&nbsp;&nbsp;&nbsp;<a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade" title="' . esc_attr__('This feature is available in the pro version only! Click here to find out how you can start a free 30-day-trial easily','lmm') . '"><img src="' . LEAFLET_PLUGIN_URL . 'inc/img/pro-feature-banner-small.png" width="68" height="9" border="0"></a></p>';
 	}//info: END function form($instance)
 	public function update($new_instance, $old_instance) {
 		$instance = $old_instance;
-		if ( ($instance['lmm-widget-attributionlink'] == 'off') ) {
+		if ( isset($instance['lmm-widget-attributionlink']) && ($instance['lmm-widget-attributionlink'] == 'off') ) {
 			$new_instance = wp_parse_args((array) $new_instance, array(
 				'lmm-widget-title' => __('Recent markers','lmm'),
 				'lmm-widget-howmany' => '5',
-				'lmm-widget-attributionlink' => 'off'
+				'lmm-widget-attributionlink' => 'off',
+				'lmm-widget-showpopuptext' => 'off',
+				'lmm-widget-createdon' => 'off',
+				'lmm-widget-separatorline' => 'off'
 			));
 		} else {
 			$new_instance = wp_parse_args((array) $new_instance, array(
 				'lmm-widget-title' => __('Recent markers','lmm'),
 				'lmm-widget-howmany' => '5',
-				'lmm-widget-attributionlink' => 'on'
+				'lmm-widget-attributionlink' => 'on',
+				'lmm-widget-showpopuptext' => 'off',
+				'lmm-widget-createdon' => 'off',
+				'lmm-widget-separatorline' => 'off'
 			));
 		}
 		$instance['lmm-widget-title'] = (string) strip_tags($new_instance['lmm-widget-title']);

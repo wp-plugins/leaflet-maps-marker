@@ -41,6 +41,40 @@ hr{color:#E6DB55}
 </style></head><body>
 <?php
 /*****************************************************************************************/
+echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf($text_a, '3.9.7') . '</strong> - ' . $text_b . ' 15.03.2015 (<a href="https://www.mapsmarker.com/v3.9.7" target="_blank">' . $text_c . '</a>):</p>
+<table>
+<tr><td>' . $new . '</td><td>
+<a href="https://www.mapsmarker.com/2015/03/09/map-icons-collection/" target="_blank">Map Icons Collection now hosted on mapicons.mapsmarker.com</a>
+</td></tr>
+<tr><td>' . $new . '</td><td>
+<a href="https://www.mapsmarker.com/2015/02/28/mobile-version-of-mapsmarker-com-launched/" target="_blank">mobile version of mapsmarker.com launched</a>
+</td></tr>
+<tr><td>' . $new . '</td><td>
+show warning message in dynamic changelog if server uses outdated and potentially insecure PHP version (<5.4) - supporting <a href="http://www.wpupdatephp.com/" target="_blank">wpupdatephp.com</a>
+</td></tr>
+<tr><td>' . $changed . '</td><td>
+improved sanitising of GeoJSON, GeoRSS, KML, Wikitude API input parameters
+</td></tr>
+<tr><td>' . $fixed . '</td><td>
+PHP undefined index warnings when adding new recent marker widget
+</td></tr>
+<tr><td colspan="2">
+<p><strong>' . $text_d . '</a></p></strong>
+<p>' . sprintf($text_e, 'https://translate.mapsmarker.com/projects/lmm') . '</p>
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated Czech translation thanks to Viktor Kleiner and Vlad Kuzba, <a href="http://kuzbici.eu" target="_blank">http://kuzbici.eu</a>
+</td></tr>
+<tr><td>' . $transl . '</td><td>
+updated German translation
+</td></tr>
+<tr><td colspan="2">
+<p><strong>' . $text_f . '</a></p></strong>
+</td></tr>	
+</table>'.PHP_EOL;
+
+if ( (version_compare($lmm_version_old,"3.9.6","<")) && ( $lmm_version_old > '0' ) ) {
+echo '<p><hr noshade size="1"/></p>';
 echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf($text_a, '3.9.6') . '</strong> - ' . $text_b . ' 21.02.2015 (<a href="https://www.mapsmarker.com/v3.9.6" target="_blank">' . $text_c . '</a>):</p>
 <table>
 <tr><td><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $text_h . '"><img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-pro.png"></a></td><td>
@@ -171,6 +205,7 @@ updated Turkish translation thanks to Emre Erkan, <a href="http://www.karalamala
 updated Swedish translation thanks to Olof Odier <a href="http://www.historiskastadsvandringar.se" target="_blank">http://www.historiskastadsvandringar.se</a>, Tedy Warsitha <a href="http://codeorig.in/" target="_blank">http://codeorig.in/</a>, Dan Paulsson <a href="http://www.paulsson.eu" target="_blank">http://www.paulsson.eu</a>, Elger Lindgren, <a href="http://20x.se" target="_blank">http://20x.se</a> and Anton Andreasson, <a href="http://andreasson.org/" target="_blank">http://andreasson.org/</a>
 </td></tr>
 </table>'.PHP_EOL;
+}
 
 if ( (version_compare($lmm_version_old,"3.9.5","<")) && ( $lmm_version_old > '0' ) ) {
 echo '<p><hr noshade size="1"/></p>';
@@ -3463,7 +3498,7 @@ echo '</div>';
 /*************************************************************************************************************************************/
 /* 2do: change version numbers and date in first line on each update and add if ( ($lmm_version_old < 'x.x' ) ){ to old changelog
 *************************************************************************************************************************************
-echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf($text_a, '3.x') . '</strong> - ' . $text_b . ' xx.08.2014 (<a href="https://www.mapsmarker.com/v3.x" target="_blank">' . $text_c . '</a>):</p>
+echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf($text_a, '3.x') . '</strong> - ' . $text_b . ' xx.08.2015 (<a href="https://www.mapsmarker.com/v3.x" target="_blank">' . $text_c . '</a>):</p>
 <table>
 <tr><td><a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $text_h . '"><img src="' . LEAFLET_PLUGIN_URL .'inc/img/icon-changelog-pro.png"></a></td><td>
 <a href="' . LEAFLET_WP_ADMIN_URL . 'admin.php?page=leafletmapsmarker_pro_upgrade"  target="_top" title="' . $text_h . '"></a>
