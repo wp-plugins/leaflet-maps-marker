@@ -6,7 +6,7 @@ Tags:              Google Maps, OpenStreetMap, OSM, bing maps, googlemaps, googl
 Author URI:        https://www.mapsmarker.com
 Author:            MapsMarker.com e.U.
 Requires at least: 3.3
-Tested up to:      4.2-beta1
+Tested up to:      4.2.1
 Stable tag:        3.9.7
 License:           GPLv2
 
