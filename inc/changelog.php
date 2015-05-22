@@ -98,7 +98,7 @@ updated Vietnamese (vi) translation thanks to Hoai Thu, <a href="http://bizover.
 <tr><td colspan="2">
 <p><strong>' . $text_f . '</a></p></strong>
 <tr><td>' . $issue . '</td><td>
-Internet Explorer can crash with WordPress 4.2 to 4.2.2 due to Emoji conflict (<a href="https://www.mapsmarker.com/dev/pro/wp-admin/admin.php?page=leafletmapsmarker_markers" target="_blank">details</a>) - planned to be fixed with WordPress 4.2.3, workaround until WordPress 4.2.3 is available: <a href="https://wordpress.org/plugins/disable-emojis/" target="_blank"">disable Emojis</a>
+Internet Explorer can crash with WordPress 4.2 to 4.2.2 due to Emoji conflict (<a href="https://core.trac.wordpress.org/ticket/32305" target="_blank">details</a>) - planned to be fixed with WordPress 4.2.3, workaround until WordPress 4.2.3 is available: <a href="https://wordpress.org/plugins/disable-emojis/" target="_blank"">disable Emojis</a>
 </td></tr>
 </table>'.PHP_EOL;
 
