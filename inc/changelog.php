@@ -46,8 +46,11 @@ echo '<p style="margin:0.5em 0 0 0;"><strong>' . sprintf($text_a, '3.9.9') . '</
 <tr><td>' . $new . '</td><td>
 add support for displaying maps in bootstrap tabs
 </td></tr>
+<tr><td>' . $changed . '</td><td>
+optimized install- and update routine script (less database queries needed)
+</td></tr>
 <tr><td>' . $fixed . '</td><td>
-3 potential XSS vulnerabilities discovered by <a href="http://www.akamai.com" target="_blank">Akamai</a> - many thanks for the responsible disclosure!
+3 potential XSS vulnerabilities discovered by <a href="https://www.stateoftheinternet.com/security-cybersecurity.html" target="_blank">Akamai</a> - many thanks for the responsible disclosure!
 </td></tr>
 <tr><td colspan="2">
 <p><strong>' . $text_d . '</a></p></strong>
