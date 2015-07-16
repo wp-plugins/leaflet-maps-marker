@@ -103,7 +103,8 @@ We feature full RTL (right-to-left) language support as well as full support for
 Maps Marker makes it easy to switch between languages. Thanks to over 100 translators around the world, more languages are added regularly. Please feel free to contribute (and earn a license key in return) at [https://translate.mapsmarker.com](https://translate.mapsmarker.com)
 
 **Available translations**
-
+* Afrikaans (af) thanks to Hans
+* Arabic (ar) thanks to Abdelouali Benkheil, Aladdin Alhamda, Nedal Elghamry, yassin and Abdelouali Benkheil
 * Bengali (ba_BD) thanks to Nur Hasan
 * Bosnian (bs_BA) thanks to Kenan Dervišević
 * Bulgarian (bg_BG) thanks to Andon Ivanov
@@ -115,9 +116,12 @@ Maps Marker makes it easy to switch between languages. Thanks to over 100 transl
 * Danish (da_DK) thanks to Mads Dyrmann Larsen and Peter Erfurt
 * Dutch (nl_NL) thanks to Marijke Metz and Patrick Ruers
 * English (en_US)
+* Finnish (fi_FI) thanks to Jessi Bjoerk
 * French (fr_FR) thanks to Vincèn Pujol and Rodolphe Quiedeville, Fx Benard, cazal cédric, Fabien Hurelle and Thomas Guignard
 * Galician (gl_ES) thanks to Fernando Coello
 * German (de_DE)
+* Greek (el) thanks to Philios Sazeides, Evangelos Athanasiadis and Vardis Vavoulakis
+* Hebrew (he_IL) thanks to Alon Gilad and kobi levi
 * Hindi (hi_IN) thanks to by Outshine Solutions and Guntupalli Karunakar
 * Hungarian (hu_HU) thanks to István Pintér and Csaba Orban
 * Indonesian (id_ID) thanks to Andy Aditya Sastrawikarta, Emir Hartato and Phibu Reza
@@ -125,7 +129,8 @@ Maps Marker makes it easy to switch between languages. Thanks to over 100 transl
 * Japanese (ja) thanks to Shu Higashi
 * Korean (ko_KR) thanks to Andy Park
 * Latvian (lv) thanks to Juris Orlovs and Eriks Remess
-* Norwegian/Bokmål (nb_NO) thanks to Inge Tang
+* Lithuanian (lt_LT) thanks to Donatas Liaudaitis
+* Norwegian/Bokmal (nb_NO) thanks to Inge Tang
 * Polish (pl_PL) translation thanks to Pawel Wyszynski, Tomasz Rudnicki and Robert Pawlak
 * Portuguese (pt_BR) thanks to Andre Santos and Antonio Hammerl
 * Portuguese (pt_PT) translation thanks to Joao Campos
@@ -136,7 +141,9 @@ Maps Marker makes it easy to switch between languages. Thanks to over 100 transl
 * Spanish (es_ES) thanks to David Ramirez, Alvaro Lara, Ricardo Viteri and Juan Valdes
 * Spanish (es_MX) thanks to Victor Guevara and Eze Lazcano
 * Swedish (sv_SE) thanks to Swedish translation thanks to Olof Odier, Tedy Warsitha, Dan Paulsson, Elger Lindgren and Anton Andreasson
+* Thai (th) thanks to Makarapong Chathamma and Panupong Siriwichayakul
 * Turkish (tr_TR) thanks to Emre Erkan and Mahir Tosun
+* Uighur (ug) thanks to Yidayet Begzad
 * Ukrainian (uk_UK) thanks to Andrexj and Sergey Zhitnitsky
 * Vietnamese (vi) thanks to Hoai Thu
 * Yiddish (yi) thanks to Raphael Finkel
@@ -318,10 +325,10 @@ MapsMarker &reg;
 Copyright 2011-2015, MapsMarker.com e.U., All Rights Reserved
 
 == Upgrade Notice ==
-= v3.9.9 =
-Bootstrap tab support and security fixes - see https://www.mapsmarker.com/v3.9.9 for more details
+= v3.9.10 =
+translation updates & compatibility fixes - see https://www.mapsmarker.com/v3.9.10 for more details
 
 == Changelog ==
-[blog post with details about v3.9.9](https://www.mapsmarker.com/v3.9.9)
+[blog post with details about v3.9.10](https://www.mapsmarker.com/v3.9.10)
 
 [changelog for all versions](https://www.mapsmarker.com/changelog)
