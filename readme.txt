@@ -103,6 +103,7 @@ We feature full RTL (right-to-left) language support as well as full support for
 Maps Marker makes it easy to switch between languages. Thanks to over 100 translators around the world, more languages are added regularly. Please feel free to contribute (and earn a license key in return) at [https://translate.mapsmarker.com](https://translate.mapsmarker.com)
 
 **Available translations**
+
 * Afrikaans (af) thanks to Hans
 * Arabic (ar) thanks to Abdelouali Benkheil, Aladdin Alhamda, Nedal Elghamry, yassin and Abdelouali Benkheil
 * Bengali (ba_BD) thanks to Nur Hasan
