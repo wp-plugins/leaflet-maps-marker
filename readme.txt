@@ -2,11 +2,11 @@
 Contributors:      harmr
 Plugin Name:       Leaflet Maps Marker
 Plugin URI:        https://www.mapsmarker.com
-Tags:              Google Maps, OpenStreetMap, OSM, bing maps, googlemaps, google earth, map, maps, kml, gpx, location, augmented-reality 
+Tags:              Google Maps, OpenStreetMap, OSM, bing maps, googlemaps, google earth, map, maps, kml, gpx, location, augmented-reality
 Author URI:        https://www.mapsmarker.com
 Author:            MapsMarker.com e.U.
 Requires at least: 3.3
-Tested up to:      4.2.2
+Tested up to:      4.3
 Stable tag:        3.9.10
 License:           GPLv2
 
@@ -126,7 +126,7 @@ Maps Marker makes it easy to switch between languages. Thanks to over 100 transl
 * Hindi (hi_IN) thanks to by Outshine Solutions and Guntupalli Karunakar
 * Hungarian (hu_HU) thanks to István Pintér and Csaba Orban
 * Indonesian (id_ID) thanks to Andy Aditya Sastrawikarta, Emir Hartato and Phibu Reza
-* Italian (it_IT) thanks to Luca Barbetti
+* Italian (it_IT) thanks to Luca Barbetti and Angelo Giammarresi
 * Japanese (ja) thanks to Shu Higashi
 * Korean (ko_KR) thanks to Andy Park
 * Latvian (lv) thanks to Juris Orlovs and Eriks Remess
@@ -326,10 +326,10 @@ MapsMarker &reg;
 Copyright 2011-2015, MapsMarker.com e.U., All Rights Reserved
 
 == Upgrade Notice ==
-= v3.9.10 =
-translation updates & compatibility fixes - see https://www.mapsmarker.com/v3.9.10 for more details
+= v3.10 =
+support for async loading on layer maps, bing maps optimizations, bugfixes - see https://www.mapsmarker.com/v3.10 for more details
 
 == Changelog ==
-[blog post with details about v3.9.10](https://www.mapsmarker.com/v3.9.10)
+[blog post with details about v3.10](https://www.mapsmarker.com/v3.10)
 
 [changelog for all versions](https://www.mapsmarker.com/changelog)
