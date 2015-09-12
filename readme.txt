@@ -7,7 +7,7 @@ Author URI:        https://www.mapsmarker.com
 Author:            MapsMarker.com e.U.
 Requires at least: 3.3
 Tested up to:      4.3
-Stable tag:        3.9.10
+Stable tag:        3.10
 License:           GPLv2
 
 The most comprehensive & user-friendly mapping solution for WordPress
